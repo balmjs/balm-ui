@@ -24,8 +24,6 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use 'sass:map';
-@use '../elevation/functions' as elevation-functions;
-@use '../elevation/mixins' as elevation-mixins;
 @use '../feature-targeting/feature-targeting';
 @use './button-base';
 @use './button-filled-theme';
@@ -60,7 +58,8 @@
 @mixin _theme-styles($theme, $query: feature-targeting.all()) {
   // TODO(b/179402677): move into theme config.
   @include button-shared-theme.horizontal-padding(
-    button-shared-theme.$contained-horizontal-padding,
+    $padding: button-shared-theme.$contained-horizontal-padding,
+    $padding-icon: button-shared-theme.$contained-horizontal-padding-icon,
     $query: $query
   );
 

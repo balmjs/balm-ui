@@ -56,8 +56,8 @@ var MDCChipTrailingActionFoundation = /** @class */ (function (_super) {
     MDCChipTrailingActionFoundation.prototype.handleKeydown = function (evt) {
         evt.stopPropagation();
         var key = normalizeKey(evt);
-        if (this.shouldNotifyInteractionFromKey_(key)) {
-            var trigger = this.getTriggerFromKey_(key);
+        if (this.shouldNotifyInteractionFromKey(key)) {
+            var trigger = this.getTriggerFromKey(key);
             this.adapter.notifyInteraction(trigger);
             return;
         }
@@ -76,12 +76,12 @@ var MDCChipTrailingActionFoundation = /** @class */ (function (_super) {
     MDCChipTrailingActionFoundation.prototype.isNavigable = function () {
         return this.adapter.getAttribute(strings.ARIA_HIDDEN) !== 'true';
     };
-    MDCChipTrailingActionFoundation.prototype.shouldNotifyInteractionFromKey_ = function (key) {
+    MDCChipTrailingActionFoundation.prototype.shouldNotifyInteractionFromKey = function (key) {
         var isFromActionKey = key === KEY.ENTER || key === KEY.SPACEBAR;
         var isFromDeleteKey = key === KEY.BACKSPACE || key === KEY.DELETE;
         return isFromActionKey || isFromDeleteKey;
     };
-    MDCChipTrailingActionFoundation.prototype.getTriggerFromKey_ = function (key) {
+    MDCChipTrailingActionFoundation.prototype.getTriggerFromKey = function (key) {
         if (key === KEY.SPACEBAR) {
             return InteractionTrigger.SPACEBAR_KEY;
         }

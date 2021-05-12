@@ -156,6 +156,13 @@ var MDCChip = /** @class */ (function (_super) {
         // Default to the primary foundation
         return new MDCChipFoundation(adapter);
     };
+    /** Exposed to be called by the parent chip set. */
+    MDCChip.prototype.remove = function () {
+        var parent = this.root.parentNode;
+        if (parent !== null) {
+            parent.removeChild(this.root);
+        }
+    };
     /** Returns the ActionTypes for the encapsulated actions. */
     MDCChip.prototype.getActions = function () {
         return this.foundation.getActions();
@@ -189,6 +196,10 @@ var MDCChip = /** @class */ (function (_super) {
     /** Sets the selected state of the action. */
     MDCChip.prototype.setActionSelected = function (action, isSelected) {
         this.foundation.setActionSelected(action, isSelected);
+    };
+    /** Starts the animation on the chip. */
+    MDCChip.prototype.startAnimation = function (animation) {
+        this.foundation.startAnimation(animation);
     };
     return MDCChip;
 }(MDCComponent));

@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __extends } from "tslib";
+import { __extends, __values } from "tslib";
 import { MDCComponent } from '../../../base/component';
 import { announce } from '../../../dom/announce';
 import { MDCChip } from '../chip/component';
@@ -39,7 +39,7 @@ var MDCChipSet = /** @class */ (function (_super) {
     };
     Object.defineProperty(MDCChipSet.prototype, "chips", {
         get: function () {
-            return this.chips_.slice();
+            return this.chipsList.slice();
         },
         enumerable: false,
         configurable: true
@@ -59,41 +59,63 @@ var MDCChipSet = /** @class */ (function (_super) {
      */
     MDCChipSet.prototype.initialize = function (chipFactory) {
         if (chipFactory === void 0) { chipFactory = function (el) { return new MDCChip(el); }; }
-        this.chipFactory_ = chipFactory;
-        this.chips_ = this.instantiateChips_(this.chipFactory_);
+        this.chipFactory = chipFactory;
+        this.chipsList = this.instantiateChips(this.chipFactory);
     };
     MDCChipSet.prototype.initialSyncWithDOM = function () {
+        var e_1, _a;
         var _this = this;
-        this.chips_.forEach(function (chip) {
-            if (chip.id && chip.selected) {
-                _this.foundation.select(chip.id);
+        try {
+            for (var _b = __values(this.chipsList), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var chip = _c.value;
+                if (chip.id && chip.selected) {
+                    this.foundation.select(chip.id);
+                }
             }
-        });
-        this.handleChipInteraction_ = function (evt) {
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        this.handleChipInteraction = function (evt) {
             return _this.foundation.handleChipInteraction(evt.detail);
         };
-        this.handleChipSelection_ = function (evt) {
+        this.handleChipSelection = function (evt) {
             return _this.foundation.handleChipSelection(evt.detail);
         };
-        this.handleChipRemoval_ = function (evt) {
+        this.handleChipRemoval = function (evt) {
             return _this.foundation.handleChipRemoval(evt.detail);
         };
-        this.handleChipNavigation_ = function (evt) {
+        this.handleChipNavigation = function (evt) {
             return _this.foundation.handleChipNavigation(evt.detail);
         };
-        this.listen(INTERACTION_EVENT, this.handleChipInteraction_);
-        this.listen(SELECTION_EVENT, this.handleChipSelection_);
-        this.listen(REMOVAL_EVENT, this.handleChipRemoval_);
-        this.listen(NAVIGATION_EVENT, this.handleChipNavigation_);
+        this.listen(INTERACTION_EVENT, this.handleChipInteraction);
+        this.listen(SELECTION_EVENT, this.handleChipSelection);
+        this.listen(REMOVAL_EVENT, this.handleChipRemoval);
+        this.listen(NAVIGATION_EVENT, this.handleChipNavigation);
     };
     MDCChipSet.prototype.destroy = function () {
-        this.chips_.forEach(function (chip) {
-            chip.destroy();
-        });
-        this.unlisten(INTERACTION_EVENT, this.handleChipInteraction_);
-        this.unlisten(SELECTION_EVENT, this.handleChipSelection_);
-        this.unlisten(REMOVAL_EVENT, this.handleChipRemoval_);
-        this.unlisten(NAVIGATION_EVENT, this.handleChipNavigation_);
+        var e_2, _a;
+        try {
+            for (var _b = __values(this.chipsList), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var chip = _c.value;
+                chip.destroy();
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+        this.unlisten(INTERACTION_EVENT, this.handleChipInteraction);
+        this.unlisten(SELECTION_EVENT, this.handleChipSelection);
+        this.unlisten(REMOVAL_EVENT, this.handleChipRemoval);
+        this.unlisten(NAVIGATION_EVENT, this.handleChipNavigation);
         _super.prototype.destroy.call(this);
     };
     /**
@@ -101,7 +123,7 @@ var MDCChipSet = /** @class */ (function (_super) {
      */
     MDCChipSet.prototype.addChip = function (chipEl) {
         chipEl.id = chipEl.id || "mdc-chip-" + ++idCounter;
-        this.chips_.push(this.chipFactory_(chipEl));
+        this.chipsList.push(this.chipFactory(chipEl));
     };
     MDCChipSet.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -112,30 +134,30 @@ var MDCChipSet = /** @class */ (function (_super) {
                 announce(message);
             },
             focusChipPrimaryActionAtIndex: function (index) {
-                _this.chips_[index].focusPrimaryAction();
+                _this.chipsList[index].focusPrimaryAction();
             },
             focusChipTrailingActionAtIndex: function (index) {
-                _this.chips_[index].focusTrailingAction();
+                _this.chipsList[index].focusTrailingAction();
             },
-            getChipListCount: function () { return _this.chips_.length; },
+            getChipListCount: function () { return _this.chips.length; },
             getIndexOfChipById: function (chipId) {
-                return _this.findChipIndex_(chipId);
+                return _this.findChipIndex(chipId);
             },
             hasClass: function (className) { return _this.root.classList.contains(className); },
             isRTL: function () { return window.getComputedStyle(_this.root).getPropertyValue('direction') === 'rtl'; },
             removeChipAtIndex: function (index) {
-                if (index >= 0 && index < _this.chips_.length) {
-                    _this.chips_[index].destroy();
-                    _this.chips_[index].remove();
-                    _this.chips_.splice(index, 1);
+                if (index >= 0 && index < _this.chips.length) {
+                    _this.chipsList[index].destroy();
+                    _this.chipsList[index].remove();
+                    _this.chipsList.splice(index, 1);
                 }
             },
             removeFocusFromChipAtIndex: function (index) {
-                _this.chips_[index].removeFocus();
+                _this.chipsList[index].removeFocus();
             },
             selectChipAtIndex: function (index, selected, shouldNotifyClients) {
-                if (index >= 0 && index < _this.chips_.length) {
-                    _this.chips_[index].setSelectedFromChipSet(selected, shouldNotifyClients);
+                if (index >= 0 && index < _this.chips.length) {
+                    _this.chipsList[index].setSelectedFromChipSet(selected, shouldNotifyClients);
                 }
             },
         };
@@ -144,7 +166,7 @@ var MDCChipSet = /** @class */ (function (_super) {
     /**
      * Instantiates chip components on all of the chip set's child chip elements.
      */
-    MDCChipSet.prototype.instantiateChips_ = function (chipFactory) {
+    MDCChipSet.prototype.instantiateChips = function (chipFactory) {
         var chipElements = [].slice.call(this.root.querySelectorAll(CHIP_SELECTOR));
         return chipElements.map(function (el) {
             el.id = el.id || "mdc-chip-" + ++idCounter;
@@ -154,9 +176,9 @@ var MDCChipSet = /** @class */ (function (_super) {
     /**
      * Returns the index of the chip with the given id, or -1 if the chip does not exist.
      */
-    MDCChipSet.prototype.findChipIndex_ = function (chipId) {
-        for (var i = 0; i < this.chips_.length; i++) {
-            if (this.chips_[i].id === chipId) {
+    MDCChipSet.prototype.findChipIndex = function (chipId) {
+        for (var i = 0; i < this.chips.length; i++) {
+            if (this.chipsList[i].id === chipId) {
                 return i;
             }
         }

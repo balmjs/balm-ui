@@ -33,7 +33,7 @@ var MDCChipTrailingAction = /** @class */ (function (_super) {
     }
     Object.defineProperty(MDCChipTrailingAction.prototype, "ripple", {
         get: function () {
-            return this.ripple_;
+            return this.rippleSurface;
         },
         enumerable: false,
         configurable: true
@@ -49,24 +49,24 @@ var MDCChipTrailingAction = /** @class */ (function (_super) {
         // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
         // methods, we need a separate, strongly typed adapter variable.
         var rippleAdapter = MDCRipple.createAdapter(this);
-        this.ripple_ =
+        this.rippleSurface =
             rippleFactory(this.root, new MDCRippleFoundation(rippleAdapter));
     };
     MDCChipTrailingAction.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.handleClick_ = function (evt) {
+        this.handleClick = function (evt) {
             _this.foundation.handleClick(evt);
         };
-        this.handleKeydown_ = function (evt) {
+        this.handleKeydown = function (evt) {
             _this.foundation.handleKeydown(evt);
         };
-        this.listen('click', this.handleClick_);
-        this.listen('keydown', this.handleKeydown_);
+        this.listen('click', this.handleClick);
+        this.listen('keydown', this.handleKeydown);
     };
     MDCChipTrailingAction.prototype.destroy = function () {
-        this.ripple_.destroy();
-        this.unlisten('click', this.handleClick_);
-        this.unlisten('keydown', this.handleKeydown_);
+        this.rippleSurface.destroy();
+        this.unlisten('click', this.handleClick);
+        this.unlisten('keydown', this.handleKeydown);
         _super.prototype.destroy.call(this);
     };
     MDCChipTrailingAction.prototype.getDefaultFoundation = function () {

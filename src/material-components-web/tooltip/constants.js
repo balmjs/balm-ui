@@ -44,6 +44,9 @@ var numbers = {
     MAX_WIDTH: 200,
     // LINT.ThenChange(_tooltip.scss:tooltip-dimensions)
     CARET_INDENTATION: 24,
+    // LINT.IfChange(tooltip-anim-scale)
+    ANIMATION_SCALE: 0.8,
+    // LINT.ThenChange(_tooltip.scss:tooltip-anim-scale)
 };
 var attributes = {
     ARIA_EXPANDED: 'aria-expanded',
@@ -111,5 +114,21 @@ var PositionWithCaret;
     PositionWithCaret[PositionWithCaret["BELOW_CENTER"] = 11] = "BELOW_CENTER";
     PositionWithCaret[PositionWithCaret["BELOW_END"] = 12] = "BELOW_END";
 })(PositionWithCaret || (PositionWithCaret = {}));
-export { CssClasses, numbers, attributes, events, XPosition, AnchorBoundaryType, YPosition, strings, PositionWithCaret, };
+var YPositionWithCaret;
+(function (YPositionWithCaret) {
+    YPositionWithCaret[YPositionWithCaret["ABOVE"] = 1] = "ABOVE";
+    YPositionWithCaret[YPositionWithCaret["BELOW"] = 2] = "BELOW";
+    YPositionWithCaret[YPositionWithCaret["SIDE_TOP"] = 3] = "SIDE_TOP";
+    YPositionWithCaret[YPositionWithCaret["SIDE_CENTER"] = 4] = "SIDE_CENTER";
+    YPositionWithCaret[YPositionWithCaret["SIDE_BOTTOM"] = 5] = "SIDE_BOTTOM";
+})(YPositionWithCaret || (YPositionWithCaret = {}));
+var XPositionWithCaret;
+(function (XPositionWithCaret) {
+    XPositionWithCaret[XPositionWithCaret["START"] = 1] = "START";
+    XPositionWithCaret[XPositionWithCaret["CENTER"] = 2] = "CENTER";
+    XPositionWithCaret[XPositionWithCaret["END"] = 3] = "END";
+    XPositionWithCaret[XPositionWithCaret["SIDE_START"] = 4] = "SIDE_START";
+    XPositionWithCaret[XPositionWithCaret["SIDE_END"] = 5] = "SIDE_END";
+})(XPositionWithCaret || (XPositionWithCaret = {}));
+export { CssClasses, numbers, attributes, events, XPosition, AnchorBoundaryType, YPosition, strings, PositionWithCaret, YPositionWithCaret, XPositionWithCaret };
 //# sourceMappingURL=constants.js.map

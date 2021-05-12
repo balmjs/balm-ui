@@ -126,13 +126,13 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
             this.adapter.removeAttr(strings.ROLE);
         }
         if (!helperTextIsPersistent && !validationMsgNeedsDisplay) {
-            this.hide_();
+            this.hide();
         }
     };
     /**
      * Hides the help text from screen readers.
      */
-    MDCTextFieldHelperTextFoundation.prototype.hide_ = function () {
+    MDCTextFieldHelperTextFoundation.prototype.hide = function () {
         this.adapter.setAttr(strings.ARIA_HIDDEN, 'true');
     };
     return MDCTextFieldHelperTextFoundation;

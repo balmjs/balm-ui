@@ -201,7 +201,7 @@ var MDCTooltip = /** @class */ (function (_super) {
             },
             deregisterAnchorEventHandler: function (evt, handler) {
                 var _a;
-                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.addEventListener(evt, handler);
+                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.removeEventListener(evt, handler);
             },
             registerDocumentEventHandler: function (evt, handler) {
                 document.body.addEventListener(evt, handler);
@@ -218,12 +218,12 @@ var MDCTooltip = /** @class */ (function (_super) {
             notifyHidden: function () {
                 _this.emit(events.HIDDEN, {});
             },
-            getTooltipCaretSize: function () {
+            getTooltipCaretBoundingRect: function () {
                 var caret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_TOP);
                 if (!caret) {
                     return null;
                 }
-                return { width: caret.offsetWidth, height: caret.offsetHeight };
+                return caret.getBoundingClientRect();
             },
             setTooltipCaretStyle: function (propertyName, value) {
                 var topCaret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_TOP);

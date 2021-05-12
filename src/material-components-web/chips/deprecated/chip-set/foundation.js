@@ -31,7 +31,7 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
         /**
          * The ids of the selected chips in the set. Only used for choice chip set or filter chip set.
          */
-        _this.selectedChipIds_ = [];
+        _this.selectedChipIds = [];
         return _this;
     }
     Object.defineProperty(MDCChipSetFoundation, "strings", {
@@ -70,14 +70,14 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
      * Returns an array of the IDs of all selected chips.
      */
     MDCChipSetFoundation.prototype.getSelectedChipIds = function () {
-        return this.selectedChipIds_.slice();
+        return this.selectedChipIds.slice();
     };
     /**
      * Selects the chip with the given id. Deselects all other chips if the chip set is of the choice variant.
      * Does not notify clients of the updated selection state.
      */
     MDCChipSetFoundation.prototype.select = function (chipId) {
-        this.select_(chipId, false);
+        this.selectImpl(chipId, false);
     };
     /**
      * Handles a chip interaction event
@@ -85,10 +85,10 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
     MDCChipSetFoundation.prototype.handleChipInteraction = function (_a) {
         var chipId = _a.chipId;
         var index = this.adapter.getIndexOfChipById(chipId);
-        this.removeFocusFromChipsExcept_(index);
+        this.removeFocusFromChipsExcept(index);
         if (this.adapter.hasClass(cssClasses.CHOICE) ||
             this.adapter.hasClass(cssClasses.FILTER)) {
-            this.toggleSelect_(chipId);
+            this.toggleSelect(chipId);
         }
     };
     /**
@@ -100,12 +100,12 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
         if (shouldIgnore) {
             return;
         }
-        var chipIsSelected = this.selectedChipIds_.indexOf(chipId) >= 0;
+        var chipIsSelected = this.selectedChipIds.indexOf(chipId) >= 0;
         if (selected && !chipIsSelected) {
             this.select(chipId);
         }
         else if (!selected && chipIsSelected) {
-            this.deselect_(chipId);
+            this.deselectImpl(chipId);
         }
     };
     /**
@@ -117,14 +117,14 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
             this.adapter.announceMessage(removedAnnouncement);
         }
         var index = this.adapter.getIndexOfChipById(chipId);
-        this.deselectAndNotifyClients_(chipId);
+        this.deselectAndNotifyClients(chipId);
         this.adapter.removeChipAtIndex(index);
         var maxIndex = this.adapter.getChipListCount() - 1;
         if (maxIndex < 0) {
             return;
         }
         var nextIndex = Math.min(index, maxIndex);
-        this.removeFocusFromChipsExcept_(nextIndex);
+        this.removeFocusFromChipsExcept(nextIndex);
         // After removing a chip, we should focus the trailing action for the next chip.
         this.adapter.focusChipTrailingActionAtIndex(nextIndex);
     };
@@ -165,10 +165,10 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
         if (index < 0 || index > maxIndex) {
             return;
         }
-        this.removeFocusFromChipsExcept_(index);
-        this.focusChipAction_(index, key, source);
+        this.removeFocusFromChipsExcept(index);
+        this.focusChipAction(index, key, source);
     };
-    MDCChipSetFoundation.prototype.focusChipAction_ = function (index, key, source) {
+    MDCChipSetFoundation.prototype.focusChipAction = function (index, key, source) {
         var shouldJumpChips = jumpChipKeys.has(key);
         if (shouldJumpChips && source === EventSource.PRIMARY) {
             return this.adapter.focusChipPrimaryActionAtIndex(index);
@@ -176,7 +176,7 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
         if (shouldJumpChips && source === EventSource.TRAILING) {
             return this.adapter.focusChipTrailingActionAtIndex(index);
         }
-        var dir = this.getDirection_(key);
+        var dir = this.getDirection(key);
         if (dir === Direction.LEFT) {
             return this.adapter.focusChipTrailingActionAtIndex(index);
         }
@@ -184,7 +184,7 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
             return this.adapter.focusChipPrimaryActionAtIndex(index);
         }
     };
-    MDCChipSetFoundation.prototype.getDirection_ = function (key) {
+    MDCChipSetFoundation.prototype.getDirection = function (key) {
         var isRTL = this.adapter.isRTL();
         var isLeftKey = key === chipStrings.ARROW_LEFT_KEY ||
             key === chipStrings.IE_ARROW_LEFT_KEY;
@@ -198,11 +198,11 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
     /**
      * Deselects the chip with the given id and optionally notifies clients.
      */
-    MDCChipSetFoundation.prototype.deselect_ = function (chipId, shouldNotifyClients) {
+    MDCChipSetFoundation.prototype.deselectImpl = function (chipId, shouldNotifyClients) {
         if (shouldNotifyClients === void 0) { shouldNotifyClients = false; }
-        var index = this.selectedChipIds_.indexOf(chipId);
+        var index = this.selectedChipIds.indexOf(chipId);
         if (index >= 0) {
-            this.selectedChipIds_.splice(index, 1);
+            this.selectedChipIds.splice(index, 1);
             var chipIndex = this.adapter.getIndexOfChipById(chipId);
             this.adapter.selectChipAtIndex(chipIndex, /** isSelected */ false, shouldNotifyClients);
         }
@@ -210,21 +210,21 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
     /**
      * Deselects the chip with the given id and notifies clients.
      */
-    MDCChipSetFoundation.prototype.deselectAndNotifyClients_ = function (chipId) {
-        this.deselect_(chipId, true);
+    MDCChipSetFoundation.prototype.deselectAndNotifyClients = function (chipId) {
+        this.deselectImpl(chipId, true);
     };
     /**
      * Toggles selection of the chip with the given id.
      */
-    MDCChipSetFoundation.prototype.toggleSelect_ = function (chipId) {
-        if (this.selectedChipIds_.indexOf(chipId) >= 0) {
-            this.deselectAndNotifyClients_(chipId);
+    MDCChipSetFoundation.prototype.toggleSelect = function (chipId) {
+        if (this.selectedChipIds.indexOf(chipId) >= 0) {
+            this.deselectAndNotifyClients(chipId);
         }
         else {
-            this.selectAndNotifyClients_(chipId);
+            this.selectAndNotifyClients(chipId);
         }
     };
-    MDCChipSetFoundation.prototype.removeFocusFromChipsExcept_ = function (index) {
+    MDCChipSetFoundation.prototype.removeFocusFromChipsExcept = function (index) {
         var chipCount = this.adapter.getChipListCount();
         for (var i = 0; i < chipCount; i++) {
             if (i !== index) {
@@ -232,21 +232,21 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
             }
         }
     };
-    MDCChipSetFoundation.prototype.selectAndNotifyClients_ = function (chipId) {
-        this.select_(chipId, true);
+    MDCChipSetFoundation.prototype.selectAndNotifyClients = function (chipId) {
+        this.selectImpl(chipId, true);
     };
-    MDCChipSetFoundation.prototype.select_ = function (chipId, shouldNotifyClients) {
-        if (this.selectedChipIds_.indexOf(chipId) >= 0) {
+    MDCChipSetFoundation.prototype.selectImpl = function (chipId, shouldNotifyClients) {
+        if (this.selectedChipIds.indexOf(chipId) >= 0) {
             return;
         }
         if (this.adapter.hasClass(cssClasses.CHOICE) &&
-            this.selectedChipIds_.length > 0) {
-            var previouslySelectedChip = this.selectedChipIds_[0];
+            this.selectedChipIds.length > 0) {
+            var previouslySelectedChip = this.selectedChipIds[0];
             var previouslySelectedIndex = this.adapter.getIndexOfChipById(previouslySelectedChip);
-            this.selectedChipIds_ = [];
+            this.selectedChipIds = [];
             this.adapter.selectChipAtIndex(previouslySelectedIndex, /** isSelected */ false, shouldNotifyClients);
         }
-        this.selectedChipIds_.push(chipId);
+        this.selectedChipIds.push(chipId);
         var index = this.adapter.getIndexOfChipById(chipId);
         this.adapter.selectChipAtIndex(index, /** isSelected */ true, shouldNotifyClients);
     };

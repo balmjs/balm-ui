@@ -21,8 +21,6 @@
  * THE SOFTWARE.
  */
 import { __assign, __extends } from "tslib";
-// TODO(b/152410470): Remove trailing underscores from private properties
-// tslint:disable:strip-private-property-underscore
 import { MDCFoundation } from '../base/foundation';
 import { normalizeKey } from '../dom/keyboard';
 import { cssClasses, numbers, strings } from './constants';
@@ -35,16 +33,16 @@ var MDCListFoundation = /** @class */ (function (_super) {
     __extends(MDCListFoundation, _super);
     function MDCListFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCListFoundation.defaultAdapter), adapter)) || this;
-        _this.wrapFocus_ = false;
-        _this.isVertical_ = true;
-        _this.isSingleSelectionList_ = false;
-        _this.selectedIndex_ = numbers.UNSET_INDEX;
+        _this.wrapFocus = false;
+        _this.isVertical = true;
+        _this.isSingleSelectionList = false;
+        _this.selectedIndex = numbers.UNSET_INDEX;
         _this.focusedItemIndex = numbers.UNSET_INDEX;
-        _this.useActivatedClass_ = false;
-        _this.useSelectedAttr_ = false;
-        _this.ariaCurrentAttrValue_ = null;
-        _this.isCheckboxList_ = false;
-        _this.isRadioList_ = false;
+        _this.useActivatedClass = false;
+        _this.useSelectedAttr = false;
+        _this.ariaCurrentAttrValue = null;
+        _this.isCheckboxList = false;
+        _this.isRadioList = false;
         _this.hasTypeahead = false;
         // Transiently holds current typeahead prefix from user.
         _this.typeaheadState = typeahead.initState();
@@ -103,10 +101,10 @@ var MDCListFoundation = /** @class */ (function (_super) {
         }
         // TODO(b/172274142): consider all items when determining the list's type.
         if (this.adapter.hasCheckboxAtIndex(0)) {
-            this.isCheckboxList_ = true;
+            this.isCheckboxList = true;
         }
         else if (this.adapter.hasRadioAtIndex(0)) {
-            this.isRadioList_ = true;
+            this.isRadioList = true;
         }
         else {
             this.maybeInitializeSingleSelection();
@@ -116,22 +114,22 @@ var MDCListFoundation = /** @class */ (function (_super) {
         }
     };
     /**
-     * Sets the private wrapFocus_ variable.
+     * Sets the private wrapFocus variable.
      */
     MDCListFoundation.prototype.setWrapFocus = function (value) {
-        this.wrapFocus_ = value;
+        this.wrapFocus = value;
     };
     /**
-     * Sets the isVertical_ private variable.
+     * Sets the isVertical private variable.
      */
     MDCListFoundation.prototype.setVerticalOrientation = function (value) {
-        this.isVertical_ = value;
+        this.isVertical = value;
     };
     /**
-     * Sets the isSingleSelectionList_ private variable.
+     * Sets the isSingleSelectionList private variable.
      */
     MDCListFoundation.prototype.setSingleSelection = function (value) {
-        this.isSingleSelectionList_ = value;
+        this.isSingleSelectionList = value;
         if (value) {
             this.maybeInitializeSingleSelection();
         }
@@ -151,8 +149,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
             if (hasActivatedClass) {
                 this.setUseActivatedClass(true);
             }
-            this.isSingleSelectionList_ = true;
-            this.selectedIndex_ = i;
+            this.isSingleSelectionList = true;
+            this.selectedIndex = i;
             return;
         }
     };
@@ -174,38 +172,38 @@ var MDCListFoundation = /** @class */ (function (_super) {
             typeahead.isTypingInProgress(this.typeaheadState);
     };
     /**
-     * Sets the useActivatedClass_ private variable.
+     * Sets the useActivatedClass private variable.
      */
     MDCListFoundation.prototype.setUseActivatedClass = function (useActivated) {
-        this.useActivatedClass_ = useActivated;
+        this.useActivatedClass = useActivated;
     };
     /**
-     * Sets the useSelectedAttr_ private variable.
+     * Sets the useSelectedAttr private variable.
      */
     MDCListFoundation.prototype.setUseSelectedAttribute = function (useSelected) {
-        this.useSelectedAttr_ = useSelected;
+        this.useSelectedAttr = useSelected;
     };
     MDCListFoundation.prototype.getSelectedIndex = function () {
-        return this.selectedIndex_;
+        return this.selectedIndex;
     };
     MDCListFoundation.prototype.setSelectedIndex = function (index) {
-        if (!this.isIndexValid_(index)) {
+        if (!this.isIndexValid(index)) {
             return;
         }
-        if (this.isCheckboxList_) {
-            this.setCheckboxAtIndex_(index);
+        if (this.isCheckboxList) {
+            this.setCheckboxAtIndex(index);
         }
-        else if (this.isRadioList_) {
-            this.setRadioAtIndex_(index);
+        else if (this.isRadioList) {
+            this.setRadioAtIndex(index);
         }
         else {
-            this.setSingleSelectionAtIndex_(index);
+            this.setSingleSelectionAtIndex(index);
         }
     };
     /**
      * Focus in handler for the list items.
      */
-    MDCListFoundation.prototype.handleFocusIn = function (_, listItemIndex) {
+    MDCListFoundation.prototype.handleFocusIn = function (listItemIndex) {
         if (listItemIndex >= 0) {
             this.focusedItemIndex = listItemIndex;
             this.adapter.setAttributeForElementIndex(listItemIndex, 'tabindex', '0');
@@ -215,7 +213,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
     /**
      * Focus out handler for the list items.
      */
-    MDCListFoundation.prototype.handleFocusOut = function (_, listItemIndex) {
+    MDCListFoundation.prototype.handleFocusOut = function (listItemIndex) {
         var _this = this;
         if (listItemIndex >= 0) {
             this.adapter.setAttributeForElementIndex(listItemIndex, 'tabindex', '-1');
@@ -244,7 +242,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
         var isEnd = normalizeKey(event) === 'End';
         var isEnter = normalizeKey(event) === 'Enter';
         var isSpace = normalizeKey(event) === 'Spacebar';
-        // Have to check both upper and lower case, because having caps lock on affects the value.
+        // Have to check both upper and lower case, because having caps lock on
+        // affects the value.
         var isLetterA = event.key === 'A' || event.key === 'a';
         if (this.adapter.isRootFocused()) {
             if (isArrowUp || isEnd) {
@@ -281,12 +280,12 @@ var MDCListFoundation = /** @class */ (function (_super) {
                 return;
             }
         }
-        if ((this.isVertical_ && isArrowDown) ||
-            (!this.isVertical_ && isArrowRight)) {
+        if ((this.isVertical && isArrowDown) ||
+            (!this.isVertical && isArrowRight)) {
             preventDefaultEvent(event);
             this.focusNextElement(currentIndex);
         }
-        else if ((this.isVertical_ && isArrowUp) || (!this.isVertical_ && isArrowLeft)) {
+        else if ((this.isVertical && isArrowUp) || (!this.isVertical && isArrowLeft)) {
             preventDefaultEvent(event);
             this.focusPrevElement(currentIndex);
         }
@@ -298,9 +297,11 @@ var MDCListFoundation = /** @class */ (function (_super) {
             preventDefaultEvent(event);
             this.focusLastElement();
         }
-        else if (isLetterA && event.ctrlKey && this.isCheckboxList_) {
+        else if (isLetterA && event.ctrlKey && this.isCheckboxList) {
             event.preventDefault();
-            this.toggleAll(this.selectedIndex_ === numbers.UNSET_INDEX ? [] : this.selectedIndex_);
+            this.toggleAll(this.selectedIndex === numbers.UNSET_INDEX ?
+                [] :
+                this.selectedIndex);
         }
         else if (isEnter || isSpace) {
             if (isRootListItem) {
@@ -315,8 +316,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
                     return;
                 }
                 if (!this.isTypeaheadInProgress()) {
-                    if (this.isSelectableList_()) {
-                        this.setSelectedIndexOnAction_(currentIndex);
+                    if (this.isSelectableList()) {
+                        this.setSelectedIndexOnAction(currentIndex);
                     }
                     this.adapter.notifyAction(currentIndex);
                 }
@@ -346,8 +347,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
         if (this.adapter.listItemAtIndexHasClass(index, cssClasses.LIST_ITEM_DISABLED_CLASS)) {
             return;
         }
-        if (this.isSelectableList_()) {
-            this.setSelectedIndexOnAction_(index, toggleCheckbox);
+        if (this.isSelectableList()) {
+            this.setSelectedIndexOnAction(index, toggleCheckbox);
         }
         this.adapter.notifyAction(index);
     };
@@ -358,7 +359,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
         var count = this.adapter.getListItemCount();
         var nextIndex = index + 1;
         if (nextIndex >= count) {
-            if (this.wrapFocus_) {
+            if (this.wrapFocus) {
                 nextIndex = 0;
             }
             else {
@@ -375,7 +376,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
     MDCListFoundation.prototype.focusPrevElement = function (index) {
         var prevIndex = index - 1;
         if (prevIndex < 0) {
-            if (this.wrapFocus_) {
+            if (this.wrapFocus) {
                 prevIndex = this.adapter.getListItemCount() - 1;
             }
             else {
@@ -405,7 +406,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
      * @param isEnabled Sets the list item to enabled or disabled.
      */
     MDCListFoundation.prototype.setEnabled = function (itemIndex, isEnabled) {
-        if (!this.isIndexValid_(itemIndex)) {
+        if (!this.isIndexValid(itemIndex)) {
             return;
         }
         if (isEnabled) {
@@ -417,41 +418,41 @@ var MDCListFoundation = /** @class */ (function (_super) {
             this.adapter.setAttributeForElementIndex(itemIndex, strings.ARIA_DISABLED, 'true');
         }
     };
-    MDCListFoundation.prototype.setSingleSelectionAtIndex_ = function (index) {
-        if (this.selectedIndex_ === index) {
+    MDCListFoundation.prototype.setSingleSelectionAtIndex = function (index) {
+        if (this.selectedIndex === index) {
             return;
         }
         var selectedClassName = cssClasses.LIST_ITEM_SELECTED_CLASS;
-        if (this.useActivatedClass_) {
+        if (this.useActivatedClass) {
             selectedClassName = cssClasses.LIST_ITEM_ACTIVATED_CLASS;
         }
-        if (this.selectedIndex_ !== numbers.UNSET_INDEX) {
-            this.adapter.removeClassForElementIndex(this.selectedIndex_, selectedClassName);
+        if (this.selectedIndex !== numbers.UNSET_INDEX) {
+            this.adapter.removeClassForElementIndex(this.selectedIndex, selectedClassName);
         }
-        this.setAriaForSingleSelectionAtIndex_(index);
+        this.setAriaForSingleSelectionAtIndex(index);
         this.setTabindexAtIndex(index);
         if (index !== numbers.UNSET_INDEX) {
             this.adapter.addClassForElementIndex(index, selectedClassName);
         }
-        this.selectedIndex_ = index;
+        this.selectedIndex = index;
     };
     /**
      * Sets aria attribute for single selection at given index.
      */
-    MDCListFoundation.prototype.setAriaForSingleSelectionAtIndex_ = function (index) {
+    MDCListFoundation.prototype.setAriaForSingleSelectionAtIndex = function (index) {
         // Detect the presence of aria-current and get the value only during list
         // initialization when it is in unset state.
-        if (this.selectedIndex_ === numbers.UNSET_INDEX) {
-            this.ariaCurrentAttrValue_ =
+        if (this.selectedIndex === numbers.UNSET_INDEX) {
+            this.ariaCurrentAttrValue =
                 this.adapter.getAttributeForElementIndex(index, strings.ARIA_CURRENT);
         }
-        var isAriaCurrent = this.ariaCurrentAttrValue_ !== null;
+        var isAriaCurrent = this.ariaCurrentAttrValue !== null;
         var ariaAttribute = isAriaCurrent ? strings.ARIA_CURRENT : strings.ARIA_SELECTED;
-        if (this.selectedIndex_ !== numbers.UNSET_INDEX) {
-            this.adapter.setAttributeForElementIndex(this.selectedIndex_, ariaAttribute, 'false');
+        if (this.selectedIndex !== numbers.UNSET_INDEX) {
+            this.adapter.setAttributeForElementIndex(this.selectedIndex, ariaAttribute, 'false');
         }
         if (index !== numbers.UNSET_INDEX) {
-            var ariaAttributeValue = isAriaCurrent ? this.ariaCurrentAttrValue_ : 'true';
+            var ariaAttributeValue = isAriaCurrent ? this.ariaCurrentAttrValue : 'true';
             this.adapter.setAttributeForElementIndex(index, ariaAttribute, ariaAttributeValue);
         }
     };
@@ -459,22 +460,22 @@ var MDCListFoundation = /** @class */ (function (_super) {
      * Returns the attribute to use for indicating selection status.
      */
     MDCListFoundation.prototype.getSelectionAttribute = function () {
-        return this.useSelectedAttr_ ? strings.ARIA_SELECTED : strings.ARIA_CHECKED;
+        return this.useSelectedAttr ? strings.ARIA_SELECTED : strings.ARIA_CHECKED;
     };
     /**
      * Toggles radio at give index. Radio doesn't change the checked state if it
      * is already checked.
      */
-    MDCListFoundation.prototype.setRadioAtIndex_ = function (index) {
+    MDCListFoundation.prototype.setRadioAtIndex = function (index) {
         var selectionAttribute = this.getSelectionAttribute();
         this.adapter.setCheckedCheckboxOrRadioAtIndex(index, true);
-        if (this.selectedIndex_ !== numbers.UNSET_INDEX) {
-            this.adapter.setAttributeForElementIndex(this.selectedIndex_, selectionAttribute, 'false');
+        if (this.selectedIndex !== numbers.UNSET_INDEX) {
+            this.adapter.setAttributeForElementIndex(this.selectedIndex, selectionAttribute, 'false');
         }
         this.adapter.setAttributeForElementIndex(index, selectionAttribute, 'true');
-        this.selectedIndex_ = index;
+        this.selectedIndex = index;
     };
-    MDCListFoundation.prototype.setCheckboxAtIndex_ = function (index) {
+    MDCListFoundation.prototype.setCheckboxAtIndex = function (index) {
         var selectionAttribute = this.getSelectionAttribute();
         for (var i = 0; i < this.adapter.getListItemCount(); i++) {
             var isChecked = false;
@@ -484,7 +485,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
             this.adapter.setCheckedCheckboxOrRadioAtIndex(i, isChecked);
             this.adapter.setAttributeForElementIndex(i, selectionAttribute, isChecked ? 'true' : 'false');
         }
-        this.selectedIndex_ = index;
+        this.selectedIndex = index;
     };
     MDCListFoundation.prototype.setTabindexAtIndex = function (index) {
         if (this.focusedItemIndex === numbers.UNSET_INDEX && index !== 0) {
@@ -499,9 +500,9 @@ var MDCListFoundation = /** @class */ (function (_super) {
         // Set the previous selection's tabindex to -1. We need this because
         // in selection menus that are not visible, programmatically setting an
         // option will not change focus but will change where tabindex should be 0.
-        if (!(this.selectedIndex_ instanceof Array) &&
-            this.selectedIndex_ !== index) {
-            this.adapter.setAttributeForElementIndex(this.selectedIndex_, 'tabindex', '-1');
+        if (!(this.selectedIndex instanceof Array) &&
+            this.selectedIndex !== index) {
+            this.adapter.setAttributeForElementIndex(this.selectedIndex, 'tabindex', '-1');
         }
         if (index !== numbers.UNSET_INDEX) {
             this.adapter.setAttributeForElementIndex(index, 'tabindex', '0');
@@ -511,53 +512,56 @@ var MDCListFoundation = /** @class */ (function (_super) {
      * @return Return true if it is single selectin list, checkbox list or radio
      *     list.
      */
-    MDCListFoundation.prototype.isSelectableList_ = function () {
-        return this.isSingleSelectionList_ || this.isCheckboxList_ ||
-            this.isRadioList_;
+    MDCListFoundation.prototype.isSelectableList = function () {
+        return this.isSingleSelectionList || this.isCheckboxList ||
+            this.isRadioList;
     };
     MDCListFoundation.prototype.setTabindexToFirstSelectedOrFocusedItem = function () {
         var targetIndex = this.getFirstSelectedOrFocusedItemIndex();
         this.setTabindexAtIndex(targetIndex);
     };
     MDCListFoundation.prototype.getFirstSelectedOrFocusedItemIndex = function () {
-        var targetIndex = this.focusedItemIndex >= 0 ? this.focusedItemIndex : 0;
-        if (this.isSelectableList_()) {
-            if (typeof this.selectedIndex_ === 'number' &&
-                this.selectedIndex_ !== numbers.UNSET_INDEX) {
-                targetIndex = this.selectedIndex_;
-            }
-            else if (isNumberArray(this.selectedIndex_) &&
-                this.selectedIndex_.length > 0) {
-                targetIndex = this.selectedIndex_.reduce(function (currentIndex, minIndex) { return Math.min(currentIndex, minIndex); });
-            }
+        // Action lists retain focus on the most recently focused item.
+        if (!this.isSelectableList()) {
+            return Math.max(this.focusedItemIndex, 0);
         }
-        return targetIndex;
+        // Single-selection lists focus the selected item.
+        if (typeof this.selectedIndex === 'number' &&
+            this.selectedIndex !== numbers.UNSET_INDEX) {
+            return this.selectedIndex;
+        }
+        // Multiple-selection lists focus the first selected item.
+        if (isNumberArray(this.selectedIndex) && this.selectedIndex.length > 0) {
+            return this.selectedIndex.reduce(function (minIndex, currentIndex) { return Math.min(minIndex, currentIndex); });
+        }
+        // Selection lists without a selection focus the first item.
+        return 0;
     };
-    MDCListFoundation.prototype.isIndexValid_ = function (index) {
+    MDCListFoundation.prototype.isIndexValid = function (index) {
         var _this = this;
         if (index instanceof Array) {
-            if (!this.isCheckboxList_) {
+            if (!this.isCheckboxList) {
                 throw new Error('MDCListFoundation: Array of index is only supported for checkbox based list');
             }
             if (index.length === 0) {
                 return true;
             }
             else {
-                return index.some(function (i) { return _this.isIndexInRange_(i); });
+                return index.some(function (i) { return _this.isIndexInRange(i); });
             }
         }
         else if (typeof index === 'number') {
-            if (this.isCheckboxList_) {
+            if (this.isCheckboxList) {
                 throw new Error("MDCListFoundation: Expected array of index for checkbox based list but got number: " + index);
             }
-            return this.isIndexInRange_(index) ||
-                this.isSingleSelectionList_ && index === numbers.UNSET_INDEX;
+            return this.isIndexInRange(index) ||
+                this.isSingleSelectionList && index === numbers.UNSET_INDEX;
         }
         else {
             return false;
         }
     };
-    MDCListFoundation.prototype.isIndexInRange_ = function (index) {
+    MDCListFoundation.prototype.isIndexInRange = function (index) {
         var listSize = this.adapter.getListItemCount();
         return index >= 0 && index < listSize;
     };
@@ -566,16 +570,16 @@ var MDCListFoundation = /** @class */ (function (_super) {
      * toggleCheckbox value. User interaction should not toggle list item(s) when
      * disabled.
      */
-    MDCListFoundation.prototype.setSelectedIndexOnAction_ = function (index, toggleCheckbox) {
+    MDCListFoundation.prototype.setSelectedIndexOnAction = function (index, toggleCheckbox) {
         if (toggleCheckbox === void 0) { toggleCheckbox = true; }
-        if (this.isCheckboxList_) {
-            this.toggleCheckboxAtIndex_(index, toggleCheckbox);
+        if (this.isCheckboxList) {
+            this.toggleCheckboxAtIndex(index, toggleCheckbox);
         }
         else {
             this.setSelectedIndex(index);
         }
     };
-    MDCListFoundation.prototype.toggleCheckboxAtIndex_ = function (index, toggleCheckbox) {
+    MDCListFoundation.prototype.toggleCheckboxAtIndex = function (index, toggleCheckbox) {
         var selectionAttribute = this.getSelectionAttribute();
         var isChecked = this.adapter.isCheckboxCheckedAtIndex(index);
         if (toggleCheckbox) {
@@ -585,16 +589,16 @@ var MDCListFoundation = /** @class */ (function (_super) {
         this.adapter.setAttributeForElementIndex(index, selectionAttribute, isChecked ? 'true' : 'false');
         // If none of the checkbox items are selected and selectedIndex is not
         // initialized then provide a default value.
-        var selectedIndexes = this.selectedIndex_ === numbers.UNSET_INDEX ?
+        var selectedIndexes = this.selectedIndex === numbers.UNSET_INDEX ?
             [] :
-            this.selectedIndex_.slice();
+            this.selectedIndex.slice();
         if (isChecked) {
             selectedIndexes.push(index);
         }
         else {
             selectedIndexes = selectedIndexes.filter(function (i) { return i !== index; });
         }
-        this.selectedIndex_ = selectedIndexes;
+        this.selectedIndex = selectedIndexes;
     };
     MDCListFoundation.prototype.focusItemAtIndex = function (index) {
         this.adapter.focusItemAtIndex(index);
@@ -604,7 +608,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
         var count = this.adapter.getListItemCount();
         // If all items are selected, deselect everything.
         if (currentlySelectedIndexes.length === count) {
-            this.setCheckboxAtIndex_([]);
+            this.setCheckboxAtIndex([]);
         }
         else {
             // Otherwise select all enabled options.
@@ -615,7 +619,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
                     allIndexes.push(i);
                 }
             }
-            this.setCheckboxAtIndex_(allIndexes);
+            this.setCheckboxAtIndex(allIndexes);
         }
     };
     /**

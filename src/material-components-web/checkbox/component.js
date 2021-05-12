@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __assign, __extends } from "tslib";
+import { __assign, __extends, __values } from "tslib";
 import { getCorrectEventName } from '../animation/util';
 import { MDCComponent } from '../base/component';
 import { applyPassive } from '../dom/events';
@@ -34,7 +34,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
     __extends(MDCCheckbox, _super);
     function MDCCheckbox() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.ripple_ = _this.createRipple_();
+        _this.rippleSurface = _this.createRipple();
         return _this;
     }
     MDCCheckbox.attachTo = function (root) {
@@ -42,34 +42,34 @@ var MDCCheckbox = /** @class */ (function (_super) {
     };
     Object.defineProperty(MDCCheckbox.prototype, "ripple", {
         get: function () {
-            return this.ripple_;
+            return this.rippleSurface;
         },
         enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCheckbox.prototype, "checked", {
         get: function () {
-            return this.nativeControl_.checked;
+            return this.getNativeControl().checked;
         },
         set: function (checked) {
-            this.nativeControl_.checked = checked;
+            this.getNativeControl().checked = checked;
         },
         enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCheckbox.prototype, "indeterminate", {
         get: function () {
-            return this.nativeControl_.indeterminate;
+            return this.getNativeControl().indeterminate;
         },
         set: function (indeterminate) {
-            this.nativeControl_.indeterminate = indeterminate;
+            this.getNativeControl().indeterminate = indeterminate;
         },
         enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCheckbox.prototype, "disabled", {
         get: function () {
-            return this.nativeControl_.disabled;
+            return this.getNativeControl().disabled;
         },
         set: function (disabled) {
             this.foundation.setDisabled(disabled);
@@ -79,33 +79,38 @@ var MDCCheckbox = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCCheckbox.prototype, "value", {
         get: function () {
-            return this.nativeControl_.value;
+            return this.getNativeControl().value;
         },
         set: function (value) {
-            this.nativeControl_.value = value;
+            this.getNativeControl().value = value;
         },
         enumerable: false,
         configurable: true
     });
     MDCCheckbox.prototype.initialize = function () {
         var DATA_INDETERMINATE_ATTR = strings.DATA_INDETERMINATE_ATTR;
-        this.nativeControl_.indeterminate =
-            this.nativeControl_.getAttribute(DATA_INDETERMINATE_ATTR) === 'true';
-        this.nativeControl_.removeAttribute(DATA_INDETERMINATE_ATTR);
+        this.getNativeControl().indeterminate =
+            this.getNativeControl().getAttribute(DATA_INDETERMINATE_ATTR) ===
+                'true';
+        this.getNativeControl().removeAttribute(DATA_INDETERMINATE_ATTR);
     };
     MDCCheckbox.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.handleChange_ = function () { return _this.foundation.handleChange(); };
-        this.handleAnimationEnd_ = function () { return _this.foundation.handleAnimationEnd(); };
-        this.nativeControl_.addEventListener('change', this.handleChange_);
-        this.listen(getCorrectEventName(window, 'animationend'), this.handleAnimationEnd_);
-        this.installPropertyChangeHooks_();
+        this.handleChange = function () {
+            _this.foundation.handleChange();
+        };
+        this.handleAnimationEnd = function () {
+            _this.foundation.handleAnimationEnd();
+        };
+        this.getNativeControl().addEventListener('change', this.handleChange);
+        this.listen(getCorrectEventName(window, 'animationend'), this.handleAnimationEnd);
+        this.installPropertyChangeHooks();
     };
     MDCCheckbox.prototype.destroy = function () {
-        this.ripple_.destroy();
-        this.nativeControl_.removeEventListener('change', this.handleChange_);
-        this.unlisten(getCorrectEventName(window, 'animationend'), this.handleAnimationEnd_);
-        this.uninstallPropertyChangeHooks_();
+        this.rippleSurface.destroy();
+        this.getNativeControl().removeEventListener('change', this.handleChange);
+        this.unlisten(getCorrectEventName(window, 'animationend'), this.handleAnimationEnd);
+        this.uninstallPropertyChangeHooks();
         _super.prototype.destroy.call(this);
     };
     MDCCheckbox.prototype.getDefaultFoundation = function () {
@@ -115,7 +120,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
         var adapter = {
             addClass: function (className) { return _this.root.classList.add(className); },
             forceLayout: function () { return _this.root.offsetWidth; },
-            hasNativeControl: function () { return !!_this.nativeControl_; },
+            hasNativeControl: function () { return !!_this.getNativeControl(); },
             isAttachedToDOM: function () { return Boolean(_this.root.parentNode); },
             isChecked: function () { return _this.checked; },
             isIndeterminate: function () { return _this.indeterminate; },
@@ -123,34 +128,39 @@ var MDCCheckbox = /** @class */ (function (_super) {
                 _this.root.classList.remove(className);
             },
             removeNativeControlAttr: function (attr) {
-                _this.nativeControl_.removeAttribute(attr);
+                _this.getNativeControl().removeAttribute(attr);
             },
             setNativeControlAttr: function (attr, value) {
-                _this.nativeControl_.setAttribute(attr, value);
+                _this.getNativeControl().setAttribute(attr, value);
             },
             setNativeControlDisabled: function (disabled) {
-                _this.nativeControl_.disabled = disabled;
+                _this.getNativeControl().disabled = disabled;
             },
         };
         return new MDCCheckboxFoundation(adapter);
     };
-    MDCCheckbox.prototype.createRipple_ = function () {
+    MDCCheckbox.prototype.createRipple = function () {
         var _this = this;
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { deregisterInteractionHandler: function (evtType, handler) { return _this.nativeControl_.removeEventListener(evtType, handler, applyPassive()); }, isSurfaceActive: function () { return matches(_this.nativeControl_, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) { return _this.nativeControl_.addEventListener(evtType, handler, applyPassive()); } });
+        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { deregisterInteractionHandler: function (evtType, handler) {
+                _this.getNativeControl().removeEventListener(evtType, handler, applyPassive());
+            }, isSurfaceActive: function () { return matches(_this.getNativeControl(), ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
+                _this.getNativeControl().addEventListener(evtType, handler, applyPassive());
+            } });
         return new MDCRipple(this.root, new MDCRippleFoundation(adapter));
     };
-    MDCCheckbox.prototype.installPropertyChangeHooks_ = function () {
+    MDCCheckbox.prototype.installPropertyChangeHooks = function () {
+        var e_1, _a;
         var _this = this;
-        var nativeCb = this.nativeControl_;
+        var nativeCb = this.getNativeControl();
         var cbProto = Object.getPrototypeOf(nativeCb);
-        CB_PROTO_PROPS.forEach(function (controlState) {
+        var _loop_1 = function (controlState) {
             var desc = Object.getOwnPropertyDescriptor(cbProto, controlState);
             // We have to check for this descriptor, since some browsers (Safari) don't support its return.
             // See: https://bugs.webkit.org/show_bug.cgi?id=49739
             if (!validDescriptor(desc)) {
-                return;
+                return { value: void 0 };
             }
             // Type cast is needed for compatibility with Closure Compiler.
             var nativeGetter = desc.get;
@@ -164,31 +174,53 @@ var MDCCheckbox = /** @class */ (function (_super) {
                 },
             };
             Object.defineProperty(nativeCb, controlState, nativeCbDesc);
-        });
+        };
+        try {
+            for (var CB_PROTO_PROPS_1 = __values(CB_PROTO_PROPS), CB_PROTO_PROPS_1_1 = CB_PROTO_PROPS_1.next(); !CB_PROTO_PROPS_1_1.done; CB_PROTO_PROPS_1_1 = CB_PROTO_PROPS_1.next()) {
+                var controlState = CB_PROTO_PROPS_1_1.value;
+                var state_1 = _loop_1(controlState);
+                if (typeof state_1 === "object")
+                    return state_1.value;
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (CB_PROTO_PROPS_1_1 && !CB_PROTO_PROPS_1_1.done && (_a = CB_PROTO_PROPS_1.return)) _a.call(CB_PROTO_PROPS_1);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
     };
-    MDCCheckbox.prototype.uninstallPropertyChangeHooks_ = function () {
-        var nativeCb = this.nativeControl_;
+    MDCCheckbox.prototype.uninstallPropertyChangeHooks = function () {
+        var e_2, _a;
+        var nativeCb = this.getNativeControl();
         var cbProto = Object.getPrototypeOf(nativeCb);
-        CB_PROTO_PROPS.forEach(function (controlState) {
-            var desc = Object.getOwnPropertyDescriptor(cbProto, controlState);
-            if (!validDescriptor(desc)) {
-                return;
+        try {
+            for (var CB_PROTO_PROPS_2 = __values(CB_PROTO_PROPS), CB_PROTO_PROPS_2_1 = CB_PROTO_PROPS_2.next(); !CB_PROTO_PROPS_2_1.done; CB_PROTO_PROPS_2_1 = CB_PROTO_PROPS_2.next()) {
+                var controlState = CB_PROTO_PROPS_2_1.value;
+                var desc = Object.getOwnPropertyDescriptor(cbProto, controlState);
+                if (!validDescriptor(desc)) {
+                    return;
+                }
+                Object.defineProperty(nativeCb, controlState, desc);
             }
-            Object.defineProperty(nativeCb, controlState, desc);
-        });
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (CB_PROTO_PROPS_2_1 && !CB_PROTO_PROPS_2_1.done && (_a = CB_PROTO_PROPS_2.return)) _a.call(CB_PROTO_PROPS_2);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
     };
-    Object.defineProperty(MDCCheckbox.prototype, "nativeControl_", {
-        get: function () {
-            var NATIVE_CONTROL_SELECTOR = strings.NATIVE_CONTROL_SELECTOR;
-            var el = this.root.querySelector(NATIVE_CONTROL_SELECTOR);
-            if (!el) {
-                throw new Error("Checkbox component requires a " + NATIVE_CONTROL_SELECTOR + " element");
-            }
-            return el;
-        },
-        enumerable: false,
-        configurable: true
-    });
+    MDCCheckbox.prototype.getNativeControl = function () {
+        var NATIVE_CONTROL_SELECTOR = strings.NATIVE_CONTROL_SELECTOR;
+        var el = this.root.querySelector(NATIVE_CONTROL_SELECTOR);
+        if (!el) {
+            throw new Error("Checkbox component requires a " + NATIVE_CONTROL_SELECTOR + " element");
+        }
+        return el;
+    };
     return MDCCheckbox;
 }(MDCComponent));
 export { MDCCheckbox };

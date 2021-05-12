@@ -34,7 +34,7 @@ var MDCTabIndicator = /** @class */ (function (_super) {
         return new MDCTabIndicator(root);
     };
     MDCTabIndicator.prototype.initialize = function () {
-        this.content_ = this.root.querySelector(MDCTabIndicatorFoundation.strings.CONTENT_SELECTOR);
+        this.content = this.root.querySelector(MDCTabIndicatorFoundation.strings.CONTENT_SELECTOR);
     };
     MDCTabIndicator.prototype.computeContentClientRect = function () {
         return this.foundation.computeContentClientRect();
@@ -47,9 +47,9 @@ var MDCTabIndicator = /** @class */ (function (_super) {
         var adapter = {
             addClass: function (className) { return _this.root.classList.add(className); },
             removeClass: function (className) { return _this.root.classList.remove(className); },
-            computeContentClientRect: function () { return _this.content_.getBoundingClientRect(); },
+            computeContentClientRect: function () { return _this.content.getBoundingClientRect(); },
             setContentStyleProperty: function (prop, value) {
-                return _this.content_.style.setProperty(prop, value);
+                _this.content.style.setProperty(prop, value);
             },
         };
         // tslint:enable:object-literal-sort-keys

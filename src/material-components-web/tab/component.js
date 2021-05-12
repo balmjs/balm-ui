@@ -39,19 +39,21 @@ var MDCTab = /** @class */ (function (_super) {
         if (tabIndicatorFactory === void 0) { tabIndicatorFactory = function (el) { return new MDCTabIndicator(el); }; }
         this.id = this.root.id;
         var rippleFoundation = new MDCRippleFoundation(MDCRipple.createAdapter(this));
-        this.ripple_ = rippleFactory(this.root, rippleFoundation);
+        this.ripple = rippleFactory(this.root, rippleFoundation);
         var tabIndicatorElement = this.root.querySelector(MDCTabFoundation.strings.TAB_INDICATOR_SELECTOR);
-        this.tabIndicator_ = tabIndicatorFactory(tabIndicatorElement);
-        this.content_ = this.root.querySelector(MDCTabFoundation.strings.CONTENT_SELECTOR);
+        this.tabIndicator = tabIndicatorFactory(tabIndicatorElement);
+        this.content = this.root.querySelector(MDCTabFoundation.strings.CONTENT_SELECTOR);
     };
     MDCTab.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.handleClick_ = function () { return _this.foundation.handleClick(); };
-        this.listen('click', this.handleClick_);
+        this.handleClick = function () {
+            _this.foundation.handleClick();
+        };
+        this.listen('click', this.handleClick);
     };
     MDCTab.prototype.destroy = function () {
-        this.unlisten('click', this.handleClick_);
-        this.ripple_.destroy();
+        this.unlisten('click', this.handleClick);
+        this.ripple.destroy();
         _super.prototype.destroy.call(this);
     };
     MDCTab.prototype.getDefaultFoundation = function () {
@@ -65,14 +67,16 @@ var MDCTab = /** @class */ (function (_super) {
             removeClass: function (className) { return _this.root.classList.remove(className); },
             hasClass: function (className) { return _this.root.classList.contains(className); },
             activateIndicator: function (previousIndicatorClientRect) {
-                return _this.tabIndicator_.activate(previousIndicatorClientRect);
+                _this.tabIndicator.activate(previousIndicatorClientRect);
             },
-            deactivateIndicator: function () { return _this.tabIndicator_.deactivate(); },
+            deactivateIndicator: function () {
+                _this.tabIndicator.deactivate();
+            },
             notifyInteracted: function () { return _this.emit(MDCTabFoundation.strings.INTERACTED_EVENT, { tabId: _this.id }, true /* bubble */); },
             getOffsetLeft: function () { return _this.root.offsetLeft; },
             getOffsetWidth: function () { return _this.root.offsetWidth; },
-            getContentOffsetLeft: function () { return _this.content_.offsetLeft; },
-            getContentOffsetWidth: function () { return _this.content_.offsetWidth; },
+            getContentOffsetLeft: function () { return _this.content.offsetLeft; },
+            getContentOffsetWidth: function () { return _this.content.offsetWidth; },
             focus: function () { return _this.root.focus(); },
         };
         // tslint:enable:object-literal-sort-keys
@@ -111,7 +115,7 @@ var MDCTab = /** @class */ (function (_super) {
      * Returns the indicator's client rect
      */
     MDCTab.prototype.computeIndicatorClientRect = function () {
-        return this.tabIndicator_.computeContentClientRect();
+        return this.tabIndicator.computeContentClientRect();
     };
     MDCTab.prototype.computeDimensions = function () {
         return this.foundation.computeDimensions();

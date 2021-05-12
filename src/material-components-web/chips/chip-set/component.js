@@ -22,6 +22,7 @@
  */
 import { __extends } from "tslib";
 import { MDCComponent } from '../../base/component';
+import { announce } from '../../dom/announce';
 import { MDCChip } from '../chip/component';
 import { Events } from '../chip/constants';
 import { CssClasses } from './constants';
@@ -48,16 +49,21 @@ var MDCChipSet = /** @class */ (function (_super) {
     };
     MDCChipSet.prototype.initialSyncWithDOM = function () {
         var _this = this;
+        this.handleChipAnimation = function (event) {
+            _this.foundation.handleChipAnimation(event);
+        };
         this.handleChipInteraction = function (event) {
             _this.foundation.handleChipInteraction(event);
         };
         this.handleChipNavigation = function (event) {
             _this.foundation.handleChipNavigation(event);
         };
+        this.listen(Events.ANIMATION, this.handleChipAnimation);
         this.listen(Events.INTERACTION, this.handleChipInteraction);
         this.listen(Events.NAVIGATION, this.handleChipNavigation);
     };
     MDCChipSet.prototype.destroy = function () {
+        this.unlisten(Events.ANIMATION, this.handleChipAnimation);
         this.unlisten(Events.INTERACTION, this.handleChipInteraction);
         this.unlisten(Events.NAVIGATION, this.handleChipNavigation);
         _super.prototype.destroy.call(this);
@@ -68,8 +74,9 @@ var MDCChipSet = /** @class */ (function (_super) {
         // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
         // methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            // TODO(b/169284745): Implement and test
-            announceMessage: function () { },
+            announceMessage: function (message) {
+                announce(message);
+            },
             emitEvent: function (eventName, eventDetail) {
                 _this.emit(eventName, eventDetail, true /* shouldBubble */);
             },
@@ -103,8 +110,13 @@ var MDCChipSet = /** @class */ (function (_super) {
                     return false;
                 return _this.chips[index].isActionSelected(action);
             },
-            // TODO(b/169284745): Implement and test
-            removeChipAtIndex: function () { },
+            removeChipAtIndex: function (index) {
+                if (!_this.isIndexValid(index))
+                    return;
+                _this.chips[index].destroy();
+                _this.chips[index].remove();
+                _this.chips.splice(index, 1);
+            },
             setChipFocusAtIndex: function (index, action, focus) {
                 if (!_this.isIndexValid(index))
                     return;
@@ -115,8 +127,11 @@ var MDCChipSet = /** @class */ (function (_super) {
                     return;
                 _this.chips[index].setActionSelected(action, selected);
             },
-            // TODO(b/169284745): Implement and test
-            startChipAnimationAtIndex: function () { },
+            startChipAnimationAtIndex: function (index, animation) {
+                if (!_this.isIndexValid(index))
+                    return;
+                _this.chips[index].startAnimation(animation);
+            },
         };
         // Default to the primary foundation
         return new MDCChipSetFoundation(adapter);
@@ -145,6 +160,10 @@ var MDCChipSet = /** @class */ (function (_super) {
     /** Returns the selection state of the chip. */
     MDCChipSet.prototype.isChipSelected = function (index, action) {
         return this.foundation.isChipSelected(index, action);
+    };
+    /** Animates the chip addition at the given index. */
+    MDCChipSet.prototype.addChip = function (index) {
+        this.foundation.addChip(index);
     };
     /** Removes the chip at the given index. */
     MDCChipSet.prototype.removeChip = function (index) {

@@ -179,8 +179,14 @@ function installObserver(target, property) {
         // The getter/setter has already been replaced for this property
         return targetObservers;
     }
-    // Retrieve the original descriptor from the target...
-    var descriptor = getDescriptor(target, property);
+    // Retrieve (or create if it's a plain property) the original descriptor from
+    // the target...
+    var descriptor = getDescriptor(target, property) || {
+        configurable: true,
+        enumerable: true,
+        value: target[property],
+        writable: true
+    };
     // ...and create a copy that will be used for the observer.
     var observedDescriptor = __assign({}, descriptor);
     var descGet = descriptor.get, descSet = descriptor.set;
@@ -236,22 +242,31 @@ function installObserver(target, property) {
     Object.defineProperty(target, property, observedDescriptor);
     return targetObservers;
 }
-function getDescriptor(target, property) {
-    var descriptor = Object.getOwnPropertyDescriptor(target, property);
-    if (descriptor) {
-        return descriptor;
+/**
+ * Retrieves the descriptor for a property from the provided target. This
+ * function will walk up the target's prototype chain to search for the
+ * descriptor.
+ *
+ * @template T The target type.
+ * @template K The property type.
+ * @param {T} target - The target to retrieve a descriptor from.
+ * @param {K} property - The name of the property to retrieve a descriptor for.
+ * @return the descriptor, or undefined if it does not exist. Keep in mind that
+ *     plain properties may not have a descriptor defined.
+ */
+export function getDescriptor(target, property) {
+    var descriptorTarget = target;
+    var descriptor;
+    while (descriptorTarget) {
+        descriptor = Object.getOwnPropertyDescriptor(descriptorTarget, property);
+        if (descriptor) {
+            break;
+        }
+        // Walk up the instance's prototype chain in case the property is declared
+        // on a superclass.
+        descriptorTarget = Object.getPrototypeOf(descriptorTarget);
     }
-    var prototype = Object.getPrototypeOf(target);
-    descriptor = Object.getOwnPropertyDescriptor(prototype, property);
-    if (descriptor) {
-        return descriptor;
-    }
-    return {
-        configurable: true,
-        enumerable: true,
-        value: undefined,
-        writable: true
-    };
+    return descriptor;
 }
 /**
  * Enables or disables all observers for a provided target. Changes to observed

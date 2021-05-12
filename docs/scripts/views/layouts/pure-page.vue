@@ -32,7 +32,7 @@ export default {
 
     const docs = computed(() => {
       let filename = `${store.lang}/guide/${props.name}`;
-      return require(`@/docs/${filename}.md`); // NOTE: just one variable in `require`
+      return require(`@/docs/${filename}.md`).default; // NOTE: just one variable in `require`
     });
 
     return {

@@ -52,7 +52,7 @@
   "dependencies": {
     "deepmerge": "^4.2.2",
     "flatpickr": "^4.6.9",
-    "material-components-web": "^11.0.0",
+    "material-components-web": "12.0.0-canary.d5f6ad3fe.0",
     "quill": "^1.3.7"
   },
   "devDependencies": {
@@ -72,7 +72,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
     "babel-plugin-prismjs": "^2.0.1",
-    "balm": "^4.0.0-canary.78729499.0",
+    "balm": "^4.0.0-canary.d7a529f6.0",
     "clipboard": "^2.0.8",
     "core-js": "^3.12.0",
     "cross-env": "^7.0.3",
@@ -87,7 +87,7 @@
     "jest-serializer-vue": "^2.0.2",
     "markdown-loader": "^6.0.0",
     "nyc": "^15.1.0",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.0",
     "prismjs": "^1.23.0",
     "rollup-plugin-vue": "^6.0.0",
     "sanitize.css": "^12.0.1",
@@ -95,10 +95,10 @@
     "typescript": "^4.2.0",
     "vue": "^3.0.0",
     "vue-i18n": "^9.0.0",
-    "vue-jest": "^5.0.0-alpha.8",
+    "vue-jest": "^5.0.0-alpha.9",
     "vue-loader": "^16.0.0",
     "vue-router": "^4.0.0",
-    "webpack": "^5.36.2"
+    "webpack": "^5.37.0"
   },
   "peerDependencies": {
     "vue": ">=3"

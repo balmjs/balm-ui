@@ -1,5 +1,6 @@
 <template>
   <div :class="className">
+    <div class="mdc-switch__ripple"></div>
     <div class="mdc-switch__track"></div>
     <div class="mdc-switch__thumb-underlay">
       <div class="mdc-switch__thumb"></div>
@@ -8,10 +9,11 @@
         v-model="selectedValue"
         type="checkbox"
         class="mdc-switch__native-control"
-        role="switch"
         :name="name"
         :true-value="trueValue"
         :false-value="falseValue"
+        role="switch"
+        :aria-checked="checked"
         :disabled="disabled"
         v-bind="attrs"
         @change="handleChange"
@@ -68,7 +70,7 @@ export default {
   },
   computed: {
     checked() {
-      return this.selectedValue;
+      return this.selectedValue === this.trueValue;
     },
     className() {
       return {

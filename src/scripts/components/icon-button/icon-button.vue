@@ -1,6 +1,7 @@
 <template>
   <!-- Container -->
   <button type="button" :class="className" @click="handleClick">
+    <div class="mdc-icon-button__ripple"></div>
     <!-- Icon -->
     <template v-if="toggleButton">
       <i

@@ -314,7 +314,7 @@ We officially support the last two versions of every major browser. Specifically
 - [Vue.js](https://v3.vuejs.org/)
 - [MDC Web](https://github.com/material-components/material-components-web)
 
-[balm-ui-image]: https://badge.fury.io/js/balm-ui.svg
-[balm-ui-url]: https://www.npmjs.com/package/balm-ui
-[mdc-web-image]: https://img.shields.io/badge/mdc--web-11.0.0-blue.svg
+[balm-ui-image]: https://img.shields.io/npm/v/balm-ui/next.svg
+[balm-ui-url]: https://www.npmjs.com/package/balm-ui/v/next
+[mdc-web-image]: https://img.shields.io/badge/mdc--web-12.0.0-blue.svg
 [mdc-web-url]: https://www.npmjs.com/package/material-components-web

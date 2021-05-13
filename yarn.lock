@@ -2735,10 +2735,10 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-balm@^4.0.0-canary.d7a529f6.0:
-  version "4.0.0-canary.d7a529f6.0"
-  resolved "https://registry.yarnpkg.com/balm/-/balm-4.0.0-canary.d7a529f6.0.tgz#ed9626b8a6a3df840293868de1ffc30443c5bf2e"
-  integrity sha512-TTYasYEoB23SGExMsPP+snf284iE5AnohBT5y/a83vbD13NCCJaco1mhTQVgDSIOaKsESTFBVjEixS6dDN7+pA==
+balm@^4.0.0-canary.0a8253b2.0:
+  version "4.0.0-canary.0a8253b2.0"
+  resolved "https://registry.yarnpkg.com/balm/-/balm-4.0.0-canary.0a8253b2.0.tgz#29faeef1f5a0fdc7e8b46f1171f75d91dea42e74"
+  integrity sha512-yN2yZRTTRvM/NcK4nqNfDV92h00jliCJCtaRv+nKmTrOsZw0RC0G3Z8fBqY//OyZb2K3byOilnKuSCvkGl+VYQ==
   dependencies:
     "@babel/core" "^7.13.0"
     "@babel/plugin-transform-runtime" "^7.13.0"

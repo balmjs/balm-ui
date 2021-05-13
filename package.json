@@ -72,7 +72,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
     "babel-plugin-prismjs": "^2.0.1",
-    "balm": "^4.0.0-canary.d7a529f6.0",
+    "balm": "^4.0.0-canary.0a8253b2.0",
     "clipboard": "^2.0.8",
     "core-js": "^3.12.0",
     "cross-env": "^7.0.3",

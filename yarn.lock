@@ -2606,10 +2606,10 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-balm@^3.15.0:
-  version "3.15.0"
-  resolved "https://registry.yarnpkg.com/balm/-/balm-3.15.0.tgz#5e6f23d29303f928b16e621253392f25f4605385"
-  integrity sha512-VCKbb6JdN3U/jsY1SoCcEggg8ERwyeezM4yk8HlrtUrnVlkfv6Ewc+JnhfOkCgjxBtarWDY+6ASWE0Mvk9cM+g==
+balm@3.18.0:
+  version "3.18.0"
+  resolved "https://registry.yarnpkg.com/balm/-/balm-3.18.0.tgz#6236aba6bc47f788bf7f16f4a6c2ec63f38a097d"
+  integrity sha512-qlYCqT/Bs0hQIQZ5tdXGKpepEmDS9dRFUxLkp8ujD4lrNToKutjcTXAuQgWiI6fXF3FRZYNFDn1IC5CVUceMQA==
   dependencies:
     "@babel/core" "^7.13.0"
     "@babel/plugin-transform-runtime" "^7.13.0"

@@ -1,7 +1,7 @@
 const pkg = require('../package.json');
 const env = require('./env');
 const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 const workspace = path.join(__dirname, '..');
 

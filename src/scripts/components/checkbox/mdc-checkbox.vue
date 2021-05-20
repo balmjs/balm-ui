@@ -40,6 +40,9 @@ export default {
       this.$refs.checkbox.indeterminate = val;
     }
   },
+  mounted() {
+    this.$refs.checkbox.indeterminate = this.indeterminate;
+  },
   methods: {
     // For the row checkbox of `<mdc-table-header>`
     reset() {

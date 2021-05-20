@@ -4,17 +4,16 @@
 
 ### Props
 
-| Name                     | Type          | Default | Description                                                | Version |
-| ------------------------ | ------------- | ------- | ---------------------------------------------------------- | ------- |
-| `modelValue` (`v-model`) | string, array | `''`    | Selected node keys.                                        |         |
-| `data`                   | array         | `[]`    | The tree data source.                                      |         |
-| `dataFormat`             | object        | `{}`    | Defines the tree data source format.                       |         |
-| `maxLevel`               | number        | `0`     | Set max level for tree nodes.                              |         |
-| `multiple`               | boolean       | `false` | Whether to support selected multiple tree nodes.           |         |
-| `loadData`               | function      | `null`  | Load data asynchronously.                                  |         |
-| `autoExpandParent`       | boolean       | `false` | Whether to automatically expand root parent(s) treeNode.   | 9.17.0  |
-| `defaultExpandedKeys`    | array         | `[]`    | Specify the node keys of the default expanded treeNodes.   | 9.17.0  |
-| `defaultSelectedKeys`    | array         | `[]`    | Specifies the node keys of the default selected treeNodes. | 9.17.0  |
+| Name                     | Type          | Default | Description                                              | Version |
+| ------------------------ | ------------- | ------- | -------------------------------------------------------- | ------- |
+| `modelValue` (`v-model`) | string, array | `''`    | Selected node keys.                                      |         |
+| `data`                   | array         | `[]`    | The tree data source.                                    |         |
+| `dataFormat`             | object        | `{}`    | Defines the tree data source format.                     |         |
+| `maxLevel`               | number        | `0`     | Set max level for tree nodes.                            |         |
+| `multiple`               | boolean       | `false` | Whether to support selected multiple tree nodes.         |         |
+| `loadData`               | function      | `null`  | Load data asynchronously.                                |         |
+| `autoExpandParent`       | boolean       | `false` | Whether to automatically expand root parent(s) treeNode. | 9.17.0  |
+| `defaultExpandedKeys`    | array         | `[]`    | Specify the node keys of the default expanded treeNodes. | 9.17.0  |
 
 - Default data format:
 

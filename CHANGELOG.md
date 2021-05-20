@@ -3,6 +3,16 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.26.0 / 2021-05-20
+
+### Bug Fixes
+
+- `<ui-tree>`: fix init `selectedNodes` bug and `defaultExpandedKeys` bug
+
+### BREAKING CHANGES
+
+- `<ui-tree>`: remove prop `defaultSelectedKeys`
+
 ## v9.25.0 / 2021-04-22
 
 ### Features

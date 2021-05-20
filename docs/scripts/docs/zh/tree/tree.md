@@ -14,7 +14,6 @@
 | `loadData`                  | function      | `null`  | 启用异步加载数据             |         |
 | `autoExpandParent`          | boolean       | `false` | 是否自动展开根父级树节点     | 8.25.0  |
 | `defaultExpandedKeys`       | array         | `[]`    | 指定默认展开的树节点的节点值 | 8.25.0  |
-| `defaultSelectedKeys`       | array         | `[]`    | 指定默认选中的树节点的节点值 | 8.25.0  |
 
 - 默认数据格式：
 

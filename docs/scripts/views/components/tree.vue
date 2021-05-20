@@ -94,7 +94,7 @@ export default {
       treeData2: [], // dig('1', 2),
       selectedValue2: [],
       treeData3: [], // dig('0', -1),
-      selectedValue3: [],
+      selectedValue3: ['0-0'],
       keywords: ''
     };
   },
@@ -103,6 +103,8 @@ export default {
       this.treeData1 = dig('0', 2);
       this.treeData2 = dig('1', 2);
       this.treeData3 = dig('0', -1);
+
+      this.selectedValue2 = ['1-1-0'];
     }, 1);
   },
   methods: {

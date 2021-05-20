@@ -146,7 +146,9 @@ class MdcTree {
     const { indeterminate } = treeData.nodeMap.get(currentNodeKey);
 
     if (checked && !indeterminate) {
-      treeData.selectedValue.push(currentNodeKey);
+      if (!treeData.selectedValue.includes(currentNodeKey)) {
+        treeData.selectedValue.push(currentNodeKey);
+      }
     } else {
       treeData.selectedValue = treeData.selectedValue.filter(
         (value) => value !== currentNodeKey
@@ -236,7 +238,7 @@ class MdcTree {
   static async setExpanded(
     treeData,
     nodeList,
-    { autoExpandParent, defaultExpandedKeys, defaultSelectedKeys }
+    { autoExpandParent, defaultExpandedKeys }
   ) {
     const { dataFormat, nodeMap } = treeData;
 
@@ -251,13 +253,9 @@ class MdcTree {
         const nodeKey = node[dataFormat.value];
         const item = nodeMap.get(nodeKey);
 
-        if (item[dataFormat.hasChildren]) {
-          this.onExpand(treeData, item);
-        }
+        this.onExpand(treeData, item);
       }
     }
-
-    this.setSelected(treeData, defaultSelectedKeys);
   }
 
   static setSelected(treeData, defaultSelectedKeys) {

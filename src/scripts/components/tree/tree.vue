@@ -31,6 +31,13 @@ const UI_TREE = {
   }
 };
 
+const haveSameContents = (a, b) => {
+  for (const v of new Set([...a, ...b]))
+    if (a.filter((e) => e === v).length !== b.filter((e) => e === v).length)
+      return false;
+  return true;
+};
+
 export default {
   name: 'UiTree',
   components: {
@@ -80,12 +87,6 @@ export default {
       default() {
         return [];
       }
-    },
-    defaultSelectedKeys: {
-      type: Array,
-      default() {
-        return [];
-      }
     }
   },
   data() {
@@ -114,11 +115,22 @@ export default {
     }
   },
   watch: {
-    selectedValue(val) {
-      this.$emit(UI_TREE.EVENT.CHANGE, val);
+    selectedNodes(val) {
+      if (Array.isArray(val)) {
+        if (!haveSameContents(this.treeData.selectedValue, val)) {
+          this.updateSelectedValue(val);
+        }
+      } else {
+        if (this.treeData.selectedValue !== val) {
+          this.updateSelectedValue(val);
+        }
+      }
     },
     data(val) {
       this.init(val);
+    },
+    selectedValue(val) {
+      this.$emit(UI_TREE.EVENT.CHANGE, val);
     }
   },
   created() {
@@ -141,10 +153,17 @@ export default {
       if (this.nodeList.length) {
         MdcTree.setExpanded(this.treeData, this.nodeList, {
           autoExpandParent: this.autoExpandParent,
-          defaultExpandedKeys: this.defaultExpandedKeys,
-          defaultSelectedKeys: this.defaultSelectedKeys
+          defaultExpandedKeys: this.defaultExpandedKeys
         });
+
+        MdcTree.setSelected(this.treeData, this.selectedValue);
       }
+    },
+    updateSelectedValue(val) {
+      this.$nextTick(() => {
+        this.treeData.selectedValue = val;
+        MdcTree.setSelected(this.treeData, val);
+      });
     }
   }
 };

@@ -207,8 +207,8 @@ class MdcTree {
     }
   }
 
-  static onCheck(treeData, item) {
-    let checked = !item.checked;
+  static onCheck(treeData, item, forceChecked = false) {
+    let checked = forceChecked || !item.checked;
 
     const { dataFormat, nodeMap } = treeData;
     const { value, children, isLeaf } = dataFormat;
@@ -265,7 +265,9 @@ class MdcTree {
       const nodeKey = defaultSelectedKeys[i];
       const item = nodeMap.get(nodeKey);
       if (item) {
-        multiple ? this.onCheck(treeData, item) : this.onSelect(treeData, item);
+        multiple
+          ? this.onCheck(treeData, item, true)
+          : this.onSelect(treeData, item);
       }
     }
   }

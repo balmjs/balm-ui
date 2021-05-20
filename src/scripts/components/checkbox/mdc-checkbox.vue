@@ -41,7 +41,9 @@ export default {
     }
   },
   mounted() {
-    this.$refs.checkbox.indeterminate = this.indeterminate;
+    if (this.indeterminate) {
+      this.$refs.checkbox.indeterminate = this.indeterminate;
+    }
   },
   methods: {
     // For the row checkbox of `<ui-table-header>`

@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.36.0 / 2021-05-20
+
+### Bug Fixes
+
+- `<ui-tree>`: fix init `selectedNodes` bug and `defaultExpandedKeys` bug
+
+### BREAKING CHANGES
+
+- `<ui-tree>`: remove prop `defaultSelectedKeys`
+
 ## v8.35.0 / 2021-04-22
 
 ### BREAKING CHANGES

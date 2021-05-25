@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import createVueApp from '../config/ssr';
 import MdcDialog from '../components/dialog/mdc-dialog.vue';
 import { getOptions, createModal, removeModel } from '../utils/modal';
 
@@ -34,7 +34,7 @@ const template = `<mdc-dialog class="mdc-alert-dialog" :open="open" :options="op
 function createAlertDialog(options, done) {
   alertEl = createModal(UI_ALERT_DIALOG.id);
 
-  alertApp = createApp({
+  alertApp = createVueApp({
     name: 'AlertDialog',
     components: {
       MdcDialog

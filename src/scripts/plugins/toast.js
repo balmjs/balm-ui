@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import createVueApp from '../config/ssr';
 import { getOptions, createModal } from '../utils/modal';
 
 // Define toast constants
@@ -38,7 +38,7 @@ const template = `<div :class="className">
 function createToast(options) {
   createModal(UI_TOAST.id);
 
-  toastApp = createApp({
+  toastApp = createVueApp({
     name: 'Toast',
     data() {
       return {

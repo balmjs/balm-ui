@@ -2,9 +2,19 @@
 
 > 🎉 `balm-ui@next`(v9.0) for Vue 3.0, see [next-material.balmjs.com](https://next-material.balmjs.com/)
 
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_37">从 8.x 升级到 8.37.0+</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">从 7.x 升级到 8.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">从 6.x 升级到 7.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">从 5.x 升级到 6.0</a>
+
+<div id="up-to-8_37"></div>
+
+## 从 8.x 升级到 8.37.0+
+
+### BREAKING CHANGES
+
+- 组件平移: 移动 `UiAutocomplete`, `UiDatepicker`, `UiRangepicker` 从 `balm-ui-plus.js` 到 `balm-ui.js` 库
+- 插件平移: 移动 `$alert`, `$confirm`, `$toast` 从 `balm-ui-plus.js` 到 `balm-ui.js` 库
 
 <div id="up-to-8"></div>
 

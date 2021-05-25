@@ -52,7 +52,7 @@ interface AlertDialog {
 > New in 8.1.0
 
 ```js
-import { useAlert } from 'balm-ui/dist/balm-ui-plus';
+import { useAlert } from 'balm-ui';
 // 或
 // import { useAlert } from 'balm-ui/plugins/alert';
 

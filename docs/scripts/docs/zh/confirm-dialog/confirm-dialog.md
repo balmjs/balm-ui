@@ -55,7 +55,7 @@ interface ConfirmDialog {
 > New in 8.1.0
 
 ```js
-import { useConfirm } from 'balm-ui/dist/balm-ui-plus';
+import { useConfirm } from 'balm-ui';
 // 或
 // import { useConfirm } from 'balm-ui/plugins/confirm';
 

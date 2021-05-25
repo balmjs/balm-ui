@@ -3,7 +3,7 @@
 ```
 
 ```js
-import BalmUI from 'balm-ui/dist/balm-ui';
+import BalmUI from 'balm-ui';
 
 // `app`: Vue app
 app.use(BalmUI, {

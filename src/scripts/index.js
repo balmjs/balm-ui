@@ -245,6 +245,7 @@ const BalmUI = {
 export default BalmUI;
 export { version, install };
 export {
+  UiAutocomplete,
   UiBadge,
   UiBanner,
   UiButton,
@@ -259,6 +260,7 @@ export {
   UiCheckbox,
   UiChip,
   UiChips,
+  UiDatepicker,
   UiDialog,
   UiDialogActions,
   UiDialogContent,
@@ -304,6 +306,7 @@ export {
   UiPanel,
   UiProgress,
   UiRadio,
+  UiRangepicker,
   UiSegmentedButtons,
   UiSegmentedButton,
   UiSelect,
@@ -339,9 +342,9 @@ export {
 };
 export {
   useAlert,
+  useBus,
   useConfirm,
   useEvent,
-  useBus,
   useGrid,
   useStore,
   useTheme,

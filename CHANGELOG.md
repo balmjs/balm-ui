@@ -3,6 +3,17 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.27.0 / 2021-05-25
+
+### Bug Fixes
+
+- fix SSR bug for bundler
+
+### BREAKING CHANGES
+
+- move components: `UiAutocomplete`, `UiDatepicker`, `UiRangepicker` from `balm-ui-plus.js` to `balm-ui.js` library
+- move plugins: `$alert`, `$confirm`, `$toast` from `balm-ui-plus.js` to `balm-ui.js` library
+
 ## v9.26.0 / 2021-05-20
 
 ### Bug Fixes

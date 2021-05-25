@@ -2,6 +2,13 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.37.0 / 2021-05-25
+
+### BREAKING CHANGES
+
+- move components: `UiAutocomplete`, `UiDatepicker`, `UiRangepicker` from `balm-ui-plus.js` to `balm-ui.js` library
+- move plugins: `$alert`, `$confirm`, `$toast` from `balm-ui-plus.js` to `balm-ui.js` library
+
 ## v8.36.0 / 2021-05-20
 
 ### Bug Fixes

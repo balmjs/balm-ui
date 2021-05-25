@@ -43,6 +43,9 @@ import UiFormField from './components/form-field/form-field';
 import UiTextfield from './components/textfield/textfield';
 import UiTextfieldHelper from './components/textfield/textfield-helper';
 import UiTextfieldIcon from './components/textfield/textfield-icon';
+import UiAutocomplete from './components/autocomplete/autocomplete'; // Custom
+import UiDatepicker from './components/datepicker/datepicker'; // Custom
+import UiRangepicker from './components/rangepicker/rangepicker'; // Custom
 import UiSelect from './components/select/select';
 import UiSelectHelper from './components/select/select-helper';
 import UiSelectIcon from './components/select/select-icon';
@@ -99,6 +102,9 @@ import $store, { useStore } from './plugins/store'; // Custom
 import $grid, { useGrid } from './plugins/grid';
 import $theme, { useTheme } from './plugins/theme';
 import $typography, { useTypography } from './plugins/typography';
+import $alert, { useAlert } from './plugins/alert'; // Custom
+import $confirm, { useConfirm } from './plugins/confirm'; // Custom
+import $toast, { useToast } from './plugins/toast'; // Custom
 import $validator from './plugins/validator'; // Custom
 /**
  * Directives
@@ -118,6 +124,7 @@ import helpers from './utils/helpers';
 import detectIE from './utils/ie';
 
 const Components = {
+  UiAutocomplete,
   UiBadge,
   UiBanner,
   UiButton,
@@ -132,6 +139,7 @@ const Components = {
   UiCheckbox,
   UiChip,
   UiChips,
+  UiDatepicker,
   UiDialog,
   UiDialogActions,
   UiDialogContent,
@@ -177,6 +185,7 @@ const Components = {
   UiPanel,
   UiProgress,
   UiRadio,
+  UiRangepicker,
   UiSegmentedButtons,
   UiSegmentedButton,
   UiSelect,
@@ -201,10 +210,13 @@ const Components = {
 };
 
 const Plugins = {
+  $alert,
+  $confirm,
   $event,
   $grid,
   $store,
   $theme,
+  $toast,
   $typography,
   $validator
 };
@@ -236,6 +248,7 @@ autoInit(BalmUI);
 export default BalmUI;
 export { version, install };
 export {
+  UiAutocomplete,
   UiBadge,
   UiBanner,
   UiButton,
@@ -250,6 +263,7 @@ export {
   UiCheckbox,
   UiChip,
   UiChips,
+  UiDatepicker,
   UiDialog,
   UiDialogActions,
   UiDialogContent,
@@ -295,6 +309,7 @@ export {
   UiPanel,
   UiProgress,
   UiRadio,
+  UiRangepicker,
   UiSegmentedButtons,
   UiSegmentedButton,
   UiSelect,
@@ -317,7 +332,26 @@ export {
   UiTooltip,
   UiTopAppBar
 };
-export { $event, $grid, $store, $theme, $typography, $validator };
-export { useBus, useStore, useGrid, useTheme, useTypography };
+export {
+  $alert,
+  $confirm,
+  $event,
+  $grid,
+  $store,
+  $theme,
+  $toast,
+  $typography,
+  $validator
+};
+export {
+  useAlert,
+  useBus,
+  useConfirm,
+  useGrid,
+  useStore,
+  useTheme,
+  useToast,
+  useTypography
+};
 export { vAccessibility, vBadge, vButton, vRipple, vShadow, vShape, vTooltip };
 export { types, helpers, detectIE };

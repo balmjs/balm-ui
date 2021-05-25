@@ -139,7 +139,7 @@
 
 <script>
 import { reactive, toRefs, onMounted } from 'vue';
-import { useToast } from 'balm-ui/plugins/toast';
+import { useToast } from 'balm-ui';
 import Clipboard from 'clipboard';
 import { useHttp } from '@/plugins/http';
 import { useConfig } from '@/config';

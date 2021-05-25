@@ -53,7 +53,7 @@ interface ConfirmDialog {
 ### 在非 `.vue` 组件中使用 `$confirm`
 
 ```js
-import { useConfirm } from 'balm-ui/dist/balm-ui-plus';
+import { useConfirm } from 'balm-ui';
 // 或
 // import { useConfirm } from 'balm-ui/plugins/confirm';
 

@@ -166,7 +166,7 @@
 <script>
 import { onMounted } from 'vue';
 import Clipboard from 'clipboard';
-import { useToast } from 'balm-ui/plugins/toast';
+import { useToast } from 'balm-ui';
 import COLOR from '@/config/color';
 import ButtonDemo from '@/demos/theme/button';
 import FabDemo from '@/demos/theme/fab';

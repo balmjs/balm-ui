@@ -53,7 +53,7 @@ interface ConfirmDialog {
 ### Use `$confirm` without `.vue` component
 
 ```js
-import { useConfirm } from 'balm-ui/dist/balm-ui-plus';
+import { useConfirm } from 'balm-ui';
 // OR
 // import { useConfirm } from 'balm-ui/plugins/confirm';
 

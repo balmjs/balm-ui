@@ -28,7 +28,7 @@
 ### 在非 `.vue` 组件中使用 `$toast`
 
 ```js
-import { useToast } from 'balm-ui/dist/balm-ui-plus';
+import { useToast } from 'balm-ui';
 // 或
 // import { useToast } from 'balm-ui/plugins/toast';
 

@@ -50,7 +50,7 @@ interface AlertDialog {
 ### 在非 `.vue` 组件中使用 `$alert`
 
 ```js
-import { useAlert } from 'balm-ui/dist/balm-ui-plus';
+import { useAlert } from 'balm-ui';
 // 或
 // import { useAlert } from 'balm-ui/plugins/alert';
 

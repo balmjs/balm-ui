@@ -44,7 +44,11 @@ function buildIndividual(mix) {
     individual.output.dist,
     {
       output: {
-        library: `${NAMESPACE}Plus`
+        library: {
+          name: `${NAMESPACE}Plus`,
+          type: 'umd',
+          umdNamedDefine: true
+        }
       }
     }
   );
@@ -55,7 +59,11 @@ function buildIndividual(mix) {
     individual.output.dist,
     {
       output: {
-        library: `${NAMESPACE}Next`
+        library: {
+          name: `${NAMESPACE}Next`,
+          type: 'umd',
+          umdNamedDefine: true
+        }
       }
     }
   );
@@ -71,7 +79,7 @@ function buildIndividual(mix) {
   const uiOutput = `${individual.output.dist}/css/balm-ui`;
   individualBuild.forEach((buildName) => {
     individual[buildName].forEach((item) => {
-      const library = getLibrary(buildName, item);
+      const libraryName = getLibrary(buildName, item);
 
       let jsInput;
       switch (buildName) {
@@ -97,11 +105,19 @@ function buildIndividual(mix) {
         output:
           buildName === 'plugins' || (buildName === 'utils' && item !== 'ie')
             ? {
-                library
+                library: {
+                  name: libraryName,
+                  type: 'umd',
+                  umdNamedDefine: true
+                }
               }
             : {
-                library,
-                libraryExport: 'default'
+                library: {
+                  name: libraryName,
+                  type: 'umd',
+                  export: 'default',
+                  umdNamedDefine: true
+                }
               }
       });
 

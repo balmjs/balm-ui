@@ -86,8 +86,13 @@ function getConfig(balm) {
         : {
             'balm-ui': './src/scripts/index.js'
           },
-      library: useDocsDev ? '' : 'BalmUI',
-      libraryTarget: useDocsDev ? 'var' : 'umd',
+      library: useDocsDev
+        ? ''
+        : {
+            name: 'BalmUI',
+            type: 'umd',
+            umdNamedDefine: true
+          },
       loaders: [
         {
           test: /\.md$/,
@@ -136,7 +141,6 @@ function getConfig(balm) {
       webpackOptions: useBuild
         ? {
             output: {
-              umdNamedDefine: true,
               // See https://github.com/webpack/webpack/issues/6522
               globalObject: "typeof self !== 'undefined' ? self : this"
             }

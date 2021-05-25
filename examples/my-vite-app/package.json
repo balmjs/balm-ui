@@ -7,7 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "balm-ui": "^9.13.0",
+    "balm-ui": "^9.26.0",
     "vue": "^3.0.5"
   },
   "devDependencies": {

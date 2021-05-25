@@ -122,8 +122,7 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'text_format',
-        name: 'autocomplete',
-        plus: true
+        name: 'autocomplete'
       },
       {
         icon: 'wysiwyg',
@@ -152,13 +151,11 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'today',
-        name: 'datepicker',
-        plus: true
+        name: 'datepicker'
       },
       {
         icon: 'date_range',
-        name: 'rangepicker',
-        plus: true
+        name: 'rangepicker'
       },
       {
         icon: 'toggle_off',
@@ -230,13 +227,11 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'event_note',
-        name: 'alert-dialog',
-        plus: true
+        name: 'alert-dialog'
       },
       {
         icon: 'event_note',
-        name: 'confirm-dialog',
-        plus: true
+        name: 'confirm-dialog'
       },
       {
         icon: 'call_to_action',
@@ -244,8 +239,7 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'call_to_action',
-        name: 'toast',
-        plus: true
+        name: 'toast'
       },
       {
         icon: 'notifications',

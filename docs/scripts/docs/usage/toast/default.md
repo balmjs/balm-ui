@@ -3,10 +3,10 @@
 ```
 
 ```js
-import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
+import BalmUI from 'balm-ui/dist/balm-ui';
 
 // `app`: Vue app
-app.use(BalmUIPlus, {
+app.use(BalmUI, {
   // Optional. Overwrite `$toast` options.
   $toast: {
     // some options

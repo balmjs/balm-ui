@@ -2,6 +2,13 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.38.0 / 2021-05-27
+
+### Features
+
+- add `$theme` init config
+- add helpers: `toCamelCase`, `toCapitalize`
+
 ## v8.37.0 / 2021-05-25
 
 ### BREAKING CHANGES

@@ -55,6 +55,10 @@ helpers.isDeepEqual(obj1, obj2): boolean;
 // New in 6.7.0
 helpers.merge(target: object, source: object): object;
 helpers.merge.all(arrayOfObjects: object[]): object;
+
+// New in 8.38.0
+helpers.toCamelCase(str: string): string;
+helpers.toCapitalize(str: string): string;
 ```
 
 - `isEmpty` 以下值被认为是空值：

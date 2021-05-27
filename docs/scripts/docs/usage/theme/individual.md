@@ -10,5 +10,7 @@
 import Vue from 'vue';
 import $theme from 'balm-ui/plugins/theme';
 
-Vue.use($theme);
+Vue.use($theme, {
+  // (Optional) New in 8.38.0, See ThemeColor type in APIs.
+});
 ```

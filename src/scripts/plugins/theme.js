@@ -236,8 +236,10 @@ class Theme extends ThemeStyle {
 const theme = new Theme();
 
 const $theme = {
-  install(Vue) {
+  install(Vue, colors = {}) {
     Vue.prototype.$theme = theme;
+
+    theme.colors = colors;
   }
 };
 

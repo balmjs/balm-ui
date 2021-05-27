@@ -234,9 +234,11 @@ class Theme extends ThemeStyle {
 
 const theme = new Theme();
 
-function install(app) {
+function install(app, colors = {}) {
   app.config.globalProperties.$theme = theme;
   app.provide('theme', theme);
+
+  theme.colors = colors;
 }
 
 const $theme = {

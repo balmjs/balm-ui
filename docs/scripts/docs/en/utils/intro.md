@@ -54,6 +54,10 @@ helpers.isDeepEqual(obj1, obj2): boolean;
 
 helpers.merge(target: object, source: object): object;
 helpers.merge.all(arrayOfObjects: object[]): object;
+
+// New in 9.28.0
+helpers.toCamelCase(str: string): string;
+helpers.toCapitalize(str: string): string;
 ```
 
 - `isEmpty` The following values are considered to be empty:

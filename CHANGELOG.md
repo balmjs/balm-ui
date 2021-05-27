@@ -3,6 +3,13 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.28.0 / 2021-05-27
+
+### Features
+
+- add `$theme` init config
+- add helpers: `toCamelCase`, `toCapitalize`
+
 ## v9.27.0 / 2021-05-25
 
 ### Bug Fixes

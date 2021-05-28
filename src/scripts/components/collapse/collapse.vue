@@ -61,7 +61,7 @@ export default {
     },
     iconEndAligned: {
       type: Boolean,
-      default: true
+      default: false
     },
     ripple: {
       type: [Boolean, Number],

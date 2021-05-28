@@ -4,11 +4,12 @@
 
 ### Props
 
-| Name                     | Type            | Default | Description             |
-| ------------------------ | --------------- | ------- | ----------------------- |
-| `modelValue` (`v-model`) | boolean         | `false` | Default expanded state. |
-| `withIcon`               | boolean         | `false` | default icons.          |
-| `ripple`                 | boolean, number | `false` | Sets the ripple color.  |
+| Name                     | Type            | Default | Description              | Version |
+| ------------------------ | --------------- | ------- | ------------------------ | ------- |
+| `modelValue` (`v-model`) | boolean         | `false` | Default expanded state.  |         |
+| `withIcon`               | boolean         | `false` | default icons.           |         |
+| `iconEndAligned`         | boolean         | `false` | Styles icon end aligned. | 9.29.0  |
+| `ripple`                 | boolean, number | `false` | Sets the ripple color.   |         |
 
 - `ripple` value:
   - `true`: default color

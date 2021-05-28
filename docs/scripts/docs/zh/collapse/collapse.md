@@ -4,11 +4,12 @@
 
 ### Props
 
-| Name                     | Type            | Default | Description    |
-| ------------------------ | --------------- | ------- | -------------- |
-| `modelValue` (`v-model`) | boolean         | `false` | 展开状态       |
-| `withIcon`               | boolean         | `false` | 启用默认图标   |
-| `ripple`                 | boolean, number | `false` | 设置水波纹效果 |
+| Name                     | Type            | Default | Description    | Version |
+| ------------------------ | --------------- | ------- | -------------- | ------- |
+| `modelValue` (`v-model`) | boolean         | `false` | 展开状态       |         |
+| `withIcon`               | boolean         | `false` | 启用默认图标   |         |
+| `iconEndAligned`         | boolean         | `false` | 图标后置       | 9.29.0  |
+| `ripple`                 | boolean, number | `false` | 设置水波纹效果 |         |
 
 - `ripple` 值：
   - `true`: 默认颜色

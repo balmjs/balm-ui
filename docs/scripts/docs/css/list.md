@@ -1,7 +1,7 @@
 > ⚠️ The `deprecated-` prefix is required in `balm-ui` >= 8.33.0
 
 ```scss
-@use '@material/list' with (
+@use '@material/list/variables' as list-variables with (
   $deprecated-divider-color-on-light-bg: rgba(0, 0, 0, 0.12),
   $deprecated-divider-color-on-dark-bg: rgba(255, 255, 255, 0.2),
   $deprecated-side-padding: 16px,

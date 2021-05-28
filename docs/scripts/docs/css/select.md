@@ -1,7 +1,7 @@
 - `<ui-select>`
 
 ```scss
-@use '@material/select' with (
+@use '@material/select/variables' as select-variables with (
   $arrow-padding: 52px,
   $label-padding: 16px,
   $height: 56px,
@@ -110,7 +110,7 @@
 - `<ui-select-icon>`
 
 ```scss
-@use '@material/select' with (
+@use '@material/select/icon/variables' as select-icon-variables with (
   $icon-size: 24px,
   $dense-icon-size: 20px,
   $icon-horizontal-margin: 12px,

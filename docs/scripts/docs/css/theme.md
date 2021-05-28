@@ -1,5 +1,5 @@
 ```scss
-@use '@material/theme' with (
+@use '@material/theme/variables' as theme-variables with (
   $primary: #6200ee, // baseline purple, 500 tone
   $on-primary: if(contrast-tone($primary) == 'dark', #000, #fff),
 
@@ -28,23 +28,22 @@
       disabled: rgba(white, 0.5),
       icon: rgba(white, 0.5),
     ),
+  ),
+
+  $text-emphasis: (
+    high: 0.87,
+    medium: 0.6,
+    disabled: 0.38,
   )
 );
 ```
 
-- Material Color System (See below color palette)
+- Material Color System Usage (See below color palette)
 
-```scss
-// `/path/to/my-project/app/styles/global/_color.scss`
-@forward '@material/theme/color-palette';
-```
+  ```scss
+  @use '@material/theme' as color;
 
-Usage in `/path/to/my-project/app/styles/main.scss`
-
-```scss
-@use './global/color' as color;
-
-.test {
-  color: color.$red-800;
-}
-```
+  .test {
+    color: color.$red-800;
+  }
+  ```

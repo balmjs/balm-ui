@@ -1,5 +1,5 @@
 ```scss
-@use '@material/typography' with (
+@use '@material/typography/variables' as typography-variables with (
   $font-family: string.unquote('Roboto, sans-serif'),
 
   // Override styles

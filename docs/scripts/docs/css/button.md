@@ -1,6 +1,5 @@
 ```scss
-@use '@material/button' with (
-  // shared
+@use '@material/button/button-shared-theme' as button-variables with (
   $height: 36px,
   $horizontal-padding: 8px,
   $contained-horizontal-padding: 16px,
@@ -22,9 +21,12 @@
   $disabled-container-color: rgba(
     theme-color.prop-value(on-surface),
     0.12
-  ),
+  )
+);
+```
 
-  // outlined
+```scss
+@use '@material/button/button-outlined-theme' as outlined-button-variables with (
   $outlined-border-width: 1px,
   $outline-color: rgba(theme-color.prop-value(on-surface), 0.12)
 );

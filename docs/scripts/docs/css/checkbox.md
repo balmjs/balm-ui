@@ -1,5 +1,5 @@
 ```scss
-@use '@material/checkbox' with (
+@use '@material/checkbox/variables' as checkbox-variables with (
   $baseline-theme-color: secondary,
   $mark-color: theme-color.prop-value(on-secondary),
   $border-color: rgba(theme-color.prop-value(on-surface), 0.54),

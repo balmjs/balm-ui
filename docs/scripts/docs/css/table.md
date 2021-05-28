@@ -1,5 +1,5 @@
 ```scss
-@use '@material/data-table' with (
+@use '@material/data-table/variables' as table-variables with (
   $fill-color: surface,
   $header-row-fill-color: surface,
   $row-fill-color: inherit,

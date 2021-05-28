@@ -1,5 +1,5 @@
 ```scss
-@use '@material/switch' with (
+@use '@material/switch/variables' as switch-variables with (
   $track-width: 36px,
   $track-height: 14px,
   $thumb-diameter: 20px,

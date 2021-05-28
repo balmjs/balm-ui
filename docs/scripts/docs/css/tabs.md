@@ -1,7 +1,7 @@
 - `<ui-tab>`
 
 ```scss
-@use '@material/tab' with (
+@use '@material/tab/variables' as tab-variables with (
   $icon-size: 24px,
   $height: 48px,
   $stacked-height: 72px,
@@ -25,7 +25,7 @@
 - `<ui-tab-bar>`
 
 ```scss
-@use '@material/tab-bar' with (
+@use '@material/tab-bar/variables' as tab-bar-variables with (
   $height: tab-variables.$height,
   $minimum-height: 30px,
   $maximum-height: $height,

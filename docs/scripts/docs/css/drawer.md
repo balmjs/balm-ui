@@ -1,5 +1,5 @@
 ```scss
-@use '@material/drawer' with (
+@use '@material/drawer/variables' as drawer-variables with (
   // Colors
   $title-ink-color: theme-color.prop-value(on-surface),
   $subtitle-ink-color: theme-color.prop-value(on-surface),

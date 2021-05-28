@@ -1,5 +1,5 @@
 ```scss
-@use '@material/image-list' with (
+@use '@material/image-list/variables' as image-list-variables with (
   $standard-gutter-size: 4px,
   $masonry-gutter-size: 16px,
   $icon-size: 24px,

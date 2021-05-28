@@ -59,6 +59,10 @@ export default {
       type: Boolean,
       default: false
     },
+    iconEndAligned: {
+      type: Boolean,
+      default: true
+    },
     ripple: {
       type: [Boolean, Number],
       default: false
@@ -77,7 +81,8 @@ export default {
       return {
         'mdc-collapse': true,
         'mdc-collapse--expanded': this.isExpanded,
-        'mdc-collapse--with-icon': this.withIcon
+        'mdc-collapse--with-icon': this.withIcon,
+        'mdc-collapse--icon-end-aligned': this.iconEndAligned
       };
     }
   },

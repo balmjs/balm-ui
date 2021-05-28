@@ -1,5 +1,5 @@
 ```scss
-@use '@material/dialog' with (
+@use '@material/dialog/variables' as dialog-variables with (
   $scrim-color: on-surface,
   $title-ink-color: on-surface,
   $content-ink-color: on-surface,

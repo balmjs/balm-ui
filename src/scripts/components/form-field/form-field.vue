@@ -95,7 +95,7 @@ export default {
           });
         }
 
-        if (this.el && this.el.classList.contains('mdc-form__actions')) {
+        if (this.el && this.el.classList.contains('mdc-form__actions') && this.actionPaddingLeft) {
           this.el.style.paddingLeft = `${this.actionPaddingLeft}px`;
         }
       }

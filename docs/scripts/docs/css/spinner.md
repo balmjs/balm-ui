@@ -1,5 +1,5 @@
 ```scss
-@use '@material/circular-progress' with (
+@use '@material/circular-progress/variables' as spinner-variables with (
   $color: primary,
   $track-color: transparent,
 

@@ -30,6 +30,7 @@ var CssClasses;
     CssClasses["HIDE_TRANSITION"] = "mdc-tooltip--hide-transition";
     CssClasses["MULTILINE_TOOLTIP"] = "mdc-tooltip--multiline";
     CssClasses["SURFACE"] = "mdc-tooltip__surface";
+    CssClasses["SURFACE_ANIMATION"] = "mdc-tooltip__surface-animation";
     CssClasses["TOOLTIP_CARET_TOP"] = "mdc-tooltip__caret-surface-top";
     CssClasses["TOOLTIP_CARET_BOTTOM"] = "mdc-tooltip__caret-surface-bottom";
 })(CssClasses || (CssClasses = {}));

@@ -32,6 +32,8 @@
 @use '../theme/css';
 @use '../theme/custom-properties';
 @use '../theme/theme';
+@use '../theme/keys';
+@use '../theme/shadow-dom';
 @use '../theme/theme-color';
 
 $fade-in-duration: 75ms !default;
@@ -69,6 +71,37 @@ $pressed-light-ink-opacity: 0.32 !default;
 $_hover-selector: '&:hover';
 $_focus-selector: '&.mdc-ripple-upgraded--background-focused, &:not(.mdc-ripple-upgraded):focus';
 $_active-selector: '&:active:active';
+
+$light-theme: (
+  focus-state-layer-color: theme-color.$on-surface,
+  focus-state-layer-opacity: map.get($dark-ink-opacities, focus),
+  hover-state-layer-color: theme-color.$on-surface,
+  hover-state-layer-opacity: map.get($dark-ink-opacities, hover),
+  pressed-state-layer-color: theme-color.$on-surface,
+  pressed-state-layer-opacity: map.get($dark-ink-opacities, press),
+);
+
+@mixin theme($theme) {
+  @include theme.validate-keys($theme, $light-theme);
+  @include keys.declare-custom-properties($theme, $prefix: 'ripple');
+
+  @if shadow-dom.$css-selector-fallback-declarations {
+    .mdc-ripple-surface {
+      @include theme-styles($theme);
+    }
+  }
+}
+
+@mixin theme-styles($theme) {
+  @include theme.validate-keys($theme, $light-theme);
+  $theme: keys.create-theme-properties($theme, $prefix: 'ripple');
+
+  // Use only hover state layer color, ignoring focus and pressed color.
+  @include states-base-color(map.get($theme, hover-state-layer-color));
+  @include states-hover-opacity(map.get($theme, hover-state-layer-opacity));
+  @include states-focus-opacity(map.get($theme, focus-state-layer-opacity));
+  @include states-press-opacity(map.get($theme, pressed-state-layer-opacity));
+}
 
 @mixin states-base-color(
   $color,
@@ -262,9 +295,14 @@ $_active-selector: '&:active:active';
 
     &.mdc-ripple-upgraded {
       @include feature-targeting.targets($feat-color) {
-        @include theme.property(
-          custom-properties.create(ripple-fg-opacity, $opacity)
-        );
+        // Upgraded ripple should always emit custom property, regardless of
+        // configuration, since ripple itself feature detects custom property
+        // support at runtime.
+        @include custom-properties.configure($emit-custom-properties: true) {
+          @include theme.property(
+            custom-properties.create(ripple-fg-opacity, $opacity)
+          );
+        }
       }
     }
   }

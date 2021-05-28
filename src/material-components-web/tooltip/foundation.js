@@ -63,11 +63,11 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         _this.documentKeydownHandler = function (evt) {
             _this.handleKeydown(evt);
         };
-        _this.richTooltipMouseEnterHandler = function () {
-            _this.handleRichTooltipMouseEnter();
+        _this.tooltipMouseEnterHandler = function () {
+            _this.handleTooltipMouseEnter();
         };
-        _this.richTooltipMouseLeaveHandler = function () {
-            _this.handleRichTooltipMouseLeave();
+        _this.tooltipMouseLeaveHandler = function () {
+            _this.handleTooltipMouseLeave();
         };
         _this.richTooltipFocusOutHandler = function (evt) {
             _this.handleRichTooltipFocusOut(evt);
@@ -90,7 +90,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                 removeClass: function () { return undefined; },
                 getComputedStyleProperty: function () { return ''; },
                 setStyleProperty: function () { return undefined; },
-                setSurfaceStyleProperty: function () { return undefined; },
+                setSurfaceAnimationStyleProperty: function () { return undefined; },
                 getViewportWidth: function () { return 0; },
                 getViewportHeight: function () { return 0; },
                 getTooltipSize: function () { return ({ width: 0, height: 0 }); },
@@ -258,10 +258,10 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         // Hide tooltip immediately on focus change.
         this.hide();
     };
-    MDCTooltipFoundation.prototype.handleRichTooltipMouseEnter = function () {
+    MDCTooltipFoundation.prototype.handleTooltipMouseEnter = function () {
         this.show();
     };
-    MDCTooltipFoundation.prototype.handleRichTooltipMouseLeave = function () {
+    MDCTooltipFoundation.prototype.handleTooltipMouseLeave = function () {
         var _this = this;
         this.clearShowTimeout();
         this.hideTimeout = setTimeout(function () {
@@ -310,10 +310,10 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                 this.adapter.setAnchorAttribute('aria-expanded', 'true');
             }
             this.adapter.registerEventHandler('focusout', this.richTooltipFocusOutHandler);
-            if (!this.persistentTooltip) {
-                this.adapter.registerEventHandler('mouseenter', this.richTooltipMouseEnterHandler);
-                this.adapter.registerEventHandler('mouseleave', this.richTooltipMouseLeaveHandler);
-            }
+        }
+        if (!this.persistentTooltip) {
+            this.adapter.registerEventHandler('mouseenter', this.tooltipMouseEnterHandler);
+            this.adapter.registerEventHandler('mouseleave', this.tooltipMouseLeaveHandler);
         }
         this.adapter.removeClass(HIDE);
         this.adapter.addClass(SHOWING);
@@ -365,10 +365,10 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             if (this.interactiveTooltip) {
                 this.adapter.setAnchorAttribute('aria-expanded', 'false');
             }
-            if (!this.persistentTooltip) {
-                this.adapter.deregisterEventHandler('mouseenter', this.richTooltipMouseEnterHandler);
-                this.adapter.deregisterEventHandler('mouseleave', this.richTooltipMouseLeaveHandler);
-            }
+        }
+        if (!this.persistentTooltip) {
+            this.adapter.deregisterEventHandler('mouseenter', this.tooltipMouseEnterHandler);
+            this.adapter.deregisterEventHandler('mouseleave', this.tooltipMouseLeaveHandler);
         }
         this.clearAllAnimationClasses();
         this.adapter.addClass(HIDE);
@@ -449,7 +449,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         // the viewport.
         var _a = this.calculateTooltipStyles(this.anchorRect), top = _a.top, yTransformOrigin = _a.yTransformOrigin, left = _a.left, xTransformOrigin = _a.xTransformOrigin;
         var transformProperty = HAS_WINDOW ? getCorrectPropertyName(window, 'transform') : 'transform';
-        this.adapter.setSurfaceStyleProperty(transformProperty + "-origin", yTransformOrigin + " " + xTransformOrigin);
+        this.adapter.setSurfaceAnimationStyleProperty(transformProperty + "-origin", xTransformOrigin + " " + yTransformOrigin);
         this.adapter.setStyleProperty('top', top + "px");
         this.adapter.setStyleProperty('left', left + "px");
     };
@@ -470,7 +470,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             this.calculateTooltipWithCaretStyles(this.anchorRect) :
             this.calculateTooltipStyles(this.anchorRect), top = _e.top, yTransformOrigin = _e.yTransformOrigin, left = _e.left, xTransformOrigin = _e.xTransformOrigin;
         var transformProperty = HAS_WINDOW ? getCorrectPropertyName(window, 'transform') : 'transform';
-        this.adapter.setSurfaceStyleProperty(transformProperty + "-origin", yTransformOrigin + " " + xTransformOrigin);
+        this.adapter.setSurfaceAnimationStyleProperty(transformProperty + "-origin", xTransformOrigin + " " + yTransformOrigin);
         // A rich tooltip has `absolute` positioning and is placed as a sibling to
         // the anchor element. Its positioning is calculated with respect to the
         // parent element, and so the values need to be adjusted against the parent
@@ -1045,8 +1045,11 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         var skewRadians = values.skew * (Math.PI / 180);
         var scaleX = Math.cos(skewRadians);
         this.adapter.setTooltipCaretStyle('transform', "rotate(" + values.rotation + "deg) skewY(" + values.skew + "deg) scaleX(" + scaleX + ")");
-        this.adapter.setTooltipCaretStyle('transform-origin', values.yAlignment + " " + values.xAlignment);
-        return { yTransformOrigin: values.yAxisPx, xTransformOrigin: values.xAxisPx };
+        this.adapter.setTooltipCaretStyle('transform-origin', values.xAlignment + " " + values.yAlignment);
+        return {
+            yTransformOrigin: values.yTransformOrigin,
+            xTransformOrigin: values.xTransformOrigin
+        };
     };
     /**
      * Given a PositionWithCaret, determines the correct styles to position the
@@ -1063,6 +1066,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         var midpointHeight = "calc((" + tooltipHeight + " - " + caretSize.caretWidth + "px) / 2)";
         var flushWithEdge = '0';
         var indentedFromEdge = numbers.CARET_INDENTATION + "px";
+        var indentedFromWidth = "calc(" + tooltipWidth + " - " + indentedFromEdge + ")";
+        var indentedFromHeight = "calc(" + tooltipHeight + " - " + indentedFromEdge + ")";
         var verticalRotation = 35;
         var horizontalRotation = Math.abs(90 - verticalRotation);
         var skewDeg = 20;
@@ -1075,6 +1080,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                     xAxisPx: midpointWidth,
                     rotation: -1 * verticalRotation,
                     skew: -1 * skewDeg,
+                    xTransformOrigin: midpointWidth,
+                    yTransformOrigin: flushWithEdge,
                 };
             case PositionWithCaret.BELOW_END:
                 return {
@@ -1084,6 +1091,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                     xAxisPx: indentedFromEdge,
                     rotation: isLTR ? verticalRotation : -1 * verticalRotation,
                     skew: isLTR ? skewDeg : -1 * skewDeg,
+                    xTransformOrigin: isLTR ? indentedFromWidth : indentedFromEdge,
+                    yTransformOrigin: flushWithEdge,
                 };
             case PositionWithCaret.BELOW_START:
                 return {
@@ -1093,6 +1102,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                     xAxisPx: indentedFromEdge,
                     rotation: isLTR ? -1 * verticalRotation : verticalRotation,
                     skew: isLTR ? -1 * skewDeg : skewDeg,
+                    xTransformOrigin: isLTR ? indentedFromEdge : indentedFromWidth,
+                    yTransformOrigin: flushWithEdge,
                 };
             case PositionWithCaret.TOP_SIDE_END:
                 return {
@@ -1102,6 +1113,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                     xAxisPx: flushWithEdge,
                     rotation: isLTR ? horizontalRotation : -1 * horizontalRotation,
                     skew: isLTR ? -1 * skewDeg : skewDeg,
+                    xTransformOrigin: isLTR ? flushWithEdge : tooltipWidth,
+                    yTransformOrigin: indentedFromEdge,
                 };
             case PositionWithCaret.CENTER_SIDE_END:
                 return {
@@ -1111,6 +1124,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                     xAxisPx: flushWithEdge,
                     rotation: isLTR ? horizontalRotation : -1 * horizontalRotation,
                     skew: isLTR ? -1 * skewDeg : skewDeg,
+                    xTransformOrigin: isLTR ? flushWithEdge : tooltipWidth,
+                    yTransformOrigin: midpointHeight,
                 };
             case PositionWithCaret.BOTTOM_SIDE_END:
                 return {
@@ -1120,6 +1135,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                     xAxisPx: flushWithEdge,
                     rotation: isLTR ? -1 * horizontalRotation : horizontalRotation,
                     skew: isLTR ? skewDeg : -1 * skewDeg,
+                    xTransformOrigin: isLTR ? flushWithEdge : tooltipWidth,
+                    yTransformOrigin: indentedFromHeight,
                 };
             case PositionWithCaret.TOP_SIDE_START:
                 return {
@@ -1129,6 +1146,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                     xAxisPx: flushWithEdge,
                     rotation: isLTR ? -1 * horizontalRotation : horizontalRotation,
                     skew: isLTR ? skewDeg : -1 * skewDeg,
+                    xTransformOrigin: isLTR ? tooltipWidth : flushWithEdge,
+                    yTransformOrigin: indentedFromEdge,
                 };
             case PositionWithCaret.CENTER_SIDE_START:
                 return {
@@ -1138,6 +1157,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                     xAxisPx: flushWithEdge,
                     rotation: isLTR ? -1 * horizontalRotation : horizontalRotation,
                     skew: isLTR ? skewDeg : -1 * skewDeg,
+                    xTransformOrigin: isLTR ? tooltipWidth : flushWithEdge,
+                    yTransformOrigin: midpointHeight,
                 };
             case PositionWithCaret.BOTTOM_SIDE_START:
                 return {
@@ -1147,6 +1168,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                     xAxisPx: flushWithEdge,
                     rotation: isLTR ? horizontalRotation : -1 * horizontalRotation,
                     skew: isLTR ? -1 * skewDeg : skewDeg,
+                    xTransformOrigin: isLTR ? tooltipWidth : flushWithEdge,
+                    yTransformOrigin: indentedFromHeight,
                 };
             case PositionWithCaret.ABOVE_CENTER:
                 return {
@@ -1156,6 +1179,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                     xAxisPx: midpointWidth,
                     rotation: verticalRotation,
                     skew: skewDeg,
+                    xTransformOrigin: midpointWidth,
+                    yTransformOrigin: tooltipHeight,
                 };
             case PositionWithCaret.ABOVE_END:
                 return {
@@ -1165,6 +1190,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                     xAxisPx: indentedFromEdge,
                     rotation: isLTR ? -1 * verticalRotation : verticalRotation,
                     skew: isLTR ? -1 * skewDeg : skewDeg,
+                    xTransformOrigin: isLTR ? indentedFromWidth : indentedFromEdge,
+                    yTransformOrigin: tooltipHeight,
                 };
             default:
             case PositionWithCaret.ABOVE_START:
@@ -1175,6 +1202,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                     xAxisPx: indentedFromEdge,
                     rotation: isLTR ? verticalRotation : -1 * verticalRotation,
                     skew: isLTR ? skewDeg : -1 * skewDeg,
+                    xTransformOrigin: isLTR ? indentedFromEdge : indentedFromWidth,
+                    yTransformOrigin: tooltipHeight,
                 };
         }
     };
@@ -1227,10 +1256,10 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.adapter.removeClass(HIDE_TRANSITION);
         if (this.richTooltip) {
             this.adapter.deregisterEventHandler('focusout', this.richTooltipFocusOutHandler);
-            if (!this.persistentTooltip) {
-                this.adapter.deregisterEventHandler('mouseenter', this.richTooltipMouseEnterHandler);
-                this.adapter.deregisterEventHandler('mouseleave', this.richTooltipMouseLeaveHandler);
-            }
+        }
+        if (!this.persistentTooltip) {
+            this.adapter.deregisterEventHandler('mouseenter', this.tooltipMouseEnterHandler);
+            this.adapter.deregisterEventHandler('mouseleave', this.tooltipMouseLeaveHandler);
         }
         this.adapter.deregisterAnchorEventHandler('blur', this.anchorBlurHandler);
         this.adapter.deregisterDocumentEventHandler('click', this.documentClickHandler);

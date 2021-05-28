@@ -31,15 +31,21 @@
 @use '../theme/custom-properties';
 @use '../feature-targeting/feature-targeting';
 @use '../theme/theme';
-@use '../theme/theme-color';
 @use './ripple-theme';
 
 @mixin core-styles($query: feature-targeting.all()) {
+  @include static-styles($query: $query);
+
+  .mdc-ripple-surface {
+    @include ripple-theme.states($query: $query);
+  }
+}
+
+@mixin static-styles($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
   .mdc-ripple-surface {
     @include surface($query: $query);
-    @include ripple-theme.states($query: $query);
     @include radius-bounded($query: $query);
     @include surface-styles($query: $query);
   }

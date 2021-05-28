@@ -147,8 +147,8 @@ var MDCTooltip = /** @class */ (function (_super) {
             setStyleProperty: function (propertyName, value) {
                 _this.root.style.setProperty(propertyName, value);
             },
-            setSurfaceStyleProperty: function (propertyName, value) {
-                var surface = _this.root.querySelector("." + CssClasses.SURFACE);
+            setSurfaceAnimationStyleProperty: function (propertyName, value) {
+                var surface = _this.root.querySelector("." + CssClasses.SURFACE_ANIMATION);
                 surface === null || surface === void 0 ? void 0 : surface.style.setProperty(propertyName, value);
             },
             getViewportWidth: function () { return window.innerWidth; },

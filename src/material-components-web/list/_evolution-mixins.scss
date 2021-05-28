@@ -43,11 +43,11 @@
   @include _high-contrast-mode($query);
 
   .mdc-list {
-    @include _list-base($query: $query);
+    @include list-base($query: $query);
   }
 
   .mdc-list-item {
-    @include _item-base($query: $query);
+    @include item-base($query: $query);
 
     @include _one-line-item-density(
       variables.$one-line-item-density-scale,
@@ -184,13 +184,19 @@
 
   .mdc-list-item__secondary-text {
     @include typography.typography(body2, $query);
-    // TODO (b/168048902): disable this for three-line (multi-line) lists.
     @include typography.overflow-ellipsis($query);
     @include typography.text-baseline(
       $top: 20px,
       $display: block,
       $query: $query
     );
+
+    .mdc-list-item--with-three-lines & {
+      @include feature-targeting.targets($feat-structure) {
+        white-space: normal;
+        line-height: 20px;
+      }
+    }
   }
 
   .mdc-list-item__overline-text {
@@ -893,6 +899,7 @@
 @mixin one-line-item-density($density-scale, $query: feature-targeting.all()) {
   @include _one-line-item-density($density-scale, $query: $query);
 
+  &.mdc-list-item--with-leading-avatar,
   &.mdc-list-item--with-leading-icon,
   &.mdc-list-item--with-leading-thumbnail,
   &.mdc-list-item--with-leading-checkbox,
@@ -910,6 +917,7 @@
 @mixin two-line-item-density($density-scale, $query: feature-targeting.all()) {
   @include _two-line-item-density($density-scale, $query: $query);
 
+  &.mdc-list-item--with-leading-avatar,
   &.mdc-list-item--with-leading-icon,
   &.mdc-list-item--with-leading-thumbnail,
   &.mdc-list-item--with-leading-checkbox,
@@ -1006,7 +1014,7 @@
   @include three-line-item-height($height, $query: $query);
 }
 
-@mixin _list-base($query: feature-targeting.all()) {
+@mixin list-base($query: feature-targeting.all()) {
   $feat-color: feature-targeting.create-target($query, color);
   $feat-structure: feature-targeting.create-target($query, structure);
   $feat-typography: feature-targeting.create-target($query, typography);
@@ -1030,7 +1038,7 @@
   }
 }
 
-@mixin _item-base($query: feature-targeting.all()) {
+@mixin item-base($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
   @include feature-targeting.targets($feat-structure) {
     display: flex;

@@ -2,6 +2,17 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.39.0 / 2021-05-28
+
+### Features
+
+- update docs for mdc sass usage
+- `<ui-collapse>`: add prop `iconEndAligned`
+
+### Bug Fixes
+
+- `<ui-form-field>`: fix css bug for the action label
+
 ## v8.38.0 / 2021-05-27
 
 ### Features

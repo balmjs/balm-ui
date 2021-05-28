@@ -3,6 +3,17 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.29.0 / 2021-05-28
+
+### Features
+
+- update docs for mdc sass usage
+- `<ui-collapse>`: add prop `iconEndAligned`
+
+### Bug Fixes
+
+- `<ui-form-field>`: fix css bug for the action label
+
 ## v9.28.0 / 2021-05-27
 
 ### Features

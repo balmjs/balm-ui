@@ -1,5 +1,5 @@
 const fs = require('fs');
-const individual = require('./individual');
+const config = require('./config');
 
 const NAMESPACE = 'BalmUI';
 const individualBuild = ['components', 'plugins', 'directives', 'utils'];
@@ -41,7 +41,7 @@ function buildIndividual(mix) {
     {
       'balm-ui-plus': './src/scripts/plus.js'
     },
-    individual.output.dist,
+    config.output.dist,
     {
       output: {
         library: {
@@ -56,7 +56,7 @@ function buildIndividual(mix) {
     {
       'balm-ui-next': './src/scripts/next.js'
     },
-    individual.output.dist,
+    config.output.dist,
     {
       output: {
         library: {
@@ -70,13 +70,13 @@ function buildIndividual(mix) {
 
   // Clear individual
   mix.remove([
-    individual.output.components,
-    individual.output.plugins,
-    individual.output.directives,
-    individual.output.utils
+    config.output.components,
+    config.output.plugins,
+    config.output.directives,
+    config.output.utils
   ]);
 
-  const uiOutput = `${individual.output.dist}/css/balm-ui`;
+  const uiOutput = `${config.output.dist}/css/balm-ui`;
   individualBuild.forEach((buildName) => {
     individual[buildName].forEach((item) => {
       const libraryName = getLibrary(buildName, item);
@@ -84,16 +84,16 @@ function buildIndividual(mix) {
       let jsInput;
       switch (buildName) {
         case 'utils':
-          jsInput = [`${individual.input[buildName]}/${item}.js`];
+          jsInput = [`${config.input[buildName]}/${item}.js`];
           break;
         case 'components':
           jsInput = {
-            index: `${individual.input[buildName]}/${item}/index.js`
+            index: `${config.input[buildName]}/${item}/index.js`
           };
           break;
         default:
           jsInput = {
-            index: `${individual.input[buildName]}/${item}.js`
+            index: `${config.input[buildName]}/${item}.js`
           };
       }
       let jsOutput =
@@ -121,7 +121,7 @@ function buildIndividual(mix) {
               }
       });
 
-      let sassFolder = `${individual.input.sass}/balm-ui/${buildName}`;
+      let sassFolder = `${config.input.sass}/balm-ui/${buildName}`;
       if (fs.existsSync(sassFolder)) {
         mix.copy(`${sassFolder}/**/*`, `${uiOutput}/${buildName}`);
       }
@@ -132,7 +132,7 @@ function buildIndividual(mix) {
     mix.copy(`${uiOutput}/${buildName}/**/*`, buildName);
   });
 
-  mix.copy(['./dist/css/*.css', './dist/js/*.js'], individual.output.dist);
+  mix.copy(['./dist/css/*.css', './dist/js/*.js'], config.output.dist);
   mix.remove(['./dist/css', './dist/js']);
 }
 

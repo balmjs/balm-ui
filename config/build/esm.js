@@ -1,4 +1,4 @@
-const pkg = require('../package.json');
+const pkg = require('../../package.json');
 const alias = require('@rollup/plugin-alias');
 const commonjs = require('@rollup/plugin-commonjs');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
@@ -6,7 +6,7 @@ const replace = require('@rollup/plugin-replace');
 const { babel } = require('@rollup/plugin-babel');
 const json = require('@rollup/plugin-json');
 const vue = require('rollup-plugin-vue');
-const individual = require('./individual');
+const config = require('./config');
 
 const banner =
   '/*!\n' +
@@ -68,7 +68,7 @@ function buildESModule(mix) {
       plugins
     },
     {
-      file: `${individual.output.dist}/balm-ui.esm.js`,
+      file: `${config.output.dist}/balm-ui.esm.js`,
       format: 'es',
       banner
     }
@@ -81,7 +81,7 @@ function buildESModule(mix) {
       plugins
     },
     {
-      file: `${individual.output.dist}/balm-ui-plus.esm.js`,
+      file: `${config.output.dist}/balm-ui-plus.esm.js`,
       format: 'es',
       banner
     }

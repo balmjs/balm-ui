@@ -1,10 +1,12 @@
-const pkg = require('../package.json');
-const env = require('./env');
+const pkg = require('../../package.json');
+const env = require('../env');
 const path = require('path');
 const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
+const { ModuleFederationPlugin } = require('webpack').container;
+const exposes = require('../build/exposes');
 
-const workspace = path.join(__dirname, '..');
+const workspace = path.join(__dirname, '..', '..');
 
 function resolve(dir) {
   return path.join(workspace, dir);
@@ -19,7 +21,7 @@ function getConfig(balm) {
     ? {
         modules: false,
         useBuiltIns: 'entry',
-        corejs: { version: 3, proposals: true }
+        corejs: { version: '3.13', proposals: true }
       }
     : {
         modules: false
@@ -126,8 +128,22 @@ function getConfig(balm) {
         new webpack.DefinePlugin({
           __VUE_OPTIONS_API__: JSON.stringify(true),
           __VUE_PROD_DEVTOOLS__: JSON.stringify(false)
-        })
+        }),
+        ...(useDocsProd
+          ? [
+              new ModuleFederationPlugin({
+                name: 'RemoteBalmUI',
+                filename: 'remote-balm-ui.js',
+                exposes,
+                shared: ['vue']
+              })
+            ]
+          : [])
       ],
+      injectHtml: true,
+      htmlPluginOptions: {
+        template: './docs/templates/index.html'
+      },
       externals: useBuild
         ? {
             vue: {

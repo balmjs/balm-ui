@@ -1,9 +1,9 @@
-const env = require('./env');
-const constants = require('./constants');
-const individual = require('./individual');
-const buildIndividual = require('./build.individual');
-const buildESModule = require('./build.esm');
-const fixGridCss = require('./build.fix');
+const env = require('../env');
+const constants = require('../mdc/constants');
+const config = require('../build/config');
+const buildIndividual = require('../build/individual');
+const buildESModule = require('../build/esm');
+const fixGridCss = require('../build/fix');
 
 module.exports = (mix) => {
   if (env.buildDocs) {
@@ -47,7 +47,7 @@ module.exports = (mix) => {
         buildIndividual(mix);
 
         // For sass entry
-        mix.copy(`${individual.input.sass}/*.scss`, individual.output.dist);
+        mix.copy(`${config.input.sass}/*.scss`, config.output.dist);
 
         // For fonts
         mix.copy('./src/material-icons/*', './fonts'); // NOTE: manual zip fonts & rename to `material-icons.zip`

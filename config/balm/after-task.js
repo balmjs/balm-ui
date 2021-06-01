@@ -1,5 +1,5 @@
-const env = require('./env');
-require('./update');
+const env = require('../env');
+require('../mdc/update');
 
 let afterTask;
 

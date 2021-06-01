@@ -69,20 +69,20 @@ function getConfig(balm) {
       eslint: true,
       entry: useDocsDev
         ? {
-            hello: [
-              '@babel/runtime-corejs3',
-              'axios',
-              'clipboard',
-              'deepmerge',
-              'flatpickr',
-              'prismjs',
-              'vue',
-              'vue-i18n',
-              'vue-meta',
-              'vue-router'
-            ],
-            balm: ['src/material-components-web'],
-            ui: ['@material', 'core-js', 'core-js-pure', 'src/scripts'],
+            // hello: [
+            //   '@babel/runtime-corejs3',
+            //   'axios',
+            //   'clipboard',
+            //   'deepmerge',
+            //   'flatpickr',
+            //   'prismjs',
+            //   'vue',
+            //   'vue-i18n',
+            //   'vue-meta',
+            //   'vue-router'
+            // ],
+            // balm: ['src/material-components-web'],
+            // ui: ['@material', 'core-js', 'core-js-pure', 'src/scripts'],
             app: './docs/scripts/index.js'
           }
         : {

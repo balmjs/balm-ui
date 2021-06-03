@@ -37,7 +37,7 @@
         mobile-stacked
       >
         <template #image>
-          <ui-icon>celebration</ui-icon>
+          <ui-icon>{{ hasNewVersion ? 'refresh' : 'celebration' }}</ui-icon>
         </template>
         <template v-if="hasNewVersion">New content is available.</template>
         <template v-else>Welcome to BalmUI!</template>

@@ -78,7 +78,7 @@ function buildIndividual(mix) {
 
   const uiOutput = `${config.output.dist}/css/balm-ui`;
   individualBuild.forEach((buildName) => {
-    individual[buildName].forEach((item) => {
+    config[buildName].forEach((item) => {
       const libraryName = getLibrary(buildName, item);
 
       let jsInput;

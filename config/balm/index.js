@@ -15,6 +15,7 @@ function resolve(dir) {
 function getConfig(balm) {
   const useDocsProd = balm.config.env.isProd && env.buildDocs;
   const useDocsDev = !balm.config.env.isProd || env.buildDocs;
+  const useDocs = useDocsProd || useDocsDev;
   const useBuild = balm.config.env.isProd && !env.buildDocs;
 
   let envOptions = useDocsProd
@@ -28,29 +29,28 @@ function getConfig(balm) {
       };
   let runtimeOptions = useDocsProd ? { corejs: 3 } : {};
 
-  let babelLoaderOptions =
-    useDocsProd || useDocsDev
-      ? {
-          presets: [['@babel/preset-env', envOptions]],
-          plugins: [
-            ['@babel/plugin-transform-runtime', runtimeOptions],
-            [
-              'prismjs',
-              {
-                languages: [
-                  'markup',
-                  'css',
-                  'javascript',
-                  'bash',
-                  'scss',
-                  'typescript'
-                ],
-                plugins: ['highlight-keywords', 'toolbar', 'copy-to-clipboard']
-              }
-            ]
+  let babelLoaderOptions = useDocs
+    ? {
+        presets: [['@babel/preset-env', envOptions]],
+        plugins: [
+          ['@babel/plugin-transform-runtime', runtimeOptions],
+          [
+            'prismjs',
+            {
+              languages: [
+                'markup',
+                'css',
+                'javascript',
+                'bash',
+                'scss',
+                'typescript'
+              ],
+              plugins: ['highlight-keywords', 'toolbar', 'copy-to-clipboard']
+            }
           ]
-        }
-      : {};
+        ]
+      }
+    : {};
 
   return {
     roots: {
@@ -62,8 +62,7 @@ function getConfig(balm) {
       }
     },
     styles: {
-      extname: 'scss',
-      dartSass: true
+      extname: 'scss'
     },
     scripts: {
       eslint: true,
@@ -140,7 +139,7 @@ function getConfig(balm) {
             ]
           : [])
       ],
-      injectHtml: true,
+      injectHtml: !useBuild,
       htmlPluginOptions: {
         template: './docs/templates/index.html'
       },

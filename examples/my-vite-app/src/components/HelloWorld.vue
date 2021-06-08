@@ -1,6 +1,7 @@
 <template>
   <div>
     <ui-button icon="add" @click="$alert(msg)">SayHi</ui-button>
+    <ui-editor></ui-editor>
   </div>
 </template>
 

@@ -234,11 +234,20 @@ class Theme extends ThemeStyle {
 
 const theme = new Theme();
 
+let isColored = false;
+
 function install(app, colors = {}) {
+  app.mixin({
+    mounted() {
+      if (!isColored) {
+        isColored = true;
+        theme.colors = colors;
+      }
+    }
+  });
+
   app.config.globalProperties.$theme = theme;
   app.provide('theme', theme);
-
-  theme.colors = colors;
 }
 
 const $theme = {

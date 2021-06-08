@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <ui-button icon="add" @click="$alert(msg)">SayHi</ui-button>
+    <ui-editor></ui-editor>
   </div>
 </template>
 
@@ -10,7 +11,7 @@ export default {
   props: {
     msg: String
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

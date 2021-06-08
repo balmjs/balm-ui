@@ -1,13 +1,13 @@
-import { useEditor } from '../quill';
+import { useEditor } from '../core/quill';
 
 function useSelectAll() {
   const { toolbarHandlers } = useEditor();
 
   toolbarHandlers.selectall = () => {
-    const { editor } = useEditor();
+    const { quill } = useEditor();
 
-    let text = editor.getText();
-    editor.setSelection(0, text.length);
+    let text = quill.getText();
+    quill.setSelection(0, text.length);
   };
 }
 

@@ -1,4 +1,4 @@
-import { useEditor } from '../quill';
+import { useEditor } from '../core/quill';
 
 const unit = 'em';
 const defaultIndent = [1, 2, 3, 4, 5, 6, 7, 8].map(

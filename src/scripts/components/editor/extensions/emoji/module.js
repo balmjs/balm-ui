@@ -1,4 +1,4 @@
-import { useEditor } from '../../quill';
+import { useEditor } from '../../core/quill';
 import Emotion from './emotion';
 import { emojiClassName, getCode, createEmoji } from './utils';
 

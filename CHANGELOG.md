@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.40.0 / 2021-06-10
+
+### Features
+
+- `<ui-tree>`: add method `updateNode(type: 'create' | 'update' | 'delete', parentKey: string | number, data: object)` for tree operations
+
 ## v8.39.0 / 2021-05-28
 
 ### Features

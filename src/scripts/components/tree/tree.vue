@@ -164,6 +164,18 @@ export default {
         this.treeData.selectedValue = val;
         MdcTree.setSelected(this.treeData, val);
       });
+    },
+    updateNode(type, parentKey, data) {
+      switch (type) {
+        case 'create':
+          MdcTree.createNode(this.treeData, parentKey, data);
+          break;
+        case 'delete':
+          MdcTree.deleteNode(this.treeData, parentKey, data);
+          break;
+        default:
+          MdcTree.updateNode(this.treeData, parentKey, data);
+      }
     }
   }
 };

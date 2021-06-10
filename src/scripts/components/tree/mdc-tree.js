@@ -271,6 +271,70 @@ class MdcTree {
       }
     }
   }
+
+  /** For tree operation **/
+  static createNode(treeData, parentKey, originItem) {
+    const { dataFormat, nodeMap } = treeData;
+    const { value, children } = dataFormat;
+
+    const parentItem = nodeMap.get(parentKey);
+    const nodeKey = originItem[value];
+
+    let item = getNode(nodeMap, dataFormat, originItem, {
+      level: parentItem.level + 1,
+      parentKey,
+      checked: false
+    });
+    parentItem[children].unshift(item);
+
+    nodeMap.set(parentKey, parentItem);
+    nodeMap.set(nodeKey, item);
+  }
+
+  static updateNode(treeData, parentKey, originItem) {
+    const { dataFormat, nodeMap } = treeData;
+    const { value, children } = dataFormat;
+
+    const nodeKey = originItem[value];
+    const item = nodeMap.get(nodeKey);
+    Object.keys(item).forEach((key) => {
+      if (typeof originItem[key] !== 'undefined') {
+        item[key] = originItem[key];
+      }
+    });
+
+    const parentItem = nodeMap.get(parentKey);
+    const parentChildren = parentItem[children];
+    const index = parentChildren.findIndex((item) => item[value] === nodeKey);
+    parentItem[children][index] = item;
+
+    nodeMap.set(parentKey, parentItem);
+    nodeMap.set(nodeKey, item);
+  }
+
+  static deleteNode(treeData, parentKey, originItem) {
+    const { dataFormat, nodeMap } = treeData;
+    const { value, children, hasChildren } = dataFormat;
+
+    const nodeKey = originItem[value];
+    if (nodeMap.has(nodeKey)) {
+      const parentItem = nodeMap.get(parentKey);
+      const parentChildren = parentItem[children];
+
+      parentChildren.splice(
+        parentChildren.findIndex((item) => item[value] === nodeKey),
+        1
+      );
+      parentItem[hasChildren] = parentChildren.length;
+      if (!parentItem[hasChildren]) {
+        parentItem.isLeaf = true;
+        parentItem.expanded = false;
+      }
+
+      nodeMap.set(parentKey, parentItem);
+      nodeMap.delete(nodeKey);
+    }
+  }
 }
 
 export { MdcTree };

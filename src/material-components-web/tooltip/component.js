@@ -104,6 +104,12 @@ var MDCTooltip = /** @class */ (function (_super) {
     MDCTooltip.prototype.setAnchorBoundaryType = function (type) {
         this.foundation.setAnchorBoundaryType(type);
     };
+    MDCTooltip.prototype.setShowDelay = function (delayMs) {
+        this.foundation.setShowDelay(delayMs);
+    };
+    MDCTooltip.prototype.setHideDelay = function (delayMs) {
+        this.foundation.setHideDelay(delayMs);
+    };
     MDCTooltip.prototype.hide = function () {
         this.foundation.hide();
     };

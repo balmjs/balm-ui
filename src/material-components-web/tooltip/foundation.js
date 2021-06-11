@@ -434,6 +434,12 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             this.anchorGap = numbers.BOUNDED_ANCHOR_GAP;
         }
     };
+    MDCTooltipFoundation.prototype.setShowDelay = function (delayMs) {
+        this.showDelayMs = delayMs;
+    };
+    MDCTooltipFoundation.prototype.setHideDelay = function (delayMs) {
+        this.hideDelayMs = delayMs;
+    };
     MDCTooltipFoundation.prototype.parseShowTooltipOptions = function () {
         var hideFromScreenreader = Boolean(this.adapter.getAnchorAttribute('data-tooltip-id'));
         return { hideFromScreenreader: hideFromScreenreader };

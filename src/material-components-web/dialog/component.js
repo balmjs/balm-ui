@@ -150,7 +150,7 @@ var MDCDialog = /** @class */ (function (_super) {
             addClass: function (className) { return _this.root.classList.add(className); },
             areButtonsStacked: function () { return util.areTopsMisaligned(_this.buttons); },
             clickDefaultButton: function () {
-                if (_this.defaultButton) {
+                if (_this.defaultButton && !_this.defaultButton.disabled) {
                     _this.defaultButton.click();
                 }
             },

@@ -24,10 +24,12 @@
 // stylelint-disable selector-class-pattern --
 // TODO: document why this disable is neccessary
 
+@use 'sass:math';
 @use 'sass:list';
 @use 'sass:meta';
 @use '../animation/animation';
 @use '../density/functions' as density-functions;
+@use '../dom/dom';
 @use '../floating-label/mixins' as floating-label-mixins;
 @use '../floating-label/variables' as floating-label-variables;
 @use '../line-ripple/mixins' as line-ripple-mixins;
@@ -418,12 +420,12 @@
   );
   $no-label-margin-top: density-functions.prop-value(
     $density-config: variables.$textarea-filled-no-label-density-config,
-    $density-scale: $density-scale / 2,
+    $density-scale: math.div($density-scale, 2),
     $property-name: margin-top,
   );
   $no-label-margin-bottom: density-functions.prop-value(
     $density-config: variables.$textarea-filled-no-label-density-config,
-    $density-scale: $density-scale / 2,
+    $density-scale: math.div($density-scale, 2),
     $property-name: margin-bottom,
   );
 
@@ -441,7 +443,7 @@
       $keyframe-suffix: text-field-filled-#{$density-scale};
       $label-top: density-functions.prop-value(
         $density-config: variables.$textarea-filled-label-density-config,
-        $density-scale: $density-scale / 2,
+        $density-scale: math.div($density-scale, 2),
         $property-name: top,
       );
 
@@ -536,7 +538,7 @@
   $keyframe-suffix: text-field-outlined-#{$density-scale};
   $label-top: density-functions.prop-value(
     $density-config: variables.$textarea-outlined-label-density-config,
-    $density-scale: $density-scale / 2,
+    $density-scale: math.div($density-scale, 2),
     $property-name: top,
   );
   $textfield-height: density-functions.prop-value(
@@ -546,12 +548,12 @@
   );
   $margin-top: density-functions.prop-value(
     $density-config: variables.$textarea-outlined-density-config,
-    $density-scale: $density-scale / 2,
+    $density-scale: math.div($density-scale, 2),
     $property-name: margin-top,
   );
   $margin-bottom: density-functions.prop-value(
     $density-config: variables.$textarea-outlined-density-config,
-    $density-scale: $density-scale / 2,
+    $density-scale: math.div($density-scale, 2),
     $property-name: margin-bottom,
   );
 
@@ -1632,7 +1634,7 @@
     $query: $query
   );
 
-  @media screen and (-ms-high-contrast: active) {
+  @include dom.forced-colors-mode {
     @include placeholder-color_(GrayText, $query: $query);
     @include label-ink-color_(GrayText, $query: $query);
     @include helper-text-mixins.helper-text-color_(GrayText, $query: $query);

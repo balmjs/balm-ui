@@ -28,6 +28,7 @@
 @use '../animation/functions' as functions2;
 @use '../animation/variables' as animation-variables;
 @use '../density/functions' as density-functions;
+@use '../dom/dom';
 @use '../feature-targeting/feature-targeting';
 @use '../ripple/ripple';
 @use '../ripple/ripple-theme';
@@ -77,7 +78,7 @@
     }
   }
 
-  @media screen and (-ms-high-contrast: active) {
+  @include dom.forced-colors-mode {
     @include checkbox-theme.disabled-container-colors(
       $unmarked-stroke-color: GrayText,
       $unmarked-fill-color: transparent,
@@ -496,7 +497,7 @@
     width: 100%;
     height: 0;
     transform: scaleX(0) rotate(0deg);
-    border-width: math.floor(checkbox-theme.$mark-stroke-size) / 2;
+    border-width: math.div(math.floor(checkbox-theme.$mark-stroke-size), 2);
     border-style: solid;
     opacity: 0;
   }

@@ -3,10 +3,10 @@ const checkLeaf = (item, isLeaf, hasChildren) => item[isLeaf] || !hasChildren;
 const getNode = (
   nodeMap,
   { value, children, hasChildren, isLeaf },
-  originItem,
+  originNodeData,
   { level, parentKey, checked }
 ) => {
-  let item = Object.assign({}, originItem);
+  let item = Object.assign({}, originNodeData);
 
   const nodeKey = item[value];
   const nodeChildren = item[children];
@@ -269,6 +269,70 @@ class MdcTree {
           ? this.onCheck(treeData, item, true)
           : this.onSelect(treeData, item);
       }
+    }
+  }
+
+  /** For tree operation **/
+  static createNode(treeData, parentKey, originNodeData) {
+    const { dataFormat, nodeMap } = treeData;
+    const { value, children } = dataFormat;
+
+    const parentItem = nodeMap.get(parentKey);
+    const nodeKey = originNodeData[value];
+
+    let item = getNode(nodeMap, dataFormat, originNodeData, {
+      level: parentItem.level + 1,
+      parentKey,
+      checked: false
+    });
+    parentItem[children].unshift(item);
+
+    nodeMap.set(parentKey, parentItem);
+    nodeMap.set(nodeKey, item);
+  }
+
+  static updateNode(treeData, parentKey, originNodeData) {
+    const { dataFormat, nodeMap } = treeData;
+    const { value, children } = dataFormat;
+
+    const nodeKey = originNodeData[value];
+    const item = nodeMap.get(nodeKey);
+    Object.keys(item).forEach((key) => {
+      if (typeof originNodeData[key] !== 'undefined') {
+        item[key] = originNodeData[key];
+      }
+    });
+
+    const parentItem = nodeMap.get(parentKey);
+    const parentChildren = parentItem[children];
+    const index = parentChildren.findIndex((item) => item[value] === nodeKey);
+    parentItem[children][index] = item;
+
+    nodeMap.set(parentKey, parentItem);
+    nodeMap.set(nodeKey, item);
+  }
+
+  static deleteNode(treeData, parentKey, originNodeData) {
+    const { dataFormat, nodeMap } = treeData;
+    const { value, children, hasChildren } = dataFormat;
+
+    const nodeKey = originNodeData[value];
+    if (nodeMap.has(nodeKey)) {
+      const parentItem = nodeMap.get(parentKey);
+      const parentChildren = parentItem[children];
+
+      parentChildren.splice(
+        parentChildren.findIndex((item) => item[value] === nodeKey),
+        1
+      );
+      parentItem[hasChildren] = parentChildren.length;
+      if (!parentItem[hasChildren]) {
+        parentItem.isLeaf = true;
+        parentItem.expanded = false;
+      }
+
+      nodeMap.set(parentKey, parentItem);
+      nodeMap.delete(nodeKey);
     }
   }
 }

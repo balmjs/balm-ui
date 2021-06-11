@@ -115,7 +115,10 @@ export default {
   mounted() {
     this.$nextTick(() => {
       [...this.$el.children]
-        .filter((child) => child.classList.contains('mdc-form-field'))
+        .filter(
+          (child) =>
+            child.classList && child.classList.contains('mdc-form-field')
+        )
         .forEach((child) => child.classList.add(UI_FORM.cssClasses.item));
     });
   }

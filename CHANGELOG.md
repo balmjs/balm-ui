@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.31.0 / 2021-06-11
+
+### Features
+
+- `<ui-tree>`: add method `updateNode(type: 'create' | 'update' | 'delete', parentKey: string | number, nodeData: object)` for tree operations
+
 ## v9.30.1 / 2021-06-08
 
 ### Code Refactoring

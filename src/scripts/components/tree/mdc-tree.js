@@ -3,10 +3,10 @@ const checkLeaf = (item, isLeaf, hasChildren) => item[isLeaf] || !hasChildren;
 const getNode = (
   nodeMap,
   { value, children, hasChildren, isLeaf },
-  originItem,
+  originNodeData,
   { level, parentKey, checked }
 ) => {
-  let item = Object.assign({}, originItem);
+  let item = Object.assign({}, originNodeData);
 
   const nodeKey = item[value];
   const nodeChildren = item[children];
@@ -273,14 +273,14 @@ class MdcTree {
   }
 
   /** For tree operation **/
-  static createNode(treeData, parentKey, originItem) {
+  static createNode(treeData, parentKey, originNodeData) {
     const { dataFormat, nodeMap } = treeData;
     const { value, children } = dataFormat;
 
     const parentItem = nodeMap.get(parentKey);
-    const nodeKey = originItem[value];
+    const nodeKey = originNodeData[value];
 
-    let item = getNode(nodeMap, dataFormat, originItem, {
+    let item = getNode(nodeMap, dataFormat, originNodeData, {
       level: parentItem.level + 1,
       parentKey,
       checked: false
@@ -291,15 +291,15 @@ class MdcTree {
     nodeMap.set(nodeKey, item);
   }
 
-  static updateNode(treeData, parentKey, originItem) {
+  static updateNode(treeData, parentKey, originNodeData) {
     const { dataFormat, nodeMap } = treeData;
     const { value, children } = dataFormat;
 
-    const nodeKey = originItem[value];
+    const nodeKey = originNodeData[value];
     const item = nodeMap.get(nodeKey);
     Object.keys(item).forEach((key) => {
-      if (typeof originItem[key] !== 'undefined') {
-        item[key] = originItem[key];
+      if (typeof originNodeData[key] !== 'undefined') {
+        item[key] = originNodeData[key];
       }
     });
 
@@ -312,11 +312,11 @@ class MdcTree {
     nodeMap.set(nodeKey, item);
   }
 
-  static deleteNode(treeData, parentKey, originItem) {
+  static deleteNode(treeData, parentKey, originNodeData) {
     const { dataFormat, nodeMap } = treeData;
     const { value, children, hasChildren } = dataFormat;
 
-    const nodeKey = originItem[value];
+    const nodeKey = originNodeData[value];
     if (nodeMap.has(nodeKey)) {
       const parentItem = nodeMap.get(parentKey);
       const parentChildren = parentItem[children];

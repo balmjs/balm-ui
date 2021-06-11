@@ -15,7 +15,7 @@
 | `autoExpandParent`          | boolean       | `false` | 是否自动展开根父级树节点     | 8.25.0  |
 | `defaultExpandedKeys`       | array         | `[]`    | 指定默认展开的树节点的节点值 | 8.25.0  |
 
-- 默认数据格式：
+- 默认数据格式
 
   ```js
   {
@@ -27,7 +27,7 @@
   }
   ```
 
-- 异步加载数据：
+- 异步加载数据
 
   ```ts
   type TreeNodes = { [key: string]: any }[];
@@ -35,6 +35,16 @@
   interface Tree {
     loadData(nodeKey: string | number): TreeNodes;
   }
+  ```
+
+- 操作树节点 (New in 8.40.0)
+
+  ```html
+  <ui-tree ref="tree"></ui-tree>
+  ```
+
+  ```ts
+  this.$refs.tree.updateNode(type: 'create' | 'update' | 'delete', parentKey: string | number, nodeData: object)
   ```
 
 ### Slots

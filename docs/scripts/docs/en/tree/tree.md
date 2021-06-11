@@ -15,7 +15,7 @@
 | `autoExpandParent`          | boolean       | `false` | Whether to automatically expand root parent(s) treeNode. | 8.25.0  |
 | `defaultExpandedKeys`       | array         | `[]`    | Specify the node keys of the default expanded treeNodes. | 8.25.0  |
 
-- Default data format:
+- Default data format
 
   ```js
   {
@@ -27,7 +27,7 @@
   }
   ```
 
-- Load data asynchronously:
+- Load data asynchronously
 
   ```ts
   type TreeNodes = { [key: string]: any }[];
@@ -35,6 +35,16 @@
   interface Tree {
     loadData(nodeKey: string | number): TreeNodes;
   }
+  ```
+
+- Tree node operations (New in 8.40.0)
+
+  ```html
+  <ui-tree ref="tree"></ui-tree>
+  ```
+
+  ```ts
+  this.$refs.tree.updateNode(type: 'create' | 'update' | 'delete', parentKey: string | number, nodeData: object)
   ```
 
 ### Slots

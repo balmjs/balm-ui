@@ -6,7 +6,7 @@
 
 ### Features
 
-- `<ui-tree>`: add method `updateNode(type: 'create' | 'update' | 'delete', parentKey: string | number, data: object)` for tree operations
+- `<ui-tree>`: add method `updateNode(type: 'create' | 'update' | 'delete', parentKey: string | number, nodeData: object)` for tree operations
 
 ## v8.39.0 / 2021-05-28
 

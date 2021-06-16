@@ -28,7 +28,8 @@ export default {
   },
   data() {
     return {
-      $formField: null
+      $formField: null,
+      form: null
     };
   },
   computed: {
@@ -41,38 +42,47 @@ export default {
       };
     },
     style() {
-      return this.$parent.itemMarginBottom
+      return this.form && this.form.itemMarginBottom
         ? {
-            'margin-bottom': `${this.$parent.itemMarginBottom}px`
+            'margin-bottom': `${this.form.itemMarginBottom}px`
           }
         : 0;
     },
     // horizontal form
     flexBasis() {
-      return this.$parent.labelWidth ? +this.$parent.labelWidth : 0;
+      return this.form && this.form.labelWidth ? +this.form.labelWidth : 0;
     },
     marginRight() {
-      return this.$parent.labelMarginRight ? +this.$parent.labelMarginRight : 0;
+      return this.form && this.form.labelMarginRight
+        ? +this.form.labelMarginRight
+        : 0;
     },
     actionPaddingLeft() {
-      return this.$parent.actionAlign === 'left' &&
+      return this.form &&
+        this.form.actionAlign === 'left' &&
         (this.flexBasis || this.marginRight)
         ? this.flexBasis + this.marginRight
         : 0;
     },
     // vertical form
     marginBottom() {
-      return this.$parent.labelMarginBottom
-        ? +this.$parent.labelMarginBottom
+      return this.form && this.form.labelMarginBottom
+        ? +this.form.labelMarginBottom
         : 0;
     }
   },
   mounted() {
     this.$formField = new MDCFormField(this.$el);
-
+    this.form = this.getFrom();
     this.formLabel();
   },
   methods: {
+    getFrom(self = this) {
+      const parent = self.$parent;
+      return parent.$el.classList && parent.$el.classList.contains('mdc-form')
+        ? parent
+        : this.getFrom(parent);
+    },
     formLabel() {
       if (this.$slots.default) {
         const label = this.$slots.default.find(

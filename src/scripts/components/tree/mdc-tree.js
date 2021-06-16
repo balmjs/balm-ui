@@ -261,8 +261,11 @@ class MdcTree {
   static setSelected(treeData, defaultSelectedKeys) {
     const { nodeMap, multiple } = treeData;
 
-    for (let i = 0, len = defaultSelectedKeys.length; i < len; i++) {
-      const nodeKey = defaultSelectedKeys[i];
+    const selectedKeys = Array.isArray(defaultSelectedKeys)
+      ? defaultSelectedKeys
+      : [defaultSelectedKeys];
+    for (let i = 0, len = selectedKeys.length; i < len; i++) {
+      const nodeKey = selectedKeys[i];
       const item = nodeMap.get(nodeKey);
       if (item) {
         multiple

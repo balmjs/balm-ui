@@ -2,6 +2,13 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.40.1 / 2021-06-16
+
+### Bug Fixes
+
+- `<ui-form-field>`: fix form-field label bug for form component props
+- `<ui-tree>`: fix selected default value for single tree
+
 ## v8.40.0 / 2021-06-10
 
 ### Features

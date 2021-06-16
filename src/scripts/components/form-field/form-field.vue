@@ -73,13 +73,21 @@ export default {
   },
   mounted() {
     this.$formField = new MDCFormField(this.$el);
-    this.form = this.getFrom();
+
+    if (this.$el.classList.contains('mdc-form__item')) {
+      this.form = this.getFrom();
+    }
+
     this.formLabel();
   },
   methods: {
     getFrom(self = this) {
       const parent = self.$parent;
-      return parent.$el.classList && parent.$el.classList.contains('mdc-form')
+      const parentEl = parent.$el;
+
+      return parentEl &&
+        parentEl.classList &&
+        parentEl.classList.contains('mdc-form')
         ? parent
         : this.getFrom(parent);
     },
@@ -97,12 +105,13 @@ export default {
           });
         }
 
+        const formFieldEl = this.$el;
         if (
-          this.$el &&
-          this.$el.classList.contains('mdc-form__actions') &&
+          formFieldEl &&
+          formFieldEl.classList.contains('mdc-form__actions') &&
           this.actionPaddingLeft
         ) {
-          this.$el.style['padding-left'] = `${this.actionPaddingLeft}px`;
+          formFieldEl.style['padding-left'] = `${this.actionPaddingLeft}px`;
         }
       }
     }

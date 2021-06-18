@@ -30,7 +30,8 @@ export default {
   },
   data() {
     return {
-      $formField: null
+      $formField: null,
+      form: null
     };
   },
   computed: {
@@ -42,52 +43,60 @@ export default {
         'mdc-form-field--space-between': this.spaceBetween
       };
     },
-    hasFormParent() {
-      return this.$parent.$.type.name === 'UiForm';
+    isCustomFormItem() {
+      return this.el.classList.contains('mdc-form__item');
     },
     style() {
-      return this.hasFormParent && this.$parent.itemMarginBottom
+      return this.form && this.form.itemMarginBottom
         ? {
-            'margin-bottom': `${this.$parent.itemMarginBottom}px`
+            'margin-bottom': `${this.form.itemMarginBottom}px`
           }
         : 0;
     },
     // horizontal form
     flexBasis() {
-      return this.hasFormParent && this.$parent.labelWidth
-        ? +this.$parent.labelWidth
-        : 0;
+      return this.form && this.form.labelWidth ? +this.form.labelWidth : 0;
     },
     marginRight() {
-      return this.hasFormParent && this.$parent.labelMarginRight
-        ? +this.$parent.labelMarginRight
+      return this.form && this.form.labelMarginRight
+        ? +this.form.labelMarginRight
         : 0;
     },
     actionPaddingLeft() {
-      return this.$parent.actionAlign === 'left' &&
+      return this.form &&
+        this.form.actionAlign === 'left' &&
         (this.flexBasis || this.marginRight)
         ? this.flexBasis + this.marginRight
         : 0;
     },
     // vertical form
     marginBottom() {
-      return this.hasFormParent && this.$parent.labelMarginBottom
-        ? +this.$parent.labelMarginBottom
+      return this.form && this.form.labelMarginBottom
+        ? +this.form.labelMarginBottom
         : 0;
     }
   },
   mounted() {
     this.$formField = new MDCFormField(this.el);
 
+    this.form = this.isCustomFormItem ? this.getFrom() : this.$parent;
+
     this.formLabel();
   },
   methods: {
+    getFrom(self = this) {
+      const parent = self.$parent;
+
+      return parent.$.type.name === 'UiForm' ? parent : this.getFrom(parent);
+    },
     formLabel() {
       if (this.$slots.default) {
-        // TODO: get dom element by slot
-        const label = this.$el.querySelector('label');
+        const $label = this.$slots.default().find((component) => {
+          return component.type === 'label';
+        });
 
-        if (label) {
+        if ($label) {
+          const label = $label.el;
           ['flexBasis', 'marginRight', 'marginBottom'].forEach((key) => {
             if (this[key]) {
               label.style[key] = `${this[key]}px`;
@@ -95,8 +104,13 @@ export default {
           });
         }
 
-        if (this.el && this.el.classList.contains('mdc-form__actions') && this.actionPaddingLeft) {
-          this.el.style.paddingLeft = `${this.actionPaddingLeft}px`;
+        const formFieldEl = this.el;
+        if (
+          formFieldEl &&
+          formFieldEl.classList.contains('mdc-form__actions') &&
+          this.actionPaddingLeft
+        ) {
+          formFieldEl.style.paddingLeft = `${this.actionPaddingLeft}px`;
         }
       }
     }

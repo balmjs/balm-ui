@@ -3,6 +3,13 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.31.1 / 2021-06-18
+
+### Bug Fixes
+
+- `<ui-form-field>`: fix form-field label bug for form component props
+- `<ui-tree>`: fix selected default value for single tree
+
 ## v9.31.0 / 2021-06-11
 
 ### Features

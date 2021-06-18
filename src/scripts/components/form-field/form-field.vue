@@ -79,7 +79,7 @@ export default {
   mounted() {
     this.$formField = new MDCFormField(this.el);
 
-    this.form = this.isCustomFormItem ? this.getFrom() : this.$parent;
+    this.form = this.getFrom();
 
     this.formLabel();
   },
@@ -87,7 +87,11 @@ export default {
     getFrom(self = this) {
       const parent = self.$parent;
 
-      return parent.$.type.name === 'UiForm' ? parent : this.getFrom(parent);
+      return parent.$.type.name === 'UiForm'
+        ? parent
+        : this.isCustomFormItem
+        ? this.getFrom(parent)
+        : null;
     },
     formLabel() {
       if (this.$slots.default) {

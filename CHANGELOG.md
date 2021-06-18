@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.31.2 / 2021-06-18
+
+### Chore
+
+- `<ui-form-field>`: optimize performance
+
 ## v9.31.1 / 2021-06-18
 
 ### Bug Fixes

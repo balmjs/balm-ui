@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.40.3 / 2021-06-18
+
+### Chore
+
+- `<ui-form-field>`: optimize performance
+
 ## v8.40.1 / 2021-06-16
 
 ### Bug Fixes

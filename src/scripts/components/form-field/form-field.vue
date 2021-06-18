@@ -41,6 +41,9 @@ export default {
         'mdc-form-field--space-between': this.spaceBetween
       };
     },
+    isCustomFormItem() {
+      return this.$el.classList.contains('mdc-form__item');
+    },
     style() {
       return this.form && this.form.itemMarginBottom
         ? {
@@ -74,22 +77,19 @@ export default {
   mounted() {
     this.$formField = new MDCFormField(this.$el);
 
-    if (this.$el.classList.contains('mdc-form__item')) {
-      this.form = this.getFrom();
-    }
+    this.form = this.getFrom();
 
     this.formLabel();
   },
   methods: {
     getFrom(self = this) {
       const parent = self.$parent;
-      const parentEl = parent.$el;
 
-      return parentEl &&
-        parentEl.classList &&
-        parentEl.classList.contains('mdc-form')
+      return /UiForm$/.test(parent.$vnode.tag)
         ? parent
-        : this.getFrom(parent);
+        : this.isCustomFormItem
+        ? this.getFrom(parent)
+        : null;
     },
     formLabel() {
       if (this.$slots.default) {

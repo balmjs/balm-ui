@@ -2,6 +2,13 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.40.4 / 2021-06-24
+
+### Bug Fixes
+
+- `<ui-tree>`: fix reset selected value bug
+- `<ui-rangepicker>`: update css
+
 ## v8.40.3 / 2021-06-18
 
 ### Chore

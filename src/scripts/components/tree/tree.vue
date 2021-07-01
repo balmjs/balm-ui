@@ -180,6 +180,9 @@ export default {
         default:
           MdcTree.updateNode(this.treeData, parentKey, nodeData);
       }
+    },
+    getNode(nodeKey) {
+      return this.treeData.nodeMap.get(nodeMap);
     }
   }
 };

@@ -3,6 +3,7 @@
     :class="nested ? null : getClass(item)"
     :role="nested ? null : 'menuitem'"
     :data-value="item.value || value"
+    @click="$emit('click', $event)"
   >
     <template v-if="nested">
       <ul class="mdc-menu__selection-group">

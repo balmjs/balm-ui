@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.40.5 / 2021-07-02
+
+### Chore
+
+- `<ui-badge>`, `<ui-collapse>`, `<ui-menuitem>`, `<ui-tab>`, `<ui-textfield>`: add click event
+
+### Bug Fixes
+
+- `<ui-badge>`: fix zero count render bug
+
 ## v8.40.4 / 2021-06-24
 
 ### Bug Fixes

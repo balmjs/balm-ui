@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <div :class="className.outer">
+  <div :class="className.outer" @click="$emit('click', $event)">
     <div v-if="!isOutlined" class="mdc-text-field__ripple"></div>
 
     <!-- Leading icon (optional) -->

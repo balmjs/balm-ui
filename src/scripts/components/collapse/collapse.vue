@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" :aria-expanded="isExpanded">
+  <div :class="className" :aria-expanded="isExpanded" @click="$emit('click', $event)">
     <div v-ripple="ripple" class="mdc-collapse__header" @click="handleToggle">
       <template v-if="isExpanded">
         <slot name="expand-more-icon" :iconClass="UI_COLLAPSE.cssClasses.icon">

@@ -33,9 +33,9 @@
               :key="i"
               :bg-image="require(`@/assets/photos/3x2/${i}.jpg`)"
             >
-              <ui-image-text v-if="controls1.labelsType"
-                >Text label</ui-image-text
-              >
+              <ui-image-text v-if="controls1.labelsType">
+                Text label
+              </ui-image-text>
             </ui-image-item>
           </ui-image-list>
         </div>

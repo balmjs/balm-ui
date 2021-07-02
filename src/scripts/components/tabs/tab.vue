@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import UiTabIndicator from './tab-indicator';
+import UiTabIndicator from './tab-indicator.vue';
 import domMixin from '../../mixins/dom';
 import tabMixin from '../../mixins/tab';
 import materialIconMixin from '../../mixins/material-icon';
@@ -88,6 +88,11 @@ export default {
         'mdc-tab--active': isActive
       };
     }
+  },
+  updated() {
+    try {
+      this.$parent.$parent.updated();
+    } catch (e) {}
   }
 };
 </script>

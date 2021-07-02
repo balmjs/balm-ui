@@ -20,6 +20,7 @@ import UiSnippet from '@/components/snippet';
 import UiFooterNav from '@/components/footer-nav';
 import UiTocAffix from '@/components/toc-affix';
 import SvgLogo from '@/components/svg-logo';
+// import dotImage from '../images/placeholder/handtinyblack.gif';
 // PWA
 import './my-sw';
 
@@ -42,7 +43,11 @@ function createBalmUIApp() {
       emotions
     }
   });
-  app.use(BalmUINext);
+  app.use(BalmUINext, {
+    // $lazyload: {
+    //   src: dotImage
+    // }
+  });
 
   app.component(PurePage.name, PurePage);
   app.component(DocsPage.name, DocsPage);

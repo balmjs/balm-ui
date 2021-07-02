@@ -1,4 +1,4 @@
-import { useEditor } from '../../quill';
+import { useEditor } from '../../core/quill';
 import Emotion from './emotion';
 import { emojiClassName, getCode, createEmoji } from './utils';
 
@@ -203,13 +203,29 @@ function onBlurEmojiHandler(e) {
     e.preventDefault();
     e.stopPropagation();
   } else {
-    if (!hasRange) {
+    if (hasRange) {
+      let parentEl = el;
+      while (
+        parentEl &&
+        parentEl.classList &&
+        !parentEl.classList.contains('mdc-editor-container')
+      ) {
+        parentEl = parentEl.parentNode;
+        if (
+          parentEl.classList &&
+          parentEl.classList.contains('mdc-editor-container')
+        ) {
+          if (!parentEl.querySelector('#ql-emoji-toolbar')) {
+            closeEmojiToolbar();
+          }
+          break;
+        }
+      }
+    } else {
       closeEmojiToolbar();
     }
   }
 }
-
-document.addEventListener('click', onBlurEmojiHandler);
 
 export default emojiModule;
 export { onBlurEmojiHandler };

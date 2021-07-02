@@ -4,16 +4,16 @@
 
 ### Props
 
-| Name        | Type    | Default | Description                                                                                         |
-| ----------- | ------- | ------- | --------------------------------------------------------------------------------------------------- |
-| `icon`      | string  | `''`    | Optional. Indicates an leading icon element. See [Material Icons](/#/icons) list.                   |
-| `hidden`    | boolean | `false` | Optional. Hides the leading icon in a filter chip when the chip is selected.                        |
-| `removable` | boolean | `false` | Optional. Indicates a trailing icon which removes the chip from the DOM. Only use with input chips. |
+| Name        | Type    | Default | Description                                                       |
+| ----------- | ------- | ------- | ----------------------------------------------------------------- |
+| `icon`      | string  | `''`    | 设置图标。详见 [Material Icons](/#/icons) 图标集。                |
+| `hidden`    | boolean | `false` | 当选项卡选项被选中时隐藏首图标                                    |
+| `removable` | boolean | `false` | 显示用于删除选项卡选项的尾图标。仅用于输入类型(`input`)的选项卡。 |
 
 ### Slots
 
-| Name      | Props       | Description                                       |
-| --------- | ----------- | ------------------------------------------------- |
-| `default` |             | The default slot holds the chip child components. |
-| `before`  | `iconClass` | Custom leading icon in the chip.                  |
-| `after`   | `iconClass` | Custom trailing icon in the input chips.          |
+| Name      | Props       | Description                               |
+| --------- | ----------- | ----------------------------------------- |
+| `default` |             | default 插槽包含选项卡选项内容及 HTML     |
+| `before`  | `iconClass` | 自定义选项卡选项首图标                    |
+| `after`   | `iconClass` | 自定义输入类型(`input`)的选项卡选项尾图标 |

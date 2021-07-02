@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __assign, __extends } from "tslib";
+import { __assign, __extends, __values } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { ALWAYS_FLOAT_TYPES, cssClasses, numbers, strings, VALIDATION_ATTR_WHITELIST } from './constants';
 var POINTERDOWN_EVENTS = ['mousedown', 'touchstart'];
@@ -34,22 +34,32 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
     function MDCTextFieldFoundation(adapter, foundationMap) {
         if (foundationMap === void 0) { foundationMap = {}; }
         var _this = _super.call(this, __assign(__assign({}, MDCTextFieldFoundation.defaultAdapter), adapter)) || this;
-        _this.isFocused_ = false;
-        _this.receivedUserInput_ = false;
-        _this.isValid_ = true;
-        _this.useNativeValidation_ = true;
-        _this.validateOnValueChange_ = true;
-        _this.helperText_ = foundationMap.helperText;
-        _this.characterCounter_ = foundationMap.characterCounter;
-        _this.leadingIcon_ = foundationMap.leadingIcon;
-        _this.trailingIcon_ = foundationMap.trailingIcon;
-        _this.inputFocusHandler_ = function () { return _this.activateFocus(); };
-        _this.inputBlurHandler_ = function () { return _this.deactivateFocus(); };
-        _this.inputInputHandler_ = function () { return _this.handleInput(); };
-        _this.setPointerXOffset_ = function (evt) { return _this.setTransformOrigin(evt); };
-        _this.textFieldInteractionHandler_ = function () { return _this.handleTextFieldInteraction(); };
-        _this.validationAttributeChangeHandler_ = function (attributesList) {
-            return _this.handleValidationAttributeChange(attributesList);
+        _this.isFocused = false;
+        _this.receivedUserInput = false;
+        _this.valid = true;
+        _this.useNativeValidation = true;
+        _this.validateOnValueChange = true;
+        _this.helperText = foundationMap.helperText;
+        _this.characterCounter = foundationMap.characterCounter;
+        _this.leadingIcon = foundationMap.leadingIcon;
+        _this.trailingIcon = foundationMap.trailingIcon;
+        _this.inputFocusHandler = function () {
+            _this.activateFocus();
+        };
+        _this.inputBlurHandler = function () {
+            _this.deactivateFocus();
+        };
+        _this.inputInputHandler = function () {
+            _this.handleInput();
+        };
+        _this.setPointerXOffset = function (evt) {
+            _this.setTransformOrigin(evt);
+        };
+        _this.textFieldInteractionHandler = function () {
+            _this.handleTextFieldInteraction();
+        };
+        _this.validationAttributeChangeHandler = function (attributesList) {
+            _this.handleValidationAttributeChange(attributesList);
         };
         return _this;
     }
@@ -57,44 +67,44 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldFoundation, "numbers", {
         get: function () {
             return numbers;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
-    Object.defineProperty(MDCTextFieldFoundation.prototype, "shouldAlwaysFloat_", {
+    Object.defineProperty(MDCTextFieldFoundation.prototype, "shouldAlwaysFloat", {
         get: function () {
-            var type = this.getNativeInput_().type;
+            var type = this.getNativeInput().type;
             return ALWAYS_FLOAT_TYPES.indexOf(type) >= 0;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldFoundation.prototype, "shouldFloat", {
         get: function () {
-            return this.shouldAlwaysFloat_ || this.isFocused_ || !!this.getValue() ||
-                this.isBadInput_();
+            return this.shouldAlwaysFloat || this.isFocused || !!this.getValue() ||
+                this.isBadInput();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldFoundation.prototype, "shouldShake", {
         get: function () {
-            return !this.isFocused_ && !this.isValid() && !!this.getValue();
+            return !this.isFocused && !this.isValid() && !!this.getValue();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldFoundation, "defaultAdapter", {
@@ -134,47 +144,87 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTextFieldFoundation.prototype.init = function () {
-        var _this = this;
-        if (this.adapter.hasLabel() && this.getNativeInput_().required) {
+        var e_1, _a, e_2, _b;
+        if (this.adapter.hasLabel() && this.getNativeInput().required) {
             this.adapter.setLabelRequired(true);
         }
         if (this.adapter.isFocused()) {
-            this.inputFocusHandler_();
+            this.inputFocusHandler();
         }
         else if (this.adapter.hasLabel() && this.shouldFloat) {
             this.notchOutline(true);
             this.adapter.floatLabel(true);
-            this.styleFloating_(true);
+            this.styleFloating(true);
         }
-        this.adapter.registerInputInteractionHandler('focus', this.inputFocusHandler_);
-        this.adapter.registerInputInteractionHandler('blur', this.inputBlurHandler_);
-        this.adapter.registerInputInteractionHandler('input', this.inputInputHandler_);
-        POINTERDOWN_EVENTS.forEach(function (evtType) {
-            _this.adapter.registerInputInteractionHandler(evtType, _this.setPointerXOffset_);
-        });
-        INTERACTION_EVENTS.forEach(function (evtType) {
-            _this.adapter.registerTextFieldInteractionHandler(evtType, _this.textFieldInteractionHandler_);
-        });
-        this.validationObserver_ =
-            this.adapter.registerValidationAttributeChangeHandler(this.validationAttributeChangeHandler_);
-        this.setCharacterCounter_(this.getValue().length);
+        this.adapter.registerInputInteractionHandler('focus', this.inputFocusHandler);
+        this.adapter.registerInputInteractionHandler('blur', this.inputBlurHandler);
+        this.adapter.registerInputInteractionHandler('input', this.inputInputHandler);
+        try {
+            for (var POINTERDOWN_EVENTS_1 = __values(POINTERDOWN_EVENTS), POINTERDOWN_EVENTS_1_1 = POINTERDOWN_EVENTS_1.next(); !POINTERDOWN_EVENTS_1_1.done; POINTERDOWN_EVENTS_1_1 = POINTERDOWN_EVENTS_1.next()) {
+                var evtType = POINTERDOWN_EVENTS_1_1.value;
+                this.adapter.registerInputInteractionHandler(evtType, this.setPointerXOffset);
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (POINTERDOWN_EVENTS_1_1 && !POINTERDOWN_EVENTS_1_1.done && (_a = POINTERDOWN_EVENTS_1.return)) _a.call(POINTERDOWN_EVENTS_1);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        try {
+            for (var INTERACTION_EVENTS_1 = __values(INTERACTION_EVENTS), INTERACTION_EVENTS_1_1 = INTERACTION_EVENTS_1.next(); !INTERACTION_EVENTS_1_1.done; INTERACTION_EVENTS_1_1 = INTERACTION_EVENTS_1.next()) {
+                var evtType = INTERACTION_EVENTS_1_1.value;
+                this.adapter.registerTextFieldInteractionHandler(evtType, this.textFieldInteractionHandler);
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (INTERACTION_EVENTS_1_1 && !INTERACTION_EVENTS_1_1.done && (_b = INTERACTION_EVENTS_1.return)) _b.call(INTERACTION_EVENTS_1);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+        this.validationObserver =
+            this.adapter.registerValidationAttributeChangeHandler(this.validationAttributeChangeHandler);
+        this.setcharacterCounter(this.getValue().length);
     };
     MDCTextFieldFoundation.prototype.destroy = function () {
-        var _this = this;
-        this.adapter.deregisterInputInteractionHandler('focus', this.inputFocusHandler_);
-        this.adapter.deregisterInputInteractionHandler('blur', this.inputBlurHandler_);
-        this.adapter.deregisterInputInteractionHandler('input', this.inputInputHandler_);
-        POINTERDOWN_EVENTS.forEach(function (evtType) {
-            _this.adapter.deregisterInputInteractionHandler(evtType, _this.setPointerXOffset_);
-        });
-        INTERACTION_EVENTS.forEach(function (evtType) {
-            _this.adapter.deregisterTextFieldInteractionHandler(evtType, _this.textFieldInteractionHandler_);
-        });
-        this.adapter.deregisterValidationAttributeChangeHandler(this.validationObserver_);
+        var e_3, _a, e_4, _b;
+        this.adapter.deregisterInputInteractionHandler('focus', this.inputFocusHandler);
+        this.adapter.deregisterInputInteractionHandler('blur', this.inputBlurHandler);
+        this.adapter.deregisterInputInteractionHandler('input', this.inputInputHandler);
+        try {
+            for (var POINTERDOWN_EVENTS_2 = __values(POINTERDOWN_EVENTS), POINTERDOWN_EVENTS_2_1 = POINTERDOWN_EVENTS_2.next(); !POINTERDOWN_EVENTS_2_1.done; POINTERDOWN_EVENTS_2_1 = POINTERDOWN_EVENTS_2.next()) {
+                var evtType = POINTERDOWN_EVENTS_2_1.value;
+                this.adapter.deregisterInputInteractionHandler(evtType, this.setPointerXOffset);
+            }
+        }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
+        finally {
+            try {
+                if (POINTERDOWN_EVENTS_2_1 && !POINTERDOWN_EVENTS_2_1.done && (_a = POINTERDOWN_EVENTS_2.return)) _a.call(POINTERDOWN_EVENTS_2);
+            }
+            finally { if (e_3) throw e_3.error; }
+        }
+        try {
+            for (var INTERACTION_EVENTS_2 = __values(INTERACTION_EVENTS), INTERACTION_EVENTS_2_1 = INTERACTION_EVENTS_2.next(); !INTERACTION_EVENTS_2_1.done; INTERACTION_EVENTS_2_1 = INTERACTION_EVENTS_2.next()) {
+                var evtType = INTERACTION_EVENTS_2_1.value;
+                this.adapter.deregisterTextFieldInteractionHandler(evtType, this.textFieldInteractionHandler);
+            }
+        }
+        catch (e_4_1) { e_4 = { error: e_4_1 }; }
+        finally {
+            try {
+                if (INTERACTION_EVENTS_2_1 && !INTERACTION_EVENTS_2_1.done && (_b = INTERACTION_EVENTS_2.return)) _b.call(INTERACTION_EVENTS_2);
+            }
+            finally { if (e_4) throw e_4.error; }
+        }
+        this.adapter.deregisterValidationAttributeChangeHandler(this.validationObserver);
     };
     /**
      * Handles user interactions with the Text Field.
@@ -184,7 +234,7 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         if (nativeInput && nativeInput.disabled) {
             return;
         }
-        this.receivedUserInput_ = true;
+        this.receivedUserInput = true;
     };
     /**
      * Handles validation attribute changes
@@ -193,14 +243,14 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         var _this = this;
         attributesList.some(function (attributeName) {
             if (VALIDATION_ATTR_WHITELIST.indexOf(attributeName) > -1) {
-                _this.styleValidity_(true);
-                _this.adapter.setLabelRequired(_this.getNativeInput_().required);
+                _this.styleValidity(true);
+                _this.adapter.setLabelRequired(_this.getNativeInput().required);
                 return true;
             }
             return false;
         });
         if (attributesList.indexOf('maxlength') > -1) {
-            this.setCharacterCounter_(this.getValue().length);
+            this.setcharacterCounter(this.getValue().length);
         }
     };
     /**
@@ -222,19 +272,19 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
      * Activates the text field focus state.
      */
     MDCTextFieldFoundation.prototype.activateFocus = function () {
-        this.isFocused_ = true;
-        this.styleFocused_(this.isFocused_);
+        this.isFocused = true;
+        this.styleFocused(this.isFocused);
         this.adapter.activateLineRipple();
         if (this.adapter.hasLabel()) {
             this.notchOutline(this.shouldFloat);
             this.adapter.floatLabel(this.shouldFloat);
-            this.styleFloating_(this.shouldFloat);
+            this.styleFloating(this.shouldFloat);
             this.adapter.shakeLabel(this.shouldShake);
         }
-        if (this.helperText_ &&
-            (this.helperText_.isPersistent() || !this.helperText_.isValidation() ||
-                !this.isValid_)) {
-            this.helperText_.showToScreenReader();
+        if (this.helperText &&
+            (this.helperText.isPersistent() || !this.helperText.isValidation() ||
+                !this.valid)) {
+            this.helperText.showToScreenReader();
         }
     };
     /**
@@ -256,14 +306,14 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
      */
     MDCTextFieldFoundation.prototype.handleInput = function () {
         this.autoCompleteFocus();
-        this.setCharacterCounter_(this.getValue().length);
+        this.setcharacterCounter(this.getValue().length);
     };
     /**
      * Activates the Text Field's focus state in cases when the input value
      * changes without user input (e.g. programmatically).
      */
     MDCTextFieldFoundation.prototype.autoCompleteFocus = function () {
-        if (!this.receivedUserInput_) {
+        if (!this.receivedUserInput) {
             this.activateFocus();
         }
     };
@@ -271,23 +321,23 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
      * Deactivates the Text Field's focus state.
      */
     MDCTextFieldFoundation.prototype.deactivateFocus = function () {
-        this.isFocused_ = false;
+        this.isFocused = false;
         this.adapter.deactivateLineRipple();
         var isValid = this.isValid();
-        this.styleValidity_(isValid);
-        this.styleFocused_(this.isFocused_);
+        this.styleValidity(isValid);
+        this.styleFocused(this.isFocused);
         if (this.adapter.hasLabel()) {
             this.notchOutline(this.shouldFloat);
             this.adapter.floatLabel(this.shouldFloat);
-            this.styleFloating_(this.shouldFloat);
+            this.styleFloating(this.shouldFloat);
             this.adapter.shakeLabel(this.shouldShake);
         }
         if (!this.shouldFloat) {
-            this.receivedUserInput_ = false;
+            this.receivedUserInput = false;
         }
     };
     MDCTextFieldFoundation.prototype.getValue = function () {
-        return this.getNativeInput_().value;
+        return this.getNativeInput().value;
     };
     /**
      * @param value The value to set on the input Element.
@@ -296,18 +346,18 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         // Prevent Safari from moving the caret to the end of the input when the
         // value has not changed.
         if (this.getValue() !== value) {
-            this.getNativeInput_().value = value;
+            this.getNativeInput().value = value;
         }
-        this.setCharacterCounter_(value.length);
-        if (this.validateOnValueChange_) {
+        this.setcharacterCounter(value.length);
+        if (this.validateOnValueChange) {
             var isValid = this.isValid();
-            this.styleValidity_(isValid);
+            this.styleValidity(isValid);
         }
         if (this.adapter.hasLabel()) {
             this.notchOutline(this.shouldFloat);
             this.adapter.floatLabel(this.shouldFloat);
-            this.styleFloating_(this.shouldFloat);
-            if (this.validateOnValueChange_) {
+            this.styleFloating(this.shouldFloat);
+            if (this.validateOnValueChange) {
                 this.adapter.shakeLabel(this.shouldShake);
             }
         }
@@ -317,16 +367,15 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
      *     native validity check.
      */
     MDCTextFieldFoundation.prototype.isValid = function () {
-        return this.useNativeValidation_ ? this.isNativeInputValid_() :
-            this.isValid_;
+        return this.useNativeValidation ? this.isNativeInputValid() : this.valid;
     };
     /**
      * @param isValid Sets the custom validity state of the Text Field.
      */
     MDCTextFieldFoundation.prototype.setValid = function (isValid) {
-        this.isValid_ = isValid;
-        this.styleValidity_(isValid);
-        var shouldShake = !isValid && !this.isFocused_ && !!this.getValue();
+        this.valid = isValid;
+        this.styleValidity(isValid);
+        var shouldShake = !isValid && !this.isFocused && !!this.getValue();
         if (this.adapter.hasLabel()) {
             this.adapter.shakeLabel(shouldShake);
         }
@@ -336,14 +385,14 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
      *     value change.
      */
     MDCTextFieldFoundation.prototype.setValidateOnValueChange = function (shouldValidate) {
-        this.validateOnValueChange_ = shouldValidate;
+        this.validateOnValueChange = shouldValidate;
     };
     /**
      * @return Whether or not validity should be updated on value change. `true`
      *     by default.
      */
     MDCTextFieldFoundation.prototype.getValidateOnValueChange = function () {
-        return this.validateOnValueChange_;
+        return this.validateOnValueChange;
     };
     /**
      * Enables or disables the use of native validation. Use this for custom
@@ -352,90 +401,90 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
      *     validation.
      */
     MDCTextFieldFoundation.prototype.setUseNativeValidation = function (useNativeValidation) {
-        this.useNativeValidation_ = useNativeValidation;
+        this.useNativeValidation = useNativeValidation;
     };
     MDCTextFieldFoundation.prototype.isDisabled = function () {
-        return this.getNativeInput_().disabled;
+        return this.getNativeInput().disabled;
     };
     /**
      * @param disabled Sets the text-field disabled or enabled.
      */
     MDCTextFieldFoundation.prototype.setDisabled = function (disabled) {
-        this.getNativeInput_().disabled = disabled;
-        this.styleDisabled_(disabled);
+        this.getNativeInput().disabled = disabled;
+        this.styleDisabled(disabled);
     };
     /**
      * @param content Sets the content of the helper text.
      */
     MDCTextFieldFoundation.prototype.setHelperTextContent = function (content) {
-        if (this.helperText_) {
-            this.helperText_.setContent(content);
+        if (this.helperText) {
+            this.helperText.setContent(content);
         }
     };
     /**
      * Sets the aria label of the leading icon.
      */
     MDCTextFieldFoundation.prototype.setLeadingIconAriaLabel = function (label) {
-        if (this.leadingIcon_) {
-            this.leadingIcon_.setAriaLabel(label);
+        if (this.leadingIcon) {
+            this.leadingIcon.setAriaLabel(label);
         }
     };
     /**
      * Sets the text content of the leading icon.
      */
     MDCTextFieldFoundation.prototype.setLeadingIconContent = function (content) {
-        if (this.leadingIcon_) {
-            this.leadingIcon_.setContent(content);
+        if (this.leadingIcon) {
+            this.leadingIcon.setContent(content);
         }
     };
     /**
      * Sets the aria label of the trailing icon.
      */
     MDCTextFieldFoundation.prototype.setTrailingIconAriaLabel = function (label) {
-        if (this.trailingIcon_) {
-            this.trailingIcon_.setAriaLabel(label);
+        if (this.trailingIcon) {
+            this.trailingIcon.setAriaLabel(label);
         }
     };
     /**
      * Sets the text content of the trailing icon.
      */
     MDCTextFieldFoundation.prototype.setTrailingIconContent = function (content) {
-        if (this.trailingIcon_) {
-            this.trailingIcon_.setContent(content);
+        if (this.trailingIcon) {
+            this.trailingIcon.setContent(content);
         }
     };
     /**
      * Sets character counter values that shows characters used and the total
      * character limit.
      */
-    MDCTextFieldFoundation.prototype.setCharacterCounter_ = function (currentLength) {
-        if (!this.characterCounter_) {
+    MDCTextFieldFoundation.prototype.setcharacterCounter = function (currentLength) {
+        if (!this.characterCounter) {
             return;
         }
-        var maxLength = this.getNativeInput_().maxLength;
+        var maxLength = this.getNativeInput().maxLength;
         if (maxLength === -1) {
             throw new Error('MDCTextFieldFoundation: Expected maxlength html property on text input or textarea.');
         }
-        this.characterCounter_.setCounterValue(currentLength, maxLength);
+        this.characterCounter.setCounterValue(currentLength, maxLength);
     };
     /**
      * @return True if the Text Field input fails in converting the user-supplied
      *     value.
      */
-    MDCTextFieldFoundation.prototype.isBadInput_ = function () {
+    MDCTextFieldFoundation.prototype.isBadInput = function () {
         // The badInput property is not supported in IE 11 💩.
-        return this.getNativeInput_().validity.badInput || false;
+        return this.getNativeInput().validity.badInput || false;
     };
     /**
      * @return The result of native validity checking (ValidityState.valid).
      */
-    MDCTextFieldFoundation.prototype.isNativeInputValid_ = function () {
-        return this.getNativeInput_().validity.valid;
+    MDCTextFieldFoundation.prototype.isNativeInputValid = function () {
+        return this.getNativeInput().validity.valid;
     };
     /**
      * Styles the component based on the validity state.
      */
-    MDCTextFieldFoundation.prototype.styleValidity_ = function (isValid) {
+    MDCTextFieldFoundation.prototype.styleValidity = function (isValid) {
         var INVALID = MDCTextFieldFoundation.cssClasses.INVALID;
         if (isValid) {
             this.adapter.removeClass(INVALID);
@@ -443,16 +492,16 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         else {
             this.adapter.addClass(INVALID);
         }
-        if (this.helperText_) {
-            this.helperText_.setValidity(isValid);
+        if (this.helperText) {
+            this.helperText.setValidity(isValid);
             // We dynamically set or unset aria-describedby for validation helper text
             // only, based on whether the field is valid
-            var helperTextValidation = this.helperText_.isValidation();
+            var helperTextValidation = this.helperText.isValidation();
             if (!helperTextValidation) {
                 return;
             }
-            var helperTextVisible = this.helperText_.isVisible();
-            var helperTextId = this.helperText_.getId();
+            var helperTextVisible = this.helperText.isVisible();
+            var helperTextId = this.helperText.getId();
             if (helperTextVisible && helperTextId) {
                 this.adapter.setInputAttr(strings.ARIA_DESCRIBEDBY, helperTextId);
             }
@@ -464,7 +513,7 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
     /**
      * Styles the component based on the focused state.
      */
-    MDCTextFieldFoundation.prototype.styleFocused_ = function (isFocused) {
+    MDCTextFieldFoundation.prototype.styleFocused = function (isFocused) {
         var FOCUSED = MDCTextFieldFoundation.cssClasses.FOCUSED;
         if (isFocused) {
             this.adapter.addClass(FOCUSED);
@@ -476,7 +525,7 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
     /**
      * Styles the component based on the disabled state.
      */
-    MDCTextFieldFoundation.prototype.styleDisabled_ = function (isDisabled) {
+    MDCTextFieldFoundation.prototype.styleDisabled = function (isDisabled) {
         var _a = MDCTextFieldFoundation.cssClasses, DISABLED = _a.DISABLED, INVALID = _a.INVALID;
         if (isDisabled) {
             this.adapter.addClass(DISABLED);
@@ -485,17 +534,17 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         else {
             this.adapter.removeClass(DISABLED);
         }
-        if (this.leadingIcon_) {
-            this.leadingIcon_.setDisabled(isDisabled);
+        if (this.leadingIcon) {
+            this.leadingIcon.setDisabled(isDisabled);
         }
-        if (this.trailingIcon_) {
-            this.trailingIcon_.setDisabled(isDisabled);
+        if (this.trailingIcon) {
+            this.trailingIcon.setDisabled(isDisabled);
         }
     };
     /**
      * Styles the component based on the label floating state.
      */
-    MDCTextFieldFoundation.prototype.styleFloating_ = function (isFloating) {
+    MDCTextFieldFoundation.prototype.styleFloating = function (isFloating) {
         var LABEL_FLOATING = MDCTextFieldFoundation.cssClasses.LABEL_FLOATING;
         if (isFloating) {
             this.adapter.addClass(LABEL_FLOATING);
@@ -508,7 +557,7 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
      * @return The native text input element from the host environment, or an
      *     object with the same shape for unit tests.
      */
-    MDCTextFieldFoundation.prototype.getNativeInput_ = function () {
+    MDCTextFieldFoundation.prototype.getNativeInput = function () {
         // this.adapter may be undefined in foundation unit tests. This happens when
         // testdouble is creating a mock object and invokes the
         // shouldShake/shouldFloat getters (which in turn call getValue(), which

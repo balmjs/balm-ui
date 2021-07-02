@@ -4,30 +4,30 @@
 <ui-fab extended><!-- Text label --></ui-fab>
 ```
 
-**`<ui-fab>` Types**
+**`<ui-fab>` 类型**
 
 - `0`: `'regular'`
 - `1`: `'extended'`
 
 ### Props
 
-| Name       | Type           | Default | Description                                                                                      |
-| ---------- | -------------- | ------- | ------------------------------------------------------------------------------------------------ |
-| `type`     | string, number | `0`     | Mandatory. FAB types.                                                                            |
-| `extended` | boolean        | `false` | Optional. modifies the FAB to wider size which includes a text label.                            |
-| `icon`     | string         | `''`    | Optional. for the icon element. See [Material Icons](/#/icons) usage.                            |
-| `mini`     | boolean        | `false` | Optional. modifies the FAB to a smaller size.                                                    |
-| `exited`   | boolean        | `false` | Optional. animates the FAB out of view. When this class is removed, the FAB will return to view. |
+| Name       | Type           | Default | Description                                              |
+| ---------- | -------------- | ------- | -------------------------------------------------------- |
+| `type`     | string, number | `0`     | 浮动按钮类型                                             |
+| `extended` | boolean        | `false` | 扩展浮动按钮。将浮动按钮修改为更大的尺寸，包括文本标签。 |
+| `icon`     | string         | `''`    | 设置图标。详见 [Material Icons](/#/icons) 图标集。       |
+| `mini`     | boolean        | `false` | 迷你浮动按钮                                             |
+| `exited`   | boolean        | `false` | 对浮动按钮进行动画处理                                   |
 
 ### Slots
 
-| Name      | Props       | Description                                                           |
-| --------- | ----------- | --------------------------------------------------------------------- |
-| `default` | `iconClass` | The default slot holds the floating action button icon or text label. |
-| `before`  | `iconClass` | The label slot holds the label text of the extended FAB.              |
-| `after`   | `iconClass` | The label slot holds the label text of the extended FAB.              |
+| Name      | Props       | Description                        |
+| --------- | ----------- | ---------------------------------- |
+| `default` | `iconClass` | default 插槽包含浮动按钮文字或图标 |
+| `before`  | `iconClass` | 自定义扩展浮动按钮的首图标         |
+| `after`   | `iconClass` | 自定义扩展浮动按钮的尾图标         |
 
-> NOTE: the default slot of the extended FAB has not `slot-scope`.
+> 提示：扩展浮动按钮的 default 插槽没有 `slot-scope`
 
 ```html
 <ui-fab>
@@ -46,6 +46,6 @@
 
 ### Events
 
-| Name    | Type                      | Description                                       |
-| ------- | ------------------------- | ------------------------------------------------- |
-| `click` | `function(event: object)` | Emits when the floating action button is clicked. |
+| Name    | Type                      | Description        |
+| ------- | ------------------------- | ------------------ |
+| `click` | `function(event: object)` | 点击浮动按钮时触发 |

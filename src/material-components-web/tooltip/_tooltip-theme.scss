@@ -21,8 +21,10 @@
 //
 
 // Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
+// stylelint-disable selector-class-pattern --
+// Internal styling for Tooltip MDC component.
 
+@use '../animation/functions' as animation-functions;
 @use '../feature-targeting/feature-targeting';
 @use '../shape/mixins' as shape-mixins;
 @use '../theme/theme';
@@ -34,10 +36,14 @@ $background-color: rgba(black, theme-color.text-emphasis(medium));
 $border-radius: small;
 $label-color: text-primary-on-dark;
 
+$enter-duration: 150ms;
+$exit-duration: 75ms;
+
 // Rich Tooltip variables
-$rich-background-color: rgba(white, theme-color.text-emphasis(medium));
+$rich-background-color: theme-color.prop-value(surface);
 $rich-title-text-color: text-primary-on-light;
 $rich-content-text-color: rgba(black, theme-color.text-emphasis(medium));
+$rich-content-link-color: primary;
 
 // Use a custom property so IE11 does not use "normal" and instead uses provided
 // fall-back value.
@@ -47,7 +53,7 @@ $word-break-custom-prop: custom-properties.create(
 );
 $word-break-default: custom-properties.create-var($word-break-custom-prop);
 $word-break-ie11-fallback: break-all;
-$z-index: 2;
+$z-index: 9;
 
 // Sets the border-radius for the tooltip element.
 // @param {Number | String} $radius Desired border radius value, accepts either
@@ -61,6 +67,11 @@ $z-index: 2;
   $query: feature-targeting.all()
 ) {
   .mdc-tooltip__surface {
+    @include shape-mixins.radius($radius, $rtl-reflexive, $query: $query);
+  }
+
+  .mdc-tooltip__caret-surface-top,
+  .mdc-tooltip__caret-surface-bottom {
     @include shape-mixins.radius($radius, $rtl-reflexive, $query: $query);
   }
 }
@@ -97,28 +108,36 @@ $z-index: 2;
   $feat-color: feature-targeting.create-target($query, color);
   @include feature-targeting.targets($feat-color) {
     .mdc-tooltip__surface {
-      @include theme.prop(color, $color);
+      @include theme.property(color, $color);
     }
   }
 }
 
-// Sets the color of the rich tooltip text.
-// @param {Color | String} $color
+// Sets the color of the text for the content inside a rich tooltip.
+// @param {Color | String} $title-color The color for the title of rich
+//   tooltips.
+// @param {Color | String} $content-color The color for the text in the content
+//   of rich tooltips.
+// @param {Color | String} $content-link-color The color for a link in the
+//   content of rich tooltips.
 @mixin rich-text-ink-color(
   $title-color,
   $content-color,
+  $content-link-color,
   $query: feature-targeting.all()
 ) {
   $feat-color: feature-targeting.create-target($query, color);
   @include feature-targeting.targets($feat-color) {
-    .mdc-tooltip__surface {
-      .mdc-tooltip__title {
-        @include theme.prop(color, $title-color);
-      }
+    .mdc-tooltip__title {
+      @include theme.property(color, $title-color);
+    }
 
-      .mdc-tooltip__content {
-        @include theme.prop(color, $content-color);
-      }
+    .mdc-tooltip__content {
+      @include theme.property(color, $content-color);
+    }
+
+    .mdc-tooltip__content-link {
+      @include theme.property(color, $content-link-color);
     }
   }
 }
@@ -129,7 +148,27 @@ $z-index: 2;
   $feat-color: feature-targeting.create-target($query, color);
   .mdc-tooltip__surface {
     @include feature-targeting.targets($feat-color) {
-      @include theme.prop(background-color, $color);
+      @include theme.property(background-color, $color);
+    }
+  }
+}
+
+// Sets the fill/surface color of the rich tooltip.
+// @param {Color | String} $color
+@mixin rich-fill-color($color, $query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+  &.mdc-tooltip--rich {
+    .mdc-tooltip__surface {
+      @include feature-targeting.targets($feat-color) {
+        @include theme.property(background-color, $color);
+      }
+    }
+
+    .mdc-tooltip__caret-surface-top,
+    .mdc-tooltip__caret-surface-bottom {
+      @include feature-targeting.targets($feat-color) {
+        @include theme.property(background-color, $color);
+      }
     }
   }
 }
@@ -142,6 +181,31 @@ $z-index: 2;
   @include feature-targeting.targets($feat-structure) {
     .mdc-tooltip {
       z-index: $z-index;
+    }
+  }
+}
+
+// Sets the duration for the animation that shows the tooltip.
+// @param {Number} $enter-duration
+@mixin show-transition($enter-duration, $query: feature-targeting.all()) {
+  $feat-animation: feature-targeting.create-target($query, animation);
+
+  @include feature-targeting.targets($feat-animation) {
+    .mdc-tooltip--showing-transition .mdc-tooltip__surface-animation {
+      transition: animation-functions.enter(opacity, $enter-duration),
+        animation-functions.enter(transform, $enter-duration);
+    }
+  }
+}
+
+// Sets the duration for the animation that hides the tooltip.
+// @param {Number} $exit-duration
+@mixin hide-transition($exit-duration, $query: feature-targeting.all()) {
+  $feat-animation: feature-targeting.create-target($query, animation);
+
+  @include feature-targeting.targets($feat-animation) {
+    .mdc-tooltip--hide-transition .mdc-tooltip__surface-animation {
+      transition: animation-functions.exit-permanent(opacity, $exit-duration);
     }
   }
 }

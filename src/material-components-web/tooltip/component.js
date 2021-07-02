@@ -22,7 +22,7 @@
  */
 import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
-import { events } from './constants';
+import { CssClasses, events } from './constants';
 import { MDCTooltipFoundation } from './foundation';
 var MDCTooltip = /** @class */ (function (_super) {
     __extends(MDCTooltip, _super);
@@ -32,36 +32,42 @@ var MDCTooltip = /** @class */ (function (_super) {
     MDCTooltip.attachTo = function (root) {
         return new MDCTooltip(root);
     };
-    MDCTooltip.prototype.initialSyncWithDOM = function () {
-        var _this = this;
+    MDCTooltip.prototype.initialize = function () {
         var tooltipId = this.root.getAttribute('id');
         if (!tooltipId) {
             throw new Error('MDCTooltip: Tooltip component must have an id.');
         }
-        this.anchorElem = document.querySelector("[aria-describedby=\"" + tooltipId + "\"]") ||
-            document.querySelector("[data-tooltip-id=\"" + tooltipId + "\"]");
-        if (!this.anchorElem) {
-            throw new Error('MDCTooltip: Tooltip component requires an anchor element annotated with [aria-describedby] or [data-tooltip-id] anchor element.');
+        var anchorElem = document.querySelector("[data-tooltip-id=\"" + tooltipId + "\"]") ||
+            document.querySelector("[aria-describedby=\"" + tooltipId + "\"]");
+        if (!anchorElem) {
+            throw new Error('MDCTooltip: Tooltip component requires an anchor element annotated with [aria-describedby] or [data-tooltip-id].');
         }
-        this.isTooltipRich = this.foundation.getIsRich();
-        this.isTooltipPersistent = this.foundation.getIsPersistent();
+        this.anchorElem = anchorElem;
+    };
+    MDCTooltip.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.isTooltipRich = this.foundation.isRich();
+        this.isTooltipPersistent = this.foundation.isPersistent();
         this.handleMouseEnter = function () {
             _this.foundation.handleAnchorMouseEnter();
         };
-        this.handleFocus = function () {
-            _this.foundation.handleAnchorFocus();
+        this.handleFocus = function (evt) {
+            _this.foundation.handleAnchorFocus(evt);
         };
         this.handleMouseLeave = function () {
             _this.foundation.handleAnchorMouseLeave();
-        };
-        this.handleBlur = function () {
-            _this.foundation.handleAnchorBlur();
         };
         this.handleTransitionEnd = function () {
             _this.foundation.handleTransitionEnd();
         };
         this.handleClick = function () {
             _this.foundation.handleAnchorClick();
+        };
+        this.handleTouchstart = function () {
+            _this.foundation.handleAnchorTouchstart();
+        };
+        this.handleTouchend = function () {
+            _this.foundation.handleAnchorTouchend();
         };
         if (this.isTooltipRich && this.isTooltipPersistent) {
             this.anchorElem.addEventListener('click', this.handleClick);
@@ -71,7 +77,8 @@ var MDCTooltip = /** @class */ (function (_super) {
             // TODO(b/157075286): Listening for a 'focus' event is too broad.
             this.anchorElem.addEventListener('focus', this.handleFocus);
             this.anchorElem.addEventListener('mouseleave', this.handleMouseLeave);
-            this.anchorElem.addEventListener('blur', this.handleBlur);
+            this.anchorElem.addEventListener('touchstart', this.handleTouchstart);
+            this.anchorElem.addEventListener('touchend', this.handleTouchend);
         }
         this.listen('transitionend', this.handleTransitionEnd);
     };
@@ -84,7 +91,8 @@ var MDCTooltip = /** @class */ (function (_super) {
                 this.anchorElem.removeEventListener('mouseenter', this.handleMouseEnter);
                 this.anchorElem.removeEventListener('focus', this.handleFocus);
                 this.anchorElem.removeEventListener('mouseleave', this.handleMouseLeave);
-                this.anchorElem.removeEventListener('blur', this.handleBlur);
+                this.anchorElem.removeEventListener('touchstart', this.handleTouchstart);
+                this.anchorElem.removeEventListener('touchend', this.handleTouchend);
             }
         }
         this.unlisten('transitionend', this.handleTransitionEnd);
@@ -95,6 +103,35 @@ var MDCTooltip = /** @class */ (function (_super) {
     };
     MDCTooltip.prototype.setAnchorBoundaryType = function (type) {
         this.foundation.setAnchorBoundaryType(type);
+    };
+    MDCTooltip.prototype.setShowDelay = function (delayMs) {
+        this.foundation.setShowDelay(delayMs);
+    };
+    MDCTooltip.prototype.setHideDelay = function (delayMs) {
+        this.foundation.setHideDelay(delayMs);
+    };
+    MDCTooltip.prototype.hide = function () {
+        this.foundation.hide();
+    };
+    MDCTooltip.prototype.isShown = function () {
+        this.foundation.isShown();
+    };
+    /**
+     * Method that allows user to specify additional elements that should have a
+     * scroll event listener attached to it. This should be used in instances
+     * where the anchor element is placed inside a scrollable container (that is
+     * not the body element), and will ensure that the tooltip will stay attached
+     * to the anchor on scroll.
+     */
+    MDCTooltip.prototype.attachScrollHandler = function (addEventListenerFn) {
+        this.foundation.attachScrollHandler(addEventListenerFn);
+    };
+    /**
+     * Must be used in conjunction with #attachScrollHandler. Removes the scroll
+     * event handler from elements on the page.
+     */
+    MDCTooltip.prototype.removeScrollHandler = function (removeEventHandlerFn) {
+        this.foundation.removeScrollHandler(removeEventHandlerFn);
     };
     MDCTooltip.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -110,8 +147,15 @@ var MDCTooltip = /** @class */ (function (_super) {
             removeClass: function (className) {
                 _this.root.classList.remove(className);
             },
+            getComputedStyleProperty: function (propertyName) {
+                return window.getComputedStyle(_this.root).getPropertyValue(propertyName);
+            },
             setStyleProperty: function (propertyName, value) {
                 _this.root.style.setProperty(propertyName, value);
+            },
+            setSurfaceAnimationStyleProperty: function (propertyName, value) {
+                var surface = _this.root.querySelector("." + CssClasses.SURFACE_ANIMATION);
+                surface === null || surface === void 0 ? void 0 : surface.style.setProperty(propertyName, value);
             },
             getViewportWidth: function () { return window.innerWidth; },
             getViewportHeight: function () { return window.innerHeight; },
@@ -124,6 +168,10 @@ var MDCTooltip = /** @class */ (function (_super) {
             getAnchorBoundingRect: function () {
                 return _this.anchorElem ? _this.anchorElem.getBoundingClientRect() : null;
             },
+            getParentBoundingRect: function () {
+                var _a, _b;
+                return (_b = (_a = _this.root.parentElement) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect()) !== null && _b !== void 0 ? _b : null;
+            },
             getAnchorAttribute: function (attr) {
                 return _this.anchorElem ? _this.anchorElem.getAttribute(attr) : null;
             },
@@ -133,8 +181,15 @@ var MDCTooltip = /** @class */ (function (_super) {
             },
             isRTL: function () { return getComputedStyle(_this.root).direction === 'rtl'; },
             anchorContainsElement: function (element) {
-                var hasAnchorElem = Boolean(_this.anchorElem);
-                return hasAnchorElem && _this.anchorElem.contains(element);
+                var _a;
+                return !!((_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.contains(element));
+            },
+            tooltipContainsElement: function (element) {
+                return _this.root.contains(element);
+            },
+            focusAnchorElement: function () {
+                var _a;
+                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.focus();
             },
             registerEventHandler: function (evt, handler) {
                 if (_this.root instanceof HTMLElement) {
@@ -145,6 +200,14 @@ var MDCTooltip = /** @class */ (function (_super) {
                 if (_this.root instanceof HTMLElement) {
                     _this.root.removeEventListener(evt, handler);
                 }
+            },
+            registerAnchorEventHandler: function (evt, handler) {
+                var _a;
+                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.addEventListener(evt, handler);
+            },
+            deregisterAnchorEventHandler: function (evt, handler) {
+                var _a;
+                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.removeEventListener(evt, handler);
             },
             registerDocumentEventHandler: function (evt, handler) {
                 document.body.addEventListener(evt, handler);
@@ -160,6 +223,31 @@ var MDCTooltip = /** @class */ (function (_super) {
             },
             notifyHidden: function () {
                 _this.emit(events.HIDDEN, {});
+            },
+            getTooltipCaretBoundingRect: function () {
+                var caret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_TOP);
+                if (!caret) {
+                    return null;
+                }
+                return caret.getBoundingClientRect();
+            },
+            setTooltipCaretStyle: function (propertyName, value) {
+                var topCaret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_TOP);
+                var bottomCaret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_BOTTOM);
+                if (!topCaret || !bottomCaret) {
+                    return;
+                }
+                topCaret.style.setProperty(propertyName, value);
+                bottomCaret.style.setProperty(propertyName, value);
+            },
+            clearTooltipCaretStyles: function () {
+                var topCaret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_TOP);
+                var bottomCaret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_BOTTOM);
+                if (!topCaret || !bottomCaret) {
+                    return;
+                }
+                topCaret.removeAttribute('style');
+                bottomCaret.removeAttribute('style');
             },
         };
         //tslint:enable:object-literal-sort-keys

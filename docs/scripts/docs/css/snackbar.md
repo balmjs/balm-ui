@@ -1,5 +1,5 @@
 ```scss
-@use '@material/snackbar' with (
+@use '@material/snackbar/variables' as snackbar-variables with (
   $fill-color: color.mix(
     theme-color.prop-value(on-surface),
     theme-color.prop-value(surface),
@@ -17,6 +17,7 @@
 
   $label-type-scale: body2,
   $dismiss-icon-size: 18px,
+  $dismiss-button-size: 36px, // New in 9.31.0
   $min-width: 344px,
   $max-width: 672px,
   $mobile-breakpoint: 480px,

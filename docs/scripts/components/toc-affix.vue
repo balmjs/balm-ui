@@ -12,8 +12,9 @@
         :key="index"
         v-anchor:href="item.id"
         class="v-anchor"
-        >{{ item.name }}</ui-tab
       >
+        {{ item.name }}
+      </ui-tab>
       <ui-tab v-if="!withoutApis" v-anchor:href="'#ui-apis'" class="v-anchor">{{
         t('page.apis')
       }}</ui-tab>

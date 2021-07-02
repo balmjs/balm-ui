@@ -2,6 +2,7 @@ import { getCurrentInstance } from 'vue';
 import getType from '../utils/typeof';
 import createCustomEvent from '../events';
 import bus from '../events/bus';
+import throttle from '../events/throttle';
 
 // Define constants
 const noop = () => {};
@@ -45,7 +46,7 @@ function handleEvent(_property, value) {
         handleAssign.call(this.setupState, _property.split('.'), value);
       }
     } else {
-      throw new Error('[BalmUI event]: Only support `data` or `setup` options');
+      throw new Error(`[$event]: Only support 'data' or 'setup' options.`);
     }
   }
 }
@@ -105,14 +106,17 @@ function install(app) {
 
   app.config.globalProperties.$bus = bus;
   app.provide('bus', bus);
+
+  app.config.globalProperties.$throttle = throttle;
+  app.provide('throttle', throttle);
 }
 
-const BalmUI_EventPlugin = {
+const $event = {
   install
 };
 
 const useEvent = () => new UiEvent();
 const useBus = () => bus;
 
-export default BalmUI_EventPlugin;
+export default $event;
 export { install, useEvent, useBus };

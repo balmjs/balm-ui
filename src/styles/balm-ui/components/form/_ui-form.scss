@@ -1,0 +1,126 @@
+@use './variables' as form-variables;
+
+.mdc-form {
+  margin: form-variables.$form-margin;
+  padding: form-variables.$form-padding;
+  border: form-variables.$form-border;
+}
+
+.mdc-form__item {
+  display: flex;
+  align-items: center;
+  margin-bottom: form-variables.$form-item-margin-bottom;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  > label {
+    margin: 0;
+    padding: 0;
+  }
+
+  &.required {
+    > label::before {
+      content: '*';
+      color: red;
+    }
+  }
+}
+
+.mdc-form--nowrap {
+  .mdc-form__item > label {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.mdc-form--horizontal {
+  .mdc-form__item {
+    > label {
+      flex: 0 0 form-variables.$horizontal-form-item-label-width;
+      margin-right: form-variables.$horizontal-form-item-label-margin-right;
+    }
+  }
+
+  .mdc-form__actions {
+    padding-left: form-variables.$horizontal-form-item-label-width +
+      form-variables.$horizontal-form-item-label-margin-right;
+
+    .mdc-button {
+      margin-right: 8px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &.mdc-form--label-top-aligned {
+    .mdc-form__item {
+      align-items: flex-start;
+    }
+  }
+
+  &.mdc-form--label-right-aligned {
+    .mdc-form__item > label {
+      text-align: right;
+    }
+  }
+
+  &.mdc-form--label-top-right-aligned {
+    .mdc-form__item {
+      align-items: flex-start;
+      > label {
+        text-align: right;
+      }
+    }
+  }
+
+  .mdc-checkbox,
+  .mdc-radio {
+    & + label {
+      flex-basis: auto;
+    }
+  }
+}
+
+.mdc-form--vertical {
+  .mdc-form__item {
+    flex-direction: column;
+    align-items: flex-start;
+
+    > label {
+      margin-bottom: form-variables.$vertical-form-item-label-margin-bottom;
+    }
+  }
+
+  .mdc-form__actions {
+    flex-direction: row;
+
+    .mdc-button {
+      margin-right: 8px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.mdc-form__item {
+  > .mdc-form-field {
+    margin-right: form-variables.$form-subitem-margin-right;
+  }
+}
+
+.mdc-form--actions-center {
+  .mdc-form__actions {
+    justify-content: center;
+  }
+}
+
+.mdc-form--actions-right {
+  .mdc-form__actions {
+    justify-content: flex-end;
+  }
+}

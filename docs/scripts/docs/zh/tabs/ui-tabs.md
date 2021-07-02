@@ -17,12 +17,12 @@
 </ui-panels>
 ```
 
-| Component            | Description                                    |
-| -------------------- | ---------------------------------------------- |
-| `<ui-tabs>`          | The shorthand for `<ui-tab-bar>` + `<ui-tab>`. |
-| `<ui-tab-bar>`       | Tab item container.                            |
-| `<ui-tab>`           | Tab item.                                      |
-| `<ui-panels>`        | Tab panel container.                           |
-| `<ui-panel>`         | Tab panel.                                     |
-| `<ui-tab-indicator>` | Contains the custom tab indicator content.     |
-| `<ui-tab-scroller>`  | Contains the custom tab scroller content.      |
+| Component            | Description                         |
+| -------------------- | ----------------------------------- |
+| `<ui-tabs>`          | `<ui-tab-bar>` 和 `<ui-tab>` 的缩写 |
+| `<ui-tab-bar>`       | 标签页容器                          |
+| `<ui-tab>`           | 标签页                              |
+| `<ui-panels>`        | 标签页面板容器                      |
+| `<ui-panel>`         | 标签页面板                          |
+| `<ui-tab-indicator>` | 包含自定义标签页指示器的内容        |
+| `<ui-tab-scroller>`  | 包含自定义标签页滚动器的内容        |

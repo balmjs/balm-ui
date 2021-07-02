@@ -37,30 +37,32 @@ var MDCSnackbar = /** @class */ (function (_super) {
     };
     MDCSnackbar.prototype.initialize = function (announcerFactory) {
         if (announcerFactory === void 0) { announcerFactory = function () { return util.announce; }; }
-        this.announce_ = announcerFactory();
+        this.announce = announcerFactory();
     };
     MDCSnackbar.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.surfaceEl_ = this.root.querySelector(SURFACE_SELECTOR);
-        this.labelEl_ = this.root.querySelector(LABEL_SELECTOR);
-        this.actionEl_ = this.root.querySelector(ACTION_SELECTOR);
-        this.handleKeyDown_ = function (evt) { return _this.foundation.handleKeyDown(evt); };
-        this.handleSurfaceClick_ = function (evt) {
+        this.surfaceEl = this.root.querySelector(SURFACE_SELECTOR);
+        this.labelEl = this.root.querySelector(LABEL_SELECTOR);
+        this.actionEl = this.root.querySelector(ACTION_SELECTOR);
+        this.handleKeyDown = function (evt) {
+            _this.foundation.handleKeyDown(evt);
+        };
+        this.handleSurfaceClick = function (evt) {
             var target = evt.target;
-            if (_this.isActionButton_(target)) {
+            if (_this.isActionButton(target)) {
                 _this.foundation.handleActionButtonClick(evt);
             }
-            else if (_this.isActionIcon_(target)) {
+            else if (_this.isActionIcon(target)) {
                 _this.foundation.handleActionIconClick(evt);
             }
         };
-        this.registerKeyDownHandler_(this.handleKeyDown_);
-        this.registerSurfaceClickHandler_(this.handleSurfaceClick_);
+        this.registerKeyDownHandler(this.handleKeyDown);
+        this.registerSurfaceClickHandler(this.handleSurfaceClick);
     };
     MDCSnackbar.prototype.destroy = function () {
         _super.prototype.destroy.call(this);
-        this.deregisterKeyDownHandler_(this.handleKeyDown_);
-        this.deregisterSurfaceClickHandler_(this.handleSurfaceClick_);
+        this.deregisterKeyDownHandler(this.handleKeyDown);
+        this.deregisterSurfaceClickHandler(this.handleSurfaceClick);
     };
     MDCSnackbar.prototype.open = function () {
         this.foundation.open();
@@ -79,8 +81,12 @@ var MDCSnackbar = /** @class */ (function (_super) {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addClass: function (className) { return _this.root.classList.add(className); },
-            announce: function () { return _this.announce_(_this.labelEl_); },
+            addClass: function (className) {
+                _this.root.classList.add(className);
+            },
+            announce: function () {
+                _this.announce(_this.labelEl);
+            },
             notifyClosed: function (reason) { return _this.emit(CLOSED_EVENT, reason ? { reason: reason } : {}); },
             notifyClosing: function (reason) { return _this.emit(CLOSING_EVENT, reason ? { reason: reason } : {}); },
             notifyOpened: function () { return _this.emit(OPENED_EVENT, {}); },
@@ -96,7 +102,7 @@ var MDCSnackbar = /** @class */ (function (_super) {
         set: function (timeoutMs) {
             this.foundation.setTimeoutMs(timeoutMs);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSnackbar.prototype, "closeOnEscape", {
@@ -106,54 +112,54 @@ var MDCSnackbar = /** @class */ (function (_super) {
         set: function (closeOnEscape) {
             this.foundation.setCloseOnEscape(closeOnEscape);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSnackbar.prototype, "isOpen", {
         get: function () {
             return this.foundation.isOpen();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSnackbar.prototype, "labelText", {
         get: function () {
-            // This property only returns null if the node is a document, DOCTYPE, or notation.
-            // On Element nodes, it always returns a string.
-            return this.labelEl_.textContent;
+            // This property only returns null if the node is a document, DOCTYPE,
+            // or notation. On Element nodes, it always returns a string.
+            return this.labelEl.textContent;
         },
         set: function (labelText) {
-            this.labelEl_.textContent = labelText;
+            this.labelEl.textContent = labelText;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSnackbar.prototype, "actionButtonText", {
         get: function () {
-            return this.actionEl_.textContent;
+            return this.actionEl.textContent;
         },
         set: function (actionButtonText) {
-            this.actionEl_.textContent = actionButtonText;
+            this.actionEl.textContent = actionButtonText;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
-    MDCSnackbar.prototype.registerKeyDownHandler_ = function (handler) {
+    MDCSnackbar.prototype.registerKeyDownHandler = function (handler) {
         this.listen('keydown', handler);
     };
-    MDCSnackbar.prototype.deregisterKeyDownHandler_ = function (handler) {
+    MDCSnackbar.prototype.deregisterKeyDownHandler = function (handler) {
         this.unlisten('keydown', handler);
     };
-    MDCSnackbar.prototype.registerSurfaceClickHandler_ = function (handler) {
-        this.surfaceEl_.addEventListener('click', handler);
+    MDCSnackbar.prototype.registerSurfaceClickHandler = function (handler) {
+        this.surfaceEl.addEventListener('click', handler);
     };
-    MDCSnackbar.prototype.deregisterSurfaceClickHandler_ = function (handler) {
-        this.surfaceEl_.removeEventListener('click', handler);
+    MDCSnackbar.prototype.deregisterSurfaceClickHandler = function (handler) {
+        this.surfaceEl.removeEventListener('click', handler);
     };
-    MDCSnackbar.prototype.isActionButton_ = function (target) {
+    MDCSnackbar.prototype.isActionButton = function (target) {
         return Boolean(closest(target, ACTION_SELECTOR));
     };
-    MDCSnackbar.prototype.isActionIcon_ = function (target) {
+    MDCSnackbar.prototype.isActionIcon = function (target) {
         return Boolean(closest(target, DISMISS_SELECTOR));
     };
     return MDCSnackbar;

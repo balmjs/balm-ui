@@ -1,3 +1,3 @@
-# 多选框
+# 复选框
 
-Checkboxes allow the user to select one or more items from a set. Checkboxes can be used to turn an option on or off.
+复选框允许用户从一组中选择一个或多个选项。复选框可用于打开或关闭选项。

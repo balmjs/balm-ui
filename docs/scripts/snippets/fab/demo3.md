@@ -13,8 +13,9 @@
         id="enter-exit-back"
         :disabled="!exited"
         @click="balmUI.onHide('exited')"
-        >Go back</ui-button
       >
+        Go back
+      </ui-button>
     </p>
   </div>
   <ui-fab
@@ -23,8 +24,9 @@
     icon="add"
     :exited="exited"
     @click="balmUI.onShow('exited')"
-    >add</ui-fab
   >
+    add
+  </ui-fab>
 </div>
 ```
 

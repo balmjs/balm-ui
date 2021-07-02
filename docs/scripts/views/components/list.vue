@@ -32,15 +32,16 @@
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Type</ui-select
         >
+          Type
+        </ui-select>
         <div class="hero-option hero-options">
-          <ui-select v-model="beforeText" :options="BeforeTextOptions"
-            >Before list text</ui-select
-          >
-          <ui-select v-model="afterText" :options="AfterTextOptions"
-            >After list text</ui-select
-          >
+          <ui-select v-model="beforeText" :options="BeforeTextOptions">
+            Before list text
+          </ui-select>
+          <ui-select v-model="afterText" :options="AfterTextOptions">
+            After list text
+          </ui-select>
         </div>
       </div>
     </template>

@@ -37,7 +37,7 @@ var MDCSegmentedButtonFoundation = /** @class */ (function (_super) {
                 notifySelectedChange: function () { return undefined; }
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**

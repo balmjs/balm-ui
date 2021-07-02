@@ -142,10 +142,18 @@ $tick-mark-opacity: 0.6;
 @mixin _set-thumb-color($color, $query) {
   $feat-color: feature-targeting.create-target($query, color);
 
-  .mdc-slider__thumb-knob {
-    @include feature-targeting.targets($feat-color) {
+  @include feature-targeting.targets($feat-color) {
+    .mdc-slider__thumb-knob {
       @include theme.property(background-color, $color);
       @include theme.property(border-color, $color);
+    }
+
+    .mdc-slider__thumb--top {
+      .mdc-slider__thumb-knob,
+      &.mdc-slider__thumb:hover .mdc-slider__thumb-knob,
+      &.mdc-slider__thumb--focused .mdc-slider__thumb-knob {
+        border-color: #fff;
+      }
     }
   }
 }
@@ -158,6 +166,19 @@ $tick-mark-opacity: 0.6;
 @mixin thumb-ripple-color($color, $query: feature-targeting.all()) {
   .mdc-slider__thumb {
     @include ripple-theme.states($color: $color, $query: $query);
+  }
+}
+
+/// Customizes thumb color when thumb is activated (hover, focused, or pressed
+/// state).
+///
+/// @param {Color} $color - The thumb's color
+@mixin thumb-activated-color($color, $query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+
+  .mdc-slider__thumb:hover,
+  .mdc-slider__thumb--focused {
+    @include _set-thumb-color($color, $query);
   }
 }
 

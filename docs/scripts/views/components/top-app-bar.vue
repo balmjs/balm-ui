@@ -18,7 +18,10 @@
             :items="['Back', 'Forward', 'Reload', '-', 'Settings']"
           ></ui-menu>
         </ui-menu-anchor>
-        <top-toolbar v-else :item-class="toolbarItemClass"></top-toolbar>
+        <top-app-toolbar
+          v-else
+          :item-class="toolbarItemClass"
+        ></top-app-toolbar>
       </template>
     </ui-top-app-bar>
 
@@ -26,13 +29,13 @@
       <ui-drawer-header
         :inner-class="$theme.getThemeClass(['primary-bg', 'on-primary'])"
       >
-        <ui-drawer-title :class="$theme.getTextClass('primary', $store.theme)"
-          >Header here</ui-drawer-title
-        >
+        <ui-drawer-title :class="$theme.getTextClass('primary', $store.theme)">
+          Header here
+        </ui-drawer-title>
       </ui-drawer-header>
       <ui-drawer-content>
         <ui-nav>
-          <ui-nav-item href="javascript:void(0)" @click="$router.back()">
+          <ui-nav-item active href="javascript:void(0)" @click="$router.back()">
             <ui-item-first-content
               :class="$theme.getTextClass('secondary', $store.theme)"
             >
@@ -40,15 +43,14 @@
             </ui-item-first-content>
             <ui-item-text-content
               :class="$theme.getTextClass('primary', $store.theme)"
-              >Back</ui-item-text-content
             >
+              Back
+            </ui-item-text-content>
           </ui-nav-item>
           <ui-list-divider></ui-list-divider>
         </ui-nav>
       </ui-drawer-content>
     </ui-drawer>
-
-    <ui-drawer-backdrop></ui-drawer-backdrop>
 
     <div class="demo-main">
       <docs-page
@@ -64,9 +66,9 @@
         <!-- Content -->
         <section class="demo-wrapper">
           <div class="demo-controls">
-            <ui-select v-model="typeOption" :options="TypeOptions"
-              >Type</ui-select
-            >
+            <ui-select v-model="typeOption" :options="TypeOptions">
+              Type
+            </ui-select>
             <ui-textfield v-model="title">Title</ui-textfield>
           </div>
           <p v-for="i in 12" :key="i" class="demo-paragraph">
@@ -88,7 +90,7 @@
 <script>
 import { reactive, toRefs, computed } from 'vue';
 import { useStore } from 'balm-ui';
-import TopToolbar from '@/components/top-toolbar';
+import TopAppToolbar from '@/components/top-app-toolbar';
 
 const TypeOptions = [
   {
@@ -133,7 +135,7 @@ export default {
     titleTemplate: '%s - Top App Bar'
   },
   components: {
-    TopToolbar
+    TopAppToolbar
   },
   setup() {
     const store = useStore();

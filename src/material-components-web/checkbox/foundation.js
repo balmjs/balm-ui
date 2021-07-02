@@ -27,31 +27,31 @@ var MDCCheckboxFoundation = /** @class */ (function (_super) {
     __extends(MDCCheckboxFoundation, _super);
     function MDCCheckboxFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCCheckboxFoundation.defaultAdapter), adapter)) || this;
-        _this.currentCheckState_ = strings.TRANSITION_STATE_INIT;
-        _this.currentAnimationClass_ = '';
-        _this.animEndLatchTimer_ = 0;
-        _this.enableAnimationEndHandler_ = false;
+        _this.currentCheckState = strings.TRANSITION_STATE_INIT;
+        _this.currentAnimationClass = '';
+        _this.animEndLatchTimer = 0;
+        _this.enableAnimationEndHandler = false;
         return _this;
     }
     Object.defineProperty(MDCCheckboxFoundation, "cssClasses", {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCheckboxFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCheckboxFoundation, "numbers", {
         get: function () {
             return numbers;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCheckboxFoundation, "defaultAdapter", {
@@ -69,16 +69,16 @@ var MDCCheckboxFoundation = /** @class */ (function (_super) {
                 setNativeControlDisabled: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCCheckboxFoundation.prototype.init = function () {
-        this.currentCheckState_ = this.determineCheckState_();
-        this.updateAriaChecked_();
+        this.currentCheckState = this.determineCheckState();
+        this.updateAriaChecked();
         this.adapter.addClass(cssClasses.UPGRADED);
     };
     MDCCheckboxFoundation.prototype.destroy = function () {
-        clearTimeout(this.animEndLatchTimer_);
+        clearTimeout(this.animEndLatchTimer);
     };
     MDCCheckboxFoundation.prototype.setDisabled = function (disabled) {
         this.adapter.setNativeControlDisabled(disabled);
@@ -94,31 +94,31 @@ var MDCCheckboxFoundation = /** @class */ (function (_super) {
      */
     MDCCheckboxFoundation.prototype.handleAnimationEnd = function () {
         var _this = this;
-        if (!this.enableAnimationEndHandler_) {
+        if (!this.enableAnimationEndHandler) {
             return;
         }
-        clearTimeout(this.animEndLatchTimer_);
-        this.animEndLatchTimer_ = setTimeout(function () {
-            _this.adapter.removeClass(_this.currentAnimationClass_);
-            _this.enableAnimationEndHandler_ = false;
+        clearTimeout(this.animEndLatchTimer);
+        this.animEndLatchTimer = setTimeout(function () {
+            _this.adapter.removeClass(_this.currentAnimationClass);
+            _this.enableAnimationEndHandler = false;
         }, numbers.ANIM_END_LATCH_MS);
     };
     /**
      * Handles the change event for the checkbox
      */
     MDCCheckboxFoundation.prototype.handleChange = function () {
-        this.transitionCheckState_();
+        this.transitionCheckState();
     };
-    MDCCheckboxFoundation.prototype.transitionCheckState_ = function () {
+    MDCCheckboxFoundation.prototype.transitionCheckState = function () {
         if (!this.adapter.hasNativeControl()) {
             return;
         }
-        var oldState = this.currentCheckState_;
-        var newState = this.determineCheckState_();
+        var oldState = this.currentCheckState;
+        var newState = this.determineCheckState();
         if (oldState === newState) {
             return;
         }
-        this.updateAriaChecked_();
+        this.updateAriaChecked();
         var TRANSITION_STATE_UNCHECKED = strings.TRANSITION_STATE_UNCHECKED;
         var SELECTED = cssClasses.SELECTED;
         if (newState === TRANSITION_STATE_UNCHECKED) {
@@ -129,22 +129,23 @@ var MDCCheckboxFoundation = /** @class */ (function (_super) {
         }
         // Check to ensure that there isn't a previously existing animation class, in case for example
         // the user interacted with the checkbox before the animation was finished.
-        if (this.currentAnimationClass_.length > 0) {
-            clearTimeout(this.animEndLatchTimer_);
+        if (this.currentAnimationClass.length > 0) {
+            clearTimeout(this.animEndLatchTimer);
             this.adapter.forceLayout();
-            this.adapter.removeClass(this.currentAnimationClass_);
+            this.adapter.removeClass(this.currentAnimationClass);
         }
-        this.currentAnimationClass_ = this.getTransitionAnimationClass_(oldState, newState);
-        this.currentCheckState_ = newState;
+        this.currentAnimationClass =
+            this.getTransitionAnimationClass(oldState, newState);
+        this.currentCheckState = newState;
         // Check for parentNode so that animations are only run when the element is attached
         // to the DOM.
         if (this.adapter.isAttachedToDOM() &&
-            this.currentAnimationClass_.length > 0) {
-            this.adapter.addClass(this.currentAnimationClass_);
-            this.enableAnimationEndHandler_ = true;
+            this.currentAnimationClass.length > 0) {
+            this.adapter.addClass(this.currentAnimationClass);
+            this.enableAnimationEndHandler = true;
         }
     };
-    MDCCheckboxFoundation.prototype.determineCheckState_ = function () {
+    MDCCheckboxFoundation.prototype.determineCheckState = function () {
         var TRANSITION_STATE_INDETERMINATE = strings.TRANSITION_STATE_INDETERMINATE, TRANSITION_STATE_CHECKED = strings.TRANSITION_STATE_CHECKED, TRANSITION_STATE_UNCHECKED = strings.TRANSITION_STATE_UNCHECKED;
         if (this.adapter.isIndeterminate()) {
             return TRANSITION_STATE_INDETERMINATE;
@@ -152,7 +153,7 @@ var MDCCheckboxFoundation = /** @class */ (function (_super) {
         return this.adapter.isChecked() ? TRANSITION_STATE_CHECKED :
             TRANSITION_STATE_UNCHECKED;
     };
-    MDCCheckboxFoundation.prototype.getTransitionAnimationClass_ = function (oldState, newState) {
+    MDCCheckboxFoundation.prototype.getTransitionAnimationClass = function (oldState, newState) {
         var TRANSITION_STATE_INIT = strings.TRANSITION_STATE_INIT, TRANSITION_STATE_CHECKED = strings.TRANSITION_STATE_CHECKED, TRANSITION_STATE_UNCHECKED = strings.TRANSITION_STATE_UNCHECKED;
         var _a = MDCCheckboxFoundation.cssClasses, ANIM_UNCHECKED_CHECKED = _a.ANIM_UNCHECKED_CHECKED, ANIM_UNCHECKED_INDETERMINATE = _a.ANIM_UNCHECKED_INDETERMINATE, ANIM_CHECKED_UNCHECKED = _a.ANIM_CHECKED_UNCHECKED, ANIM_CHECKED_INDETERMINATE = _a.ANIM_CHECKED_INDETERMINATE, ANIM_INDETERMINATE_CHECKED = _a.ANIM_INDETERMINATE_CHECKED, ANIM_INDETERMINATE_UNCHECKED = _a.ANIM_INDETERMINATE_UNCHECKED;
         switch (oldState) {
@@ -169,7 +170,7 @@ var MDCCheckboxFoundation = /** @class */ (function (_super) {
                 return newState === TRANSITION_STATE_CHECKED ? ANIM_INDETERMINATE_CHECKED : ANIM_INDETERMINATE_UNCHECKED;
         }
     };
-    MDCCheckboxFoundation.prototype.updateAriaChecked_ = function () {
+    MDCCheckboxFoundation.prototype.updateAriaChecked = function () {
         // Ensure aria-checked is set to mixed if checkbox is in indeterminate state.
         if (this.adapter.isIndeterminate()) {
             this.adapter.setNativeControlAttr(strings.ARIA_CHECKED_ATTR, strings.ARIA_CHECKED_INDETERMINATE_VALUE);

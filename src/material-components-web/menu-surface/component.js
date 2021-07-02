@@ -24,7 +24,7 @@ import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { cssClasses, strings } from './constants';
 import { MDCMenuSurfaceFoundation } from './foundation';
-import * as util from './util';
+import { getCorrectPropertyName } from '../animation/util';
 var MDCMenuSurface = /** @class */ (function (_super) {
     __extends(MDCMenuSurface, _super);
     function MDCMenuSurface() {
@@ -78,7 +78,7 @@ var MDCMenuSurface = /** @class */ (function (_super) {
         set: function (quickOpen) {
             this.foundation.setQuickOpen(quickOpen);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /** Sets the foundation to use page offsets for an positioning when the menu is hoisted to the body. */
@@ -126,6 +126,9 @@ var MDCMenuSurface = /** @class */ (function (_super) {
             notifyClose: function () {
                 return _this.emit(MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {});
             },
+            notifyClosing: function () {
+                _this.emit(MDCMenuSurfaceFoundation.strings.CLOSING_EVENT, {});
+            },
             notifyOpen: function () {
                 return _this.emit(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {});
             },
@@ -134,7 +137,7 @@ var MDCMenuSurface = /** @class */ (function (_super) {
                 return getComputedStyle(_this.root).getPropertyValue('direction') === 'rtl';
             },
             setTransformOrigin: function (origin) {
-                var propertyName = util.getTransformPropertyName(window) + "-origin";
+                var propertyName = getCorrectPropertyName(window, 'transform') + "-origin";
                 _this.root.style.setProperty(propertyName, origin);
             },
             isFocused: function () { return document.activeElement === _this.root; },

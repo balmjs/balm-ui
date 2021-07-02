@@ -1,3 +1,3 @@
-# 表格
+# 数据表
 
-Data tables display sets of data across rows and columns.
+数据表显示行和列之间的数据集。

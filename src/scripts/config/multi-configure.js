@@ -1,16 +1,14 @@
 import configure from './configure';
 
-const multiConfigure = (components, options) => {
-  Object.keys(options).forEach((key) => {
-    if (components[key] === undefined) {
-      return;
+const multiConfigure = (Components, options) => {
+  for (const key of Object.keys(options)) {
+    if (/^Ui[A-Z]{1}[A-Za-z]+$/.test(key)) {
+      const Component = Components[key];
+      const props = options[key];
+
+      configure(Component, props);
     }
-
-    const Component = components[key];
-    const props = options[key];
-
-    configure(Component, props);
-  });
+  }
 };
 
 export default multiConfigure;

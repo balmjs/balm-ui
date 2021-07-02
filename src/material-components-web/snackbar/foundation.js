@@ -29,33 +29,33 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
     __extends(MDCSnackbarFoundation, _super);
     function MDCSnackbarFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCSnackbarFoundation.defaultAdapter), adapter)) || this;
-        _this.isOpen_ = false;
-        _this.animationFrame_ = 0;
-        _this.animationTimer_ = 0;
-        _this.autoDismissTimer_ = 0;
-        _this.autoDismissTimeoutMs_ = numbers.DEFAULT_AUTO_DISMISS_TIMEOUT_MS;
-        _this.closeOnEscape_ = true;
+        _this.opened = false;
+        _this.animationFrame = 0;
+        _this.animationTimer = 0;
+        _this.autoDismissTimer = 0;
+        _this.autoDismissTimeoutMs = numbers.DEFAULT_AUTO_DISMISS_TIMEOUT_MS;
+        _this.closeOnEscape = true;
         return _this;
     }
     Object.defineProperty(MDCSnackbarFoundation, "cssClasses", {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSnackbarFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSnackbarFoundation, "numbers", {
         get: function () {
             return numbers;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSnackbarFoundation, "defaultAdapter", {
@@ -70,36 +70,36 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
                 removeClass: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCSnackbarFoundation.prototype.destroy = function () {
-        this.clearAutoDismissTimer_();
-        cancelAnimationFrame(this.animationFrame_);
-        this.animationFrame_ = 0;
-        clearTimeout(this.animationTimer_);
-        this.animationTimer_ = 0;
+        this.clearAutoDismissTimer();
+        cancelAnimationFrame(this.animationFrame);
+        this.animationFrame = 0;
+        clearTimeout(this.animationTimer);
+        this.animationTimer = 0;
         this.adapter.removeClass(OPENING);
         this.adapter.removeClass(OPEN);
         this.adapter.removeClass(CLOSING);
     };
     MDCSnackbarFoundation.prototype.open = function () {
         var _this = this;
-        this.clearAutoDismissTimer_();
-        this.isOpen_ = true;
+        this.clearAutoDismissTimer();
+        this.opened = true;
         this.adapter.notifyOpening();
         this.adapter.removeClass(CLOSING);
         this.adapter.addClass(OPENING);
         this.adapter.announce();
         // Wait a frame once display is no longer "none", to establish basis for animation
-        this.runNextAnimationFrame_(function () {
+        this.runNextAnimationFrame(function () {
             _this.adapter.addClass(OPEN);
-            _this.animationTimer_ = setTimeout(function () {
+            _this.animationTimer = setTimeout(function () {
                 var timeoutMs = _this.getTimeoutMs();
-                _this.handleAnimationTimerEnd_();
+                _this.handleAnimationTimerEnd();
                 _this.adapter.notifyOpened();
                 if (timeoutMs !== numbers.INDETERMINATE) {
-                    _this.autoDismissTimer_ = setTimeout(function () {
+                    _this.autoDismissTimer = setTimeout(function () {
                         _this.close(REASON_DISMISS);
                     }, timeoutMs);
                 }
@@ -114,29 +114,29 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
     MDCSnackbarFoundation.prototype.close = function (reason) {
         var _this = this;
         if (reason === void 0) { reason = ''; }
-        if (!this.isOpen_) {
+        if (!this.opened) {
             // Avoid redundant close calls (and events), e.g. repeated interactions as the snackbar is animating closed
             return;
         }
-        cancelAnimationFrame(this.animationFrame_);
-        this.animationFrame_ = 0;
-        this.clearAutoDismissTimer_();
-        this.isOpen_ = false;
+        cancelAnimationFrame(this.animationFrame);
+        this.animationFrame = 0;
+        this.clearAutoDismissTimer();
+        this.opened = false;
         this.adapter.notifyClosing(reason);
         this.adapter.addClass(cssClasses.CLOSING);
         this.adapter.removeClass(cssClasses.OPEN);
         this.adapter.removeClass(cssClasses.OPENING);
-        clearTimeout(this.animationTimer_);
-        this.animationTimer_ = setTimeout(function () {
-            _this.handleAnimationTimerEnd_();
+        clearTimeout(this.animationTimer);
+        this.animationTimer = setTimeout(function () {
+            _this.handleAnimationTimerEnd();
             _this.adapter.notifyClosed(reason);
         }, numbers.SNACKBAR_ANIMATION_CLOSE_TIME_MS);
     };
     MDCSnackbarFoundation.prototype.isOpen = function () {
-        return this.isOpen_;
+        return this.opened;
     };
     MDCSnackbarFoundation.prototype.getTimeoutMs = function () {
-        return this.autoDismissTimeoutMs_;
+        return this.autoDismissTimeoutMs;
     };
     MDCSnackbarFoundation.prototype.setTimeoutMs = function (timeoutMs) {
         // Use shorter variable names to make the code more readable
@@ -144,17 +144,17 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
         var maxValue = numbers.MAX_AUTO_DISMISS_TIMEOUT_MS;
         var indeterminateValue = numbers.INDETERMINATE;
         if (timeoutMs === numbers.INDETERMINATE || (timeoutMs <= maxValue && timeoutMs >= minValue)) {
-            this.autoDismissTimeoutMs_ = timeoutMs;
+            this.autoDismissTimeoutMs = timeoutMs;
         }
         else {
             throw new Error("\n        timeoutMs must be an integer in the range " + minValue + "\u2013" + maxValue + "\n        (or " + indeterminateValue + " to disable), but got '" + timeoutMs + "'");
         }
     };
     MDCSnackbarFoundation.prototype.getCloseOnEscape = function () {
-        return this.closeOnEscape_;
+        return this.closeOnEscape;
     };
     MDCSnackbarFoundation.prototype.setCloseOnEscape = function (closeOnEscape) {
-        this.closeOnEscape_ = closeOnEscape;
+        this.closeOnEscape = closeOnEscape;
     };
     MDCSnackbarFoundation.prototype.handleKeyDown = function (evt) {
         var isEscapeKey = evt.key === 'Escape' || evt.keyCode === 27;
@@ -168,25 +168,25 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
     MDCSnackbarFoundation.prototype.handleActionIconClick = function (_evt) {
         this.close(REASON_DISMISS);
     };
-    MDCSnackbarFoundation.prototype.clearAutoDismissTimer_ = function () {
-        clearTimeout(this.autoDismissTimer_);
-        this.autoDismissTimer_ = 0;
+    MDCSnackbarFoundation.prototype.clearAutoDismissTimer = function () {
+        clearTimeout(this.autoDismissTimer);
+        this.autoDismissTimer = 0;
     };
-    MDCSnackbarFoundation.prototype.handleAnimationTimerEnd_ = function () {
-        this.animationTimer_ = 0;
+    MDCSnackbarFoundation.prototype.handleAnimationTimerEnd = function () {
+        this.animationTimer = 0;
         this.adapter.removeClass(cssClasses.OPENING);
         this.adapter.removeClass(cssClasses.CLOSING);
     };
     /**
      * Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
      */
-    MDCSnackbarFoundation.prototype.runNextAnimationFrame_ = function (callback) {
+    MDCSnackbarFoundation.prototype.runNextAnimationFrame = function (callback) {
         var _this = this;
-        cancelAnimationFrame(this.animationFrame_);
-        this.animationFrame_ = requestAnimationFrame(function () {
-            _this.animationFrame_ = 0;
-            clearTimeout(_this.animationTimer_);
-            _this.animationTimer_ = setTimeout(callback, 0);
+        cancelAnimationFrame(this.animationFrame);
+        this.animationFrame = requestAnimationFrame(function () {
+            _this.animationFrame = 0;
+            clearTimeout(_this.animationTimer);
+            _this.animationTimer = setTimeout(callback, 0);
         });
     };
     return MDCSnackbarFoundation;

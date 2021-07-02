@@ -1,3 +1,3 @@
-# 顶部导航
+# 顶部导航栏
 
-The top app bar displays information and actions relating to the current screen.
+顶部导航栏显示与当前屏幕有关的信息和操作。

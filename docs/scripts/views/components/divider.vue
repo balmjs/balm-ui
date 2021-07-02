@@ -7,15 +7,19 @@
       </div>
       <div class="hero-options">
         <ui-form-field>
-          <ui-checkbox id="divider-with-text" v-model="withText"></ui-checkbox>
+          <ui-checkbox
+            v-model="withText"
+            input-id="divider-with-text"
+          ></ui-checkbox>
           <label for="divider-with-text">With text</label>
         </ui-form-field>
         <ui-select
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Type</ui-select
         >
+          Type
+        </ui-select>
       </div>
     </template>
 

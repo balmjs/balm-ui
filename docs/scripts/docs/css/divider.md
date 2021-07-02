@@ -2,8 +2,8 @@
 @use 'balm-ui/components/divider' with (
   $color: if(
     theme-color.tone(theme-color.$background) == 'dark',
-    list-variables.$divider-color-on-dark-bg,
-    list-variables.$divider-color-on-light-bg
+    list-variables.$deprecated-divider-color-on-dark-bg,
+    list-variables.$deprecated-divider-color-on-light-bg
   ),
 
   $horizontal-height: 2px,

@@ -12,14 +12,21 @@
 | `title`     | boolean, object | `true`  | Show title placeholder.     |
 | `paragraph` | boolean, object | `true`  | Show paragraph placeholder. |
 
-- `avatar` object
-  - `avatar.size: string | number`: Set the size of avatar (`'large'` or `'small'`)
-  - `avatar.shape: string`: Set the shape of avatar (`'circle'` or `'square'`)
-- `title` object
-  - `title.width: string`: Set the width of title
-- `paragraph` object
-  - `paragraph.width: string`: Set the width of paragraph
-  - `paragraph.rows: number`: Set the row count of paragraph
+```ts
+interface Skeleton {
+  avatar: {
+    size: 'large' | 'small' | number; // Set the size of avatar
+    shape: 'circle' | 'square'; // Set the shape of avatar
+  };
+  title: {
+    width: string; // Set the width of title
+  };
+  paragraph: {
+    width: string; // Set the width of paragraph
+    rows: number; // Set the row count of paragraph
+  };
+}
+```
 
 ### Slots
 

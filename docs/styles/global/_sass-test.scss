@@ -1,0 +1,37 @@
+@use '@material/theme/variables' as theme-variables with (
+  $primary: red
+);
+
+@use '@material/typography/variables' as typography-variables with (
+  $styles-button: (
+    font-size: 24px
+  )
+);
+
+@use '../../../src/styles/balm-ui/components/icon' as icon-variables with (
+  $sizes: 18 24 36 48 96
+);
+
+@use '@material/shape/variables' as shape-variables with (
+  $medium-component-radius: 4px * 4
+);
+
+@use '@material/button/button-shared-theme' as button-variables with (
+  $height: 72px
+);
+
+@use '@material/button/button-outlined-theme' as button-outlined-variables with (
+  $outlined-border-width: 10px
+);
+
+@use '@material/fab/fab-theme' as fab-variables with (
+  $shape-radius: 8px
+);
+
+@use '@material/fab/extended-fab-theme' as extended-fab-variables with (
+  $extended-icon-padding: 2px
+);
+
+@use '@material/radio/variables' as radio-variables with (
+  $ripple-size: 56px,
+);

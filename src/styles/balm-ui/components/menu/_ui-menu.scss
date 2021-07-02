@@ -6,12 +6,12 @@
   position: absolute;
 }
 
-.mdc-menu-surface {
-  :not(.mdc-list-item--disabled).mdc-menu-item--selected {
+.mdc-menu {
+  :not(.mdc-deprecated-list-item--disabled).mdc-menu-item--selected {
     @include ui-mixins.selected();
 
-    .mdc-list-item__graphic {
-      @include theme.prop(color, on-primary);
+    .mdc-deprecated-list-item__graphic {
+      @include theme.property(color, on-primary);
     }
   }
 }

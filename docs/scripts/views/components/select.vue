@@ -26,8 +26,9 @@
             id="my-select-helper"
             :visible="selectOption.includes(2)"
             :valid-msg="selectOption.includes(3)"
-            >Helper text</ui-select-helper
           >
+            Helper text
+          </ui-select-helper>
         </div>
         <div v-if="typeOption === 1">
           <ui-select
@@ -47,8 +48,9 @@
             id="my-select-outlined-helper"
             :visible="selectOption.includes(2)"
             :valid-msg="selectOption.includes(3)"
-            >Helper text</ui-select-helper
           >
+            Helper text
+          </ui-select-helper>
         </div>
       </div>
       <div class="hero-options">
@@ -56,29 +58,30 @@
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Type</ui-select
         >
+          Type
+        </ui-select>
         <ui-form class="hero-option">
           <ui-form-field>
             <ui-checkbox
-              id="with-leading-icon"
               v-model="selectOption"
+              input-id="with-leading-icon"
               :value="1"
             ></ui-checkbox>
             <label for="with-leading-icon">Leading Icon</label>
           </ui-form-field>
           <ui-form-field>
             <ui-checkbox
-              id="with-helper-text"
               v-model="selectOption"
+              input-id="with-helper-text"
               :value="2"
             ></ui-checkbox>
             <label for="with-helper-text">Helper Text</label>
           </ui-form-field>
           <ui-form-field>
             <ui-checkbox
-              id="with-error-text"
               v-model="selectOption"
+              input-id="with-error-text"
               :value="3"
             ></ui-checkbox>
             <label for="with-error-text">Error Text</label>
@@ -99,8 +102,9 @@
             :class="{ 'demo-select-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             @selected="onSelected($event, 1)"
-            >Food Group</ui-select
           >
+            Food Group
+          </ui-select>
         </div>
         <p>
           Currently selected:
@@ -132,8 +136,9 @@
             :class="{ 'demo-select-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             @selected="onSelected($event, 1)"
-            >Food Group</ui-select
           >
+            Food Group
+          </ui-select>
         </div>
         <p>
           Currently selected:
@@ -158,8 +163,9 @@
           id="select-preselected"
           v-model="selected3"
           :options="options2"
-          >Food Group</ui-select
         >
+          Food Group
+        </ui-select>
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
@@ -171,7 +177,7 @@
           v-model="formData.province"
           :options="provinces"
           default-label="Province"
-          @update:modelValue="onChangeProvince($event)"
+          @update:modelValue="onChangeProvince"
         ></ui-select>
 
         <ui-select

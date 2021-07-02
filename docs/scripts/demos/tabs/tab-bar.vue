@@ -52,8 +52,9 @@
             :icon="tab.icon"
             min-width
             content-indicator
-            >{{ tab.text }}</ui-tab
           >
+            {{ tab.text }}
+          </ui-tab>
         </template>
       </ui-tab-bar>
     </div>

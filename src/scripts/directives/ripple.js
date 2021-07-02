@@ -5,7 +5,7 @@ const UI_RIPPLE = {
   color: {
     base: 'mdc-ripple-surface',
     primary: 'mdc-ripple-surface--primary',
-    secondary: 'mdc-ripple-surface--accent'
+    secondary: 'mdc-ripple-surface--secondary'
   }
 };
 
@@ -37,7 +37,7 @@ const initRipple = (el, { value, arg, modifiers }) => {
   }
 };
 
-const BalmUI_RippleDirective = {
+const vRipple = {
   name: 'ripple',
   beforeMount(el, binding) {
     updateRipple('add', el, binding);
@@ -50,4 +50,4 @@ const BalmUI_RippleDirective = {
   }
 };
 
-export default BalmUI_RippleDirective;
+export default vRipple;

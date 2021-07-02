@@ -1,7 +1,15 @@
 import getType from '../utils/typeof';
-import UI_TABLE from '../components/data-tables/constants';
+import UI_TABLE from '../components/table/constants';
 
 export default {
+  props: {
+    cellStyle: {
+      type: Array,
+      default() {
+        return [];
+      }
+    }
+  },
   data() {
     return {
       T_CELL: UI_TABLE.CELL
@@ -16,9 +24,6 @@ export default {
     },
     isFunction(any) {
       return getType(any) === 'function';
-    },
-    hasMultipleRows(data) {
-      return data && getType(data[0]) === 'array';
     },
     setTextAlignClassName(className, data) {
       if (data[this.T_CELL.ALIGN]) {

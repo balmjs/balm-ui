@@ -11,7 +11,7 @@
 @use 'balm-ui/components/autocomplete/ui-autocomplete';
 @use 'balm-ui/components/card/ui-card';
 @use 'balm-ui/components/file/ui-file';
-@use 'balm-ui/components/form-field/ui-form';
+@use 'balm-ui/components/form/ui-form';
 @use 'balm-ui/components/icon-button/ui-icon-button';
 @use 'balm-ui/components/pagination/ui-pagination';
 @use 'balm-ui/components/skeleton/ui-skeleton';
@@ -25,7 +25,7 @@
 @use 'balm-ui/components/spinner/ui-spinner';
 @use 'balm-ui/components/menu/ui-menu';
 @use 'balm-ui/components/select/ui-select';
-@use 'balm-ui/components/alert/ui-alert' as alert-component;
+@use 'balm-ui/components/alert/ui-alert' as alert;
 @use 'balm-ui/components/collapse/ui-collapse';
 @use 'balm-ui/components/badge/ui-badge';
 @use 'balm-ui/components/grid/ui-grid';
@@ -33,13 +33,16 @@
 @use 'balm-ui/components/editor/theme/snow';
 @use 'balm-ui/components/editor/theme/bubble';
 @use 'balm-ui/components/editor/ui-editor';
-@use 'balm-ui/components/tooltip/ui-tooltip';
 @use 'balm-ui/components/slider/ui-slider';
 @use 'balm-ui/components/dialog/ui-dialog';
+@use 'balm-ui/components/tree/ui-tree';
+@use 'balm-ui/components/snackbar/ui-snackbar';
+@use 'balm-ui/components/bottom-sheet/ui-bottom-sheet';
 
 /// Plugins Custom Styles
-@use 'balm-ui/plugins/alert/ui-alert' as alert-plugin;
+@use 'balm-ui/plugins/alert/ui-alert' as alert-dialog;
 @use 'balm-ui/plugins/confirm/ui-confirm';
+@use 'balm-ui/plugins/toast/ui-toast';
 
 /// Directives Custom Styles
 @use 'balm-ui/directives/ripple/ui-ripple';

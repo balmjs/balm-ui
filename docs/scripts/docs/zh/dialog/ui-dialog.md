@@ -6,9 +6,9 @@
 </ui-dialog>
 ```
 
-| Component             | Description                                                               |
-| --------------------- | ------------------------------------------------------------------------- |
-| `<ui-dialog>`         | Mandatory. The root DOM element containing the surface and the container. |
-| `<ui-dialog-title>`   | Optional. Brief summary of the dialog's purpose.                          |
-| `<ui-dialog-content>` | Optional. Primary content area. May contain a list, a form, or prose.     |
-| `<ui-dialog-actions>` | Optional. Footer area containing the dialog's action buttons.             |
+| Component             | Description                                    |
+| --------------------- | ---------------------------------------------- |
+| `<ui-dialog>`         | 对话框容器元素                                 |
+| `<ui-dialog-title>`   | 对话框标题元素                                 |
+| `<ui-dialog-content>` | 对话框主要内容区域。可能包含列表，表单或文章。 |
+| `<ui-dialog-actions>` | 对话框底部区域，包含对话框的操作按钮。         |

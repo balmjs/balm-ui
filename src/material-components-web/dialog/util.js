@@ -26,6 +26,25 @@ export function createFocusTrapInstance(surfaceEl, focusTrapFactory, initialFocu
 export function isScrollable(el) {
     return el ? el.scrollHeight > el.offsetHeight : false;
 }
+/**
+ * For scrollable content, returns true if the content has not been scrolled
+ * (that is, the scroll content is as the "top"). This is used in full-screen
+ * dialogs, where the scroll divider is expected only to appear once the
+ * content has been scrolled "underneath" the header bar.
+ */
+export function isScrollAtTop(el) {
+    return el ? el.scrollTop === 0 : false;
+}
+/**
+ * For scrollable content, returns true if the content has been scrolled all the
+ * way to the bottom. This is used in full-screen dialogs, where the footer
+ * scroll divider is expected only to appear when the content is "cut-off" by
+ * the footer bar.
+ */
+export function isScrollAtBottom(el) {
+    return el ? Math.ceil(el.scrollHeight - el.scrollTop) === el.clientHeight :
+        false;
+}
 export function areTopsMisaligned(els) {
     var tops = new Set();
     [].forEach.call(els, function (el) { return tops.add(el.offsetTop); });

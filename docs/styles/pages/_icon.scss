@@ -17,6 +17,9 @@
     .mdc-text-field {
       flex: 1;
     }
+    .mdc-select__anchor {
+      width: auto;
+    }
   }
   #search {
     flex: 1;
@@ -33,7 +36,7 @@
     overflow: hidden;
   }
   // Icon list
-  .mdc-list-group__subheader {
+  .mdc-deprecated-list-group__subheader {
     text-transform: capitalize;
   }
   .mdc-image-list__item {

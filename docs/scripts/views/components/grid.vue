@@ -10,7 +10,7 @@
       </template>
       <span class="catalog-title">Layout Grid</span>
       <template #toolbar="{ toolbarItemClass }">
-        <top-toolbar :item-class="toolbarItemClass"></top-toolbar>
+        <top-app-toolbar :item-class="toolbarItemClass"></top-app-toolbar>
       </template>
     </ui-top-app-bar>
 
@@ -100,9 +100,9 @@
 
         <div class="demo-grid-legend">Grid of 1 column wide items</div>
         <ui-grid class="demo-grid">
-          <ui-grid-cell v-for="i in 12" :key="i" class="demo-cell" columns="1"
-            >1</ui-grid-cell
-          >
+          <ui-grid-cell v-for="i in 12" :key="i" class="demo-cell" columns="1">
+            1
+          </ui-grid-cell>
         </ui-grid>
         <ui-snippet :code="$store.demos[2]"></ui-snippet>
 
@@ -118,15 +118,15 @@
           Grid of items with tweaks at different screen sizes
         </div>
         <ui-grid class="demo-grid">
-          <ui-grid-cell class="demo-cell" :columns="{ default: 6, tablet: 8 }"
-            >6 (8 tablet)</ui-grid-cell
-          >
-          <ui-grid-cell class="demo-cell" :columns="{ default: 4, tablet: 6 }"
-            >4 (6 tablet)</ui-grid-cell
-          >
-          <ui-grid-cell class="demo-cell" :columns="{ default: 2, phone: 4 }"
-            >2 (4 phone)</ui-grid-cell
-          >
+          <ui-grid-cell class="demo-cell" :columns="{ default: 6, tablet: 8 }">
+            6 (8 tablet)
+          </ui-grid-cell>
+          <ui-grid-cell class="demo-cell" :columns="{ default: 4, tablet: 6 }">
+            4 (6 tablet)
+          </ui-grid-cell>
+          <ui-grid-cell class="demo-cell" :columns="{ default: 2, phone: 4 }">
+            2 (4 phone)
+          </ui-grid-cell>
         </ui-grid>
         <ui-snippet :code="$store.demos[4]"></ui-snippet>
 
@@ -248,7 +248,7 @@
 <script>
 import { ref, reactive, toRefs, onMounted, onBeforeUnmount } from 'vue';
 import { useStore } from 'balm-ui';
-import TopToolbar from '@/components/top-toolbar';
+import TopAppToolbar from '@/components/top-app-toolbar';
 
 const wideScreenSize = 1440;
 
@@ -322,7 +322,7 @@ export default {
     titleTemplate: '%s - Layout Grid'
   },
   components: {
-    TopToolbar
+    TopAppToolbar
   },
   setup() {
     const store = useStore();

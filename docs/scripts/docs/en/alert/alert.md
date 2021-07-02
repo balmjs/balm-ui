@@ -4,11 +4,17 @@
 
 ### Props
 
-| Name            | Type    | Default | Description                                                   |
-| --------------- | ------- | ------- | ------------------------------------------------------------- |
-| `state`         | string  | `''`    | State type. `['success', 'info', 'warning', 'error', 'help']` |
-| `stateOutlined` | boolean | `false` | Show outlined state.                                          |
-| `closable`      | boolean | `false` | Whether alert can be closed.                                  |
+| Name            | Type    | Default | Description                  |
+| --------------- | ------- | ------- | ---------------------------- |
+| `state`         | string  | `''`    | State type.                  |
+| `stateOutlined` | boolean | `false` | Show outlined state.         |
+| `closable`      | boolean | `false` | Whether alert can be closed. |
+
+```ts
+interface Alert {
+  state: 'success' | 'info' | 'warning' | 'error' | 'help';
+}
+```
 
 ### Slots
 

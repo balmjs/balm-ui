@@ -1,6 +1,6 @@
 <template>
   <section class="component-section">
-    <h6 :class="$tt('headline6')">Select</h6>
+    <h6 :class="$tt('headline6')">Select (subtitle1)</h6>
     <div class="component-wrapper select-component">
       <ui-form-field>
         <ui-select :options="options">Label</ui-select>
@@ -12,8 +12,9 @@
           :options="options"
           default-label="Select"
           :default-value="0"
-          >Label</ui-select
         >
+          Label
+        </ui-select>
       </ui-form-field>
     </div>
   </section>

@@ -1,4 +1,3 @@
-import { defineAsyncComponent } from 'vue';
 import Home from '@/views/home';
 // Layout
 import BlankLayout from '@/views/layouts/blank';
@@ -14,10 +13,10 @@ import feedbackRoutes from './feedback';
 import miscRoutes from './misc';
 import testRoutes from './test';
 // Pages
-const Store = defineAsyncComponent(() => import('@/views/plugins/store'));
-const Utils = defineAsyncComponent(() => import('@/views/utils'));
-const Donate = defineAsyncComponent(() => import('@/views/donate'));
-const NotFound = defineAsyncComponent(() => import('@/views/not-found'));
+const Store = () => import('@/views/plugins/store');
+const Utils = () => import('@/views/utils');
+const Donate = () => import('@/views/donate');
+const NotFound = () => import('@/views/not-found');
 
 const routes = [
   {

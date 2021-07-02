@@ -5,7 +5,6 @@ import {
   createEmoji,
   replaceElementToString
 } from './utils';
-import { onBlurEmojiHandler } from './module';
 
 const emojiRegExp = /(:\w+:)|(\[\w+\])/g;
 
@@ -37,7 +36,7 @@ class Emotion {
 
         emojiData[emotion.title] = emojiList;
       } else {
-        console.warn('[UiEditor] Invalid emotions format');
+        console.warn('[UiEditor]', 'Invalid emotions format');
         // reset
         emojiTypes = [];
         emojiData = {};
@@ -45,10 +44,6 @@ class Emotion {
         break;
       }
     }
-
-    // console.log('emojiTypes', emojiTypes);
-    // console.log('emojiData', emojiData);
-    // console.log('emojiMap', emojiMap);
   }
 
   static getTypes() {
@@ -67,8 +62,6 @@ class Emotion {
     emojiTypes = [];
     emojiData = {};
     emojiMap = {};
-
-    document.removeEventListener('click', onBlurEmojiHandler);
   }
 
   static encode(html) {
@@ -109,7 +102,8 @@ class Emotion {
       }
     } catch (e) {
       console.warn(
-        '[UiEditor] - `decodeEmoji`: The content must be an async data'
+        '[UiEditor]',
+        `The param of the 'decodeEmoji' method must be an async data`
       );
     }
 

@@ -37,7 +37,7 @@ var MDCDialog = /** @class */ (function (_super) {
         get: function () {
             return this.foundation.isOpen();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDialog.prototype, "escapeKeyAction", {
@@ -47,7 +47,7 @@ var MDCDialog = /** @class */ (function (_super) {
         set: function (action) {
             this.foundation.setEscapeKeyAction(action);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDialog.prototype, "scrimClickAction", {
@@ -57,7 +57,7 @@ var MDCDialog = /** @class */ (function (_super) {
         set: function (action) {
             this.foundation.setScrimClickAction(action);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDialog.prototype, "autoStackButtons", {
@@ -67,7 +67,7 @@ var MDCDialog = /** @class */ (function (_super) {
         set: function (autoStack) {
             this.foundation.setAutoStackButtons(autoStack);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCDialog.attachTo = function (root) {
@@ -80,17 +80,17 @@ var MDCDialog = /** @class */ (function (_super) {
         if (!container) {
             throw new Error("Dialog component requires a " + strings.CONTAINER_SELECTOR + " container element");
         }
-        this.container_ = container;
-        this.content_ =
+        this.container = container;
+        this.content =
             this.root.querySelector(strings.CONTENT_SELECTOR);
-        this.buttons_ = [].slice.call(this.root.querySelectorAll(strings.BUTTON_SELECTOR));
-        this.defaultButton_ = this.root.querySelector("[" + strings.BUTTON_DEFAULT_ATTRIBUTE + "]");
-        this.focusTrapFactory_ = focusTrapFactory;
-        this.buttonRipples_ = [];
+        this.buttons = [].slice.call(this.root.querySelectorAll(strings.BUTTON_SELECTOR));
+        this.defaultButton = this.root.querySelector("[" + strings.BUTTON_DEFAULT_ATTRIBUTE + "]");
+        this.focusTrapFactory = focusTrapFactory;
+        this.buttonRipples = [];
         try {
-            for (var _b = __values(this.buttons_), _c = _b.next(); !_c.done; _c = _b.next()) {
+            for (var _b = __values(this.buttons), _c = _b.next(); !_c.done; _c = _b.next()) {
                 var buttonEl = _c.value;
-                this.buttonRipples_.push(new MDCRipple(buttonEl));
+                this.buttonRipples.push(new MDCRipple(buttonEl));
             }
         }
         catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -103,33 +103,32 @@ var MDCDialog = /** @class */ (function (_super) {
     };
     MDCDialog.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.focusTrap_ = util.createFocusTrapInstance(this.container_, this.focusTrapFactory_, this.getInitialFocusEl_() || undefined);
-        this.handleClick_ = this.foundation.handleClick.bind(this.foundation);
-        this.handleKeydown_ = this.foundation.handleKeydown.bind(this.foundation);
-        this.handleDocumentKeydown_ =
+        this.focusTrap = util.createFocusTrapInstance(this.container, this.focusTrapFactory, this.getInitialFocusEl() || undefined);
+        this.handleClick = this.foundation.handleClick.bind(this.foundation);
+        this.handleKeydown = this.foundation.handleKeydown.bind(this.foundation);
+        this.handleDocumentKeydown =
             this.foundation.handleDocumentKeydown.bind(this.foundation);
-        this.handleLayout_ = this.layout.bind(this);
-        var LAYOUT_EVENTS = ['resize', 'orientationchange'];
-        this.handleOpening_ = function () {
-            LAYOUT_EVENTS.forEach(function (evtType) { return window.addEventListener(evtType, _this.handleLayout_); });
-            document.addEventListener('keydown', _this.handleDocumentKeydown_);
+        // this.handleLayout = this.layout.bind(this);
+        this.handleOpening = function () {
+            document.addEventListener('keydown', _this.handleDocumentKeydown);
         };
-        this.handleClosing_ = function () {
-            LAYOUT_EVENTS.forEach(function (evtType) { return window.removeEventListener(evtType, _this.handleLayout_); });
-            document.removeEventListener('keydown', _this.handleDocumentKeydown_);
+        this.handleClosing = function () {
+            document.removeEventListener('keydown', _this.handleDocumentKeydown);
         };
-        this.listen('click', this.handleClick_);
-        this.listen('keydown', this.handleKeydown_);
-        this.listen(strings.OPENING_EVENT, this.handleOpening_);
-        this.listen(strings.CLOSING_EVENT, this.handleClosing_);
+        this.listen('click', this.handleClick);
+        this.listen('keydown', this.handleKeydown);
+        this.listen(strings.OPENING_EVENT, this.handleOpening);
+        this.listen(strings.CLOSING_EVENT, this.handleClosing);
     };
     MDCDialog.prototype.destroy = function () {
-        this.unlisten('click', this.handleClick_);
-        this.unlisten('keydown', this.handleKeydown_);
-        this.unlisten(strings.OPENING_EVENT, this.handleOpening_);
-        this.unlisten(strings.CLOSING_EVENT, this.handleClosing_);
-        this.handleClosing_();
-        this.buttonRipples_.forEach(function (ripple) { return ripple.destroy(); });
+        this.unlisten('click', this.handleClick);
+        this.unlisten('keydown', this.handleKeydown);
+        this.unlisten(strings.OPENING_EVENT, this.handleOpening);
+        this.unlisten(strings.CLOSING_EVENT, this.handleClosing);
+        this.handleClosing();
+        this.buttonRipples.forEach(function (ripple) {
+            ripple.destroy();
+        });
         _super.prototype.destroy.call(this);
     };
     MDCDialog.prototype.layout = function () {
@@ -149,9 +148,11 @@ var MDCDialog = /** @class */ (function (_super) {
         var adapter = {
             addBodyClass: function (className) { return document.body.classList.add(className); },
             addClass: function (className) { return _this.root.classList.add(className); },
-            areButtonsStacked: function () { return util.areTopsMisaligned(_this.buttons_); },
+            areButtonsStacked: function () { return util.areTopsMisaligned(_this.buttons); },
             clickDefaultButton: function () {
-                return _this.defaultButton_ && _this.defaultButton_.click();
+                if (_this.defaultButton && !_this.defaultButton.disabled) {
+                    _this.defaultButton.click();
+                }
             },
             eventTargetMatches: function (target, selector) {
                 return target ? matches(target, selector) : false;
@@ -163,27 +164,53 @@ var MDCDialog = /** @class */ (function (_super) {
                 var element = closest(evt.target, "[" + strings.ACTION_ATTRIBUTE + "]");
                 return element && element.getAttribute(strings.ACTION_ATTRIBUTE);
             },
-            getInitialFocusEl: function () { return _this.getInitialFocusEl_(); },
+            getInitialFocusEl: function () { return _this.getInitialFocusEl(); },
             hasClass: function (className) { return _this.root.classList.contains(className); },
-            isContentScrollable: function () { return util.isScrollable(_this.content_); },
+            isContentScrollable: function () { return util.isScrollable(_this.content); },
             notifyClosed: function (action) { return _this.emit(strings.CLOSED_EVENT, action ? { action: action } : {}); },
             notifyClosing: function (action) { return _this.emit(strings.CLOSING_EVENT, action ? { action: action } : {}); },
             notifyOpened: function () { return _this.emit(strings.OPENED_EVENT, {}); },
             notifyOpening: function () { return _this.emit(strings.OPENING_EVENT, {}); },
-            releaseFocus: function () { return _this.focusTrap_.releaseFocus(); },
+            releaseFocus: function () {
+                _this.focusTrap.releaseFocus();
+            },
             removeBodyClass: function (className) { return document.body.classList.remove(className); },
             removeClass: function (className) { return _this.root.classList.remove(className); },
             reverseButtons: function () {
-                _this.buttons_.reverse();
-                _this.buttons_.forEach(function (button) {
+                _this.buttons.reverse();
+                _this.buttons.forEach(function (button) {
                     button.parentElement.appendChild(button);
                 });
             },
-            trapFocus: function () { return _this.focusTrap_.trapFocus(); },
+            trapFocus: function () {
+                _this.focusTrap.trapFocus();
+            },
+            registerContentEventHandler: function (evt, handler) {
+                if (_this.content instanceof HTMLElement) {
+                    _this.content.addEventListener(evt, handler);
+                }
+            },
+            deregisterContentEventHandler: function (evt, handler) {
+                if (_this.content instanceof HTMLElement) {
+                    _this.content.removeEventListener(evt, handler);
+                }
+            },
+            isScrollableContentAtTop: function () {
+                return util.isScrollAtTop(_this.content);
+            },
+            isScrollableContentAtBottom: function () {
+                return util.isScrollAtBottom(_this.content);
+            },
+            registerWindowEventHandler: function (evt, handler) {
+                window.addEventListener(evt, handler);
+            },
+            deregisterWindowEventHandler: function (evt, handler) {
+                window.removeEventListener(evt, handler);
+            },
         };
         return new MDCDialogFoundation(adapter);
     };
-    MDCDialog.prototype.getInitialFocusEl_ = function () {
+    MDCDialog.prototype.getInitialFocusEl = function () {
         return this.root.querySelector("[" + strings.INITIAL_FOCUS_ATTRIBUTE + "]");
     };
     return MDCDialog;

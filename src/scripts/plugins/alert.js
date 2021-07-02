@@ -1,5 +1,5 @@
-import { createApp } from 'vue';
-import MdcDialog from '../components/modal/mdc-dialog';
+import createVueApp from '../config/ssr';
+import MdcDialog from '../components/dialog/mdc-dialog.vue';
 import { getOptions, createModal, removeModel } from '../utils/modal';
 
 // Define alert dialog constants
@@ -34,8 +34,8 @@ const template = `<mdc-dialog class="mdc-alert-dialog" :open="open" :options="op
 function createAlertDialog(options, done) {
   alertEl = createModal(UI_ALERT_DIALOG.id);
 
-  alertApp = createApp({
-    name: 'BalmUIAlert',
+  alertApp = createVueApp({
+    name: 'AlertDialog',
     components: {
       MdcDialog
     },
@@ -90,11 +90,11 @@ function install(app, options = {}) {
   app.provide('alert', alertDialog);
 }
 
-const BalmUI_AlertPlugin = {
+const $alert = {
   install
 };
 
 const useAlert = () => alertDialog;
 
-export default BalmUI_AlertPlugin;
+export default $alert;
 export { install, useAlert };

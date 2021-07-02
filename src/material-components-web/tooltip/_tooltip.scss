@@ -21,12 +21,14 @@
 //
 
 // Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
+// stylelint-disable selector-class-pattern --
+// Internal styling for Tooltip MDC component.
 
-@use '../animation/functions' as animation-functions;
+@use 'sass:math';
 @use '../elevation/mixins' as elevation-mixins;
 @use '../feature-targeting/feature-targeting';
 @use '../rtl/rtl' as rtl;
+@use '../dom/mixins' as dom-mixins;
 @use './tooltip-theme';
 @use '../typography/typography';
 
@@ -40,20 +42,21 @@ $_min-height: 24px;
 // LINT.ThenChange(constants.ts:tooltip-dimensions)
 $_label-type-scale: caption;
 $_line-height: 16px;
+// LINT.IfChange(tooltip-anim-scale)
+$_animation-scale: 0.8;
+// LINT.ThenChange(constants.ts:tooltip-anim-scale);
 
 // Rich Tooltip variables
-$_rich_corner_radius: 8px;
-$_rich_padding: 8px;
+$_rich_corner_radius: 4px;
+$_rich_line-height: 20px;
+$_rich_max-width: 320px;
 $_content-margin-x: 8px;
-$_content-type-scale: body1;
+$_content-type-scale: body2;
 $_title-type-scale: subtitle2;
-
-$enter-duration: 150ms;
-$exit-duration: 75ms;
+$_caret-size: 24px;
 
 @mixin core-styles($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
-  $feat-animation: feature-targeting.create-target($query, animation);
 
   @include tooltip-theme.shape-radius(
     tooltip-theme.$border-radius,
@@ -73,11 +76,35 @@ $exit-duration: 75ms;
     $query: $query
   );
   @include tooltip-theme.z-index(tooltip-theme.$z-index, $query: $query);
+  @include tooltip-theme.show-transition(
+    tooltip-theme.$enter-duration,
+    $query: $query
+  );
+  @include tooltip-theme.hide-transition(
+    tooltip-theme.$exit-duration,
+    $query: $query
+  );
+  @include tooltip-theme.rich-text-ink-color(
+    tooltip-theme.$rich-title-text-color,
+    tooltip-theme.$rich-content-text-color,
+    tooltip-theme.$rich-content-link-color,
+    $query: $query
+  );
 
   .mdc-tooltip {
     @include feature-targeting.targets($feat-structure) {
       position: fixed;
       display: none;
+    }
+    @include tooltip-theme.rich-fill-color(
+      tooltip-theme.$rich-background-color,
+      $query: $query
+    );
+  }
+
+  .mdc-tooltip-wrapper--rich {
+    @include feature-targeting.targets($feat-structure) {
+      position: relative;
     }
   }
 
@@ -89,25 +116,23 @@ $exit-duration: 75ms;
     }
 
     &.mdc-tooltip--rich {
-      @include elevation-mixins.elevation(2, $query: $query);
-      @include tooltip-theme.fill-color(
-        tooltip-theme.$rich-background-color,
-        $query: $query
-      );
-      @include tooltip-theme.rich-text-ink-color(
-        tooltip-theme.$rich-title-text-color,
-        tooltip-theme.$rich-content-text-color,
-        $query: $query
-      );
       @include feature-targeting.targets($feat-structure) {
         display: inline-block;
-        border-radius: $_rich_corner_radius;
-        padding: $_rich_padding $_rich_padding;
+        // Moves the rich tooltip out of the viewport/parent element initially
+        // so that the initial width is not affected and a 'correct' width can
+        // be used to calculate the position of the tooltip.
+        /* @noflip */
+        left: -$_rich_max_width;
+        position: absolute;
       }
     }
   }
 
   .mdc-tooltip__surface {
+    &::before {
+      @include dom-mixins.transparent-border($query: $query);
+    }
+
     @include typography.typography(
       $_label-type-scale,
       $exclude-props: (line-height),
@@ -123,17 +148,22 @@ $exit-duration: 75ms;
       max-height: $_max-height;
       box-sizing: border-box;
       overflow: hidden;
-      transform: scale(0.8);
       text-align: center;
-      opacity: 0;
-      outline: 1px solid transparent;
     }
 
     .mdc-tooltip--rich & {
+      @include elevation-mixins.overlay-dimensions(100%, $query: $query);
+      @include elevation-mixins.elevation(2, $query: $query);
       @include feature-targeting.targets($feat-structure) {
+        align-items: flex-start;
+        border-radius: $_rich_corner_radius;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        line-height: $_rich_line-height;
+        min-height: $_min-height;
+        min-width: $_min-width;
+        max-width: $_rich_max-width;
+        position: relative;
       }
     }
 
@@ -148,34 +178,8 @@ $exit-duration: 75ms;
       }
     }
 
-    .mdc-tooltip--shown & {
-      @include feature-targeting.targets($feat-structure) {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .mdc-tooltip--showing-transition & {
-      @include feature-targeting.targets($feat-animation) {
-        transition: animation-functions.enter(opacity, $enter-duration),
-          animation-functions.enter(transform, $enter-duration);
-      }
-    }
-
-    .mdc-tooltip--hide & {
-      @include feature-targeting.targets($feat-structure) {
-        transform: scale(1);
-      }
-    }
-
-    .mdc-tooltip--hide-transition & {
-      @include feature-targeting.targets($feat-animation) {
-        transition: animation-functions.exit-permanent(opacity, $exit-duration);
-      }
-    }
-
     .mdc-tooltip__title {
-      @include typography.text-baseline($top: 20px, $query: $query);
+      @include typography.text-baseline($top: 28px, $query: $query);
       @include typography.typography(
         $_title-type-scale,
         $exclude-props: (line-height),
@@ -194,8 +198,64 @@ $exit-duration: 75ms;
         $query: $query
       );
       @include feature-targeting.targets($feat-structure) {
+        max-width: calc(100% - 2 * #{$_content-margin-x});
         margin: 0 $_content-margin-x 16px $_content-margin-x;
+        /* @noflip */
+        text-align: left;
+        @include rtl.rtl {
+          /* @noflip */
+          text-align: right;
+        }
       }
+    }
+
+    .mdc-tooltip__content-link {
+      @include feature-targeting.targets($feat-structure) {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .mdc-tooltip__surface-animation {
+    @include feature-targeting.targets($feat-structure) {
+      opacity: 0;
+      transform: scale($_animation-scale);
+      will-change: transform, opacity;
+    }
+
+    .mdc-tooltip--shown & {
+      @include feature-targeting.targets($feat-structure) {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .mdc-tooltip--hide & {
+      @include feature-targeting.targets($feat-structure) {
+        transform: scale(1);
+      }
+    }
+  }
+
+  .mdc-tooltip__caret-surface-top,
+  .mdc-tooltip__caret-surface-bottom {
+    @include elevation-mixins.overlay-dimensions(100%, $query: $query);
+    @include feature-targeting.targets($feat-structure) {
+      position: absolute;
+      height: $_caret-size;
+      width: $_caret-size;
+      // We override this transform in MDCTooltipFoundation, however these
+      // styles must be present before the override happens in order to
+      // calculate the correct boundingClientRect (with the transforms applied).
+      transform: rotate(35deg) skewY(20deg) scaleX(math.cos(20deg));
+    }
+  }
+
+  .mdc-tooltip__caret-surface-bottom {
+    @include elevation-mixins.elevation(2, $query: $query);
+    @include feature-targeting.targets($feat-structure) {
+      outline: 1px solid transparent;
+      z-index: -1;
     }
   }
 }

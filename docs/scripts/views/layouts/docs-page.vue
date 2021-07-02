@@ -8,10 +8,14 @@
     </header>
 
     <ui-toc-affix v-if="name === 'icon'">
-      <ui-tab v-anchor:href="'#ui-icons'" class="v-anchor">Icons</ui-tab>
+      <ui-tab v-anchor:href="'#ui-icons'" class="v-anchor">{{
+        $t('page.icons')
+      }}</ui-tab>
     </ui-toc-affix>
     <ui-toc-affix v-else-if="name === 'theme'">
-      <ui-tab v-anchor:href="'#ui-colors'" class="v-anchor">Colors</ui-tab>
+      <ui-tab v-anchor:href="'#ui-colors'" class="v-anchor">{{
+        $t('page.colors')
+      }}</ui-tab>
     </ui-toc-affix>
     <ui-toc-affix
       v-else
@@ -133,7 +137,7 @@ export default {
       switch (key) {
         case 'css':
           let filename = `${key}/${name}`;
-          let docs = require(`@/docs/${filename}.md`);
+          let docs = require(`@/docs/${filename}.md`).default;
           result = docs;
           break;
         case 'usage':
@@ -144,20 +148,22 @@ export default {
           result = {};
           usageDocs.forEach((usageDoc) => {
             let filename = `${key}/${name}/${usageDoc}`;
-            let docs = require(`@/docs/${filename}.md`);
+            let docs = require(`@/docs/${filename}.md`).default;
             result[usageDoc] = docs;
           });
           break;
         default:
           if (Array.isArray(key)) {
-            result = key.map((apiDoc) => {
-              let filename = `${this.$store.lang}/${name}/${apiDoc}`;
-              let docs = require(`@/docs/${filename}.md`);
+            // apidocs
+            result = key.map((apiDocs) => {
+              let filename = `${this.$store.lang}/${name}/${apiDocs}`;
+              let docs = require(`@/docs/${filename}.md`).default;
               return docs;
             });
           } else {
+            // intro
             let filename = `${this.$store.lang}/${name}/${key}`;
-            let docs = require(`@/docs/${filename}.md`);
+            let docs = require(`@/docs/${filename}.md`).default;
             result = docs;
           }
       }
@@ -184,7 +190,13 @@ export default {
         result.usage = this.getDocs(name, 'usage');
 
         if (options.apis) {
-          const apidocs = options.apis.length ? options.apis : [name];
+          let apidocs;
+          if (options.apis.length) {
+            apidocs = options.apis;
+          } else {
+            const keyName = this.type === 'directive' ? `v-${name}` : name;
+            apidocs = [keyName];
+          }
           result.apis = this.getDocs(name, apidocs);
         }
 

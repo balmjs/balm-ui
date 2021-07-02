@@ -4,17 +4,17 @@
 
 ### Props
 
-| Name        | Type    | Default | Description                                                                                                                            |
-| ----------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `fullBleed` | boolean | `false` | Removes the action area's padding and causes its only child (an `mdc-card__action` element) to consume 100% of the action area's width |
+| Name        | Type    | Default | Description                                    |
+| ----------- | ------- | ------- | ---------------------------------------------- |
+| `fullBleed` | boolean | `false` | 删除操作区域的填充，并使其操作区域宽度为 100％ |
 
 ### Slots
 
-| Name      | Props | Description                                                |
-| --------- | ----- | ---------------------------------------------------------- |
-| `default` |       | The default slot holds the card actions parent components. |
+| Name      | Props | Description                  |
+| --------- | ----- | ---------------------------- |
+| `default` |       | default 插槽包含卡片动作组件 |
 
-**Child components:**
+**子组件：**
 
 - `<ui-card-buttons>`
 - `<ui-card-icons>`

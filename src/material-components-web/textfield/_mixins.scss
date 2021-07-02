@@ -21,11 +21,15 @@
 //
 
 // Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
+// stylelint-disable selector-class-pattern --
+// TODO: document why this disable is neccessary
 
+@use 'sass:math';
 @use 'sass:list';
 @use 'sass:meta';
+@use '../animation/animation';
 @use '../density/functions' as density-functions;
+@use '../dom/dom';
 @use '../floating-label/mixins' as floating-label-mixins;
 @use '../floating-label/variables' as floating-label-variables;
 @use '../line-ripple/mixins' as line-ripple-mixins;
@@ -44,7 +48,6 @@
 @use 'icon/mixins' as icon-mixins;
 @use 'icon/variables' as icon-variables;
 @use './variables';
-@use './functions';
 @use '../rtl/mixins' as rtl-mixins;
 
 @mixin core-styles($query: feature-targeting.all()) {
@@ -234,7 +237,8 @@
   }
 
   // postcss-bem-linter: define text-field-helper-text
-  // stylelint-disable plugin/selector-bem-pattern
+  // stylelint-disable plugin/selector-bem-pattern --
+  // TODO: document why this disable is neccessary
   .mdc-text-field-helper-line {
     @include feature-targeting.targets($feat-structure) {
       display: flex;
@@ -253,7 +257,8 @@
   // postcss-bem-linter: end
 
   // mdc-form-field tweaks to align text field label correctly
-  // stylelint-disable selector-max-type
+  // stylelint-disable selector-max-type --
+  // TODO: document why this disable is neccessary
   .mdc-form-field > .mdc-text-field + label {
     @include feature-targeting.targets($feat-structure) {
       align-self: flex-start;
@@ -415,12 +420,12 @@
   );
   $no-label-margin-top: density-functions.prop-value(
     $density-config: variables.$textarea-filled-no-label-density-config,
-    $density-scale: $density-scale / 2,
+    $density-scale: math.div($density-scale, 2),
     $property-name: margin-top,
   );
   $no-label-margin-bottom: density-functions.prop-value(
     $density-config: variables.$textarea-filled-no-label-density-config,
-    $density-scale: $density-scale / 2,
+    $density-scale: math.div($density-scale, 2),
     $property-name: margin-bottom,
   );
 
@@ -438,7 +443,7 @@
       $keyframe-suffix: text-field-filled-#{$density-scale};
       $label-top: density-functions.prop-value(
         $density-config: variables.$textarea-filled-label-density-config,
-        $density-scale: $density-scale / 2,
+        $density-scale: math.div($density-scale, 2),
         $property-name: top,
       );
 
@@ -533,7 +538,7 @@
   $keyframe-suffix: text-field-outlined-#{$density-scale};
   $label-top: density-functions.prop-value(
     $density-config: variables.$textarea-outlined-label-density-config,
-    $density-scale: $density-scale / 2,
+    $density-scale: math.div($density-scale, 2),
     $property-name: top,
   );
   $textfield-height: density-functions.prop-value(
@@ -543,12 +548,12 @@
   );
   $margin-top: density-functions.prop-value(
     $density-config: variables.$textarea-outlined-density-config,
-    $density-scale: $density-scale / 2,
+    $density-scale: math.div($density-scale, 2),
     $property-name: margin-top,
   );
   $margin-bottom: density-functions.prop-value(
     $density-config: variables.$textarea-outlined-density-config,
-    $density-scale: $density-scale / 2,
+    $density-scale: math.div($density-scale, 2),
     $property-name: margin-bottom,
   );
 
@@ -1629,7 +1634,7 @@
     $query: $query
   );
 
-  @media screen and (-ms-high-contrast: active) {
+  @include dom.forced-colors-mode {
     @include placeholder-color_(GrayText, $query: $query);
     @include label-ink-color_(GrayText, $query: $query);
     @include helper-text-mixins.helper-text-color_(GrayText, $query: $query);
@@ -1922,7 +1927,9 @@
     max-height: 100%;
     max-width: 100%;
     min-height: variables.$height;
-    // stylelint-disable declaration-block-no-duplicate-properties
+    // stylelint-disable declaration-block-no-duplicate-properties --
+    // TODO: document why this disable is neccessary
+
     // 'stretch' is the preferred rule here. It will allow the textarea to grow
     // to the min/max width of the container, but if an explicit width is set,
     // it cannot be resized horizontally.
@@ -2181,7 +2188,7 @@
   }
 
   @include feature-targeting.targets($feat-animation) {
-    transition: functions.transition(opacity);
+    transition: animation.standard(opacity, 150ms);
   }
 }
 
@@ -2225,7 +2232,7 @@
   $feat-structure: feature-targeting.create-target($query, structure);
 
   @include feature-targeting.targets($feat-animation) {
-    transition: functions.transition(opacity, $duration: 67ms);
+    transition: animation.standard(opacity, 67ms);
   }
 
   @include feature-targeting.targets($feat-structure) {

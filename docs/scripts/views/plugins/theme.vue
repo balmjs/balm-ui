@@ -2,12 +2,12 @@
   <docs-page type="plugin" name="theme" demo-count="4">
     <template #hero>
       <div class="hero-demos">
-        <ui-button raised :class="[$theme.getThemeClass('primary-bg')]"
-          >Primary</ui-button
-        >
-        <ui-button raised :class="[$theme.getThemeClass('secondary-bg')]"
-          >Secondary</ui-button
-        >
+        <ui-button raised :class="[$theme.getThemeClass('primary-bg')]">
+          Primary
+        </ui-button>
+        <ui-button raised :class="[$theme.getThemeClass('secondary-bg')]">
+          Secondary
+        </ui-button>
       </div>
     </template>
 
@@ -166,7 +166,7 @@
 <script>
 import { onMounted } from 'vue';
 import Clipboard from 'clipboard';
-import { useToast } from 'balm-ui/plugins/toast';
+import { useToast } from 'balm-ui';
 import COLOR from '@/config/color';
 import ButtonDemo from '@/demos/theme/button';
 import FabDemo from '@/demos/theme/fab';

@@ -1,24 +1,35 @@
-```js
-// Usage 1
-$toast(message);
+- `$toast(message)`
+- `$toast(options)`
 
-// Usage 2
-$toast(options);
-```
+  ```ts
+  type ToastMessage = string;
+
+  interface ToastOptions {
+    className?: string;
+    timeoutMs?: number;
+    message: ToastMessage;
+    position?: 'bottom' | 'center' | 'top';
+  }
+
+  interface VueInstance {
+    $toast(options: ToastMessage | ToastOptions): Promise<void>;
+  }
+  ```
 
 ### Options
 
-| Option      | Type   | Default | Description                                                                                                               |
-| ----------- | ------ | ------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `className` | string | `''`    | The custom class name for the toast.                                                                                      |
-| `timeoutMs` | number | `1800`  | The amount of time in milliseconds to show the toast. Value must be between `1000` and `4000` or an error will be thrown. |
-| `message`   | string | `''`    | The text message to display.                                                                                              |
+| Option      | Type   | Default    | Description                                                                          | Version |
+| ----------- | ------ | ---------- | ------------------------------------------------------------------------------------ | ------- |
+| `className` | string | `''`       | 自定义短消息提示的 class                                                             |         |
+| `timeoutMs` | number | `2750`     | 自动关闭的超时时间（以毫秒为单位）。值必须在 `2000` 和 `3500` 之间，否则会引发错误。 |         |
+| `message`   | string | `''`       | 短消息文本                                                                           |         |
+| `position`  | string | `'bottom'` | 短消息提示的位置                                                                     | 9.21.0  |
 
-### Use `$toast` without `.vue` component
+### 在非 `.vue` 组件中使用 `$toast`
 
 ```js
 import { useToast } from 'balm-ui';
-// OR
+// 或
 // import { useToast } from 'balm-ui/plugins/toast';
 
 const $toast = useToast();

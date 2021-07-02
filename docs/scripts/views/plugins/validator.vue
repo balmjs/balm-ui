@@ -12,22 +12,23 @@
           <ui-textfield v-model="formData.mobile">Mobile </ui-textfield>
         </ui-form-field>
         <ui-form-field class="form-item">
-          <ui-textfield v-model="formData.password" input-type="password"
-            >Password</ui-textfield
-          >
+          <ui-textfield v-model="formData.password" input-type="password">
+            Password
+          </ui-textfield>
         </ui-form-field>
         <ui-form-field class="form-item">
-          <ui-textfield v-model="formData.repassword" input-type="password"
-            >Repeat Password</ui-textfield
-          >
+          <ui-textfield v-model="formData.repassword" input-type="password">
+            Repeat Password
+          </ui-textfield>
         </ui-form-field>
         <ui-form-field>
           <ui-select
             v-model="formData.gender"
             :options="genderOptions"
             default-label="Unknown"
-            >Gender</ui-select
           >
+            Gender
+          </ui-select>
         </ui-form-field>
         <ui-alert v-if="message" state="error">{{ message }}</ui-alert>
         <ui-form-field class="form-item form-actions">
@@ -44,27 +45,28 @@
           <ui-textfield v-model="formData.mobile">Mobile </ui-textfield>
         </ui-form-field>
         <ui-form-field class="form-item">
-          <ui-textfield v-model="formData.password" input-type="password"
-            >Password</ui-textfield
-          >
+          <ui-textfield v-model="formData.password" input-type="password">
+            Password
+          </ui-textfield>
         </ui-form-field>
         <ui-form-field class="form-item">
-          <ui-textfield v-model="formData.repassword" input-type="password"
-            >Repeat Password</ui-textfield
-          >
+          <ui-textfield v-model="formData.repassword" input-type="password">
+            Repeat Password
+          </ui-textfield>
         </ui-form-field>
         <ui-form-field>
           <ui-select
             v-model="formData.gender"
             :options="genderOptions"
             default-label="Unknown"
-            >Gender</ui-select
           >
+            Gender
+          </ui-select>
         </ui-form-field>
         <ui-alert v-if="messages.length" state="error">
           <ul>
-            <li v-for="(message, index) in messages" :key="index">
-              {{ message }}
+            <li v-for="(msg, index) in messages" :key="index">
+              {{ msg }}
             </li>
           </ul>
         </ui-alert>
@@ -82,7 +84,8 @@
           <ui-textfield
             v-model="formData.mobile"
             helper-text-id="mobile-helper-text"
-            >Mobile
+          >
+            Mobile
           </ui-textfield>
           <ui-textfield-helper
             id="mobile-helper-text"
@@ -94,8 +97,9 @@
             v-model="formData.password"
             input-type="password"
             helper-text-id="password-helper-text"
-            >Password</ui-textfield
           >
+            Password
+          </ui-textfield>
           <ui-textfield-helper
             id="password-helper-text"
             v-model:validMsg="validMsg.password"
@@ -106,8 +110,9 @@
             v-model="formData.repassword"
             input-type="password"
             helper-text-id="repassword-helper-text"
-            >Repeat Password</ui-textfield
           >
+            Repeat Password
+          </ui-textfield>
           <ui-textfield-helper
             id="repassword-helper-text"
             v-model:validMsg="validMsg.repassword"
@@ -119,8 +124,9 @@
             :options="genderOptions"
             default-label="Unknown"
             helper-text-id="gender-helper-text"
-            >Gender</ui-select
           >
+            Gender
+          </ui-select>
           <ui-select-helper
             id="gender-helper-text"
             v-model:validMsg="validMsg.gender"
@@ -138,7 +144,6 @@
 <script>
 import { reactive, toRefs } from 'vue';
 import { useValidator } from 'balm-ui';
-import { useToast } from 'balm-ui/plugins/toast';
 
 const validations = {
   mobile: {
@@ -206,10 +211,10 @@ export default {
   },
   // using Composable API
   setup() {
-    const balmUI = useValidator();
+    const validator = useValidator();
 
     return {
-      balmUI,
+      validator,
       validations,
       genderOptions,
       ...toRefs(state)
@@ -217,21 +222,21 @@ export default {
   },
   methods: {
     onSubmit() {
-      let result = this.balmUI.validate(state.formData);
+      let result = this.validator.validate(state.formData);
       let { valid, message, messages, validMsg } = result;
       state.message = message;
       state.messages = messages;
       state.validMsg = validMsg;
 
       if (valid) {
-        this.$toast('gg');
+        this.$toast('ok');
       }
     }
   }
   // using Legacy API
   // data() {
   //   return {
-  //     balmUI: useValidator(),
+  //     validator: useValidator(),
   //     validations,
   //     genderOptions,
   //     formData: {
@@ -247,14 +252,14 @@ export default {
   // },
   // methods: {
   //   onSubmit() {
-  //     let result = this.balmUI.validate(this.formData);
+  //     let result = this.validator.validate(this.formData);
   //     let { valid, message, messages, validMsg } = result;
   //     this.message = message;
   //     this.messages = messages;
   //     this.validMsg = validMsg;
 
   //     if (valid) {
-  //       this.$toast('gg');
+  //       this.$toast('ok');
   //     }
   //   }
   // }

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import UI_GLOBAL from '../../config/constants';
+import UI_GLOBAL from '../icon/constants';
 import { UI_TAB_INDICATOR } from './constants';
 
 export default {
@@ -54,7 +54,7 @@ export default {
   },
   created() {
     if (!Object.values(UI_TAB_INDICATOR).includes(this.type)) {
-      console.warn('Invalid tab indicator type');
+      console.warn('[UiTabIndicator]', 'Invalid tab indicator type');
     }
   }
 };

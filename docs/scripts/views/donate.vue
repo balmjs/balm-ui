@@ -32,19 +32,21 @@
       <ul>
         <li>
           <a
-            href="https://www.patreon.com/balmjs"
-            target="_blank"
-            rel="noopener"
-            >Become a backer or sponsor via Patreon</a
-          >
-        </li>
-        <li>
-          <a
             href="https://opencollective.com/balmjs"
             target="_blank"
             rel="noopener"
-            >Become a backer or sponsor via OpenCollective</a
           >
+            Become a backer or sponsor via OpenCollective
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.patreon.com/balmjs"
+            target="_blank"
+            rel="noopener"
+          >
+            Become a backer or sponsor via Patreon
+          </a>
         </li>
       </ul>
     </section>

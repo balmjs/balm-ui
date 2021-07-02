@@ -9,24 +9,29 @@
       <div :class="['demo-theme-text-row demo-theme-bg--custom-light']">
         <span
           :class="['demo-theme-text-style', $theme.getTextClassOnLight('primary')]"
-          >Primary</span
         >
+          Primary
+        </span>
         <span
           :class="['demo-theme-text-style', $theme.getTextClassOnLight('secondary')]"
-          >Secondary</span
         >
+          Secondary
+        </span>
         <span
           :class="['demo-theme-text-style', $theme.getTextClassOnLight('hint')]"
-          >Hint</span
         >
+          Hint
+        </span>
         <span
           :class="['demo-theme-text-style', $theme.getTextClassOnLight('disabled')]"
-          >Disabled</span
         >
+          Disabled
+        </span>
         <span
           :class="['demo-theme-text-style', $theme.getTextClassOnLight('icon'), 'material-icons']"
-          >favorite</span
         >
+          favorite
+        </span>
       </div>
     </div>
   </fieldset>
@@ -40,24 +45,29 @@
       <div :class="['demo-theme-text-row demo-theme-bg--custom-dark']">
         <span
           :class="['demo-theme-text-style', $theme.getTextClassOnDark('primary')]"
-          >Primary</span
         >
+          Primary
+        </span>
         <span
           :class="['demo-theme-text-style', $theme.getTextClassOnDark('secondary')]"
-          >Secondary</span
         >
+          Secondary
+        </span>
         <span
           :class="['demo-theme-text-style', $theme.getTextClassOnDark('hint')]"
-          >Hint</span
         >
+          Hint
+        </span>
         <span
           :class="['demo-theme-text-style', $theme.getTextClassOnDark('disabled')]"
-          >Disabled</span
         >
+          Disabled
+        </span>
         <span
           :class="['demo-theme-text-style', $theme.getTextClassOnDark('icon'), 'material-icons']"
-          >favorite</span
         >
+          favorite
+        </span>
       </div>
     </div>
   </fieldset>

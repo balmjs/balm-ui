@@ -1,7 +1,7 @@
 ```html
-<ui-icon v-ripple.unbounded class="demo-surface" data-mdc-ripple-is-unbounded
-  >favorite</ui-icon
->
+<ui-icon v-ripple.unbounded class="demo-surface" data-mdc-ripple-is-unbounded>
+  favorite
+</ui-icon>
 ```
 
 ```html
@@ -9,8 +9,9 @@
   v-ripple:cssOnly.unbounded
   class="demo-surface"
   data-mdc-ripple-is-unbounded
-  >favorite</ui-icon
 >
+  favorite
+</ui-icon>
 ```
 
 ```css

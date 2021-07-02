@@ -1,20 +1,26 @@
 ## Manual custom grid for global
 
-```js
-$setGrid(property, size, value);
-```
+- `$setGrid(property, size, value)`
 
-| Param      | Type   | Default | Description                                                 |
-| ---------- | ------ | ------- | ----------------------------------------------------------- |
-| `property` | string | `''`    | Grid custom property: `margin`, `gutter` or `column-width`. |
-| `size`     | string | `''`    | The target platform: `desktop`, `tablet` or `phone`.        |
-| `value`    | string | `''`    | Grid custom value.                                          |
+  ```ts
+  type GridProperty = 'margin' | 'gutter' | 'column-width';
+  type GridSize = 'desktop' | 'tablet' | 'phone';
 
-### Grid properties
+  interface VueInstance {
+    $setGrid(property: GridProperty, size: GridSize, value: string): void;
+  }
+  ```
 
-- `margin`: the size of the grid margin.
-- `gutter`: the size of the gutter between cells.
-- `column-width`: the width of the column within the grid.
+| Param      | Type   | Default | Description           |
+| ---------- | ------ | ------- | --------------------- |
+| `property` | string | `''`    | Grid custom property. |
+| `size`     | string | `''`    | The target platform.  |
+| `value`    | string | `''`    | Grid custom value.    |
+
+- Grid properties
+  - `margin`: the size of the grid margin.
+  - `gutter`: the size of the gutter between cells.
+  - `column-width`: the width of the column within the grid.
 
 ### Use `$setGrid` without `.vue` component
 

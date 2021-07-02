@@ -4,53 +4,76 @@
 
 ### Props
 
-| Name                     | Type            | Default      | Description                                                                                                          |
-| ------------------------ | --------------- | ------------ | -------------------------------------------------------------------------------------------------------------------- |
-| `modelValue` (`v-model`) | boolean         | `false`      | Mandatory.                                                                                                           |
-| `items`                  | array           | `[]`         | Menu items. (one item format: `{ value: string, text: string, icon: string, disabled: boolean, selected: boolean }`) |
-| `quickOpen`              | boolean         | `false`      | Turn off menu open animations.                                                                                       |
-| `position`               | string          | `'TOP_LEFT'` | Menu position to the menu button.                                                                                    |
-| `distance`               | boolean, object | `false`      | Anchor margin. Value format: `{ top, right, bottom, left }`.                                                         |
-| `fixed`                  | boolean         | `false`      | Used to indicate that the menu is using fixed positioning.                                                           |
-| `fullwidth`              | boolean         | `false`      | Sets the menu surface's width to match that of its parent anchor. Do not use with `fixed` or if hoisting to body.    |
-| `cssOnly`                | boolean         | `false`      | Show static menu.                                                                                                    |
+| Name                     | Type    | Default      | Description                                          |
+| ------------------------ | ------- | ------------ | ---------------------------------------------------- |
+| `modelValue` (`v-model`) | boolean | `false`      | 菜单状态                                             |
+| `items`                  | array   | `[]`         | 设置菜单项对象列表                                   |
+| `quickOpen`              | boolean | `false`      | 关闭菜单打开的动画                                   |
+| `position`               | string  | `'TOP_LEFT'` | 设置菜单锚角位置（相对于菜单按钮）                   |
+| `distance`               | object  | `false`      | 锚边距。格式：`{ top, right, bottom, left }`         |
+| `fixed`                  | boolean | `false`      | 用于指定菜单使用固定位置                             |
+| `fullwidth`              | boolean | `false`      | 设置菜单的宽度以匹配其父锚的宽度（`fixed` 模式无效） |
+| `cssOnly`                | boolean | `false`      | 显示静态菜单                                         |
 
-- Anchor corners: `TOP_LEFT`, `TOP_RIGHT`, `BOTTOM_LEFT`, `BOTTOM_RIGHT`, `TOP_START`, `TOP_END`, `BOTTOM_START`, `BOTTOM_END`.
+- 菜单项对象的 keys:
+
+  ```ts
+  interface Item {
+    value?: string;
+    text: string;
+    icon?: string;
+    disabled?: boolean;
+    selected?: boolean;
+  }
+
+  interface Menu {
+    items: Item[];
+    position:
+      | 'TOP_LEFT'
+      | 'TOP_RIGHT'
+      | 'BOTTOM_LEFT'
+      | 'BOTTOM_RIGHT'
+      | 'TOP_START'
+      | 'TOP_END'
+      | 'BOTTOM_START'
+      | 'BOTTOM_END';
+  }
+  ```
 
 ### Slots
 
-| Name      | Props | Description                                     |
-| --------- | ----- | ----------------------------------------------- |
-| `default` |       | The default slot holds the menuitem components. |
+| Name      | Props | Description                       |
+| --------- | ----- | --------------------------------- |
+| `default` |       | default 插槽包含菜单项组件及 HTML |
 
 ### Events
 
-| Name                | Type                            | Description                              |
-| ------------------- | ------------------------------- | ---------------------------------------- |
-| `update:modelValue` | `function(modelValue: boolean)` | Emits when the menu is changed.          |
-| `selected`          | `function(menuitem: object)`    | Emits when an element has been selected. |
-| `closed`            | `function()`                    | Emits when the menu is closed.           |
-| `opened`            | `function()`                    | Emits when the menu is opened.           |
+| Name                | Type                               | Description        |
+| ------------------- | ---------------------------------- | ------------------ |
+| `update:modelValue` | `function(open: boolean)`          | 菜单变化时触发     |
+| `selected`          | `function(menuitem: SelectedItem)` | 菜单项被选中时触发 |
+| `closed`            | `function()`                       | 菜单关闭时触发     |
+| `opened`            | `function()`                       | 菜单打开时触发     |
 
-- `selected` event return data:
+- `selected` 事件返回数据：
 
-```ts
-{
-  index: number, // menuitem index
-  text: string, // menuitem text
-  value: string // selected value
-}
-```
+  ```ts
+  interface SelectedItem {
+    index: number; // 菜单项索引
+    text: string; // 菜单项文本
+    value: string; // 选中值
+  }
+  ```
 
-> NOTE: If you are not using `v-model`, you should listen for the menu using `@update:modelValue` and update the `modelValue` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听菜单状态并更新 `modelValue` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-menu v-model="open"></ui-menu>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-menu

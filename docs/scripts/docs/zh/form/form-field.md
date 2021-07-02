@@ -7,14 +7,14 @@
 
 ### Props
 
-| Name           | Type    | Default | Description                                                            |
-| -------------- | ------- | ------- | ---------------------------------------------------------------------- |
-| `nowrap`       | boolean | `false` | Force the text to stay on a single line and ellipse the overflow text. |
-| `alignEnd`     | boolean | `false` | Position the input after the label.                                    |
-| `spaceBetween` | boolean | `false` | Align the input and label space between.                               |
+| Name           | Type    | Default | Description                                  |
+| -------------- | ------- | ------- | -------------------------------------------- |
+| `nowrap`       | boolean | `false` | 强制文本显示一行，并使溢出的文本显示省略号。 |
+| `alignEnd`     | boolean | `false` | 将内容放置在 `<label>` 之后                  |
+| `spaceBetween` | boolean | `false` | 对齐内容和 `<label>` 之间的空间              |
 
 ### Slots
 
-| Name      | Props | Description                                                |
-| --------- | ----- | ---------------------------------------------------------- |
-| `default` |       | The default slot holds the form item and can contain HTML. |
+| Name      | Props | Description                       |
+| --------- | ----- | --------------------------------- |
+| `default` |       | default 插槽包含表单项内容及 HTML |

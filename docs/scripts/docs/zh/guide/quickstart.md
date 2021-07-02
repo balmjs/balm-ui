@@ -1,5 +1,14 @@
 # 快速入门
 
+## TOC
+
+0. <a href="javascript:void(0)" class="v-anchor" data-href="#for-env">设置开发环境</a>
+1. <a href="javascript:void(0)" class="v-anchor" data-href="#for-balm-cli">Balm CLI</a> (推荐)
+2. <a href="javascript:void(0)" class="v-anchor" data-href="#for-vue-cli-or-vite">Vue CLI 或 Vite</a>
+3. <a href="javascript:void(0)" class="v-anchor" data-href="#for-script">&lt;script&gt; 引用</a>
+
+<div id="for-env"></div>
+
 ## 0. 设置开发环境
 
 在开始之前，您需要先设置开发环境。
@@ -21,6 +30,8 @@
   # OR
   npm install -g balm-core balm-cli
   ```
+
+<div id="for-balm-cli"></div>
 
 ## 1. Balm CLI (推荐)
 
@@ -59,7 +70,7 @@ npm install --save balm-ui@next
 
 更新 `balm.config.js`
 
-- 获取 [Material Icons](https://next-material.balmjs.com/material-icons.zip) 无需下载（或者下载后解压至 `/path/to/my-project/app/fonts`）
+- 获取 [Material Icons](https://next-material.balmjs.com/material-icons.zip) 无需下载（或者下载后解压至 `my-project/app/fonts`）
 
   ```js
   const api = (mix) => {
@@ -92,7 +103,7 @@ npm install --save balm-ui@next
   @use 'balm-ui/dist/balm-ui';
   ```
 
-> 推荐在 `/path/to/your-project/styles/_vendor.scss` 中使用 Sass，这样你将能使用到更多 BalmUI 的高级简便的样式管理方案。
+> 推荐在 `/path/to/project-name/styles/_vendor.scss` 中使用 Sass，这样你将能使用到更多 BalmUI 的高级简便的样式管理方案。
 
 - 编辑 `my-project/app/scripts/main.js`
 
@@ -162,6 +173,8 @@ npm run dev
 npm run prod
 ```
 
+<div id="for-vue-cli-or-vite"></div>
+
 ## 2. Vue CLI 或 Vite
 
 ### 2.0 创建一个新项目
@@ -177,9 +190,14 @@ npm run prod
 - `vite`
 
   ```bash
-  npm init vite-app my-project
-  # OR
-  yarn create vite-app my-project
+  # npm 6.x
+  npm init @vitejs/app my-project --template vue
+
+  # npm 7+, extra double-dash is needed:
+  npm init @vitejs/app my-project -- --template vue
+
+  # yarn
+  yarn create @vitejs/app my-project --template vue
 
   cd my-project
   ```
@@ -199,7 +217,21 @@ npm install --save balm-ui@next
   ```js
   // vue.config.js
   module.exports = {
-    runtimeCompiler: true
+    runtimeCompiler: true,
+    // NOTE: set alias via `configureWebpack` or `chainWebpack`
+    configureWebpack: {
+      resolve: {
+        alias: {
+          'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.js',
+          'balm-ui-css': 'balm-ui/dist/balm-ui.css'
+        }
+      }
+    }
+    // chainWebpack: (config) => {
+    //   config.resolve.alias
+    //     .set('balm-ui-plus', 'balm-ui/dist/balm-ui-plus.js')
+    //     .set('balm-ui-css', 'balm-ui/dist/balm-ui.css');
+    // }
   };
   ```
 
@@ -207,31 +239,28 @@ npm install --save balm-ui@next
 
   ```js
   // vite.config.js
-  export default {
-    alias: {
-      vue: 'vue/dist/vue.esm-bundler.js',
-      // balm-ui@9.1.0+
-      'balm-ui': 'balm-ui/dist/balm-ui.esm.js',
-      'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.esm.js',
-      'balm-ui-css': 'balm-ui/dist/balm-ui.css'
-    },
-    optimizeDeps: {
-      // Remove useless warning for `balm-ui`
-      exclude: ['balm-ui']
-    }
-  };
-  ```
+  import { defineConfig } from 'vite';
+  import vue from '@vitejs/plugin-vue';
 
-  > ⚠️ 提示：在 vite 中，如果你正在使用一个旧版的 BalmUI 或者想使用 **独立模块用法**，你需要配置`optimizeDeps.include`。
+  export default defineConfig({
+    plugins: [vue()],
+    resolve: {
+      alias: {
+        vue: 'vue/dist/vue.esm-bundler.js',
+        'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.esm.js',
+        'balm-ui-css': 'balm-ui/dist/balm-ui.css'
+      }
+    }
+  });
+  ```
 
 ### 2.3 使用
 
-- 编辑 `/path/to/src/main.js`
+- 编辑 `my-project/src/main.js`
 
   ```js
   import { createApp } from 'vue';
   import App from './App.vue';
-  import './index.css'; // vite template
 
   import BalmUI from 'balm-ui'; // Official Google Material Components
   import BalmUIPlus from 'balm-ui-plus'; // BalmJS Team Material Components
@@ -245,7 +274,9 @@ npm install --save balm-ui@next
   app.mount('#app');
   ```
 
-## 3. 直接 `<script>` 引用
+<div id="for-script"></div>
+
+## 3. `<script>` 引用
 
 ```html
 <!DOCTYPE html>

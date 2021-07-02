@@ -27,22 +27,22 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
     __extends(MDCDismissibleDrawerFoundation, _super);
     function MDCDismissibleDrawerFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCDismissibleDrawerFoundation.defaultAdapter), adapter)) || this;
-        _this.animationFrame_ = 0;
-        _this.animationTimer_ = 0;
+        _this.animationFrame = 0;
+        _this.animationTimer = 0;
         return _this;
     }
     Object.defineProperty(MDCDismissibleDrawerFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDismissibleDrawerFoundation, "cssClasses", {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDismissibleDrawerFoundation, "defaultAdapter", {
@@ -63,15 +63,15 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCDismissibleDrawerFoundation.prototype.destroy = function () {
-        if (this.animationFrame_) {
-            cancelAnimationFrame(this.animationFrame_);
+        if (this.animationFrame) {
+            cancelAnimationFrame(this.animationFrame);
         }
-        if (this.animationTimer_) {
-            clearTimeout(this.animationTimer_);
+        if (this.animationTimer) {
+            clearTimeout(this.animationTimer);
         }
     };
     /**
@@ -85,7 +85,7 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
         this.adapter.addClass(cssClasses.OPEN);
         this.adapter.addClass(cssClasses.ANIMATE);
         // Wait a frame once display is no longer "none", to establish basis for animation
-        this.runNextAnimationFrame_(function () {
+        this.runNextAnimationFrame(function () {
             _this.adapter.addClass(cssClasses.OPENING);
         });
         this.adapter.saveFocus();
@@ -137,20 +137,20 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
     MDCDismissibleDrawerFoundation.prototype.handleTransitionEnd = function (evt) {
         var OPENING = cssClasses.OPENING, CLOSING = cssClasses.CLOSING, OPEN = cssClasses.OPEN, ANIMATE = cssClasses.ANIMATE, ROOT = cssClasses.ROOT;
         // In Edge, transitionend on ripple pseudo-elements yields a target without classList, so check for Element first.
-        var isRootElement = this.isElement_(evt.target) &&
+        var isRootElement = this.isElement(evt.target) &&
             this.adapter.elementHasClass(evt.target, ROOT);
         if (!isRootElement) {
             return;
         }
         if (this.isClosing()) {
             this.adapter.removeClass(OPEN);
-            this.closed_();
+            this.closed();
             this.adapter.restoreFocus();
             this.adapter.notifyClose();
         }
         else {
             this.adapter.focusActiveNavigationItem();
-            this.opened_();
+            this.opened();
             this.adapter.notifyOpen();
         }
         this.adapter.removeClass(ANIMATE);
@@ -160,24 +160,24 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
     /**
      * Extension point for when drawer finishes open animation.
      */
-    MDCDismissibleDrawerFoundation.prototype.opened_ = function () { }; // tslint:disable-line:no-empty
+    MDCDismissibleDrawerFoundation.prototype.opened = function () { }; // tslint:disable-line:no-empty
     /**
      * Extension point for when drawer finishes close animation.
      */
-    MDCDismissibleDrawerFoundation.prototype.closed_ = function () { }; // tslint:disable-line:no-empty
+    MDCDismissibleDrawerFoundation.prototype.closed = function () { }; // tslint:disable-line:no-empty
     /**
      * Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
      */
-    MDCDismissibleDrawerFoundation.prototype.runNextAnimationFrame_ = function (callback) {
+    MDCDismissibleDrawerFoundation.prototype.runNextAnimationFrame = function (callback) {
         var _this = this;
-        cancelAnimationFrame(this.animationFrame_);
-        this.animationFrame_ = requestAnimationFrame(function () {
-            _this.animationFrame_ = 0;
-            clearTimeout(_this.animationTimer_);
-            _this.animationTimer_ = setTimeout(callback, 0);
+        cancelAnimationFrame(this.animationFrame);
+        this.animationFrame = requestAnimationFrame(function () {
+            _this.animationFrame = 0;
+            clearTimeout(_this.animationTimer);
+            _this.animationTimer = setTimeout(callback, 0);
         });
     };
-    MDCDismissibleDrawerFoundation.prototype.isElement_ = function (element) {
+    MDCDismissibleDrawerFoundation.prototype.isElement = function (element) {
         // In Edge, transitionend on ripple pseudo-elements yields a target without classList.
         return Boolean(element.classList);
     };

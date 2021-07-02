@@ -29,7 +29,7 @@ var MDCCircularProgress = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     MDCCircularProgress.prototype.initialize = function () {
-        this.determinateCircle_ = this.root.querySelector(MDCCircularProgressFoundation.strings.DETERMINATE_CIRCLE_SELECTOR);
+        this.determinateCircle = this.root.querySelector(MDCCircularProgressFoundation.strings.DETERMINATE_CIRCLE_SELECTOR);
     };
     MDCCircularProgress.attachTo = function (root) {
         return new MDCCircularProgress(root);
@@ -42,7 +42,7 @@ var MDCCircularProgress = /** @class */ (function (_super) {
         set: function (value) {
             this.foundation.setDeterminate(value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCircularProgress.prototype, "progress", {
@@ -55,7 +55,7 @@ var MDCCircularProgress = /** @class */ (function (_super) {
         set: function (value) {
             this.foundation.setProgress(value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCircularProgress.prototype, "isClosed", {
@@ -65,7 +65,7 @@ var MDCCircularProgress = /** @class */ (function (_super) {
         get: function () {
             return this.foundation.isClosed();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**
@@ -86,20 +86,24 @@ var MDCCircularProgress = /** @class */ (function (_super) {
         // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
         // methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addClass: function (className) { return _this.root.classList.add(className); },
+            addClass: function (className) {
+                _this.root.classList.add(className);
+            },
             getDeterminateCircleAttribute: function (attributeName) {
-                return _this.determinateCircle_.getAttribute(attributeName);
+                return _this.determinateCircle.getAttribute(attributeName);
             },
             hasClass: function (className) { return _this.root.classList.contains(className); },
-            removeClass: function (className) { return _this.root.classList.remove(className); },
+            removeClass: function (className) {
+                _this.root.classList.remove(className);
+            },
             removeAttribute: function (attributeName) {
-                return _this.root.removeAttribute(attributeName);
+                _this.root.removeAttribute(attributeName);
             },
             setAttribute: function (attributeName, value) {
-                return _this.root.setAttribute(attributeName, value);
+                _this.root.setAttribute(attributeName, value);
             },
             setDeterminateCircleAttribute: function (attributeName, value) {
-                return _this.determinateCircle_.setAttribute(attributeName, value);
+                _this.determinateCircle.setAttribute(attributeName, value);
             },
         };
         return new MDCCircularProgressFoundation(adapter);

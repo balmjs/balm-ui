@@ -4,13 +4,16 @@
     <div class="component-wrapper">
       <ui-drawer>
         <ui-drawer-header>
-          <ui-drawer-title :class="$theme.getTextClass('primary', $store.theme)"
-            >Headline 6</ui-drawer-title
+          <ui-drawer-title
+            :class="$theme.getTextClass('primary', $store.theme)"
           >
+            Headline6
+          </ui-drawer-title>
           <ui-drawer-subtitle
             :class="$theme.getTextClass('secondary', $store.theme)"
-            >Body 2</ui-drawer-subtitle
           >
+            Body2
+          </ui-drawer-subtitle>
         </ui-drawer-header>
         <ui-drawer-content>
           <ui-nav>
@@ -33,8 +36,9 @@
               </ui-item-first-content>
               <ui-item-text-content
                 :class="$theme.getTextClass('primary', $store.theme)"
-                >Body 2</ui-item-text-content
               >
+                Body2
+              </ui-item-text-content>
             </ui-nav-item>
           </ui-nav>
         </ui-drawer-content>

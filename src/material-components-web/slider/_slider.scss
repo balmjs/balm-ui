@@ -23,7 +23,9 @@
 // Selector '.mdc-*' should only be used in this project.
 // stylelint-disable selector-class-pattern
 
+@use 'sass:math';
 @use '../animation/animation';
+@use '../dom/mixins' as dom-mixins;
 @use '../elevation/mixins' as elevation-mixins;
 @use '../feature-targeting/feature-targeting';
 @use '../ripple/ripple';
@@ -64,7 +66,7 @@ $_track-inactive-height: 4px;
     @include feature-targeting.targets($feat-structure) {
       cursor: pointer;
       height: $_thumb-ripple-size;
-      margin: 0 ($_thumb-ripple-size / 2);
+      margin: 0 math.div($_thumb-ripple-size, 2);
       position: relative;
       touch-action: pan-y;
     }
@@ -152,22 +154,26 @@ $_track-inactive-height: 4px;
       border-radius: 3px;
       height: $_track-active-height;
       overflow: hidden;
-      top: ($_track-inactive-height - $_track-active-height) / 2;
+      top: math.div($_track-inactive-height - $_track-active-height, 2);
     }
   }
 
   .mdc-slider__track--active_fill {
     @include feature-targeting.targets($feat-structure) {
-      // Use border rather than background-color to fill thumb, for HCM.
-      border: $_track-active-height solid;
+      // Use border rather than background-color to fill track, for HCM.
+      border-top: $_track-active-height solid;
       box-sizing: border-box;
       height: 100%;
       width: 100%;
       position: relative;
       /* @noflip */
+      -webkit-transform-origin: left;
+      /* @noflip */
       transform-origin: left;
 
       @include rtl-mixins.rtl {
+        /* @noflip */
+        -webkit-transform-origin: right;
         /* @noflip */
         transform-origin: right;
       }
@@ -175,11 +181,14 @@ $_track-inactive-height: 4px;
   }
 
   .mdc-slider__track--inactive {
+    &::before {
+      @include dom-mixins.transparent-border($query: $query); // For HCM.
+    }
+
     @include feature-targeting.targets($feat-structure) {
       border-radius: 2px;
       height: $_track-inactive-height;
       left: 0;
-      outline: 1px solid transparent; // For HCM.
       top: 0;
     }
   }
@@ -210,7 +219,8 @@ $_track-inactive-height: 4px;
     @include feature-targeting.targets($feat-structure) {
       display: flex;
       height: $_thumb-ripple-size;
-      left: -$_thumb-ripple-size / 2;
+      /* @noflip */
+      left: math.div(-$_thumb-ripple-size, 2);
       outline: none;
       position: absolute;
       user-select: none;
@@ -223,14 +233,13 @@ $_track-inactive-height: 4px;
       }
     }
 
-    &--top .mdc-slider__thumb-knob {
+    &--top .mdc-slider__thumb-knob,
+    &--top.mdc-slider__thumb:hover .mdc-slider__thumb-knob,
+    &--top.mdc-slider__thumb--focused .mdc-slider__thumb-knob {
       @include feature-targeting.targets($feat-structure) {
-        border: 1px solid;
+        border-style: solid;
+        border-width: 1px;
         box-sizing: content-box;
-      }
-
-      @include feature-targeting.targets($feat-color) {
-        border-color: #fff;
       }
     }
   }
@@ -240,7 +249,7 @@ $_track-inactive-height: 4px;
 
     @include feature-targeting.targets($feat-structure) {
       // Use border rather than background-color to fill thumb, for HCM.
-      border: $_thumb-size / 2 solid;
+      border: math.div($_thumb-size, 2) solid;
       border-radius: 50%;
       box-sizing: border-box;
       height: $_thumb-size;
@@ -314,12 +323,13 @@ $_track-inactive-height: 4px;
 
   .mdc-slider__value-indicator-container {
     @include feature-targeting.targets($feat-structure) {
-      bottom: $_thumb-ripple-size / 2 + $_thumb-size / 2 +
+      bottom: math.div($_thumb-ripple-size, 2) + math.div($_thumb-size, 2) +
         $_value-indicator-caret-width + 4px;
+      /* @noflip */
       left: 50%;
+      pointer-events: none;
       position: absolute;
       transform: translateX(-50%);
-      visibility: hidden;
     }
   }
 
@@ -333,7 +343,6 @@ $_track-inactive-height: 4px;
       border-radius: 4px;
       display: flex;
       height: 32px;
-      outline: 1px solid transparent; // For HCM.
       padding: 0 12px;
       transform: scale(0);
       transform-origin: bottom;
@@ -348,18 +357,23 @@ $_track-inactive-height: 4px;
         bottom: -$_value-indicator-caret-width + 1;
         content: '';
         height: 0;
+        /* @noflip */
         left: 50%;
         position: absolute;
         transform: translateX(-50%);
         width: 0;
       }
     }
+
+    &::after {
+      @include dom-mixins.transparent-border($query: $query); // For HCM.
+    }
   }
 
   .mdc-slider__thumb--with-indicator {
     .mdc-slider__value-indicator-container {
       @include feature-targeting.targets($feat-structure) {
-        visibility: visible;
+        pointer-events: auto;
       }
     }
 

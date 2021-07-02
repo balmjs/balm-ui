@@ -1,12 +1,7 @@
-import { defineAsyncComponent } from 'vue';
-const Button = defineAsyncComponent(() => import('@/views/components/button'));
-const Fab = defineAsyncComponent(() => import('@/views/components/fab'));
-const IconButton = defineAsyncComponent(() =>
-  import('@/views/components/icon-button')
-);
-const SegmentedButton = defineAsyncComponent(() =>
-  import('@/views/components/segmented-button')
-);
+const Button = () => import('@/views/components/button');
+const Fab = () => import('@/views/components/fab');
+const IconButton = () => import('@/views/components/icon-button');
+const SegmentedButton = () => import('@/views/components/segmented-button');
 
 export default [
   {

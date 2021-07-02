@@ -1,3 +1,3 @@
 # 开关
 
-Switches toggle the state of a single setting on or off. They are the preferred way to adjust settings on mobile.
+开关将单个设置的状态切换为打开或关闭。它们是在移动设备上调整设置的首选方法。

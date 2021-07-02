@@ -13,4 +13,10 @@
 | `label`       | string  | `''`      | Label indicating how the progress bar should be announced to the user.              |
 | `closed`      | boolean | `false`   | Hides the circular progress indicator.                                              |
 
-- **Sizing:** `'large'`(`'L'`), `'medium'`(`'M'`), `'small'`(`'S'`).
+- **Size value:**
+
+  ```ts
+  interface Spinner {
+    size: 'large' | 'L' | 'medium' | 'M' | 'small' | 'S';
+  }
+  ```

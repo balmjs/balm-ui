@@ -4,13 +4,13 @@
   <ui-menu
     v-model="open"
     :items="[
-          'Back',
-          'Forward',
-          'Reload',
-          '-',
-          'Help &amp; Feedback',
-          'Settings'
-        ]"
+      'Back',
+      'Forward',
+      'Reload',
+      '-',
+      'Help &amp; Feedback',
+      'Settings'
+    ]"
   ></ui-menu>
 </div>
 ```

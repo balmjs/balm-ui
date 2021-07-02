@@ -9,8 +9,8 @@
               <ui-icon>child_care</ui-icon>
             </ui-item-first-content>
             <ui-item-text-content>
-              <ui-item-text1>Subtitle 1</ui-item-text1>
-              <ui-item-text2>Body 2</ui-item-text2>
+              <ui-item-text1>Subtitle1</ui-item-text1>
+              <ui-item-text2>Body2</ui-item-text2>
             </ui-item-text-content>
           </ui-item>
           <ui-item-divider v-if="i < 3" :key="`divider${i}`"></ui-item-divider>

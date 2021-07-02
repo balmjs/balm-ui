@@ -1,93 +1,98 @@
 import version from './version';
-import multiConfigure from './config/multi-configure';
+import autoInstall from './config/auto-install';
 /**
  * Components
  */
 // General
-import UiButton from './components/buttons/button';
-import UiFab from './components/buttons/fab';
-import UiIconButton from './components/buttons/icon-button';
+import UiButton from './components/button/button.vue';
+import UiFab from './components/fab/fab.vue';
+import UiIconButton from './components/icon-button/icon-button.vue';
+import UiSegmentedButtons from './components/segmented-button/segmented-buttons.vue';
+import UiSegmentedButton from './components/segmented-button/segmented-button.vue';
 // Layouts
-import UiTopAppBar from './components/app-bars/top-app-bar';
-import UiGrid from './components/layout-grid/grid';
-import UiGridCell from './components/layout-grid/grid-cell';
-import UiDivider from './components/others/divider'; // Custom
+import UiTopAppBar from './components/top-app-bar/top-app-bar.vue';
+import UiGrid from './components/grid/grid.vue';
+import UiGridCell from './components/grid/grid-cell.vue';
+import UiDivider from './components/divider/divider.vue'; // Custom
 // Navigation
-import UiDrawer from './components/navigation/drawer';
-import UiDrawerHeader from './components/navigation/drawer-header';
-import UiDrawerTitle from './components/navigation/drawer-title';
-import UiDrawerSubtitle from './components/navigation/drawer-subtitle';
-import UiDrawerContent from './components/navigation/drawer-content';
-import UiDrawerAppContent from './components/navigation/drawer-app-content';
-import UiDrawerBackdrop from './components/navigation/drawer-backdrop';
-import UiTabs from './components/tabs/tabs';
-import UiTabBar from './components/tabs/tab-bar';
-import UiTabScroller from './components/tabs/tab-scroller';
-import UiTabIndicator from './components/tabs/tab-indicator';
-import UiTab from './components/tabs/tab';
-import UiPanels from './components/tabs/panels';
-import UiPanel from './components/tabs/panel';
-import UiMenuAnchor from './components/menus/menu-anchor';
-import UiMenu from './components/menus/menu';
-import UiMenuitem from './components/menus/menuitem';
-import UiMenuitemIcon from './components/menus/menuitem-icon';
-import UiMenuitemText from './components/menus/menuitem-text';
-import UiPagination from './components/data-tables/pagination'; // Custom
+import UiDrawer from './components/drawer/drawer.vue';
+import UiDrawerHeader from './components/drawer/drawer-header.vue';
+import UiDrawerTitle from './components/drawer/drawer-title.vue';
+import UiDrawerSubtitle from './components/drawer/drawer-subtitle.vue';
+import UiDrawerContent from './components/drawer/drawer-content.vue';
+import UiDrawerAppContent from './components/drawer/drawer-app-content.vue';
+import UiTabs from './components/tabs/tabs.vue';
+import UiTabBar from './components/tabs/tab-bar.vue';
+import UiTabScroller from './components/tabs/tab-scroller.vue';
+import UiTabIndicator from './components/tabs/tab-indicator.vue';
+import UiTab from './components/tabs/tab.vue';
+import UiPanels from './components/tabs/panels.vue';
+import UiPanel from './components/tabs/panel.vue';
+import UiMenuAnchor from './components/menu/menu-anchor.vue';
+import UiMenu from './components/menu/menu.vue';
+import UiMenuitem from './components/menu/menuitem.vue';
+import UiMenuitemIcon from './components/menu/menuitem-icon.vue';
+import UiMenuitemText from './components/menu/menuitem-text.vue';
+import UiPagination from './components/pagination/pagination.vue'; // Custom
 // Theme
-import UiIcon from './components/icon/icon';
+import UiIcon from './components/icon/icon.vue';
 // Data Entry
-import UiForm from './components/form-controls/form'; // Custom
-import UiFormField from './components/form-controls/form-field';
-import UiTextfield from './components/input-controls/textfield';
-import UiTextfieldHelper from './components/input-controls/textfield-helper';
-import UiTextfieldIcon from './components/input-controls/textfield-icon';
-import UiSelect from './components/selection-controls/select';
-import UiSelectHelper from './components/selection-controls/select-helper';
-import UiSelectIcon from './components/selection-controls/select-icon';
-import UiCheckbox from './components/selection-controls/checkbox';
-import UiRadio from './components/selection-controls/radio';
-import UiChips from './components/chips/chips';
-import UiChip from './components/chips/chip';
-import UiSwitch from './components/selection-controls/switch';
-import UiSlider from './components/selection-controls/slider';
-import UiFile from './components/selection-controls/file'; // Custom
+import UiForm from './components/form/form.vue'; // Custom
+import UiFormField from './components/form-field/form-field.vue';
+import UiTextfield from './components/textfield/textfield.vue';
+import UiTextfieldHelper from './components/textfield/textfield-helper.vue';
+import UiTextfieldIcon from './components/textfield/textfield-icon.vue';
+import UiAutocomplete from './components/autocomplete/autocomplete.vue'; // Custom
+import UiDatepicker from './components/datepicker/datepicker.vue'; // Custom
+import UiRangepicker from './components/rangepicker/rangepicker.vue'; // Custom
+import UiSelect from './components/select/select.vue';
+import UiSelectHelper from './components/select/select-helper.vue';
+import UiSelectIcon from './components/select/select-icon.vue';
+import UiCheckbox from './components/checkbox/checkbox.vue';
+import UiRadio from './components/radio/radio.vue';
+import UiChips from './components/chips/chips.vue';
+import UiChip from './components/chips/chip.vue';
+import UiSwitch from './components/switch/switch.vue';
+import UiSlider from './components/slider/slider.vue';
+import UiFile from './components/file/file.vue'; // Custom
 // Data Display
-import UiNav from './components/lists/nav';
-import UiNavItem from './components/lists/nav-item';
-import UiList from './components/lists/list';
-import UiItem from './components/lists/item';
-import UiItemTextContent from './components/lists/item-text-content';
-import UiItemText1 from './components/lists/item-text1';
-import UiItemText2 from './components/lists/item-text2';
-import UiItemFirstContent from './components/lists/item-first-content';
-import UiItemLastContent from './components/lists/item-last-content';
-import UiItemDivider from './components/lists/item-divider';
-import UiListDivider from './components/lists/list-divider';
-import UiListGroup from './components/lists/list-group';
-import UiListGroupSubheader from './components/lists/list-group-subheader';
-import UiImageList from './components/image-lists/image-list';
-import UiImageItem from './components/image-lists/image-item';
-import UiImageText from './components/image-lists/image-text';
-import UiCard from './components/cards/card';
-import UiCardContent from './components/cards/card-content';
-import UiCardMedia from './components/cards/card-media';
-import UiCardMediaContent from './components/cards/card-media-content';
-import UiCardText from './components/cards/card-text';
-import UiCardActions from './components/cards/card-actions';
-import UiCardButtons from './components/cards/card-buttons';
-import UiCardIcons from './components/cards/card-icons';
-import UiDataTable from './components/data-tables/table';
-import UiBadge from './components/others/badge'; // Custom
+import UiNav from './components/list/nav.vue';
+import UiNavItem from './components/list/nav-item.vue';
+import UiList from './components/list/list.vue';
+import UiItem from './components/list/item.vue';
+import UiItemTextContent from './components/list/item-text-content.vue';
+import UiItemText1 from './components/list/item-text1.vue';
+import UiItemText2 from './components/list/item-text2.vue';
+import UiItemFirstContent from './components/list/item-first-content.vue';
+import UiItemLastContent from './components/list/item-last-content.vue';
+import UiItemDivider from './components/list/item-divider.vue';
+import UiListDivider from './components/list/list-divider.vue';
+import UiListGroup from './components/list/list-group.vue';
+import UiListGroupSubheader from './components/list/list-group-subheader.vue';
+import UiImageList from './components/image-list/image-list.vue';
+import UiImageItem from './components/image-list/image-item.vue';
+import UiImageText from './components/image-list/image-text.vue';
+import UiCard from './components/card/card.vue';
+import UiCardContent from './components/card/card-content.vue';
+import UiCardMedia from './components/card/card-media.vue';
+import UiCardMediaContent from './components/card/card-media-content.vue';
+import UiCardText from './components/card/card-text.vue';
+import UiCardActions from './components/card/card-actions.vue';
+import UiCardButtons from './components/card/card-buttons.vue';
+import UiCardIcons from './components/card/card-icons.vue';
+import UiTable from './components/table/table.vue';
+import UiBadge from './components/badge/badge.vue'; // Custom
 // Feedback
-import UiDialog from './components/modal/dialog';
-import UiDialogTitle from './components/modal/dialog-title';
-import UiDialogContent from './components/modal/dialog-content';
-import UiDialogActions from './components/modal/dialog-actions';
-import UiSnackbar from './components/modal/snackbar';
-import UiBanner from './components/modal/banner';
-import UiProgress from './components/progress-indicators/progress';
-import UiSpinner from './components/progress-indicators/spinner';
-import UiTooltip from './components/others/tooltip';
+import UiDialog from './components/dialog/dialog.vue';
+import UiDialogTitle from './components/dialog/dialog-title.vue';
+import UiDialogContent from './components/dialog/dialog-content.vue';
+import UiDialogActions from './components/dialog/dialog-actions.vue';
+import UiSnackbar from './components/snackbar/snackbar.vue';
+import UiBanner from './components/banner/banner.vue';
+import UiProgress from './components/progress/progress.vue';
+import UiSpinner from './components/spinner/spinner.vue';
+import UiTooltipAnchor from './components/tooltip/tooltip-anchor.vue';
+import UiTooltip from './components/tooltip/tooltip.vue';
 /**
  * Plugins
  */
@@ -96,10 +101,14 @@ import $store, { useStore } from './plugins/store'; // Custom
 import $grid, { useGrid } from './plugins/grid';
 import $theme, { useTheme } from './plugins/theme';
 import $typography, { useTypography } from './plugins/typography';
+import $alert, { useAlert } from './plugins/alert'; // Custom
+import $confirm, { useConfirm } from './plugins/confirm'; // Custom
+import $toast, { useToast } from './plugins/toast'; // Custom
 import $validator, { useValidator } from './plugins/validator'; // Custom
 /**
  * Directives
  */
+import vButton from './directives/button';
 import vRipple from './directives/ripple';
 import vShape from './directives/shape';
 import vShadow from './directives/elevation';
@@ -113,7 +122,8 @@ import types from './utils/types';
 import helpers from './utils/helpers';
 import detectIE from './utils/ie';
 
-const components = {
+const Components = {
+  UiAutocomplete,
   UiBadge,
   UiBanner,
   UiButton,
@@ -128,7 +138,7 @@ const components = {
   UiCheckbox,
   UiChip,
   UiChips,
-  UiDataTable,
+  UiDatepicker,
   UiDialog,
   UiDialogActions,
   UiDialogContent,
@@ -140,7 +150,6 @@ const components = {
   UiDrawerSubtitle,
   UiDrawerContent,
   UiDrawerAppContent,
-  UiDrawerBackdrop,
   UiFab,
   UiFile,
   UiForm,
@@ -175,6 +184,9 @@ const components = {
   UiPanel,
   UiProgress,
   UiRadio,
+  UiRangepicker,
+  UiSegmentedButtons,
+  UiSegmentedButton,
   UiSelect,
   UiSelectHelper,
   UiSelectIcon,
@@ -182,62 +194,48 @@ const components = {
   UiSnackbar,
   UiSpinner,
   UiSwitch,
+  UiTable,
   UiTabs,
+  UiTab,
   UiTabBar,
   UiTabScroller,
   UiTabIndicator,
-  UiTab,
   UiTextfield,
   UiTextfieldHelper,
   UiTextfieldIcon,
+  UiTooltipAnchor,
   UiTooltip,
   UiTopAppBar
 };
 
-const plugins = {
+const Plugins = {
+  $alert,
+  $confirm,
   $event,
   $grid,
   $store,
   $theme,
+  $toast,
   $typography,
   $validator
 };
 
-const directives = {
+const Directives = {
   vAccessibility,
   vBadge,
+  vButton,
   vRipple,
   vShadow,
   vShape,
   vTooltip
 };
 
-function install(app, options = {}) {
-  // Configure the components' props
-  multiConfigure(components, options);
-
-  // Install the components
-  for (let key in components) {
-    let Component = components[key];
-    app.component(Component.name, Component);
-  }
-
-  // Install the plugins
-  for (let key in plugins) {
-    let Plugin = plugins[key];
-    if (options[key]) {
-      app.use(Plugin, options[key]);
-    } else {
-      app.use(Plugin);
-    }
-  }
-
-  // Init the directives
-  for (let key in directives) {
-    let Directive = directives[key];
-    app.directive(Directive.name, Directive);
-  }
-}
+const install = (Vue, options = {}) =>
+  autoInstall(Vue, options, {
+    Components,
+    Plugins,
+    Directives
+  });
 
 const BalmUI = {
   version,
@@ -247,6 +245,7 @@ const BalmUI = {
 export default BalmUI;
 export { version, install };
 export {
+  UiAutocomplete,
   UiBadge,
   UiBanner,
   UiButton,
@@ -261,7 +260,7 @@ export {
   UiCheckbox,
   UiChip,
   UiChips,
-  UiDataTable,
+  UiDatepicker,
   UiDialog,
   UiDialogActions,
   UiDialogContent,
@@ -273,7 +272,6 @@ export {
   UiDrawerSubtitle,
   UiDrawerContent,
   UiDrawerAppContent,
-  UiDrawerBackdrop,
   UiFab,
   UiFile,
   UiForm,
@@ -308,6 +306,9 @@ export {
   UiPanel,
   UiProgress,
   UiRadio,
+  UiRangepicker,
+  UiSegmentedButtons,
+  UiSegmentedButton,
   UiSelect,
   UiSelectHelper,
   UiSelectIcon,
@@ -315,26 +316,41 @@ export {
   UiSnackbar,
   UiSpinner,
   UiSwitch,
+  UiTable,
   UiTabs,
+  UiTab,
   UiTabBar,
   UiTabScroller,
   UiTabIndicator,
-  UiTab,
   UiTextfield,
   UiTextfieldHelper,
   UiTextfieldIcon,
+  UiTooltipAnchor,
   UiTooltip,
   UiTopAppBar
 };
-export { $event, $grid, $store, $theme, $typography, $validator };
 export {
-  useEvent,
+  $alert,
+  $confirm,
+  $event,
+  $grid,
+  $store,
+  $theme,
+  $toast,
+  $typography,
+  $validator
+};
+export {
+  useAlert,
   useBus,
+  useConfirm,
+  useEvent,
   useGrid,
   useStore,
   useTheme,
+  useToast,
   useTypography,
   useValidator
 };
-export { vAccessibility, vBadge, vRipple, vShadow, vShape, vTooltip };
+export { vAccessibility, vBadge, vButton, vRipple, vShadow, vShape, vTooltip };
 export { types, helpers, detectIE };

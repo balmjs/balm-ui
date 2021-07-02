@@ -30,7 +30,7 @@ var MDCRadio = /** @class */ (function (_super) {
     __extends(MDCRadio, _super);
     function MDCRadio() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.ripple_ = _this.createRipple_();
+        _this.rippleSurface = _this.createRipple();
         return _this;
     }
     MDCRadio.attachTo = function (root) {
@@ -38,43 +38,43 @@ var MDCRadio = /** @class */ (function (_super) {
     };
     Object.defineProperty(MDCRadio.prototype, "checked", {
         get: function () {
-            return this.nativeControl_.checked;
+            return this.nativeControl.checked;
         },
         set: function (checked) {
-            this.nativeControl_.checked = checked;
+            this.nativeControl.checked = checked;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCRadio.prototype, "disabled", {
         get: function () {
-            return this.nativeControl_.disabled;
+            return this.nativeControl.disabled;
         },
         set: function (disabled) {
             this.foundation.setDisabled(disabled);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCRadio.prototype, "value", {
         get: function () {
-            return this.nativeControl_.value;
+            return this.nativeControl.value;
         },
         set: function (value) {
-            this.nativeControl_.value = value;
+            this.nativeControl.value = value;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCRadio.prototype, "ripple", {
         get: function () {
-            return this.ripple_;
+            return this.rippleSurface;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCRadio.prototype.destroy = function () {
-        this.ripple_.destroy();
+        this.rippleSurface.destroy();
         _super.prototype.destroy.call(this);
     };
     MDCRadio.prototype.getDefaultFoundation = function () {
@@ -84,24 +84,28 @@ var MDCRadio = /** @class */ (function (_super) {
         var adapter = {
             addClass: function (className) { return _this.root.classList.add(className); },
             removeClass: function (className) { return _this.root.classList.remove(className); },
-            setNativeControlDisabled: function (disabled) { return _this.nativeControl_.disabled =
+            setNativeControlDisabled: function (disabled) { return _this.nativeControl.disabled =
                 disabled; },
         };
         return new MDCRadioFoundation(adapter);
     };
-    MDCRadio.prototype.createRipple_ = function () {
+    MDCRadio.prototype.createRipple = function () {
         var _this = this;
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
-        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { registerInteractionHandler: function (evtType, handler) { return _this.nativeControl_.addEventListener(evtType, handler, applyPassive()); }, deregisterInteractionHandler: function (evtType, handler) { return _this.nativeControl_.removeEventListener(evtType, handler, applyPassive()); }, 
-            // Radio buttons technically go "active" whenever there is *any* keyboard interaction.
-            // This is not the UI we desire.
+        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { registerInteractionHandler: function (evtType, handler) {
+                _this.nativeControl.addEventListener(evtType, handler, applyPassive());
+            }, deregisterInteractionHandler: function (evtType, handler) {
+                _this.nativeControl.removeEventListener(evtType, handler, applyPassive());
+            }, 
+            // Radio buttons technically go "active" whenever there is *any* keyboard
+            // interaction. This is not the UI we desire.
             isSurfaceActive: function () { return false; }, isUnbounded: function () { return true; } });
         // tslint:enable:object-literal-sort-keys
         return new MDCRipple(this.root, new MDCRippleFoundation(adapter));
     };
-    Object.defineProperty(MDCRadio.prototype, "nativeControl_", {
+    Object.defineProperty(MDCRadio.prototype, "nativeControl", {
         get: function () {
             var NATIVE_CONTROL_SELECTOR = MDCRadioFoundation.strings.NATIVE_CONTROL_SELECTOR;
             var el = this.root.querySelector(NATIVE_CONTROL_SELECTOR);
@@ -110,7 +114,7 @@ var MDCRadio = /** @class */ (function (_super) {
             }
             return el;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return MDCRadio;

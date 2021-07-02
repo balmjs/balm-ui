@@ -1,3 +1,3 @@
 # 卡片
 
-Cards contain content and actions about a single subject.
+卡片包含有关单个主题的内容和动作。

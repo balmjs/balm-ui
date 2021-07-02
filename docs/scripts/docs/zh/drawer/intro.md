@@ -1,3 +1,3 @@
-# 抽屉式导航
+# 侧边导航栏
 
-Navigation drawers provide access to destinations in your app.
+侧边导航栏提供对应用程序中目标位置的访问。

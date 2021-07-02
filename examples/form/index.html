@@ -1,72 +1,79 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BalmUI - form example</title>
-  <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/form-field/form-field.css">
-  <link rel="stylesheet" href="/components/textfield/textfield.css">
-  <link rel="stylesheet" href="/components/select/select.css">
-  <link rel="stylesheet" href="/components/button/button.css">
-</head>
-<body>
-  <div id="app">
-    <ui-form nowrap label-right-aligned item-margin-bottom="10" label-width="80" label-margin-right="20">
-      <template #default="{ actionClass }">
-        <legend>Horizontal Form</legend>
-        <ui-form-field>
-          <label>Input:</label>
-          <ui-textfield></ui-textfield>
-        </ui-form-field>
-        <ui-form-field>
-          <label>Select:</label>
-          <ui-select></ui-select>
-        </ui-form-field>
-        <ui-form-field :class="actionClass">
-          <ui-button raised>Submit</ui-button>
-          <ui-button outlined>Cancel</ui-button>
-        </ui-form-field>
-      </template>
-    </ui-form>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BalmUI - form example</title>
+    <link rel="stylesheet" href="/components/core.css" />
+    <link rel="stylesheet" href="/components/form-field/form-field.css" />
+    <link rel="stylesheet" href="/components/form/form.css" />
+    <link rel="stylesheet" href="/components/textfield/textfield.css" />
+    <link rel="stylesheet" href="/components/select/select.css" />
+    <link rel="stylesheet" href="/components/button/button.css" />
+  </head>
+  <body>
+    <div id="app">
+      <ui-form
+        nowrap
+        label-right-aligned
+        item-margin-bottom="10"
+        label-width="80"
+        label-margin-right="20"
+      >
+        <template #default="{ actionClass }">
+          <legend>Horizontal Form</legend>
+          <ui-form-field>
+            <label>Input:</label>
+            <ui-textfield></ui-textfield>
+          </ui-form-field>
+          <ui-form-field>
+            <label>Select:</label>
+            <ui-select></ui-select>
+          </ui-form-field>
+          <ui-form-field :class="actionClass">
+            <ui-button raised>Submit</ui-button>
+            <ui-button outlined>Cancel</ui-button>
+          </ui-form-field>
+        </template>
+      </ui-form>
 
-    <hr>
+      <hr />
 
-    <ui-form type="|" item-margin-bottom="10">
-      <template #default="{ actionClass }">
-        <legend>Vertical Form</legend>
-        <ui-form-field>
-          <label>Input:</label>
-          <ui-textfield></ui-textfield>
-        </ui-form-field>
-        <ui-form-field>
-          <label>Select:</label>
-          <ui-select fullwidth></ui-select>
-        </ui-form-field>
-        <ui-form-field :class="actionClass">
-          <ui-button raised>Submit</ui-button>
-          <ui-button outlined>Cancel</ui-button>
-        </ui-form-field>
-      </template>
-    </ui-form>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-  <script src="/components/form/index.js"></script>
-  <script src="/components/form-field/index.js"></script>
-  <script src="/components/textfield/index.js"></script>
-  <script src="/components/select/index.js"></script>
-  <script src="/components/button/index.js"></script>
-  <script>
-    var app = Vue.createApp({});
+      <ui-form type="|" item-margin-bottom="10">
+        <template #default="{ actionClass }">
+          <legend>Vertical Form</legend>
+          <ui-form-field>
+            <label>Input:</label>
+            <ui-textfield></ui-textfield>
+          </ui-form-field>
+          <ui-form-field>
+            <label>Select:</label>
+            <ui-select></ui-select>
+          </ui-form-field>
+          <ui-form-field :class="actionClass">
+            <ui-button raised>Submit</ui-button>
+            <ui-button outlined>Cancel</ui-button>
+          </ui-form-field>
+        </template>
+      </ui-form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="/components/form/index.js"></script>
+    <script src="/components/form-field/index.js"></script>
+    <script src="/components/textfield/index.js"></script>
+    <script src="/components/select/index.js"></script>
+    <script src="/components/button/index.js"></script>
+    <script>
+      var app = Vue.createApp({});
 
-    app.use(UiForm);
-    app.use(UiFormField);
-    app.use(UiTextfield);
-    app.use(UiSelect);
-    app.use(UiButton);
+      app.use(UiForm);
+      app.use(UiFormField);
+      app.use(UiTextfield);
+      app.use(UiSelect);
+      app.use(UiButton);
 
-    app.mount('#app');
-  </script>
-</body>
+      app.mount('#app');
+    </script>
+  </body>
 </html>

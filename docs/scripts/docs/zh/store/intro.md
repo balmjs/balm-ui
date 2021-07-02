@@ -1,3 +1,3 @@
-# Store (cover Vuex)
+# 状态管理 (cover Vuex)
 
-A simple state management pattern.
+一种简单的状态管理模式。

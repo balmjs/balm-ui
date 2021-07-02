@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BalmUI - button example</title>
-  <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/button/button.css">
-  <link rel="stylesheet" href="/components/icon/icon.css">
-</head>
-<body>
-  <div id="app">
-    <ui-button>Text</ui-button>
-    <ui-button outlined>Outlined</ui-button>
-    <ui-button raised>Raised</ui-button>
-    <ui-button icon="favorite">Icon</ui-button>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-  <script src="/components/button/index.js"></script>
-  <script>
-    var app = Vue.createApp({});
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BalmUI - button example</title>
+    <link rel="stylesheet" href="/components/core.css" />
+    <link rel="stylesheet" href="/components/button/button.css" />
+    <link rel="stylesheet" href="/components/icon/icon.css" />
+  </head>
+  <body>
+    <div id="app">
+      <ui-button>Text</ui-button>
+      <ui-button outlined>Outlined</ui-button>
+      <ui-button raised>Raised</ui-button>
+      <ui-button icon="favorite">Icon</ui-button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="/components/button/index.js"></script>
+    <script>
+      var app = Vue.createApp({});
 
-    app.use(UiButton, {
-      // raised: true
-    });
+      app.use(UiButton, {
+        // raised: true
+      });
 
-    app.mount('#app');
-  </script>
-</body>
+      app.mount('#app');
+    </script>
+  </body>
 </html>

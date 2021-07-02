@@ -27,12 +27,15 @@ export default {
     }
   },
   mounted() {
-    const parentEl = getCurrentElement(this.$parent.$el);
-    if (parentEl && getType(parentEl) === 'htmldivelement') {
-      this.cardButton =
-        parentEl.classList.contains(UI_CARD.cssClasses.button) ||
-        parentEl.classList.contains(UI_CARD.cssClasses.action);
-      this.cardIcon = parentEl.classList.contains(UI_CARD.cssClasses.icon);
+    if (this.$parent.$el) {
+      const parentEl = getCurrentElement(this.$parent.$el);
+
+      if (parentEl && getType(parentEl) === 'htmldivelement') {
+        this.cardButton =
+          parentEl.classList.contains(UI_CARD.cssClasses.button) ||
+          parentEl.classList.contains(UI_CARD.cssClasses.action);
+        this.cardIcon = parentEl.classList.contains(UI_CARD.cssClasses.icon);
+      }
     }
   }
 };

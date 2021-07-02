@@ -108,11 +108,15 @@ var MDCSelect = /** @class */ (function (_super) {
         this.handleMenuClosed = function () {
             _this.foundation.handleMenuClosed();
         };
+        this.handleMenuClosing = function () {
+            _this.foundation.handleMenuClosing();
+        };
         this.selectAnchor.addEventListener('focus', this.handleFocus);
         this.selectAnchor.addEventListener('blur', this.handleBlur);
         this.selectAnchor.addEventListener('click', this.handleClick);
         this.selectAnchor.addEventListener('keydown', this.handleKeydown);
         this.menu.listen(menuSurfaceConstants.strings.CLOSED_EVENT, this.handleMenuClosed);
+        this.menu.listen(menuSurfaceConstants.strings.CLOSING_EVENT, this.handleMenuClosing);
         this.menu.listen(menuSurfaceConstants.strings.OPENED_EVENT, this.handleMenuOpened);
         this.menu.listen(menuConstants.strings.SELECTED_EVENT, this.handleMenuItemAction);
         if (this.hiddenInput) {
@@ -157,19 +161,27 @@ var MDCSelect = /** @class */ (function (_super) {
         set: function (value) {
             this.foundation.setValue(value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
+    MDCSelect.prototype.setValue = function (value, skipNotify) {
+        if (skipNotify === void 0) { skipNotify = false; }
+        this.foundation.setValue(value, skipNotify);
+    };
     Object.defineProperty(MDCSelect.prototype, "selectedIndex", {
         get: function () {
             return this.foundation.getSelectedIndex();
         },
         set: function (selectedIndex) {
-            this.foundation.setSelectedIndex(selectedIndex, /** closeMenu */ true);
+            this.foundation.setSelectedIndex(selectedIndex, /* closeMenu */ true);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
+    MDCSelect.prototype.setSelectedIndex = function (selectedIndex, skipNotify) {
+        if (skipNotify === void 0) { skipNotify = false; }
+        this.foundation.setSelectedIndex(selectedIndex, /* closeMenu */ true, skipNotify);
+    };
     Object.defineProperty(MDCSelect.prototype, "disabled", {
         get: function () {
             return this.foundation.getDisabled();
@@ -180,14 +192,14 @@ var MDCSelect = /** @class */ (function (_super) {
                 this.hiddenInput.disabled = disabled;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSelect.prototype, "leadingIconAriaLabel", {
         set: function (label) {
             this.foundation.setLeadingIconAriaLabel(label);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSelect.prototype, "leadingIconContent", {
@@ -197,7 +209,7 @@ var MDCSelect = /** @class */ (function (_super) {
         set: function (content) {
             this.foundation.setLeadingIconContent(content);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSelect.prototype, "helperTextContent", {
@@ -207,7 +219,7 @@ var MDCSelect = /** @class */ (function (_super) {
         set: function (content) {
             this.foundation.setHelperTextContent(content);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSelect.prototype, "useDefaultValidation", {
@@ -220,7 +232,7 @@ var MDCSelect = /** @class */ (function (_super) {
         set: function (useDefaultValidation) {
             this.foundation.setUseDefaultValidation(useDefaultValidation);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSelect.prototype, "valid", {
@@ -236,7 +248,7 @@ var MDCSelect = /** @class */ (function (_super) {
         set: function (isValid) {
             this.foundation.setValid(isValid);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSelect.prototype, "required", {
@@ -252,7 +264,7 @@ var MDCSelect = /** @class */ (function (_super) {
         set: function (isRequired) {
             this.foundation.setRequired(isRequired);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**
@@ -394,11 +406,11 @@ var MDCSelect = /** @class */ (function (_super) {
                 _this.lineRipple && _this.lineRipple.deactivate();
             },
             notifyChange: function (value) {
-                var index = _this.selectedIndex;
-                _this.emit(strings.CHANGE_EVENT, { value: value, index: index }, true /* shouldBubble  */);
                 if (_this.hiddenInput) {
                     _this.hiddenInput.value = value;
                 }
+                var index = _this.selectedIndex;
+                _this.emit(strings.CHANGE_EVENT, { value: value, index: index }, true /* shouldBubble  */);
             },
         };
         // tslint:enable:object-literal-sort-keys

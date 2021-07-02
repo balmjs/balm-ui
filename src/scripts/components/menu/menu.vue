@@ -1,0 +1,272 @@
+<template>
+  <!-- Container -->
+  <div :class="className">
+    <ul
+      :class="deprecatedListClassNameMap['mdc-list']"
+      tabindex="-1"
+      role="menu"
+      aria-hidden="true"
+      aria-orientation="vertical"
+    >
+      <slot>
+        <template
+          v-for="(item, index) in currentItems"
+          :key="`menu-item-${index}`"
+        >
+          <template v-if="getType(item) === 'array'">
+            <ui-menuitem :key="`group${index}`" nested>
+              <template
+                v-for="(subItem, subIndex) in item"
+                :key="`menu-subitem-${subIndex}`"
+              >
+                <ui-item-divider v-if="isDivider(subItem)"></ui-item-divider>
+                <ui-menuitem
+                  v-else
+                  :item="getType(subItem) === 'object' ? subItem : {}"
+                  :selected="isSelected(subItem)"
+                >
+                  <template v-if="getType(subItem) === 'string'">
+                    <ui-menuitem-text v-text="subItem"></ui-menuitem-text>
+                  </template>
+                </ui-menuitem>
+              </template>
+            </ui-menuitem>
+          </template>
+          <template v-else>
+            <ui-item-divider v-if="isDivider(item)"></ui-item-divider>
+            <ui-menuitem
+              v-else
+              :item="getType(item) === 'object' ? item : {}"
+              :selected="isSelected(item)"
+            >
+              <template v-if="getType(item) === 'string'">
+                <ui-menuitem-text v-text="item"></ui-menuitem-text>
+              </template>
+            </ui-menuitem>
+          </template>
+        </template>
+      </slot>
+    </ul>
+  </div>
+</template>
+
+<script>
+import { MDCMenu } from '../../../material-components-web/menu';
+import { Corner } from '../../../material-components-web/menu-surface/constants';
+import UiMenuitem from './menuitem.vue';
+import UiMenuitemText from './menuitem-text.vue';
+import UiItemDivider from '../list/item-divider.vue';
+import domMixin from '../../mixins/dom';
+import deprecatedListMixin from '../../mixins/deprecated-list';
+import getType from '../../utils/typeof';
+
+// Define menu constants
+const UI_MENU = {
+  DIVIDER: '-',
+  MENU_POSITIONS: [
+    'TOP_LEFT',
+    'TOP_RIGHT',
+    'BOTTOM_LEFT',
+    'BOTTOM_RIGHT',
+    'TOP_START',
+    'TOP_END',
+    'BOTTOM_START',
+    'BOTTOM_END'
+  ],
+  EVENT: {
+    SELECTED: 'selected',
+    CLOSED: 'closed',
+    OPENED: 'opened',
+    CHANGE: 'update:modelValue'
+  }
+};
+
+export default {
+  name: 'UiMenu',
+  components: {
+    UiMenuitem,
+    UiMenuitemText,
+    UiItemDivider
+  },
+  mixins: [domMixin, deprecatedListMixin],
+  props: {
+    // States
+    modelValue: {
+      type: Boolean,
+      default: false
+    },
+    items: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    quickOpen: {
+      type: Boolean,
+      default: false
+    },
+    // UI attributes
+    position: {
+      type: String,
+      default: 'TOP_LEFT'
+    },
+    distance: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
+    fixed: {
+      type: Boolean,
+      default: false
+    },
+    fullwidth: {
+      type: Boolean,
+      default: false
+    },
+    cssOnly: {
+      type: Boolean,
+      default: false
+    }
+  },
+  emits: [
+    UI_MENU.EVENT.SELECTED,
+    UI_MENU.EVENT.CLOSED,
+    UI_MENU.EVENT.OPENED,
+    UI_MENU.EVENT.CHANGE
+  ],
+  data() {
+    return {
+      getType,
+      $menu: null,
+      currentItems: this.items,
+      currentTextItems: [],
+      currentItem: null
+    };
+  },
+  computed: {
+    className() {
+      return {
+        'mdc-menu': true,
+        'mdc-menu-surface': true,
+        'mdc-menu-surface--fixed': this.fixed,
+        'mdc-menu-surface--fullwidth': this.fullwidth && !this.fixed,
+        'mdc-menu-surface--open': this.cssOnly
+      };
+    },
+    menuDistance() {
+      return Object.assign({}, this.distance);
+    }
+  },
+  watch: {
+    modelValue(val) {
+      if (this.$menu.open !== val) {
+        this.$menu.open = val;
+      }
+    },
+    items(val) {
+      this.currentItems = val;
+      this.initItems();
+    },
+    quickOpen(val) {
+      this.setQuickOpen(val);
+    },
+    position(val) {
+      this.setAnchorCorner(val);
+    },
+    menuDistance(val) {
+      this.setAnchorMargin(val);
+    }
+  },
+  mounted() {
+    this.initItems();
+
+    if (!this.cssOnly) {
+      this.$menu = new MDCMenu(this.el);
+
+      // Listen for selected item
+      this.el.addEventListener(
+        `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
+        ({ detail }) => {
+          const index = detail.index;
+          const dataValue = detail.item.dataset.value;
+          const currentTextItem = this.currentTextItems[index];
+          const item =
+            getType(currentTextItem) === 'object'
+              ? currentTextItem
+              : { value: currentTextItem };
+
+          this.currentItem = item;
+          this.$emit(UI_MENU.EVENT.SELECTED, {
+            index, // number
+            text: this.$menu.getPrimaryTextAtIndex(index), // string
+            value: item.value || dataValue // string
+          });
+        }
+      );
+
+      this.el.addEventListener(`MDCMenuSurface:${UI_MENU.EVENT.CLOSED}`, () => {
+        this.$emit(UI_MENU.EVENT.CHANGE, false);
+        this.$emit(UI_MENU.EVENT.CLOSED);
+      });
+
+      this.el.addEventListener(`MDCMenuSurface:${UI_MENU.EVENT.OPENED}`, () => {
+        this.$emit(UI_MENU.EVENT.OPENED);
+      });
+
+      this.setQuickOpen();
+      this.setAnchorCorner();
+      this.setAnchorMargin();
+    }
+  },
+  methods: {
+    isDivider(item) {
+      return item === UI_MENU.DIVIDER;
+    },
+    initItems() {
+      this.currentTextItems = this.currentItems.filter((item) =>
+        getType(item) === 'object'
+          ? item.text !== UI_MENU.DIVIDER
+          : item !== UI_MENU.DIVIDER
+      );
+    },
+    isSelected(item) {
+      let selected = false;
+
+      if (
+        getType(item) === 'object' &&
+        getType(this.currentItem) === 'object'
+      ) {
+        selected = item.text === this.currentItem.text;
+      } else {
+        selected = item === this.currentItem;
+      }
+
+      return selected;
+    },
+    setQuickOpen(quickOpen = this.quickOpen) {
+      this.$menu.quickOpen = quickOpen;
+    },
+    hasAnchor() {
+      return (
+        this.el.parentElement &&
+        this.el.parentElement.classList.contains('mdc-menu-surface--anchor')
+      );
+    },
+    setAnchorCorner(menuPosition = this.position) {
+      if (this.hasAnchor()) {
+        if (UI_MENU.MENU_POSITIONS.includes(menuPosition)) {
+          this.$menu.setAnchorCorner(Corner[menuPosition]);
+        } else {
+          console.warn('[UiMenu]', 'Invalid menu position');
+        }
+      }
+    },
+    setAnchorMargin(distance = this.distance) {
+      if (this.hasAnchor() && Object.keys(distance).length) {
+        this.$menu.setAnchorMargin(distance);
+      }
+    }
+  }
+};
+</script>

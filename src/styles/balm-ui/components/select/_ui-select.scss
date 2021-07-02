@@ -4,7 +4,7 @@
   display: flex;
 }
 
-.mdc-select__menu .mdc-list .mdc-list-item--selected {
+.mdc-select__menu .mdc-deprecated-list .mdc-deprecated-list-item--selected {
   @include ui-mixins.selected();
 }
 

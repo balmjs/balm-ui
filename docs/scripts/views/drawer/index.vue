@@ -7,8 +7,8 @@
       'drawer',
       'drawer-header',
       'drawer-content',
-      'drawer-backdrop',
-      'drawer-app-content'
+      'drawer-app-content',
+      'drawer-backdrop'
     ]"
   >
     <template #hero>
@@ -17,12 +17,14 @@
           <ui-drawer-header>
             <ui-drawer-title
               :class="$theme.getTextClass('primary', $store.theme)"
-              >Title</ui-drawer-title
             >
+              Title
+            </ui-drawer-title>
             <ui-drawer-subtitle
               :class="$theme.getTextClass('secondary', $store.theme)"
-              >Subtitle</ui-drawer-subtitle
             >
+              Subtitle
+            </ui-drawer-subtitle>
           </ui-drawer-header>
           <ui-drawer-content>
             <ui-nav>
@@ -39,8 +41,9 @@
                 </ui-item-first-content>
                 <ui-item-text-content
                   :class="$theme.getTextClass('primary', $store.theme)"
-                  >{{ item.name }}</ui-item-text-content
                 >
+                  {{ item.name }}
+                </ui-item-text-content>
               </ui-nav-item>
             </ui-nav>
           </ui-drawer-content>
@@ -56,8 +59,9 @@
           <router-link
             v-if="isDesktop"
             :to="{ name: 'navigation.permanent-drawer-above-toolbar' }"
-            >Permanent Drawer Above Toolbar</router-link
           >
+            Permanent Drawer Above Toolbar
+          </router-link>
           <span v-else>(Desktop only) Permanent Drawer Above Toolbar</span>
         </ui-item-text-content>
       </ui-item>
@@ -67,8 +71,9 @@
           <router-link
             v-if="isDesktop"
             :to="{ name: 'navigation.permanent-drawer-below-toolbar' }"
-            >Permanent Drawer Below Toolbar</router-link
           >
+            Permanent Drawer Below Toolbar
+          </router-link>
           <span v-else>(Desktop only) Permanent Drawer Below Toolbar</span>
         </ui-item-text-content>
       </ui-item>
@@ -77,8 +82,9 @@
           <span>1.3</span>
           <router-link
             :to="{ name: 'navigation.dismissible-drawer-full-height-drawer' }"
-            >Dismissible Drawer Full Height Drawer</router-link
           >
+            Dismissible Drawer Full Height Drawer
+          </router-link>
         </ui-item-text-content>
       </ui-item>
       <ui-item>
@@ -86,16 +92,17 @@
           <span>1.4</span>
           <router-link
             :to="{ name: 'navigation.dismissible-drawer-below-top-app-bar' }"
-            >Dismissible Drawer Below Top App Bar</router-link
           >
+            Dismissible Drawer Below Top App Bar
+          </router-link>
         </ui-item-text-content>
       </ui-item>
       <ui-item>
         <ui-item-text-content>
           <span>1.5</span>
-          <router-link :to="{ name: 'navigation.modal-drawer' }"
-            >Modal Drawer</router-link
-          >
+          <router-link :to="{ name: 'navigation.modal-drawer' }">
+            Modal Drawer
+          </router-link>
         </ui-item-text-content>
       </ui-item>
     </ui-list>

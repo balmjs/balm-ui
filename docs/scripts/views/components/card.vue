@@ -57,29 +57,30 @@
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Type</ui-select
         >
+          Type
+        </ui-select>
         <div class="hero-option hero-options">
           <ui-form-field>
             <ui-checkbox
-              id="card-media"
               v-model="cardOptions.media"
+              input-id="card-media"
               :value="1"
             ></ui-checkbox>
             <label for="card-media">Media</label>
           </ui-form-field>
           <ui-form-field>
             <ui-checkbox
-              id="card-supporting-text"
               v-model="cardOptions.supportingText"
+              input-id="card-supporting-text"
               :value="1"
             ></ui-checkbox>
             <label for="card-supporting-text">Supporting text</label>
           </ui-form-field>
           <ui-form-field>
             <ui-checkbox
-              id="card-buttons"
               v-model="cardOptions.buttons"
+              input-id="card-buttons"
               :value="1"
             ></ui-checkbox>
             <label for="card-buttons">Buttons</label>

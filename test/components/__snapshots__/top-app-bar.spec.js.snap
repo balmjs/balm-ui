@@ -1,0 +1,325 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ui-top-app-bar> renders a default top app bar 1`] = `
+<header
+  class="mdc-top-app-bar"
+>
+  <div
+    class="mdc-top-app-bar__row"
+  >
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+    >
+      <span
+        class="mdc-top-app-bar__brand"
+      >
+        <button
+          class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon"
+          type="button"
+        >
+          menu
+        </button>
+      </span>
+       
+      <span
+        class="mdc-top-app-bar__title"
+      >
+        
+      </span>
+    </section>
+     
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
+      role="toolbar"
+    />
+  </div>
+</header>
+`;
+
+exports[`<ui-top-app-bar> renders a dense top app bar 1`] = `
+<header
+  class="mdc-top-app-bar mdc-top-app-bar--dense"
+>
+  <div
+    class="mdc-top-app-bar__row"
+  >
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+    >
+      <span
+        class="mdc-top-app-bar__brand"
+      >
+        <button
+          class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon"
+          type="button"
+        >
+          menu
+        </button>
+      </span>
+       
+      <span
+        class="mdc-top-app-bar__title"
+      >
+        
+      </span>
+    </section>
+     
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
+      role="toolbar"
+    />
+  </div>
+</header>
+`;
+
+exports[`<ui-top-app-bar> renders a fixed top app bar 1`] = `
+<header
+  class="mdc-top-app-bar mdc-top-app-bar--fixed"
+>
+  <div
+    class="mdc-top-app-bar__row"
+  >
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+    >
+      <span
+        class="mdc-top-app-bar__brand"
+      >
+        <button
+          class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon"
+          type="button"
+        >
+          menu
+        </button>
+      </span>
+       
+      <span
+        class="mdc-top-app-bar__title"
+      >
+        
+      </span>
+    </section>
+     
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
+      role="toolbar"
+    />
+  </div>
+</header>
+`;
+
+exports[`<ui-top-app-bar> renders a nonRegular top app bar 1`] = `
+<header
+  class="mdc-top-app-bar"
+>
+  <div
+    class="mdc-top-app-bar__row"
+  >
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+    >
+      <span
+        class="mdc-top-app-bar__brand"
+      >
+        <button
+          class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon"
+          type="button"
+        >
+          close
+        </button>
+      </span>
+       
+      <span
+        class="mdc-top-app-bar__title"
+      >
+        
+      </span>
+    </section>
+     
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
+      role="toolbar"
+    />
+  </div>
+</header>
+`;
+
+exports[`<ui-top-app-bar> renders a prominent and dense top app bar 1`] = `
+<header
+  class="mdc-top-app-bar mdc-top-app-bar--dense mdc-top-app-bar--prominent"
+>
+  <div
+    class="mdc-top-app-bar__row"
+  >
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+    >
+      <span
+        class="mdc-top-app-bar__brand"
+      >
+        <button
+          class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon"
+          type="button"
+        >
+          menu
+        </button>
+      </span>
+       
+      <span
+        class="mdc-top-app-bar__title"
+      >
+        
+      </span>
+    </section>
+     
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
+      role="toolbar"
+    />
+  </div>
+</header>
+`;
+
+exports[`<ui-top-app-bar> renders a prominent top app bar 1`] = `
+<header
+  class="mdc-top-app-bar mdc-top-app-bar--prominent"
+>
+  <div
+    class="mdc-top-app-bar__row"
+  >
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+    >
+      <span
+        class="mdc-top-app-bar__brand"
+      >
+        <button
+          class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon"
+          type="button"
+        >
+          menu
+        </button>
+      </span>
+       
+      <span
+        class="mdc-top-app-bar__title"
+      >
+        
+      </span>
+    </section>
+     
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
+      role="toolbar"
+    />
+  </div>
+</header>
+`;
+
+exports[`<ui-top-app-bar> renders a short collapesed top app bar 1`] = `
+<header
+  class="mdc-top-app-bar mdc-top-app-bar--short mdc-top-app-bar--short-collapsed"
+>
+  <div
+    class="mdc-top-app-bar__row"
+  >
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+    >
+      <span
+        class="mdc-top-app-bar__brand"
+      >
+        <button
+          class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon"
+          type="button"
+        >
+          menu
+        </button>
+      </span>
+       
+      <span
+        class="mdc-top-app-bar__title"
+      >
+        
+      </span>
+    </section>
+     
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
+      role="toolbar"
+    />
+  </div>
+</header>
+`;
+
+exports[`<ui-top-app-bar> renders a short top app bar 1`] = `
+<header
+  class="mdc-top-app-bar mdc-top-app-bar--short"
+>
+  <div
+    class="mdc-top-app-bar__row"
+  >
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+    >
+      <span
+        class="mdc-top-app-bar__brand"
+      >
+        <button
+          class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon"
+          type="button"
+        >
+          menu
+        </button>
+      </span>
+       
+      <span
+        class="mdc-top-app-bar__title"
+      >
+        
+      </span>
+    </section>
+     
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
+      role="toolbar"
+    />
+  </div>
+</header>
+`;
+
+exports[`<ui-top-app-bar> renders a top app bar with title 1`] = `
+<header
+  class="mdc-top-app-bar"
+>
+  <div
+    class="mdc-top-app-bar__row"
+  >
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+    >
+      <span
+        class="mdc-top-app-bar__brand"
+      >
+        <button
+          class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon"
+          type="button"
+        >
+          menu
+        </button>
+      </span>
+       
+      <span
+        class="mdc-top-app-bar__title"
+      >
+        title
+      </span>
+    </section>
+     
+    <section
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
+      role="toolbar"
+    />
+  </div>
+</header>
+`;

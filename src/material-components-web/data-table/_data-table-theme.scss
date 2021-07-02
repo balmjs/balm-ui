@@ -24,6 +24,7 @@
 // NOTE: We disable `selector-class-pattern` above to allow using `mdc-` class
 // selectors.
 
+@use 'sass:math';
 @use 'sass:list';
 @use 'sass:meta';
 @use '../animation/functions';
@@ -111,7 +112,7 @@ $pagination-rows-per-page-select-height: 36px;
   $feat-color: feature-targeting.create-target($query, color);
 
   @include feature-targeting.targets($feat-color) {
-    @include theme.prop('background-color', $color);
+    @include theme.property('background-color', $color);
   }
 }
 
@@ -121,7 +122,7 @@ $pagination-rows-per-page-select-height: 36px;
   // Set background color to cell instead of row to support sticky header.
   .mdc-data-table__header-cell {
     @include feature-targeting.targets($feat-color) {
-      @include theme.prop('background-color', $color);
+      @include theme.property('background-color', $color);
     }
   }
 }
@@ -131,7 +132,7 @@ $pagination-rows-per-page-select-height: 36px;
 
   .mdc-data-table__row {
     @include feature-targeting.targets($feat-color) {
-      @include theme.prop('background-color', $color);
+      @include theme.property('background-color', $color);
     }
   }
 }
@@ -141,7 +142,7 @@ $pagination-rows-per-page-select-height: 36px;
 
   .mdc-data-table__row--selected {
     @include feature-targeting.targets($feat-color) {
-      @include theme.prop('background-color', $color);
+      @include theme.property('background-color', $color);
     }
   }
 }
@@ -175,7 +176,7 @@ $pagination-rows-per-page-select-height: 36px;
     @include select-theme.outline-color($color, $query: $query);
   }
 
-  .mdc-data-table__row,
+  .mdc-data-table__cell,
   .mdc-data-table__pagination {
     @include feature-targeting.targets($feat-color) {
       border-top-color: $color;
@@ -188,12 +189,12 @@ $pagination-rows-per-page-select-height: 36px;
 
   .mdc-data-table__header-cell:after {
     @include feature-targeting.targets($feat-structure) {
-      border-bottom-style: solid;
       border-bottom-width: $size;
+      border-bottom-style: solid;
     }
   }
 
-  .mdc-data-table__row,
+  .mdc-data-table__cell,
   .mdc-data-table__pagination {
     @include feature-targeting.targets($feat-structure) {
       border-top-width: $size;
@@ -207,7 +208,7 @@ $pagination-rows-per-page-select-height: 36px;
 
   .mdc-data-table__row:not(.mdc-data-table__row--selected):hover {
     @include feature-targeting.targets($feat-color) {
-      @include theme.prop('background-color', $color);
+      @include theme.property('background-color', $color);
     }
   }
 }
@@ -217,7 +218,7 @@ $pagination-rows-per-page-select-height: 36px;
 
   .mdc-data-table__header-cell {
     @include feature-targeting.targets($feat-color) {
-      @include theme.prop('color', $color);
+      @include theme.property('color', $color);
     }
   }
 }
@@ -233,7 +234,7 @@ $pagination-rows-per-page-select-height: 36px;
   .mdc-data-table__pagination-rows-per-page-label,
   .mdc-data-table__cell {
     @include feature-targeting.targets($feat-color) {
-      @include theme.prop('color', $color);
+      @include theme.property('color', $color);
     }
   }
 }
@@ -405,7 +406,7 @@ $pagination-rows-per-page-select-height: 36px;
         );
       }
       $leading-padding: $leading-padding -
-        ($checkbox-touch-size - $checkbox-icon-size) / 2;
+        math.div($checkbox-touch-size - $checkbox-icon-size, 2);
       @include rtl-mixins.reflexive-property(padding, $leading-padding, 0);
     }
   }

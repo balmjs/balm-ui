@@ -11,9 +11,9 @@
 >
   <template #th-dessert>
     Dessert
-    <ui-icon v-tooltip="'100g serving'" aria-describedby="th-cell-1"
-      >error_outline</ui-icon
-    >
+    <ui-icon v-tooltip="'100g serving'" aria-describedby="th-cell-1">
+      error_outline
+    </ui-icon>
   </template>
   <template #dessert="{ data }">
     <div class="dessert">{{ data.dessert }}</div>
@@ -23,6 +23,13 @@
     <ui-icon @click="show(data)">edit</ui-icon>
     <ui-icon @click="show(data)">delete</ui-icon>
   </template>
+
+  <ui-pagination
+    v-model="page"
+    :total="total"
+    show-total
+    @change="onPage"
+  ></ui-pagination>
 </ui-table>
 ```
 
@@ -39,7 +46,7 @@ export default {
         },
         {
           slot: 'th-dessert',
-          class: 'gg',
+          class: 'good',
           sort: 'none',
           columnId: 'dessert'
         },
@@ -101,7 +108,9 @@ export default {
           fnName: 'min'
         }
       ],
-      selectedRows: [1, 2, 4]
+      selectedRows: [1, 2, 4],
+      page: 1,
+      total: 12
     };
   },
   created() {
@@ -111,6 +120,9 @@ export default {
   methods: {
     show(data) {
       console.log(data);
+    },
+    onPage(page) {
+      // your code
     }
   }
 };

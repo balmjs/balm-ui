@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import createVueApp from '../config/ssr';
 import getType from '../utils/typeof';
 import { createDiv } from '../utils/div';
 
@@ -8,7 +8,7 @@ function createStore(key, options) {
   createDiv(key);
 
   const keyName = key.replace(/^\S/, (s) => s.toUpperCase());
-  const storeApp = createApp({
+  const storeApp = createVueApp({
     name: `BalmUI${keyName}`,
     setup() {
       return options;
@@ -30,15 +30,15 @@ function install(app, options = {}) {
       app.provide('store', store);
     }
   } else {
-    throw new Error(`[BalmUI store]: The '$store' must be an object`);
+    throw new Error(`[$store]: The '$store' of BalmUI must be an object`);
   }
 }
 
-const BalmUI_StorePlugin = {
+const $store = {
   install
 };
 
 const useStore = () => store;
 
-export default BalmUI_StorePlugin;
+export default $store;
 export { install, useStore };

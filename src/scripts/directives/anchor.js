@@ -8,15 +8,12 @@ let UI_ANCHOR = {
   offset: 0 // Global offset
 };
 
-// TODO: It has bug in <ui-bottom-navigation>
-
 const goAnchor = (selector) => {
   let anchorEl = document.querySelector(selector);
   if (anchorEl) {
-    // console.log(UI_ANCHOR.body, UI_ANCHOR.offset);
     UI_ANCHOR.body.scrollTop = anchorEl.offsetTop - UI_ANCHOR.offset;
   } else {
-    console.warn(`Invalid anchor: ${selector}`);
+    console.warn('[v-anchor]', `Invalid anchor: ${selector}`);
   }
 };
 
@@ -66,7 +63,7 @@ const bindAnchor = (method, el = document) => {
   }
 };
 
-const BalmUI_AnchorDirective = {
+const vAnchor = {
   name: 'anchor',
   beforeMount(el, binding) {
     updateAnchor('add', el, binding);
@@ -75,6 +72,11 @@ const BalmUI_AnchorDirective = {
     initAnchor(el, binding);
     if (binding.modifiers.html) {
       bindAnchor('add');
+    }
+  },
+  updated(el, binding, vnode) {
+    if (binding.modifiers.html) {
+      bindAnchor('add', vnode.el);
     }
   },
   beforeUnmount(el, binding) {
@@ -89,4 +91,4 @@ const BalmUI_AnchorDirective = {
   }
 };
 
-export default BalmUI_AnchorDirective;
+export default vAnchor;

@@ -1,75 +1,77 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BalmUI - drawer example</title>
-  <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/top-app-bar/top-app-bar.css">
-  <link rel="stylesheet" href="/components/drawer/drawer.css">
-  <link rel="stylesheet" href="/components/list/list.css">
-  <link rel="stylesheet" href="/components/icon/icon.css">
-  <link rel="stylesheet" href="/components/icon-button/icon-button.css">
-  <style>
-  body {
-    margin: 0;
-  }
-  .demo-app-bar {
-    z-index: 7;
-  }
-  .demo-app-content {
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-  }
-  </style>
-</head>
-<body>
-  <div id="app">
-    <div class="demo-container">
-      <!-- App bar -->
-      <ui-top-app-bar
-        class="demo-app-bar"
-        content-selector=".demo-app-content"
-        nav-id="demo-menu"
-      >
-        Title
-      </ui-top-app-bar>
-      <!-- Drawer -->
-      <ui-drawer type="dismissible" viewport-height nav-id="demo-menu">
-        <ui-drawer-header>
-          <ui-drawer-title>Title</ui-drawer-title>
-          <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
-        </ui-drawer-header>
-        <ui-drawer-content>
-          <ui-nav>
-            <ui-nav-item href="javascript:void(0)" active>Item {{ 0 }}</ui-nav-item>
-            <ui-nav-item v-for="i in 24" :key="i" href="javascript:void(0)"
-              >Item {{ i }}</ui-nav-item
-            >
-          </ui-nav>
-        </ui-drawer-content>
-      </ui-drawer>
-      <!-- Content -->
-      <ui-drawer-app-content class="demo-app-content">
-        <!-- App content -->
-        <p v-for="i in 24" :key="i">Main Content {{ i }}</p>
-      </ui-drawer-app-content>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BalmUI - drawer example</title>
+    <link rel="stylesheet" href="/components/core.css" />
+    <link rel="stylesheet" href="/components/top-app-bar/top-app-bar.css" />
+    <link rel="stylesheet" href="/components/drawer/drawer.css" />
+    <link rel="stylesheet" href="/components/list/list.css" />
+    <link rel="stylesheet" href="/components/icon/icon.css" />
+    <link rel="stylesheet" href="/components/icon-button/icon-button.css" />
+    <style>
+      body {
+        margin: 0;
+      }
+      .demo-app-bar {
+        z-index: 7;
+      }
+      .demo-app-content {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="demo-container">
+        <!-- App bar -->
+        <ui-top-app-bar
+          class="demo-app-bar"
+          content-selector=".demo-app-content"
+          nav-id="demo-menu"
+        >
+          Title
+        </ui-top-app-bar>
+        <!-- Drawer -->
+        <ui-drawer type="dismissible" viewport-height nav-id="demo-menu">
+          <ui-drawer-header>
+            <ui-drawer-title>Title</ui-drawer-title>
+            <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
+          </ui-drawer-header>
+          <ui-drawer-content>
+            <ui-nav>
+              <ui-nav-item href="javascript:void(0)" active
+                >Item {{ 0 }}</ui-nav-item
+              >
+              <ui-nav-item v-for="i in 24" :key="i" href="javascript:void(0)"
+                >Item {{ i }}</ui-nav-item
+              >
+            </ui-nav>
+          </ui-drawer-content>
+        </ui-drawer>
+        <!-- Content -->
+        <ui-drawer-app-content class="demo-app-content">
+          <!-- App content -->
+          <p v-for="i in 24" :key="i">Main Content {{ i }}</p>
+        </ui-drawer-app-content>
+      </div>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-  <script src="/components/top-app-bar/index.js"></script>
-  <script src="/components/drawer/index.js"></script>
-  <script src="/components/list/index.js"></script>
-  <script>
-    var app = Vue.createApp({});
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="/components/top-app-bar/index.js"></script>
+    <script src="/components/drawer/index.js"></script>
+    <script src="/components/list/index.js"></script>
+    <script>
+      var app = Vue.createApp({});
 
-    app.use(UiTopAppBar);
-    app.use(UiDrawer);
-    app.use(UiList);
+      app.use(UiTopAppBar);
+      app.use(UiDrawer);
+      app.use(UiList);
 
-    app.mount('#app');
-  </script>
-</body>
+      app.mount('#app');
+    </script>
+  </body>
 </html>

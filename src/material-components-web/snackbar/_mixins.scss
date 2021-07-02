@@ -22,10 +22,11 @@
 
 @use '../feature-targeting/feature-targeting';
 @use '../animation/functions' as animation-functions;
-@use '../button/mixins' as button-mixins;
+@use '../button/button-theme';
 @use '../icon-button/mixins' as icon-button-mixins;
 @use '../ripple/ripple-theme';
 @use '../rtl/mixins' as rtl-mixins;
+@use '../dom/mixins' as dom-mixins;
 @use '../typography/typography';
 @use '../elevation/mixins' as elevation-mixins;
 @use '../shape/mixins' as shape-mixins;
@@ -97,6 +98,11 @@
   }
 
   .mdc-snackbar__surface {
+    // 1px border around the snackbar surface for high contrast mode.
+    &::before {
+      @include dom-mixins.transparent-border($query: $query);
+    }
+
     @include feature-targeting.targets($feat-structure) {
       @include rtl-mixins.reflexive-property(padding, 0, variables.$padding);
 
@@ -176,7 +182,7 @@
   }
 
   .mdc-snackbar__action {
-    @include button-mixins.ink-color(
+    @include button-theme.ink-color(
       variables.$action-ink-color,
       $query: $query
     );
@@ -193,10 +199,13 @@
   // Two selectors are needed to increase specificity above `.material-icons`.
   // stylelint-disable-next-line selector-class-pattern
   .mdc-snackbar__dismiss.mdc-snackbar__dismiss {
-    @include icon-button-mixins.icon-size(
-      variables.$dismiss-icon-size,
+    @include icon-button-mixins.size(
+      variables.$dismiss-button-size,
       $query: $query
     );
+    @include feature-targeting.targets($feat-structure) {
+      font-size: variables.$dismiss-icon-size;
+    }
   }
 
   .mdc-snackbar__action + .mdc-snackbar__dismiss {
@@ -212,7 +221,7 @@
 
   .mdc-snackbar__surface {
     @include feature-targeting.targets($feat-color) {
-      @include theme.prop(background-color, $color);
+      @include theme.property(background-color, $color);
     }
   }
 }
@@ -222,7 +231,7 @@
 
   .mdc-snackbar__label {
     @include feature-targeting.targets($feat-color) {
-      @include theme.prop(color, $color);
+      @include theme.property(color, $color);
     }
   }
 }

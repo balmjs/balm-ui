@@ -4,26 +4,24 @@
 
 ### `<ui-tabs>` Props
 
-| Name    | Type  | Default | Description           |
-| ------- | ----- | ------- | --------------------- |
-| `items` | array | `[]`    | Mandatory. Tab items. |
+| Name    | Type  | Default | Description        |
+| ------- | ----- | ------- | ------------------ |
+| `items` | array | `[]`    | 设置标签页对象列表 |
 
-- The keys of a tab item object:
+- 标签页对象的 keys:
 
-```js
-{
-  text: 'text', // label text
-  icon: 'icon', // label icon
-}
-```
+  ```js
+  {
+    text: 'text', // label text
+    icon: 'icon', // label icon
+  }
+  ```
 
 ### `<ui-tabs>` Slots
 
-| Name      | Slots | Description                                                     |
-| --------- | ----- | --------------------------------------------------------------- |
-| `default` |       | The default slot holds the tab components and can contain HTML. |
-
-> `<ui-tabs> is shorthand for <ui-tab-bar> + <ui-tab>`
+| Name      | Slots | Description                       |
+| --------- | ----- | --------------------------------- |
+| `default` |       | default 插槽包含标签页组件及 HTML |
 
 ```html
 <!-- Full syntax -->

@@ -49,7 +49,7 @@ npm install --save balm-ui@next
 
 update `balm.config.js`
 
-- get [Material Icons](https://next-material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `/path/to/my-project/app/fonts`)
+- get [Material Icons](https://next-material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `my-project/app/fonts`)
 
   ```js
   const api = (mix) => {
@@ -82,7 +82,7 @@ update `balm.config.js`
   @use 'balm-ui/dist/balm-ui';
   ```
 
-  > Recommend to use Sass in `/path/to/your-project/styles/_vendor.scss`, and you can use more advanced style usage of the BalmUI.
+  > Recommend to use Sass in `/path/to/project-name/styles/_vendor.scss`, and you can use more advanced style usage of the BalmUI.
 
 - edit `my-project/app/scripts/main.js`
 
@@ -167,9 +167,14 @@ npm run prod
 - `vite`
 
   ```sh
-  npm init vite-app my-project
-  # OR
-  yarn create vite-app my-project
+  # npm 6.x
+  npm init @vitejs/app my-project --template vue
+
+  # npm 7+, extra double-dash is needed:
+  npm init @vitejs/app my-project -- --template vue
+
+  # yarn
+  yarn create @vitejs/app my-project --template vue
 
   cd my-project
   ```
@@ -189,7 +194,21 @@ npm install --save balm-ui@next
   ```js
   // vue.config.js
   module.exports = {
-    runtimeCompiler: true
+    runtimeCompiler: true,
+    // NOTE: set alias via `configureWebpack` or `chainWebpack`
+    configureWebpack: {
+      resolve: {
+        alias: {
+          'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.js',
+          'balm-ui-css': 'balm-ui/dist/balm-ui.css'
+        }
+      }
+    }
+    // chainWebpack: (config) => {
+    //   config.resolve.alias
+    //     .set('balm-ui-plus', 'balm-ui/dist/balm-ui-plus.js')
+    //     .set('balm-ui-css', 'balm-ui/dist/balm-ui.css');
+    // }
   };
   ```
 
@@ -197,28 +216,32 @@ npm install --save balm-ui@next
 
   ```js
   // vite.config.js
-  export default {
-    alias: {
-      vue: 'vue/dist/vue.esm-bundler.js'
-    },
-    optimizeDeps: {
-      include: ['balm-ui/dist/balm-ui-plus']
+  import { defineConfig } from 'vite';
+  import vue from '@vitejs/plugin-vue';
+
+  export default defineConfig({
+    plugins: [vue()],
+    resolve: {
+      alias: {
+        vue: 'vue/dist/vue.esm-bundler.js',
+        'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.esm.js',
+        'balm-ui-css': 'balm-ui/dist/balm-ui.css'
+      }
     }
-  };
+  });
   ```
 
 #### 2.3 Usage
 
-- edit `/path/to/src/main.js`
+- edit `my-project/src/main.js`
 
   ```js
   import { createApp } from 'vue';
   import App from './App.vue';
-  import './index.css'; // vite template
 
   import BalmUI from 'balm-ui'; // Official Google Material Components
-  import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
-  import 'balm-ui/dist/balm-ui.css';
+  import BalmUIPlus from 'balm-ui-plus'; // BalmJS Team Material Components
+  import 'balm-ui-css';
 
   const app = createApp(App);
 
@@ -273,7 +296,7 @@ Enjoy 👻
 
 ## Contributing
 
-We'd love for you to contribute and make BalmUI even better than it is today! Please make sure to read the [Contributing Guide](CONTRIBUTING.md) before making a pull request. You can submit any ideas as [pull requests](https://github.com/balmjs/balm-ui/pulls) or as [GitHub issues](https://github.com/balmjs/balm-ui/issues).
+We'd love for you to contribute and make BalmUI even better than it is today! Please make sure to read the [Contributing Guide](https://github.com/balmjs/balm-ui/blob/master/CONTRIBUTING.md) before making a pull request. You can submit any ideas as [pull requests](https://github.com/balmjs/balm-ui/pulls) or as [GitHub issues](https://github.com/balmjs/balm-ui/issues).
 
 ## Browser support
 
@@ -291,7 +314,7 @@ We officially support the last two versions of every major browser. Specifically
 - [Vue.js](https://v3.vuejs.org/)
 - [MDC Web](https://github.com/material-components/material-components-web)
 
-[balm-ui-image]: https://badge.fury.io/js/balm-ui.svg
-[balm-ui-url]: https://www.npmjs.com/package/balm-ui
-[mdc-web-image]: https://img.shields.io/badge/mdc--web-9.0.0-blue.svg
+[balm-ui-image]: https://img.shields.io/npm/v/balm-ui/next.svg
+[balm-ui-url]: https://www.npmjs.com/package/balm-ui/v/next
+[mdc-web-image]: https://img.shields.io/badge/mdc--web-12.0.0-blue.svg
 [mdc-web-url]: https://www.npmjs.com/package/material-components-web

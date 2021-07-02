@@ -1,3 +1,3 @@
-# 全局提示
+# 横幅
 
-A banner displays a prominent message and related optional actions.
+横幅显示突出的消息和相关的可选操作。

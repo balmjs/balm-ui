@@ -22,12 +22,12 @@
       <h6 :class="$tt('headline6')">1.2 HTML Usage (e.g. markdown)</h6>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
       <div v-anchor.html class="demo">
-        <a href="javascript:void(0)" class="v-anchor" data-href="#target3"
-          >Anchor 3</a
-        >
-        <a href="javascript:void(0)" class="v-anchor" data-href="#target4"
-          >Anchor 4</a
-        >
+        <a href="javascript:void(0)" class="v-anchor" data-href="#target3">
+          Anchor 3
+        </a>
+        <a href="javascript:void(0)" class="v-anchor" data-href="#target4">
+          Anchor 4
+        </a>
         <div class="anchor-example-inner">
           <div id="target3">Target 3</div>
           <div id="target4">Target 4</div>

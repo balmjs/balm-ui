@@ -1,12 +1,19 @@
-@use '../../../src/styles/balm-ui/components/form-field/variables' as form-variables;
-
 .page--form {
   .mdc-form {
     padding: 10px;
     border: 1px solid;
   }
 
-  .mdc-form-field {
-    margin-bottom: 16px;
+  .conditions-form {
+    .mdc-form__item > label {
+      flex-basis: 80px;
+      margin-right: 10px;
+      text-align: right;
+    }
+
+    .mdc-text-field,
+    .mdc-select {
+      min-width: 200px;
+    }
   }
 }

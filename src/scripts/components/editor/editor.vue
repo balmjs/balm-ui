@@ -25,7 +25,8 @@
 </template>
 
 <script>
-import { createEditor, Emotion } from './quill';
+import { createEditor, Emotion } from './core';
+import { onBlurEmojiHandler } from './extensions/emoji/module';
 import UI_EDITOR from './constants';
 import handleFileChange from '../../utils/file';
 import getType from '../../utils/typeof';
@@ -127,8 +128,8 @@ export default {
     }
   },
   mounted() {
-    this.$nextTick(() => {
-      this.$editor = createEditor(this.$refs.editor, {
+    this.$nextTick(async () => {
+      this.$editor = await createEditor(this.$refs.editor, {
         toolbarIcons: Object.assign(UI_EDITOR.toolbarIcons, this.toolbarIcons),
         toolbarTips: this.toolbarTips,
         toolbarOptions: this.toolbarOptions,
@@ -151,9 +152,13 @@ export default {
         this.$emit(UI_EDITOR.EVENT.TEXT_CHANGE, html);
       });
     });
+
+    document.addEventListener('click', onBlurEmojiHandler);
   },
   beforeUnmount() {
     Emotion.clear();
+
+    document.removeEventListener('click', onBlurEmojiHandler);
   },
   methods: {
     setToolbarOption(toolbar, key, value) {

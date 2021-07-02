@@ -1,101 +1,125 @@
-## 1. Event Shortcut
+## 1. 事件缩写
+
+```ts
+interface BalmUIEvent {
+  onChange(property: string, value: any, fn?: Function);
+
+  onOpen(property: string, fn?: Function);
+  onShow(property: string, fn?: Function);
+
+  onClose(property: string, fn?: Function);
+  onHide(property: string, fn?: Function);
+}
+```
+
+### Props
+
+| Name       | Type     | Default     | Description                                                                     |
+| ---------- | -------- | ----------- | ------------------------------------------------------------------------------- |
+| `property` | string   | `''`        | 更新指定的 Vue 实例对象数据（`data` or `setup`）                                |
+| `value`    | any      | `undefined` | 指定 Vue 实例对象数据（`data` or `setup`）的新值。仅限 `balmUI.onChange` 方法。 |
+| `fn`       | function | `noop`      | 更新数据后的自定义事件                                                          |
 
 ```js
 import { useEvent } from 'balm-ui';
-// OR
+// 或
 // import { useEvent } from 'balm-ui/plugins/event';
 
 const balmUI = useEvent();
 ```
 
-```js
-balmUI.onChange(property, value, fn); // update property to `new value`
-balmUI.onOpen(property, fn); / balmUI.onShow(property, fn); // update property to `true`
-balmUI.onClose(property, fn); / balmUI.onHide(property, fn); // update property to `false`
-```
-
-### Props
-
-| Name       | Type     | Default     | Description                                                                               |
-| ---------- | -------- | ----------- | ----------------------------------------------------------------------------------------- |
-| `property` | string   | `''`        | Update a specified `data` or `setup` states.                                              |
-| `value`    | any      | `undefined` | New value of a specified `data` or `setup` states. Applicable only for `balmUI.onChange`. |
-| `fn`       | function | `noop`      | After method to handle.                                                                   |
-
-## 2. Optimized Custom Event
-
-- `balmResize` (better than `resize`)
-- `balmScroll` (better than `scroll`)
-
-- using Composable API
+- 更新 Vue 实例的数据对象为 `new value`
 
   ```js
-  import { onMounted, onBeforeUnmount } from 'vue';
+  balmUI.onChange(property, value);
+  ```
 
-  function init() {
-    // ...
+- 更新 Vue 实例的数据对象为 `true`
+
+  ```js
+  balmUI.onOpen(property);
+  balmUI.onShow(property);
+  ```
+
+- 更新 Vue 实例的数据对象为 `false`
+
+  ```js
+  balmUI.onClose(property);
+  balmUI.onHide(property);
+  ```
+
+## 2. 优化自定义事件
+
+- `balmResize`（优于 `resize`）
+- `balmScroll`（优于 `scroll`）
+
+  - using Composable API
+
+    ```js
+    import { onMounted, onBeforeUnmount } from 'vue';
+
+    function init() {
+      // ...
+    }
+
+    export default {
+      setup() {
+        onMounted(() => {
+          init();
+          window.addEventListener('balmResize', init);
+        });
+
+        onBeforeUnmount(() => {
+          window.removeEventListener('balmResize', init);
+        });
+      }
+    };
+    ```
+
+  - using Legacy API
+
+    ```js
+    export default {
+      mounted() {
+        this.init();
+        window.addEventListener('balmResize', this.init);
+      },
+      beforeUnmount() {
+        window.removeEventListener('balmResize', this.init);
+      },
+      methods: {
+        init() {
+          // ...
+        }
+      }
+    };
+    ```
+
+## 3. 全局通信
+
+- `$bus.on(eventName, callback)`
+- `$bus.emit(eventName, ...args)`
+
+  ```ts
+  interface BalmUIEventBus {
+    on(eventName: string | string[], callback: Function); // 监听当前 Vue 实例的自定义事件
+    emit(eventName: string, ...args); // 触发当前 Vue 实例的自定义事件
   }
 
-  export default {
-    setup() {
-      onMounted(() => {
-        init();
-        window.addEventListener('balmResize', init);
-      });
-
-      onBeforeUnmount(() => {
-        window.removeEventListener('balmResize', init);
-      });
-    }
-  };
+  interface VueInstance {
+    $bus: BalmUIEventBus;
+  }
   ```
-
-- using Legacy API
-
-  ```js
-  export default {
-    mounted() {
-      this.init();
-      window.addEventListener('balmResize', this.init);
-    },
-    beforeUnmount() {
-      window.removeEventListener('balmResize', this.init);
-    },
-    methods: {
-      init() {
-        // ...
-      }
-    }
-  };
-  ```
-
-## 3. Global Communication
-
-```js
-$bus.on(eventName, callback); // Listen for a custom event on the current vm.
-$bus.emit(eventName, ...args); // Trigger an event on the current instance.
-```
 
 ### Props
 
-| Name        | Type     | Default | Description                                     |
-| ----------- | -------- | ------- | ----------------------------------------------- |
-| `eventName` | string   |         | Custom event name for the global communication. |
-| `args`      | any      |         | The arguments of custom event function.         |
-| `callback`  | function |         | Custom event function.                          |
+| Name        | Type     | Default | Description                      |
+| ----------- | -------- | ------- | -------------------------------- |
+| `eventName` | string   |         | 全局通信的自定义事件的名称       |
+| `args`      | any      |         | 全局通信的自定义事件的方法的参数 |
+| `callback`  | function |         | 全局通信的自定义事件的方法       |
 
-### Use `$bus` without `.vue` component
-
-```js
-// `/path/to/awesome.js`
-
-import { useBus } from 'balm-ui';
-// OR
-// import { useBus } from 'balm-ui/plugins/event';
-
-const bus = useBus();
-bus.emit('custom-event', 'Hello BalmUI');
-```
+### 3.1 在 `.vue` 组件中使用 `$bus`
 
 - using Composable API
 
@@ -125,7 +149,6 @@ bus.emit('custom-event', 'Hello BalmUI');
 
   ```js
   // `/path/to/awesome.vue`
-
   export default {
     mounted() {
       this.$bus.on('custom-event', (msg) => {
@@ -137,3 +160,16 @@ bus.emit('custom-event', 'Hello BalmUI');
     }
   };
   ```
+
+### 3.2 在非 `.vue` 组件中使用 `$bus`
+
+```js
+// `/path/to/awesome.js`
+
+import { useBus } from 'balm-ui';
+// 或
+// import { useBus } from 'balm-ui/plugins/event';
+
+const bus = useBus();
+bus.emit('custom-event', 'Hello BalmUI');
+```

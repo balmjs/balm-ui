@@ -1,0 +1,13 @@
+@use '@material/theme/theme-color';
+
+$node-hover-color: rgba(theme-color.prop-value(on-surface), 0.04) !default;
+
+$indent-width: 24px !default;
+$icon-width: 24px !default;
+$label-padding: 8px 0 !default;
+
+$selected-background-color: rgba(
+  theme-color.prop-value(primary),
+  0.12
+) !default;
+$selected-color: theme-color.prop-value(on-surface) !default;

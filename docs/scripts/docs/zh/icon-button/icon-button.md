@@ -4,19 +4,28 @@
 
 ### Props
 
-| Name                     | Type    | Default | Description                                                              |
-| ------------------------ | ------- | ------- | ------------------------------------------------------------------------ |
-| `modelValue` (`v-model`) | boolean | `false` | Sets the toggle state.                                                   |
-| `icon`                   | string  | `''`    | A material icon of the icon button. See [Material Icons](/#/icons) list. |
-| `toggle`                 | object  | `{}`    | Two icons of the icon button toggle. (Format: `{on, off}`)               |
+| Name                     | Type    | Default | Description                                                          |
+| ------------------------ | ------- | ------- | -------------------------------------------------------------------- |
+| `modelValue` (`v-model`) | boolean | `false` | 切换状态                                                             |
+| `icon`                   | string  | `''`    | 设置单个图标。详见 [Material Icons](/#/icons) 图标集。               |
+| `toggle`                 | object  | `{}`    | 设置切换按钮两个状态的图标。详见 [Material Icons](/#/icons) 图标集。 |
 
-> Configuring the icon button toggle states by `toggle.on` and `toggle.off` props.
+- 通过 `toggle.on` 和 `toggle.off` 属性配置切换按钮状态的图标
+
+  ```ts
+  interface IconButton {
+    toggle: {
+      on: string;
+      off: string;
+    };
+  }
+  ```
 
 ### Slots
 
-| Name      | Props                 | Description                                                                  |
-| --------- | --------------------- | ---------------------------------------------------------------------------- |
-| `default` | `onClass`, `offClass` | The default slot holds the toggle or link custom icons and can contain HTML. |
+| Name      | Props                 | Description                             |
+| --------- | --------------------- | --------------------------------------- |
+| `default` | `onClass`, `offClass` | default 插槽包含自定义图标（组）及 HTML |
 
 ```html
 <template #default="{ onClass, offClass }">
@@ -27,20 +36,20 @@
 
 ### Events
 
-| Name                | Type                            | Description                            |
-| ------------------- | ------------------------------- | -------------------------------------- |
-| `click`             | `function(event: object)`       | Emits when the icon button is clicked. |
-| `update:modelValue` | `function(modelValue: boolean)` | Emits when the icon button is toggled. |
+| Name                | Type                       | Description        |
+| ------------------- | -------------------------- | ------------------ |
+| `click`             | `function(event: object)`  | 点击图标按钮时触发 |
+| `update:modelValue` | `function(value: boolean)` | 切换图标状态时触发 |
 
-> NOTE: If you are not using `v-model`, you should listen for the icon button using `@update:modelValue` and update the `modelValue` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听图标按钮状态并更新 `modelValue` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-icon-button v-model="value"></ui-icon-button>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-icon-button

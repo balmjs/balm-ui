@@ -1,5 +1,5 @@
 ```html
-<ui-button raised @click="open = true">Show Scrolling Dialog</ui-button>
+<ui-button raised @click="open = true">Show scrolling dialog</ui-button>
 
 <ui-dialog v-model="open" scrollable @confirm="onConfirm">
   <ui-dialog-title>Choose a Ringtone</ui-dialog-title>

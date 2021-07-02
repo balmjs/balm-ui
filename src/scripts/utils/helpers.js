@@ -65,12 +65,23 @@ const isDeepEqual = (obj1, obj2, testPrototypes = false) => {
   );
 };
 
+const toCamelCase = (str) => {
+  str = str.replace(/[-_\s]+(.)?/g, (match, c) => (c ? c.toUpperCase() : ''));
+
+  return str.substr(0, 1).toLowerCase() + str.substr(1);
+};
+
+const toCapitalize = (str) =>
+  str.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
+
 const helpers = {
   merge,
   isEmpty,
   jsonEqual,
-  isDeepEqual
+  isDeepEqual,
+  toCamelCase,
+  toCapitalize
 };
 
 export default helpers;
-export { merge, isEmpty, jsonEqual, isDeepEqual };
+export { merge, isEmpty, jsonEqual, isDeepEqual, toCamelCase, toCapitalize };

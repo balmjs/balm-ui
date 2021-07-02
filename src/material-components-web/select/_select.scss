@@ -20,6 +20,11 @@
 // THE SOFTWARE.
 //
 
+// Selector '.mdc-*' should only be used in this project.
+// stylelint-disable selector-class-pattern --
+// NOTE: this is the implementation of the aforementioned classes.
+
+@use 'sass:math';
 @use '../dom/mixins' as dom-mixins;
 @use '../feature-targeting/feature-targeting';
 @use '../floating-label/mixins' as floating-label-mixins;
@@ -88,7 +93,7 @@
     );
 
     // High-contrast mode support
-    @include dom-mixins.ie-high-contrast-mode() {
+    @include dom-mixins.forced-colors-mode() {
       $gray-text: (
         disabled: GrayText,
       );
@@ -210,9 +215,12 @@
     @include _option-side-padding(12px, $query: $query);
   }
 
-  .mdc-select__menu .mdc-list {
+  .mdc-select__menu .mdc-deprecated-list {
     @include select-icon-theme.icon-horizontal-margins(0, 0, $query: $query);
-    @include list-mixins.item-selected-text-color(on-surface, $query: $query);
+    @include list-mixins.deprecated-item-selected-text-color(
+      on-surface,
+      $query: $query
+    );
   }
 
   @include select-filled.core-styles($query: $query);
@@ -243,8 +251,8 @@
     $svg-natural-height: 5px;
 
     @include feature-targeting.targets($feat-structure) {
-      width: $svg-natural-width / select-icon-theme.$icon-size * 100%;
-      height: $svg-natural-height / select-icon-theme.$icon-size * 100%;
+      width: math.div($svg-natural-width, select-icon-theme.$icon-size) * 100%;
+      height: math.div($svg-natural-height, select-icon-theme.$icon-size) * 100%;
     }
   }
 }
@@ -316,7 +324,7 @@
 @mixin _option-side-padding($side-padding, $query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
-  .mdc-select__menu .mdc-list-item {
+  .mdc-select__menu .mdc-deprecated-list-item {
     @include feature-targeting.targets($feat-structure) {
       @include rtl-mixins.reflexive-property(
         padding,
@@ -337,7 +345,7 @@
 ) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
-  .mdc-select__menu .mdc-list-item__graphic {
+  .mdc-select__menu .mdc-deprecated-list-item__graphic {
     @include feature-targeting.targets($feat-structure) {
       @include rtl-mixins.reflexive-box(margin, right, $margin-right);
     }

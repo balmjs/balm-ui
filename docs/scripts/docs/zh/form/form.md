@@ -1,13 +1,18 @@
 ```html
 <ui-form>
-  <template #default="{ actionClass }">
+  <template #default="{ subitemClass, actionClass }">
     <ui-form-field>
       <label></label>
       <!-- awesome form item 1 -->
+      <ui-form-field></ui-form-field>
     </ui-form-field>
     <ui-form-field>
       <label></label>
-      <!-- awesome form item 2 -->
+      <div :class="subitemClass">
+        <!-- awesome form item 2 -->
+        <ui-form-field></ui-form-field>
+        <ui-form-field></ui-form-field>
+      </div>
     </ui-form-field>
     <ui-form-field :class="actionClass">
       <ui-button></ui-button>
@@ -16,24 +21,38 @@
 </ui-form>
 ```
 
-**`<ui-form>` Types**
+**`<ui-form>` 类型**
 
 - `0`: `'horizontal'`
 - `1`: `'vertical'`
 
 #### Props
 
-| Name                | Type           | Default | Description                                                                      |
-| ------------------- | -------------- | ------- | -------------------------------------------------------------------------------- |
-| `type`              | string, number | `0`     | Mandatory. Text divider types.                                                   |
-| `nowrap`            | boolean        | `false` | Force the `<label>` text to stay on a single line and ellipse the overflow text. |
-| `labelTopAligned`   | boolean        | `false` | Styles the form item with a top vertical-aligned label.                          |
-| `labelRightAligned` | boolean        | `false` | Styles the form item with a right text-aligned label.                            |
+| Name                   | Type           | Default  | Description                                      | Version |
+| ---------------------- | -------------- | -------- | ------------------------------------------------ | ------- |
+| `type`                 | string, number | `0`      | 设置表单类型（水平或垂直模式）                   |         |
+| `itemMarginBottom`     | number         | `0`      | 设置表单项下边距                                 |         |
+| `nowrap`               | boolean        | `false`  | 固定表单项 `<label>`，超过部分的文字用省略号表示 |         |
+| `labelTopAligned`      | boolean        | `false`  | 设置表单项 `<label>` 顶对齐                      |         |
+| `labelRightAligned`    | boolean        | `false`  | 设置表单项 `<label>` 右对齐                      |         |
+| `labelTopRightAligned` | boolean        | `false`  | 设置表单项 `<label>` 顶对齐且右对齐              | 9.9.0   |
+| `labelWidth`           | number         | `0`      | （水平模式表单）设置 `<label>` 宽度              |         |
+| `labelMarginRight`     | number         | `0`      | （水平模式表单）设置 `<label>` 右边距            |         |
+| `labelMarginBottom`    | number         | `0`      | （垂直模式表单）设置 `<label>` 下边距            |         |
+| `actionAlign`          | string         | `'left'` | 设置表单动作项的对齐方式                         | 9.9.0   |
 
-> `labelTopAligned` and `labelRightAligned` are applicable only for `horizontal` type form.
+> `labelTopAligned`，`labelRightAligned` 和 `labelTopRightAligned` 只能应用于水平模式表单。
+
+```ts
+interface Form {
+  actionAlign: 'left' | 'center' | 'right';
+}
+```
 
 #### Slots
 
-| Name      | Props         | Description                                                 |
-| --------- | ------------- | ----------------------------------------------------------- |
-| `default` | `actionClass` | The default slot holds the form items and can contain HTML. |
+| Name      | Props                                      | Description                   |
+| --------- | ------------------------------------------ | ----------------------------- |
+| `default` | `itemClass`, `subitemClass`, `actionClass` | default 插槽包含表单项及 HTML |
+
+> `itemClass` 和 `subitemClass` 是 9.9.0 新增 prop

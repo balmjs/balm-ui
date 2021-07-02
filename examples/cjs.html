@@ -20,7 +20,11 @@
         </ui-drawer-header>
         <ui-drawer-content>
           <ui-nav>
-            <ui-nav-item v-for="(item, index) in menu" :key="index" :href="item">
+            <ui-nav-item
+              v-for="(item, index) in menu"
+              :key="index"
+              :href="item"
+            >
               {{ item }}
             </ui-nav-item>
           </ui-nav>

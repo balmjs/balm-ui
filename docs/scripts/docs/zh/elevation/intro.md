@@ -1,3 +1,3 @@
 # 层级阴影
 
-Shadows provide important visual cues about objects’ depth and directional movement. They are the only visual cue indicating the amount of separation between surfaces. An object’s elevation determines the appearance of its shadow. The elevation values are mapped out in a "z-space" and range from `0` to `24`.
+层级阴影为物体的深度和方向运动提供了重要的视觉线索。它们是指示表面之间分离程度的唯一视觉提示。 对象的高程确定其阴影的外观。 高程值映射到“ z 空间”中，范围从 `0` 到 `24`。

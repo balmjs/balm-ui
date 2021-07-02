@@ -1,25 +1,26 @@
 ```html
 <ui-form item-margin-bottom="10">
   <ui-form-field class="form-item">
-    <ui-textfield v-model="formData.mobile">Mobile </ui-textfield>
+    <ui-textfield v-model="formData.mobile">Mobile</ui-textfield>
   </ui-form-field>
   <ui-form-field class="form-item">
-    <ui-textfield v-model="formData.password" input-type="password"
-      >Password</ui-textfield
-    >
+    <ui-textfield v-model="formData.password" input-type="password">
+      Password
+    </ui-textfield>
   </ui-form-field>
   <ui-form-field class="form-item">
-    <ui-textfield v-model="formData.repassword" input-type="password"
-      >Repeat Password</ui-textfield
-    >
+    <ui-textfield v-model="formData.repassword" input-type="password">
+      Repeat Password
+    </ui-textfield>
   </ui-form-field>
   <ui-form-field>
     <ui-select
       v-model="formData.gender"
       :options="genderOptions"
       default-label="Unknown"
-      >Gender</ui-select
     >
+      Gender
+    </ui-select>
   </ui-form-field>
 
   <ui-alert v-if="messages.length" state="error">
@@ -107,7 +108,7 @@ export default {
       this.messages = messages;
 
       if (valid) {
-        this.$toast('gg');
+        this.$toast('ok');
       }
     }
   }

@@ -23,8 +23,10 @@
 // Selector '.mdc-*' should only be used in this project.
 // stylelint-disable selector-class-pattern
 
+@use 'sass:math';
 @use '../animation/functions' as animation-functions;
 @use '../feature-targeting/feature-targeting';
+@use '../theme/gss';
 @use '../theme/theme';
 @use './variables';
 @use './keyframes';
@@ -53,6 +55,7 @@
       position: relative;
       /* @noflip */
       direction: ltr;
+      line-height: 0;
     }
 
     @include feature-targeting.targets($feat-animation) {
@@ -233,8 +236,10 @@
 
   .mdc-circular-progress__indeterminate-container {
     @include feature-targeting.targets($feat-animation) {
-      $duration: 360deg * variables.$arc-time /
-        (variables.$arc-start-rotation-interval + (360 - variables.$arc-size));
+      $duration: math.div(
+        360deg * variables.$arc-time,
+        variables.$arc-start-rotation-interval + (360 - variables.$arc-size)
+      );
 
       animation: mdc-circular-progress-container-rotate $duration linear
         infinite;
@@ -268,6 +273,11 @@
   .mdc-circular-progress__circle-left
     .mdc-circular-progress__indeterminate-circle-graphic {
     @include feature-targeting.targets($feat-animation) {
+      @include gss.annotate(
+        (
+          noflip: true,
+        )
+      );
       animation: mdc-circular-progress-left-spin variables.$arc-time
         variables.$timing-function infinite both;
     }
@@ -276,6 +286,11 @@
   .mdc-circular-progress__circle-right
     .mdc-circular-progress__indeterminate-circle-graphic {
     @include feature-targeting.targets($feat-animation) {
+      @include gss.annotate(
+        (
+          noflip: true,
+        )
+      );
       animation: mdc-circular-progress-right-spin variables.$arc-time
         variables.$timing-function infinite both;
     }

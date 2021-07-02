@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __assign, __extends } from "tslib";
+import { __assign, __extends, __values } from "tslib";
 import { MDCFoundation } from '../../base/foundation';
 import { cssClasses, strings } from './constants';
 var INTERACTION_EVENTS = ['click', 'keydown'];
@@ -28,22 +28,24 @@ var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
     __extends(MDCTextFieldIconFoundation, _super);
     function MDCTextFieldIconFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCTextFieldIconFoundation.defaultAdapter), adapter)) || this;
-        _this.savedTabIndex_ = null;
-        _this.interactionHandler_ = function (evt) { return _this.handleInteraction(evt); };
+        _this.savedTabIndex = null;
+        _this.interactionHandler = function (evt) {
+            _this.handleInteraction(evt);
+        };
         return _this;
     }
     Object.defineProperty(MDCTextFieldIconFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldIconFoundation, "cssClasses", {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldIconFoundation, "defaultAdapter", {
@@ -63,24 +65,44 @@ var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTextFieldIconFoundation.prototype.init = function () {
-        var _this = this;
-        this.savedTabIndex_ = this.adapter.getAttr('tabindex');
-        INTERACTION_EVENTS.forEach(function (evtType) {
-            _this.adapter.registerInteractionHandler(evtType, _this.interactionHandler_);
-        });
+        var e_1, _a;
+        this.savedTabIndex = this.adapter.getAttr('tabindex');
+        try {
+            for (var INTERACTION_EVENTS_1 = __values(INTERACTION_EVENTS), INTERACTION_EVENTS_1_1 = INTERACTION_EVENTS_1.next(); !INTERACTION_EVENTS_1_1.done; INTERACTION_EVENTS_1_1 = INTERACTION_EVENTS_1.next()) {
+                var evtType = INTERACTION_EVENTS_1_1.value;
+                this.adapter.registerInteractionHandler(evtType, this.interactionHandler);
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (INTERACTION_EVENTS_1_1 && !INTERACTION_EVENTS_1_1.done && (_a = INTERACTION_EVENTS_1.return)) _a.call(INTERACTION_EVENTS_1);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
     };
     MDCTextFieldIconFoundation.prototype.destroy = function () {
-        var _this = this;
-        INTERACTION_EVENTS.forEach(function (evtType) {
-            _this.adapter.deregisterInteractionHandler(evtType, _this.interactionHandler_);
-        });
+        var e_2, _a;
+        try {
+            for (var INTERACTION_EVENTS_2 = __values(INTERACTION_EVENTS), INTERACTION_EVENTS_2_1 = INTERACTION_EVENTS_2.next(); !INTERACTION_EVENTS_2_1.done; INTERACTION_EVENTS_2_1 = INTERACTION_EVENTS_2.next()) {
+                var evtType = INTERACTION_EVENTS_2_1.value;
+                this.adapter.deregisterInteractionHandler(evtType, this.interactionHandler);
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (INTERACTION_EVENTS_2_1 && !INTERACTION_EVENTS_2_1.done && (_a = INTERACTION_EVENTS_2.return)) _a.call(INTERACTION_EVENTS_2);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
     };
     MDCTextFieldIconFoundation.prototype.setDisabled = function (disabled) {
-        if (!this.savedTabIndex_) {
+        if (!this.savedTabIndex) {
             return;
         }
         if (disabled) {
@@ -88,7 +110,7 @@ var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
             this.adapter.removeAttr('role');
         }
         else {
-            this.adapter.setAttr('tabindex', this.savedTabIndex_);
+            this.adapter.setAttr('tabindex', this.savedTabIndex);
             this.adapter.setAttr('role', strings.ICON_ROLE);
         }
     };

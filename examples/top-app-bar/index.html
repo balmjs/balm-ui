@@ -1,90 +1,91 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BalmUI - top app bar example</title>
-  <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/icon/icon.css">
-  <link rel="stylesheet" href="/components/icon-button/icon-button.css">
-  <link rel="stylesheet" href="/components/top-app-bar/top-app-bar.css">
-  <link rel="stylesheet" href="/components/drawer/drawer.css">
-  <link rel="stylesheet" href="/components/list/list.css">
-  <style>
-    body {
-      margin: 0;
-    }
-  </style>
-</head>
-<body>
-  <div id="app">
-    <div class="page--top-app-bar">
-      <ui-top-app-bar
-        content-selector="#content-main"
-        :title="title"
-        @nav="openDrawer = true"
-      >
-        <template #toolbar="{ toolbarItemClass }">
-          <ui-icon-button
-            :class="toolbarItemClass"
-            icon="file_download"
-          ></ui-icon-button>
-          <ui-icon-button :class="toolbarItemClass" icon="print"></ui-icon-button>
-          <ui-icon-button
-            :class="toolbarItemClass"
-            icon="bookmark"
-          ></ui-icon-button>
-        </template>
-      </ui-top-app-bar>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BalmUI - top app bar example</title>
+    <link rel="stylesheet" href="/components/core.css" />
+    <link rel="stylesheet" href="/components/icon/icon.css" />
+    <link rel="stylesheet" href="/components/icon-button/icon-button.css" />
+    <link rel="stylesheet" href="/components/top-app-bar/top-app-bar.css" />
+    <link rel="stylesheet" href="/components/drawer/drawer.css" />
+    <link rel="stylesheet" href="/components/list/list.css" />
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="page--top-app-bar">
+        <ui-top-app-bar
+          content-selector="#content-main"
+          :title="title"
+          @nav="openDrawer = true"
+        >
+          <template #toolbar="{ toolbarItemClass }">
+            <ui-icon-button
+              :class="toolbarItemClass"
+              icon="file_download"
+            ></ui-icon-button>
+            <ui-icon-button
+              :class="toolbarItemClass"
+              icon="print"
+            ></ui-icon-button>
+            <ui-icon-button
+              :class="toolbarItemClass"
+              icon="bookmark"
+            ></ui-icon-button>
+          </template>
+        </ui-top-app-bar>
 
-      <ui-drawer v-model="openDrawer" type="modal">
-        <ui-drawer-header>
-          <ui-drawer-title>Header here</ui-drawer-title>
-        </ui-drawer-header>
-        <ui-drawer-content>
-          <ui-list>
-            <ui-item active>
-              <ui-item-first-content>
-                <ui-icon>arrow_back</ui-icon>
-              </ui-item-first-content>
-              <ui-item-text-content>Back</ui-item-text-content>
-            </ui-item>
-            <ui-list-divider></ui-list-divider>
-          </ui-list>
-        </ui-drawer-content>
-      </ui-drawer>
+        <ui-drawer v-model="openDrawer" type="modal">
+          <ui-drawer-header>
+            <ui-drawer-title>Header here</ui-drawer-title>
+          </ui-drawer-header>
+          <ui-drawer-content>
+            <ui-list>
+              <ui-item active>
+                <ui-item-first-content>
+                  <ui-icon>arrow_back</ui-icon>
+                </ui-item-first-content>
+                <ui-item-text-content>Back</ui-item-text-content>
+              </ui-item>
+              <ui-list-divider></ui-list-divider>
+            </ui-list>
+          </ui-drawer-content>
+        </ui-drawer>
 
-      <ui-drawer-backdrop></ui-drawer-backdrop>
-
-      <div id="content-main">
-        <p v-for="i in 36" :key="i">Content {{ i }}</p>
+        <div id="content-main">
+          <p v-for="i in 36" :key="i">Content {{ i }}</p>
+        </div>
       </div>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-  <script src="/components/icon/index.js"></script>
-  <script src="/components/icon-button/index.js"></script>
-  <script src="/components/top-app-bar/index.js"></script>
-  <script src="/components/drawer/index.js"></script>
-  <script src="/components/list/index.js"></script>
-  <script>
-    var app = Vue.createApp({
-      data() {
-        return {
-          title: 'Hello BalmUI',
-          openDrawer: false
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="/components/icon/index.js"></script>
+    <script src="/components/icon-button/index.js"></script>
+    <script src="/components/top-app-bar/index.js"></script>
+    <script src="/components/drawer/index.js"></script>
+    <script src="/components/list/index.js"></script>
+    <script>
+      var app = Vue.createApp({
+        data() {
+          return {
+            title: 'Hello BalmUI',
+            openDrawer: false
+          };
         }
-      }
-    });
+      });
 
-    app.use(UiIcon);
-    app.use(UiIconButton);
-    app.use(UiTopAppBar);
-    app.use(UiDrawer);
-    app.use(UiList);
+      app.use(UiIcon);
+      app.use(UiIconButton);
+      app.use(UiTopAppBar);
+      app.use(UiDrawer);
+      app.use(UiList);
 
-    app.mount('#app');
-  </script>
-</body>
+      app.mount('#app');
+    </script>
+  </body>
 </html>

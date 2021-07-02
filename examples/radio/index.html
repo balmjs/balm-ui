@@ -1,42 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BalmUI - radio example</title>
-  <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/form-field/form-field.css">
-  <link rel="stylesheet" href="/components/radio/radio.css">
-</head>
-<body>
-  <div id="app">
-    <ui-form-field>
-      <ui-radio input-id="male" v-model="gender" name="sex" value="M"></ui-radio>
-      <label for="male">Male</label>
-    </ui-form-field>
-    <ui-form-field>
-      <ui-radio input-id="female" v-model="gender" name="sex" value="F"></ui-radio>
-      <label for="female">Female</label>
-    </ui-form-field>
-    <p>Gender: {{ gender }}</p>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-  <script src="/components/form-field/index.js"></script>
-  <script src="/components/radio/index.js"></script>
-  <script>
-    var app = Vue.createApp({
-      data() {
-        return {
-          gender: ''
-        };
-      }
-    });
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BalmUI - radio example</title>
+    <link rel="stylesheet" href="/components/core.css" />
+    <link rel="stylesheet" href="/components/form-field/form-field.css" />
+    <link rel="stylesheet" href="/components/radio/radio.css" />
+  </head>
+  <body>
+    <div id="app">
+      <ui-form-field>
+        <ui-radio
+          v-model="gender"
+          input-id="male"
+          name="sex"
+          value="M"
+        ></ui-radio>
+        <label for="male">Male</label>
+      </ui-form-field>
+      <ui-form-field>
+        <ui-radio
+          v-model="gender"
+          input-id="female"
+          name="sex"
+          value="F"
+        ></ui-radio>
+        <label for="female">Female</label>
+      </ui-form-field>
+      <p>Gender: {{ gender }}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="/components/form-field/index.js"></script>
+    <script src="/components/radio/index.js"></script>
+    <script>
+      var app = Vue.createApp({
+        data() {
+          return {
+            gender: ''
+          };
+        }
+      });
 
-    app.use(UiFormField);
-    app.use(UiRadio);
+      app.use(UiFormField);
+      app.use(UiRadio);
 
-    app.mount('#app');
-  </script>
-</body>
+      app.mount('#app');
+    </script>
+  </body>
 </html>

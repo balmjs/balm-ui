@@ -1,16 +1,24 @@
+## Badge component
+
 ```html
 <ui-badge></ui-badge>
 ```
 
 ### Props
 
-| Name       | Type    | Default | Description                                                                  |
-| ---------- | ------- | ------- | ---------------------------------------------------------------------------- |
-| `count`    | number  | `0`     | Number to show in badge.                                                     |
-| `overlap`  | boolean | `false` | Make the badge overlap with its container.                                   |
-| `maxCount` | number  | `99`    | Max count to show.                                                           |
-| `dot`      | boolean | `false` | Whether to display a dot instead of `count`.                                 |
-| `state`    | string  | `''`    | State type for text badge. `['success', 'info', 'warning', 'error', 'help']` |
+| Name       | Type    | Default | Description                                  |
+| ---------- | ------- | ------- | -------------------------------------------- |
+| `count`    | number  | `0`     | Number to show in badge.                     |
+| `overlap`  | boolean | `false` | Make the badge overlap with its container.   |
+| `maxCount` | number  | `99`    | Max count to show.                           |
+| `dot`      | boolean | `false` | Whether to display a dot instead of `count`. |
+| `state`    | string  | `''`    | State type for text badge.                   |
+
+```ts
+interface Badge {
+  state: 'success' | 'info' | 'warning' | 'error' | 'help';
+}
+```
 
 ### Slots
 

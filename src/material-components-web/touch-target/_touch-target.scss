@@ -23,6 +23,7 @@
 // Selector '.mdc-*' should only be used in this project.
 // stylelint-disable selector-class-pattern
 
+@use 'sass:math';
 @use '../base/mixins' as base-mixins;
 @use '../feature-targeting/feature-targeting';
 
@@ -57,7 +58,6 @@ $width: $height !default;
   @include feature-targeting.targets($feat-structure) {
     position: absolute;
     top: 50%;
-    right: 0;
     height: $height;
   }
 
@@ -71,6 +71,7 @@ $width: $height !default;
   } @else {
     @include feature-targeting.targets($feat-structure) {
       left: 0;
+      right: 0;
       transform: translateY(-50%);
     }
   }
@@ -87,7 +88,7 @@ $width: $height !default;
 ) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
-  $vertical-margin-value: ($touch-target-height - $component-height) / 2;
+  $vertical-margin-value: math.div($touch-target-height - $component-height, 2);
 
   @include feature-targeting.targets($feat-structure) {
     margin-top: $vertical-margin-value;
@@ -95,7 +96,10 @@ $width: $height !default;
   }
 
   @if $component-width {
-    $horizontal-margin-value: ($touch-target-width - $component-width) / 2;
+    $horizontal-margin-value: math.div(
+      $touch-target-width - $component-width,
+      2
+    );
 
     @include feature-targeting.targets($feat-structure) {
       margin-right: $horizontal-margin-value;

@@ -4,7 +4,7 @@ import validatorRules from './config/validator-rules';
 
 // `app`: Vue app
 app.use(BalmUI, {
-  // Optional. Set global validator rules.
+  // Optional. Set global validation rules.
   $validator: validatorRules
 });
 ```

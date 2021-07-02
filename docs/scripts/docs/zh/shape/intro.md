@@ -1,3 +1,3 @@
 # 形状
 
-Shapes direct attention, identify components, communicate state, and express brand.
+形状可以引导注意力，识别组件，传达状态并表达品牌。

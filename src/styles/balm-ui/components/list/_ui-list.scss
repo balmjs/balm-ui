@@ -3,16 +3,16 @@
 
 // fix(@material-components): for `<ui-list>` in `<ui-drawer>`
 .mdc-drawer {
-  .mdc-list-item--activated {
-    @include theme.prop(color, primary);
+  .mdc-deprecated-list-item--activated {
+    @include theme.property(color, primary);
 
-    .mdc-list-item__graphic {
-      @include theme.prop(color, primary);
+    .mdc-deprecated-list-item__graphic {
+      @include theme.property(color, primary);
     }
 
     [class*='mdc-theme--text-'],
     &[class*='mdc-theme--text-'] {
-      @include theme.prop(color, primary, true);
+      @include theme.property(color, primary, $important: true);
     }
   }
 }

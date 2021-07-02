@@ -1,5 +1,5 @@
 <template>
-  <docs-page name="table" demo-count="2">
+  <docs-page name="table" demo-count="3">
     <template #hero>
       <ui-table
         row-checkbox
@@ -33,12 +33,13 @@
           :tbody="tbody2"
           :tfoot="tfoot"
           :selected-key="selectedKey"
+          show-progress
         >
           <template #th-dessert>
             Dessert
-            <ui-icon v-tooltip="'100g serving'" aria-describedby="th-cell-1"
-              >error_outline</ui-icon
-            >
+            <ui-icon v-tooltip="'100g serving'" aria-describedby="th-cell-1">
+              error_outline
+            </ui-icon>
           </template>
           <template #dessert="{ data }">
             <div class="dessert">{{ data.dessert }}</div>
@@ -48,15 +49,32 @@
             <ui-icon @click="show(data)">edit</ui-icon>
             <ui-icon @click="show(data)">delete</ui-icon>
           </template>
+
+          <ui-pagination
+            v-model="page"
+            :total="total"
+            show-total
+            @update:modelValue="onPage"
+          ></ui-pagination>
         </ui-table>
-        <ui-pagination
-          v-model="page"
-          :total="total"
-          show-total
-          @update:modelValue="onPage"
-        ></ui-pagination>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
+    </section>
+
+    <section class="demo-wrapper">
+      <h6 :class="$tt('headline6')">1.3 Fixed Usage</h6>
+      <div class="demo">
+        <ui-table
+          :data="data3"
+          :thead="thead3"
+          :tbody="tbody3"
+          :tfoot="tfoot3"
+          :default-col-width="200"
+          :scroll="{ x: 1600, y: 300 }"
+          style="max-width: 800px"
+        ></ui-table>
+      </div>
+      <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
   </docs-page>
 </template>
@@ -107,7 +125,7 @@ export default {
       //   [
       //     {
       //       value: 'Dessert (100g serving)',
-      //       class: 'gg'
+      //       class: 'good'
       //     },
       //     {
       //       value: 'Calories',
@@ -128,7 +146,7 @@ export default {
         {
           // value: 'Dessert (100g serving)',
           slot: 'th-dessert',
-          class: 'gg',
+          class: 'good',
           sort: 'none',
           columnId: 'dessert'
         },
@@ -189,6 +207,85 @@ export default {
           fnName: 'min'
         }
       ],
+      thead3: [
+        'title1',
+        'title2',
+        'title3',
+        'title4',
+        'title5',
+        'title6',
+        'title7',
+        'title8',
+        'title9',
+        'title10',
+        'title11',
+        'title12'
+      ],
+      tbody3: [
+        {
+          field: 'a',
+          width: 80,
+          fixed: 'left'
+        },
+        {
+          field: 'b',
+          width: 100
+          // fixed: 'left'
+        },
+        {
+          field: 'c',
+          width: 100
+        },
+        {
+          field: 'c',
+          width: 100
+        },
+        {
+          field: 'c',
+          width: 100
+        },
+        {
+          field: 'c'
+        },
+        {
+          field: 'c'
+        },
+        {
+          field: 'c'
+        },
+        {
+          field: 'c'
+        },
+        {
+          field: 'c',
+          width: 100
+        },
+        {
+          field: 'b',
+          width: 100
+          // fixed: 'right'
+        },
+        {
+          field: 'b',
+          width: 80,
+          fixed: 'right'
+        }
+      ],
+      tfoot3: [
+        { value: 1 },
+        { value: 2 },
+        { value: 3 },
+        { value: 4 },
+        { value: 5 },
+        { value: 6 },
+        { value: 7 },
+        { value: 8 },
+        { value: 9 },
+        { value: 10 },
+        { value: 11 },
+        { value: 12 }
+      ],
+      data3: [],
       selectedRows: [1, 2, 4],
       selectedKey: 'id',
       page: 1,
@@ -198,7 +295,24 @@ export default {
   async created() {
     let data = await this.$http.get('/data/table.json');
     this.heroData = data.slice(0, 3);
-    this.myData = data;
+    setTimeout(() => {
+      this.myData = data;
+    }, 3e3);
+
+    this.data3 = [
+      { a: 'aaa', b: 'bbb', c: 'ContentContentContent', d: 3, key: '1' },
+      { a: 'aaa', b: 'bbb', c: 'ContentContentContent', d: 3, key: '2' },
+      { a: 'aaa', c: 'ContentContentContent', d: 2, key: '3' },
+      { a: 'aaa', c: 'ContentContentContent', d: 2, key: '4' },
+      { a: 'aaa', c: 'ContentContentContent', d: 2, key: '5' },
+      { a: 'aaa', c: 'ContentContentContent', d: 2, key: '6' },
+      { a: 'aaa', c: 'ContentContentContent', d: 2, key: '7' },
+      { a: 'aaa', c: 'ContentContentContent', d: 2, key: '8' },
+      { a: 'aaa', c: 'ContentContentContent', d: 2, key: '9' },
+      { a: 'aaa', b: 'bbb', c: 'ContentContentContent', d: 3, key: '10' },
+      { a: 'aaa', b: 'bbb', c: 'ContentContentContent', d: 3, key: '11' },
+      { a: 'aaa', b: 'bbb', c: 'ContentContentContent', d: 3, key: '12' }
+    ];
   },
   methods: {
     show(data) {

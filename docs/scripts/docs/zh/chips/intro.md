@@ -1,3 +1,3 @@
 # 选项卡
 
-Chips are compact elements that represent an input, attribute, or action.
+选项卡是表示输入，属性或动作的紧凑元素。

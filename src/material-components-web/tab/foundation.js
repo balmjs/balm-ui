@@ -27,21 +27,21 @@ var MDCTabFoundation = /** @class */ (function (_super) {
     __extends(MDCTabFoundation, _super);
     function MDCTabFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCTabFoundation.defaultAdapter), adapter)) || this;
-        _this.focusOnActivate_ = true;
+        _this.focusOnActivate = true;
         return _this;
     }
     Object.defineProperty(MDCTabFoundation, "cssClasses", {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTabFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTabFoundation, "defaultAdapter", {
@@ -63,7 +63,7 @@ var MDCTabFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTabFoundation.prototype.handleClick = function () {
@@ -78,7 +78,7 @@ var MDCTabFoundation = /** @class */ (function (_super) {
      * Sets whether the tab should focus itself when activated
      */
     MDCTabFoundation.prototype.setFocusOnActivate = function (focusOnActivate) {
-        this.focusOnActivate_ = focusOnActivate;
+        this.focusOnActivate = focusOnActivate;
     };
     /**
      * Activates the Tab
@@ -88,7 +88,7 @@ var MDCTabFoundation = /** @class */ (function (_super) {
         this.adapter.setAttr(strings.ARIA_SELECTED, 'true');
         this.adapter.setAttr(strings.TABINDEX, '0');
         this.adapter.activateIndicator(previousIndicatorClientRect);
-        if (this.focusOnActivate_) {
+        if (this.focusOnActivate) {
             this.adapter.focus();
         }
     };

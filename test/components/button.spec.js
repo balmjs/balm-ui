@@ -1,79 +1,79 @@
-import UiButton from '@/components/button/button';
+import { config, mount } from '@vue/test-utils';
+import UiButton from '@/components/button/button.vue';
+
+config.stubRenderDefaultSlot = true;
 
 describe('<ui-button>', () => {
   it('renders default button', () => {
-    const wrapper = shallowMount(UiButton);
+    const wrapper = mount(UiButton);
 
-    if (DEBUG) {
-      console.log('[OUTPUT]:', wrapper.html());
-    }
+    expect(wrapper.get('button').element).toMatchSnapshot();
+    expect(wrapper.get('button').classes()).toContain('mdc-button');
+  });
 
-    expect(wrapper.is('button')).toBe(true);
-    expect(wrapper.classes()).toContain('mdc-button');
+  it('renders outlined button', () => {
+    const wrapper = mount(UiButton, {
+      props: {
+        outlined: true
+      }
+    });
+
+    expect(wrapper.get('button').element).toMatchSnapshot();
+    expect(wrapper.get('button').classes()).toContain('mdc-button--outlined');
   });
 
   it('renders raised button', () => {
-    const wrapper = shallowMount(UiButton, {
-      propsData: {
+    const wrapper = mount(UiButton, {
+      props: {
         raised: true
       }
     });
 
-    if (DEBUG) {
-      console.log('[OUTPUT]:', wrapper.html());
-    }
+    expect(wrapper.get('button').element).toMatchSnapshot();
+    expect(wrapper.get('button').classes()).toContain('mdc-button--raised');
+  });
 
-    expect(wrapper.classes()).toContain('mdc-button--raised');
+  it('renders unelevated button', () => {
+    const wrapper = mount(UiButton, {
+      props: {
+        unelevated: true
+      }
+    });
+
+    expect(wrapper.get('button').element).toMatchSnapshot();
+    expect(wrapper.get('button').classes()).toContain('mdc-button--unelevated');
   });
 
   it('renders button with icon', () => {
     const icon = 'favorite';
-    const wrapper = shallowMount(UiButton, {
-      propsData: {
+    const wrapper = mount(UiButton, {
+      props: {
         icon
       }
     });
 
-    if (DEBUG) {
-      console.log('[OUTPUT]:', wrapper.html());
-    }
-
-    expect(wrapper.find('.mdc-button__icon').text()).toBe(icon);
+    expect(wrapper.get('button').element).toMatchSnapshot();
+    expect(wrapper.get('button').find('.mdc-button__icon').text()).toBe(icon);
   });
 
-  it('renders button with slot-scope', () => {
-    const wrapper = shallowMount(UiButton, {
-      scopedSlots: {
-        before: '<i slot-scope="{ iconClass }">{{ iconClass }}</i>'
+  it('renders button with scoped slots', () => {
+    const wrapper = mount(UiButton, {
+      slots: {
+        before: `<template #before="{ iconClass }">
+          <i :class="iconClass">{{ iconClass }}</i>
+          </template>`
       }
     });
 
-    if (DEBUG) {
-      console.log('[OUTPUT]:', wrapper.html());
-    }
-
-    expect(wrapper.text()).toBe('mdc-button__icon');
+    expect(wrapper.get('button').element).toMatchSnapshot();
+    expect(wrapper.get('button').text()).toBe('mdc-button__icon');
   });
 
-  it('renders button with @click', () => {
-    const wrapper = shallowMount(UiButton);
-    const spy = sinon.spy(wrapper.vm, 'handleClick');
-    wrapper.vm.handleClick();
+  it('renders button with @click', async () => {
+    const wrapper = mount(UiButton);
 
-    expect(spy.calledOnce).toBe(true);
-  });
+    await wrapper.get('button').trigger('click');
 
-  it('renders cssOnly button', () => {
-    const wrapper = shallowMount(UiButton, {
-      propsData: {
-        cssOnly: true
-      }
-    });
-
-    if (DEBUG) {
-      console.log('[OUTPUT]:', wrapper.html());
-    }
-
-    expect(wrapper.is('button')).toBe(true);
+    expect(wrapper.emitted()).toHaveProperty('click');
   });
 });

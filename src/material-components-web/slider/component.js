@@ -22,6 +22,7 @@
  */
 import { __assign, __extends } from "tslib";
 import { MDCComponent } from '../base/component';
+import { applyPassive } from '../dom/events';
 import { matches } from '../dom/ponyfill';
 import { MDCRipple } from '../ripple/component';
 import { MDCRippleFoundation } from '../ripple/foundation';
@@ -174,6 +175,7 @@ var MDCSlider = /** @class */ (function (_super) {
             deregisterWindowEventHandler: function (evtType, handler) {
                 window.removeEventListener(evtType, handler);
             },
+            // tslint:enable:object-literal-sort-keys
         };
         return new MDCSliderFoundation(adapter);
     };
@@ -184,7 +186,7 @@ var MDCSlider = /** @class */ (function (_super) {
      *   is set before component initialization.
      */
     MDCSlider.prototype.initialize = function (_a) {
-        var skipInitialUIUpdate = (_a === void 0 ? {} : _a).skipInitialUIUpdate;
+        var _b = _a === void 0 ? {} : _a, skipInitialUIUpdate = _b.skipInitialUIUpdate;
         this.inputs =
             [].slice.call(this.root.querySelectorAll("." + cssClasses.INPUT));
         this.thumbs =
@@ -283,7 +285,7 @@ var MDCSlider = /** @class */ (function (_super) {
                 }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (evtType, handler) {
                     input.removeEventListener(evtType, handler);
                 }, isSurfaceActive: function () { return matches(input, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
-                    input.addEventListener(evtType, handler);
+                    input.addEventListener(evtType, handler, applyPassive());
                 }, removeClass: function (className) {
                     rippleSurface.classList.remove(className);
                 }, updateCssVariable: function (varName, value) {

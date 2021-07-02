@@ -10,20 +10,18 @@
 
 - The keys of a tab item object:
 
-```js
-{
-  text: 'text', // label text
-  icon: 'icon', // label icon
-}
-```
+  ```js
+  {
+    text: 'text', // label text
+    icon: 'icon', // label icon
+  }
+  ```
 
 ### `<ui-tabs>` Slots
 
 | Name      | Slots | Description                                                     |
 | --------- | ----- | --------------------------------------------------------------- |
 | `default` |       | The default slot holds the tab components and can contain HTML. |
-
-> `<ui-tabs> is shorthand for <ui-tab-bar> + <ui-tab>`
 
 ```html
 <!-- Full syntax -->

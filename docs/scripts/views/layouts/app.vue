@@ -1,9 +1,9 @@
 <template>
   <div ref="root" class="balmui-container">
     <ui-progress
-      v-if="pageLoading"
+      v-if="pageLoad.loading"
       class="top-loading"
-      :progress="loadingProgress"
+      :progress="pageLoad.progress"
     ></ui-progress>
     <template v-if="noLayout">
       <router-view></router-view>
@@ -18,22 +18,35 @@
         @nav="balmUI.onChange('openDrawer', !openDrawer)"
       >
         <router-link
-          to="/"
+          :to="{ name: 'home' }"
           :class="['catalog-title', $theme.getThemeClass('on-primary')]"
-          >{{ title }}</router-link
         >
+          {{ title }}
+        </router-link>
         <template #toolbar="{ toolbarItemClass }">
-          <top-toolbar :item-class="toolbarItemClass"></top-toolbar>
+          <top-app-toolbar :item-class="toolbarItemClass"></top-app-toolbar>
         </template>
       </ui-top-app-bar>
       <!-- Global Message -->
       <ui-banner
-        v-model="showGlobalMessage"
+        v-model="showBanner"
         class="global-message-banner"
-        primary-button-text="Cool"
-        secondary-button-text="Good"
-        >Do you like BalmUI</ui-banner
+        centered
+        fixed
+        with-image
+        mobile-stacked
       >
+        <template #image>
+          <ui-icon>{{ hasNewVersion ? 'refresh' : 'celebration' }}</ui-icon>
+        </template>
+        <template v-if="hasNewVersion">New content is available.</template>
+        <template v-else>Welcome to BalmUI!</template>
+        <template #actions>
+          <ui-button outlined @click="balmUI.onHide('showBanner', refresh)">{{
+            hasNewVersion ? 'Refresh' : 'Good Job'
+          }}</ui-button>
+        </template>
+      </ui-banner>
       <!-- Content -->
       <div class="balmui-body">
         <!-- Drawer -->
@@ -49,7 +62,17 @@
             class="balmui-menu"
           >
             <ui-drawer-header>
-              <ui-drawer-title>{{ title }}</ui-drawer-title>
+              <ui-drawer-title>
+                <router-link
+                  v-slot="{ navigate, href }"
+                  :to="{ name: 'home' }"
+                  custom
+                >
+                  <a :href="href" @click="handleMenu($event, navigate)">
+                    BalmUI
+                  </a>
+                </router-link>
+              </ui-drawer-title>
               <ui-drawer-subtitle>
                 <i class="balmui-version">
                   v
@@ -62,7 +85,7 @@
                 <template v-for="(item, index) in menu" :key="`item${index}`">
                   <router-link
                     v-if="item.url || item.isSubmenu"
-                    v-slot="{ href, isActive }"
+                    v-slot="{ navigate, href, isActive }"
                     custom
                     :to="{ name: item.url }"
                   >
@@ -73,7 +96,7 @@
                         submenu: item.isSubmenu,
                         'no-icon': !item.icon
                       }"
-                      @click="handleMenu"
+                      @click="handleMenu($event, navigate)"
                     >
                       <template #before="{ iconClass }">
                         <ui-icon
@@ -83,13 +106,15 @@
                             iconClass,
                             $theme.getTextClass('secondary', $store.theme)
                           ]"
-                          >{{ item.icon }}</ui-icon
                         >
+                          {{ item.icon }}
+                        </ui-icon>
                       </template>
                       <span
                         :class="$theme.getTextClass('primary', $store.theme)"
-                        >{{ t(`menu.${item.name}`) }}</span
                       >
+                        {{ t(`menu.${item.name}`) }}
+                      </span>
                       <template #after>
                         <ui-badge v-if="item.plus" class="plus" state="info">
                           <template #badge>plus</template>
@@ -101,6 +126,19 @@
                     </ui-nav-item>
                   </router-link>
                   <ui-list-divider v-else-if="item === '-'"></ui-list-divider>
+                  <ui-list-group-subheader
+                    v-else-if="item === 'footer'"
+                    :key="`footer${index}`"
+                  >
+                    Powered by
+                    <a
+                      href="https://balm.js.org/"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      BalmJS
+                    </a>
+                  </ui-list-group-subheader>
                   <ui-list-group-subheader
                     v-else
                     :class="$theme.getTextClass('primary', $store.theme)"
@@ -118,10 +156,6 @@
               </ui-nav>
             </ui-drawer-content>
           </ui-drawer>
-          <ui-drawer-backdrop
-            v-if="drawerType === 'modal'"
-            @click="balmUI.onHide('openDrawer')"
-          ></ui-drawer-backdrop>
         </div>
         <!-- App content -->
         <div
@@ -132,7 +166,7 @@
           ]"
         >
           <ui-spinner
-            v-if="pageLoading"
+            v-if="pageLoad.loading"
             class="page-loading"
             active
             four-colored
@@ -154,14 +188,13 @@ import {
   reactive,
   toRefs,
   computed,
-  onBeforeMount,
   onMounted,
   onBeforeUnmount
 } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useEvent, useBus, useStore } from 'balm-ui';
-import TopToolbar from '@/components/top-toolbar';
+import TopAppToolbar from '@/components/top-app-toolbar';
 import { VERSION, lazyLoadedTime, $MIN_WIDTH } from '@/config';
 import menu from '@/config/menu';
 
@@ -169,10 +202,13 @@ const state = reactive({
   bodyEl: document.documentElement || document.body,
   isWideScreen: true,
   drawerType: 'permanent',
-  pageLoading: false,
-  loadingProgress: 0,
-  loadingTimer: null,
-  showGlobalMessage: false
+  pageLoad: {
+    loading: false,
+    progress: 0,
+    timer: null
+  },
+  showBanner: false,
+  hasNewVersion: false
 });
 
 function init() {
@@ -182,14 +218,14 @@ function init() {
 }
 
 function loaded() {
-  state.loadingProgress = 1;
-  clearInterval(state.loadingTimer);
+  state.pageLoad.progress = 1;
+  clearInterval(state.pageLoad.timer);
 }
 
 function loading() {
-  if (state.loadingProgress < 1) {
-    state.loadingProgress += 0.2;
-    state.loadingProgress = +state.loadingProgress.toFixed(2);
+  if (state.pageLoad.progress < 1) {
+    state.pageLoad.progress += 0.2;
+    state.pageLoad.progress = +state.pageLoad.progress.toFixed(2);
   } else {
     loaded();
   }
@@ -201,7 +237,7 @@ export default {
     title: 'BalmUI'
   },
   components: {
-    TopToolbar
+    TopAppToolbar
   },
   setup(props, ctx) {
     const root = ref(null);
@@ -217,29 +253,36 @@ export default {
 
     store.isFirstLoad = computed(() => route.name == null);
 
+    const refresh = () => {
+      if (state.hasNewVersion) {
+        store.serviceWorker.postMessage({ action: 'skipWaiting' });
+        state.hasNewVersion = false;
+      }
+    };
+
     onMounted(() => {
       root.value.parentNode.removeAttribute('class');
 
       bus.on('page-loading', () => {
-        state.pageLoading = true;
+        state.pageLoad.loading = true;
 
-        state.loadingProgress = 0;
-        clearInterval(state.loadingTimer);
+        state.pageLoad.progress = 0;
+        clearInterval(state.pageLoad.timer);
 
-        state.loadingTimer = setInterval(loading, lazyLoadedTime / 5);
+        state.pageLoad.timer = setInterval(loading, lazyLoadedTime / 5);
       });
 
       bus.on('page-loaded', () => {
         loaded();
 
         setTimeout(() => {
-          state.pageLoading = false;
+          state.pageLoad.loading = false;
           state.bodyEl.scrollTop = 0;
         }, 1);
       });
 
-      bus.on('global-message', (message) => {
-        state.showGlobalMessage = true;
+      bus.on('global-message', (show) => {
+        state.showBanner = show;
       });
 
       bus.on('switch-lang', (lang) => {
@@ -250,11 +293,16 @@ export default {
       //   console.log('off-loading');
       // });
 
+      bus.on('refresh', () => {
+        state.hasNewVersion = true;
+        state.showBanner = true;
+      });
+
       init();
       window.addEventListener('balmResize', init);
 
       if (store.isFirstLoad) {
-        state.pageLoading = false;
+        state.pageLoad.loading = false;
         state.bodyEl.scrollTop = 0;
       }
 
@@ -276,7 +324,8 @@ export default {
       noLayout,
       balmUI,
       t,
-      locale
+      locale,
+      refresh
     };
   },
   data() {
@@ -288,11 +337,13 @@ export default {
     };
   },
   methods: {
-    handleMenu() {
+    handleMenu(event, navigate) {
       this.openDrawer = false;
       if (window.innerWidth < $MIN_WIDTH) {
         state.isWideScreen = false;
       }
+
+      navigate(event);
     }
   }
 };

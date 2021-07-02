@@ -69,8 +69,9 @@
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Type</ui-select
         >
+          Type
+        </ui-select>
         <div class="hero-option hero-options">
           <ui-form class="hero-option">
             <div>Options</div>
@@ -118,7 +119,8 @@
           :disabled="controls.disabled"
           :required="controls.required"
           helper-text-id="full-func-text-field-helper"
-          >Email Address
+        >
+          Email Address
         </ui-textfield>
         <ui-textfield-helper
           v-if="controls.helperText"
@@ -145,8 +147,9 @@
           pattern=".{8,}"
           :attrs="{ autocomplete: 'current-password' }"
           helper-text-id="pw-text-field-helper"
-          >Choose password</ui-textfield
         >
+          Choose password
+        </ui-textfield>
         <ui-textfield-helper
           id="pw-text-field-helper"
           visible
@@ -167,8 +170,9 @@
           :maxlength="controls.max ? 10 : null"
           :minlength="controls.min ? 8 : 0"
           helper-text-id="tf-outlined-text-field-helper"
-          >Your Name</ui-textfield
         >
+          Your Name
+        </ui-textfield>
         <ui-textfield-helper id="tf-outlined-text-field-helper" valid-msg>{{
           controls.min
             ? 'Must be at least 8 characters'
@@ -198,9 +202,9 @@
           :minlength="controls.min ? 8 : 0"
         >
           <template #before>
-            <ui-textfield-icon :unclickable="controls.unclickable"
-              >event</ui-textfield-icon
-            >
+            <ui-textfield-icon :unclickable="controls.unclickable">
+              event
+            </ui-textfield-icon>
           </template>
           Your name
         </ui-textfield>
@@ -219,9 +223,9 @@
         >
           Your name
           <template #after>
-            <ui-textfield-icon trailing :unclickable="controls.unclickable"
-              >delete</ui-textfield-icon
-            >
+            <ui-textfield-icon trailing :unclickable="controls.unclickable">
+              delete
+            </ui-textfield-icon>
           </template>
         </ui-textfield>
       </div>
@@ -287,9 +291,9 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.5 Preventing FOUC</h6>
       <div class="demo">
-        <ui-textfield v-model="value" input-id="fouc"
-          >Label floating above</ui-textfield
-        >
+        <ui-textfield v-model="value" input-id="fouc">
+          Label floating above
+        </ui-textfield>
       </div>
       <ui-snippet :code="$store.demos[5]"></ui-snippet>
     </section>
@@ -304,8 +308,9 @@
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
-          >Textarea Label</ui-textfield
         >
+          Textarea Label
+        </ui-textfield>
       </div>
       <br />
       <div class="demo" :dir="controls.rtl ? 'rtl' : null">
@@ -317,8 +322,9 @@
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
-          >Textarea Label</ui-textfield
         >
+          Textarea Label
+        </ui-textfield>
       </div>
       <ui-textfield-controls
         v-model="controls"

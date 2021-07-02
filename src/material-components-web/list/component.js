@@ -23,7 +23,7 @@
 import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { closest, matches } from '../dom/ponyfill';
-import { cssClasses, strings } from './constants';
+import { cssClasses, deprecatedClassNameMap, evolutionAttribute, evolutionClassNameMap, numbers, strings } from './constants';
 import { MDCListFoundation } from './foundation';
 var MDCList = /** @class */ (function (_super) {
     __extends(MDCList, _super);
@@ -34,21 +34,21 @@ var MDCList = /** @class */ (function (_super) {
         set: function (value) {
             this.foundation.setVerticalOrientation(value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "listElements", {
         get: function () {
-            return [].slice.call(this.root.querySelectorAll("." + cssClasses.LIST_ITEM_CLASS));
+            return Array.from(this.root.querySelectorAll("." + this.classNameMap[cssClasses.LIST_ITEM_CLASS]));
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "wrapFocus", {
         set: function (value) {
             this.foundation.setWrapFocus(value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "typeaheadInProgress", {
@@ -58,7 +58,7 @@ var MDCList = /** @class */ (function (_super) {
         get: function () {
             return this.foundation.isTypeaheadInProgress();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "hasTypeahead", {
@@ -69,14 +69,14 @@ var MDCList = /** @class */ (function (_super) {
         set: function (hasTypeahead) {
             this.foundation.setHasTypeahead(hasTypeahead);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "singleSelection", {
         set: function (isSingleSelectionList) {
             this.foundation.setSingleSelection(isSingleSelectionList);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "selectedIndex", {
@@ -86,41 +86,69 @@ var MDCList = /** @class */ (function (_super) {
         set: function (index) {
             this.foundation.setSelectedIndex(index);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCList.attachTo = function (root) {
         return new MDCList(root);
     };
     MDCList.prototype.initialSyncWithDOM = function () {
-        this.handleClick_ = this.handleClickEvent_.bind(this);
-        this.handleKeydown_ = this.handleKeydownEvent_.bind(this);
-        this.focusInEventListener_ = this.handleFocusInEvent_.bind(this);
-        this.focusOutEventListener_ = this.handleFocusOutEvent_.bind(this);
-        this.listen('keydown', this.handleKeydown_);
-        this.listen('click', this.handleClick_);
-        this.listen('focusin', this.focusInEventListener_);
-        this.listen('focusout', this.focusOutEventListener_);
+        this.isEvolutionEnabled =
+            evolutionAttribute in this.root.dataset;
+        if (this.isEvolutionEnabled) {
+            this.classNameMap = evolutionClassNameMap;
+        }
+        else if (matches(this.root, strings.DEPRECATED_SELECTOR)) {
+            this.classNameMap = deprecatedClassNameMap;
+        }
+        else {
+            this.classNameMap =
+                Object.values(cssClasses)
+                    .reduce(function (obj, className) {
+                    obj[className] = className;
+                    return obj;
+                }, {});
+        }
+        this.handleClick = this.handleClickEvent.bind(this);
+        this.handleKeydown = this.handleKeydownEvent.bind(this);
+        this.focusInEventListener = this.handleFocusInEvent.bind(this);
+        this.focusOutEventListener = this.handleFocusOutEvent.bind(this);
+        this.listen('keydown', this.handleKeydown);
+        this.listen('click', this.handleClick);
+        this.listen('focusin', this.focusInEventListener);
+        this.listen('focusout', this.focusOutEventListener);
         this.layout();
         this.initializeListType();
+        this.ensureFocusable();
     };
     MDCList.prototype.destroy = function () {
-        this.unlisten('keydown', this.handleKeydown_);
-        this.unlisten('click', this.handleClick_);
-        this.unlisten('focusin', this.focusInEventListener_);
-        this.unlisten('focusout', this.focusOutEventListener_);
+        this.unlisten('keydown', this.handleKeydown);
+        this.unlisten('click', this.handleClick);
+        this.unlisten('focusin', this.focusInEventListener);
+        this.unlisten('focusout', this.focusOutEventListener);
     };
     MDCList.prototype.layout = function () {
         var direction = this.root.getAttribute(strings.ARIA_ORIENTATION);
         this.vertical = direction !== strings.ARIA_ORIENTATION_HORIZONTAL;
+        var itemSelector = "." + this.classNameMap[cssClasses.LIST_ITEM_CLASS] + ":not([tabindex])";
+        var childSelector = strings.FOCUSABLE_CHILD_ELEMENTS;
         // List items need to have at least tabindex=-1 to be focusable.
-        [].slice.call(this.root.querySelectorAll('.mdc-list-item:not([tabindex])'))
-            .forEach(function (el) {
-            el.setAttribute('tabindex', '-1');
-        });
+        var itemEls = this.root.querySelectorAll(itemSelector);
+        if (itemEls.length) {
+            Array.prototype.forEach.call(itemEls, function (el) {
+                el.setAttribute('tabindex', '-1');
+            });
+        }
         // Child button/a elements are not tabbable until the list item is focused.
-        [].slice.call(this.root.querySelectorAll(strings.FOCUSABLE_CHILD_ELEMENTS))
-            .forEach(function (el) { return el.setAttribute('tabindex', '-1'); });
+        var focusableChildEls = this.root.querySelectorAll(childSelector);
+        if (focusableChildEls.length) {
+            Array.prototype.forEach.call(focusableChildEls, function (el) {
+                el.setAttribute('tabindex', '-1');
+            });
+        }
+        if (this.isEvolutionEnabled) {
+            this.foundation.setUseSelectedAttribute(true);
+        }
         this.foundation.layout();
     };
     /**
@@ -129,24 +157,36 @@ var MDCList = /** @class */ (function (_super) {
      * @return The primary text in the element.
      */
     MDCList.prototype.getPrimaryText = function (item) {
-        var primaryText = item.querySelector("." + cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS);
-        if (primaryText) {
-            return primaryText.textContent || '';
+        var _a;
+        var primaryText = item.querySelector("." + this.classNameMap[cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS]);
+        if (this.isEvolutionEnabled || primaryText) {
+            return (_a = primaryText === null || primaryText === void 0 ? void 0 : primaryText.textContent) !== null && _a !== void 0 ? _a : '';
         }
-        var singleLineText = item.querySelector("." + cssClasses.LIST_ITEM_TEXT_CLASS);
+        var singleLineText = item.querySelector("." + this.classNameMap[cssClasses.LIST_ITEM_TEXT_CLASS]);
         return (singleLineText && singleLineText.textContent) || '';
     };
     /**
-     * Initialize selectedIndex value based on pre-selected checkbox list items, single selection or radio.
+     * Initialize selectedIndex value based on pre-selected list items.
      */
     MDCList.prototype.initializeListType = function () {
         var _this = this;
+        this.isInteractive =
+            matches(this.root, strings.ARIA_INTERACTIVE_ROLES_SELECTOR);
+        if (this.isEvolutionEnabled && this.isInteractive) {
+            var selection = Array.from(this.root.querySelectorAll(strings.SELECTED_ITEM_SELECTOR), function (listItem) { return _this.listElements.indexOf(listItem); });
+            if (matches(this.root, strings.ARIA_MULTI_SELECTABLE_SELECTOR)) {
+                this.selectedIndex = selection;
+            }
+            else if (selection.length > 0) {
+                this.selectedIndex = selection[0];
+            }
+            return;
+        }
         var checkboxListItems = this.root.querySelectorAll(strings.ARIA_ROLE_CHECKBOX_SELECTOR);
         var radioSelectedListItem = this.root.querySelector(strings.ARIA_CHECKED_RADIO_SELECTOR);
         if (checkboxListItems.length) {
             var preselectedItems = this.root.querySelectorAll(strings.ARIA_CHECKED_CHECKBOX_SELECTOR);
-            this.selectedIndex =
-                [].map.call(preselectedItems, function (listItem) { return _this.listElements.indexOf(listItem); });
+            this.selectedIndex = Array.from(preselectedItems, function (listItem) { return _this.listElements.indexOf(listItem); });
         }
         else if (radioSelectedListItem) {
             this.selectedIndex = this.listElements.indexOf(radioSelectedListItem);
@@ -175,13 +215,14 @@ var MDCList = /** @class */ (function (_super) {
     };
     MDCList.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take
+        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+        // methods, we need a separate, strongly typed adapter variable.
         var adapter = {
             addClassForElementIndex: function (index, className) {
                 var element = _this.listElements[index];
                 if (element) {
-                    element.classList.add(className);
+                    element.classList.add(_this.classNameMap[className]);
                 }
             },
             focusItemAtIndex: function (index) {
@@ -219,7 +260,7 @@ var MDCList = /** @class */ (function (_super) {
             },
             isRootFocused: function () { return document.activeElement === _this.root; },
             listItemAtIndexHasClass: function (index, className) {
-                return _this.listElements[index].classList.contains(className);
+                return _this.listElements[index].classList.contains(_this.classNameMap[className]);
             },
             notifyAction: function (index) {
                 _this.emit(strings.ACTION_EVENT, { index: index }, /** shouldBubble */ true);
@@ -227,7 +268,7 @@ var MDCList = /** @class */ (function (_super) {
             removeClassForElementIndex: function (index, className) {
                 var element = _this.listElements[index];
                 if (element) {
-                    element.classList.remove(className);
+                    element.classList.remove(_this.classNameMap[className]);
                 }
             },
             setAttributeForElementIndex: function (index, attr, value) {
@@ -246,55 +287,89 @@ var MDCList = /** @class */ (function (_super) {
             },
             setTabIndexForListItemChildren: function (listItemIndex, tabIndexValue) {
                 var element = _this.listElements[listItemIndex];
-                var listItemChildren = [].slice.call(element.querySelectorAll(strings.CHILD_ELEMENTS_TO_TOGGLE_TABINDEX));
-                listItemChildren.forEach(function (el) { return el.setAttribute('tabindex', tabIndexValue); });
+                var selector = strings.CHILD_ELEMENTS_TO_TOGGLE_TABINDEX;
+                Array.prototype.forEach.call(element.querySelectorAll(selector), function (el) {
+                    el.setAttribute('tabindex', tabIndexValue);
+                });
             },
         };
         return new MDCListFoundation(adapter);
     };
     /**
-     * Used to figure out which list item this event is targetting. Or returns -1 if
-     * there is no list item
+     * Ensures that at least one item is focusable if the list is interactive and
+     * doesn't specify a suitable tabindex.
      */
-    MDCList.prototype.getListItemIndex_ = function (evt) {
-        var eventTarget = evt.target;
-        var nearestParent = closest(eventTarget, "." + cssClasses.LIST_ITEM_CLASS + ", ." + cssClasses.ROOT);
+    MDCList.prototype.ensureFocusable = function () {
+        if (this.isEvolutionEnabled && this.isInteractive) {
+            if (!this.root.querySelector("." + this.classNameMap[cssClasses.LIST_ITEM_CLASS] + "[tabindex=\"0\"]")) {
+                var index = this.initialFocusIndex();
+                if (index !== -1) {
+                    this.listElements[index].tabIndex = 0;
+                }
+            }
+        }
+    };
+    MDCList.prototype.initialFocusIndex = function () {
+        if (this.selectedIndex instanceof Array && this.selectedIndex.length > 0) {
+            return this.selectedIndex[0];
+        }
+        if (typeof this.selectedIndex === 'number' &&
+            this.selectedIndex !== numbers.UNSET_INDEX) {
+            return this.selectedIndex;
+        }
+        var el = this.root.querySelector("." + this.classNameMap[cssClasses.LIST_ITEM_CLASS] + ":not(." + this.classNameMap[cssClasses.LIST_ITEM_DISABLED_CLASS] + ")");
+        if (el === null) {
+            return -1;
+        }
+        return this.getListItemIndex(el);
+    };
+    /**
+     * Used to figure out which list item this event is targetting. Or returns -1
+     * if there is no list item
+     */
+    MDCList.prototype.getListItemIndex = function (el) {
+        var nearestParent = closest(el, "." + this.classNameMap[cssClasses.LIST_ITEM_CLASS] + ", ." + this.classNameMap[cssClasses.ROOT]);
         // Get the index of the element if it is a list item.
-        if (nearestParent && matches(nearestParent, "." + cssClasses.LIST_ITEM_CLASS)) {
+        if (nearestParent &&
+            matches(nearestParent, "." + this.classNameMap[cssClasses.LIST_ITEM_CLASS])) {
             return this.listElements.indexOf(nearestParent);
         }
         return -1;
     };
     /**
-     * Used to figure out which element was clicked before sending the event to the foundation.
+     * Used to figure out which element was clicked before sending the event to
+     * the foundation.
      */
-    MDCList.prototype.handleFocusInEvent_ = function (evt) {
-        var index = this.getListItemIndex_(evt);
-        this.foundation.handleFocusIn(evt, index);
+    MDCList.prototype.handleFocusInEvent = function (evt) {
+        var index = this.getListItemIndex(evt.target);
+        this.foundation.handleFocusIn(index);
     };
     /**
-     * Used to figure out which element was clicked before sending the event to the foundation.
+     * Used to figure out which element was clicked before sending the event to
+     * the foundation.
      */
-    MDCList.prototype.handleFocusOutEvent_ = function (evt) {
-        var index = this.getListItemIndex_(evt);
-        this.foundation.handleFocusOut(evt, index);
+    MDCList.prototype.handleFocusOutEvent = function (evt) {
+        var index = this.getListItemIndex(evt.target);
+        this.foundation.handleFocusOut(index);
     };
     /**
-     * Used to figure out which element was focused when keydown event occurred before sending the event to the
-     * foundation.
+     * Used to figure out which element was focused when keydown event occurred
+     * before sending the event to the foundation.
      */
-    MDCList.prototype.handleKeydownEvent_ = function (evt) {
-        var index = this.getListItemIndex_(evt);
+    MDCList.prototype.handleKeydownEvent = function (evt) {
+        var index = this.getListItemIndex(evt.target);
         var target = evt.target;
-        this.foundation.handleKeydown(evt, target.classList.contains(cssClasses.LIST_ITEM_CLASS), index);
+        this.foundation.handleKeydown(evt, target.classList.contains(this.classNameMap[cssClasses.LIST_ITEM_CLASS]), index);
     };
     /**
-     * Used to figure out which element was clicked before sending the event to the foundation.
+     * Used to figure out which element was clicked before sending the event to
+     * the foundation.
      */
-    MDCList.prototype.handleClickEvent_ = function (evt) {
-        var index = this.getListItemIndex_(evt);
+    MDCList.prototype.handleClickEvent = function (evt) {
+        var index = this.getListItemIndex(evt.target);
         var target = evt.target;
-        // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
+        // Toggle the checkbox only if it's not the target of the event, or the
+        // checkbox will have 2 change events.
         var toggleCheckbox = !matches(target, strings.CHECKBOX_RADIO_SELECTOR);
         this.foundation.handleClick(index, toggleCheckbox);
     };

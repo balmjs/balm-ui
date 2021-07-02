@@ -20,9 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+export * from './adapter';
 export * from './component';
 export * from './constants';
 export * from './foundation';
+export * from './types';
 export * from './helper-text/index';
 export * from './icon/index';
 //# sourceMappingURL=index.js.map

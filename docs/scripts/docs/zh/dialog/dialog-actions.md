@@ -4,16 +4,16 @@
 
 ### Props
 
-| Name         | Type   | Default    | Description             |
-| ------------ | ------ | ---------- | ----------------------- |
-| `acceptText` | string | `'OK'`     | The accept button text. |
-| `cancelText` | string | `'Cancel'` | The cancel button text. |
+| Name         | Type   | Default    | Description  |
+| ------------ | ------ | ---------- | ------------ |
+| `acceptText` | string | `'OK'`     | 确定按钮文本 |
+| `cancelText` | string | `'Cancel'` | 取消按钮文本 |
 
 ### Slots
 
-| Name      | Props         | Description                                                     |
-| --------- | ------------- | --------------------------------------------------------------- |
-| `default` | `buttonClass` | The default slot holds the dialog actions and can contain HTML. |
+| Name      | Props         | Description                       |
+| --------- | ------------- | --------------------------------- |
+| `default` | `buttonClass` | default 插槽包含对话框动作及 HTML |
 
 ```html
 <template #default="{ buttonClass }">
@@ -21,7 +21,7 @@
 </template>
 ```
 
-**Other customizations**
+**其他定制化**
 
-- `data-mdc-dialog-button-default`: Optional. Add to a button to indicate that it is the default action button (see Default Action Button section above).
-- `data-mdc-dialog-initial-focus`: Optional. Add to an element to indicate that it is the element to initially focus on after the dialog has opened.
+- `data-mdc-dialog-button-default`: 添加到按钮以指示它是默认操作按钮
+- `data-mdc-dialog-initial-focus`: 添加到元素以指示它是对话框打开后最初要关注的元素

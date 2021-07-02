@@ -28,6 +28,7 @@
 @use '../animation/functions' as functions2;
 @use '../animation/variables' as animation-variables;
 @use '../density/functions' as density-functions;
+@use '../dom/dom';
 @use '../feature-targeting/feature-targeting';
 @use '../ripple/ripple';
 @use '../ripple/ripple-theme';
@@ -77,7 +78,7 @@
     }
   }
 
-  @media screen and (-ms-high-contrast: active) {
+  @include dom.forced-colors-mode {
     @include checkbox-theme.disabled-container-colors(
       $unmarked-stroke-color: GrayText,
       $unmarked-fill-color: transparent,
@@ -138,15 +139,6 @@
     }
   }
 
-  // The frame's ::before element is used as a focus indicator for the checkbox
-  .mdc-checkbox__background::before {
-    @include focus-indicator_($query);
-  }
-
-  .mdc-checkbox__native-control:focus ~ .mdc-checkbox__background::before {
-    @include focus-indicator--focused_($query);
-  }
-
   .mdc-checkbox__native-control {
     @include feature-targeting.targets($feat-structure) {
       @include native-control_;
@@ -161,8 +153,14 @@
 
   .mdc-checkbox--touch {
     @include checkbox-theme.touch-target(
-      touch-target-variables.$height,
-      checkbox-theme.$ripple-size,
+      custom-properties.create(
+        checkbox-state-layer-size,
+        touch-target-variables.$height
+      ),
+      custom-properties.create(
+        checkbox-state-layer-size,
+        checkbox-theme.$ripple-size
+      ),
       $query: $query
     );
   }
@@ -239,12 +237,6 @@
 
   #{checkbox-theme.$ripple-target} {
     @include ripple.target-common($query: $query);
-  }
-
-  .mdc-ripple-upgraded--background-focused .mdc-checkbox__background::before {
-    @include feature-targeting.targets($feat-structure) {
-      content: none;
-    }
   }
 }
 
@@ -375,12 +367,6 @@
     will-change: background-color, border-color;
   }
 
-  .mdc-checkbox__background::before {
-    @include feature-targeting.targets($feat-color) {
-      @include theme.prop(background-color, on-surface);
-    }
-  }
-
   @include feature-targeting.targets($feat-animation) {
     transition: transition-exit(background-color), transition-exit(border-color);
   }
@@ -390,41 +376,12 @@
   transition: transition-enter(border-color), transition-enter(background-color);
 }
 
-// Focus indicator
-
+// stylelint-disable block-no-empty -- For backward compatibility.
 @mixin focus-indicator_($query: feature-targeting.all()) {
-  $feat-animation: feature-targeting.create-target($query, animation);
-  $feat-structure: feature-targeting.create-target($query, structure);
-
-  @include feature-targeting.targets($feat-structure) {
-    position: absolute;
-    transform: scale(0, 0);
-    border-radius: 50%;
-    opacity: 0;
-    pointer-events: none;
-    content: '';
-    will-change: opacity, transform;
-  }
-
-  @include feature-targeting.targets($feat-animation) {
-    transition: transition-exit(opacity), transition-exit(transform);
-  }
 }
-
 @mixin focus-indicator--focused_($query: feature-targeting.all()) {
-  $feat-animation: feature-targeting.create-target($query, animation);
-  $feat-structure: feature-targeting.create-target($query, structure);
-
-  @include feature-targeting.targets($feat-structure) {
-    transform: scale(1);
-    opacity: checkbox-theme.$focus-indicator-opacity;
-  }
-
-  @include feature-targeting.targets($feat-animation) {
-    transition: transition-enter(opacity, 0ms, 80ms),
-      transition-enter(transform, 0ms, 80ms);
-  }
 }
+// stylelint-enable block-no-empty
 
 // Native input
 
@@ -540,7 +497,7 @@
     width: 100%;
     height: 0;
     transform: scaleX(0) rotate(0deg);
-    border-width: math.floor(checkbox-theme.$mark-stroke-size) / 2;
+    border-width: math.div(math.floor(checkbox-theme.$mark-stroke-size), 2);
     border-style: solid;
     opacity: 0;
   }

@@ -1,0 +1,12 @@
+.mdc-toast--center {
+  top: 50%;
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.mdc-toast--top {
+  top: 0;
+  bottom: auto;
+}

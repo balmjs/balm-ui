@@ -1,28 +1,32 @@
 import version from './version';
-import multiConfigure from './config/multi-configure';
+import autoInstall from './config/auto-install';
 /**
  * Components
  */
-import UiBottomNavigation from './components/navigation/bottom-navigation';
-import UiSegmentedButtons from './components/buttons/segmented-buttons';
-import UiSegmentedButton from './components/buttons/segmented-button';
+import UiBottomNavigation from './components/bottom-navigation/bottom-navigation.vue';
+import UiBottomSheet from './components/bottom-sheet/bottom-sheet.vue';
+/**
+ * Plugins
+ */
+import $lazyload from './plugins/lazyload';
 
-const components = {
+const Components = {
   UiBottomNavigation,
-  UiSegmentedButtons,
-  UiSegmentedButton
+  UiBottomSheet
 };
 
-function install(app, options = {}) {
-  // Configure the components' props
-  multiConfigure(components, options);
+const Plugins = {
+  $lazyload
+};
 
-  // Install the components
-  for (let key in components) {
-    let Component = components[key];
-    app.component(Component.name, Component);
-  }
-}
+const Directives = {};
+
+const install = (Vue, options = {}) =>
+  autoInstall(Vue, options, {
+    Components,
+    Plugins,
+    Directives
+  });
 
 const BalmUINext = {
   version,
@@ -31,4 +35,5 @@ const BalmUINext = {
 
 export default BalmUINext;
 export { version, install };
-export { UiBottomNavigation, UiSegmentedButtons, UiSegmentedButton };
+export { UiBottomNavigation, UiBottomSheet };
+export { $lazyload };

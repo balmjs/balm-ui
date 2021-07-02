@@ -21,8 +21,6 @@
  * THE SOFTWARE.
  */
 import { __extends } from "tslib";
-// TODO(b/152410470): Remove trailing underscores from private properties
-// tslint:disable:strip-private-property-underscore
 import { MDCComponent } from '../base/component';
 import { closest } from '../dom/ponyfill';
 import { MDCList } from '../list/component';
@@ -43,66 +41,68 @@ var MDCMenu = /** @class */ (function (_super) {
     MDCMenu.prototype.initialize = function (menuSurfaceFactory, listFactory) {
         if (menuSurfaceFactory === void 0) { menuSurfaceFactory = function (el) { return new MDCMenuSurface(el); }; }
         if (listFactory === void 0) { listFactory = function (el) { return new MDCList(el); }; }
-        this.menuSurfaceFactory_ = menuSurfaceFactory;
-        this.listFactory_ = listFactory;
+        this.menuSurfaceFactory = menuSurfaceFactory;
+        this.listFactory = listFactory;
     };
     MDCMenu.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.menuSurface_ = this.menuSurfaceFactory_(this.root);
+        this.menuSurface = this.menuSurfaceFactory(this.root);
         var list = this.root.querySelector(strings.LIST_SELECTOR);
         if (list) {
-            this.list_ = this.listFactory_(list);
-            this.list_.wrapFocus = true;
+            this.list = this.listFactory(list);
+            this.list.wrapFocus = true;
         }
         else {
-            this.list_ = null;
+            this.list = null;
         }
-        this.handleKeydown_ = function (evt) { return _this.foundation.handleKeydown(evt); };
-        this.handleItemAction_ = function (evt) {
-            return _this.foundation.handleItemAction(_this.items[evt.detail.index]);
+        this.handleKeydown = function (evt) {
+            _this.foundation.handleKeydown(evt);
         };
-        this.handleMenuSurfaceOpened_ = function () {
-            return _this.foundation.handleMenuSurfaceOpened();
+        this.handleItemAction = function (evt) {
+            _this.foundation.handleItemAction(_this.items[evt.detail.index]);
         };
-        this.menuSurface_.listen(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, this.handleMenuSurfaceOpened_);
-        this.listen('keydown', this.handleKeydown_);
-        this.listen(MDCListFoundation.strings.ACTION_EVENT, this.handleItemAction_);
+        this.handleMenuSurfaceOpened = function () {
+            _this.foundation.handleMenuSurfaceOpened();
+        };
+        this.menuSurface.listen(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, this.handleMenuSurfaceOpened);
+        this.listen('keydown', this.handleKeydown);
+        this.listen(MDCListFoundation.strings.ACTION_EVENT, this.handleItemAction);
     };
     MDCMenu.prototype.destroy = function () {
-        if (this.list_) {
-            this.list_.destroy();
+        if (this.list) {
+            this.list.destroy();
         }
-        this.menuSurface_.destroy();
-        this.menuSurface_.unlisten(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, this.handleMenuSurfaceOpened_);
-        this.unlisten('keydown', this.handleKeydown_);
-        this.unlisten(MDCListFoundation.strings.ACTION_EVENT, this.handleItemAction_);
+        this.menuSurface.destroy();
+        this.menuSurface.unlisten(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, this.handleMenuSurfaceOpened);
+        this.unlisten('keydown', this.handleKeydown);
+        this.unlisten(MDCListFoundation.strings.ACTION_EVENT, this.handleItemAction);
         _super.prototype.destroy.call(this);
     };
     Object.defineProperty(MDCMenu.prototype, "open", {
         get: function () {
-            return this.menuSurface_.isOpen();
+            return this.menuSurface.isOpen();
         },
         set: function (value) {
             if (value) {
-                this.menuSurface_.open();
+                this.menuSurface.open();
             }
             else {
-                this.menuSurface_.close();
+                this.menuSurface.close();
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenu.prototype, "wrapFocus", {
         get: function () {
-            return this.list_ ? this.list_.wrapFocus : false;
+            return this.list ? this.list.wrapFocus : false;
         },
         set: function (value) {
-            if (this.list_) {
-                this.list_.wrapFocus = value;
+            if (this.list) {
+                this.list.wrapFocus = value;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenu.prototype, "hasTypeahead", {
@@ -111,11 +111,11 @@ var MDCMenu = /** @class */ (function (_super) {
          * @param value Whether typeahead is enabled.
          */
         set: function (value) {
-            if (this.list_) {
-                this.list_.hasTypeahead = value;
+            if (this.list) {
+                this.list.hasTypeahead = value;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenu.prototype, "typeaheadInProgress", {
@@ -123,9 +123,9 @@ var MDCMenu = /** @class */ (function (_super) {
          * @return Whether typeahead logic is currently matching some user prefix.
          */
         get: function () {
-            return this.list_ ? this.list_.typeaheadInProgress : false;
+            return this.list ? this.list.typeaheadInProgress : false;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**
@@ -142,8 +142,8 @@ var MDCMenu = /** @class */ (function (_super) {
      * @return The index of the matched item, or -1 if no match.
      */
     MDCMenu.prototype.typeaheadMatchItem = function (nextChar, startingIndex) {
-        if (this.list_) {
-            return this.list_.typeaheadMatchItem(nextChar, startingIndex);
+        if (this.list) {
+            return this.list.typeaheadMatchItem(nextChar, startingIndex);
         }
         return -1;
     };
@@ -152,8 +152,8 @@ var MDCMenu = /** @class */ (function (_super) {
      * to its structure.
      */
     MDCMenu.prototype.layout = function () {
-        if (this.list_) {
-            this.list_.layout();
+        if (this.list) {
+            this.list.layout();
         }
     };
     Object.defineProperty(MDCMenu.prototype, "items", {
@@ -163,9 +163,9 @@ var MDCMenu = /** @class */ (function (_super) {
          * elements.
          */
         get: function () {
-            return this.list_ ? this.list_.listElements : [];
+            return this.list ? this.list.listElements : [];
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenu.prototype, "singleSelection", {
@@ -176,11 +176,11 @@ var MDCMenu = /** @class */ (function (_super) {
          * @param singleSelection Whether to enable single selection mode.
          */
         set: function (singleSelection) {
-            if (this.list_) {
-                this.list_.singleSelection = singleSelection;
+            if (this.list) {
+                this.list.singleSelection = singleSelection;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenu.prototype, "selectedIndex", {
@@ -190,7 +190,7 @@ var MDCMenu = /** @class */ (function (_super) {
          *     radio lists, and an array of numbers for checkbox lists.
          */
         get: function () {
-            return this.list_ ? this.list_.selectedIndex : listConstants.UNSET_INDEX;
+            return this.list ? this.list.selectedIndex : listConstants.UNSET_INDEX;
         },
         /**
          * Sets the selected index of the list. Only applicable to select menus.
@@ -198,18 +198,18 @@ var MDCMenu = /** @class */ (function (_super) {
          *     radio lists, and an array of numbers for checkbox lists.
          */
         set: function (index) {
-            if (this.list_) {
-                this.list_.selectedIndex = index;
+            if (this.list) {
+                this.list.selectedIndex = index;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenu.prototype, "quickOpen", {
         set: function (quickOpen) {
-            this.menuSurface_.quickOpen = quickOpen;
+            this.menuSurface.quickOpen = quickOpen;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**
@@ -225,10 +225,10 @@ var MDCMenu = /** @class */ (function (_super) {
      * @param corner Default anchor corner alignment of top-left menu corner.
      */
     MDCMenu.prototype.setAnchorCorner = function (corner) {
-        this.menuSurface_.setAnchorCorner(corner);
+        this.menuSurface.setAnchorCorner(corner);
     };
     MDCMenu.prototype.setAnchorMargin = function (margin) {
-        this.menuSurface_.setAnchorMargin(margin);
+        this.menuSurface.setAnchorMargin(margin);
     };
     /**
      * Sets the list item as the selected row at the specified index.
@@ -263,25 +263,25 @@ var MDCMenu = /** @class */ (function (_super) {
      */
     MDCMenu.prototype.getPrimaryTextAtIndex = function (index) {
         var item = this.getOptionByIndex(index);
-        if (item && this.list_) {
-            return this.list_.getPrimaryText(item) || '';
+        if (item && this.list) {
+            return this.list.getPrimaryText(item) || '';
         }
         return '';
     };
     MDCMenu.prototype.setFixedPosition = function (isFixed) {
-        this.menuSurface_.setFixedPosition(isFixed);
+        this.menuSurface.setFixedPosition(isFixed);
     };
     MDCMenu.prototype.setIsHoisted = function (isHoisted) {
-        this.menuSurface_.setIsHoisted(isHoisted);
+        this.menuSurface.setIsHoisted(isHoisted);
     };
     MDCMenu.prototype.setAbsolutePosition = function (x, y) {
-        this.menuSurface_.setAbsolutePosition(x, y);
+        this.menuSurface.setAbsolutePosition(x, y);
     };
     /**
      * Sets the element that the menu-surface is anchored to.
      */
     MDCMenu.prototype.setAnchorElement = function (element) {
-        this.menuSurface_.anchorElement = element;
+        this.menuSurface.anchorElement = element;
     };
     MDCMenu.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -309,20 +309,21 @@ var MDCMenu = /** @class */ (function (_super) {
                 return element.classList.contains(className);
             },
             closeSurface: function (skipRestoreFocus) {
-                return _this.menuSurface_.close(skipRestoreFocus);
+                _this.menuSurface.close(skipRestoreFocus);
             },
             getElementIndex: function (element) { return _this.items.indexOf(element); },
             notifySelected: function (evtData) {
-                return _this.emit(strings.SELECTED_EVENT, {
+                _this.emit(strings.SELECTED_EVENT, {
                     index: evtData.index,
                     item: _this.items[evtData.index],
                 });
             },
             getMenuItemCount: function () { return _this.items.length; },
-            focusItemAtIndex: function (index) { return _this.items[index].focus(); },
+            focusItemAtIndex: function (index) {
+                _this.items[index].focus();
+            },
             focusListRoot: function () {
-                return _this.root.querySelector(strings.LIST_SELECTOR)
-                    .focus();
+                _this.root.querySelector(strings.LIST_SELECTOR).focus();
             },
             isSelectableItemAtIndex: function (index) {
                 return !!closest(_this.items[index], "." + cssClasses.MENU_SELECTION_GROUP);

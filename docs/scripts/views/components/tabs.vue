@@ -40,15 +40,15 @@
         <div class="hero-option hero-options">
           <ui-form-field>
             <ui-checkbox
-              id="options"
               v-model="textLabel"
+              input-id="options"
               :disabled="!iconOption"
             ></ui-checkbox>
             <label for="options">Text label</label>
           </ui-form-field>
-          <ui-select v-model="iconOption" :options="IconOptions"
-            >Icons</ui-select
-          >
+          <ui-select v-model="iconOption" :options="IconOptions">
+            Icons
+          </ui-select>
         </div>
       </div>
     </template>

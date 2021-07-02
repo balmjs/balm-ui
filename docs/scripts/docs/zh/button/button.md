@@ -1,8 +1,10 @@
+## 按钮组件
+
 ```html
 <ui-button><!-- the button text label --></ui-button>
 ```
 
-**`<ui-button>` Types**
+**`<ui-button>` 类型**
 
 - `0`: `'text'`
 - `1`: `'outlined'`
@@ -11,23 +13,29 @@
 
 ### Props
 
-| Name         | Type           | Default    | Description                                                               |
-| ------------ | -------------- | ---------- | ------------------------------------------------------------------------- |
-| `type`       | string, number | `0`        | Mandatory. Button types.                                                  |
-| `outlined`   | boolean        | `false`    | Optional. Styles an outlined button that is flush with the surface.       |
-| `raised`     | boolean        | `false`    | Optional. Styles a contained button that is elevated above the surface.   |
-| `unelevated` | boolean        | `false`    | Optional. Styles a contained button that is flush with the surface.       |
-| `icon`       | string         | `''`       | Optional. Indicates an icon element. See [Material Icons](/#/icons) list. |
-| `disabled`   | boolean        | `false`    | The `<button>` native attribute. To disable a button.                     |
-| `nativeType` | string         | `'button'` | The `<button>` native attribute. `['button', 'submit', 'reset']`          |
+| Name         | Type           | Default    | Description                                        |
+| ------------ | -------------- | ---------- | -------------------------------------------------- |
+| `type`       | string, number | `0`        | 按钮类型                                           |
+| `outlined`   | boolean        | `false`    | 使用轮廓按钮样式                                   |
+| `raised`     | boolean        | `false`    | 使用浮雕按钮样式                                   |
+| `unelevated` | boolean        | `false`    | 使用扁平按钮样式                                   |
+| `icon`       | string         | `''`       | 设置图标。详见 [Material Icons](/#/icons) 图标集。 |
+| `disabled`   | boolean        | `false`    | 禁用按钮。同原生 `<button>` 属性。                 |
+| `nativeType` | string         | `'button'` | 原生按钮类型。                                     |
+
+```ts
+interface Button {
+  nativeType: 'button' | 'submit' | 'reset';
+}
+```
 
 ### Slots
 
-| Name      | Props       | Description                                                          |
-| --------- | ----------- | -------------------------------------------------------------------- |
-| `default` |             | The default slot holds the button or link text and can contain HTML. |
-| `before`  | `iconClass` | Custom leading icon                                                  |
-| `after`   | `iconClass` | Custom trailing icon                                                 |
+| Name      | Props       | Description                     |
+| --------- | ----------- | ------------------------------- |
+| `default` |             | default 插槽包含按钮文字及 HTML |
+| `before`  | `iconClass` | 自定义首图标                    |
+| `after`   | `iconClass` | 自定义尾图标                    |
 
 ```html
 <template #after="{ iconClass }">
@@ -37,6 +45,6 @@
 
 ### Events
 
-| Name    | Type                      | Description                       |
-| ------- | ------------------------- | --------------------------------- |
-| `click` | `function(event: object)` | Emits when the button is clicked. |
+| Name    | Type                      | Description    |
+| ------- | ------------------------- | -------------- |
+| `click` | `function(event: object)` | 点击按钮时触发 |

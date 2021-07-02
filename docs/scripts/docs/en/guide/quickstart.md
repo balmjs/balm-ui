@@ -1,5 +1,14 @@
 # Quick Start
 
+## TOC
+
+0. <a href="javascript:void(0)" class="v-anchor" data-href="#for-env">Set up the Development Environment</a>
+1. <a href="javascript:void(0)" class="v-anchor" data-href="#for-balm-cli">For Balm CLI</a> (Recommended)
+2. <a href="javascript:void(0)" class="v-anchor" data-href="#for-vue-cli-or-vite">For Vue CLI or Vite</a>
+3. <a href="javascript:void(0)" class="v-anchor" data-href="#for-script">For &lt;script&gt;</a>
+
+<div id="for-env"></div>
+
 ## 0. Set up the Development Environment
 
 You need to set up your development environment before you can do anything.
@@ -21,6 +30,8 @@ The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface t
   # OR
   npm install -g balm-core balm-cli
   ```
+
+<div id="for-balm-cli"></div>
 
 ## 1. For Balm CLI (Recommended)
 
@@ -59,7 +70,7 @@ npm install --save balm-ui@next
 
 update `balm.config.js`
 
-- get [Material Icons](https://next-material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `/path/to/my-project/app/fonts`)
+- get [Material Icons](https://next-material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `my-project/app/fonts`)
 
   ```js
   const api = (mix) => {
@@ -92,7 +103,7 @@ update `balm.config.js`
   @use 'balm-ui/dist/balm-ui';
   ```
 
-> Recommend to use Sass in `/path/to/your-project/styles/_vendor.scss`, and you can use more advanced style usage of the BalmUI.
+> Recommend to use Sass in `/path/to/project-name/styles/_vendor.scss`, and you can use more advanced style usage of the BalmUI.
 
 - edit `my-project/app/scripts/main.js`
 
@@ -162,6 +173,8 @@ npm run dev
 npm run prod
 ```
 
+<div id="for-vue-cli-or-vite"></div>
+
 ## 2. For Vue CLI or Vite
 
 ### 2.0 Create a project
@@ -177,9 +190,14 @@ npm run prod
 - `vite`
 
   ```bash
-  npm init vite-app my-project
-  # OR
-  yarn create vite-app my-project
+  # npm 6.x
+  npm init @vitejs/app my-project --template vue
+
+  # npm 7+, extra double-dash is needed:
+  npm init @vitejs/app my-project -- --template vue
+
+  # yarn
+  yarn create @vitejs/app my-project --template vue
 
   cd my-project
   ```
@@ -199,7 +217,21 @@ npm install --save balm-ui@next
   ```js
   // vue.config.js
   module.exports = {
-    runtimeCompiler: true
+    runtimeCompiler: true,
+    // NOTE: set alias via `configureWebpack` or `chainWebpack`
+    configureWebpack: {
+      resolve: {
+        alias: {
+          'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.js',
+          'balm-ui-css': 'balm-ui/dist/balm-ui.css'
+        }
+      }
+    }
+    // chainWebpack: (config) => {
+    //   config.resolve.alias
+    //     .set('balm-ui-plus', 'balm-ui/dist/balm-ui-plus.js')
+    //     .set('balm-ui-css', 'balm-ui/dist/balm-ui.css');
+    // }
   };
   ```
 
@@ -207,31 +239,28 @@ npm install --save balm-ui@next
 
   ```js
   // vite.config.js
-  export default {
-    alias: {
-      vue: 'vue/dist/vue.esm-bundler.js',
-      // balm-ui@9.1.0+
-      'balm-ui': 'balm-ui/dist/balm-ui.esm.js',
-      'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.esm.js',
-      'balm-ui-css': 'balm-ui/dist/balm-ui.css'
-    },
-    optimizeDeps: {
-      // Remove useless warning for `balm-ui`
-      exclude: ['balm-ui']
-    }
-  };
-  ```
+  import { defineConfig } from 'vite';
+  import vue from '@vitejs/plugin-vue';
 
-  > ⚠️ NOTE: If you are using an old BalmUI version or want to use **Individual Usage** in vite, you need to configure `optimizeDeps.include`.
+  export default defineConfig({
+    plugins: [vue()],
+    resolve: {
+      alias: {
+        vue: 'vue/dist/vue.esm-bundler.js',
+        'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.esm.js',
+        'balm-ui-css': 'balm-ui/dist/balm-ui.css'
+      }
+    }
+  });
+  ```
 
 ### 2.3 Usage
 
-- edit `/path/to/src/main.js`
+- edit `my-project/src/main.js`
 
   ```js
   import { createApp } from 'vue';
   import App from './App.vue';
-  import './index.css'; // vite template
 
   import BalmUI from 'balm-ui'; // Official Google Material Components
   import BalmUIPlus from 'balm-ui-plus'; // BalmJS Team Material Components
@@ -244,6 +273,8 @@ npm install --save balm-ui@next
 
   app.mount('#app');
   ```
+
+<div id="for-script"></div>
 
 ## 3. For `<script>`
 

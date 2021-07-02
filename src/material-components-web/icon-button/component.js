@@ -69,7 +69,7 @@ var MDCIconButtonToggle = /** @class */ (function (_super) {
         get: function () {
             return this.rippleComponent;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCIconButtonToggle.prototype, "on", {
@@ -79,7 +79,7 @@ var MDCIconButtonToggle = /** @class */ (function (_super) {
         set: function (isOn) {
             this.foundation.toggle(isOn);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCIconButtonToggle.prototype.createRipple = function () {

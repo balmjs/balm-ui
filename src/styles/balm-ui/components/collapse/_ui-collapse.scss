@@ -35,3 +35,13 @@
       collapse-variables.$icon-margin-right;
   }
 }
+
+.mdc-collapse--icon-end-aligned {
+  .mdc-collapse__header {
+    justify-content: space-between;
+  }
+
+  .mdc-collapse__title {
+    order: -1;
+  }
+}

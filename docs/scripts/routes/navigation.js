@@ -1,28 +1,17 @@
-import { defineAsyncComponent } from 'vue';
-const Drawer = defineAsyncComponent(() => import('@/views/drawer/index'));
-const PermanentDrawerAboveToolbar = defineAsyncComponent(() =>
-  import('@/views/drawer/permanent-drawer-above-toolbar')
-);
-const PermanentDrawerBelowToolbar = defineAsyncComponent(() =>
-  import('@/views/drawer/permanent-drawer-below-toolbar')
-);
-const DismissibleDrawerFullHeightDrawer = defineAsyncComponent(() =>
-  import('@/views/drawer/dismissible-drawer-full-height-drawer')
-);
-const DismissibleDrawerBelowTopAppBar = defineAsyncComponent(() =>
-  import('@/views/drawer/dismissible-drawer-below-top-app-bar')
-);
-const ModalDrawer = defineAsyncComponent(() =>
-  import('@/views/drawer/modal-drawer')
-);
-const BottomNavigation = defineAsyncComponent(() =>
-  import('@/views/components/bottom-navigation')
-);
-const Tabs = defineAsyncComponent(() => import('@/views/components/tabs'));
-const Menu = defineAsyncComponent(() => import('@/views/components/menu'));
-const Pagination = defineAsyncComponent(() =>
-  import('@/views/components/pagination')
-);
+const Drawer = () => import('@/views/drawer/index');
+const PermanentDrawerAboveToolbar = () =>
+  import('@/views/drawer/permanent-drawer-above-toolbar');
+const PermanentDrawerBelowToolbar = () =>
+  import('@/views/drawer/permanent-drawer-below-toolbar');
+const DismissibleDrawerFullHeightDrawer = () =>
+  import('@/views/drawer/dismissible-drawer-full-height-drawer');
+const DismissibleDrawerBelowTopAppBar = () =>
+  import('@/views/drawer/dismissible-drawer-below-top-app-bar');
+const ModalDrawer = () => import('@/views/drawer/modal-drawer');
+const Tabs = () => import('@/views/components/tabs');
+const Menu = () => import('@/views/components/menu');
+const Pagination = () => import('@/views/components/pagination');
+const BottomNavigation = () => import('@/views/components/bottom-navigation');
 
 export default [
   {
@@ -67,12 +56,6 @@ export default [
     meta: { noLayout: true }
   },
   {
-    path: 'bottom-navigation',
-    name: 'navigation.bottom-navigation',
-    component: BottomNavigation,
-    meta: { noLayout: true }
-  },
-  {
     path: 'tabs',
     name: 'navigation.tabs',
     component: Tabs
@@ -86,5 +69,11 @@ export default [
     path: 'pagination',
     name: 'navigation.pagination',
     component: Pagination
+  },
+  {
+    path: 'bottom-navigation',
+    name: 'navigation.bottom-navigation',
+    component: BottomNavigation,
+    meta: { noLayout: true }
   }
 ];

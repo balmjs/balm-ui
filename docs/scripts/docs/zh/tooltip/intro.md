@@ -1,3 +1,3 @@
 # 文字提示
 
-Tooltips display informative text when users hover over, focus on, or tap an element.
+当用户将鼠标悬停，聚焦或点击某个元素时，文字提示将显示信息丰富的文本。

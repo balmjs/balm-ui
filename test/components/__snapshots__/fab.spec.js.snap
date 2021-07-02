@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ui-fab> renders default fab 1`] = `
+<button
+  class="mdc-fab"
+  type="button"
+>
+  <div
+    class="mdc-fab__ripple"
+  />
+  
+  <!-- Icon -->
+  
+  <!--v-if-->
+  
+  
+</button>
+`;
+
+exports[`<ui-fab> renders extended fab 1`] = `
+<button
+  class="mdc-fab mdc-fab--extended"
+  type="button"
+>
+  <div
+    class="mdc-fab__ripple"
+  />
+  
+  <!-- Icon (optional) -->
+  
+  <!--v-if-->
+  
+  <!-- Text label -->
+  <span
+    class="mdc-fab__label"
+  >
+    
+    
+  </span>
+  <!-- Icon (optional) -->
+  
+  
+  
+</button>
+`;

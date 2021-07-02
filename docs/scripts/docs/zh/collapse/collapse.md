@@ -4,21 +4,22 @@
 
 ### Props
 
-| Name       | Type            | Default | Description             |
-| ---------- | --------------- | ------- | ----------------------- |
-| `expanded` | boolean         | `false` | Default expanded state. |
-| `withIcon` | boolean         | `false` | Enabled default icons.  |
-| `ripple`   | boolean, number | `false` | Sets the ripple color.  |
+| Name                     | Type            | Default | Description    | Version |
+| ------------------------ | --------------- | ------- | -------------- | ------- |
+| `modelValue` (`v-model`) | boolean         | `false` | 展开状态       |         |
+| `withIcon`               | boolean         | `false` | 启用默认图标   |         |
+| `iconEndAligned`         | boolean         | `false` | 图标后置       | 9.29.0  |
+| `ripple`                 | boolean, number | `false` | 设置水波纹效果 |         |
 
-- `ripple` value:
-  - `true`: default color
-  - `1`: primary color
-  - `2`: secondary color
+- `ripple` 值：
+  - `true`: 默认颜色
+  - `1`: 主色
+  - `2`: 辅色
 
 ### Slots
 
-| Name               | Props | Description                                                       |
-| ------------------ | ----- | ----------------------------------------------------------------- |
-| `default`          |       | The default slot holds the collapse content and can contain HTML. |
-| `expand-more-icon` |       | Custom expand more icon.                                          |
-| `expand-less-icon` |       | Custom expand less icon.                                          |
+| Name               | Props | Description                         |
+| ------------------ | ----- | ----------------------------------- |
+| `default`          |       | default 插槽包含折叠面板内容及 HTML |
+| `expand-more-icon` |       | 自定义展开图标                      |
+| `expand-less-icon` |       | 自定义收起图标                      |

@@ -10,7 +10,7 @@ export default {
 ```js
 // `/path/to/app/scripts/store/demo.js`
 import { reactive, toRefs } from 'vue';
-import { useHttp } from '@/plugins/http'; // e.g. axios
+import { useHttp } from '@/plugins/http'; // 例如 axios
 
 const state = reactive({
   demoMenu: []

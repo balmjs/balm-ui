@@ -17,11 +17,19 @@ const LABEL_PLACEHOLDER = '%s';
 
 let globalValidationRules = {};
 
+function upgradeMessage(from, to) {
+  console.warn(
+    '[$validator]',
+    `The '${from}' has been deprecated. Use the '${to}' instead`
+  );
+}
+
 class UiValidator {
   constructor() {
     const currentInstance = getCurrentInstance();
     this.instance = currentInstance;
     this.validations = {};
+    this.customValidations = {};
   }
 
   validate(formData = {}, customFieldset = []) {
@@ -34,10 +42,11 @@ class UiValidator {
       validMsg: {}
     };
 
-    this.validations =
-      this.instance.data.validations ||
-      this.instance.setupState.validations ||
-      {};
+    this.validations = Object.keys(this.customValidations).length
+      ? this.customValidations
+      : this.instance.data.validations ||
+        this.instance.setupState.validations ||
+        {};
 
     let validationFields = Object.keys(this.validations);
 
@@ -50,7 +59,7 @@ class UiValidator {
     for (let i = 0, fieldCount = validationFields.length; i < fieldCount; i++) {
       let fieldName = validationFields[i]; // Field name
       let fieldOption = this.validations[fieldName]; // The validation option of current field
-      let fieldLabel = fieldOption[FIELD_LABEL] || ''; // Field alias name
+      let fieldLabel = fieldOption[FIELD_LABEL] || fieldName; // Field alias name
       let fieldRules = fieldOption[FIELD_VALIDATOR].split(
         ','
       ).map((validator) => validator.trim()); // All validation methods of current field
@@ -77,7 +86,8 @@ class UiValidator {
                 break;
               default:
                 console.warn(
-                  `'[${fieldName}.message]' must be a string or function.`
+                  '[$validator]',
+                  `'${fieldName}.message' must be a string or function`
                 );
                 break;
             }
@@ -89,7 +99,8 @@ class UiValidator {
           }
         } else {
           console.warn(
-            `The field [${fieldName}] is missing a validation rule: '${ruleName}'.`
+            '[$validator]',
+            `The field '${fieldName}' is missing a validation rule: '${ruleName}'`
           );
         }
       }
@@ -118,18 +129,28 @@ class UiValidator {
   }
 
   resetValidations() {
-    this.validations = {};
+    upgradeMessage('resetValidations', 'clear');
   }
 
-  setValidations(fieldName, validationRule = {}) {
-    if (!this.validations) {
-      this.resetValidations();
-    }
+  setValidations() {
+    upgradeMessage('setValidations', 'set');
+  }
 
+  clear() {
+    this.customValidations = {};
+  }
+
+  get(fieldName = '') {
+    return fieldName
+      ? this.customValidations[fieldName]
+      : this.customValidations;
+  }
+
+  set(fieldName, validationRule = {}) {
     if (getType(fieldName) === 'object') {
-      this.validations = Object.assign({}, this.validations, fieldName);
+      this.customValidations = Object.assign({}, fieldName);
     } else {
-      this.validations[fieldName] = validationRule;
+      this.customValidations[fieldName] = validationRule;
     }
   }
 }
@@ -138,11 +159,11 @@ function install(app, customRules = {}) {
   globalValidationRules = Object.assign({}, defaultRules, customRules);
 }
 
-const BalmUI_ValidatorPlugin = {
+const $validator = {
   install
 };
 
 const useValidator = () => new UiValidator();
 
-export default BalmUI_ValidatorPlugin;
+export default $validator;
 export { install, useValidator };

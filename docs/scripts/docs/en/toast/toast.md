@@ -1,18 +1,29 @@
-```js
-// Usage 1
-$toast(message);
+- `$toast(message)`
+- `$toast(options)`
 
-// Usage 2
-$toast(options);
-```
+  ```ts
+  type ToastMessage = string;
+
+  interface ToastOptions {
+    className?: string;
+    timeoutMs?: number;
+    message: ToastMessage;
+    position?: 'bottom' | 'center' | 'top';
+  }
+
+  interface VueInstance {
+    $toast(options: ToastMessage | ToastOptions): Promise<void>;
+  }
+  ```
 
 ### Options
 
-| Option      | Type   | Default | Description                                                                                                               |
-| ----------- | ------ | ------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `className` | string | `''`    | The custom class name for the toast.                                                                                      |
-| `timeoutMs` | number | `2000`  | The amount of time in milliseconds to show the toast. Value must be between `2000` and `3500` or an error will be thrown. |
-| `message`   | string | `''`    | The text message to display.                                                                                              |
+| Option      | Type   | Default    | Description                                                                                                               | Version |
+| ----------- | ------ | ---------- | ------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `className` | string | `''`       | The custom class name for the toast.                                                                                      |         |
+| `timeoutMs` | number | `2750`     | The amount of time in milliseconds to show the toast. Value must be between `2000` and `3500` or an error will be thrown. |         |
+| `message`   | string | `''`       | The text message to display.                                                                                              |         |
+| `position`  | string | `'bottom'` | Toast position.                                                                                                           | 9.21.0  |
 
 ### Use `$toast` without `.vue` component
 

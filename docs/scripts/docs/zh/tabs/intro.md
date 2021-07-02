@@ -1,3 +1,3 @@
 # 标签页
 
-Tabs organize content across different screens, data sets, and other interactions.
+标签页跨不同的屏幕，数据集和其他交互来组织内容。

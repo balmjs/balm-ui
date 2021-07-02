@@ -9,7 +9,13 @@
         :tbody="tbody"
         row-checkbox
         selected-key="id"
-      ></ui-table>
+      >
+        <template #action>
+          <ui-icon>description</ui-icon>
+          <ui-icon>edit</ui-icon>
+          <ui-icon>delete</ui-icon>
+        </template>
+      </ui-table>
     </div>
   </section>
 </template>
@@ -21,39 +27,23 @@ export default {
       data: [
         {
           id: 1,
-          dessert: 'Froyo',
-          carbs: 24,
-          protein: 4.0
+          name: 'body2'
         },
         {
           id: 2,
-          dessert: 'Eclair',
-          carbs: 37,
-          protein: 4.3
+          name: 'body2'
         }
       ],
-      thead: ['Dessert', 'Carbs (g)', 'Protein (g)'],
-      tbody: ['dessert', 'carbs', 'protein'],
+      thead: ['Subtitle2', 'Subtitle2', 'Actions'],
+      tbody: [
+        'id',
+        'name',
+        {
+          slot: 'action'
+        }
+      ],
       selectedRows: [2]
     };
   }
-  // mounted() {
-  //   setTimeout(() => {
-  //     this.data = [
-  //       {
-  //         id: 1,
-  //         dessert: 'Froyo',
-  //         carbs: 24,
-  //         protein: 4.0
-  //       },
-  //       {
-  //         id: 2,
-  //         dessert: 'Eclair',
-  //         carbs: 37,
-  //         protein: 4.3
-  //       }
-  //     ];
-  //   }, 1e3);
-  // }
 };
 </script>

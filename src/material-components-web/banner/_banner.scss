@@ -20,9 +20,14 @@
 // THE SOFTWARE.
 //
 
+// Selector '.mdc-*' should only be used in this project.
+// stylelint-disable selector-class-pattern --
+// Internal styling for Tooltip MDC component.
+
+@use 'sass:math';
 @use '../feature-targeting/feature-targeting';
 @use '../typography/typography';
-@use '../button/mixins' as button-mixins;
+@use '../button/button-theme';
 @use '../ripple/ripple-theme';
 @use '../rtl/mixins' as rtl-mixins;
 @use './banner-theme';
@@ -32,7 +37,7 @@ $_min-width: 344px;
 $_max-width: 720px;
 // Minimum banner height minus standard text height, divided by 2 for both top
 // and bottom padding. This is used to support two/three line banners.
-$_text-padding-top-bottom: ((52px - 20px) / 2);
+$_text-padding-top-bottom: math.div(52px - 20px, 2);
 
 $_enter-duration: 300ms;
 $_exit-duration: 250ms;
@@ -91,7 +96,9 @@ $_exit-duration: 250ms;
     }
 
     &.mdc-banner--mobile-stacked {
-      @include banner-theme.mobile-stacked($query: $query);
+      @media (max-width: banner-theme.$mobile-breakpoint) {
+        @include banner-theme.layout-stacked($query: $query);
+      }
     }
   }
 
@@ -211,7 +218,7 @@ $_exit-duration: 250ms;
   }
 
   .mdc-banner__primary-action {
-    @include button-mixins.ink-color(
+    @include button-theme.ink-color(
       banner-theme.$primary-action-text-color,
       $query: $query
     );
@@ -222,7 +229,7 @@ $_exit-duration: 250ms;
   }
 
   .mdc-banner__secondary-action {
-    @include button-mixins.ink-color(
+    @include button-theme.ink-color(
       banner-theme.$secondary-action-text-color,
       $query: $query
     );

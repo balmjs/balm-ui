@@ -19,9 +19,9 @@
 
 ### Events
 
-| Name                | Type                                            | Description                       |
-| ------------------- | ----------------------------------------------- | --------------------------------- |
-| `update:modelValue` | `function(modelValue: boolean\|string\|number)` | Emits when the switch is changed. |
+| Name                | Type                                       | Description                       |
+| ------------------- | ------------------------------------------ | --------------------------------- |
+| `update:modelValue` | `function(value: boolean\|string\|number)` | Emits when the switch is changed. |
 
 > NOTE: If you are not using `v-model`, you should listen for the switch using `@update:modelValue` and update the `modelValue` prop.
 

@@ -41,7 +41,7 @@ class ThemeStyle {
       result = isClass ? `mdc-theme--${style}` : themeColors.get(style);
     } else {
       throw new Error(
-        `[BalmUI theme ${isClass ? 'class' : 'color'}]: ${
+        `[$theme]: Theme ${isClass ? 'Class' : 'Color'}]: ${
           MESSAGE.ALL_THEME_STYLES
         }`
       );
@@ -61,10 +61,10 @@ class ThemeStyle {
       if (THEME_TONES.includes(tone)) {
         result = fn();
       } else {
-        throw new Error(`[BalmUI theme]: ${MESSAGE.THEME_TONE}`);
+        throw new Error(`[$theme]: ${MESSAGE.THEME_TONE}`);
       }
     } else {
-      throw new Error(`[BalmUI theme]: ${MESSAGE.TEXT_STYLE}`);
+      throw new Error(`[$theme]: ${MESSAGE.TEXT_STYLE}`);
     }
 
     return result;
@@ -182,7 +182,7 @@ class Theme extends ThemeStyle {
         }
       });
     } else {
-      throw new Error(`[BalmUI theme]: ${MESSAGE.THEME_STYLE}`);
+      throw new Error(`[$theme]: ${MESSAGE.THEME_STYLE}`);
     }
   }
 
@@ -234,16 +234,27 @@ class Theme extends ThemeStyle {
 
 const theme = new Theme();
 
-function install(app) {
+let isColored = false;
+
+function install(app, colors = {}) {
+  app.mixin({
+    mounted() {
+      if (!isColored) {
+        isColored = true;
+        theme.colors = colors;
+      }
+    }
+  });
+
   app.config.globalProperties.$theme = theme;
   app.provide('theme', theme);
 }
 
-const BalmUI_ThemePlugin = {
+const $theme = {
   install
 };
 
 const useTheme = () => theme;
 
-export default BalmUI_ThemePlugin;
+export default $theme;
 export { install, useTheme };

@@ -7,12 +7,14 @@
       <div :class="['demo-theme-text-row', $theme.getThemeClass('primary-bg')]">
         <span
           :class="['demo-theme-text-style', $$theme.getThemeClass('on-primary')]"
-          >Text</span
         >
+          Text
+        </span>
         <span
           :class="['demo-theme-text-style', $$theme.getThemeClass('on-primary'), 'material-icons']"
-          >favorite</span
         >
+          favorite
+        </span>
       </div>
     </div>
   </fieldset>
@@ -26,12 +28,14 @@
       >
         <span
           :class="['demo-theme-text-style', $$theme.getThemeClass('on-secondary')]"
-          >Text</span
         >
+          Text
+        </span>
         <span
           :class="['demo-theme-text-style', $$theme.getThemeClass('on-secondary'), 'material-icons']"
-          >favorite</span
         >
+          favorite
+        </span>
       </div>
     </div>
   </fieldset>

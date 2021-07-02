@@ -34,7 +34,7 @@ var MDCNotchedOutline = /** @class */ (function (_super) {
         return new MDCNotchedOutline(root);
     };
     MDCNotchedOutline.prototype.initialSyncWithDOM = function () {
-        this.notchElement_ =
+        this.notchElement =
             this.root.querySelector(strings.NOTCH_ELEMENT_SELECTOR);
         var label = this.root.querySelector('.' + MDCFloatingLabelFoundation.cssClasses.ROOT);
         if (label) {
@@ -70,10 +70,10 @@ var MDCNotchedOutline = /** @class */ (function (_super) {
             addClass: function (className) { return _this.root.classList.add(className); },
             removeClass: function (className) { return _this.root.classList.remove(className); },
             setNotchWidthProperty: function (width) {
-                return _this.notchElement_.style.setProperty('width', width + 'px');
+                _this.notchElement.style.setProperty('width', width + 'px');
             },
             removeNotchWidthProperty: function () {
-                return _this.notchElement_.style.removeProperty('width');
+                _this.notchElement.style.removeProperty('width');
             },
         };
         // tslint:enable:object-literal-sort-keys

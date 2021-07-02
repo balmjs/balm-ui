@@ -2,57 +2,60 @@
 <ui-select><!-- the label text --></ui-select>
 ```
 
-**`<ui-select>` Types**
+**`<ui-select>` 类型**
 
 - `0`: `'filled'`
 - `1`: `'outlined'`
 
 ### Props
 
-| Name                     | Type           | Default   | Description                                                                                                                                                                  | Version |
-| ------------------------ | -------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `type`                   | string, number | `0`       | Mandatory. Enhanced select types.                                                                                                                                            |         |
-| `outlined`               | boolean        | `false`   | Styles the select as an outlined select. (Equivalent to `type=1`)                                                                                                            |         |
-| `modelValue` (`v-model`) | string, number | `''`      | The `value` of the currently selected option.                                                                                                                                |         |
-| `options`                | array          | `[]`      | An array of options to show to the user. (Default option format: `{ label, value }`)                                                                                         |         |
-| `optionLabel`            | string         | `'label'` | Option item label's key field name of the `options`.                                                                                                                         |         |
-| `optionValue`            | string         | `'value'` | Option item value's key field name of the `options`.                                                                                                                         |         |
-| `defaultLabel`           | string         | `''`      | Placeholder item label.                                                                                                                                                      |         |
-| `defaultValue`           | string, number | `''`      | Placeholder item value.                                                                                                                                                      |         |
-| `label`                  | string         | `''`      | A text caption or description for the select.                                                                                                                                |         |
-| `disabled`               | boolean        | `false`   | Styles the select as disabled.                                                                                                                                               |         |
-| `required`               | boolean        | `false`   | Styles the select as required.                                                                                                                                               |         |
-| `fullwidth`              | boolean        | `false`   | Optional. Styles the select as fullwidth select.                                                                                                                             |         |
-| `fixed`                  | boolean        | `false`   | Optional. Styles the select as fixed select. Applicable only for overflow inside of some component (NOTE: Set an explicit width by `data-width` attribute or custom styles). | 9.3.0   |
-| `icon`                   | string         | `''`      | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list.                                                                                |         |
-| `withLeadingIcon`        | boolean        | `false`   | Styles the select as a select with a leading icon.                                                                                                                           |         |
-| `helperTextId`           | string         | `null`    | Required for the _id_ attribute of the `<ui-select-helper>`.                                                                                                                 |         |
+| Name                     | Type           | Default   | Description                                          | Version |
+| ------------------------ | -------------- | --------- | ---------------------------------------------------- | ------- |
+| `type`                   | string, number | `0`       | 选择器类型                                           |         |
+| `outlined`               | boolean        | `false`   | 轮廓选择器                                           |         |
+| `modelValue` (`v-model`) | string, number | `''`      | 选择器值                                             |         |
+| `options`                | array          | `[]`      | 设置选项列表（默认选项格式：`{ label, value }`）     |         |
+| `optionLabel`            | string         | `'label'` | 选项格式 label 的字段名                              |         |
+| `optionValue`            | string         | `'value'` | 选项格式 value 的字段名                              |         |
+| `defaultLabel`           | string         | `''`      | 选项占位符 label 的值                                |         |
+| `defaultValue`           | string, number | `''`      | 选项占位符 value 的值                                |         |
+| `label`                  | string         | `''`      | 选择器的文本标题或说明                               |         |
+| `disabled`               | boolean        | `false`   | 禁用状态                                             |         |
+| `required`               | boolean        | `false`   | 必填字段样式                                         |         |
+| `fullwidth`              | boolean        | `false`   | 全屏宽度样式                                         |         |
+| `icon`                   | string         | `''`      | 设置首图标。详见 [Material Icons](/#/icons) 图标集。 |         |
+| `withLeadingIcon`        | boolean        | `false`   | 启用首图标样式                                       |         |
+| `fixed`                  | boolean        | `false`   | 固定模式                                             | 9.3.0   |
+| `helperTextId`           | string         | `null`    | 匹配 `<ui-select-helper>` 的 _id_ 属性               |         |
 
-> NOTE: `withLeadingIcon` is only used for (**non `<ui-select-icon>`**) custom leading icon, and generally do not need to be configured.
+> 提示：`withLeadingIcon` 和 `withTrailingIcon` 仅用于 (**非 `<ui-select-icon>`**) 自定义首/尾图标，通常无需配置
+
+> ⚠️ 提示：固定模式仅用于某些组件内部的溢出。可通过 `data-width` 属性或自定义样式设置显式宽度。通常情况下，请不要使用固定模式
 
 ### Slots
 
-| Name            | Props       | Description                                      |
-| --------------- | ----------- | ------------------------------------------------ |
-| `default`       |             | The default slot holds the label for the select. |
-| `dropdown-icon` | `iconClass` | Custom dropdown icon.                            |
+| Name            | Props       | Description                          |
+| --------------- | ----------- | ------------------------------------ |
+| `default`       |             | default 插槽包含选择器标题或说明文字 |
+| `icon`          | `iconClass` | 自定义首图标                         |
+| `dropdown-icon` |             | 自定义下拉图标                       |
 
 ### Events
 
-| Name                | Type                                   | Description                             |
-| ------------------- | -------------------------------------- | --------------------------------------- |
-| `update:modelValue` | `function(modelValue: string\|number)` | Emits when the select value is changed. |
-| `selected`          | `function(option: object)`             | Emits when an option item is selected.  |
+| Name                | Type                              | Description            |
+| ------------------- | --------------------------------- | ---------------------- |
+| `update:modelValue` | `function(value: string\|number)` | 选择器值变化时触发     |
+| `selected`          | `function(option: object)`        | 选择器选项被选中时触发 |
 
-> NOTE: If you are not using `v-model`, you should listen for the select using `@update:modelValue` and update the `modelValue` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听选择器值并更新 `modelValue` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-select v-model="value"></ui-select>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-select

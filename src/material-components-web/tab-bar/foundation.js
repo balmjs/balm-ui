@@ -43,21 +43,21 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
     __extends(MDCTabBarFoundation, _super);
     function MDCTabBarFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCTabBarFoundation.defaultAdapter), adapter)) || this;
-        _this.useAutomaticActivation_ = false;
+        _this.useAutomaticActivation = false;
         return _this;
     }
     Object.defineProperty(MDCTabBarFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTabBarFoundation, "numbers", {
         get: function () {
             return numbers;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTabBarFoundation, "defaultAdapter", {
@@ -84,7 +84,7 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**
@@ -92,11 +92,11 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
      * See https://www.w3.org/TR/wai-aria-practices/#tabpanel for examples.
      */
     MDCTabBarFoundation.prototype.setUseAutomaticActivation = function (useAutomaticActivation) {
-        this.useAutomaticActivation_ = useAutomaticActivation;
+        this.useAutomaticActivation = useAutomaticActivation;
     };
     MDCTabBarFoundation.prototype.activateTab = function (index) {
         var previousActiveIndex = this.adapter.getPreviousActiveTabIndex();
-        if (!this.indexIsInRange_(index) || index === previousActiveIndex) {
+        if (!this.indexIsInRange(index) || index === previousActiveIndex) {
             return;
         }
         var previousClientRect;
@@ -111,30 +111,30 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
     };
     MDCTabBarFoundation.prototype.handleKeyDown = function (evt) {
         // Get the key from the event
-        var key = this.getKeyFromEvent_(evt);
+        var key = this.getKeyFromEvent(evt);
         // Early exit if the event key isn't one of the keyboard navigation keys
         if (key === undefined) {
             return;
         }
         // Prevent default behavior for movement keys, but not for activation keys, since :active is used to apply ripple
-        if (!this.isActivationKey_(key)) {
+        if (!this.isActivationKey(key)) {
             evt.preventDefault();
         }
-        if (this.useAutomaticActivation_) {
-            if (this.isActivationKey_(key)) {
+        if (this.useAutomaticActivation) {
+            if (this.isActivationKey(key)) {
                 return;
             }
-            var index = this.determineTargetFromKey_(this.adapter.getPreviousActiveTabIndex(), key);
+            var index = this.determineTargetFromKey(this.adapter.getPreviousActiveTabIndex(), key);
             this.adapter.setActiveTab(index);
             this.scrollIntoView(index);
         }
         else {
             var focusedTabIndex = this.adapter.getFocusedTabIndex();
-            if (this.isActivationKey_(key)) {
+            if (this.isActivationKey(key)) {
                 this.adapter.setActiveTab(focusedTabIndex);
             }
             else {
-                var index = this.determineTargetFromKey_(focusedTabIndex, key);
+                var index = this.determineTargetFromKey(focusedTabIndex, key);
                 this.adapter.focusTabAtIndex(index);
                 this.scrollIntoView(index);
             }
@@ -152,30 +152,33 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
      */
     MDCTabBarFoundation.prototype.scrollIntoView = function (index) {
         // Early exit if the index is out of range
-        if (!this.indexIsInRange_(index)) {
+        if (!this.indexIsInRange(index)) {
             return;
         }
         // Always scroll to 0 if scrolling to the 0th index
         if (index === 0) {
-            return this.adapter.scrollTo(0);
+            this.adapter.scrollTo(0);
+            return;
         }
         // Always scroll to the max value if scrolling to the Nth index
         // MDCTabScroller.scrollTo() will never scroll past the max possible value
         if (index === this.adapter.getTabListLength() - 1) {
-            return this.adapter.scrollTo(this.adapter.getScrollContentWidth());
+            this.adapter.scrollTo(this.adapter.getScrollContentWidth());
+            return;
         }
-        if (this.isRTL_()) {
-            return this.scrollIntoViewRTL_(index);
+        if (this.isRTL()) {
+            this.scrollIntoViewImplRTL(index);
+            return;
         }
-        this.scrollIntoView_(index);
+        this.scrollIntoViewImpl(index);
     };
     /**
      * Private method for determining the index of the destination tab based on what key was pressed
      * @param origin The original index from which to determine the destination
      * @param key The name of the key
      */
-    MDCTabBarFoundation.prototype.determineTargetFromKey_ = function (origin, key) {
-        var isRTL = this.isRTL_();
+    MDCTabBarFoundation.prototype.determineTargetFromKey = function (origin, key) {
+        var isRTL = this.isRTL();
         var maxIndex = this.adapter.getTabListLength() - 1;
         var shouldGoToEnd = key === strings.END_KEY;
         var shouldDecrement = key === strings.ARROW_LEFT_KEY && !isRTL || key === strings.ARROW_RIGHT_KEY && isRTL;
@@ -208,7 +211,7 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
      * @param scrollPosition The current scroll position
      * @param barWidth The width of the Tab Bar
      */
-    MDCTabBarFoundation.prototype.calculateScrollIncrement_ = function (index, nextIndex, scrollPosition, barWidth) {
+    MDCTabBarFoundation.prototype.calculateScrollIncrement = function (index, nextIndex, scrollPosition, barWidth) {
         var nextTabDimensions = this.adapter.getTabDimensionsAtIndex(nextIndex);
         var relativeContentLeft = nextTabDimensions.contentLeft - scrollPosition - barWidth;
         var relativeContentRight = nextTabDimensions.contentRight - scrollPosition;
@@ -227,7 +230,7 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
      * @param barWidth The width of the Tab Bar
      * @param scrollContentWidth The width of the scroll content
      */
-    MDCTabBarFoundation.prototype.calculateScrollIncrementRTL_ = function (index, nextIndex, scrollPosition, barWidth, scrollContentWidth) {
+    MDCTabBarFoundation.prototype.calculateScrollIncrementRTL = function (index, nextIndex, scrollPosition, barWidth, scrollContentWidth) {
         var nextTabDimensions = this.adapter.getTabDimensionsAtIndex(nextIndex);
         var relativeContentLeft = scrollContentWidth - nextTabDimensions.contentLeft - scrollPosition;
         var relativeContentRight = scrollContentWidth - nextTabDimensions.contentRight - scrollPosition - barWidth;
@@ -245,7 +248,7 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
      * @param scrollPosition The current scroll position
      * @param barWidth The width of the tab bar
      */
-    MDCTabBarFoundation.prototype.findAdjacentTabIndexClosestToEdge_ = function (index, tabDimensions, scrollPosition, barWidth) {
+    MDCTabBarFoundation.prototype.findAdjacentTabIndexClosestToEdge = function (index, tabDimensions, scrollPosition, barWidth) {
         /**
          * Tabs are laid out in the Tab Scroller like this:
          *
@@ -291,7 +294,7 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
      * @param barWidth The width of the tab bar
      * @param scrollContentWidth The width of the scroller content
      */
-    MDCTabBarFoundation.prototype.findAdjacentTabIndexClosestToEdgeRTL_ = function (index, tabDimensions, scrollPosition, barWidth, scrollContentWidth) {
+    MDCTabBarFoundation.prototype.findAdjacentTabIndexClosestToEdgeRTL = function (index, tabDimensions, scrollPosition, barWidth, scrollContentWidth) {
         var rootLeft = scrollContentWidth - tabDimensions.rootLeft - barWidth - scrollPosition;
         var rootRight = scrollContentWidth - tabDimensions.rootRight - scrollPosition;
         var rootDelta = rootLeft + rootRight;
@@ -309,57 +312,57 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
      * Returns the key associated with a keydown event
      * @param evt The keydown event
      */
-    MDCTabBarFoundation.prototype.getKeyFromEvent_ = function (evt) {
+    MDCTabBarFoundation.prototype.getKeyFromEvent = function (evt) {
         if (ACCEPTABLE_KEYS.has(evt.key)) {
             return evt.key;
         }
         return KEYCODE_MAP.get(evt.keyCode);
     };
-    MDCTabBarFoundation.prototype.isActivationKey_ = function (key) {
+    MDCTabBarFoundation.prototype.isActivationKey = function (key) {
         return key === strings.SPACE_KEY || key === strings.ENTER_KEY;
     };
     /**
      * Returns whether a given index is inclusively between the ends
      * @param index The index to test
      */
-    MDCTabBarFoundation.prototype.indexIsInRange_ = function (index) {
+    MDCTabBarFoundation.prototype.indexIsInRange = function (index) {
         return index >= 0 && index < this.adapter.getTabListLength();
     };
     /**
      * Returns the view's RTL property
      */
-    MDCTabBarFoundation.prototype.isRTL_ = function () {
+    MDCTabBarFoundation.prototype.isRTL = function () {
         return this.adapter.isRTL();
     };
     /**
      * Scrolls the tab at the given index into view for left-to-right user agents.
      * @param index The index of the tab to scroll into view
      */
-    MDCTabBarFoundation.prototype.scrollIntoView_ = function (index) {
+    MDCTabBarFoundation.prototype.scrollIntoViewImpl = function (index) {
         var scrollPosition = this.adapter.getScrollPosition();
         var barWidth = this.adapter.getOffsetWidth();
         var tabDimensions = this.adapter.getTabDimensionsAtIndex(index);
-        var nextIndex = this.findAdjacentTabIndexClosestToEdge_(index, tabDimensions, scrollPosition, barWidth);
-        if (!this.indexIsInRange_(nextIndex)) {
+        var nextIndex = this.findAdjacentTabIndexClosestToEdge(index, tabDimensions, scrollPosition, barWidth);
+        if (!this.indexIsInRange(nextIndex)) {
             return;
         }
-        var scrollIncrement = this.calculateScrollIncrement_(index, nextIndex, scrollPosition, barWidth);
+        var scrollIncrement = this.calculateScrollIncrement(index, nextIndex, scrollPosition, barWidth);
         this.adapter.incrementScroll(scrollIncrement);
     };
     /**
      * Scrolls the tab at the given index into view in RTL
      * @param index The tab index to make visible
      */
-    MDCTabBarFoundation.prototype.scrollIntoViewRTL_ = function (index) {
+    MDCTabBarFoundation.prototype.scrollIntoViewImplRTL = function (index) {
         var scrollPosition = this.adapter.getScrollPosition();
         var barWidth = this.adapter.getOffsetWidth();
         var tabDimensions = this.adapter.getTabDimensionsAtIndex(index);
         var scrollWidth = this.adapter.getScrollContentWidth();
-        var nextIndex = this.findAdjacentTabIndexClosestToEdgeRTL_(index, tabDimensions, scrollPosition, barWidth, scrollWidth);
-        if (!this.indexIsInRange_(nextIndex)) {
+        var nextIndex = this.findAdjacentTabIndexClosestToEdgeRTL(index, tabDimensions, scrollPosition, barWidth, scrollWidth);
+        if (!this.indexIsInRange(nextIndex)) {
             return;
         }
-        var scrollIncrement = this.calculateScrollIncrementRTL_(index, nextIndex, scrollPosition, barWidth, scrollWidth);
+        var scrollIncrement = this.calculateScrollIncrementRTL(index, nextIndex, scrollPosition, barWidth, scrollWidth);
         this.adapter.incrementScroll(scrollIncrement);
     };
     return MDCTabBarFoundation;

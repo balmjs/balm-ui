@@ -26,7 +26,7 @@ function emit(eventName, ...args) {
   if (eventBus.has(eventName)) {
     eventBus.get(eventName)(...args);
   } else {
-    console.warn(`'${eventName}' is not defined`);
+    console.warn('[$bus]', `The '${eventName}' event is not defined`);
   }
 }
 

@@ -2,5 +2,5 @@
 
 // fix(@material-components): dark theme
 .mdc-top-app-bar {
-  @include theme.prop(color, on-primary);
+  @include theme.property(color, on-primary);
 }

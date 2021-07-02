@@ -32,14 +32,14 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldHelperTextFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldHelperTextFoundation, "defaultAdapter", {
@@ -59,7 +59,7 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTextFieldHelperTextFoundation.prototype.getId = function () {
@@ -126,13 +126,13 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
             this.adapter.removeAttr(strings.ROLE);
         }
         if (!helperTextIsPersistent && !validationMsgNeedsDisplay) {
-            this.hide_();
+            this.hide();
         }
     };
     /**
      * Hides the help text from screen readers.
      */
-    MDCTextFieldHelperTextFoundation.prototype.hide_ = function () {
+    MDCTextFieldHelperTextFoundation.prototype.hide = function () {
         this.adapter.setAttr(strings.ARIA_HIDDEN, 'true');
     };
     return MDCTextFieldHelperTextFoundation;

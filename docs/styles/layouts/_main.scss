@@ -23,8 +23,12 @@ a {
 }
 
 .balmui-head {
-  .github > span {
-    display: none;
+  .github {
+    line-height: 1; // fix(ie11): css bug
+
+    & > span {
+      display: none;
+    }
   }
 }
 
@@ -32,6 +36,14 @@ a {
   position: fixed;
   z-index: 3;
   top: global.$topAppBar-row-height;
+
+  .mdc-banner__graphic {
+    padding: 8px 0;
+  }
+
+  a {
+    font-weight: bold;
+  }
 }
 
 .balmui-body {
@@ -76,7 +88,7 @@ a {
 }
 
 .catalog-list {
-  .mdc-list-group__subheader {
+  .mdc-deprecated-list-group__subheader {
     font-size: 18px;
   }
 

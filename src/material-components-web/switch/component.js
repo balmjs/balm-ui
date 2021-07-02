@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2018 Google Inc.
+ * Copyright 2021 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,113 +20,77 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __assign, __extends, __read, __spread } from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCComponent } from '../base/component';
-import { applyPassive } from '../dom/events';
-import { matches } from '../dom/ponyfill';
 import { MDCRipple } from '../ripple/component';
 import { MDCRippleFoundation } from '../ripple/foundation';
-import { MDCSwitchFoundation } from './foundation';
+import { Selectors } from './constants';
+import { MDCSwitchRenderFoundation } from './foundation';
+/**
+ * `MDCSwitch` provides a component implementation of a Material Design switch.
+ */
 var MDCSwitch = /** @class */ (function (_super) {
     __extends(MDCSwitch, _super);
-    function MDCSwitch() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.ripple_ = _this.createRipple_();
+    function MDCSwitch(root, foundation) {
+        var _this = _super.call(this, root, foundation) || this;
+        _this.root = root;
         return _this;
     }
+    /**
+     * Creates a new `MDCSwitch` and attaches it to the given root element.
+     * @param root The root to attach to.
+     * @return the new component instance.
+     */
     MDCSwitch.attachTo = function (root) {
         return new MDCSwitch(root);
     };
-    MDCSwitch.prototype.destroy = function () {
-        _super.prototype.destroy.call(this);
-        this.ripple_.destroy();
-        this.nativeControl_.removeEventListener('change', this.changeHandler_);
+    MDCSwitch.prototype.initialize = function () {
+        this.ripple = new MDCRipple(this.root, this.createRippleFoundation());
     };
     MDCSwitch.prototype.initialSyncWithDOM = function () {
-        var _this = this;
-        this.changeHandler_ = function () {
-            var _a;
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return (_a = _this.foundation).handleChange.apply(_a, __spread(args));
-        };
-        this.nativeControl_.addEventListener('change', this.changeHandler_);
-        // Sometimes the checked state of the input element is saved in the history.
-        // The switch styling should match the checked state of the input element.
-        // Do an initial sync between the native control and the foundation.
-        this.checked = this.checked;
+        var rippleElement = this.root.querySelector(Selectors.RIPPLE);
+        if (!rippleElement) {
+            throw new Error("Switch " + Selectors.RIPPLE + " element is required.");
+        }
+        this.rippleElement = rippleElement;
+        this.root.addEventListener('click', this.foundation.handleClick);
+        this.foundation.initFromDOM();
+    };
+    MDCSwitch.prototype.destroy = function () {
+        _super.prototype.destroy.call(this);
+        this.ripple.destroy();
+        this.root.removeEventListener('click', this.foundation.handleClick);
     };
     MDCSwitch.prototype.getDefaultFoundation = function () {
+        return new MDCSwitchRenderFoundation(this.createAdapter());
+    };
+    MDCSwitch.prototype.createAdapter = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-        var adapter = {
-            addClass: function (className) { return _this.root.classList.add(className); },
-            removeClass: function (className) { return _this.root.classList.remove(className); },
-            setNativeControlChecked: function (checked) { return _this.nativeControl_.checked =
-                checked; },
-            setNativeControlDisabled: function (disabled) { return _this.nativeControl_.disabled =
-                disabled; },
-            setNativeControlAttr: function (attr, value) {
-                return _this.nativeControl_.setAttribute(attr, value);
+        return {
+            addClass: function (className) {
+                _this.root.classList.add(className);
             },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
+            isDisabled: function () { return _this.root.disabled; },
+            removeClass: function (className) {
+                _this.root.classList.remove(className);
+            },
+            setAriaChecked: function (ariaChecked) {
+                return _this.root.setAttribute('aria-checked', ariaChecked);
+            },
+            setDisabled: function (disabled) {
+                _this.root.disabled = disabled;
+            },
+            state: this,
         };
-        return new MDCSwitchFoundation(adapter);
     };
-    Object.defineProperty(MDCSwitch.prototype, "ripple", {
-        get: function () {
-            return this.ripple_;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MDCSwitch.prototype, "checked", {
-        get: function () {
-            return this.nativeControl_.checked;
-        },
-        set: function (checked) {
-            this.foundation.setChecked(checked);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MDCSwitch.prototype, "disabled", {
-        get: function () {
-            return this.nativeControl_.disabled;
-        },
-        set: function (disabled) {
-            this.foundation.setDisabled(disabled);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    MDCSwitch.prototype.createRipple_ = function () {
+    MDCSwitch.prototype.createRippleFoundation = function () {
+        return new MDCRippleFoundation(this.createRippleAdapter());
+    };
+    MDCSwitch.prototype.createRippleAdapter = function () {
         var _this = this;
-        var RIPPLE_SURFACE_SELECTOR = MDCSwitchFoundation.strings.RIPPLE_SURFACE_SELECTOR;
-        var rippleSurface = this.root.querySelector(RIPPLE_SURFACE_SELECTOR);
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { addClass: function (className) { return rippleSurface.classList.add(className); }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (evtType, handler) {
-                _this.nativeControl_.removeEventListener(evtType, handler, applyPassive());
-            }, isSurfaceActive: function () { return matches(_this.nativeControl_, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
-                _this.nativeControl_.addEventListener(evtType, handler, applyPassive());
-            }, removeClass: function (className) {
-                rippleSurface.classList.remove(className);
-            }, updateCssVariable: function (varName, value) {
-                rippleSurface.style.setProperty(varName, value);
-            } });
-        return new MDCRipple(this.root, new MDCRippleFoundation(adapter));
+        return __assign(__assign({}, MDCRipple.createAdapter(this)), { computeBoundingRect: function () { return _this.rippleElement.getBoundingClientRect(); }, isUnbounded: function () { return true; } });
     };
-    Object.defineProperty(MDCSwitch.prototype, "nativeControl_", {
-        get: function () {
-            var NATIVE_CONTROL_SELECTOR = MDCSwitchFoundation.strings.NATIVE_CONTROL_SELECTOR;
-            return this.root.querySelector(NATIVE_CONTROL_SELECTOR);
-        },
-        enumerable: true,
-        configurable: true
-    });
     return MDCSwitch;
 }(MDCComponent));
 export { MDCSwitch };

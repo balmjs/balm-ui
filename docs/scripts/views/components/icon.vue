@@ -12,8 +12,9 @@
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Icon themes</ui-select
         >
+          Icon themes
+        </ui-select>
       </div>
     </template>
 
@@ -87,9 +88,9 @@
             @update:modelValue="onSearch"
             @selected="onSelected"
           ></ui-autocomplete>
-          <ui-select id="icon-type" v-model="typeOption" :options="TypeOptions"
-            >Theme</ui-select
-          >
+          <ui-select id="icon-type" v-model="typeOption" :options="TypeOptions">
+            Theme
+          </ui-select>
         </div>
         <p class="search-helper">
           TIPS: Click an icon to copy icon name, then you can use `
@@ -102,13 +103,14 @@
           v-for="(category, index) in categories"
           :key="`category${index}`"
         >
-          <ui-list-group-subheader
-            v-anchor:id="category.name"
-            :class="$tt('headline6')"
-            >{{ category.name }}</ui-list-group-subheader
-          >
-          <template v-if="Object.keys(currentIcons).length">
-            <ui-image-list v-if="currentIcons[category.name].length">
+          <template v-if="currentIcons[category.name].length">
+            <ui-list-group-subheader
+              v-anchor:id="category.name"
+              :class="$tt('headline6')"
+            >
+              {{ category.name }}
+            </ui-list-group-subheader>
+            <ui-image-list>
               <ui-image-item
                 v-for="icon in currentIcons[category.name]"
                 :key="icon.id"
@@ -125,10 +127,9 @@
                 <ui-image-text>{{ icon.name }}</ui-image-text>
               </ui-image-item>
             </ui-image-list>
-          </template>
-          <p v-else :key="`p${index}`">No Icons</p>
-          <template v-if="index < category.count - 1">
-            <ui-list-divider :key="`divider${index}`"></ui-list-divider>
+            <template v-if="index < category.count - 1">
+              <ui-list-divider :key="`divider${index}`"></ui-list-divider>
+            </template>
           </template>
         </template>
       </ui-list-group>
@@ -138,7 +139,7 @@
 
 <script>
 import { reactive, toRefs, onMounted } from 'vue';
-import { useToast } from 'balm-ui/plugins/toast';
+import { useToast } from 'balm-ui';
 import Clipboard from 'clipboard';
 import { useHttp } from '@/plugins/http';
 import { useConfig } from '@/config';
@@ -159,12 +160,11 @@ const TypeOptions = [
   {
     label: 'Two-Tone',
     value: 3
+  },
+  {
+    label: 'Sharp',
+    value: 4
   }
-  // Flagged: GPL-3.0-only
-  // {
-  //   label: 'Sharp',
-  //   value: 4
-  // }
 ];
 
 const state = reactive({

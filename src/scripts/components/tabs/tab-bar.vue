@@ -10,9 +10,10 @@
 </template>
 
 <script>
+import { getTransitionRawChildren } from 'vue';
 import { MDCTabBar } from '../../../material-components-web/tab-bar';
 import { strings } from '../../../material-components-web/tab-bar/constants';
-import UiTabScroller from './tab-scroller';
+import UiTabScroller from './tab-scroller.vue';
 import domMixin from '../../mixins/dom';
 import tabBarMixin from '../../mixins/tab-bar';
 import tabScrollerMixin from '../../mixins/tab-scroller';
@@ -38,32 +39,35 @@ export default {
   mounted() {
     this.init();
   },
-  updated() {
-    if (!this.$tabBar) {
-      this.init();
-    }
-  },
   methods: {
     _activateTab(active = this.modelValue) {
-      if (this.$tabBar) {
-        const activeTabIndex =
-          active > -1 && active < this.tabList.length ? active : 0;
+      const activeTabIndex =
+        active > -1 && active < this.$tabBar.tabList.length ? active : 0;
 
-        this.$tabBar.activateTab(activeTabIndex);
-      }
+      this.$tabBar.activateTab(activeTabIndex);
     },
     init() {
       this.$tabBar = new MDCTabBar(this.el);
 
-      this.tabList = this.$tabBar.tabList_;
-      if (this.tabList.length) {
-        this._activateTab();
+      this.$tabBar.listen(strings.TAB_ACTIVATED_EVENT, ({ detail }) => {
+        this.$emit(UI_TAB_BAR.EVENT.CHANGE, detail.index);
+      });
 
-        this.$tabBar.listen(strings.TAB_ACTIVATED_EVENT, ({ detail }) => {
-          this.$emit(UI_TAB_BAR.EVENT.CHANGE, detail.index);
-        });
-      } else {
-        this.$tabBar = null;
+      if (this.$tabBar.tabList.length) {
+        this._activateTab();
+      }
+    },
+    updated() {
+      const defaultSlotChildren = getTransitionRawChildren(
+        this.$slots.default()
+      );
+
+      if (defaultSlotChildren.length !== this.$tabBar.tabList.length) {
+        if (this.$tabBar) {
+          this.$tabBar.destroy();
+        }
+
+        this.init();
       }
     }
   }

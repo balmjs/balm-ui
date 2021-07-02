@@ -1,0 +1,12 @@
+.mdc-snackbar--center {
+  top: 50%;
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.mdc-snackbar--top {
+  top: 0;
+  bottom: auto;
+}

@@ -1,5 +1,5 @@
 ```scss
-@use '@material/dialog' with (
+@use '@material/dialog/variables' as dialog-variables with (
   $scrim-color: on-surface,
   $title-ink-color: on-surface,
   $content-ink-color: on-surface,
@@ -16,6 +16,11 @@
   $shape-radius: medium,
   $title-bottom-padding: 9px,
   $actions-padding: 8px,
+  $header-side-padding: 24px, // New in 9.12.0
+
+  $close-icon-padding: 12px, // New in 9.14.0
+  $title-side-padding: 16px, // New in 9.14.0
+  $fullscreen-header-side-padding: 16px, // New in 9.14.0
 
   $z-index: 7
 );

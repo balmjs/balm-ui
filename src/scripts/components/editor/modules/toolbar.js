@@ -1,4 +1,4 @@
-import { useEditor } from '../quill';
+import { useEditor } from '../core/quill';
 
 export function setToolbarIcons(customIcons = {}) {
   const { Quill } = useEditor();

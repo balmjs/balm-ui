@@ -1,5 +1,25 @@
 ## 1. Event Shortcut
 
+```ts
+interface BalmUIEvent {
+  onChange(property: string, value: any, fn?: Function);
+
+  onOpen(property: string, fn?: Function);
+  onShow(property: string, fn?: Function);
+
+  onClose(property: string, fn?: Function);
+  onHide(property: string, fn?: Function);
+}
+```
+
+### Props
+
+| Name       | Type     | Default     | Description                                                                                                          |
+| ---------- | -------- | ----------- | -------------------------------------------------------------------------------------------------------------------- |
+| `property` | string   | `''`        | Update a specified Vue instance data object (`data` or `setup`) states.                                              |
+| `value`    | any      | `undefined` | New value of a specified Vue instance data object (`data` or `setup`) states. Applicable only for `balmUI.onChange`. |
+| `fn`       | function | `noop`      | After method to handle.                                                                                              |
+
 ```js
 import { useEvent } from 'balm-ui';
 // OR
@@ -8,73 +28,88 @@ import { useEvent } from 'balm-ui';
 const balmUI = useEvent();
 ```
 
-```js
-balmUI.onChange(property, value, fn); // update property to `new value`
-balmUI.onOpen(property, fn); / balmUI.onShow(property, fn); // update property to `true`
-balmUI.onClose(property, fn); / balmUI.onHide(property, fn); // update property to `false`
-```
+- update the data object of the Vue instance to `new value`
 
-### Props
+  ```js
+  balmUI.onChange(property, value);
+  ```
 
-| Name       | Type     | Default     | Description                                                                               |
-| ---------- | -------- | ----------- | ----------------------------------------------------------------------------------------- |
-| `property` | string   | `''`        | Update a specified `data` or `setup` states.                                              |
-| `value`    | any      | `undefined` | New value of a specified `data` or `setup` states. Applicable only for `balmUI.onChange`. |
-| `fn`       | function | `noop`      | After method to handle.                                                                   |
+- update the data object of the Vue instance to `true`
+
+  ```js
+  balmUI.onOpen(property);
+  balmUI.onShow(property);
+  ```
+
+- update the data object of the Vue instance to `false`
+
+  ```js
+  balmUI.onClose(property);
+  balmUI.onHide(property);
+  ```
 
 ## 2. Optimized Custom Event
 
 - `balmResize` (better than `resize`)
 - `balmScroll` (better than `scroll`)
 
-- using Composable API
+  - using Composable API
 
-  ```js
-  import { onMounted, onBeforeUnmount } from 'vue';
+    ```js
+    import { onMounted, onBeforeUnmount } from 'vue';
 
-  function init() {
-    // ...
-  }
-
-  export default {
-    setup() {
-      onMounted(() => {
-        init();
-        window.addEventListener('balmResize', init);
-      });
-
-      onBeforeUnmount(() => {
-        window.removeEventListener('balmResize', init);
-      });
+    function init() {
+      // ...
     }
-  };
-  ```
 
-- using Legacy API
+    export default {
+      setup() {
+        onMounted(() => {
+          init();
+          window.addEventListener('balmResize', init);
+        });
 
-  ```js
-  export default {
-    mounted() {
-      this.init();
-      window.addEventListener('balmResize', this.init);
-    },
-    beforeUnmount() {
-      window.removeEventListener('balmResize', this.init);
-    },
-    methods: {
-      init() {
-        // ...
+        onBeforeUnmount(() => {
+          window.removeEventListener('balmResize', init);
+        });
       }
-    }
-  };
-  ```
+    };
+    ```
+
+  - using Legacy API
+
+    ```js
+    export default {
+      mounted() {
+        this.init();
+        window.addEventListener('balmResize', this.init);
+      },
+      beforeUnmount() {
+        window.removeEventListener('balmResize', this.init);
+      },
+      methods: {
+        init() {
+          // ...
+        }
+      }
+    };
+    ```
 
 ## 3. Global Communication
 
-```js
-$bus.on(eventName, callback); // Listen for a custom event on the current vm.
-$bus.emit(eventName, ...args); // Trigger an event on the current instance.
-```
+- `$bus.on(eventName, callback)`
+- `$bus.emit(eventName, ...args)`
+
+  ```ts
+  interface BalmUIEventBus {
+    on(eventName: string | string[], callback: Function); // Listen for a custom event on the current vm.
+    emit(eventName: string, ...args); // Trigger an event on the current instance.
+  }
+
+  interface VueInstance {
+    $bus: BalmUIEventBus;
+  }
+  ```
 
 ### Props
 
@@ -84,18 +119,7 @@ $bus.emit(eventName, ...args); // Trigger an event on the current instance.
 | `args`      | any      |         | The arguments of custom event function.         |
 | `callback`  | function |         | Custom event function.                          |
 
-### Use `$bus` without `.vue` component
-
-```js
-// `/path/to/awesome.js`
-
-import { useBus } from 'balm-ui';
-// OR
-// import { useBus } from 'balm-ui/plugins/event';
-
-const bus = useBus();
-bus.emit('custom-event', 'Hello BalmUI');
-```
+### 3.1 Use `$bus` with `.vue` component
 
 - using Composable API
 
@@ -125,7 +149,6 @@ bus.emit('custom-event', 'Hello BalmUI');
 
   ```js
   // `/path/to/awesome.vue`
-
   export default {
     mounted() {
       this.$bus.on('custom-event', (msg) => {
@@ -137,3 +160,16 @@ bus.emit('custom-event', 'Hello BalmUI');
     }
   };
   ```
+
+### 3.2 Use `$bus` without `.vue` component
+
+```js
+// `/path/to/awesome.js`
+
+import { useBus } from 'balm-ui';
+// OR
+// import { useBus } from 'balm-ui/plugins/event';
+
+const bus = useBus();
+bus.emit('custom-event', 'Hello BalmUI');
+```

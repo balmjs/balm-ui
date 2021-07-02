@@ -46,7 +46,7 @@ var MDCSegmentedButtonSegmentFoundation = /** @class */ (function (_super) {
                 getRootBoundingClientRect: function () { return emptyClientRect; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**

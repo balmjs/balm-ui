@@ -15,7 +15,7 @@
 | ---------- | -------------- | ------- | ------------------------------------------------------------------------------------------------ |
 | `type`     | string, number | `0`     | Mandatory. FAB types.                                                                            |
 | `extended` | boolean        | `false` | Optional. modifies the FAB to wider size which includes a text label.                            |
-| `icon`     | string         | `''`    | Optional. for the icon element. See [Material Icons](/#/icons) usage.                            |
+| `icon`     | string         | `''`    | Optional. for the icon element. See [Material Icons](/#/icons) list.                             |
 | `mini`     | boolean        | `false` | Optional. modifies the FAB to a smaller size.                                                    |
 | `exited`   | boolean        | `false` | Optional. animates the FAB out of view. When this class is removed, the FAB will return to view. |
 
@@ -24,8 +24,8 @@
 | Name      | Props       | Description                                                           |
 | --------- | ----------- | --------------------------------------------------------------------- |
 | `default` | `iconClass` | The default slot holds the floating action button icon or text label. |
-| `before`  | `iconClass` | The label slot holds the label text of the extended FAB.              |
-| `after`   | `iconClass` | The label slot holds the label text of the extended FAB.              |
+| `before`  | `iconClass` | Custom leading icon for the extended FAB                              |
+| `after`   | `iconClass` | Custom trailing icon for the extended FAB                             |
 
 > NOTE: the default slot of the extended FAB has not `slot-scope`.
 

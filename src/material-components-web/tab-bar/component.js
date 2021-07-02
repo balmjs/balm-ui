@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __extends } from "tslib";
+import { __extends, __values } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCTabScroller } from '../tab-scroller/component';
 import { MDCTab } from '../tab/component';
@@ -38,46 +38,74 @@ var MDCTabBar = /** @class */ (function (_super) {
     };
     Object.defineProperty(MDCTabBar.prototype, "focusOnActivate", {
         set: function (focusOnActivate) {
-            this.tabList_.forEach(function (tab) { return tab.focusOnActivate = focusOnActivate; });
+            var e_1, _a;
+            try {
+                for (var _b = __values(this.tabList), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    var tab = _c.value;
+                    tab.focusOnActivate = focusOnActivate;
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTabBar.prototype, "useAutomaticActivation", {
         set: function (useAutomaticActivation) {
             this.foundation.setUseAutomaticActivation(useAutomaticActivation);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTabBar.prototype.initialize = function (tabFactory, tabScrollerFactory) {
         if (tabFactory === void 0) { tabFactory = function (el) { return new MDCTab(el); }; }
         if (tabScrollerFactory === void 0) { tabScrollerFactory = function (el) { return new MDCTabScroller(el); }; }
-        this.tabList_ = this.instantiateTabs_(tabFactory);
-        this.tabScroller_ = this.instantiateTabScroller_(tabScrollerFactory);
+        this.tabList = this.instantiateTabs(tabFactory);
+        this.tabScroller = this.instantiatetabScroller(tabScrollerFactory);
     };
     MDCTabBar.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.handleTabInteraction_ = function (evt) {
-            return _this.foundation.handleTabInteraction(evt);
+        this.handleTabInteraction = function (evt) {
+            _this.foundation.handleTabInteraction(evt);
         };
-        this.handleKeyDown_ = function (evt) { return _this.foundation.handleKeyDown(evt); };
-        this.listen(MDCTabFoundation.strings.INTERACTED_EVENT, this.handleTabInteraction_);
-        this.listen('keydown', this.handleKeyDown_);
-        for (var i = 0; i < this.tabList_.length; i++) {
-            if (this.tabList_[i].active) {
+        this.handleKeyDown = function (evt) {
+            _this.foundation.handleKeyDown(evt);
+        };
+        this.listen(MDCTabFoundation.strings.INTERACTED_EVENT, this.handleTabInteraction);
+        this.listen('keydown', this.handleKeyDown);
+        for (var i = 0; i < this.tabList.length; i++) {
+            if (this.tabList[i].active) {
                 this.scrollIntoView(i);
                 break;
             }
         }
     };
     MDCTabBar.prototype.destroy = function () {
+        var e_2, _a;
         _super.prototype.destroy.call(this);
-        this.unlisten(MDCTabFoundation.strings.INTERACTED_EVENT, this.handleTabInteraction_);
-        this.unlisten('keydown', this.handleKeyDown_);
-        this.tabList_.forEach(function (tab) { return tab.destroy(); });
-        if (this.tabScroller_) {
-            this.tabScroller_.destroy();
+        this.unlisten(MDCTabFoundation.strings.INTERACTED_EVENT, this.handleTabInteraction);
+        this.unlisten('keydown', this.handleKeyDown);
+        try {
+            for (var _b = __values(this.tabList), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var tab = _c.value;
+                tab.destroy();
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+        if (this.tabScroller) {
+            this.tabScroller.destroy();
         }
     };
     MDCTabBar.prototype.getDefaultFoundation = function () {
@@ -86,48 +114,56 @@ var MDCTabBar = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            scrollTo: function (scrollX) { return _this.tabScroller_.scrollTo(scrollX); },
-            incrementScroll: function (scrollXIncrement) {
-                return _this.tabScroller_.incrementScroll(scrollXIncrement);
+            scrollTo: function (scrollX) {
+                _this.tabScroller.scrollTo(scrollX);
             },
-            getScrollPosition: function () { return _this.tabScroller_.getScrollPosition(); },
-            getScrollContentWidth: function () { return _this.tabScroller_.getScrollContentWidth(); },
+            incrementScroll: function (scrollXIncrement) {
+                _this.tabScroller.incrementScroll(scrollXIncrement);
+            },
+            getScrollPosition: function () { return _this.tabScroller.getScrollPosition(); },
+            getScrollContentWidth: function () { return _this.tabScroller.getScrollContentWidth(); },
             getOffsetWidth: function () { return _this.root.offsetWidth; },
             isRTL: function () { return window.getComputedStyle(_this.root).getPropertyValue('direction') === 'rtl'; },
-            setActiveTab: function (index) { return _this.foundation.activateTab(index); },
-            activateTabAtIndex: function (index, clientRect) {
-                return _this.tabList_[index].activate(clientRect);
+            setActiveTab: function (index) {
+                _this.foundation.activateTab(index);
             },
-            deactivateTabAtIndex: function (index) { return _this.tabList_[index].deactivate(); },
-            focusTabAtIndex: function (index) { return _this.tabList_[index].focus(); },
+            activateTabAtIndex: function (index, clientRect) {
+                _this.tabList[index].activate(clientRect);
+            },
+            deactivateTabAtIndex: function (index) {
+                _this.tabList[index].deactivate();
+            },
+            focusTabAtIndex: function (index) {
+                _this.tabList[index].focus();
+            },
             getTabIndicatorClientRectAtIndex: function (index) {
-                return _this.tabList_[index].computeIndicatorClientRect();
+                return _this.tabList[index].computeIndicatorClientRect();
             },
             getTabDimensionsAtIndex: function (index) {
-                return _this.tabList_[index].computeDimensions();
+                return _this.tabList[index].computeDimensions();
             },
             getPreviousActiveTabIndex: function () {
-                for (var i = 0; i < _this.tabList_.length; i++) {
-                    if (_this.tabList_[i].active) {
+                for (var i = 0; i < _this.tabList.length; i++) {
+                    if (_this.tabList[i].active) {
                         return i;
                     }
                 }
                 return -1;
             },
             getFocusedTabIndex: function () {
-                var tabElements = _this.getTabElements_();
+                var tabElements = _this.getTabElements();
                 var activeElement = document.activeElement;
                 return tabElements.indexOf(activeElement);
             },
             getIndexOfTabById: function (id) {
-                for (var i = 0; i < _this.tabList_.length; i++) {
-                    if (_this.tabList_[i].id === id) {
+                for (var i = 0; i < _this.tabList.length; i++) {
+                    if (_this.tabList[i].id === id) {
                         return i;
                     }
                 }
                 return -1;
             },
-            getTabListLength: function () { return _this.tabList_.length; },
+            getTabListLength: function () { return _this.tabList.length; },
             notifyTabActivated: function (index) { return _this.emit(strings.TAB_ACTIVATED_EVENT, { index: index }, true); },
         };
         // tslint:enable:object-literal-sort-keys
@@ -150,14 +186,14 @@ var MDCTabBar = /** @class */ (function (_super) {
     /**
      * Returns all the tab elements in a nice clean array
      */
-    MDCTabBar.prototype.getTabElements_ = function () {
+    MDCTabBar.prototype.getTabElements = function () {
         return [].slice.call(this.root.querySelectorAll(strings.TAB_SELECTOR));
     };
     /**
      * Instantiates tab components on all child tab elements
      */
-    MDCTabBar.prototype.instantiateTabs_ = function (tabFactory) {
-        return this.getTabElements_().map(function (el) {
+    MDCTabBar.prototype.instantiateTabs = function (tabFactory) {
+        return this.getTabElements().map(function (el) {
             el.id = el.id || "mdc-tab-" + ++tabIdCounter;
             return tabFactory(el);
         });
@@ -165,7 +201,7 @@ var MDCTabBar = /** @class */ (function (_super) {
     /**
      * Instantiates tab scroller component on the child tab scroller element
      */
-    MDCTabBar.prototype.instantiateTabScroller_ = function (tabScrollerFactory) {
+    MDCTabBar.prototype.instantiatetabScroller = function (tabScrollerFactory) {
         var tabScrollerElement = this.root.querySelector(strings.TAB_SCROLLER_SELECTOR);
         if (tabScrollerElement) {
             return tabScrollerFactory(tabScrollerElement);

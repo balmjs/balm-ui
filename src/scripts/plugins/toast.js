@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import createVueApp from '../config/ssr';
 import { getOptions, createModal } from '../utils/modal';
 
 // Define toast constants
@@ -7,14 +7,20 @@ const UI_TOAST = {
   timeoutMs: {
     MIN: 2000,
     MAX: 3500,
-    DEFAULTS: 2000
+    DEFAULTS: 2750
+  },
+  position: {
+    TOP: 'top',
+    BOTTOM: 'bottom',
+    CENTER: 'center'
   }
 };
 
 const DEFAULT_OPTIONS = {
   className: '',
   timeoutMs: UI_TOAST.timeoutMs.DEFAULTS,
-  message: ''
+  message: '',
+  position: UI_TOAST.position.BOTTOM
 };
 
 let globalOptions = DEFAULT_OPTIONS;
@@ -32,8 +38,8 @@ const template = `<div :class="className">
 function createToast(options) {
   createModal(UI_TOAST.id);
 
-  toastApp = createApp({
-    name: 'BalmUIToast',
+  toastApp = createVueApp({
+    name: 'Toast',
     data() {
       return {
         open: false,
@@ -43,10 +49,16 @@ function createToast(options) {
       };
     },
     computed: {
+      positionClassName() {
+        return ['top', 'center'].includes(this.options.position)
+          ? `mdc-toast--${this.options.position}`
+          : '';
+      },
       className() {
         return [
           'mdc-snackbar',
           'mdc-toast',
+          this.positionClassName,
           this.options.className,
           {
             'mdc-snackbar--opening': this.opening,
@@ -96,7 +108,7 @@ function createToast(options) {
           this.show();
         } else {
           throw new Error(
-            `[BalmUI toast]: The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`
+            `[$toast]: The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`
           );
         }
       }
@@ -127,11 +139,11 @@ function install(app, options = {}) {
   app.provide('toast', toast);
 }
 
-const BalmUI_ToastPlugin = {
+const $toast = {
   install
 };
 
 const useToast = () => toast;
 
-export default BalmUI_ToastPlugin;
+export default $toast;
 export { install, useToast };

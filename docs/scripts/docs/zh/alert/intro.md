@@ -1,3 +1,3 @@
 # 警告提示
 
-Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.
+通过少量可用和灵活的警报消息，为典型的用户操作提供上下文反馈消息。

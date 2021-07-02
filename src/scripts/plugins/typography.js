@@ -24,7 +24,7 @@ function tt(style) {
     className = `${T_BASE}--${style}`;
   } else {
     throw new Error(
-      '[BalmUI typography]: Please set a valid typographic style:\n' +
+      '[$typography]: Please set a valid typographic style:\n' +
         JSON.stringify(globalStyles)
     );
   }
@@ -50,11 +50,11 @@ function install(app, customStyles = []) {
   app.provide('tt', tt);
 }
 
-const BalmUI_TypographyPlugin = {
+const $typography = {
   install
 };
 
 const useTypography = () => tt;
 
-export default BalmUI_TypographyPlugin;
+export default $typography;
 export { install, useTypography };

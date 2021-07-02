@@ -59,8 +59,7 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'add_box',
-        name: 'segmented-button',
-        next: true
+        name: 'segmented-button'
       }
     ]
   },
@@ -105,12 +104,12 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'pages',
         name: 'pagination'
+      },
+      {
+        icon: 'video_label',
+        name: 'bottom-navigation',
+        next: true
       }
-      // {
-      //   icon: 'video_label',
-      //   name: 'bottom-navigation',
-      //   next: true
-      // }
     ]
   },
   '-',
@@ -123,8 +122,7 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'text_format',
-        name: 'autocomplete',
-        plus: true
+        name: 'autocomplete'
       },
       {
         icon: 'wysiwyg',
@@ -148,24 +146,17 @@ const MATERIAL_COMPONENTS = [
         name: 'chips'
       },
       {
-        icon: 'publish',
+        icon: 'file_upload',
         name: 'file'
       },
       {
         icon: 'today',
-        name: 'datepicker',
-        plus: true
+        name: 'datepicker'
       },
       {
         icon: 'date_range',
-        name: 'rangepicker',
-        plus: true
+        name: 'rangepicker'
       },
-      // {
-      //   icon: 'watch_later',
-      //   name: 'timepicker',
-      //   next: true
-      // },
       {
         icon: 'toggle_off',
         name: 'switch'
@@ -192,6 +183,11 @@ const MATERIAL_COMPONENTS = [
         icon: 'view_comfy',
         name: 'image-list'
       },
+      // {
+      //   icon: 'image',
+      //   name: 'lazyload',
+      //   next: true
+      // },
       {
         icon: 'category',
         name: 'card'
@@ -208,6 +204,11 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'category',
         name: 'badge'
+      },
+      {
+        icon: 'account_tree',
+        name: 'tree',
+        plus: true
       }
     ]
   },
@@ -226,13 +227,11 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'event_note',
-        name: 'alert-dialog',
-        plus: true
+        name: 'alert-dialog'
       },
       {
         icon: 'event_note',
-        name: 'confirm-dialog',
-        plus: true
+        name: 'confirm-dialog'
       },
       {
         icon: 'call_to_action',
@@ -240,8 +239,7 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'call_to_action',
-        name: 'toast',
-        plus: true
+        name: 'toast'
       },
       {
         icon: 'notifications',
@@ -252,7 +250,7 @@ const MATERIAL_COMPONENTS = [
         name: 'progress'
       },
       {
-        icon: 'trip_origin',
+        icon: 'pending',
         name: 'spinner'
       },
       {
@@ -263,6 +261,11 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'feedback',
         name: 'tooltip'
+      },
+      {
+        icon: 'video_label',
+        name: 'bottom-sheet',
+        next: true
       }
     ]
   },
@@ -275,6 +278,11 @@ const MATERIAL_COMPONENTS = [
         name: 'event'
       },
       {
+        icon: 'mouse',
+        name: 'debounce',
+        plus: true
+      },
+      {
         icon: 'texture',
         name: 'ripple'
       },
@@ -285,6 +293,16 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'anchor',
         name: 'anchor',
+        plus: true
+      },
+      {
+        icon: 'content_copy',
+        name: 'copy',
+        plus: true
+      },
+      {
+        icon: 'touch_app',
+        name: 'longpress',
         plus: true
       }
     ]
@@ -300,13 +318,15 @@ const MATERIAL_COMPONENTS = [
     icon: 'widgets',
     name: 'utils',
     link: true
-  }
+  },
+  '-',
+  'footer'
 ];
 
 let menu = [];
 for (let component of MATERIAL_COMPONENTS) {
-  if (component === '-') {
-    menu.push('-');
+  if (component === '-' || component === 'footer') {
+    menu.push(component);
   } else {
     menu.push({
       icon: component.icon,

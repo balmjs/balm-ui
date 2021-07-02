@@ -1,5 +1,5 @@
 import domMixin from './dom';
-import { UI_PROGRESS } from '../components/progress-indicators/constants';
+import { UI_PROGRESS } from '../components/progress/constants';
 
 export default {
   mixins: [domMixin],
@@ -36,7 +36,10 @@ export default {
       ) {
         $currentProgress.progress = value;
       } else {
-        console.warn('Progress value should be between [0, 1]');
+        console.warn(
+          '[UiProgress/UiSpinner]',
+          'The value should be between [0, 1]'
+        );
       }
     }
   }

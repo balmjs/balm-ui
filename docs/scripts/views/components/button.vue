@@ -1,5 +1,5 @@
 <template>
-  <docs-page name="button" demo-count="1">
+  <docs-page name="button" :apis="['button', 'v-button']" demo-count="1">
     <template #hero>
       <div class="hero-demo">
         <ui-button v-a11y :type="typeOption">{{ text }}</ui-button>
@@ -9,11 +9,12 @@
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Type</ui-select
         >
-        <ui-textfield v-model="text" class="hero-option"
-          >Button Text</ui-textfield
-        >
+          Type
+        </ui-select>
+        <ui-textfield v-model="text" class="hero-option">
+          Button Text
+        </ui-textfield>
       </div>
     </template>
 
@@ -21,7 +22,10 @@
     <section class="demo-wrapper">
       <div class="demo-controls">
         <ui-form-field>
-          <ui-checkbox id="toggle-disabled" v-model="disabled"></ui-checkbox>
+          <ui-checkbox
+            v-model="disabled"
+            input-id="toggle-disabled"
+          ></ui-checkbox>
           <label for="toggle-disabled">Disabled buttons</label>
         </ui-form-field>
       </div>
@@ -38,6 +42,8 @@
             <svg-logo :class="iconClass"></svg-logo>
           </template>
         </ui-button>
+
+        <a v-button href="javascript:void(0)">Link</a>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>

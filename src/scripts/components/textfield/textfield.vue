@@ -1,6 +1,9 @@
 <template>
   <!-- Container -->
-  <div :class="className.outer">
+  <div
+    :class="className.outer"
+    @click="$emit(UI_TEXTFIELD.EVENT.CLICK, $event)"
+  >
     <div v-if="!isOutlined" class="mdc-text-field__ripple"></div>
 
     <!-- Leading icon (optional) -->
@@ -142,6 +145,7 @@ const UI_TEXTFIELD = {
     outlined: 1
   },
   EVENT: {
+    CLICK: 'click',
     FOCUS: 'focus',
     KEYDOWN: 'keydown',
     INPUT: 'update:modelValue',
@@ -242,6 +246,7 @@ export default {
     }
   },
   emits: [
+    UI_TEXTFIELD.EVENT.CLICK,
     UI_TEXTFIELD.EVENT.FOCUS,
     UI_TEXTFIELD.EVENT.KEYDOWN,
     UI_TEXTFIELD.EVENT.INPUT,

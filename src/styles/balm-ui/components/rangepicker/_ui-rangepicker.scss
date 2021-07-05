@@ -12,3 +12,7 @@
   height: textfield-variables.$height;
   padding: rangepicker-variables.$separator-padding;
 }
+
+.mdc-rangepicker__end .mdc-text-field__input {
+  cursor: pointer;
+}

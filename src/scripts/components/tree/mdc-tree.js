@@ -207,8 +207,11 @@ class MdcTree {
     }
   }
 
-  static onCheck(treeData, item, forceChecked = false) {
-    let checked = forceChecked || !item.checked;
+  static onCheck(treeData, item, forceChecked = null) {
+    let checked = !item.checked;
+    if (typeof forceChecked === 'boolean') {
+      checked = forceChecked;
+    }
 
     const { dataFormat, nodeMap } = treeData;
     const { value, children, isLeaf } = dataFormat;
@@ -258,12 +261,24 @@ class MdcTree {
     }
   }
 
-  static setSelected(treeData, defaultSelectedKeys) {
+  static resetSelected(treeData, oldSelectedKeys) {
+    const { nodeMap } = treeData;
+
+    for (let i = 0, len = oldSelectedKeys.length; i < len; i++) {
+      const nodeKey = oldSelectedKeys[i];
+      const item = nodeMap.get(nodeKey);
+      if (item) {
+        this.onCheck(treeData, item, false);
+      }
+    }
+  }
+
+  static setSelected(treeData, newSelectedKeys) {
     const { nodeMap, multiple } = treeData;
 
-    const selectedKeys = Array.isArray(defaultSelectedKeys)
-      ? defaultSelectedKeys
-      : [defaultSelectedKeys];
+    const selectedKeys = Array.isArray(newSelectedKeys)
+      ? newSelectedKeys
+      : [newSelectedKeys];
     for (let i = 0, len = selectedKeys.length; i < len; i++) {
       const nodeKey = selectedKeys[i];
       const item = nodeMap.get(nodeKey);

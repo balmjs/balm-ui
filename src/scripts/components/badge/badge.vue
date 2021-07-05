@@ -1,10 +1,13 @@
 <template>
-  <div :class="className">
+  <div :class="className" @click="$emit('click', $event)">
     <slot></slot>
     <sup v-if="count" class="mdc-badge__sup">{{ overflowCount }}</sup>
-    <sup v-else :class="supClassName">
-      <slot name="badge"></slot>
-    </sup>
+    <template v-else>
+      <sup v-if="overlap && !dot"></sup>
+      <sup v-else :class="supClassName">
+        <slot name="badge"></slot>
+      </sup>
+    </template>
   </div>
 </template>
 
@@ -38,6 +41,7 @@ export default {
       default: '' // success, info, warning, error
     }
   },
+  emits: ['click'],
   computed: {
     className() {
       return {

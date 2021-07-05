@@ -110,7 +110,7 @@ export default {
     modelValue(val) {
       if (Array.isArray(val)) {
         if (!haveSameContents(this.treeData.selectedValue, val)) {
-          this.updateSelectedValue(val);
+          this.updateSelectedValue(val, oldVal);
         }
       } else {
         if (this.treeData.selectedValue !== val) {
@@ -151,8 +151,12 @@ export default {
         MdcTree.setSelected(this.treeData, this.selectedValue);
       }
     },
-    updateSelectedValue(val) {
+    updateSelectedValue(val, oldVal = []) {
       this.$nextTick(() => {
+        if (oldVal.length) {
+          MdcTree.resetSelected(this.treeData, oldVal);
+        }
+
         this.treeData.selectedValue = val;
         MdcTree.setSelected(this.treeData, val);
       });
@@ -168,6 +172,9 @@ export default {
         default:
           MdcTree.updateNode(this.treeData, parentKey, nodeData);
       }
+    },
+    getNode(nodeKey) {
+      return this.treeData.nodeMap.get(nodeKey);
     }
   }
 };

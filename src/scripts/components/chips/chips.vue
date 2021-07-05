@@ -102,7 +102,12 @@ export default {
     },
     options(val) {
       if (this.choiceChips || this.filterChips) {
-        this.currentOptions = val;
+        this.currentOptions = [];
+        this.$nextTick(() => {
+          this.currentOptions = val;
+          this.$chipSet !== null ? (this.$chipSet.destroy(),this.selectedValue = []):null,
+          this.init()
+        });
       }
     }
   },

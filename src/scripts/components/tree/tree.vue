@@ -182,7 +182,7 @@ export default {
       }
     },
     getNode(nodeKey) {
-      return this.treeData.nodeMap.get(nodeMap);
+      return this.treeData.nodeMap.get(nodeKey);
     }
   }
 };

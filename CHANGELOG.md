@@ -3,6 +3,20 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.31.3 / 2021-07-05
+
+### Bug Fixes
+
+- `<ui-tree>`: fix reset selected value bug
+- `<ui-rangepicker>`: update css
+- `<ui-badge>`: fix zero count render bug
+- `<ui-chips>`: fix dynamic options bug
+
+### Chore
+
+- `<ui-badge>`, `<ui-collapse>`, `<ui-menuitem>`, `<ui-tab>`, `<ui-textfield>`: add click event
+- `<ui-tree>`: add `$refs.tree.getNode(nodeKey)` function
+
 ## v9.31.2 / 2021-06-18
 
 ### Chore

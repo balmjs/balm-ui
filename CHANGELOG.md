@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.40.6 / 2021-07-05
+
+### Bug Fixes
+
+- `<ui-chips>`: fix dynamic options bug
+
 ## v8.40.5 / 2021-07-02
 
 ### Chore

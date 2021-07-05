@@ -99,12 +99,23 @@ export default {
     }
   },
   watch: {
-    model(val) {
+    model(val, oldVal) {
+      this.clearSelected(val, oldVal);
       this.selectedValue = val;
     },
     options(val) {
       if (this.choiceChips || this.filterChips) {
-        this.currentOptions = val;
+        this.currentOptions = [];
+
+        this.$nextTick(() => {
+          this.selectedValue = [];
+          this.currentOptions = val;
+
+          if (this.$chipSet) {
+            this.$chipSet.destroy();
+            this.init();
+          }
+        });
       }
     },
     chips(val) {
@@ -212,6 +223,33 @@ export default {
         this.$chipSet.addChip(newChipEl);
         this.chipsCount++;
       });
+    },
+    clearSelected(newSelectedValue, oldSelectedValue) {
+      const canClear = !newSelectedValue.length && oldSelectedValue.length;
+
+      if (canClear) {
+        if (this.filterChips) {
+          let selectedIndexes = [];
+
+          this.currentOptions.forEach((option, index) => {
+            if (oldSelectedValue.includes(option[this.optionValue])) {
+              selectedIndexes.push(index);
+            }
+          });
+
+          this.$chipSet.chips.forEach((chip, index) => {
+            if (selectedIndexes.includes(index)) {
+              chip.selected = false;
+            }
+          });
+        } else if (this.choiceChips) {
+          let selectedIndex = this.currentOptions.findIndex((option) =>
+            oldSelectedValue.includes(option[this.optionValue])
+          );
+
+          this.$chipSet.chips[selectedIndex].selected = false;
+        }
+      }
     }
   }
 };

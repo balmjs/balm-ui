@@ -16,11 +16,7 @@
           :cell-style="cellStyle"
         >
           <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
-          <template
-            v-for="(_, name) in $scopedSlots"
-            :slot="name"
-            slot-scope="slotData"
-          >
+          <template v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData">
             <slot :name="name" v-bind="slotData"></slot>
           </template>
         </mdc-table-header>
@@ -42,11 +38,7 @@
           :cell-style="cellStyle"
         >
           <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
-          <template
-            v-for="(_, name) in $scopedSlots"
-            :slot="name"
-            slot-scope="slotData"
-          >
+          <template v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData">
             <slot :name="name" v-bind="slotData"></slot>
           </template>
         </mdc-table-body>
@@ -64,11 +56,7 @@
           :cell-style="cellStyle"
         >
           <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
-          <template
-            v-for="(_, name) in $scopedSlots"
-            :slot="name"
-            slot-scope="slotData"
-          >
+          <template v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData">
             <slot :name="name" v-bind="slotData"></slot>
           </template>
         </mdc-table-footer>
@@ -82,11 +70,7 @@
         :sort-icon-align-end="sortIconAlignEnd"
       >
         <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
-        <template
-          v-for="(_, name) in $scopedSlots"
-          :slot="name"
-          slot-scope="slotData"
-        >
+        <template v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData">
           <slot :name="name" v-bind="slotData"></slot>
         </template>
       </mdc-table-header>
@@ -100,11 +84,7 @@
         :row-id-prefix="rowIdPrefix"
       >
         <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
-        <template
-          v-for="(_, name) in $scopedSlots"
-          :slot="name"
-          slot-scope="slotData"
-        >
+        <template v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData">
           <slot :name="name" v-bind="slotData"></slot>
         </template>
       </mdc-table-body>
@@ -115,11 +95,7 @@
         :columns="columns.count"
       >
         <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
-        <template
-          v-for="(_, name) in $scopedSlots"
-          :slot="name"
-          slot-scope="slotData"
-        >
+        <template v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData">
           <slot :name="name" v-bind="slotData"></slot>
         </template>
       </mdc-table-footer>

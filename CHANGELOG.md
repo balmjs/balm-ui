@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.40.8 / 2021-07-13
+
+### Chore
+
+- `<ui-table>`: optimize fixed table, update pageSize watcher
+
 ## v8.40.7 / 2021-07-05
 
 ### Bug Fixes

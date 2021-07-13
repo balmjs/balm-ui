@@ -3,6 +3,16 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.31.4 / 2021-07-13
+
+### Bug Fixes
+
+- `<ui-pagination>`: update pageSize watcher
+
+### Chore
+
+- `<ui-table>`: optimize fixed table
+
 ## v9.31.3 / 2021-07-05
 
 ### Bug Fixes

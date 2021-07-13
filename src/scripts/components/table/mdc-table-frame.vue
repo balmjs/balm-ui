@@ -33,6 +33,10 @@ export default {
     offsetLeft: {
       type: Number,
       default: 0
+    },
+    maxWidth: {
+      type: Number,
+      default: 0
     }
   },
   computed: {
@@ -44,11 +48,9 @@ export default {
         : null;
     },
     tableStyle() {
-      return this.scroll.x
-        ? {
-            width: `${this.scroll.x}px`
-          }
-        : null;
+      return {
+        width: `${this.scroll.x || this.maxWidth}px`
+      };
     }
   },
   watch: {

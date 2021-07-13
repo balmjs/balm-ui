@@ -255,6 +255,11 @@ export default {
   watch: {
     modelValue(val) {
       this.currentPage = val;
+    },
+    pageSize(val) {
+      if (!Array.isArray(val)) {
+        this.currentPageSize = val;
+      }
     }
   },
   methods: {

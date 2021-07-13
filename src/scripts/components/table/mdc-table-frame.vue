@@ -49,9 +49,13 @@ export default {
         : null;
     },
     tableStyle() {
-      return {
-        width: `${this.scroll.x || this.maxWidth}px`
-      };
+      const scrollX = this.scroll.x || this.maxWidth;
+
+      return scrollX
+        ? {
+            width: `${scrollX}px`
+          }
+        : null;
     }
   },
   watch: {

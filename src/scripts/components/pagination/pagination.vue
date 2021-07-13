@@ -276,6 +276,11 @@ export default {
   watch: {
     page(val) {
       this.currentPage = val;
+    },
+    pageSize(val) {
+      if (!Array.isArray(val)) {
+        this.currentPageSize = val;
+      }
     }
   },
   methods: {

@@ -291,9 +291,9 @@ class MdcTree {
   }
 
   /** For tree operation **/
-  static createNode(treeData, parentKey, originNodeData) {
+  static async createNode(treeData, parentKey, originNodeData) {
     const { dataFormat, nodeMap } = treeData;
-    const { value, children } = dataFormat;
+    const { value, children, hasChildren, isLeaf } = dataFormat;
 
     const parentItem = nodeMap.get(parentKey);
     const nodeKey = originNodeData[value];
@@ -303,7 +303,26 @@ class MdcTree {
       parentKey,
       checked: false
     });
-    parentItem[children].unshift(item);
+
+    if (parentItem[isLeaf]) {
+      parentItem[children].unshift(item);
+      if (!parentItem[hasChildren]) {
+        parentItem[hasChildren] = true;
+      }
+      parentItem[isLeaf] = false;
+    } else {
+      if (parentItem[hasChildren]) {
+        if (parentItem[children].length) {
+          parentItem[children].unshift(item);
+        } else {
+          await this.onExpand(treeData, parentItem);
+        }
+      } else {
+        parentItem[children].unshift(item);
+        parentItem[hasChildren] = true;
+        parentItem.expanded = true;
+      }
+    }
 
     nodeMap.set(parentKey, parentItem);
     nodeMap.set(nodeKey, item);

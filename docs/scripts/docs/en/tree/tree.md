@@ -49,13 +49,16 @@
 
 ### Slots
 
-| Name               | Props  | Description                                                           |
-| ------------------ | ------ | --------------------------------------------------------------------- |
-| `default`          |        | The default slot holds the tree top bar content and can contain HTML. |
-| `expand-more-icon` |        | The custom expand more icon.                                          |
-| `expand-less-icon` |        | The custom expand less icon.                                          |
-| `title`            | `data` | The title slot holds the tree node title and can contain HTML.        |
-| `action`           | `data` | The action slot holds the tree node actions and can contain HTML.     |
+| Name               | Props  | Description                                                             | Version |
+| ------------------ | ------ | ----------------------------------------------------------------------- | ------- |
+| `default`          |        | The default slot holds the tree top bar content and can contain HTML.   |         |
+| `expand-more-icon` |        | The custom expand more icon.                                            |         |
+| `expand-less-icon` |        | The custom expand less icon.                                            |         |
+| `before`           | `data` | The before slot holds the tree node custom info and can contain HTML.   | 8.41.0  |
+| `title`            | `data` | The title slot holds the tree node title and can contain HTML.          |         |
+| `after`            | `data` | The after slot holds the tree node custom actions and can contain HTML. |         |
+
+> Rename slot <del>`action`</del> to `after` in `8.41.0`
 
 ### Events
 

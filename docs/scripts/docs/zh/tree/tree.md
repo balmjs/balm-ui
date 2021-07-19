@@ -49,13 +49,16 @@
 
 ### Slots
 
-| Name               | Props  | Description                         |
-| ------------------ | ------ | ----------------------------------- |
-| `default`          |        | default 插槽包含树顶部栏内容及 HTML |
-| `expand-more-icon` |        | 自定义展开图标                      |
-| `expand-less-icon` |        | 自定义收起图标                      |
-| `title`            | `data` | title 插槽包含树节点的标题及 HTML   |
-| `action`           | `data` | action 插槽包含树节点的动作及 HTML  |
+| Name               | Props  | Description                              | Version |
+| ------------------ | ------ | ---------------------------------------- | ------- |
+| `default`          |        | default 插槽包含树顶部栏内容及 HTML      |         |
+| `expand-more-icon` |        | 自定义展开图标                           |         |
+| `expand-less-icon` |        | 自定义收起图标                           |         |
+| `before`           | `data` | before 插槽包含树节点的自定义信息及 HTML | 8.41.0  |
+| `title`            | `data` | title 插槽包含树节点的标题及 HTML        |         |
+| `after`            | `data` | after 插槽包含树节点的自定义动作及 HTML  |         |
+
+> Rename slot <del>`action`</del> to `after` in `8.41.0`
 
 ### Events
 

@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.41.0 / 2021-07-19
+
+### Features
+
+- `<ui-tree>`: add slot `before`
+
+### BREAKING CHANGES
+
+- `<ui-tree>`: rename slot `action` to `after`
+
 ## v8.40.9 / 2021-07-13
 
 ### Bug Fixes

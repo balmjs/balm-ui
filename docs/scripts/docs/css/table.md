@@ -23,13 +23,13 @@
   $stroke-size: 1px,
   $stroke-color: rgba(theme-color.prop-value(on-surface), 0.12),
 
-  $cell-height: 52px,
-  $header-cell-height: get-header-cell-height($cell-height),
+  $row-height: 52px, // Rename `$cell-height` to `$row-height` in 9.32.0
+  $header-row-height: get-header-row-height($row-height), // Rename `$header-cell-height` to `$header-row-height` in 9.32.0
   $cell-leading-padding: 16px,
   $cell-trailing-padding: 16px,
 
-  $minimum-cell-height: 36px,
-  $maximum-cell-height: $cell-height,
+  $minimum-row-height: 36px, // Rename `$minimum-cell-height` to `$minimum-row-height` in 9.32.0
+  $maximum-row-height: $row-height, // Rename `$maximum-cell-height` to `$maximum-row-height` in 9.32.0
   $default-density-scale: density-variables.$default-scale
 );
 ```

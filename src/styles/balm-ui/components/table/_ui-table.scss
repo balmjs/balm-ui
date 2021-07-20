@@ -20,6 +20,7 @@
 }
 
 .mdc-data-table__footer-row {
+  height: data-table-variables.$row-height;
   border-top: data-table-variables.$stroke-size solid
     data-table-variables.$stroke-color;
 

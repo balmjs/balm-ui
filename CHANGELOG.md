@@ -3,6 +3,16 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.32.0 / 2021-07-20
+
+### Features
+
+- `<ui-tree>`: add slot `before`
+
+### BREAKING CHANGES
+
+- `<ui-tree>`: rename slot `action` to `after`
+
 ## v9.31.4 / 2021-07-13
 
 ### Bug Fixes

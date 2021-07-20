@@ -114,7 +114,7 @@ var MDCTooltip = /** @class */ (function (_super) {
         this.foundation.hide();
     };
     MDCTooltip.prototype.isShown = function () {
-        this.foundation.isShown();
+        return this.foundation.isShown();
     };
     /**
      * Method that allows user to specify additional elements that should have a

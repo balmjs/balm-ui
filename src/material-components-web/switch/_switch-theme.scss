@@ -26,20 +26,23 @@
 @use 'sass:color';
 @use 'sass:map';
 @use '../density/density';
+@use '../dom/dom';
 @use '../elevation/elevation-theme';
 @use '../ripple/ripple-theme';
 @use '../theme/color-palette';
 @use '../theme/custom-properties';
 @use '../theme/keys';
+@use '../theme/shadow-dom';
 @use '../theme/state';
 @use '../theme/theme-color';
 @use '../theme/theme';
+@use '../tokens/resolvers';
 @use '../shape/shape';
 @use './switch';
 
 $_density-config: (
   size: (
-    minimum: 36px,
+    minimum: 28px,
     default: 48px,
     maximum: 48px,
   ),
@@ -68,12 +71,8 @@ $_selectors: (
 );
 
 $light-theme: (
-  // TODO: token is needed for density
-  density: 0,
   disabled-handle-elevation: 0,
   disabled-handle-opacity: 0.38,
-  disabled-handle-overlay-color: transparent,
-  disabled-handle-overlay-opacity: 0,
   disabled-selected-handle-color: $_on-surface,
   disabled-selected-icon-color: on-primary,
   disabled-selected-icon-opacity: 0.38,
@@ -85,8 +84,6 @@ $light-theme: (
   disabled-unselected-track-color: $_on-surface,
   handle-elevation: 1,
   handle-height: 20px,
-  handle-overlay-color: transparent,
-  handle-overlay-opacity: 0,
   handle-shadow-color: elevation-theme.$baseline-color,
   handle-shape: 10px,
   handle-surface-color: surface,
@@ -107,6 +104,7 @@ $light-theme: (
   selected-pressed-state-layer-opacity: 0.1,
   selected-pressed-track-color: $_inverse-primary,
   selected-track-color: $_inverse-primary,
+  state-layer-size: 48px,
   track-height: 14px,
   track-shape: 7px,
   track-width: 36px,
@@ -125,7 +123,7 @@ $light-theme: (
   unselected-pressed-state-layer-color: $_on-surface,
   unselected-pressed-state-layer-opacity: 0.1,
   unselected-pressed-track-color: $_hairline,
-  unselected-track-color: $_hairline
+  unselected-track-color: $_hairline,
 );
 
 $forced-colors-theme: (
@@ -137,12 +135,36 @@ $forced-colors-theme: (
   disabled-unselected-icon-opacity: 1,
 );
 
-@mixin theme($theme) {
+@function density($density-scale) {
+  $size: density.prop-value(
+    $density-config: $_density-config,
+    $density-scale: $density-scale,
+    $property-name: size,
+  );
+
+  @return (state-layer-size: $size);
+}
+
+@mixin theme($theme, $resolvers: resolvers.$material) {
+  @include theme.validate-keys($light-theme, $theme);
+
+  // TODO(b/185172301): replace with improved feature targeting
+  // IE11 Fallback
+  @if shadow-dom.$css-selector-fallback-declarations {
+    @include custom-properties.configure($emit-custom-properties: false) {
+      @include dom.ie11-support {
+        @include theme-styles($theme, $resolvers: $resolvers);
+      }
+    }
+  }
+
+  @include keys.declare-custom-properties($theme, switch);
+}
+
+@mixin theme-styles($theme, $resolvers: resolvers.$material) {
   @include theme.validate-keys($light-theme, $theme);
 
   $theme: keys.create-theme-properties($theme, switch);
-
-  @include _density(map.get($theme, density));
 
   @include _selected-handle-color(
     (
@@ -167,13 +189,11 @@ $forced-colors-theme: (
   @include _handle-surface-color(map.get($theme, handle-surface-color));
 
   @include _handle-elevation(
+    map.get($resolvers, elevation),
+    map.get($theme, handle-shadow-color),
     (
       default: map.get($theme, handle-elevation),
       disabled: map.get($theme, disabled-handle-elevation),
-    ),
-    (
-      default: map.get($theme, handle-shadow-color),
-      disabled: map.get($theme, handle-shadow-color),
     )
   );
 
@@ -181,20 +201,6 @@ $forced-colors-theme: (
   @include _handle-opacity(
     (
       disabled: map.get($theme, disabled-handle-opacity),
-    )
-  );
-
-  @include _handle-overlay-color(
-    (
-      default: map.get($theme, handle-overlay-color),
-      disabled: map.get($theme, disabled-handle-overlay-color),
-    )
-  );
-
-  @include _handle-overlay-opacity(
-    (
-      default: map.get($theme, handle-overlay-opacity),
-      disabled: map.get($theme, disabled-handle-overlay-opacity),
     )
   );
 
@@ -262,6 +268,7 @@ $forced-colors-theme: (
     )
   );
 
+  @include _state-layer-size(map.get($theme, state-layer-size));
   @include _track-height(map.get($theme, track-height));
   @include _track-opacity(
     (
@@ -291,22 +298,6 @@ $forced-colors-theme: (
 
   @include _track-shape(map.get($theme, track-shape));
   @include _track-width(map.get($theme, track-width));
-}
-
-@mixin _density($density) {
-  // TODO: support custom properties
-  @if $density {
-    $size: density.prop-value(
-      $density-config: $_density-config,
-      $density-scale: custom-properties.get-fallback($density),
-      $property-name: size,
-    );
-
-    .mdc-switch__ripple {
-      @include theme.property(height, $size);
-      @include theme.property(width, $size);
-    }
-  }
 }
 
 @mixin _handle-color($colors) {
@@ -362,40 +353,27 @@ $forced-colors-theme: (
   }
 }
 
-@mixin _handle-elevation($elevations, $shadow-colors) {
+@mixin _handle-elevation($resolver, $shadow-color, $elevations) {
   @include state.default($_selectors) {
     @include _set-handle-elevation(
-      state.get-default-state($elevations),
-      state.get-default-state($shadow-colors)
+      $resolver,
+      $elevation: state.get-default-state($elevations),
+      $shadow-color: $shadow-color
     );
   }
 
   @include state.disabled($_selectors) {
     @include _set-handle-elevation(
-      state.get-disabled-state($elevations),
-      state.get-disabled-state($shadow-colors)
+      $resolver,
+      $elevation: state.get-disabled-state($elevations),
+      $shadow-color: $shadow-color
     );
   }
 }
 
-@mixin _set-handle-elevation($elevation, $shadow-color) {
-  // TODO: Support independent custom properties
-  @if $elevation or $shadow-color {
-    @if not $elevation or not $shadow-color {
-      @error 'Both elevation and shadow color must be specified';
-    }
-
-    $dp-value: custom-properties.get-fallback($elevation);
-    $shadow-color: custom-properties.get-fallback($shadow-color);
-
-    $elevation: custom-properties.set-fallback(
-      $elevation,
-      elevation-theme.elevation-box-shadow($dp-value, $shadow-color)
-    );
-
-    .mdc-switch__shadow {
-      @include theme.property(box-shadow, $elevation);
-    }
+@mixin _set-handle-elevation($resolver, $args...) {
+  .mdc-switch__shadow {
+    @include elevation-theme.with-resolver($resolver, $args...);
   }
 }
 
@@ -419,36 +397,6 @@ $forced-colors-theme: (
     &::after {
       @include theme.property(opacity, $opacity);
     }
-  }
-}
-
-@mixin _handle-overlay-color($colors) {
-  @include state.default($_selectors) {
-    @include _set-handle-overlay-color(state.get-default-state($colors));
-  }
-
-  @include state.disabled($_selectors) {
-    @include _set-handle-overlay-color(state.get-disabled-state($colors));
-  }
-}
-
-@mixin _set-handle-overlay-color($color) {
-  .mdc-elevation-overlay {
-    @include elevation-theme.overlay-fill-color($color);
-  }
-}
-
-@mixin _handle-overlay-opacity($opacities) {
-  @include state.default($_selectors) {
-    @include elevation-theme.overlay-opacity(
-      state.get-default-state($opacities)
-    );
-  }
-
-  @include state.disabled($_selectors) {
-    @include elevation-theme.overlay-opacity(
-      state.get-disabled-state($opacities)
-    );
   }
 }
 
@@ -614,6 +562,13 @@ $forced-colors-theme: (
 @mixin _unselected-ripple-opacity($opacities) {
   @include state.unselected($_selectors) {
     @include _ripple-opacity($opacities);
+  }
+}
+
+@mixin _state-layer-size($size) {
+  .mdc-switch__ripple {
+    @include theme.property(height, $size);
+    @include theme.property(width, $size);
   }
 }
 

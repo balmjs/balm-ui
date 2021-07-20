@@ -203,9 +203,9 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         else {
             this.adapter.addClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_OPEN);
             this.animationRequestId = requestAnimationFrame(function () {
-                _this.adapter.addClass(MDCMenuSurfaceFoundation.cssClasses.OPEN);
                 _this.dimensions = _this.adapter.getInnerDimensions();
                 _this.autoposition();
+                _this.adapter.addClass(MDCMenuSurfaceFoundation.cssClasses.OPEN);
                 _this.openAnimationEndTimerId = setTimeout(function () {
                     _this.openAnimationEndTimerId = 0;
                     _this.adapter.removeClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_OPEN);
@@ -532,11 +532,18 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
      * focused on or within the menu surface when it is closed.
      */
     MDCMenuSurfaceFoundation.prototype.maybeRestoreFocus = function () {
+        var _this = this;
         var isRootFocused = this.adapter.isFocused();
         var childHasFocus = document.activeElement &&
             this.adapter.isElementInContainer(document.activeElement);
         if (isRootFocused || childHasFocus) {
-            this.adapter.restoreFocus();
+            // Wait before restoring focus when closing the menu surface. This is
+            // important because if a touch event triggered the menu close, and the
+            // subsequent mouse event occurs after focus is restored, then the
+            // restored focus would be lost.
+            setTimeout(function () {
+                _this.adapter.restoreFocus();
+            }, numbers.TOUCH_EVENT_WAIT_MS);
         }
     };
     MDCMenuSurfaceFoundation.prototype.hasBit = function (corner, bit) {

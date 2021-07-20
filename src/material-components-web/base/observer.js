@@ -24,10 +24,11 @@ import { __assign, __extends, __read, __spreadArray, __values } from "tslib";
 /**
  * Mixin to add `MDCObserver` functionality to an optional base class.
  *
+ * @deprecated Prefer MDCObserverFoundation for stricter closure compliance.
  * @template C Optional base class constructor type.
- * @param {C} baseClass - Optional base class.
- * @return {Constructor<MDCObserver> & C} A class that extends the optional base
- *     class with `MDCObserver` functionality.
+ * @param baseClass - Optional base class.
+ * @return A class that extends the optional base class with `MDCObserver`
+ *     functionality.
  */
 export function mdcObserver(baseClass) {
     if (baseClass === void 0) { baseClass = /** @class */ (function () {
@@ -125,12 +126,12 @@ export function mdcObserver(baseClass) {
  *
  * @template T The observed target type.
  * @template K The observed property.
- * @param {T} target - The target to observe.
- * @param {K} property - The property of the target to observe.
- * @param {Observer<T, K>} - An observer function to invoke each time the
- *     property changes.
- * @return {Function} A cleanup function that will stop observing changes for
- *     the provided `Observer`.
+ * @param target - The target to observe.
+ * @param property - The property of the target to observe.
+ * @param observer - An observer function to invoke each time the property
+ *     changes.
+ * @return A cleanup function that will stop observing changes for the provided
+ *     `Observer`.
  */
 export function observeProperty(target, property, observer) {
     var targetObservers = installObserver(target, property);
@@ -154,10 +155,9 @@ var allTargetObservers = new WeakMap();
  *
  * @template T The observed target type.
  * @template K The observed property to create a getter/setter for.
- * @param {T} target - The target to observe.
- * @param {K} property - The property to create a getter/setter for, if needed.
- * @return {TargetObservers<T>} The installed `TargetObservers` for the provided
- *     target.
+ * @param target - The target to observe.
+ * @param property - The property to create a getter/setter for, if needed.
+ * @return The installed `TargetObservers` for the provided target.
  */
 function installObserver(target, property) {
     var observersMap = new Map();
@@ -199,9 +199,7 @@ function installObserver(target, property) {
         delete observedDescriptor.writable;
         // Set up a simple getter...
         var value_1 = descriptor.value;
-        descGet = function () {
-            return value_1;
-        };
+        descGet = function () { return value_1; };
         // ...and setter (if the original property was writable).
         if (descriptor.writable) {
             descSet = function (newValue) {
@@ -210,17 +208,17 @@ function installObserver(target, property) {
         }
     }
     if (descGet) {
-        var getter_1 = descGet;
         observedDescriptor.get = function () {
-            return getter_1.call(this);
+            // `this as T` needed for closure conformance
+            return descGet.call(this);
         };
     }
     if (descSet) {
-        var setter_1 = descSet;
         observedDescriptor.set = function (newValue) {
             var e_4, _a;
+            // `thus as T` needed for closure conformance
             var previous = descGet ? descGet.call(this) : newValue;
-            setter_1.call(this, newValue);
+            descSet.call(this, newValue);
             if (targetObservers.isEnabled && (!descGet || newValue !== previous)) {
                 try {
                     for (var _b = __values(targetObservers.getObservers(property)), _c = _b.next(); !_c.done; _c = _b.next()) {
@@ -249,8 +247,8 @@ function installObserver(target, property) {
  *
  * @template T The target type.
  * @template K The property type.
- * @param {T} target - The target to retrieve a descriptor from.
- * @param {K} property - The name of the property to retrieve a descriptor for.
+ * @param target - The target to retrieve a descriptor from.
+ * @param property - The name of the property to retrieve a descriptor for.
  * @return the descriptor, or undefined if it does not exist. Keep in mind that
  *     plain properties may not have a descriptor defined.
  */
@@ -273,8 +271,8 @@ export function getDescriptor(target, property) {
  * properties will not call any observers when disabled.
  *
  * @template T The observed target type.
- * @param {T} target - The target to enable or disable observers for.
- * @param {Boolean} enabled - True to enable or false to disable observers.
+ * @param target - The target to enable or disable observers for.
+ * @param enabled - True to enable or false to disable observers.
  */
 export function setObserversEnabled(target, enabled) {
     var targetObservers = allTargetObservers.get(target);

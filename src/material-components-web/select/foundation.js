@@ -355,6 +355,9 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
             this.leadingIcon.setContent(content);
         }
     };
+    MDCSelectFoundation.prototype.getUseDefaultValidation = function () {
+        return this.useDefaultValidation;
+    };
     MDCSelectFoundation.prototype.setUseDefaultValidation = function (useDefaultValidation) {
         this.useDefaultValidation = useDefaultValidation;
     };

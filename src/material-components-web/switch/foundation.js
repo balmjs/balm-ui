@@ -21,10 +21,8 @@
  * THE SOFTWARE.
  */
 import { __extends } from "tslib";
-import { MDCFoundation } from '../base/foundation';
-import { mdcObserver } from '../base/observer';
+import { MDCObserverFoundation } from '../base/observer-foundation';
 import { CssClasses } from './constants';
-var baseClass = mdcObserver(MDCFoundation);
 /**
  * `MDCSwitchFoundation` provides a state-only foundation for a switch
  * component.
@@ -49,12 +47,6 @@ var MDCSwitchFoundation = /** @class */ (function (_super) {
         });
     };
     /**
-     * Cleans up the foundation and stops observing state changes.
-     */
-    MDCSwitchFoundation.prototype.destroy = function () {
-        this.unobserve();
-    };
-    /**
      * Event handler for switch click events. Clicking on a switch will toggle its
      * selected state.
      */
@@ -70,7 +62,7 @@ var MDCSwitchFoundation = /** @class */ (function (_super) {
         }
     };
     return MDCSwitchFoundation;
-}(baseClass));
+}(MDCObserverFoundation));
 export { MDCSwitchFoundation };
 /**
  * `MDCSwitchRenderFoundation` provides a state and rendering foundation for a

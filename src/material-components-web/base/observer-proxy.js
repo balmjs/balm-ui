@@ -25,10 +25,11 @@ import { getDescriptor } from './observer';
 /**
  * Mixin to add `MDCObserver` functionality to an optional base class.
  *
+ * @deprecated Prefer MDCObserverFoundation for stricter closure compliance.
  * @template C Optional base class constructor type.
- * @param {C} baseClass - Optional base class.
- * @return {Constructor<MDCObserver> & C} A class that extends the optional base
- *     class with `MDCObserver` functionality.
+ * @param baseClass - Optional base class.
+ * @return A class that extends the optional base class with `MDCObserver`
+ *     functionality.
  */
 export function mdcObserver(baseClass) {
     var _a, _b;
@@ -125,12 +126,12 @@ var getObservers = Symbol();
  *
  * @template T The observed target type.
  * @template K The observed property.
- * @param {T} target - The target to observe.
- * @param {K} property - The property of the target to observe.
- * @param {Observer<T, K>} - An observer function to invoke each time the
- *     property changes.
- * @return {Function} A cleanup function that will stop observing changes for
- *     the provided `Observer`.
+ * @param target - The target to observe.
+ * @param property - The property of the target to observe.
+ * @param observer - An observer function to invoke each time the property
+ *     changes.
+ * @return A cleanup function that will stop observing changes for the provided
+ *     `Observer`.
  */
 export function observeProperty(target, property, observer) {
     var observerPrototype = installObserver(target);
@@ -148,9 +149,8 @@ export function observeProperty(target, property, observer) {
  * prototype.
  *
  * @template T The observed target type.
- * @param {T} target - The target to observe.
- * @return {TargetObservers<T>} The installed `TargetObservers` for the provided
- *     target.
+ * @param target - The target to observe.
+ * @return The installed `TargetObservers` for the provided target.
  */
 function installObserver(target) {
     var e_4, _a, e_5, _b;
@@ -244,8 +244,8 @@ function installObserver(target) {
  * properties will not call any observers when disabled.
  *
  * @template T The observed target type.
- * @param {T} target - The target to enable or disable observers for.
- * @param {Boolean} enabled - True to enable or false to disable observers.
+ * @param target - The target to enable or disable observers for.
+ * @param enabled - True to enable or false to disable observers.
  */
 export function setObserversEnabled(target, enabled) {
     var prototype = Object.getPrototypeOf(target);

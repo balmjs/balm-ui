@@ -113,25 +113,27 @@ var MDCListFoundation = /** @class */ (function (_super) {
             this.sortedIndexByFirstChar = this.typeaheadInitSortedIndex();
         }
     };
-    /**
-     * Sets the private wrapFocus variable.
-     */
+    /** Returns the index of the item that was last focused. */
+    MDCListFoundation.prototype.getFocusedItemIndex = function () {
+        return this.focusedItemIndex;
+    };
+    /** Toggles focus wrapping with keyboard navigation. */
     MDCListFoundation.prototype.setWrapFocus = function (value) {
         this.wrapFocus = value;
     };
     /**
-     * Sets the isVertical private variable.
+     * Toggles orientation direction for keyboard navigation (true for vertical,
+     * false for horizontal).
      */
     MDCListFoundation.prototype.setVerticalOrientation = function (value) {
         this.isVertical = value;
     };
-    /**
-     * Sets the isSingleSelectionList private variable.
-     */
+    /** Toggles single-selection behavior. */
     MDCListFoundation.prototype.setSingleSelection = function (value) {
         this.isSingleSelectionList = value;
         if (value) {
             this.maybeInitializeSingleSelection();
+            this.selectedIndex = this.getSelectedIndexFromDOM();
         }
     };
     /**
@@ -139,6 +141,19 @@ var MDCListFoundation = /** @class */ (function (_super) {
      * initializes the internal state to match the selected item.
      */
     MDCListFoundation.prototype.maybeInitializeSingleSelection = function () {
+        var selectedItemIndex = this.getSelectedIndexFromDOM();
+        if (selectedItemIndex === numbers.UNSET_INDEX)
+            return;
+        var hasActivatedClass = this.adapter.listItemAtIndexHasClass(selectedItemIndex, cssClasses.LIST_ITEM_ACTIVATED_CLASS);
+        if (hasActivatedClass) {
+            this.setUseActivatedClass(true);
+        }
+        this.isSingleSelectionList = true;
+        this.selectedIndex = selectedItemIndex;
+    };
+    /** @return Index of the first selected item based on the DOM state. */
+    MDCListFoundation.prototype.getSelectedIndexFromDOM = function () {
+        var selectedIndex = numbers.UNSET_INDEX;
         var listItemsCount = this.adapter.getListItemCount();
         for (var i = 0; i < listItemsCount; i++) {
             var hasSelectedClass = this.adapter.listItemAtIndexHasClass(i, cssClasses.LIST_ITEM_SELECTED_CLASS);
@@ -146,13 +161,10 @@ var MDCListFoundation = /** @class */ (function (_super) {
             if (!(hasSelectedClass || hasActivatedClass)) {
                 continue;
             }
-            if (hasActivatedClass) {
-                this.setUseActivatedClass(true);
-            }
-            this.isSingleSelectionList = true;
-            this.selectedIndex = i;
-            return;
+            selectedIndex = i;
+            break;
         }
+        return selectedIndex;
     };
     /**
      * Sets whether typeahead is enabled on the list.
@@ -171,14 +183,13 @@ var MDCListFoundation = /** @class */ (function (_super) {
         return this.hasTypeahead &&
             typeahead.isTypingInProgress(this.typeaheadState);
     };
-    /**
-     * Sets the useActivatedClass private variable.
-     */
+    /** Toggle use of the "activated" CSS class. */
     MDCListFoundation.prototype.setUseActivatedClass = function (useActivated) {
         this.useActivatedClass = useActivated;
     };
     /**
-     * Sets the useSelectedAttr private variable.
+     * Toggles use of the selected attribute (true for aria-selected, false for
+     * aria-checked).
      */
     MDCListFoundation.prototype.setUseSelectedAttribute = function (useSelected) {
         this.useSelectedAttr = useSelected;
@@ -186,7 +197,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
     MDCListFoundation.prototype.getSelectedIndex = function () {
         return this.selectedIndex;
     };
-    MDCListFoundation.prototype.setSelectedIndex = function (index) {
+    MDCListFoundation.prototype.setSelectedIndex = function (index, _a) {
+        var _b = _a === void 0 ? {} : _a, forceUpdate = _b.forceUpdate;
         if (!this.isIndexValid(index)) {
             return;
         }
@@ -197,7 +209,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
             this.setRadioAtIndex(index);
         }
         else {
-            this.setSingleSelectionAtIndex(index);
+            this.setSingleSelectionAtIndex(index, { forceUpdate: forceUpdate });
         }
     };
     /**
@@ -418,8 +430,9 @@ var MDCListFoundation = /** @class */ (function (_super) {
             this.adapter.setAttributeForElementIndex(itemIndex, strings.ARIA_DISABLED, 'true');
         }
     };
-    MDCListFoundation.prototype.setSingleSelectionAtIndex = function (index) {
-        if (this.selectedIndex === index) {
+    MDCListFoundation.prototype.setSingleSelectionAtIndex = function (index, _a) {
+        var _b = _a === void 0 ? {} : _a, forceUpdate = _b.forceUpdate;
+        if (this.selectedIndex === index && !forceUpdate) {
             return;
         }
         var selectedClassName = cssClasses.LIST_ITEM_SELECTED_CLASS;

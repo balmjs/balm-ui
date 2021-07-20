@@ -38,14 +38,14 @@ $ripple-target: '.mdc-switch__ripple';
   @include static-styles-without-ripple();
 
   .mdc-switch {
-    @include ripple.common($query); // COPYBARA_COMMENT_THIS_LINE
+    @include ripple.common; // COPYBARA_COMMENT_THIS_LINE
     @include ripple.surface($ripple-target: $ripple-target);
     @include ripple.radius-unbounded($ripple-target: $ripple-target);
   }
 }
 
 @mixin static-styles-without-ripple() {
-  @include elevation.overlay-common($query); // COPYBARA_COMMENT_THIS_LINE
+  @include elevation.overlay-common; // COPYBARA_COMMENT_THIS_LINE
 
   .mdc-switch {
     @include root;
@@ -75,6 +75,10 @@ $ripple-target: '.mdc-switch__ripple';
 
   .mdc-switch__shadow {
     @include shadow;
+  }
+
+  .mdc-elevation-overlay {
+    @include overlay;
   }
 
   .mdc-switch__ripple {
@@ -131,20 +135,31 @@ $ripple-target: '.mdc-switch__ripple';
     position: absolute;
     width: 100%;
   }
-
-  &::after {
-    transition: animation.standard(transform, $animation-duration);
-  }
 }
 
 @mixin track-on() {
+  &::before {
+    transition: animation.exit-temporary(transform, $animation-duration);
+    transform: translateX(100%);
+    @include rtl.rtl {
+      transform: translateX(-100%);
+    }
+  }
+
   &::after {
+    transition: animation.enter(transform, $animation-duration);
     transform: translateX(0);
   }
 }
 
 @mixin track-off() {
+  &::before {
+    transition: animation.enter(transform, $animation-duration);
+    transform: translateX(0);
+  }
+
   &::after {
+    transition: animation.exit-temporary(transform, $animation-duration);
     transform: translateX(-100%);
     @include rtl.rtl {
       transform: translateX(100%);
@@ -199,6 +214,11 @@ $ripple-target: '.mdc-switch__ripple';
     top: 0; // IE11 fix
     transition: animation.standard(background-color, $animation-duration),
       animation.standard(border-color, $animation-duration);
+    // Move the handle background colors beneath the shadow overlay color,
+    // rather than move the overlay on top of the handle with a positive
+    // z-index, which would require moving all other content on top of the
+    // overlay with an even greater z-index.
+    z-index: -1;
   }
 }
 
@@ -213,12 +233,24 @@ $ripple-target: '.mdc-switch__ripple';
   top: 0;
 }
 
+@mixin overlay() {
+  bottom: 0;
+  @include gss.annotate($noflip: true);
+  left: 0;
+  @include gss.annotate($noflip: true);
+  right: 0;
+  top: 0;
+}
+
 @mixin ripple() {
   @include gss.annotate($noflip: true);
   left: 50%;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
+  // Move ripple beneath shadow overlay and handle background colors (see
+  // handle() mixin for explanation).
+  z-index: -1;
 }
 
 @mixin ripple-disabled {

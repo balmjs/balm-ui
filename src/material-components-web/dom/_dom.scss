@@ -67,6 +67,15 @@
   }
 }
 
+/// Selects for IE11 support.
+///
+/// @content styles to emit for IE11 support
+@mixin ie11-support {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
 /// Selects for `forced-colors` high contrast mode.
 ///
 /// While in `forced-colors` mode, only system colors should be used.
@@ -74,8 +83,14 @@
 /// @link https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#system_colors
 /// @link https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors
 /// @content styles to emit in `forced-colors` mode
-@mixin forced-colors-mode {
-  @media screen and (forced-colors: active), (-ms-high-contrast: active) {
-    @content;
+@mixin forced-colors-mode($exclude-ie11: false) {
+  @if $exclude-ie11 {
+    @media screen and (forced-colors: active) {
+      @content;
+    }
+  } @else {
+    @media screen and (forced-colors: active), (-ms-high-contrast: active) {
+      @content;
+    }
   }
 }

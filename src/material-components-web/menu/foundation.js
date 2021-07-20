@@ -31,6 +31,7 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
         var _this = _super.call(this, __assign(__assign({}, MDCMenuFoundation.defaultAdapter), adapter)) || this;
         _this.closeAnimationEndTimerId = 0;
         _this.defaultFocusState = DefaultFocusState.LIST_ROOT;
+        _this.selectedIndex = -1;
         return _this;
     }
     Object.defineProperty(MDCMenuFoundation, "cssClasses", {
@@ -135,6 +136,10 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
     MDCMenuFoundation.prototype.setDefaultFocusState = function (focusState) {
         this.defaultFocusState = focusState;
     };
+    /** @return Index of the currently selected list item within the menu. */
+    MDCMenuFoundation.prototype.getSelectedIndex = function () {
+        return this.selectedIndex;
+    };
     /**
      * Selects the list item at `index` within the menu.
      * @param index Index of list item within the menu.
@@ -151,6 +156,7 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
         }
         this.adapter.addClassToElementAtIndex(index, cssClasses.MENU_SELECTED_LIST_ITEM);
         this.adapter.addAttributeToElementAtIndex(index, strings.ARIA_CHECKED_ATTR, 'true');
+        this.selectedIndex = index;
     };
     /**
      * Sets the enabled state to isEnabled for the menu item at the given index.

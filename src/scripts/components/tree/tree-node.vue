@@ -13,6 +13,8 @@
           }
         ]"
       >
+        <slot name="before" :data="getData(nodeData)"></slot>
+
         <div v-if="nodeData.level" class="mdc-tree-node__indent">
           <span
             v-for="level in nodeData.level"
@@ -70,7 +72,7 @@
           }}</slot>
         </label>
 
-        <slot name="action" :data="getData(nodeData)"></slot>
+        <slot name="after" :data="getData(nodeData)"></slot>
       </div>
 
       <ui-tree-node

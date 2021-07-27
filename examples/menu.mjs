@@ -4,6 +4,7 @@ export default [
   'checkbox',
   'dialog',
   'drawer',
+  'editor',
   'fab',
   'form',
   'grid',

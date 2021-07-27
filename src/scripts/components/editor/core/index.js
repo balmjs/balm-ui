@@ -12,7 +12,7 @@ async function createEditor(
   editorEl,
   { toolbarIcons, toolbarTips, toolbarOptions, options, emotions, extension }
 ) {
-  const Quill = (await import('quill')).default;
+  const Quill = require('quill');
   const toolbarHandlers = options.modules.toolbar.handlers;
   setEditor({
     Quill,

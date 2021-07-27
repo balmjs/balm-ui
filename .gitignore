@@ -34,4 +34,3 @@ dist/
 # Others
 docs/styles/svg
 .vscode/
-examples/hello-world/yarn.lock

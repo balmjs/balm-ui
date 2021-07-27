@@ -11,7 +11,7 @@ module.exports = {
         'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
       }
     }
-  },
+  }
   // chainWebpack: (config) => {
   //   config.resolve.alias
   //     .set('balm-ui-plus', 'balm-ui/dist/balm-ui-plus.js')

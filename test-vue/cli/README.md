@@ -1,4 +1,4 @@
-# hello-world
+# cli
 
 ## Project setup
 ```

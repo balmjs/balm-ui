@@ -12,7 +12,17 @@ import HelloBalmUI from './components/HelloBalmUI.vue';
 // Check out https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md
 </script>
 
-<style>
+<style lang="scss">
+@use '@material/theme/variables' as theme-variables with (
+  $primary: #f00
+);
+
+@use 'balm-ui/components/icon' with (
+  $font-path: 'balm-ui/fonts'
+);
+
+@use 'balm-ui/dist/balm-ui';
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

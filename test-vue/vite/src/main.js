@@ -1,8 +1,8 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 
-import BalmUI from 'balm-ui'; // Official Google Material Components
-import BalmUIPlus from 'balm-ui-plus'; // BalmJS Team Material Components
+import BalmUI from 'balm-ui';
+import BalmUIPlus from 'balm-ui-plus';
 import 'balm-ui-css';
 
 const app = createApp(App);

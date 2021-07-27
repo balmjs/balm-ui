@@ -83,8 +83,7 @@ function buildESModule(mix) {
     {
       file: `${config.output.dist}/balm-ui-plus.esm.js`,
       format: 'es',
-      banner,
-      inlineDynamicImports: true
+      banner
     }
   );
 }

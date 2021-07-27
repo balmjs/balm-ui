@@ -3,12 +3,11 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
-## v9.33.0 / 2021-07-27
+## v9.33.1 / 2021-07-27
 
-### Features
+### Chore
 
-- `<ui-editor>`: update core for esm
-- test: update test for vite
+- test: update test for vite (vite does not support source code usage)
 
 ## v9.32.0 / 2021-07-20
 

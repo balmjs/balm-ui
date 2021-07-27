@@ -3,18 +3,12 @@
   <ui-button icon="add" @click="$alert(content)">SayHi</ui-button>
 </template>
 
-<script>
+<script setup>
 import { reactive, toRefs } from 'vue';
 
 const state = reactive({
   content: 'Hello BalmUI'
 });
 
-export default {
-  setup() {
-    return {
-      ...toRefs(state)
-    };
-  }
-};
+const { content } = toRefs(state);
 </script>

@@ -212,6 +212,7 @@ function onBlurEmojiHandler(e) {
       ) {
         parentEl = parentEl.parentNode;
         if (
+          parentEl &&
           parentEl.classList &&
           parentEl.classList.contains('mdc-editor-container')
         ) {

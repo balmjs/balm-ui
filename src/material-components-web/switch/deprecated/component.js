@@ -31,7 +31,7 @@ var MDCSwitch = /** @class */ (function (_super) {
     __extends(MDCSwitch, _super);
     function MDCSwitch() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.ripple_ = _this.createRipple_();
+        _this.rippleSurface = _this.createRipple();
         return _this;
     }
     MDCSwitch.attachTo = function (root) {
@@ -39,20 +39,20 @@ var MDCSwitch = /** @class */ (function (_super) {
     };
     MDCSwitch.prototype.destroy = function () {
         _super.prototype.destroy.call(this);
-        this.ripple_.destroy();
-        this.nativeControl_.removeEventListener('change', this.changeHandler_);
+        this.rippleSurface.destroy();
+        this.nativeControl.removeEventListener('change', this.changeHandler);
     };
     MDCSwitch.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.changeHandler_ = function () {
+        this.changeHandler = function () {
             var _a;
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            return (_a = _this.foundation).handleChange.apply(_a, __spreadArray([], __read(args)));
+            (_a = _this.foundation).handleChange.apply(_a, __spreadArray([], __read(args)));
         };
-        this.nativeControl_.addEventListener('change', this.changeHandler_);
+        this.nativeControl.addEventListener('change', this.changeHandler);
         // Sometimes the checked state of the input element is saved in the history.
         // The switch styling should match the checked state of the input element.
         // Do an initial sync between the native control and the foundation.
@@ -65,26 +65,26 @@ var MDCSwitch = /** @class */ (function (_super) {
         var adapter = {
             addClass: function (className) { return _this.root.classList.add(className); },
             removeClass: function (className) { return _this.root.classList.remove(className); },
-            setNativeControlChecked: function (checked) { return _this.nativeControl_.checked =
+            setNativeControlChecked: function (checked) { return _this.nativeControl.checked =
                 checked; },
-            setNativeControlDisabled: function (disabled) { return _this.nativeControl_.disabled =
+            setNativeControlDisabled: function (disabled) { return _this.nativeControl.disabled =
                 disabled; },
             setNativeControlAttr: function (attr, value) {
-                return _this.nativeControl_.setAttribute(attr, value);
+                _this.nativeControl.setAttribute(attr, value);
             },
         };
         return new MDCSwitchFoundation(adapter);
     };
     Object.defineProperty(MDCSwitch.prototype, "ripple", {
         get: function () {
-            return this.ripple_;
+            return this.rippleSurface;
         },
         enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSwitch.prototype, "checked", {
         get: function () {
-            return this.nativeControl_.checked;
+            return this.nativeControl.checked;
         },
         set: function (checked) {
             this.foundation.setChecked(checked);
@@ -94,7 +94,7 @@ var MDCSwitch = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCSwitch.prototype, "disabled", {
         get: function () {
-            return this.nativeControl_.disabled;
+            return this.nativeControl.disabled;
         },
         set: function (disabled) {
             this.foundation.setDisabled(disabled);
@@ -102,16 +102,16 @@ var MDCSwitch = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
-    MDCSwitch.prototype.createRipple_ = function () {
+    MDCSwitch.prototype.createRipple = function () {
         var _this = this;
         var RIPPLE_SURFACE_SELECTOR = MDCSwitchFoundation.strings.RIPPLE_SURFACE_SELECTOR;
         var rippleSurface = this.root.querySelector(RIPPLE_SURFACE_SELECTOR);
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { addClass: function (className) { return rippleSurface.classList.add(className); }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (evtType, handler) {
-                _this.nativeControl_.removeEventListener(evtType, handler, applyPassive());
-            }, isSurfaceActive: function () { return matches(_this.nativeControl_, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
-                _this.nativeControl_.addEventListener(evtType, handler, applyPassive());
+                _this.nativeControl.removeEventListener(evtType, handler, applyPassive());
+            }, isSurfaceActive: function () { return matches(_this.nativeControl, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
+                _this.nativeControl.addEventListener(evtType, handler, applyPassive());
             }, removeClass: function (className) {
                 rippleSurface.classList.remove(className);
             }, updateCssVariable: function (varName, value) {
@@ -119,7 +119,7 @@ var MDCSwitch = /** @class */ (function (_super) {
             } });
         return new MDCRipple(this.root, new MDCRippleFoundation(adapter));
     };
-    Object.defineProperty(MDCSwitch.prototype, "nativeControl_", {
+    Object.defineProperty(MDCSwitch.prototype, "nativeControl", {
         get: function () {
             var NATIVE_CONTROL_SELECTOR = MDCSwitchFoundation.strings.NATIVE_CONTROL_SELECTOR;
             return this.root.querySelector(NATIVE_CONTROL_SELECTOR);

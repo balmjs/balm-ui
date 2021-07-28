@@ -114,9 +114,6 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
         this.isFullscreen = this.adapter.hasClass(cssClasses.FULLSCREEN);
     };
     MDCDialogFoundation.prototype.destroy = function () {
-        if (this.dialogOpen) {
-            this.close(strings.DESTROY_ACTION);
-        }
         if (this.animationTimer) {
             clearTimeout(this.animationTimer);
             this.handleAnimationTimerEnd();

@@ -33,7 +33,7 @@ var MDCTabScrollerRTLNegative = /** @class */ (function (_super) {
     };
     MDCTabScrollerRTLNegative.prototype.scrollToRTL = function (scrollX) {
         var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
-        var clampedScrollLeft = this.clampScrollValue_(-scrollX);
+        var clampedScrollLeft = this.clampScrollValue(-scrollX);
         return {
             finalScrollPosition: clampedScrollLeft,
             scrollDelta: clampedScrollLeft - currentScrollLeft,
@@ -41,7 +41,7 @@ var MDCTabScrollerRTLNegative = /** @class */ (function (_super) {
     };
     MDCTabScrollerRTLNegative.prototype.incrementScrollRTL = function (scrollX) {
         var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
-        var clampedScrollLeft = this.clampScrollValue_(currentScrollLeft - scrollX);
+        var clampedScrollLeft = this.clampScrollValue(currentScrollLeft - scrollX);
         return {
             finalScrollPosition: clampedScrollLeft,
             scrollDelta: clampedScrollLeft - currentScrollLeft,
@@ -50,7 +50,7 @@ var MDCTabScrollerRTLNegative = /** @class */ (function (_super) {
     MDCTabScrollerRTLNegative.prototype.getAnimatingScrollPosition = function (scrollX, translateX) {
         return scrollX - translateX;
     };
-    MDCTabScrollerRTLNegative.prototype.calculateScrollEdges_ = function () {
+    MDCTabScrollerRTLNegative.prototype.calculateScrollEdges = function () {
         var contentWidth = this.adapter.getScrollContentOffsetWidth();
         var rootWidth = this.adapter.getScrollAreaOffsetWidth();
         return {
@@ -58,8 +58,8 @@ var MDCTabScrollerRTLNegative = /** @class */ (function (_super) {
             right: 0,
         };
     };
-    MDCTabScrollerRTLNegative.prototype.clampScrollValue_ = function (scrollX) {
-        var edges = this.calculateScrollEdges_();
+    MDCTabScrollerRTLNegative.prototype.clampScrollValue = function (scrollX) {
+        var edges = this.calculateScrollEdges();
         return Math.max(Math.min(edges.right, scrollX), edges.left);
     };
     return MDCTabScrollerRTLNegative;

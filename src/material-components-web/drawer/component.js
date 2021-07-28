@@ -65,7 +65,7 @@ var MDCDrawer = /** @class */ (function (_super) {
     Object.defineProperty(MDCDrawer.prototype, "list", {
         // initialSyncWithDOM()
         get: function () {
-            return this.list_;
+            return this.innerList;
         },
         enumerable: false,
         configurable: true
@@ -75,41 +75,43 @@ var MDCDrawer = /** @class */ (function (_super) {
         if (listFactory === void 0) { listFactory = function (el) { return new MDCList(el); }; }
         var listEl = this.root.querySelector(strings.LIST_SELECTOR);
         if (listEl) {
-            this.list_ = listFactory(listEl);
-            this.list_.wrapFocus = true;
+            this.innerList = listFactory(listEl);
+            this.innerList.wrapFocus = true;
         }
-        this.focusTrapFactory_ = focusTrapFactory;
+        this.focusTrapFactory = focusTrapFactory;
     };
     MDCDrawer.prototype.initialSyncWithDOM = function () {
         var _this = this;
         var MODAL = cssClasses.MODAL;
         var SCRIM_SELECTOR = strings.SCRIM_SELECTOR;
-        this.scrim_ = this.root.parentNode
+        this.scrim = this.root.parentNode
             .querySelector(SCRIM_SELECTOR);
-        if (this.scrim_ && this.root.classList.contains(MODAL)) {
-            this.handleScrimClick_ = function () {
+        if (this.scrim && this.root.classList.contains(MODAL)) {
+            this.handleScrimClick = function () {
                 return _this.foundation.handleScrimClick();
             };
-            this.scrim_.addEventListener('click', this.handleScrimClick_);
-            this.focusTrap_ = util.createFocusTrapInstance(this.root, this.focusTrapFactory_);
+            this.scrim.addEventListener('click', this.handleScrimClick);
+            this.focusTrap = util.createFocusTrapInstance(this.root, this.focusTrapFactory);
         }
-        this.handleKeydown_ = function (evt) { return _this.foundation.handleKeydown(evt); };
-        this.handleTransitionEnd_ = function (evt) {
-            return _this.foundation.handleTransitionEnd(evt);
+        this.handleKeydown = function (evt) {
+            _this.foundation.handleKeydown(evt);
         };
-        this.listen('keydown', this.handleKeydown_);
-        this.listen('transitionend', this.handleTransitionEnd_);
+        this.handleTransitionEnd = function (evt) {
+            _this.foundation.handleTransitionEnd(evt);
+        };
+        this.listen('keydown', this.handleKeydown);
+        this.listen('transitionend', this.handleTransitionEnd);
     };
     MDCDrawer.prototype.destroy = function () {
-        this.unlisten('keydown', this.handleKeydown_);
-        this.unlisten('transitionend', this.handleTransitionEnd_);
-        if (this.list_) {
-            this.list_.destroy();
+        this.unlisten('keydown', this.handleKeydown);
+        this.unlisten('transitionend', this.handleTransitionEnd);
+        if (this.innerList) {
+            this.innerList.destroy();
         }
         var MODAL = cssClasses.MODAL;
-        if (this.scrim_ && this.handleScrimClick_ &&
+        if (this.scrim && this.handleScrimClick &&
             this.root.classList.contains(MODAL)) {
-            this.scrim_.removeEventListener('click', this.handleScrimClick_);
+            this.scrim.removeEventListener('click', this.handleScrimClick);
             // Ensure drawer is closed to hide scrim and release focus
             this.open = false;
         }
@@ -121,15 +123,21 @@ var MDCDrawer = /** @class */ (function (_super) {
         // methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            addClass: function (className) { return _this.root.classList.add(className); },
-            removeClass: function (className) { return _this.root.classList.remove(className); },
+            addClass: function (className) {
+                _this.root.classList.add(className);
+            },
+            removeClass: function (className) {
+                _this.root.classList.remove(className);
+            },
             hasClass: function (className) { return _this.root.classList.contains(className); },
             elementHasClass: function (element, className) {
                 return element.classList.contains(className);
             },
-            saveFocus: function () { return _this.previousFocus_ = document.activeElement; },
+            saveFocus: function () {
+                _this.previousFocus = document.activeElement;
+            },
             restoreFocus: function () {
-                var previousFocus = _this.previousFocus_;
+                var previousFocus = _this.previousFocus;
                 if (previousFocus && previousFocus.focus &&
                     _this.root.contains(document.activeElement)) {
                     previousFocus.focus();
@@ -142,13 +150,17 @@ var MDCDrawer = /** @class */ (function (_super) {
                 }
             },
             notifyClose: function () {
-                return _this.emit(strings.CLOSE_EVENT, {}, true /* shouldBubble */);
+                _this.emit(strings.CLOSE_EVENT, {}, true /* shouldBubble */);
             },
             notifyOpen: function () {
-                return _this.emit(strings.OPEN_EVENT, {}, true /* shouldBubble */);
+                _this.emit(strings.OPEN_EVENT, {}, true /* shouldBubble */);
             },
-            trapFocus: function () { return _this.focusTrap_.trapFocus(); },
-            releaseFocus: function () { return _this.focusTrap_.releaseFocus(); },
+            trapFocus: function () {
+                _this.focusTrap.trapFocus();
+            },
+            releaseFocus: function () {
+                _this.focusTrap.releaseFocus();
+            },
         };
         // tslint:enable:object-literal-sort-keys
         var DISMISSIBLE = cssClasses.DISMISSIBLE, MODAL = cssClasses.MODAL;

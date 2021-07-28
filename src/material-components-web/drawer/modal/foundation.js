@@ -37,13 +37,13 @@ var MDCModalDrawerFoundation = /** @class */ (function (_super) {
     /**
      * Called when drawer finishes open animation.
      */
-    MDCModalDrawerFoundation.prototype.opened_ = function () {
+    MDCModalDrawerFoundation.prototype.opened = function () {
         this.adapter.trapFocus();
     };
     /**
      * Called when drawer finishes close animation.
      */
-    MDCModalDrawerFoundation.prototype.closed_ = function () {
+    MDCModalDrawerFoundation.prototype.closed = function () {
         this.adapter.releaseFocus();
     };
     return MDCModalDrawerFoundation;

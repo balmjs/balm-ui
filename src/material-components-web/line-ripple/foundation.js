@@ -27,7 +27,9 @@ var MDCLineRippleFoundation = /** @class */ (function (_super) {
     __extends(MDCLineRippleFoundation, _super);
     function MDCLineRippleFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCLineRippleFoundation.defaultAdapter), adapter)) || this;
-        _this.transitionEndHandler_ = function (evt) { return _this.handleTransitionEnd(evt); };
+        _this.transitionEndHandler = function (evt) {
+            _this.handleTransitionEnd(evt);
+        };
         return _this;
     }
     Object.defineProperty(MDCLineRippleFoundation, "cssClasses", {
@@ -57,10 +59,10 @@ var MDCLineRippleFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     MDCLineRippleFoundation.prototype.init = function () {
-        this.adapter.registerEventHandler('transitionend', this.transitionEndHandler_);
+        this.adapter.registerEventHandler('transitionend', this.transitionEndHandler);
     };
     MDCLineRippleFoundation.prototype.destroy = function () {
-        this.adapter.deregisterEventHandler('transitionend', this.transitionEndHandler_);
+        this.adapter.deregisterEventHandler('transitionend', this.transitionEndHandler);
     };
     MDCLineRippleFoundation.prototype.activate = function () {
         this.adapter.removeClass(cssClasses.LINE_RIPPLE_DEACTIVATING);

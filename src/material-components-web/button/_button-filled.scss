@@ -24,8 +24,6 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use 'sass:map';
-@use '../elevation/functions' as elevation-functions;
-@use '../elevation/mixins' as elevation-mixins;
 @use '../feature-targeting/feature-targeting';
 @use './button-base';
 @use './button-filled-theme';
@@ -60,7 +58,8 @@
 @mixin _theme-styles($theme, $query: feature-targeting.all()) {
   // TODO(b/179402677): move into theme config.
   @include button-shared-theme.horizontal-padding(
-    button-shared-theme.$contained-horizontal-padding,
+    $padding: button-shared-theme.$contained-horizontal-padding,
+    $padding-icon: button-shared-theme.$contained-horizontal-padding-icon,
     $query: $query
   );
 
@@ -72,7 +71,7 @@
   @include filled($query);
 }
 
-@mixin deprecated-theme-styles-without-ripple($query: feature-targeting.all()) {
+@mixin deprecated-theme-styles($query: feature-targeting.all()) {
   .mdc-button--raised,
   .mdc-button--unelevated {
     // TODO(b/179402677): move into theme config.
@@ -84,7 +83,17 @@
     $theme: map.merge(
       button-filled-theme.$light-theme,
       (
-        ripple-color: null,
+        focus-state-layer-color: null,
+        focus-state-layer-opacity: null,
+        hover-state-layer-color: null,
+        hover-state-layer-opacity: null,
+        pressed-state-layer-color: null,
+        pressed-state-layer-opacity: null,
+        label-text-font: null,
+        label-text-size: null,
+        label-text-tracking: null,
+        label-text-transform: null,
+        label-text-weight: null,
       )
     );
     @include button-filled-theme.theme($theme, $query: $query);

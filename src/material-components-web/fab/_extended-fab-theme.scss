@@ -23,8 +23,6 @@
 
 @use '../animation/functions' as animation-functions;
 @use '../elevation/elevation-theme';
-@use '../elevation/mixins' as elevation-mixins;
-@use '../elevation/variables' as elevation-variables;
 @use '../feature-targeting/feature-targeting';
 @use '../dom/mixins' as dom-mixins;
 @use '../ripple/ripple';
@@ -38,6 +36,7 @@
 @use '../theme/state';
 @use '../theme/theme-color';
 @use '../theme/theme';
+@use '../tokens/resolvers';
 @use '../touch-target/mixins' as touch-target-mixins;
 @use '../typography/typography';
 @use './fab-theme';
@@ -51,38 +50,45 @@ $extended-height: 48px !default;
 
 $_extended-light-theme: (
   container-color: theme-color.$surface,
-  container-shape: 50%,
+  container-elevation: 3,
   container-height: 56px,
-  container-elevation: elevation-theme.get-elevation(3),
-  icon-size: 36px,
-  icon-color: null,
-  label-text-font: typography.get-font(button),
-  label-text-size: typography.get-size(button),
-  label-text-weight: typography.get-weight(button),
-  label-text-tracking: typography.get-tracking(button),
-  label-text-color: theme-color.$on-surface,
-  hover-container-elevation: null,
-  hover-state-layer-color: theme-color.$primary,
-  hover-state-layer-opacity: null,
-  hover-icon-color: null,
-  hover-label-text-color: null,
+  container-shadow-color: black,
+  container-shape: 50%,
   focus-container-elevation: null,
-  focus-state-layer-color: theme-color.$primary,
-  focus-state-layer-opacity: null,
-  focus-outline-color: null,
-  focus-outline-width: null,
   focus-icon-color: null,
   focus-label-text-color: null,
+  focus-outline-color: null,
+  focus-outline-width: null,
+  focus-state-layer-color: theme-color.$primary,
+  focus-state-layer-opacity: null,
+  hover-container-elevation: null,
+  hover-icon-color: null,
+  hover-label-text-color: null,
+  hover-state-layer-color: theme-color.$primary,
+  hover-state-layer-opacity: null,
+  icon-color: null,
+  icon-size: 36px,
+  label-text-color: theme-color.$on-surface,
+  label-text-font: typography.get-font(button),
+  label-text-size: typography.get-size(button),
+  label-text-tracking: typography.get-tracking(button),
+  label-text-weight: typography.get-weight(button),
+  lowered-container-elevation: null,
+  lowered-focus-container-elevation: null,
+  lowered-hover-container-elevation: null,
+  lowered-pressed-container-elevation: null,
   pressed-container-elevation: null,
-  pressed-ripple-color: theme-color.$primary,
-  pressed-ripple-opacity: null,
   pressed-icon-color: null,
   pressed-label-text-color: null,
+  pressed-ripple-color: null,
+  pressed-ripple-opacity: null,
+  pressed-state-layer-color: theme-color.$primary,
+  pressed-state-layer-opacity: null,
 );
 
-@mixin theme($theme) {
+@mixin theme($theme, $resolvers: resolvers.$material) {
   @include theme.validate-keys($_extended-light-theme, $theme);
-  @include fab-theme.base-theme($theme);
+  @include fab-theme.base-theme($theme, $resolvers: $resolvers);
   $container-shape: map.get($theme, container-shape);
   @if $container-shape {
     @include extended-shape-radius($container-shape);

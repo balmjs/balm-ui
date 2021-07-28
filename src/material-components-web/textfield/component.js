@@ -29,11 +29,11 @@ import { MDCLineRipple } from '../line-ripple/component';
 import { MDCNotchedOutline } from '../notched-outline/component';
 import { MDCRipple } from '../ripple/component';
 import { MDCRippleFoundation } from '../ripple/foundation';
-import { MDCTextFieldCharacterCounter, } from './character-counter/component';
+import { MDCTextFieldCharacterCounter } from './character-counter/component';
 import { MDCTextFieldCharacterCounterFoundation } from './character-counter/foundation';
 import { cssClasses, strings } from './constants';
 import { MDCTextFieldFoundation } from './foundation';
-import { MDCTextFieldHelperText, } from './helper-text/component';
+import { MDCTextFieldHelperText } from './helper-text/component';
 import { MDCTextFieldHelperTextFoundation } from './helper-text/foundation';
 import { MDCTextFieldIcon } from './icon/component';
 var MDCTextField = /** @class */ (function (_super) {
@@ -52,19 +52,21 @@ var MDCTextField = /** @class */ (function (_super) {
         if (iconFactory === void 0) { iconFactory = function (el) { return new MDCTextFieldIcon(el); }; }
         if (labelFactory === void 0) { labelFactory = function (el) { return new MDCFloatingLabel(el); }; }
         if (outlineFactory === void 0) { outlineFactory = function (el) { return new MDCNotchedOutline(el); }; }
-        this.input_ = this.root.querySelector(strings.INPUT_SELECTOR);
+        this.input =
+            this.root.querySelector(strings.INPUT_SELECTOR);
         var labelElement = this.root.querySelector(strings.LABEL_SELECTOR);
-        this.label_ = labelElement ? labelFactory(labelElement) : null;
+        this.label = labelElement ? labelFactory(labelElement) : null;
         var lineRippleElement = this.root.querySelector(strings.LINE_RIPPLE_SELECTOR);
-        this.lineRipple_ = lineRippleElement ? lineRippleFactory(lineRippleElement) : null;
+        this.lineRipple =
+            lineRippleElement ? lineRippleFactory(lineRippleElement) : null;
         var outlineElement = this.root.querySelector(strings.OUTLINE_SELECTOR);
-        this.outline_ = outlineElement ? outlineFactory(outlineElement) : null;
+        this.outline = outlineElement ? outlineFactory(outlineElement) : null;
         // Helper text
         var helperTextStrings = MDCTextFieldHelperTextFoundation.strings;
         var nextElementSibling = this.root.nextElementSibling;
         var hasHelperLine = (nextElementSibling && nextElementSibling.classList.contains(cssClasses.HELPER_LINE));
         var helperTextEl = hasHelperLine && nextElementSibling && nextElementSibling.querySelector(helperTextStrings.ROOT_SELECTOR);
-        this.helperText_ = helperTextEl ? helperTextFactory(helperTextEl) : null;
+        this.helperText = helperTextEl ? helperTextFactory(helperTextEl) : null;
         // Character counter
         var characterCounterStrings = MDCTextFieldCharacterCounterFoundation.strings;
         var characterCounterEl = this.root.querySelector(characterCounterStrings.ROOT_SELECTOR);
@@ -72,42 +74,43 @@ var MDCTextField = /** @class */ (function (_super) {
         if (!characterCounterEl && hasHelperLine && nextElementSibling) {
             characterCounterEl = nextElementSibling.querySelector(characterCounterStrings.ROOT_SELECTOR);
         }
-        this.characterCounter_ = characterCounterEl ? characterCounterFactory(characterCounterEl) : null;
+        this.characterCounter =
+            characterCounterEl ? characterCounterFactory(characterCounterEl) : null;
         // Leading icon
         var leadingIconEl = this.root.querySelector(strings.LEADING_ICON_SELECTOR);
-        this.leadingIcon_ = leadingIconEl ? iconFactory(leadingIconEl) : null;
+        this.leadingIcon = leadingIconEl ? iconFactory(leadingIconEl) : null;
         // Trailing icon
         var trailingIconEl = this.root.querySelector(strings.TRAILING_ICON_SELECTOR);
-        this.trailingIcon_ = trailingIconEl ? iconFactory(trailingIconEl) : null;
+        this.trailingIcon = trailingIconEl ? iconFactory(trailingIconEl) : null;
         // Prefix and Suffix
-        this.prefix_ = this.root.querySelector(strings.PREFIX_SELECTOR);
-        this.suffix_ = this.root.querySelector(strings.SUFFIX_SELECTOR);
-        this.ripple = this.createRipple_(rippleFactory);
+        this.prefix = this.root.querySelector(strings.PREFIX_SELECTOR);
+        this.suffix = this.root.querySelector(strings.SUFFIX_SELECTOR);
+        this.ripple = this.createRipple(rippleFactory);
     };
     MDCTextField.prototype.destroy = function () {
         if (this.ripple) {
             this.ripple.destroy();
         }
-        if (this.lineRipple_) {
-            this.lineRipple_.destroy();
+        if (this.lineRipple) {
+            this.lineRipple.destroy();
         }
-        if (this.helperText_) {
-            this.helperText_.destroy();
+        if (this.helperText) {
+            this.helperText.destroy();
         }
-        if (this.characterCounter_) {
-            this.characterCounter_.destroy();
+        if (this.characterCounter) {
+            this.characterCounter.destroy();
         }
-        if (this.leadingIcon_) {
-            this.leadingIcon_.destroy();
+        if (this.leadingIcon) {
+            this.leadingIcon.destroy();
         }
-        if (this.trailingIcon_) {
-            this.trailingIcon_.destroy();
+        if (this.trailingIcon) {
+            this.trailingIcon.destroy();
         }
-        if (this.label_) {
-            this.label_.destroy();
+        if (this.label) {
+            this.label.destroy();
         }
-        if (this.outline_) {
-            this.outline_.destroy();
+        if (this.outline) {
+            this.outline.destroy();
         }
         _super.prototype.destroy.call(this);
     };
@@ -116,7 +119,7 @@ var MDCTextField = /** @class */ (function (_super) {
      * state.
      */
     MDCTextField.prototype.initialSyncWithDOM = function () {
-        this.disabled = this.input_.disabled;
+        this.disabled = this.input.disabled;
     };
     Object.defineProperty(MDCTextField.prototype, "value", {
         get: function () {
@@ -159,46 +162,46 @@ var MDCTextField = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCTextField.prototype, "required", {
         get: function () {
-            return this.input_.required;
+            return this.input.required;
         },
         /**
          * @param required Sets the Text Field to required.
          */
         set: function (required) {
-            this.input_.required = required;
+            this.input.required = required;
         },
         enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "pattern", {
         get: function () {
-            return this.input_.pattern;
+            return this.input.pattern;
         },
         /**
          * @param pattern Sets the input element's validation pattern.
          */
         set: function (pattern) {
-            this.input_.pattern = pattern;
+            this.input.pattern = pattern;
         },
         enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "minLength", {
         get: function () {
-            return this.input_.minLength;
+            return this.input.minLength;
         },
         /**
          * @param minLength Sets the input element's minLength.
          */
         set: function (minLength) {
-            this.input_.minLength = minLength;
+            this.input.minLength = minLength;
         },
         enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "maxLength", {
         get: function () {
-            return this.input_.maxLength;
+            return this.input.maxLength;
         },
         /**
          * @param maxLength Sets the input element's maxLength.
@@ -206,10 +209,10 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (maxLength) {
             // Chrome throws exception if maxLength is set to a value less than zero
             if (maxLength < 0) {
-                this.input_.removeAttribute('maxLength');
+                this.input.removeAttribute('maxLength');
             }
             else {
-                this.input_.maxLength = maxLength;
+                this.input.maxLength = maxLength;
             }
         },
         enumerable: false,
@@ -217,39 +220,39 @@ var MDCTextField = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCTextField.prototype, "min", {
         get: function () {
-            return this.input_.min;
+            return this.input.min;
         },
         /**
          * @param min Sets the input element's min.
          */
         set: function (min) {
-            this.input_.min = min;
+            this.input.min = min;
         },
         enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "max", {
         get: function () {
-            return this.input_.max;
+            return this.input.max;
         },
         /**
          * @param max Sets the input element's max.
          */
         set: function (max) {
-            this.input_.max = max;
+            this.input.max = max;
         },
         enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "step", {
         get: function () {
-            return this.input_.step;
+            return this.input.step;
         },
         /**
          * @param step Sets the input element's step.
          */
         set: function (step) {
-            this.input_.step = step;
+            this.input.step = step;
         },
         enumerable: false,
         configurable: true
@@ -320,14 +323,14 @@ var MDCTextField = /** @class */ (function (_super) {
          * Gets the text content of the prefix, or null if it does not exist.
          */
         get: function () {
-            return this.prefix_ ? this.prefix_.textContent : null;
+            return this.prefix ? this.prefix.textContent : null;
         },
         /**
          * Sets the text content of the prefix, if it exists.
          */
         set: function (prefixText) {
-            if (this.prefix_) {
-                this.prefix_.textContent = prefixText;
+            if (this.prefix) {
+                this.prefix.textContent = prefixText;
             }
         },
         enumerable: false,
@@ -338,14 +341,14 @@ var MDCTextField = /** @class */ (function (_super) {
          * Gets the text content of the suffix, or null if it does not exist.
          */
         get: function () {
-            return this.suffix_ ? this.suffix_.textContent : null;
+            return this.suffix ? this.suffix.textContent : null;
         },
         /**
          * Sets the text content of the suffix, if it exists.
          */
         set: function (suffixText) {
-            if (this.suffix_) {
-                this.suffix_.textContent = suffixText;
+            if (this.suffix) {
+                this.suffix.textContent = suffixText;
             }
         },
         enumerable: false,
@@ -355,7 +358,7 @@ var MDCTextField = /** @class */ (function (_super) {
      * Focuses the input element.
      */
     MDCTextField.prototype.focus = function () {
-        this.input_.focus();
+        this.input.focus();
     };
     /**
      * Recomputes the outline SVG path for the outline element.
@@ -368,11 +371,11 @@ var MDCTextField = /** @class */ (function (_super) {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
-        var adapter = __assign(__assign(__assign(__assign(__assign({}, this.getRootAdapterMethods_()), this.getInputAdapterMethods_()), this.getLabelAdapterMethods_()), this.getLineRippleAdapterMethods_()), this.getOutlineAdapterMethods_());
+        var adapter = __assign(__assign(__assign(__assign(__assign({}, this.getRootAdapterMethods()), this.getInputAdapterMethods()), this.getLabelAdapterMethods()), this.getLineRippleAdapterMethods()), this.getOutlineAdapterMethods());
         // tslint:enable:object-literal-sort-keys
-        return new MDCTextFieldFoundation(adapter, this.getFoundationMap_());
+        return new MDCTextFieldFoundation(adapter, this.getFoundationMap());
     };
-    MDCTextField.prototype.getRootAdapterMethods_ = function () {
+    MDCTextField.prototype.getRootAdapterMethods = function () {
         var _this = this;
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         return {
@@ -393,7 +396,7 @@ var MDCTextField = /** @class */ (function (_super) {
                 };
                 var observer = new MutationObserver(function (mutationsList) { return handler(getAttributesList(mutationsList)); });
                 var config = { attributes: true };
-                observer.observe(_this.input_, config);
+                observer.observe(_this.input, config);
                 return observer;
             },
             deregisterValidationAttributeChangeHandler: function (observer) {
@@ -402,84 +405,93 @@ var MDCTextField = /** @class */ (function (_super) {
         };
         // tslint:enable:object-literal-sort-keys
     };
-    MDCTextField.prototype.getInputAdapterMethods_ = function () {
+    MDCTextField.prototype.getInputAdapterMethods = function () {
         var _this = this;
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         return {
-            getNativeInput: function () { return _this.input_; },
+            getNativeInput: function () { return _this.input; },
             setInputAttr: function (attr, value) {
-                _this.input_.setAttribute(attr, value);
+                _this.input.setAttribute(attr, value);
             },
             removeInputAttr: function (attr) {
-                _this.input_.removeAttribute(attr);
+                _this.input.removeAttribute(attr);
             },
-            isFocused: function () { return document.activeElement === _this.input_; },
+            isFocused: function () { return document.activeElement === _this.input; },
             registerInputInteractionHandler: function (evtType, handler) {
-                _this.input_.addEventListener(evtType, handler, applyPassive());
+                _this.input.addEventListener(evtType, handler, applyPassive());
             },
             deregisterInputInteractionHandler: function (evtType, handler) {
-                _this.input_.removeEventListener(evtType, handler, applyPassive());
+                _this.input.removeEventListener(evtType, handler, applyPassive());
             },
         };
         // tslint:enable:object-literal-sort-keys
     };
-    MDCTextField.prototype.getLabelAdapterMethods_ = function () {
+    MDCTextField.prototype.getLabelAdapterMethods = function () {
         var _this = this;
         return {
-            floatLabel: function (shouldFloat) { return _this.label_ && _this.label_.float(shouldFloat); },
-            getLabelWidth: function () { return _this.label_ ? _this.label_.getWidth() : 0; },
-            hasLabel: function () { return Boolean(_this.label_); },
-            shakeLabel: function (shouldShake) { return _this.label_ && _this.label_.shake(shouldShake); },
-            setLabelRequired: function (isRequired) { return _this.label_ && _this.label_.setRequired(isRequired); },
+            floatLabel: function (shouldFloat) {
+                _this.label && _this.label.float(shouldFloat);
+            },
+            getLabelWidth: function () { return _this.label ? _this.label.getWidth() : 0; },
+            hasLabel: function () { return Boolean(_this.label); },
+            shakeLabel: function (shouldShake) {
+                _this.label && _this.label.shake(shouldShake);
+            },
+            setLabelRequired: function (isRequired) {
+                _this.label && _this.label.setRequired(isRequired);
+            },
         };
     };
-    MDCTextField.prototype.getLineRippleAdapterMethods_ = function () {
+    MDCTextField.prototype.getLineRippleAdapterMethods = function () {
         var _this = this;
         return {
             activateLineRipple: function () {
-                if (_this.lineRipple_) {
-                    _this.lineRipple_.activate();
+                if (_this.lineRipple) {
+                    _this.lineRipple.activate();
                 }
             },
             deactivateLineRipple: function () {
-                if (_this.lineRipple_) {
-                    _this.lineRipple_.deactivate();
+                if (_this.lineRipple) {
+                    _this.lineRipple.deactivate();
                 }
             },
             setLineRippleTransformOrigin: function (normalizedX) {
-                if (_this.lineRipple_) {
-                    _this.lineRipple_.setRippleCenter(normalizedX);
+                if (_this.lineRipple) {
+                    _this.lineRipple.setRippleCenter(normalizedX);
                 }
             },
         };
     };
-    MDCTextField.prototype.getOutlineAdapterMethods_ = function () {
+    MDCTextField.prototype.getOutlineAdapterMethods = function () {
         var _this = this;
         return {
-            closeOutline: function () { return _this.outline_ && _this.outline_.closeNotch(); },
-            hasOutline: function () { return Boolean(_this.outline_); },
-            notchOutline: function (labelWidth) { return _this.outline_ && _this.outline_.notch(labelWidth); },
+            closeOutline: function () {
+                _this.outline && _this.outline.closeNotch();
+            },
+            hasOutline: function () { return Boolean(_this.outline); },
+            notchOutline: function (labelWidth) {
+                _this.outline && _this.outline.notch(labelWidth);
+            },
         };
     };
     /**
      * @return A map of all subcomponents to subfoundations.
      */
-    MDCTextField.prototype.getFoundationMap_ = function () {
+    MDCTextField.prototype.getFoundationMap = function () {
         return {
-            characterCounter: this.characterCounter_ ?
-                this.characterCounter_.foundationForTextField :
+            characterCounter: this.characterCounter ?
+                this.characterCounter.foundationForTextField :
                 undefined,
-            helperText: this.helperText_ ? this.helperText_.foundationForTextField :
+            helperText: this.helperText ? this.helperText.foundationForTextField :
                 undefined,
-            leadingIcon: this.leadingIcon_ ?
-                this.leadingIcon_.foundationForTextField :
+            leadingIcon: this.leadingIcon ? this.leadingIcon.foundationForTextField :
                 undefined,
-            trailingIcon: this.trailingIcon_ ?
-                this.trailingIcon_.foundationForTextField :
+            trailingIcon: this.trailingIcon ?
+                this.trailingIcon.foundationForTextField :
                 undefined,
         };
     };
-    MDCTextField.prototype.createRipple_ = function (rippleFactory) {
+    MDCTextField.prototype.createRipple = function (rippleFactory) {
         var _this = this;
         var isTextArea = this.root.classList.contains(cssClasses.TEXTAREA);
         var isOutlined = this.root.classList.contains(cssClasses.OUTLINED);
@@ -489,8 +501,10 @@ var MDCTextField = /** @class */ (function (_super) {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
-        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { isSurfaceActive: function () { return ponyfill.matches(_this.input_, ':active'); }, registerInteractionHandler: function (evtType, handler) { return _this.input_.addEventListener(evtType, handler, applyPassive()); }, deregisterInteractionHandler: function (evtType, handler) {
-                return _this.input_.removeEventListener(evtType, handler, applyPassive());
+        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { isSurfaceActive: function () { return ponyfill.matches(_this.input, ':active'); }, registerInteractionHandler: function (evtType, handler) {
+                _this.input.addEventListener(evtType, handler, applyPassive());
+            }, deregisterInteractionHandler: function (evtType, handler) {
+                _this.input.removeEventListener(evtType, handler, applyPassive());
             } });
         // tslint:enable:object-literal-sort-keys
         return rippleFactory(this.root, new MDCRippleFoundation(adapter));

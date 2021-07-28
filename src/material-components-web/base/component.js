@@ -30,8 +30,9 @@ var MDCComponent = /** @class */ (function () {
         }
         this.root = root;
         this.initialize.apply(this, __spreadArray([], __read(args)));
-        // Note that we initialize foundation here and not within the constructor's default param so that
-        // this.root_ is defined and can be used within the foundation class.
+        // Note that we initialize foundation here and not within the constructor's
+        // default param so that this.root is defined and can be used within the
+        // foundation class.
         this.foundation =
             foundation === undefined ? this.getDefaultFoundation() : foundation;
         this.foundation.init();

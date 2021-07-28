@@ -159,6 +159,12 @@
     }
   }
 
+  .mdc-evolution-chip__action--presentational {
+    @include feature-targeting.targets($feat-structure) {
+      cursor: auto;
+    }
+  }
+
   .mdc-evolution-chip--disabled,
   .mdc-evolution-chip__action:disabled {
     @include feature-targeting.targets($feat-structure) {
@@ -418,7 +424,7 @@
 @mixin _high-contrast-mode($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
-  @include dom.ie-high-contrast-mode {
+  @include dom.forced-colors-mode {
     @include chip-theme.outline-color(
       (
         disabled: GrayText,
@@ -470,7 +476,7 @@
     }
   }
 
-  .mdc-evolution-chip__action {
+  .mdc-evolution-chip__action:not(.mdc-evolution-chip__action--presentational) {
     @include ripple-theme.focus() {
       &:after {
         @include feature-targeting.targets($feat-structure) {

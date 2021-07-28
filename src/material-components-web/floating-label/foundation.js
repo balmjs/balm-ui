@@ -27,7 +27,9 @@ var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
     __extends(MDCFloatingLabelFoundation, _super);
     function MDCFloatingLabelFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCFloatingLabelFoundation.defaultAdapter), adapter)) || this;
-        _this.shakeAnimationEndHandler_ = function () { return _this.handleShakeAnimationEnd_(); };
+        _this.shakeAnimationEndHandler = function () {
+            _this.handleShakeAnimationEnd();
+        };
         return _this;
     }
     Object.defineProperty(MDCFloatingLabelFoundation, "cssClasses", {
@@ -56,10 +58,10 @@ var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     MDCFloatingLabelFoundation.prototype.init = function () {
-        this.adapter.registerInteractionHandler('animationend', this.shakeAnimationEndHandler_);
+        this.adapter.registerInteractionHandler('animationend', this.shakeAnimationEndHandler);
     };
     MDCFloatingLabelFoundation.prototype.destroy = function () {
-        this.adapter.deregisterInteractionHandler('animationend', this.shakeAnimationEndHandler_);
+        this.adapter.deregisterInteractionHandler('animationend', this.shakeAnimationEndHandler);
     };
     /**
      * Returns the width of the label element.
@@ -107,7 +109,7 @@ var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
             this.adapter.removeClass(LABEL_REQUIRED);
         }
     };
-    MDCFloatingLabelFoundation.prototype.handleShakeAnimationEnd_ = function () {
+    MDCFloatingLabelFoundation.prototype.handleShakeAnimationEnd = function () {
         var LABEL_SHAKE = MDCFloatingLabelFoundation.cssClasses.LABEL_SHAKE;
         this.adapter.removeClass(LABEL_SHAKE);
     };

@@ -21,13 +21,15 @@
  * THE SOFTWARE.
  */
 import { __extends, __read, __spreadArray, __values } from "tslib";
+import { getDescriptor } from './observer';
 /**
  * Mixin to add `MDCObserver` functionality to an optional base class.
  *
+ * @deprecated Prefer MDCObserverFoundation for stricter closure compliance.
  * @template C Optional base class constructor type.
- * @param {C} baseClass - Optional base class.
- * @return {Constructor<MDCObserver> & C} A class that extends the optional base
- *     class with `MDCObserver` functionality.
+ * @param baseClass - Optional base class.
+ * @return A class that extends the optional base class with `MDCObserver`
+ *     functionality.
  */
 export function mdcObserver(baseClass) {
     var _a, _b;
@@ -124,12 +126,12 @@ var getObservers = Symbol();
  *
  * @template T The observed target type.
  * @template K The observed property.
- * @param {T} target - The target to observe.
- * @param {K} property - The property of the target to observe.
- * @param {Observer<T, K>} - An observer function to invoke each time the
- *     property changes.
- * @return {Function} A cleanup function that will stop observing changes for
- *     the provided `Observer`.
+ * @param target - The target to observe.
+ * @param property - The property of the target to observe.
+ * @param observer - An observer function to invoke each time the property
+ *     changes.
+ * @return A cleanup function that will stop observing changes for the provided
+ *     `Observer`.
  */
 export function observeProperty(target, property, observer) {
     var observerPrototype = installObserver(target);
@@ -147,9 +149,8 @@ export function observeProperty(target, property, observer) {
  * prototype.
  *
  * @template T The observed target type.
- * @param {T} target - The target to observe.
- * @return {TargetObservers<T>} The installed `TargetObservers` for the provided
- *     target.
+ * @param target - The target to observe.
+ * @return The installed `TargetObservers` for the provided target.
  */
 function installObserver(target) {
     var e_4, _a, e_5, _b;
@@ -166,7 +167,7 @@ function installObserver(target) {
     try {
         for (var keys_1 = __values(keys), keys_1_1 = keys_1.next(); !keys_1_1.done; keys_1_1 = keys_1.next()) {
             var key = keys_1_1.value;
-            var descriptor = Object.getOwnPropertyDescriptor(target, key);
+            var descriptor = getDescriptor(target, key);
             if (descriptor && descriptor.writable) {
                 existingKeyValues.set(key, descriptor.value);
                 delete target[key];
@@ -181,14 +182,16 @@ function installObserver(target) {
         finally { if (e_4) throw e_4.error; }
     }
     var proxy = new Proxy(Object.create(prototype), {
-        get: function (target, key) {
-            return Reflect.get(target, key);
+        get: function (target, key, receiver) {
+            return Reflect.get(target, key, receiver);
         },
-        set: function (target, key, newValue) {
+        set: function (target, key, newValue, receiver) {
             var e_6, _a;
             var isTargetObserversKey = key === isTargetObservers ||
                 key === isEnabled || key === getObservers;
-            var previous = Reflect.get(target, key);
+            var previous = Reflect.get(target, key, receiver);
+            // Do not use receiver when setting the target's key. We do not want
+            // to change whatever the target's inherent receiver is.
             Reflect.set(target, key, newValue);
             if (!isTargetObserversKey && proxy[isEnabled] &&
                 newValue !== previous) {
@@ -241,8 +244,8 @@ function installObserver(target) {
  * properties will not call any observers when disabled.
  *
  * @template T The observed target type.
- * @param {T} target - The target to enable or disable observers for.
- * @param {Boolean} enabled - True to enable or false to disable observers.
+ * @param target - The target to enable or disable observers for.
+ * @param enabled - True to enable or false to disable observers.
  */
 export function setObserversEnabled(target, enabled) {
     var prototype = Object.getPrototypeOf(target);

@@ -24,9 +24,12 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
 @use '../density/functions' as density-functions;
 @use '../density/variables' as density-variables;
 @use '../dom/mixins' as dom-mixins;
+@use '../elevation/elevation-theme';
 @use '../feature-targeting/feature-targeting';
 @use '../ripple/ripple-theme';
 @use '../shape/mixins' as shape-mixins;
@@ -39,6 +42,9 @@
 $height: 36px !default;
 $horizontal-padding: 8px !default;
 $contained-horizontal-padding: 16px !default;
+// For a contained button with an icon, the padding on the side of the
+// button with the icon.
+$contained-horizontal-padding-icon: 12px !default;
 
 $minimum-height: 24px !default;
 $maximum-height: $height !default;
@@ -59,62 +65,98 @@ $disabled-container-color: rgba(
   0.12
 ) !default;
 
-@mixin theme($theme, $query: feature-targeting.all()) {
+@mixin theme($theme, $resolver, $query: feature-targeting.all()) {
+  @include _label-text-typography(
+    (
+      family: map.get($theme, label-text-font),
+      size: map.get($theme, label-text-size),
+      tracking: map.get($theme, label-text-tracking),
+      weight: map.get($theme, label-text-weight),
+      transform: map.get($theme, label-text-transform),
+    ),
+    $query: $query
+  );
+
   @include container-fill-color(
     (
       default: map.get($theme, container-color),
-      hover: map.get($theme, container-hover-color),
-      focus: map.get($theme, container-focus-color),
-      pressed: map.get($theme, container-pressed-color),
-      disabled: map.get($theme, container-disabled-color),
+      disabled: map.get($theme, disabled-container-color),
     ),
     $query: $query
   );
 
   @include ink-color(
     (
-      default: map.get($theme, label-color),
-      hover: map.get($theme, label-hover-color),
-      focus: map.get($theme, label-focus-color),
-      pressed: map.get($theme, label-pressed-color),
-      disabled: map.get($theme, label-disabled-color),
+      default: map.get($theme, label-text-color),
+      hover: map.get($theme, hover-label-text-color),
+      focus: map.get($theme, focus-label-text-color),
+      pressed: map.get($theme, pressed-label-text-color),
+      disabled: map.get($theme, disabled-label-text-color),
     ),
     $query: $query
   );
 
   @include icon-color(
     (
-      default: map.get($theme, icon-color),
-      hover: map.get($theme, icon-hover-color),
-      focus: map.get($theme, icon-focus-color),
-      pressed: map.get($theme, icon-pressed-color),
-      disabled: map.get($theme, icon-disabled-color),
+      default: map.get($theme, with-icon-icon-color),
+      hover: map.get($theme, with-icon-hover-icon-color),
+      focus: map.get($theme, with-icon-focus-icon-color),
+      pressed: map.get($theme, with-icon-pressed-icon-color),
+      disabled: map.get($theme, with-icon-disabled-icon-color),
     ),
     $query: $query
   );
 
-  $ripple-color: map.get($theme, ripple-color);
-  $ripple-opacity: map.get($theme, ripple-opacity);
-  @if $ripple-color {
-    @include ripple-states(
-      $color: $ripple-color,
-      $opacity-map: $ripple-opacity,
-      $query: $query
-    );
-  }
+  $icon-size: map.get($theme, with-icon-icon-size);
+  @include _icon-size($icon-size, $query: $query);
+
+  @include _states-colors(
+    (
+      focus: map.get($theme, focus-state-layer-color),
+      hover: map.get($theme, hover-state-layer-color),
+      pressed: map.get($theme, pressed-state-layer-color),
+    ),
+    $query: $query
+  );
+
+  $hover-state-layer-opacity: map.get($theme, hover-state-layer-opacity);
+  $focus-state-layer-opacity: map.get($theme, focus-state-layer-opacity);
+  $pressed-state-layer-opacity: map.get($theme, pressed-state-layer-opacity);
+  @include ripple-theme.states-opacities(
+    $opacity-map: (
+      focus: $focus-state-layer-opacity,
+      hover: $hover-state-layer-opacity,
+      press: $pressed-state-layer-opacity,
+    ),
+    $ripple-target: button-ripple.$ripple-target,
+    $query: $query
+  );
 
   $density: map.get($theme, density);
   @if $density != null {
     @include density($density-scale: $density, $query: $query);
   }
 
-  $shape: map.get($theme, shape);
+  $shape: map.get($theme, container-shape);
   @if $density == null {
     $density: $density-scale;
   }
   @if $shape {
     @include shape-radius($shape, $density-scale: $density, $query: $query);
   }
+
+  @include _elevation(
+    $resolver,
+    $elevation-map: (
+      default: map.get($theme, container-elevation),
+      disabled: map.get($theme, disabled-container-elevation),
+      focus: map.get($theme, focus-container-elevation),
+      hover: map.get($theme, hover-container-elevation),
+      pressed: map.get($theme, pressed-container-elevation)
+    ),
+    $shadow-color: map.get($theme, container-shadow-color),
+    $query: $query
+  );
 }
 
 ///
@@ -179,9 +221,7 @@ $disabled-container-color: rgba(
       );
     }
 
-    // Increase active state specificity due to ripple-theme.focus().
-    &:active,
-    &:focus:active {
+    @include ripple-theme.active {
       @include _container-fill-color(
         state.get-pressed-state($color-or-map),
         $query: $query
@@ -200,7 +240,8 @@ $disabled-container-color: rgba(
 ///
 /// Sets the container fill color to the given color for a disabled button.
 /// @param {Color} $color - The desired container fill color.
-/// @deprecated - call `icon-color` instead with `disabled` as a map key.
+/// @deprecated - call `container-fill-color` instead with `disabled` as a map
+///     key.
 ///
 @mixin disabled-container-fill-color($color, $query: feature-targeting.all()) {
   @include container-fill-color(
@@ -238,9 +279,7 @@ $disabled-container-color: rgba(
       );
     }
 
-    // Increase active state specificity due to ripple-theme.focus().
-    &:active,
-    &:focus:active {
+    @include ripple-theme.active {
       @include _icon-color(
         state.get-pressed-state($color-or-map),
         $query: $query
@@ -290,9 +329,7 @@ $disabled-container-color: rgba(
       @include _ink-color(state.get-focus-state($color-or-map), $query: $query);
     }
 
-    // Increase active state specificity due to ripple-theme.focus().
-    &:active,
-    &:focus:active {
+    @include ripple-theme.active {
       @include _ink-color(
         state.get-pressed-state($color-or-map),
         $query: $query
@@ -409,13 +446,38 @@ $disabled-container-color: rgba(
 ///
 /// Sets horizontal padding to the given number.
 /// @param {Number} $padding
+/// @param {Number} $padding-icon [null] For buttons with an icon, the
+///     horizontal padding on the side with the icon, if different from
+///     $padding.
 ///
-@mixin horizontal-padding($padding, $query: feature-targeting.all()) {
+@mixin horizontal-padding(
+  $padding,
+  $padding-icon: null,
+  $query: feature-targeting.all()
+) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
   @include feature-targeting.targets($feat-structure) {
     // $padding should be a single value; enforce it by specifying all 4 sides in the output
     padding: 0 $padding 0 $padding;
+  }
+
+  @if $padding-icon != null {
+    &.mdc-button--icon-trailing {
+      @include feature-targeting.targets($feat-structure) {
+        // $padding should be a single value; enforce it by specifying all 4
+        // sides in the output.
+        padding: 0 $padding-icon 0 $padding;
+      }
+    }
+
+    &.mdc-button--icon-leading {
+      @include feature-targeting.targets($feat-structure) {
+        // $padding should be a single value; enforce it by specifying all 4
+        // sides in the output.
+        padding: 0 $padding 0 $padding-icon;
+      }
+    }
   }
 }
 
@@ -436,6 +498,9 @@ $disabled-container-color: rgba(
     @include dom-mixins.transparent-border($query: $query);
   }
 
+  // Link buttons apply focus to the contained link. Focus is indicated via the
+  // link since focus-within isn't supported by IE.
+  & .mdc-button__link:focus,
   &:focus {
     &::before {
       @include dom-mixins.transparent-border(
@@ -479,6 +544,21 @@ $disabled-container-color: rgba(
   }
 }
 
+@mixin _icon-size($size-px, $query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  @if $size-px != null {
+    $size-rem: typography.px-to-rem($size-px);
+    .mdc-button__icon {
+      @include feature-targeting.targets($feat-structure) {
+        font-size: $size-rem;
+        height: $size-rem;
+        width: $size-rem;
+      }
+    }
+  }
+}
+
 ///
 /// Sets the ink color to the given color. This mixin should be
 /// wrapped in a selector that qualifies button state.
@@ -490,6 +570,153 @@ $disabled-container-color: rgba(
   @if $color {
     @include feature-targeting.targets($feat-color) {
       @include theme.property(color, $color);
+    }
+  }
+}
+
+@mixin _states-colors($color-map, $query: feature-targeting.all()) {
+  $hover: map.get($color-map, hover);
+  $focus: map.get($color-map, focus);
+  $pressed: map.get($color-map, pressed);
+
+  @if $hover != null and $hover == $focus and $focus == $pressed {
+    @include ripple-theme.states-base-color(
+      $color: $hover,
+      $ripple-target: button-ripple.$ripple-target,
+      $query: $query
+    );
+  } @else {
+    &:hover {
+      @if $hover != null {
+        @include ripple-theme.states-base-color(
+          $hover,
+          $ripple-target: button-ripple.$ripple-target,
+          $query: $query
+        );
+      }
+    }
+
+    @include ripple-theme.focus {
+      @if $focus != null {
+        @include ripple-theme.states-base-color(
+          $focus,
+          $ripple-target: button-ripple.$ripple-target,
+          $query: $query
+        );
+      }
+    }
+
+    @include ripple-theme.active {
+      @if $pressed != null {
+        @include ripple-theme.states-base-color(
+          $active,
+          $ripple-target: button-ripple.$ripple-target,
+          $query: $query
+        );
+      }
+    }
+  }
+}
+
+@mixin _label-text-typography(
+  $typography-map,
+  $query: feature-targeting.all()
+) {
+  $feat-typography: feature-targeting.create-target($query, typography);
+
+  $family: map.get($typography-map, family);
+  $size: map.get($typography-map, size);
+  $tracking: map.get($typography-map, tracking);
+  $weight: map.get($typography-map, weight);
+  $transform: map.get($typography-map, transform);
+
+  @include feature-targeting.targets($feat-typography) {
+    @include theme.property(font-family, $family);
+
+    $is-size-px: meta.type-of($size) == 'number' and math.unit($size) == 'px';
+    @if $is-size-px {
+      $size-rem: typography.px-to-rem($size);
+      @include theme.property(font-size, $size-rem);
+    } @else {
+      @include theme.property(font-size, $size);
+    }
+
+    @if $tracking and $is-size-px {
+      @include theme.property(letter-spacing, math.div($tracking, $size) * 1em);
+    } @else {
+      @include theme.property(letter-spacing, $tracking);
+    }
+
+    @include theme.property(font-weight, $weight);
+    @include theme.property(text-transform, $transform);
+  }
+}
+
+@mixin _elevation(
+  $resolver,
+  $elevation-map,
+  $shadow-color,
+  $query: feature-targeting.all()
+) {
+  $elevation-resolver: map.get($resolver, elevation);
+
+  @if $shadow-color {
+    $default: state.get-default-state($elevation-map);
+    @if $default != null {
+      @include elevation-theme.with-resolver(
+        $elevation-resolver,
+        $elevation: $default,
+        $shadow-color: $shadow-color,
+        $query: $query
+      );
+    }
+
+    $focus: state.get-focus-state($elevation-map);
+    @if $focus != null {
+      @include ripple-theme.focus {
+        @include elevation-theme.with-resolver(
+          $elevation-resolver,
+          $elevation: $focus,
+          $shadow-color: $shadow-color,
+          $query: $query
+        );
+      }
+    }
+
+    $hover: state.get-hover-state($elevation-map);
+    @if $hover != null {
+      &:hover {
+        @include elevation-theme.with-resolver(
+          $elevation-resolver,
+          $elevation: $hover,
+          $shadow-color: $shadow-color,
+          $query: $query
+        );
+      }
+    }
+
+    $pressed: state.get-pressed-state($elevation-map);
+    @if $pressed != null {
+      @include ripple-theme.active {
+        @include elevation-theme.with-resolver(
+          $elevation-resolver,
+          $elevation: $pressed,
+          $shadow-color: $shadow-color,
+          $query: $query
+        );
+      }
+    }
+
+    $disabled: state.get-disabled-state($elevation-map);
+    @if $disabled != null {
+      &:disabled {
+        @include elevation-theme.with-resolver(
+          $elevation-resolver,
+          $elevation: $disabled,
+          $shadow-color: $shadow-color,
+          $query: $query
+        );
+      }
     }
   }
 }

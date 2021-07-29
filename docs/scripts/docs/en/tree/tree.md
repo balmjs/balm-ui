@@ -4,16 +4,17 @@
 
 ### Props
 
-| Name                     | Type          | Default | Description                                              | Version |
-| ------------------------ | ------------- | ------- | -------------------------------------------------------- | ------- |
-| `modelValue` (`v-model`) | string, array | `''`    | Selected node keys.                                      |         |
-| `data`                   | array         | `[]`    | The tree data source.                                    |         |
-| `dataFormat`             | object        | `{}`    | Defines the tree data source format.                     |         |
-| `maxLevel`               | number        | `0`     | Set max level for tree nodes.                            |         |
-| `multiple`               | boolean       | `false` | Whether to support selected multiple tree nodes.         |         |
-| `loadData`               | function      | `null`  | Load data asynchronously.                                |         |
-| `autoExpandParent`       | boolean       | `false` | Whether to automatically expand root parent(s) treeNode. | 9.17.0  |
-| `defaultExpandedKeys`    | array         | `[]`    | Specify the node keys of the default expanded treeNodes. | 9.17.0  |
+| Name                     | Type          | Default | Description                                                  | Version |
+| ------------------------ | ------------- | ------- | ------------------------------------------------------------ | ------- |
+| `modelValue` (`v-model`) | string, array | `''`    | Selected node keys.                                          |         |
+| `data`                   | array         | `[]`    | The tree data source.                                        |         |
+| `dataFormat`             | object        | `{}`    | Defines the tree data source format.                         |         |
+| `maxLevel`               | number        | `0`     | Set max level for tree nodes.                                |         |
+| `multiple`               | boolean       | `false` | Whether to support selected multiple tree nodes.             |         |
+| `singleChecked`          | boolean       | `false` | Set single checked. Applicable only for the `multiple` tree. | 9.34.0  |
+| `loadData`               | function      | `null`  | Load data asynchronously.                                    |         |
+| `autoExpandParent`       | boolean       | `false` | Whether to automatically expand root parent(s) treeNode.     | 9.17.0  |
+| `defaultExpandedKeys`    | array         | `[]`    | Specify the node keys of the default expanded treeNodes.     | 9.17.0  |
 
 - Default data format
 
@@ -62,9 +63,10 @@
 
 ### Events
 
-| Name                | Type                                       | Description                      |
-| ------------------- | ------------------------------------------ | -------------------------------- |
-| `update:modelValue` | `function(selectedNodes: string \| array)` | Emits when tree node is changed. |
+| Name                | Type                                           | Description                       | Version |
+| ------------------- | ---------------------------------------------- | --------------------------------- | ------- |
+| `update:modelValue` | `function(selectedNodes: string \| array)`     | Emits when tree node is changed.  |         |
+| `selected`          | `function(selectedNodesData: string \| array)` | Emits when tree node is selected. | 9.34.0  |
 
 > NOTE: If you are not using `v-model`, you should listen for the tree using `@update:modelValue` and update the `modelValue` prop.
 

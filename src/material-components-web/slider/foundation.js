@@ -175,6 +175,17 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     MDCSliderFoundation.prototype.destroy = function () {
         this.deregisterEventHandlers();
     };
+    MDCSliderFoundation.prototype.setMin = function (value) {
+        this.min = value;
+        if (!this.isRange) {
+            this.valueStart = value;
+        }
+        this.updateUI();
+    };
+    MDCSliderFoundation.prototype.setMax = function (value) {
+        this.max = value;
+        this.updateUI();
+    };
     MDCSliderFoundation.prototype.getMin = function () {
         return this.min;
     };
@@ -222,8 +233,22 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         }
         this.updateValue(valueStart, Thumb.START);
     };
+    MDCSliderFoundation.prototype.setStep = function (value) {
+        this.step = value;
+        this.numDecimalPlaces = getNumDecimalPlaces(value);
+        this.updateUI();
+    };
+    MDCSliderFoundation.prototype.setIsDiscrete = function (value) {
+        this.isDiscrete = value;
+        this.updateValueIndicatorUI();
+        this.updateTickMarksUI();
+    };
     MDCSliderFoundation.prototype.getStep = function () {
         return this.step;
+    };
+    MDCSliderFoundation.prototype.setHasTickMarks = function (value) {
+        this.hasTickMarks = value;
+        this.updateTickMarksUI();
     };
     MDCSliderFoundation.prototype.getDisabled = function () {
         return this.isDisabled;

@@ -1,5 +1,5 @@
 ```scss
-@use '@material/top-app-bar/variables' as top-app-bar-variables with (
+@use '@material/top-app-bar' with (
   // Default styles
   $row-height: 64px,
   $title-left-padding: 20px,

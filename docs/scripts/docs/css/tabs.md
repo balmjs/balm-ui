@@ -1,7 +1,7 @@
 - `<ui-tab>`
 
 ```scss
-@use '@material/tab/variables' as tab-variables with (
+@use '@material/tab' as tab-variables with (
   $icon-size: 24px,
   $height: 48px,
   $stacked-height: 72px,
@@ -22,10 +22,18 @@
 );
 ```
 
+- `<ui-tab-scroller>`
+
+```scss
+@use '@material/tab-scroller' with (
+  $transition-duration: 250ms
+);
+```
+
 - `<ui-tab-bar>`
 
 ```scss
-@use '@material/tab-bar/variables' as tab-bar-variables with (
+@use '@material/tab-bar' with (
   $height: tab-variables.$height,
   $minimum-height: 30px,
   $maximum-height: $height,
@@ -48,13 +56,5 @@
       minimum: $stacked-minimum-height,
     ),
   )
-);
-```
-
-- `<ui-tab-scroller>`
-
-```scss
-@use '@material/tab-scroller' with (
-  $transition-duration: 250ms
 );
 ```

@@ -441,7 +441,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.hideDelayMs = delayMs;
     };
     MDCTooltipFoundation.prototype.parseShowTooltipOptions = function () {
-        var hideFromScreenreader = Boolean(this.adapter.getAnchorAttribute('data-tooltip-id'));
+        var hideFromScreenreader = Boolean(this.adapter.getAnchorAttribute(attributes.HIDDEN_FROM_SCREENREADER));
         return { hideFromScreenreader: hideFromScreenreader };
     };
     MDCTooltipFoundation.prototype.isTooltipMultiline = function () {

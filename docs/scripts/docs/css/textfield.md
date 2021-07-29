@@ -1,7 +1,22 @@
+- `<ui-textfield-icon>`
+
+```scss
+@use '@material/textfield/icon' with (
+  $icon-size: 24px,
+  $dense-icon-size: 20px,
+  $touch-target-size: 48px,
+
+  $leading-icon-padding-left: 16px,
+  $leading-icon-padding-right: 8px,
+  $trailing-icon-padding-left: 12px,
+  $trailing-icon-padding-right: 12px
+);
+```
+
 - `<ui-textfield>`
 
 ```scss
-@use '@material/textfield/variables' as textfield-variables with (
+@use '@material/textfield' with (
   $error: error,
   $disabled-border: rgba(theme-color.prop-value(on-surface), 0.06),
   $disabled-icon: rgba(theme-color.prop-value(on-surface), 0.3),
@@ -150,20 +165,5 @@
   $prefix-end-aligned-padding: 12px,
   $suffix-padding: 12px,
   $suffix-end-aligned-padding: 2px
-);
-```
-
-- `<ui-textfield-icon>`
-
-```scss
-@use '@material/textfield/icon/variables' as textfield-icon-variables with (
-  $icon-size: 24px,
-  $dense-icon-size: 20px,
-  $touch-target-size: 48px,
-
-  $leading-icon-padding-left: 16px,
-  $leading-icon-padding-right: 8px,
-  $trailing-icon-padding-left: 12px,
-  $trailing-icon-padding-right: 12px
 );
 ```

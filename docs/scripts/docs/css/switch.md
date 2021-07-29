@@ -1,5 +1,7 @@
+> ⚠️ The `deprecated` path is required in `balm-ui` >= 8.42.0
+
 ```scss
-@use '@material/switch/variables' as switch-variables with (
+@use '@material/switch/deprecated/variables' with (
   $track-width: 36px,
   $track-height: 14px,
   $thumb-diameter: 20px,

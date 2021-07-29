@@ -1,5 +1,5 @@
 ```scss
-@use '@material/data-table/variables' as table-variables with (
+@use '@material/data-table' with (
   $fill-color: surface,
   $header-row-fill-color: surface,
   $row-fill-color: inherit,
@@ -23,13 +23,21 @@
   $stroke-size: 1px,
   $stroke-color: rgba(theme-color.prop-value(on-surface), 0.12),
 
-  $row-height: 52px, // Rename `$cell-height` to `$row-height` in 9.32.0
-  $header-row-height: get-header-row-height($row-height), // Rename `$header-cell-height` to `$header-row-height` in 9.32.0
+  $row-height: 52px,
+  $header-row-height: get-header-row-height($row-height),
   $cell-leading-padding: 16px,
   $cell-trailing-padding: 16px,
 
-  $minimum-row-height: 36px, // Rename `$minimum-cell-height` to `$minimum-row-height` in 9.32.0
-  $maximum-row-height: $row-height, // Rename `$maximum-cell-height` to `$maximum-row-height` in 9.32.0
+  $minimum-row-height: 36px,
+  $maximum-row-height: $row-height,
   $default-density-scale: density-variables.$default-scale
 );
 ```
+
+> New in 9.32.0
+>
+> - Rename variables
+>   - `$cell-height` -> `$row-height`
+>   - `$header-cell-height` -> `$header-row-height`
+>   - `$minimum-cell-height` -> `$minimum-row-height`
+>   - `$maximum-cell-height` -> `$maximum-row-height`

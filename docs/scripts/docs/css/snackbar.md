@@ -1,5 +1,5 @@
 ```scss
-@use '@material/snackbar/variables' as snackbar-variables with (
+@use '@material/snackbar' with (
   $fill-color: color.mix(
     theme-color.prop-value(on-surface),
     theme-color.prop-value(surface),

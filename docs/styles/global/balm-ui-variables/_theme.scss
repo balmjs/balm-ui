@@ -1,0 +1,37 @@
+@use '@material/theme/theme-color' with (
+  $primary: #6200ee, // baseline purple, 500 tone
+  // $on-primary: if(contrast-tone($primary) == 'dark', #000, #fff),
+
+  $secondary: #018786, // baseline teal, 600 tone
+  // $on-secondary: if(contrast-tone($secondary) == 'dark', #000, #fff),
+  $background: #fff, // White
+
+  $surface: #fff,
+  // $on-surface: if(contrast-tone($surface) == 'dark', #000, #fff),
+
+  $error: #b00020,
+  // $on-error: if(contrast-tone($error) == 'dark', #000, #fff),
+
+  $text-colors: (
+    dark: (
+      primary: rgba(black, 0.87),
+      secondary: rgba(black, 0.54),
+      hint: rgba(black, 0.38),
+      disabled: rgba(black, 0.38),
+      icon: rgba(black, 0.38),
+    ),
+    light: (
+      primary: white,
+      secondary: rgba(white, 0.7),
+      hint: rgba(white, 0.5),
+      disabled: rgba(white, 0.5),
+      icon: rgba(white, 0.5),
+    ),
+  ),
+
+  $text-emphasis: (
+    high: 0.87,
+    medium: 0.6,
+    disabled: 0.38,
+  )
+);

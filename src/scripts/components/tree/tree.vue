@@ -22,7 +22,8 @@ const UI_TREE = {
     isLeaf: 'isLeaf'
   },
   EVENT: {
-    CHANGE: 'update:modelValue'
+    CHANGE: 'update:modelValue',
+    SELECTED: 'selected'
   }
 };
 
@@ -65,6 +66,10 @@ export default {
       type: Boolean,
       default: false
     },
+    singleChecked: {
+      type: Boolean,
+      default: true
+    },
     loadData: {
       type: [Function, null],
       default: null
@@ -91,6 +96,7 @@ export default {
         nodeMap: new Map(),
         selectedValue: this.modelValue,
         multiple: this.multiple,
+        singleChecked: this.singleChecked,
         loadData: this.loadData
       }
     };
@@ -123,6 +129,12 @@ export default {
     },
     selectedValue(val) {
       this.$emit(UI_TREE.EVENT.CHANGE, val);
+      this.$emit(
+        UI_TREE.EVENT.SELECTED,
+        Array.isArray(val)
+          ? val.map((nodeKey) => this.getNode(nodeKey))
+          : this.getNode(val)
+      );
     }
   },
   created() {

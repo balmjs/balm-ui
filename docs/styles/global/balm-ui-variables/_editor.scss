@@ -1,0 +1,19 @@
+@use '../../../../src/styles/balm-ui/components/editor' with (
+  $editor-height: 100%,
+  $bubble-editor-height: 100px,
+
+  $font-family: (
+    'arial': 'Arial',
+    'arial-black': 'Arial Black',
+    'comic-sans-ms': 'Comic Sans MS',
+    'courier-new': 'Courier New',
+    'tahoma': 'Tahoma',
+    'georgia': 'Georgia',
+    'helvetica': 'Helvetica',
+    'segoe-ui': 'Segoe UI',
+    'sans-serif': 'Sans-Serif',
+    'impact': 'Impact',
+    'times-new-roman': 'Times New Roman',
+    'verdana': 'Verdana'
+  )
+);

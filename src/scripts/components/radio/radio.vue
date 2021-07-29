@@ -88,9 +88,9 @@ export default {
     }
   },
   mounted() {
-    this.$radio = new MDCRadio(this.el);
-
     this.$nextTick(() => {
+      this.$radio = new MDCRadio(this.el);
+
       if (this.$parent.$formField) {
         this.$parent.$formField.input = this.$radio;
       }

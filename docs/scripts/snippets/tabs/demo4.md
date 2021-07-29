@@ -4,7 +4,7 @@
     v-for="(tab, index) in tabs"
     :key="index"
     class="demo-tab custom-tab"
-    type="both"
+    type="textWithIcon"
     :icon="tab.icon"
     stacked
     content-indicator

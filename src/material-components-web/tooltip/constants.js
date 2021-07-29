@@ -55,6 +55,7 @@ var attributes = {
     PERSISTENT: 'data-mdc-tooltip-persistent',
     SCROLLABLE_ANCESTOR: 'tooltip-scrollable-ancestor',
     HAS_CARET: 'data-mdc-tooltip-has-caret',
+    HIDDEN_FROM_SCREENREADER: 'data-hide-tooltip-from-screenreader',
 };
 var events = {
     HIDDEN: 'MDCTooltip:hidden',

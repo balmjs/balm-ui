@@ -72,7 +72,43 @@ $pressed-light-ink-opacity: 0.32 !default;
 // State selector variables used for state selector mixins below.
 $_hover-selector: '&:hover';
 $_focus-selector: '&.mdc-ripple-upgraded--background-focused, &:not(.mdc-ripple-upgraded):focus';
-$_active-selector: '&:active:active';
+$_active-selector: '&:not(:disabled):active';
+
+$light-theme: (
+  focus-state-layer-color: theme-color.$on-surface,
+  focus-state-layer-opacity: map.get($dark-ink-opacities, focus),
+  hover-state-layer-color: theme-color.$on-surface,
+  hover-state-layer-opacity: map.get($dark-ink-opacities, hover),
+  pressed-state-layer-color: theme-color.$on-surface,
+  pressed-state-layer-opacity: map.get($dark-ink-opacities, press),
+);
+
+@mixin theme($theme) {
+  @include keys.declare-custom-properties(
+    $theme,
+    $prefix: $custom-property-prefix
+  );
+
+  @if shadow-dom.$css-selector-fallback-declarations {
+    .mdc-ripple-surface {
+      @include theme-styles($theme);
+    }
+  }
+}
+
+@mixin theme-styles($theme) {
+  $theme: keys.create-theme-properties(
+    $theme,
+    $prefix: $custom-property-prefix
+  );
+
+  // TODO(b/191298796): Support states layer color for every interactive states.
+  // Use only hover state layer color, ignoring focus and pressed color.
+  @include states-base-color(map.get($theme, hover-state-layer-color));
+  @include states-hover-opacity(map.get($theme, hover-state-layer-opacity));
+  @include states-focus-opacity(map.get($theme, focus-state-layer-opacity));
+  @include states-press-opacity(map.get($theme, pressed-state-layer-opacity));
+}
 
 $light-theme: (
   focus-state-layer-color: theme-color.$on-surface,

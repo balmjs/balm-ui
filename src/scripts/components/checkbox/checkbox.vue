@@ -98,10 +98,10 @@ export default {
     }
   },
   mounted() {
-    this.$checkbox = new MDCCheckbox(this.$el);
-    this.$checkbox.indeterminate = this.indeterminate;
-
     this.$nextTick(() => {
+      this.$checkbox = new MDCCheckbox(this.$el);
+      this.$checkbox.indeterminate = this.indeterminate;
+
       if (this.$parent.$formField) {
         this.$parent.$formField.input = this.$checkbox;
       }

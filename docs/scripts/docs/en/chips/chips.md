@@ -14,14 +14,15 @@
 
 ### Props
 
-| Name                | Type                  | Default   | Description                                                                                                                      | Version |
-| ------------------- | --------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `type`              | string, number        | `0`       | Mandatory. Chips types.                                                                                                          |         |
-| `model` (`v-model`) | string, number, array | `-1`      | Mandatory. Single or multiple selection from a set of options.                                                                   |         |
-| `options`           | array                 | `[]`      | An array of options to show to the user. Applicable only for choice or filter chips. (Default option format: `{ label, value }`) | 7.2.0   |
-| `optionLabel`       | string                | `'label'` | Option item label's key field name of the `options`.                                                                             | 7.2.0   |
-| `optionValue`       | string                | `'value'` | Option item value's key field name of the `options`.                                                                             | 7.2.0   |
-| `chips`             | array                 | `[]`      | A set of chips. Applicable only for updating the input chips.                                                                    |         |
+| Name                | Type                  | Default                              | Description                                                                          | Version |
+| ------------------- | --------------------- | ------------------------------------ | ------------------------------------------------------------------------------------ | ------- |
+| `type`              | string, number        | `0`                                  | Mandatory. Chips types.                                                              |         |
+| `model` (`v-model`) | string, number, array | `-1`                                 | Mandatory. Single or multiple selection from a set of options.                       |         |
+| `options`           | array                 | `[]`                                 | An array of options to show to the user. Applicable only for choice or filter chips. | 7.2.0   |
+| `optionFormat`      | object                | `{ label: 'label', value: 'value' }` | Defines the option data format.                                                      | 8.42.0  |
+| `chips`             | array                 | `[]`                                 | A set of chips. Applicable only for updating the input chips.                        |         |
+
+> ⚠️ The prop `optionLabel` and `optionValue` is deprecated, use `optionFormat` instead in `8.42.0`.
 
 ### Slots
 

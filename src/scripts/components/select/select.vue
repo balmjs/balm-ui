@@ -67,12 +67,12 @@
           :class="[
             deprecatedListClassNameMap['mdc-list-item'],
             ...getDeprecatedItemClasses({
-              selected: option[optionValue] === selectedValue,
+              selected: option[optionFormat.value] === selectedValue,
               disabled: option.disabled
             })
           ]"
-          :data-value="option[optionValue]"
-          :aria-selected="option[optionValue] === selectedValue"
+          :data-value="option[optionFormat.value]"
+          :aria-selected="option[optionFormat.value] === selectedValue"
           :aria-disabled="option.disabled"
           role="option"
         >
@@ -80,9 +80,9 @@
             :class="deprecatedListClassNameMap['mdc-list-item__ripple']"
           ></span>
           <span
-            v-if="option[optionLabel]"
+            v-if="option[optionFormat.label]"
             :class="deprecatedListClassNameMap['mdc-list-item__text']"
-            v-text="option[optionLabel]"
+            v-text="option[optionFormat.label]"
           ></span>
         </li>
       </ul>
@@ -99,6 +99,10 @@ import MdcNotchedOutline from '../floating-label/mdc-notched-outline';
 import typeMixin from '../../mixins/type';
 import materialIconMixin from '../../mixins/material-icon';
 import deprecatedListMixin from '../../mixins/deprecated-list';
+import {
+  optionFormatDefaultValue,
+  checkOptionFormat
+} from '../../utils/option-format';
 
 // Define select constants
 const UI_SELECT = {
@@ -149,13 +153,11 @@ export default {
         return [];
       }
     },
-    optionLabel: {
-      type: String,
-      default: 'label'
-    },
-    optionValue: {
-      type: String,
-      default: 'value'
+    optionFormat: {
+      type: Object,
+      default() {
+        return optionFormatDefaultValue;
+      }
     },
     defaultLabel: {
       type: String,
@@ -257,6 +259,9 @@ export default {
       }
     }
   },
+  beforeMount() {
+    checkOptionFormat('<ui-select>', this.optionFormat);
+  },
   mounted() {
     this.$select = new MDCSelect(this.$el);
 
@@ -291,8 +296,8 @@ export default {
       let currentOptions = [...options];
       if (this.defaultLabel) {
         let defaultOption = {};
-        defaultOption[this.optionLabel] = this.defaultLabel;
-        defaultOption[this.optionValue] = this.defaultValue || ' '; // fix(ui): floating label bug when the value is empty
+        defaultOption[this.optionFormat.label] = this.defaultLabel;
+        defaultOption[this.optionFormat.value] = this.defaultValue || ' '; // fix(ui): floating label bug when the value is empty
         currentOptions.unshift(defaultOption);
       }
       this.currentOptions = currentOptions;
@@ -312,7 +317,7 @@ export default {
         index++
       ) {
         let currentOption = this.currentOptions[index];
-        if (currentOption[this.optionValue] === this.selectedValue) {
+        if (currentOption[this.optionFormat.value] === this.selectedValue) {
           currentIndex = index;
           break;
         }
@@ -326,17 +331,17 @@ export default {
       let selected = this.options[index];
       if (this.defaultLabel) {
         let defaultOption = {};
-        defaultOption[this.optionValue] =
+        defaultOption[this.optionFormat.value] =
           this.defaultValue === ' ' ? '' : this.defaultValue; // fix(ui): floating label bug when the value is empty
-        defaultOption[this.optionLabel] = this.defaultLabel;
+        defaultOption[this.optionFormat.label] = this.defaultLabel;
 
         selected = index === 0 ? defaultOption : this.options[index - 1];
       }
 
       return {
         index,
-        value: selected[this.optionValue],
-        label: selected[this.optionLabel]
+        value: selected[this.optionFormat.value],
+        label: selected[this.optionFormat.label]
       };
     }
   }

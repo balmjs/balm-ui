@@ -2,7 +2,7 @@
   <div :class="className" role="grid">
     <slot>
       <template v-for="(option, index) in currentOptions">
-        <ui-chip :key="index">{{ option[optionLabel] }}</ui-chip>
+        <ui-chip :key="index">{{ option[optionFormat.label] }}</ui-chip>
       </template>
     </slot>
   </div>
@@ -13,6 +13,10 @@ import { MDCChipSet } from '../../../material-components-web/chips/deprecated';
 import { strings } from '../../../material-components-web/chips/deprecated/chip/constants';
 import UiChip from './chip';
 import typeMixin from '../../mixins/type';
+import {
+  optionFormatDefaultValue,
+  checkOptionFormat
+} from '../../utils/option-format';
 
 // Define chips constants
 const UI_CHIPS = {
@@ -54,13 +58,11 @@ export default {
         return [];
       }
     },
-    optionLabel: {
-      type: String,
-      default: 'label'
-    },
-    optionValue: {
-      type: String,
-      default: 'value'
+    optionFormat: {
+      type: Object,
+      default() {
+        return optionFormatDefaultValue;
+      }
     },
     // UI attributes
     chips: {
@@ -126,6 +128,9 @@ export default {
       }
     }
   },
+  beforeMount() {
+    checkOptionFormat('<ui-chips>', this.optionFormat);
+  },
   mounted() {
     this.init();
   },
@@ -145,7 +150,9 @@ export default {
 
           if (this.currentOptions.length) {
             this.currentOptions.forEach((option, index) => {
-              if (this.selectedValue.includes(option[this.optionValue])) {
+              if (
+                this.selectedValue.includes(option[this.optionFormat.value])
+              ) {
                 selectedIndexes.push(index);
               }
             });
@@ -163,7 +170,7 @@ export default {
 
           if (this.currentOptions.length) {
             selectedIndex = this.currentOptions.findIndex(
-              (option) => option[this.optionValue] === this.selectedValue
+              (option) => option[this.optionFormat.value] === this.selectedValue
             );
           } else {
             selectedIndex = this.selectedValue;
@@ -185,7 +192,9 @@ export default {
               if (this.currentOptions.length) {
                 let selectedValue =
                   selectedIndex > -1
-                    ? this.currentOptions[selectedIndex][this.optionValue]
+                    ? this.currentOptions[selectedIndex][
+                        this.optionFormat.value
+                      ]
                     : '';
 
                 this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
@@ -204,7 +213,7 @@ export default {
             if (this.currentOptions.length) {
               let selectedValue = this.currentOptions
                 .filter((option, index) => selectedIndexes.includes(index))
-                .map((option) => option[this.optionValue]);
+                .map((option) => option[this.optionFormat.value]);
 
               this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
             } else {
@@ -232,7 +241,7 @@ export default {
           let selectedIndexes = [];
 
           this.currentOptions.forEach((option, index) => {
-            if (oldSelectedValue.includes(option[this.optionValue])) {
+            if (oldSelectedValue.includes(option[this.optionFormat.value])) {
               selectedIndexes.push(index);
             }
           });
@@ -244,7 +253,7 @@ export default {
           });
         } else if (this.choiceChips) {
           let selectedIndex = this.currentOptions.findIndex((option) =>
-            oldSelectedValue.includes(option[this.optionValue])
+            oldSelectedValue.includes(option[this.optionFormat.value])
           );
 
           this.$chipSet.chips[selectedIndex].selected = false;

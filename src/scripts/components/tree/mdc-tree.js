@@ -213,27 +213,32 @@ class MdcTree {
       checked = forceChecked;
     }
 
-    const { dataFormat, nodeMap } = treeData;
+    const { dataFormat, nodeMap, singleChecked } = treeData;
     const { value, children, isLeaf } = dataFormat;
     const nodeKey = item[value];
     const nodeChildren = item[children];
 
-    if (item[isLeaf]) {
+    if (singleChecked) {
       item.checked = checked;
       this.setMultipleSelectedValue(treeData, nodeKey, checked);
     } else {
-      if (item.indeterminate) {
-        item.indeterminate = false;
-        checked = true;
+      if (item[isLeaf]) {
+        item.checked = checked;
+        this.setMultipleSelectedValue(treeData, nodeKey, checked);
+      } else {
+        if (item.indeterminate) {
+          item.indeterminate = false;
+          checked = true;
+        }
+
+        item.checked = checked;
+        this.setMultipleSelectedValue(treeData, nodeKey, checked);
+        this.setChildrenCheckedValue(treeData, nodeChildren, checked);
       }
 
-      item.checked = checked;
-      this.setMultipleSelectedValue(treeData, nodeKey, checked);
-      this.setChildrenCheckedValue(treeData, nodeChildren, checked);
-    }
-
-    if (!item.isRoot && nodeMap.get(item.parentKey)) {
-      this.setParentCheckedValue(treeData, nodeMap.get(item.parentKey));
+      if (!item.isRoot && nodeMap.get(item.parentKey)) {
+        this.setParentCheckedValue(treeData, nodeMap.get(item.parentKey));
+      }
     }
   }
 

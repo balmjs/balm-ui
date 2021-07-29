@@ -1,11 +1,26 @@
+- `<ui-select-icon>`
+
+```scss
+@use '@material/select/select-icon-theme' with (
+  $icon-size: 24px,
+  $dense-icon-size: 20px,
+  $icon-horizontal-margin: 12px,
+
+  $icon-color: rgba(theme-variables.prop-value(on-surface), 0.54),
+  $disabled-icon-color: rgba(
+    theme-variables.prop-value(on-surface),
+    0.38
+  )
+);
+```
+
 - `<ui-select>`
 
 ```scss
-@use '@material/select/variables' as select-variables with (
+@use '@material/select/select-theme' with (
   $arrow-padding: 52px,
   $label-padding: 16px,
   $height: 56px,
-  $minimum-height-for-filled-label: 52px,
   $filled-baseline-top: 40px,
   $selected-text-height: 28px,
   $anchor-padding-left: 16px,
@@ -104,21 +119,5 @@
 
   // Error colors
   $error-color: error
-);
-```
-
-- `<ui-select-icon>`
-
-```scss
-@use '@material/select/icon/variables' as select-icon-variables with (
-  $icon-size: 24px,
-  $dense-icon-size: 20px,
-  $icon-horizontal-margin: 12px,
-
-  $icon-color: rgba(theme-variables.prop-value(on-surface), 0.54),
-  $disabled-icon-color: rgba(
-    theme-variables.prop-value(on-surface),
-    0.38
-  )
 );
 ```

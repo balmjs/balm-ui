@@ -1,5 +1,5 @@
 ```scss
-@use '@material/icon-button/variables' as icon-button-variables with (
+@use '@material/icon-button' with (
   $icon-size: 24px,
 
   $size: 48px,

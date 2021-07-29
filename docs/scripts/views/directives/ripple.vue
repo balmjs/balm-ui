@@ -1,5 +1,5 @@
 <template>
-  <docs-page type="directive" name="ripple" demo-count="3" without-css>
+  <docs-page type="directive" name="ripple" demo-count="3">
     <template #hero>
       <div v-ripple></div>
     </template>

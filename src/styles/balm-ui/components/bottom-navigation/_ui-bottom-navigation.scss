@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use '@material/elevation/mixins' as elevation-mixins;
 @use './variables' as bottom-navigation-variables;
 
@@ -40,7 +41,7 @@
 @each $width in bottom-navigation-variables.$destinations {
   .mdc-bottom-navigation--dest-#{$width} {
     .mdc-tab {
-      width: percentage($width/100);
+      width: percentage(math.div($width, 100));
     }
   }
 }

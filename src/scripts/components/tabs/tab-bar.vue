@@ -61,7 +61,7 @@ export default {
         this.handleChange(detail.index);
       });
 
-      this.tabList = this.$tabBar.tabList_;
+      this.tabList = this.$tabBar.tabList;
       if (this.tabList.length) {
         this._activateTab();
       }

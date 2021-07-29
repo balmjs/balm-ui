@@ -1,5 +1,5 @@
 ```scss
-@use '@material/radio/variables' as radio-variables with (
+@use '@material/radio/radio-theme' with (
   $ripple-size: 40px,
   $icon-size: 20px,
   $transition-duration: 120ms,

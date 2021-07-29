@@ -1,0 +1,17 @@
+$icon-button-size: 48px;
+
+@use '@material/icon-button' with (
+  $icon-size: 24px,
+
+  $size: $icon-button-size,
+  $minimum-height: 28px,
+  $maximum-height: $icon-button-size,
+  // $density-scale: variables.$default-scale,
+  // $density-config: (
+  //   size: (
+  //     default: $size,
+  //     maximum: $maximum-height,
+  //     minimum: $minimum-height,
+  //   ),
+  // )
+);

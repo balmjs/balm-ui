@@ -1,5 +1,5 @@
 ```scss
-@use '@material/card/variables' as card-variables with (
+@use '@material/card' as card-variables with (
   $action-icon-color: rgba(
     theme-color.prop-value(on-surface),
     theme-color.text-emphasis(medium)

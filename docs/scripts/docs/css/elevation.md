@@ -1,5 +1,5 @@
 ```scss
-@use '@material/elevation/variables' as shadow-variables with (
+@use '@material/elevation/variables' with (
   $baseline-color: black,
   $umbra-opacity: 0.2,
   $penumbra-opacity: 0.14,

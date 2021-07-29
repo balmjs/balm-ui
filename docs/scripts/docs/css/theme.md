@@ -1,5 +1,5 @@
 ```scss
-@use '@material/theme/variables' as theme-variables with (
+@use '@material/theme/theme-color' with (
   $primary: #6200ee, // baseline purple, 500 tone
   $on-primary: if(contrast-tone($primary) == 'dark', #000, #fff),
 

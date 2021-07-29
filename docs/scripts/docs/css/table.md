@@ -1,5 +1,5 @@
 ```scss
-@use '@material/data-table/variables' as table-variables with (
+@use '@material/data-table' with (
   $fill-color: surface,
   $header-row-fill-color: surface,
   $row-fill-color: inherit,
@@ -23,13 +23,21 @@
   $stroke-size: 1px,
   $stroke-color: rgba(theme-color.prop-value(on-surface), 0.12),
 
-  $cell-height: 52px,
-  $header-cell-height: get-header-cell-height($cell-height),
+  $row-height: 52px,
+  $header-row-height: get-header-row-height($row-height),
   $cell-leading-padding: 16px,
   $cell-trailing-padding: 16px,
 
-  $minimum-cell-height: 36px,
-  $maximum-cell-height: $cell-height,
-  $default-density-scale: density-variables.$default-scale
+  $minimum-row-height: 36px,
+  $maximum-row-height: $row-height,
+  $default-density-scale: density-variables.$default-scale,
 );
 ```
+
+> New in 8.42.0
+>
+> - Rename variables
+>   - `$cell-height` -> `$row-height`
+>   - `$header-cell-height` -> `$header-row-height`
+>   - `$minimum-cell-height` -> `$minimum-row-height`
+>   - `$maximum-cell-height` -> `$maximum-row-height`

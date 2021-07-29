@@ -1,4 +1,4 @@
-@use '@material/switch/mixins' as switch-mixins;
+@use '@material/switch/deprecated/mixins' as switch-mixins;
 @use '../global/color' as color;
 
 .demo-switch-wrapper {

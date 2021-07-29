@@ -85,8 +85,7 @@ npm install --save balm-ui
   ```js
   module.exports = {
     styles: {
-      extname: 'scss',
-      dartSass: true
+      extname: 'scss'
     }
     // Other Options...
   };

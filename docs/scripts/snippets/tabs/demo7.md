@@ -3,7 +3,7 @@
   <ui-tab
     v-for="(tab, index) in tabs"
     :key="index"
-    type="both"
+    type="textWithIcon"
     :icon="tab.icon"
     min-width
     content-indicator

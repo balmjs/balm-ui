@@ -23,7 +23,7 @@
 
     <h6 :class="$tt('subtitle1')">Text Label and Icon</h6>
     <div class="demo">
-      <ui-tab-bar type="both">
+      <ui-tab-bar type="textWithIcon">
         <template v-for="(tab, index) in tabs">
           <ui-tab :key="index" type="textWithIcon" :icon="tab.icon">
             {{ tab.text }}
@@ -34,7 +34,7 @@
 
     <h6 :class="$tt('subtitle1')">Stacked Text Label and Icon</h6>
     <div class="demo">
-      <ui-tab-bar type="both">
+      <ui-tab-bar type="textWithIcon">
         <template v-for="(tab, index) in tabs">
           <ui-tab :key="index" type="textWithIcon" :icon="tab.icon" stacked>
             {{ tab.text }}

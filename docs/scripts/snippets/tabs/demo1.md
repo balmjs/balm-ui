@@ -12,7 +12,7 @@
 <div class="demo">
   <ui-tab-bar v-model="active">
     <ui-tab v-for="(tab, index) in tabs" :key="index"
-      type="icon"
+      type="iconOnly"
       :icon="tab.icon">
     </ui-tab>
   </ui-tab-bar>

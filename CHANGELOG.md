@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.42.0 / 2021-07-29
+
+### Features
+
+- `<ui-chips>`, `<ui-select>`: add prop `optionFormat` (`{ label: 'label', value: 'value' }`)
+
+### BREAKING CHANGES
+
+- `<ui-chips>`, `<ui-select>`: remove prop `optionLabel` and `optionValue`, use `optionFormat` instead
+
 ## v8.41.1 / 2021-07-19
 
 ### Bug Fixes

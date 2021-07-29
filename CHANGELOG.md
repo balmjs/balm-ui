@@ -3,6 +3,20 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.34.0 / 2021-07-29
+
+### Features
+
+- update [`mdc@12.0.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1200-2021-07-27)
+- update material-icons v94
+- `<ui-chips>`, `<ui-select>`: add prop `optionFormat` (`{ label: 'label', value: 'value' }`)
+- `<ui-tree>`: add prop `singleChecked`, add event `selected`
+- docs: update sass docs for all
+
+### BREAKING CHANGES
+
+- `<ui-chips>`, `<ui-select>`: remove prop `optionLabel` and `optionValue`, use `optionFormat` instead
+
 ## v9.33.1 / 2021-07-27
 
 ### Chore

@@ -113,7 +113,7 @@ export default {
     }
   },
   watch: {
-    modelValue(val) {
+    modelValue(val, oldVal) {
       if (Array.isArray(val)) {
         if (!haveSameContents(this.treeData.selectedValue, val)) {
           this.updateSelectedValue(val, oldVal);

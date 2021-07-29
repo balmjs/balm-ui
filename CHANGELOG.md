@@ -6,6 +6,8 @@
 
 ### Features
 
+- update [`mdc@12.0.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1200-2021-07-27)
+- update material-icons v94
 - `<ui-chips>`, `<ui-select>`: add prop `optionFormat` (`{ label: 'label', value: 'value' }`)
 
 ### BREAKING CHANGES

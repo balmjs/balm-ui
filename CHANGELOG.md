@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.42.1 / 2021-07-30
+
+### Bug Fixes
+
+- `<ui-tree>`: fix prop `singleChecked` default value bug
+
 ## v8.42.0 / 2021-07-29
 
 ### Features

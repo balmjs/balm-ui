@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.34.1 / 2021-08-02
+
+### Bug Fixes
+
+- `<ui-tree>`: fix prop `singleChecked` default value bug
+
 ## v9.34.0 / 2021-07-29
 
 ### Features

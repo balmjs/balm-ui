@@ -68,7 +68,7 @@ export default {
     },
     singleChecked: {
       type: Boolean,
-      default: true
+      default: false
     },
     loadData: {
       type: [Function, null],

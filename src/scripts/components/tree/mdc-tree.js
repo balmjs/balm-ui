@@ -1,13 +1,13 @@
 const checkLeaf = (item, isLeaf, hasChildren) => item[isLeaf] || !hasChildren;
 
 const getNode = (
-  nodeMap,
-  { value, children, hasChildren, isLeaf, disabled },
+  { selectedValue, nodeMap, dataFormat },
   originNodeData,
-  { level, parentKey, checked }
+  { level, parentKey }
 ) => {
   let item = Object.assign({}, originNodeData);
 
+  const { value, children, hasChildren, isLeaf, disabled } = dataFormat;
   const nodeKey = item[value];
   const nodeChildren = item[children];
   const nodeHasChildren = item[hasChildren] || nodeChildren;
@@ -17,8 +17,9 @@ const getNode = (
   item.isRoot = !level;
   item.isLeaf = nodeIsLeaf;
   item.expanded = false;
-  item.selected = false;
-  item.checked = checked;
+  item.selected = !Array.isArray(selectedValue) && nodeKey === selectedValue;
+  item.checked =
+    Array.isArray(selectedValue) && selectedValue.includes(nodeKey);
   item.parentKey = parentKey;
   item.disabled = item[disabled];
 
@@ -37,30 +38,29 @@ const getNode = (
   return item;
 };
 
+let selectedNodes = [];
+
 class MdcTree {
   constructor(treeData) {
-    const { dataFormat, maxLevel, nodeMap } = treeData;
-
-    this.dataFormat = dataFormat;
-    this.maxLevel = maxLevel;
-    this.nodeMap = nodeMap;
+    this.treeData = treeData;
   }
 
   getData(nodes, level = 0, parentKey = '') {
+    const { dataFormat, maxLevel } = this.treeData;
+
     const list = [];
-    const { value, children, hasChildren } = this.dataFormat;
+    const { value, children, hasChildren } = dataFormat;
 
     for (let i = 0, len = nodes.length; i < len; i++) {
-      let item = getNode(this.nodeMap, this.dataFormat, nodes[i], {
+      let item = getNode(this.treeData, nodes[i], {
         level,
-        parentKey,
-        checked: false
+        parentKey
       });
 
       const nodeChildren = item[children];
       const nodeHasChildren = item[hasChildren] || nodeChildren;
 
-      if (level < this.maxLevel && nodeHasChildren) {
+      if (level < maxLevel && nodeHasChildren) {
         item[children] = this.getData(nodeChildren, level + 1, item[value]);
       }
 
@@ -70,8 +70,6 @@ class MdcTree {
     return list;
   }
 
-  static selectedNodes = [];
-
   /** For tree node */
   static addData(treeData, item, nodes) {
     const { dataFormat, nodeMap } = treeData;
@@ -80,17 +78,15 @@ class MdcTree {
     const { value, children } = dataFormat;
     const level = item.level + 1;
     const parentKey = item[value];
-    const checked = item.checked;
 
     for (let i = 0, len = nodes.length; i < len; i++) {
-      let subitem = getNode(nodeMap, dataFormat, nodes[i], {
+      let subitem = getNode(treeData, nodes[i], {
         level,
-        parentKey,
-        checked
+        parentKey
       });
 
       if (subitem.checked) {
-        this.setMultipleSelectedValue(treeData, subitem[value], checked);
+        this.setMultipleSelectedValue(treeData, subitem[value], true);
       }
 
       list.push(subitem);
@@ -181,9 +177,9 @@ class MdcTree {
 
       if (subitem) {
         if (checked) {
-          !subitem.checked && this.selectedNodes.push(nodeKey);
+          !subitem.checked && selectedNodes.push(nodeKey);
         } else {
-          subitem.checked && this.selectedNodes.push(nodeKey);
+          subitem.checked && selectedNodes.push(nodeKey);
         }
 
         subitem.indeterminate = false;
@@ -216,9 +212,9 @@ class MdcTree {
         const checkedAll = checkedAllList === nodeChildren.length;
 
         if (checkedAll) {
-          !subitem.checked && this.selectedNodes.push(nodeKey);
+          !subitem.checked && selectedNodes.push(nodeKey);
         } else {
-          subitem.checked && this.selectedNodes.push(nodeKey);
+          subitem.checked && selectedNodes.push(nodeKey);
         }
 
         subitem.checked = checkedAll;
@@ -258,7 +254,7 @@ class MdcTree {
         node: item
       };
     } else {
-      this.selectedNodes = [nodeKey];
+      selectedNodes = [nodeKey];
 
       if (item[isLeaf]) {
         item.checked = checked;
@@ -280,7 +276,7 @@ class MdcTree {
 
       treeData.selectedEvent = {
         checked,
-        checkedNodes: this.selectedNodes,
+        checkedNodes: selectedNodes,
         node: item
       };
     }

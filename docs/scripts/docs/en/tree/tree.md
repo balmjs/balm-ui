@@ -24,7 +24,8 @@
     value: 'value', // nodeKey
     children: 'children',
     hasChildren: 'hasChildren',
-    isLeaf: 'isLeaf'
+    isLeaf: 'isLeaf',
+    disabled: 'disabled' // New in 8.43.0
   }
   ```
 
@@ -63,10 +64,12 @@
 
 ### Events
 
-| Name       | Type                                           | Description                       | Version |
-| ---------- | ---------------------------------------------- | --------------------------------- | ------- |
-| `change`   | `function(selectedNodes: string \| array)`     | Emits when tree node is changed.  |         |
-| `selected` | `function(selectedNodesData: string \| array)` | Emits when tree node is selected. | 8.42.0  |
+| Name       | Type                                                              | Description                       | Version |
+| ---------- | ----------------------------------------------------------------- | --------------------------------- | ------- |
+| `change`   | `function(selectedNodes: string \| array, selectedEvent: object)` | Emits when tree node is changed.  |         |
+| `selected` | `function(selectedNodesData: string \| array)`                    | Emits when tree node is selected. | 8.42.0  |
+
+> The `selectedEvent` parameter of `@change` event is new in 8.43.0
 
 > NOTE: If you are not using `v-model`, you should listen for the tree using `@change` and update the `selectedNodes` prop.
 

@@ -53,11 +53,13 @@
           <mdc-checkbox
             v-if="nodeData[dataFormat.isLeaf]"
             :checked="nodeData.checked"
+            :disabled="nodeData.disabled"
           ></mdc-checkbox>
           <mdc-checkbox
             v-else
             :checked="nodeData.checked"
             :indeterminate="nodeData.indeterminate"
+            :disabled="nodeData.disabled"
           ></mdc-checkbox>
         </div>
 
@@ -128,7 +130,9 @@ export default {
       MdcTree.onSelect(this.treeData, item);
     },
     handleCheck(item) {
-      MdcTree.onCheck(this.treeData, item);
+      if (!item.disabled) {
+        MdcTree.onCheck(this.treeData, item);
+      }
     },
     getData(item) {
       const { children, ...newItem } = item;

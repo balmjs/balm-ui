@@ -20,7 +20,8 @@ const UI_TREE = {
     value: 'value',
     children: 'children',
     hasChildren: 'hasChildren',
-    isLeaf: 'isLeaf'
+    isLeaf: 'isLeaf',
+    disabled: 'disabled'
   },
   EVENT: {
     CHANGE: 'change',
@@ -101,7 +102,8 @@ export default {
         selectedValue: this.selectedNodes,
         multiple: this.multiple,
         singleChecked: this.singleChecked,
-        loadData: this.loadData
+        loadData: this.loadData,
+        selectedEvent: {}
       }
     };
   },
@@ -132,7 +134,7 @@ export default {
       this.init(val);
     },
     selectedValue(val) {
-      this.$emit(UI_TREE.EVENT.CHANGE, val);
+      this.$emit(UI_TREE.EVENT.CHANGE, val, this.treeData.selectedEvent);
       this.$emit(
         UI_TREE.EVENT.SELECTED,
         Array.isArray(val)
@@ -154,9 +156,7 @@ export default {
   },
   methods: {
     init(originData = this.data) {
-      if (!this.nodeList.length) {
-        this.nodeList = this.$tree.getData(originData);
-      }
+      this.nodeList = this.$tree.getData(originData);
 
       if (this.nodeList.length) {
         MdcTree.setExpanded(this.treeData, this.nodeList, {

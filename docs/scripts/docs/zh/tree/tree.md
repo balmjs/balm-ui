@@ -24,7 +24,8 @@
     value: 'value', // nodeKey
     children: 'children',
     hasChildren: 'hasChildren',
-    isLeaf: 'isLeaf'
+    isLeaf: 'isLeaf',
+    disabled: 'disabled' // New in 8.43.0
   }
   ```
 
@@ -63,10 +64,12 @@
 
 ### Events
 
-| Name                | Type                                           | Description        | Version |
-| ------------------- | ---------------------------------------------- | ------------------ | ------- |
-| `update:modelValue` | `function(selectedNodes: string \| array)`     | 树节点值变化时触发 |         |
-| `selected`          | `function(selectedNodesData: string \| array)` | 树节点被选中时触发 | 9.34.0  |
+| Name                | Type                                                              | Description        | Version |
+| ------------------- | ----------------------------------------------------------------- | ------------------ | ------- |
+| `update:modelValue` | `function(selectedNodes: string \| array, selectedEvent: object)` | 树节点值变化时触发 |         |
+| `selected`          | `function(selectedNodesData: string \| array)`                    | 树节点被选中时触发 | 9.34.0  |
+
+> 9.35.0 中 `@change` 事件新增 `selectedEvent` 参数
 
 > 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听树节点值并更新 `modelValue` 属性
 

@@ -3,6 +3,14 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.35.0 / 2021-08-04
+
+### Features
+
+- `<ui-tree>`:
+  - add `selectedEvent` parameter for `@change` event
+  - add `disabled` field for `dataFormat` prop
+
 ## v9.34.1 / 2021-08-02
 
 ### Bug Fixes

@@ -25,6 +25,7 @@
 
 @use 'sass:color';
 @use 'sass:map';
+@use 'sass:meta';
 @use '../density/density';
 @use '../dom/dom';
 @use '../elevation/elevation-theme';
@@ -61,7 +62,9 @@ $_primary-state-content: color.scale(
   $blackness: 50%
 );
 
-$_selectors: (
+/// TODO: Change to private when MWC has better access
+/// @access private
+$selectors: (
   disabled: ':disabled',
   focus: ':focus',
   hover: ':hover',
@@ -158,7 +161,40 @@ $forced-colors-theme: (
     }
   }
 
+  $theme: _resolve-theme($theme, $resolvers);
   @include keys.declare-custom-properties($theme, switch);
+}
+
+@function _resolve-theme($theme, $resolvers) {
+  @return map.merge(
+    $theme,
+    _resolve-theme-handle-elevation(
+      $theme,
+      map.get($resolvers, elevation),
+      disabled-handle-elevation,
+      handle-elevation
+    )
+  );
+}
+
+@function _resolve-theme-handle-elevation($theme, $resolver, $keys...) {
+  @if $resolver == null {
+    @return $theme;
+  }
+
+  @each $key in $keys {
+    // Resolve the value for each state key.
+    $resolved-value: meta.call(
+      $resolver,
+      $elevation: map.get($theme, $key),
+      $shadow-color: map.get($theme, handle-shadow-color)
+    );
+
+    // Update the theme with the resolved value.
+    $theme: map.set($theme, $key, $resolved-value);
+  }
+
+  @return $theme;
 }
 
 @mixin theme-styles($theme, $resolvers: resolvers.$material) {
@@ -301,23 +337,23 @@ $forced-colors-theme: (
 }
 
 @mixin _handle-color($colors) {
-  @include state.default($_selectors) {
+  @include state.default($selectors) {
     @include _set-handle-color(state.get-default-state($colors));
   }
 
-  @include state.hover($_selectors) {
+  @include state.hover($selectors) {
     @include _set-handle-color(state.get-hover-state($colors));
   }
 
-  @include state.focus($_selectors) {
+  @include state.focus($selectors) {
     @include _set-handle-color(state.get-focus-state($colors));
   }
 
-  @include state.pressed($_selectors) {
+  @include state.pressed($selectors) {
     @include _set-handle-color(state.get-pressed-state($colors));
   }
 
-  @include state.disabled($_selectors) {
+  @include state.disabled($selectors) {
     @include _set-handle-color(state.get-disabled-state($colors));
   }
 }
@@ -331,13 +367,13 @@ $forced-colors-theme: (
 }
 
 @mixin _selected-handle-color($colors) {
-  @include state.selected($_selectors) {
+  @include state.selected($selectors) {
     @include _handle-color($colors);
   }
 }
 
 @mixin _unselected-handle-color($colors) {
-  @include state.unselected($_selectors) {
+  @include state.unselected($selectors) {
     @include _handle-color($colors);
   }
 }
@@ -354,7 +390,7 @@ $forced-colors-theme: (
 }
 
 @mixin _handle-elevation($resolver, $shadow-color, $elevations) {
-  @include state.default($_selectors) {
+  @include state.default($selectors) {
     @include _set-handle-elevation(
       $resolver,
       $elevation: state.get-default-state($elevations),
@@ -362,7 +398,7 @@ $forced-colors-theme: (
     );
   }
 
-  @include state.disabled($_selectors) {
+  @include state.disabled($selectors) {
     @include _set-handle-elevation(
       $resolver,
       $elevation: state.get-disabled-state($elevations),
@@ -384,7 +420,7 @@ $forced-colors-theme: (
 }
 
 @mixin _handle-opacity($opacities) {
-  @include state.disabled($_selectors) {
+  @include state.disabled($selectors) {
     @include _set-handle-opacity(state.get-disabled-state($opacities));
   }
 }
@@ -421,11 +457,11 @@ $forced-colors-theme: (
 }
 
 @mixin _icon-color($colors) {
-  @include state.default($_selectors) {
+  @include state.default($selectors) {
     @include _set-icon-color(state.get-default-state($colors));
   }
 
-  @include state.disabled($_selectors) {
+  @include state.disabled($selectors) {
     @include _set-icon-color(state.get-disabled-state($colors));
   }
 }
@@ -437,19 +473,19 @@ $forced-colors-theme: (
 }
 
 @mixin _selected-icon-color($colors) {
-  @include state.selected($_selectors) {
+  @include state.selected($selectors) {
     @include _icon-color($colors);
   }
 }
 
 @mixin _unselected-icon-color($colors) {
-  @include state.unselected($_selectors) {
+  @include state.unselected($selectors) {
     @include _icon-color($colors);
   }
 }
 
 @mixin _icon-opacity($opacities) {
-  @include state.disabled($_selectors) {
+  @include state.disabled($selectors) {
     @include _set-icon-opacity(state.get-disabled-state($opacities));
   }
 }
@@ -461,13 +497,13 @@ $forced-colors-theme: (
 }
 
 @mixin _selected-icon-opacity($opacities) {
-  @include state.selected($_selectors) {
+  @include state.selected($selectors) {
     @include _icon-opacity($opacities);
   }
 }
 
 @mixin _unselected-icon-opacity($opacities) {
-  @include state.unselected($_selectors) {
+  @include state.unselected($selectors) {
     @include _icon-opacity($opacities);
   }
 }
@@ -480,34 +516,34 @@ $forced-colors-theme: (
 }
 
 @mixin _selected-icon-size($size) {
-  @include state.selected($_selectors) {
+  @include state.selected($selectors) {
     @include _icon-size($size);
   }
 }
 
 @mixin _unselected-icon-size($size) {
-  @include state.unselected($_selectors) {
+  @include state.unselected($selectors) {
     @include _icon-size($size);
   }
 }
 
 @mixin _ripple-color($colors) {
   @include state.independent-elements(pressed) {
-    @include state.hover($_selectors) {
+    @include state.hover($selectors) {
       @include ripple-theme.states-base-color(
         state.get-hover-state($colors),
         $ripple-target: switch.$ripple-target
       );
     }
 
-    @include state.focus($_selectors) {
+    @include state.focus($selectors) {
       @include ripple-theme.states-base-color(
         state.get-focus-state($colors),
         $ripple-target: switch.$ripple-target
       );
     }
 
-    @include state.pressed($_selectors) {
+    @include state.pressed($selectors) {
       @include ripple-theme.states-base-color(
         state.get-pressed-state($colors),
         $ripple-target: switch.$ripple-target
@@ -517,34 +553,34 @@ $forced-colors-theme: (
 }
 
 @mixin _selected-ripple-color($colors) {
-  @include state.selected($_selectors) {
+  @include state.selected($selectors) {
     @include _ripple-color($colors);
   }
 }
 
 @mixin _unselected-ripple-color($colors) {
-  @include state.unselected($_selectors) {
+  @include state.unselected($selectors) {
     @include _ripple-color($colors);
   }
 }
 
 @mixin _ripple-opacity($opacities) {
   @include state.independent-elements(pressed) {
-    @include state.hover($_selectors) {
+    @include state.hover($selectors) {
       @include ripple-theme.states-hover-opacity(
         state.get-hover-state($opacities),
         $ripple-target: switch.$ripple-target
       );
     }
 
-    @include state.focus($_selectors) {
+    @include state.focus($selectors) {
       @include ripple-theme.states-focus-opacity(
         state.get-focus-state($opacities),
         $ripple-target: switch.$ripple-target
       );
     }
 
-    @include state.pressed($_selectors) {
+    @include state.pressed($selectors) {
       @include ripple-theme.states-press-opacity(
         state.get-pressed-state($opacities),
         $ripple-target: switch.$ripple-target
@@ -554,13 +590,13 @@ $forced-colors-theme: (
 }
 
 @mixin _selected-ripple-opacity($opacities) {
-  @include state.selected($_selectors) {
+  @include state.selected($selectors) {
     @include _ripple-opacity($opacities);
   }
 }
 
 @mixin _unselected-ripple-opacity($opacities) {
-  @include state.unselected($_selectors) {
+  @include state.unselected($selectors) {
     @include _ripple-opacity($opacities);
   }
 }
@@ -579,7 +615,7 @@ $forced-colors-theme: (
 }
 
 @mixin _track-opacity($opacities) {
-  @include state.disabled($_selectors) {
+  @include state.disabled($selectors) {
     @include _set-track-opacity(state.get-disabled-state($opacities));
   }
 }
@@ -591,23 +627,23 @@ $forced-colors-theme: (
 }
 
 @mixin _track-selected-color($colors) {
-  @include state.default($_selectors) {
+  @include state.default($selectors) {
     @include _set-track-selected-color(state.get-default-state($colors));
   }
 
-  @include state.hover($_selectors) {
+  @include state.hover($selectors) {
     @include _set-track-selected-color(state.get-hover-state($colors));
   }
 
-  @include state.focus($_selectors) {
+  @include state.focus($selectors) {
     @include _set-track-selected-color(state.get-focus-state($colors));
   }
 
-  @include state.pressed($_selectors) {
+  @include state.pressed($selectors) {
     @include _set-track-selected-color(state.get-pressed-state($colors));
   }
 
-  @include state.disabled($_selectors) {
+  @include state.disabled($selectors) {
     @include _set-track-selected-color(state.get-disabled-state($colors));
   }
 }
@@ -619,23 +655,23 @@ $forced-colors-theme: (
 }
 
 @mixin _track-unselected-color($colors) {
-  @include state.default($_selectors) {
+  @include state.default($selectors) {
     @include _set-track-unselected-color(state.get-default-state($colors));
   }
 
-  @include state.hover($_selectors) {
+  @include state.hover($selectors) {
     @include _set-track-unselected-color(state.get-hover-state($colors));
   }
 
-  @include state.focus($_selectors) {
+  @include state.focus($selectors) {
     @include _set-track-unselected-color(state.get-focus-state($colors));
   }
 
-  @include state.pressed($_selectors) {
+  @include state.pressed($selectors) {
     @include _set-track-unselected-color(state.get-pressed-state($colors));
   }
 
-  @include state.disabled($_selectors) {
+  @include state.disabled($selectors) {
     @include _set-track-unselected-color(state.get-disabled-state($colors));
   }
 }

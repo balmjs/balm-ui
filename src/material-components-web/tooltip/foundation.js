@@ -254,6 +254,16 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             if (tooltipContainsRelatedTargetElement) {
                 return;
             }
+            if (evt.relatedTarget === null && this.interactiveTooltip) {
+                // If evt.relatedTarget is null, it is because focus is moving to an
+                // element that is not focusable. This should only occur in instances
+                // of a screen reader in browse mode/linear navigation mode. If the
+                // tooltip is interactive (and so the entire content is not read by
+                // the screen reader upon the tooltip being opened), we want to allow
+                // users to read the content of the tooltip (and not just the focusable
+                // elements).
+                return;
+            }
         }
         // Hide tooltip immediately on focus change.
         this.hide();
@@ -275,6 +285,16 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         // If the focus is still within the anchor or the tooltip, do not hide the
         // tooltip.
         if (anchorOrTooltipContainsRelatedTargetElement) {
+            return;
+        }
+        if (evt.relatedTarget === null && this.interactiveTooltip) {
+            // If evt.relatedTarget is null, it is because focus is moving to an
+            // element that is not focusable. This should only occur in instances
+            // of a screen reader in browse mode/linear navigation mode. If the
+            // tooltip is interactive (and so the entire content is not read by
+            // the screen reader upon the tooltip being opened), we want to allow
+            // users to read the content of the tooltip (and not just the focusable
+            // elements).
             return;
         }
         this.hide();

@@ -3,7 +3,13 @@
     <li
       v-for="(nodeData, nodeIndex) in children"
       :key="nodeIndex"
-      class="mdc-tree-node"
+      :class="[
+        'mdc-tree-node',
+        {
+          'mdc-tree-node--root': nodeData.isRoot,
+          'mdc-tree-node--leaf': nodeData.isLeaf
+        }
+      ]"
     >
       <div
         :class="[

@@ -18,6 +18,7 @@
 | `jumperButtonText`     | string          | `''`              | The jumper button text.                                         |         |
 | `position`             | string          | `''`              | The pagination postion.                                         |         |
 | `mini`                 | boolean         | `false`           | Whether to use simple mode.                                     |         |
+| `hasPage`              | boolean         | `true`            | Display page buttons.                                           | 8.44.0  |
 
 ```ts
 interface Pagination {

@@ -56,7 +56,7 @@
           </slot>
         </mdc-button>
         <div
-          v-if="!mini && hasPageSpan"
+          v-if="hasPage && (!mini && hasPageSpan)"
           class="mdc-data-table__pagination-page"
         >
           <template v-for="pageNumber in pageCount">
@@ -215,6 +215,10 @@ export default {
     mini: {
       type: Boolean,
       default: false
+    },
+    hasPage: {
+      type: Boolean,
+      default: true
     }
   },
   data() {

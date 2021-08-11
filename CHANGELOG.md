@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.44.0 / 2021-08-11
+
+### Features
+
+- `<ui-pagination>`: add prop `hasPage`
+
+### Chore
+
+- `<ui-tree>`: update css for root and leaf node
+
 ## v8.43.1 / 2021-08-03
 
 ### Bug Fixes

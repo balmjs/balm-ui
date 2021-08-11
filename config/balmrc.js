@@ -59,8 +59,7 @@ function getConfig(balm) {
       }
     },
     styles: {
-      extname: 'scss',
-      dartSass: true
+      extname: 'scss'
     },
     scripts: {
       entry: useDocsDev

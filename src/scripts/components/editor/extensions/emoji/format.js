@@ -6,7 +6,7 @@ function emojiFormat() {
   const { Quill } = useEditor();
   const Parchment = Quill.import('parchment');
 
-  class EmojiBlot extends Parchment.Embed {
+  class EmojiBlot extends Parchment.EmbedBlot {
     static create(value) {
       let node =
         value.type === 'emoji'

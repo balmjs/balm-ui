@@ -4,7 +4,7 @@ function useHtml() {
   const { Quill } = useEditor();
   const Parchment = Quill.import('parchment');
 
-  class HtmlBlot extends Parchment.Embed {
+  class HtmlBlot extends Parchment.EmbedBlot {
     static create(value) {
       let node = super.create();
 

@@ -4,7 +4,7 @@ function dividerFormat() {
   const { Quill } = useEditor();
   const Parchment = Quill.import('parchment');
 
-  class DividerBlot extends Parchment.Embed {}
+  class DividerBlot extends Parchment.EmbedBlot {}
   DividerBlot.blotName = 'divider';
   DividerBlot.tagName = 'HR';
 

@@ -10,7 +10,7 @@ function useLineHeight(customLineHeight = []) {
       whitelist: customLineHeight
     };
 
-    const LineHeightStyle = new Parchment.Attributor.Style(
+    const LineHeightStyle = new Parchment.StyleAttributor(
       'lineheight',
       'line-height',
       config

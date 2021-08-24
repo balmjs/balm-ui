@@ -1,7 +1,7 @@
 @use '../feature-targeting/feature-targeting';
 @use '../typography/typography';
 @use '../rtl/mixins' as rtl;
-@use '../icon-button/mixins' as icon-button-theme;
+@use '../icon-button/icon-button-theme';
 @use '../select/select-theme';
 @use '../list/mixins' as list-theme;
 @use '../menu/mixins' as menu-theme;

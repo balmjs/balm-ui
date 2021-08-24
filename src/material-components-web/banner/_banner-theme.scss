@@ -81,7 +81,7 @@ $light-theme: (
 );
 
 @mixin theme($theme, $resolvers: resolvers.$material) {
-  @include theme.validate-keys($light-theme, $theme);
+  @include theme.validate-theme($light-theme, $theme);
 
   $theme: _resolve-theme($theme, $resolvers);
   @include keys.declare-custom-properties($theme, banner);
@@ -123,7 +123,7 @@ $light-theme: (
   $resolver: resolvers.$material,
   $query: feature-targeting.all()
 ) {
-  @include theme.validate-keys($light-theme, $theme);
+  @include theme.validate-theme($light-theme, $theme);
 
   @include text-color(map.get($theme, supporting-text-color), $query: $query);
   @include _supporting-text-typography(
@@ -159,13 +159,13 @@ $light-theme: (
 
   .mdc-banner__primary-action,
   .mdc-banner__secondary-action {
-    @include button-text-theme.theme(
+    @include button-text-theme.theme-styles(
       (
-        focus-label-text-color: map.get($theme, action-focus-state-layer-color),
+        focus-label-text-color: map.get($theme, action-focus-label-text-color),
         focus-state-layer-color: map.get($theme, action-focus-state-layer-color),
         focus-state-layer-opacity:
           map.get($theme, action-focus-state-layer-opacity),
-        hover-label-text-color: map.get($theme, action-hover-state-layer-color),
+        hover-label-text-color: map.get($theme, action-hover-label-text-color),
         hover-state-layer-color: map.get($theme, action-hover-state-layer-color),
         hover-state-layer-opacity:
           map.get($theme, action-hover-state-layer-opacity),
@@ -175,7 +175,7 @@ $light-theme: (
         label-text-tracking: map.get($theme, action-label-text-tracking),
         label-text-weight: map.get($theme, action-label-text-weight),
         pressed-label-text-color:
-          map.get($theme, action-pressed-state-layer-color),
+          map.get($theme, action-pressed-label-text-color),
         pressed-state-layer-color:
           map.get($theme, action-pressed-state-layer-color),
         pressed-state-layer-opacity:

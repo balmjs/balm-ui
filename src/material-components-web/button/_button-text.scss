@@ -25,6 +25,7 @@
 
 @use '../feature-targeting/feature-targeting';
 @use '../tokens/resolvers';
+@use './button-ripple';
 @use './button-shared-theme';
 @use './button-text-theme';
 
@@ -41,5 +42,16 @@
 }
 
 @mixin static-styles($query: feature-targeting.all()) {
-  // Intentionally left blank for future-proofing.
+  @include static-styles-without-ripple($query: $query);
+  @include button-ripple.static-styles($query: $query);
+}
+
+@mixin static-styles-without-ripple($query: feature-targeting.all()) {
+  .mdc-button {
+    // TODO(b/179402677): move this into theme config
+    @include button-shared-theme.horizontal-padding(
+      button-shared-theme.$horizontal-padding,
+      $query: $query
+    );
+  }
 }

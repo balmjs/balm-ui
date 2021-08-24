@@ -56,6 +56,16 @@ var MDCDataTable = /** @class */ (function (_super) {
         this.headerRow.addEventListener('click', this.headerRowClickListener);
         this.content =
             this.root.querySelector("." + cssClasses.CONTENT);
+        this.handleContentClick = function (event) {
+            var dataRowEl = closest(event.target, selectors.ROW);
+            if (!dataRowEl)
+                return;
+            _this.foundation.handleRowClick({
+                rowId: _this.getRowIdByRowElement(dataRowEl),
+                row: dataRowEl,
+            });
+        };
+        this.content.addEventListener('click', this.handleContentClick);
         this.handleRowCheckboxChange = function (event) {
           if (event.target.getAttribute('type') === 'checkbox') {
             _this.foundation.handleRowCheckboxChange(event);
@@ -65,7 +75,8 @@ var MDCDataTable = /** @class */ (function (_super) {
         this.layout();
     };
     /**
-     * Re-initializes header row checkbox and row checkboxes when selectable rows are added or removed from table.
+     * Re-initializes header row checkbox and row checkboxes when selectable rows
+     * are added or removed from table.
      */
     MDCDataTable.prototype.layout = function () {
         this.foundation.layout();
@@ -138,11 +149,15 @@ var MDCDataTable = /** @class */ (function (_super) {
                 finally { if (e_1) throw e_1.error; }
             }
         }
+        if (this.handleContentClick) {
+            this.content.removeEventListener('click', this.handleContentClick);
+        }
     };
     MDCDataTable.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take
+        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+        // methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
             addClass: function (className) {
@@ -226,6 +241,9 @@ var MDCDataTable = /** @class */ (function (_super) {
             },
             notifyUnselectedAll: function () {
                 _this.emit(events.UNSELECTED_ALL, {}, /** shouldBubble */ true);
+            },
+            notifyRowClick: function (data) {
+                _this.emit(events.ROW_CLICK, data, /** shouldBubble */ true);
             },
             registerHeaderRowCheckbox: function () {
                 if (_this.headerRowCheckbox) {
@@ -313,6 +331,9 @@ var MDCDataTable = /** @class */ (function (_super) {
             this.linearProgress = new MDCLinearProgress(el);
         }
         return this.linearProgress;
+    };
+    MDCDataTable.prototype.getRowIdByRowElement = function (rowElement) {
+        return rowElement.getAttribute(dataAttributes.ROW_ID);
     };
     return MDCDataTable;
 }(MDCComponent));

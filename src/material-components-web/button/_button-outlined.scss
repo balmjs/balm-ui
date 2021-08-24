@@ -24,6 +24,7 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use 'sass:map';
+@use '../elevation/elevation-theme';
 @use '../feature-targeting/feature-targeting';
 @use './button-base';
 @use './button-outlined-theme';
@@ -43,16 +44,28 @@
 }
 
 @mixin static-styles($query: feature-targeting.all()) {
+  @include static-styles-without-ripple($query: $query);
+  @include button-ripple.static-styles($query: $query);
+}
+
+@mixin static-styles-without-ripple($query: feature-targeting.all()) {
   .mdc-button--outlined {
     @include _static-styles($query: $query);
   }
 }
 
 @mixin _static-styles($query: feature-targeting.all()) {
+  $feat-animation: feature-targeting.create-target($query, animation);
   $feat-structure: feature-targeting.create-target($query, structure);
 
   @include feature-targeting.targets($feat-structure) {
     border-style: solid;
+  }
+
+  @include feature-targeting.targets($feat-animation) {
+    $duration: elevation-theme.$transition-duration;
+    $easing: elevation-theme.$transition-timing-function;
+    transition: border #{$duration} #{$easing};
   }
 
   #{button-ripple.$ripple-target} {

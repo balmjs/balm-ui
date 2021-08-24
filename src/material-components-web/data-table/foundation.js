@@ -54,6 +54,7 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
                 notifySelectedAll: function () { return undefined; },
                 notifySortAction: function () { return undefined; },
                 notifyUnselectedAll: function () { return undefined; },
+                notifyRowClick: function () { return undefined; },
                 registerHeaderRowCheckbox: function () { return undefined; },
                 registerRowCheckboxes: function () { return undefined; },
                 removeClass: function () { return undefined; },
@@ -73,8 +74,9 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     /**
-     * Re-initializes header row checkbox and row checkboxes when selectable rows are added or removed from table.
-     * Use this if registering checkbox is synchronous.
+     * Re-initializes header row checkbox and row checkboxes when selectable rows
+     * are added or removed from table. Use this if registering checkbox is
+     * synchronous.
      */
     MDCDataTableFoundation.prototype.layout = function () {
         if (this.adapter.isRowsSelectable()) {
@@ -84,8 +86,9 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
         }
     };
     /**
-     * Re-initializes header row checkbox and row checkboxes when selectable rows are added or removed from table.
-     * Use this if registering checkbox is asynchronous.
+     * Re-initializes header row checkbox and row checkboxes when selectable rows
+     * are added or removed from table. Use this if registering checkbox is
+     * asynchronous.
      */
     MDCDataTableFoundation.prototype.layoutAsync = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -228,6 +231,16 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
             columnIndex: columnIndex,
             headerCell: headerCell,
             sortValue: sortValue,
+        });
+    };
+    /**
+     * Handles data table row click event.
+     */
+    MDCDataTableFoundation.prototype.handleRowClick = function (_a) {
+        var rowId = _a.rowId, row = _a.row;
+        this.adapter.notifyRowClick({
+            rowId: rowId,
+            row: row,
         });
     };
     /**

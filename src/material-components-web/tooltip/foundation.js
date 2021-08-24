@@ -73,7 +73,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             _this.handleRichTooltipFocusOut(evt);
         };
         _this.windowScrollHandler = function () {
-            _this.handleWindowChangeEvent();
+            _this.handleWindowScrollEvent();
         };
         _this.windowResizeHandler = function () {
             _this.handleWindowChangeEvent();
@@ -85,6 +85,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             return {
                 getAttribute: function () { return null; },
                 setAttribute: function () { return undefined; },
+                removeAttribute: function () { return undefined; },
                 addClass: function () { return undefined; },
                 hasClass: function () { return false; },
                 removeClass: function () { return undefined; },
@@ -120,6 +121,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                 },
                 setTooltipCaretStyle: function () { return undefined; },
                 clearTooltipCaretStyles: function () { return undefined; },
+                getActiveElement: function () { return null; },
             };
         },
         enumerable: false,
@@ -238,8 +240,9 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         // Hide the tooltip immediately on ESC key.
         var key = normalizeKey(evt);
         if (key === KEY.ESCAPE) {
-            var tooltipContainsActiveElement = document.activeElement instanceof HTMLElement &&
-                this.adapter.tooltipContainsElement(document.activeElement);
+            var activeElement = this.adapter.getActiveElement();
+            var tooltipContainsActiveElement = activeElement instanceof HTMLElement &&
+                this.adapter.tooltipContainsElement(activeElement);
             if (tooltipContainsActiveElement) {
                 this.adapter.focusAnchorElement();
             }
@@ -299,6 +302,16 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         }
         this.hide();
     };
+    MDCTooltipFoundation.prototype.handleWindowScrollEvent = function () {
+        if (this.persistentTooltip) {
+            // Persistent tooltips remain visible on user scroll, call appropriate
+            // handler to ensure the tooltip remains pinned to the anchor on page
+            // scroll.
+            this.handleWindowChangeEvent();
+            return;
+        }
+        this.hide();
+    };
     /**
      * On window resize or scroll, check the anchor position and size and
      * repostion tooltip if necessary.
@@ -321,10 +334,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             return;
         }
         this.tooltipShown = true;
-        var showTooltipOptions = this.parseShowTooltipOptions();
-        if (!showTooltipOptions.hideFromScreenreader) {
-            this.adapter.setAttribute('aria-hidden', 'false');
-        }
+        this.adapter.removeAttribute('aria-hidden');
         if (this.richTooltip) {
             if (this.interactiveTooltip) {
                 this.adapter.setAnchorAttribute('aria-expanded', 'true');
@@ -459,10 +469,6 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
     };
     MDCTooltipFoundation.prototype.setHideDelay = function (delayMs) {
         this.hideDelayMs = delayMs;
-    };
-    MDCTooltipFoundation.prototype.parseShowTooltipOptions = function () {
-        var hideFromScreenreader = Boolean(this.adapter.getAnchorAttribute(attributes.HIDDEN_FROM_SCREENREADER));
-        return { hideFromScreenreader: hideFromScreenreader };
     };
     MDCTooltipFoundation.prototype.isTooltipMultiline = function () {
         var tooltipSize = this.adapter.getTooltipSize();

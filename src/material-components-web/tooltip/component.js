@@ -140,6 +140,9 @@ var MDCTooltip = /** @class */ (function (_super) {
             setAttribute: function (attr, value) {
                 _this.root.setAttribute(attr, value);
             },
+            removeAttribute: function (attr) {
+                _this.root.removeAttribute(attr);
+            },
             addClass: function (className) {
                 _this.root.classList.add(className);
             },
@@ -248,6 +251,9 @@ var MDCTooltip = /** @class */ (function (_super) {
                 }
                 topCaret.removeAttribute('style');
                 bottomCaret.removeAttribute('style');
+            },
+            getActiveElement: function () {
+                return document.activeElement;
             },
         };
         //tslint:enable:object-literal-sort-keys

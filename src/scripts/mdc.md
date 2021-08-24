@@ -1,6 +1,6 @@
 # fix(@material-components-web)
 
-- `data-table`: component.js line 60
+- `data-table`: component.js line 70
 
   ```js
   // _this.foundation.handleRowCheckboxChange(event);

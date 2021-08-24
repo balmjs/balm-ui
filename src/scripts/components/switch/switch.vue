@@ -9,11 +9,8 @@
         v-model="selectedValue"
         type="checkbox"
         class="mdc-switch__native-control"
-        :name="name"
-        :true-value="trueValue"
-        :false-value="falseValue"
         role="switch"
-        :aria-checked="checked"
+        :aria-checked="isOn"
         :disabled="disabled"
         v-bind="attrs"
         @change="handleChange"
@@ -29,7 +26,8 @@ import inputMixin from '../../mixins/input';
 // Define switch constants
 const UI_SWITCH = {
   EVENT: {
-    CHANGE: 'change'
+    CHANGE: 'change',
+    SELECTED: 'selected'
   }
 };
 
@@ -43,7 +41,7 @@ export default {
   props: {
     // States
     model: {
-      type: null, // NOTE: Boolean only
+      type: Boolean,
       default: false
     },
     trueValue: {
@@ -55,10 +53,6 @@ export default {
       default: false
     },
     // <input type="checkbox"> attributes
-    name: {
-      type: String,
-      default: ''
-    },
     disabled: {
       type: Boolean,
       default: false
@@ -71,22 +65,24 @@ export default {
     };
   },
   computed: {
-    checked() {
-      return this.selectedValue;
-    },
     className() {
       return {
         'mdc-switch': true,
-        'mdc-switch--disabled': this.disabled,
-        'mdc-switch--checked': this.checked
+        'mdc-switch--checked': this.isOn,
+        'mdc-switch--disabled': this.disabled
       };
+    },
+    isOn() {
+      return this.selectedValue === true;
     }
   },
   watch: {
     model(val) {
       this.selectedValue = val;
       // fix(ui): trigger bug
-      this.$switch.checked = this.selectedValue === this.trueValue;
+      if (this.$switch) {
+        this.$switch.checked = this.isOn;
+      }
     },
     disabled(val) {
       if (this.$switch) {
@@ -100,6 +96,10 @@ export default {
   methods: {
     handleChange() {
       this.$emit(UI_SWITCH.EVENT.CHANGE, this.selectedValue);
+      this.$emit(
+        UI_SWITCH.EVENT.SELECTED,
+        this.isOn ? this.trueValue : this.falseValue
+      );
     }
   }
 };

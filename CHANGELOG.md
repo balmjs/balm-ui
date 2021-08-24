@@ -3,6 +3,17 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+
+## v9.36.0 / 2021-08-24
+
+### Features
+
+- update mdc@13.0.0-canary.8de07c02a.0
+
+### Bug Fixes
+
+- `<ui-drawer>`: fix animation bug
+
 ## v9.35.0 / 2021-08-04
 
 ### Features

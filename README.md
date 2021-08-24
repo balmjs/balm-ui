@@ -315,5 +315,5 @@ We officially support the last two versions of every major browser. Specifically
 
 [balm-ui-image]: https://img.shields.io/npm/v/balm-ui/next.svg
 [balm-ui-url]: https://www.npmjs.com/package/balm-ui/v/next
-[mdc-web-image]: https://img.shields.io/badge/mdc--web-12.0.0-blue.svg
+[mdc-web-image]: https://img.shields.io/badge/mdc--web-13.0.0-blue.svg
 [mdc-web-url]: https://www.npmjs.com/package/material-components-web

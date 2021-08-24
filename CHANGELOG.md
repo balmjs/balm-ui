@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.45.0 / 2021-08-24
+
+### Reverts
+
+- `<ui-pagination>`: remove prop `hasPage`, use `pageSpan` instead
+
 ## v8.44.1 / 2021-08-24
 
 ### Bug Fixes
@@ -440,7 +446,9 @@
 
 - update material-icons v67
 
-### Reverts
+### ss
+
+- ``
 
 - restore sharp theme icons
 

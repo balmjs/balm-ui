@@ -44,15 +44,15 @@
 - Automatic
 
   ```html
-  <ui-drawer type="modal" v-model="open"></ui-drawer>
+  <ui-drawer v-model="open" type="modal"></ui-drawer>
   ```
 
 - Manual
 
   ```html
   <ui-drawer
-    type="modal"
     :open="open"
+    type="modal"
     @nav="$balmUI.onChange('open', $event)"
   ></ui-drawer>
   ```

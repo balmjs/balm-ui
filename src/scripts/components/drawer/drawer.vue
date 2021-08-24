@@ -77,7 +77,6 @@ export default {
         'mdc-drawer': true,
         'mdc-drawer--dismissible': this.isDismissible,
         'mdc-drawer--modal': this.isModal
-        // 'mdc-drawer--open': this.open
       };
     }
   },

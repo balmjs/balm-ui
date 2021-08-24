@@ -57,13 +57,13 @@
 - 自动
 
   ```html
-  <ui-top-app-bar navId="demo-menu"></ui-top-app-bar>
-  <ui-drawer type="modal" navId="demo-menu"></ui-drawer>
+  <ui-top-app-bar nav-id="demo-menu"></ui-top-app-bar>
+  <ui-drawer nav-id="demo-menu" type="modal"></ui-drawer>
   ```
 
 - 手动
 
   ```html
-  <ui-top-app-bar @nav="$balmUI.onShow('open')"></ui-top-app-bar>
-  <ui-drawer type="modal" v-model="open"></ui-drawer>
+  <ui-top-app-bar @nav="$balmUI.onChange('open', !open)"></ui-top-app-bar>
+  <ui-drawer v-model="open" type="modal"></ui-drawer>
   ```

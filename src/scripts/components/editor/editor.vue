@@ -8,18 +8,17 @@
       <div v-else ref="editor" class="mdc-editor"></div>
     </div>
     <div v-if="withCounter" ref="counter" class="mdc-editor-counter"></div>
-    <template v-if="customImageHandler">
-      <input
-        ref="file"
-        type="file"
-        hidden
-        @change="
-          handleFileChange($event, (result) => {
-            $emit(UI_EDITOR.EVENT.FILE_CHANGE, result[0], insertImage);
-          })
-        "
-      />
-    </template>
+    <input
+      v-if="customImageHandler"
+      ref="file"
+      type="file"
+      hidden
+      @change="
+        handleFileChange($event, (result) => {
+          $emit(UI_EDITOR.EVENT.FILE_CHANGE, result[0], insertImage);
+        })
+      "
+    />
     <slot></slot>
   </div>
 </template>

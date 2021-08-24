@@ -64,6 +64,6 @@
 - 手动
 
   ```html
-  <ui-top-app-bar @nav="balmUI.onShow('open')"></ui-top-app-bar>
+  <ui-top-app-bar @nav="balmUI.onChange('open', !open)"></ui-top-app-bar>
   <ui-drawer v-model="open" type="modal"></ui-drawer>
   ```

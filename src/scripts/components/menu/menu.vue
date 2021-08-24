@@ -13,25 +13,28 @@
           v-for="(item, index) in currentItems"
           :key="`menu-item-${index}`"
         >
-          <template v-if="getType(item) === 'array'">
-            <ui-menuitem :key="`group${index}`" nested>
-              <template
-                v-for="(subItem, subIndex) in item"
-                :key="`menu-subitem-${subIndex}`"
+          <ui-menuitem
+            v-if="getType(item) === 'array'"
+            :key="`group${index}`"
+            nested
+          >
+            <template
+              v-for="(subItem, subIndex) in item"
+              :key="`menu-subitem-${subIndex}`"
+            >
+              <ui-item-divider v-if="isDivider(subItem)"></ui-item-divider>
+              <ui-menuitem
+                v-else
+                :item="getType(subItem) === 'object' ? subItem : {}"
+                :selected="isSelected(subItem)"
               >
-                <ui-item-divider v-if="isDivider(subItem)"></ui-item-divider>
-                <ui-menuitem
-                  v-else
-                  :item="getType(subItem) === 'object' ? subItem : {}"
-                  :selected="isSelected(subItem)"
-                >
-                  <template v-if="getType(subItem) === 'string'">
-                    <ui-menuitem-text v-text="subItem"></ui-menuitem-text>
-                  </template>
-                </ui-menuitem>
-              </template>
-            </ui-menuitem>
-          </template>
+                <ui-menuitem-text
+                  v-if="getType(subItem) === 'string'"
+                  v-text="subItem"
+                ></ui-menuitem-text>
+              </ui-menuitem>
+            </template>
+          </ui-menuitem>
           <template v-else>
             <ui-item-divider v-if="isDivider(item)"></ui-item-divider>
             <ui-menuitem
@@ -39,9 +42,10 @@
               :item="getType(item) === 'object' ? item : {}"
               :selected="isSelected(item)"
             >
-              <template v-if="getType(item) === 'string'">
-                <ui-menuitem-text v-text="item"></ui-menuitem-text>
-              </template>
+              <ui-menuitem-text
+                v-if="getType(item) === 'string'"
+                v-text="item"
+              ></ui-menuitem-text>
             </ui-menuitem>
           </template>
         </template>

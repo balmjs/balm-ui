@@ -51,8 +51,8 @@ NOTE:
 
   ```html
   <ui-drawer
-    type="modal"
     :model-value="open"
+    type="modal"
     @nav="balmUI.onChange('open', $event)"
   ></ui-drawer>
   ```

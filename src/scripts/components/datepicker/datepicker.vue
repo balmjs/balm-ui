@@ -39,38 +39,33 @@
 
     <!-- Trailing icon (optional) -->
     <template #after="{ iconClass }">
-      <template v-if="toggle || clear">
-        <span :class="[iconClass, 'mdc-datepicker__icon']">
-          <template v-if="toggle">
-            <span class="mdc-datepicker__toggle" data-toggle>
-              <slot name="toggle">
-                <svg viewBox="0 0 18 18">
-                  <path
-                    d="M14 2v-1h-3v1h-5v-1h-3v1h-3v15h17v-15h-3zM12 2h1v2h-1v-2zM4 2h1v2h-1v-2zM16 16h-15v-8.921h15v8.921zM1 6.079v-3.079h2v2h3v-2h5v2h3v-2h2v3.079h-15z"
-                    fill="#000000"
-                  />
-                </svg>
-              </slot>
-            </span>
-          </template>
-          <template v-if="clear">
-            <span
-              class="mdc-datepicker__clear"
-              data-clear
-              @click.capture="handleClear"
-            >
-              <slot name="clear">
-                <svg viewBox="0 0 18 18">
-                  <path
-                    d="M9.207 8.5l6.646 6.646-0.707 0.707-6.646-6.646-6.646 6.646-0.707-0.707 6.646-6.646-6.647-6.646 0.707-0.707 6.647 6.646 6.646-6.646 0.707 0.707-6.646 6.646z"
-                    fill="#000000"
-                  />
-                </svg>
-              </slot>
-            </span>
-          </template>
+      <span v-if="toggle || clear" :class="[iconClass, 'mdc-datepicker__icon']">
+        <span v-if="toggle" class="mdc-datepicker__toggle" data-toggle>
+          <slot name="toggle">
+            <svg viewBox="0 0 18 18">
+              <path
+                d="M14 2v-1h-3v1h-5v-1h-3v1h-3v15h17v-15h-3zM12 2h1v2h-1v-2zM4 2h1v2h-1v-2zM16 16h-15v-8.921h15v8.921zM1 6.079v-3.079h2v2h3v-2h5v2h3v-2h2v3.079h-15z"
+                fill="#000000"
+              />
+            </svg>
+          </slot>
         </span>
-      </template>
+        <span
+          v-if="clear"
+          class="mdc-datepicker__clear"
+          data-clear
+          @click.capture="handleClear"
+        >
+          <slot name="clear">
+            <svg viewBox="0 0 18 18">
+              <path
+                d="M9.207 8.5l6.646 6.646-0.707 0.707-6.646-6.646-6.646 6.646-0.707-0.707 6.646-6.646-6.647-6.646 0.707-0.707 6.647 6.646 6.646-6.646 0.707 0.707-6.646 6.646z"
+                fill="#000000"
+              />
+            </svg>
+          </slot>
+        </span>
+      </span>
       <template v-else>
         <slot name="after" :iconClass="iconClass"></slot>
       </template>

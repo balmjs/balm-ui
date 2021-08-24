@@ -28,7 +28,10 @@
         <!-- Navigation buttons -->
         <mdc-button
           v-if="!hasPageSpan"
-          class="mdc-data-table__pagination-button mdc-data-table__pagination-first-button"
+          class="
+            mdc-data-table__pagination-button
+            mdc-data-table__pagination-first-button
+          "
           no-label
           :disabled="currentPage === 1"
           data-first-page="true"
@@ -39,7 +42,10 @@
           </slot>
         </mdc-button>
         <mdc-button
-          class="mdc-data-table__pagination-button mdc-data-table__pagination-prev-button"
+          class="
+            mdc-data-table__pagination-button
+            mdc-data-table__pagination-prev-button
+          "
           no-label
           :disabled="currentPage === 1"
           data-prev-page="true"
@@ -67,7 +73,11 @@
               </mdc-button>
               <button
                 v-else
-                class="mdc-button mdc-data-table__pagination-button mdc-pagination__button--ellipsis"
+                class="
+                  mdc-button
+                  mdc-data-table__pagination-button
+                  mdc-pagination__button--ellipsis
+                "
               >
                 <span class="mdc-button__label">...</span>
               </button>
@@ -75,7 +85,10 @@
           </template>
         </div>
         <mdc-button
-          class="mdc-data-table__pagination-button mdc-data-table__pagination-next-button"
+          class="
+            mdc-data-table__pagination-button
+            mdc-data-table__pagination-next-button
+          "
           :disabled="currentPage === pageCount"
           no-label
           data-next-page="true"
@@ -87,7 +100,10 @@
         </mdc-button>
         <mdc-button
           v-if="!hasPageSpan"
-          class="mdc-data-table__pagination-button mdc-data-table__pagination-last-button"
+          class="
+            mdc-data-table__pagination-button
+            mdc-data-table__pagination-last-button
+          "
           :disabled="currentPage === pageCount"
           no-label
           data-last-page="true"

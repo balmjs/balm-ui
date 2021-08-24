@@ -5,11 +5,9 @@
     :data-value="item.value || value"
     @click="$emit('click', $event)"
   >
-    <template v-if="nested">
-      <ul class="mdc-menu__selection-group">
-        <slot></slot>
-      </ul>
-    </template>
+    <ul v-if="nested" class="mdc-menu__selection-group">
+      <slot></slot>
+    </ul>
     <template v-else>
       <span :class="deprecatedListClassNameMap['mdc-list-item__ripple']"></span>
       <!-- Leading icon / Text / Command -->

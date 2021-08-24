@@ -18,7 +18,6 @@
 | `jumperButtonText`     | string          | `''`              | 跳转按钮文字                         |         |
 | `position`             | string          | `''`              | 分页排版位置                         |         |
 | `mini`                 | boolean         | `false`           | 使用迷你模式                         |         |
-| `hasPage`              | boolean         | `true`            | 显示页码按钮                         | 8.44.0  |
 
 ```ts
 interface Pagination {

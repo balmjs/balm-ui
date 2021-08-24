@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.44.1 / 2021-08-24
+
+### Bug Fixes
+
+- `<ui-drawer>`: fix animation bug
+
 ## v8.44.0 / 2021-08-11
 
 ### Features

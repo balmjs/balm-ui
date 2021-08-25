@@ -2,8 +2,8 @@
   <docs-page name="radio" demo-count="1">
     <template #hero>
       <ui-form-field>
-        <ui-radio v-model="hero" v-a11y name="hero" value="0"></ui-radio>
-        <ui-radio v-model="hero" v-a11y name="hero" value="1"></ui-radio>
+        <ui-radio v-model="hero" v-a11y value="0"></ui-radio>
+        <ui-radio v-model="hero" v-a11y value="1"></ui-radio>
         {{ hero }}
       </ui-form-field>
     </template>
@@ -20,7 +20,6 @@
           <ui-radio
             v-model="hero"
             input-id="ex4a-radio1"
-            name="ex4a"
             value="0"
             disabled
           ></ui-radio>
@@ -30,7 +29,6 @@
           <ui-radio
             v-model="hero"
             input-id="ex4a-radio2"
-            name="ex4a"
             value="1"
             disabled
           ></ui-radio>
@@ -42,21 +40,11 @@
     <section class="demo-wrapper">
       <div class="demo">
         <ui-form-field>
-          <ui-radio
-            v-model="gender"
-            input-id="male"
-            name="sex"
-            value="M"
-          ></ui-radio>
+          <ui-radio v-model="gender" input-id="male" value="M"></ui-radio>
           <label for="male">Male</label>
         </ui-form-field>
         <ui-form-field>
-          <ui-radio
-            v-model="gender"
-            input-id="female"
-            name="sex"
-            value="F"
-          ></ui-radio>
+          <ui-radio v-model="gender" input-id="female" value="F"></ui-radio>
           <label for="female">Female</label>
         </ui-form-field>
         <p>Gender: {{ gender }}</p>

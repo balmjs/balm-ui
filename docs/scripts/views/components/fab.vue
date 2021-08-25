@@ -34,21 +34,11 @@
         </ui-form-field>
         <div v-else class="hero-option">
           <ui-form-field>
-            <ui-radio
-              v-model="mini"
-              input-id="default"
-              name="mini"
-              :value="0"
-            ></ui-radio>
+            <ui-radio v-model="mini" input-id="default" :value="0"></ui-radio>
             <label for="default">Default</label>
           </ui-form-field>
           <ui-form-field>
-            <ui-radio
-              v-model="mini"
-              input-id="mini"
-              name="mini"
-              :value="1"
-            ></ui-radio>
+            <ui-radio v-model="mini" input-id="mini" :value="1"></ui-radio>
             <label for="mini">Mini</label>
           </ui-form-field>
         </div>

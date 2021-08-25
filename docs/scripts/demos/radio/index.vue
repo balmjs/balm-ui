@@ -5,7 +5,6 @@
         <ui-radio
           v-model="value1"
           input-id="ex-default-radio1"
-          :name="`ex-default`"
           value="1"
         ></ui-radio>
         <label for="ex-default-radio1">Default Radio 1</label>
@@ -14,7 +13,6 @@
         <ui-radio
           v-model="value1"
           input-id="ex-default-radio2"
-          :name="`ex-default`"
           value="2"
         ></ui-radio>
         <label for="ex-default-radio2">Default Radio 2</label>
@@ -25,7 +23,6 @@
         <ui-radio
           v-model="value2"
           input-id="ex-custom-radio1"
-          :name="`ex-custom`"
           :value="1"
         ></ui-radio>
         <label for="ex-custom-radio1">Custom Radio 1</label>
@@ -34,7 +31,6 @@
         <ui-radio
           v-model="value2"
           input-id="ex-custom-radio2"
-          :name="`ex-custom`"
           :value="2"
         ></ui-radio>
         <label for="ex-custom-radio2">Custom Radio 2</label>

@@ -75,7 +75,7 @@
             v-for="(item, index) in filterList"
             :key="index"
             icon="face"
-            :hidden="selectedValue2.includes(index)"
+            :selected="selectedValue2.includes(index)"
           >
             {{ item }}
           </ui-chip>
@@ -156,8 +156,8 @@ export default {
       name: '',
       list: [],
       selectedIndex: 3,
-      selectedValue: ['a', 'b'],
-      selectedValue2: [0],
+      selectedValue: ['a', 'c'],
+      selectedValue2: [1, 2],
       filterList: [],
       actionList: [
         {

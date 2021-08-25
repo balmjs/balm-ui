@@ -60,7 +60,7 @@ export default {
   name: 'UiChip',
   mixins: [materialIconMixin],
   props: {
-    hidden: {
+    selected: {
       type: Boolean,
       default: false
     },
@@ -79,7 +79,7 @@ export default {
       return [
         UI_GLOBAL.cssClasses.icon,
         UI_CHIP.cssClasses.icon,
-        { 'mdc-chip__icon--leading-hidden': this.hidden }
+        { 'mdc-chip__icon--leading-hidden': this.selected }
       ];
     },
     role() {

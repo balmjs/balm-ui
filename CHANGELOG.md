@@ -2,6 +2,22 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.46.0 / 2021-08-25
+
+### Features
+
+- `<ui-switch>`: add `selected` event
+
+### Bug Fixes
+
+- `<ui-chips>`: fix selected value bug
+
+### BREAKING CHANGES
+
+- `<ui-switch>`: update prop `model`, just use boolean type
+- `<ui-checkbox>`, `<ui-radio>`, `<ui-switch>`: the `name` prop is deprecated
+- `<ui-chip>`: rename prop `hidden` to `selected`
+
 ## v8.45.0 / 2021-08-24
 
 ### Reverts

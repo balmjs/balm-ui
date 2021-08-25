@@ -77,11 +77,7 @@
           <ui-dialog-content>
             <ui-form>
               <ui-form-field v-for="i in 4" :key="i">
-                <ui-radio
-                  name="hero-radio"
-                  :input-id="`hero-radio${i}`"
-                  :value="i"
-                ></ui-radio>
+                <ui-radio :input-id="`hero-radio${i}`" :value="i"></ui-radio>
                 <label
                   :for="`hero-radio${i}`"
                   :class="$theme.getTextClass('secondary', $store.theme)"
@@ -122,7 +118,6 @@
               <ui-radio
                 v-model="buttonOption"
                 :input-id="`hero-button${item.value}`"
-                name="dialog-button"
                 :value="item.value"
               ></ui-radio>
               <label :for="`hero-button${item.value}`">{{ item.label }}</label>

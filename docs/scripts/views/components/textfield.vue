@@ -95,7 +95,6 @@
               <ui-radio
                 v-model="assistiveTextOption"
                 :input-id="`textOption${option.value}`"
-                name="assistiveText"
                 :value="option.value"
               ></ui-radio>
               <label :for="`textOption${option.value}`">{{

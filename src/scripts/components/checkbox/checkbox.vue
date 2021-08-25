@@ -5,7 +5,6 @@
       v-model="selectedValue"
       type="checkbox"
       class="mdc-checkbox__native-control"
-      :name="name"
       :value="value"
       :disabled="disabled"
       :data-indeterminate="indeterminate"
@@ -48,10 +47,6 @@ export default {
       default: false
     },
     // <input type="checkbox"> attributes
-    name: {
-      type: String,
-      default: ''
-    },
     value: {
       type: [String, Number],
       default: ''

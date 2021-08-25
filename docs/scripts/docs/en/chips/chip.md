@@ -7,7 +7,7 @@
 | Name        | Type    | Default | Description                                                                                         |
 | ----------- | ------- | ------- | --------------------------------------------------------------------------------------------------- |
 | `icon`      | string  | `''`    | Optional. Indicates an leading icon element. See [Material Icons](/#/icons) list.                   |
-| `hidden`    | boolean | `false` | Optional. Hides the leading icon in a filter chip when the chip is selected.                        |
+| `selected`  | boolean | `false` | Optional. Hides the leading icon in a filter chip when the chip is selected.                        |
 | `removable` | boolean | `false` | Optional. Indicates a trailing icon which removes the chip from the DOM. Only use with input chips. |
 
 ### Slots

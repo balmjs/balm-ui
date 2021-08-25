@@ -1,25 +1,37 @@
 <template>
-  <div :class="className">
-    <div class="mdc-switch__ripple"></div>
+  <button
+    :class="className"
+    type="button"
+    role="switch"
+    aria-checked="false"
+    :disabled="disabled"
+  >
     <div class="mdc-switch__track"></div>
-    <div class="mdc-switch__thumb-underlay">
-      <div class="mdc-switch__thumb"></div>
-      <input
-        :id="inputId"
-        v-model="selectedValue"
-        type="checkbox"
-        class="mdc-switch__native-control"
-        :name="name"
-        :true-value="trueValue"
-        :false-value="falseValue"
-        role="switch"
-        :aria-checked="checked"
-        :disabled="disabled"
-        v-bind="attrs"
-        @change="handleChange"
-      />
+    <div class="mdc-switch__handle-track">
+      <div class="mdc-switch__handle">
+        <div class="mdc-switch__shadow">
+          <div class="mdc-elevation-overlay"></div>
+        </div>
+        <div class="mdc-switch__ripple"></div>
+        <div class="mdc-switch__icons">
+          <svg
+            class="mdc-switch__icon mdc-switch__icon--on"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19.69,5.23L8.96,15.96l-4.23-4.23L2.96,13.5l6,6L21.46,7L19.69,5.23z"
+            />
+          </svg>
+          <svg
+            class="mdc-switch__icon mdc-switch__icon--off"
+            viewBox="0 0 24 24"
+          >
+            <path d="M20 13H4v-2h16v2z" />
+          </svg>
+        </div>
+      </div>
     </div>
-  </div>
+  </button>
 </template>
 
 <script>
@@ -30,7 +42,8 @@ import inputMixin from '../../mixins/input';
 // Define switch constants
 const UI_SWITCH = {
   EVENT: {
-    CHANGE: 'update:modelValue'
+    CHANGE: 'update:modelValue',
+    SELECTED: 'selected'
   }
 };
 
@@ -40,7 +53,7 @@ export default {
   props: {
     // States
     modelValue: {
-      type: null, // NOTE: Boolean only
+      type: Boolean,
       default: false
     },
     trueValue: {
@@ -51,17 +64,12 @@ export default {
       type: [Boolean, Number, String],
       default: false
     },
-    // <input type="checkbox"> attributes
-    name: {
-      type: String,
-      default: ''
-    },
     disabled: {
       type: Boolean,
       default: false
     }
   },
-  emits: [UI_SWITCH.EVENT.CHANGE],
+  emits: [UI_SWITCH.EVENT.CHANGE, UI_SWITCH.EVENT.SELECTED],
   data() {
     return {
       $switch: null,
@@ -69,21 +77,21 @@ export default {
     };
   },
   computed: {
-    checked() {
+    isOn() {
       return this.selectedValue === this.trueValue;
     },
     className() {
       return {
         'mdc-switch': true,
-        'mdc-switch--disabled': this.disabled,
-        'mdc-switch--checked': this.checked
+        'mdc-switch--unselected': !this.isOn,
+        'mdc-switch--selected': this.isOn
       };
     }
   },
   watch: {
     modelValue(val) {
       this.selectedValue = val;
-      this.triggerChecked();
+      this.triggerSwitch();
     },
     disabled(val) {
       if (this.$switch) {
@@ -93,14 +101,18 @@ export default {
   },
   mounted() {
     this.$switch = new MDCSwitch(this.el);
-    this.triggerChecked();
+    this.triggerSwitch();
   },
   methods: {
-    triggerChecked() {
-      this.$switch.checked = this.selectedValue === this.trueValue;
+    triggerSwitch() {
+      this.$switch.selected = this.isOn;
     },
     handleChange() {
       this.$emit(UI_SWITCH.EVENT.CHANGE, this.selectedValue);
+      this.$emit(
+        UI_SWITCH.EVENT.SELECTED,
+        this.isOn ? this.trueValue : this.falseValue
+      );
     }
   }
 };

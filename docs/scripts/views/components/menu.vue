@@ -50,7 +50,6 @@
                   <ui-radio
                     v-model="controls.buttonPosition"
                     input-id="position-top-left"
-                    name="position"
                     value="top left"
                   ></ui-radio>
                   <label for="position-top-left">Top left</label>
@@ -59,7 +58,6 @@
                   <ui-radio
                     v-model="controls.buttonPosition"
                     input-id="position-top-right"
-                    name="position"
                     value="top right"
                   ></ui-radio>
                   <label for="position-top-right">Top right</label>
@@ -68,7 +66,6 @@
                   <ui-radio
                     v-model="controls.buttonPosition"
                     input-id="position-middle-left"
-                    name="position"
                     value="middle left"
                   ></ui-radio>
                   <label for="position-middle-left">Middle left</label>
@@ -77,7 +74,6 @@
                   <ui-radio
                     v-model="controls.buttonPosition"
                     input-id="position-middle-right"
-                    name="position"
                     value="middle right"
                   ></ui-radio>
                   <label for="position-middle-right">Middle right</label>
@@ -86,7 +82,6 @@
                   <ui-radio
                     v-model="controls.buttonPosition"
                     input-id="position-bottom-left"
-                    name="position"
                     value="bottom left"
                   ></ui-radio>
                   <label for="position-bottom-left">Bottom left</label>
@@ -95,7 +90,6 @@
                   <ui-radio
                     v-model="controls.buttonPosition"
                     input-id="position-bottom-right"
-                    name="position"
                     value="bottom right"
                   ></ui-radio>
                   <label for="position-bottom-right">Bottom right</label>
@@ -109,7 +103,6 @@
                   <ui-radio
                     v-model="controls.menuPosition"
                     input-id="menu-position-top-start"
-                    name="menu-position"
                     value="top start"
                   ></ui-radio>
                   <label for="menu-position-top-start">Top start</label>
@@ -118,7 +111,6 @@
                   <ui-radio
                     v-model="controls.menuPosition"
                     input-id="menu-position-top-end"
-                    name="menu-position"
                     value="top end"
                   ></ui-radio>
                   <label for="menu-position-top-end">Top end</label>
@@ -127,7 +119,6 @@
                   <ui-radio
                     v-model="controls.menuPosition"
                     input-id="menu-position-bottom-start"
-                    name="menu-position"
                     value="bottom start"
                   ></ui-radio>
                   <label for="menu-position-bottom-start">Bottom start</label>
@@ -136,7 +127,6 @@
                   <ui-radio
                     v-model="controls.menuPosition"
                     input-id="menu-position-bottom-end"
-                    name="menu-position"
                     value="bottom end"
                   ></ui-radio>
                   <label for="menu-position-bottom-end">Bottom end</label>

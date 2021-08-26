@@ -3,6 +3,26 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.37.0 / 2021-08-26
+
+### Features
+
+- `<ui-switch>`: add `selected` event
+
+### Bug Fixes
+
+- `<ui-chips>`: fix selected value bug
+
+### Code Refactoring
+
+- `<ui-switch>`: update new switch
+
+### BREAKING CHANGES
+
+- `<ui-checkbox>`, `<ui-radio>`, `<ui-switch>`: the `name` prop is deprecated
+- `<ui-chip>`: rename prop `hidden` to `selected`
+- `<ui-switch>`: remove prop `inputId`, use `id` instead
+- `<ui-switch>`: remove prop `attrs`
 
 ## v9.36.0 / 2021-08-24
 

@@ -1,4 +1,6 @@
-> ⚠️ The `deprecated` path is required in `balm-ui` >= 8.42.0
+### @deprecation `<ui-switch>` sass variables is deprecated in `balm-ui` >= 9.37.0
+
+> ⚠️ The `deprecated` path is required in `balm-ui` >= 9.34.0
 
 ```scss
 @use '@material/switch/deprecated/variables' with (

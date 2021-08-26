@@ -25,7 +25,7 @@
     children: 'children',
     hasChildren: 'hasChildren',
     isLeaf: 'isLeaf',
-    disabled: 'disabled' // New in 8.43.0
+    disabled: 'disabled' // New in 9.35.0
   }
   ```
 

@@ -7,14 +7,12 @@
 
 ### Props
 
-| Name                     | Type                    | Default | Description                                                                   |
-| ------------------------ | ----------------------- | ------- | ----------------------------------------------------------------------------- |
-| `modelValue` (`v-model`) | boolean                 | `false` | Mandatory.                                                                    |
-| `trueValue`              | boolean, number, string | `true`  |                                                                               |
-| `falseValue`             | boolean, number, string | `false` |                                                                               |
-| `inputId`                | string                  | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
-| `disabled`               | boolean                 | `false` | Styles the switch as a disabled switch.                                       |
-| `attrs`                  | object                  | `{}`    | Other attributes for `<input>`.                                               |
+| Name                     | Type                    | Default | Description                             |
+| ------------------------ | ----------------------- | ------- | --------------------------------------- |
+| `modelValue` (`v-model`) | boolean                 | `false` | Mandatory.                              |
+| `trueValue`              | boolean, number, string | `true`  |                                         |
+| `falseValue`             | boolean, number, string | `false` |                                         |
+| `disabled`               | boolean                 | `false` | Styles the switch as a disabled switch. |
 
 ### Events
 

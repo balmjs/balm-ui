@@ -84,10 +84,16 @@ export default {
         this.$drawer.open = val;
       }
     },
-    type(val) {
-      if (val === 'modal') {
-        this.createScrim();
-      }
+    type() {
+      this.$nextTick(() => {
+        if (this.isModal) {
+          this.createScrim();
+
+          if (!this.$drawer) {
+            this.init();
+          }
+        }
+      });
     }
   },
   mounted() {
@@ -97,13 +103,6 @@ export default {
 
     if (this.isDismissible || this.isModal) {
       this.createScrim();
-
-      this.$drawer = new MDCDrawer(this.el);
-
-      this.$drawer.listen(strings.OPEN_EVENT, () => {
-        this.$emit(UI_DRAWER.EVENT.NAV, true);
-      });
-      this.$drawer.listen(strings.CLOSE_EVENT, this.handleClose);
 
       this.init();
     }
@@ -132,6 +131,13 @@ export default {
       return result;
     },
     init() {
+      this.$drawer = new MDCDrawer(this.el);
+
+      this.$drawer.listen(strings.OPEN_EVENT, () => {
+        this.$emit(UI_DRAWER.EVENT.NAV, true);
+      });
+      this.$drawer.listen(strings.CLOSE_EVENT, this.handleClose);
+
       if (this.navId && document.getElementById(this.navId)) {
         this.checkNav();
 

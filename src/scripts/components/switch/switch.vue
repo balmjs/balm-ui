@@ -3,8 +3,9 @@
     :class="className"
     type="button"
     role="switch"
-    aria-checked="false"
+    :aria-checked="selectedValue"
     :disabled="disabled"
+    @click="handleChange"
   >
     <div class="mdc-switch__track"></div>
     <div class="mdc-switch__handle-track">
@@ -37,7 +38,6 @@
 <script>
 import { MDCSwitch } from '../../../material-components-web/switch';
 import domMixin from '../../mixins/dom';
-import inputMixin from '../../mixins/input';
 
 // Define switch constants
 const UI_SWITCH = {
@@ -49,7 +49,7 @@ const UI_SWITCH = {
 
 export default {
   name: 'UiSwitch',
-  mixins: [domMixin, inputMixin],
+  mixins: [domMixin],
   props: {
     // States
     modelValue: {
@@ -77,21 +77,17 @@ export default {
     };
   },
   computed: {
-    isOn() {
-      return this.selectedValue === this.trueValue;
-    },
     className() {
       return {
         'mdc-switch': true,
-        'mdc-switch--unselected': !this.isOn,
-        'mdc-switch--selected': this.isOn
+        'mdc-switch--unselected': !this.selectedValue,
+        'mdc-switch--selected': this.selectedValue
       };
     }
   },
   watch: {
     modelValue(val) {
-      this.selectedValue = val;
-      this.triggerSwitch();
+      this.triggerSwitch(val);
     },
     disabled(val) {
       if (this.$switch) {
@@ -100,18 +96,29 @@ export default {
     }
   },
   mounted() {
-    this.$switch = new MDCSwitch(this.el);
-    this.triggerSwitch();
+    this.init();
+  },
+  updated() {
+    // NOTE: Once for init, mdc switch has bug
+    this.init();
   },
   methods: {
-    triggerSwitch() {
-      this.$switch.selected = this.isOn;
+    init() {
+      this.$switch = new MDCSwitch(this.el);
+      this.triggerSwitch();
+      this.$switch.selected = this.selectedValue;
+    },
+    triggerSwitch(selected = this.modelValue) {
+      this.selectedValue = selected;
+      // this.$switch.selected = selected; // TODO: mdc switch has bug
     },
     handleChange() {
-      this.$emit(UI_SWITCH.EVENT.CHANGE, this.selectedValue);
+      const selected = !this.selectedValue;
+
+      this.$emit(UI_SWITCH.EVENT.CHANGE, selected);
       this.$emit(
         UI_SWITCH.EVENT.SELECTED,
-        this.isOn ? this.trueValue : this.falseValue
+        selected ? this.trueValue : this.falseValue
       );
     }
   }

@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.46.2 / 2021-08-27
+
+### Bug Fixes
+
+- `<ui-slider>`: fix step bug
+
 ## v8.46.1 / 2021-08-26
 
 ### Bug Fixes

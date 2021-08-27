@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.37.2 / 2021-08-27
+
+### Bug Fixes
+
+- `<ui-slider>`: fix step bug
+
 ## v9.37.1 / 2021-08-26
 
 ### Bug Fixes

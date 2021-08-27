@@ -6,12 +6,14 @@
         :min="+min"
         :max="+max"
         :value="startValue"
+        :step="step"
         :disabled="disabled"
       ></mdc-slider-input>
       <mdc-slider-input
         :min="+min"
         :max="+max"
         :value="endValue"
+        :step="step"
         :disabled="disabled"
       ></mdc-slider-input>
     </template>
@@ -20,6 +22,7 @@
       :min="+min"
       :max="+max"
       :value="selectedValue"
+      :step="step"
       :disabled="disabled"
     ></mdc-slider-input>
     <!-- Track -->

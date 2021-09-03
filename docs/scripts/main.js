@@ -1,4 +1,3 @@
-import '@/polyfill';
 import Vue from 'vue';
 import router from '@/routes';
 import i18n from '@/lang';

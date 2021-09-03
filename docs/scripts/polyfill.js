@@ -1,3 +1,2 @@
-// For IE11 and below
-import 'core-js/features/promise';
-import 'core-js/features/array/includes';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';

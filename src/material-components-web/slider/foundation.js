@@ -442,10 +442,10 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
      * Emits custom dragStart event, along with focusing the underlying input.
      */
     MDCSliderFoundation.prototype.handleDragStart = function (event, value, thumb) {
+        this.adapter.emitDragStartEvent(value, thumb);
         this.adapter.focusInput(thumb);
         // Prevent the input (that we just focused) from losing focus.
         event.preventDefault();
-        this.adapter.emitDragStartEvent(value, thumb);
     };
     /**
      * @return The thumb to be moved based on initial down event.

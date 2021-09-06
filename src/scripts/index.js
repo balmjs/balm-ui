@@ -3,6 +3,8 @@ import autoInstall from './config/auto-install';
 /**
  * Components
  */
+// Theme
+import UiIcon from './components/icon/icon.vue';
 // General
 import UiButton from './components/button/button.vue';
 import UiFab from './components/fab/fab.vue';
@@ -34,8 +36,6 @@ import UiMenuitem from './components/menu/menuitem.vue';
 import UiMenuitemIcon from './components/menu/menuitem-icon.vue';
 import UiMenuitemText from './components/menu/menuitem-text.vue';
 import UiPagination from './components/pagination/pagination.vue'; // Custom
-// Theme
-import UiIcon from './components/icon/icon.vue';
 // Data Entry
 import UiForm from './components/form/form.vue'; // Custom
 import UiFormField from './components/form-field/form-field.vue';

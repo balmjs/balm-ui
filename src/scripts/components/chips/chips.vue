@@ -74,7 +74,7 @@ export default {
     return {
       $chipSet: null,
       selectedValue: this.modelValue,
-      currentOptions: this.options,
+      currentOptions: [],
       chipsCount: this.chips.length,
       choiceChipId: null // fix(ui): twice trigger
     };
@@ -103,19 +103,21 @@ export default {
       this.clearSelected(val, oldVal);
       this.selectedValue = val;
     },
-    options(val) {
-      if (this.choiceChips || this.filterChips) {
-        this.currentOptions = [];
+    options: {
+      handler(val) {
+        if (this.choiceChips || this.filterChips) {
+          this.currentOptions = [];
 
-        this.$nextTick(() => {
-          this.currentOptions = val;
-
-          if (this.$chipSet) {
-            this.$chipSet.destroy();
-            this.init();
-          }
-        });
-      }
+          this.$nextTick(() => {
+            this.currentOptions = val;
+            if (this.$chipSet) {
+              this.$chipSet.destroy();
+              this.init();
+            }
+          });
+        }
+      },
+      deep:true
     },
     chips(val) {
       if (val.length > this.chipsCount) {
@@ -199,16 +201,12 @@ export default {
               ? adapter.getIndexOfChipById(detail.chipId)
               : -1;
 
-            if (this.currentOptions.length) {
-              let selectedValue =
-                selectedIndex > -1
-                  ? this.currentOptions[selectedIndex][this.optionFormat.value]
-                  : '';
+            let selectedValue =
+              selectedIndex > -1
+                ? this.currentOptions[selectedIndex][this.optionFormat.value]
+                : '';
 
-              this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
-            } else {
-              this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndex);
-            }
+            this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
           }
         } else if (this.filterChips) {
           let selectedIndexes = [];
@@ -218,15 +216,11 @@ export default {
             }
           });
 
-          if (this.currentOptions.length) {
-            let selectedValue = this.currentOptions
-              .filter((option, index) => selectedIndexes.includes(index))
-              .map((option) => option[this.optionFormat.value]);
+          let selectedValue = this.currentOptions
+            .filter((option, index) => selectedIndexes.includes(index))
+            .map((option) => option[this.optionFormat.value]);
 
-            this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
-          } else {
-            this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndexes);
-          }
+          this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
         }
       });
     },

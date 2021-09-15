@@ -21,44 +21,45 @@
  * THE SOFTWARE.
  */
 /**
- * CssClasses provides the named constants for class names.
+ * MDCChipCssClasses provides the named constants for class names.
  */
-export var CssClasses;
-(function (CssClasses) {
-    CssClasses["SELECTING"] = "mdc-evolution-chip--selecting";
-    CssClasses["DESELECTING"] = "mdc-evolution-chip--deselecting";
-    CssClasses["SELECTING_WITH_PRIMARY_ICON"] = "mdc-evolution-chip--selecting-with-primary-icon";
-    CssClasses["DESELECTING_WITH_PRIMARY_ICON"] = "mdc-evolution-chip--deselecting-with-primary-icon";
-    CssClasses["DISABLED"] = "mdc-evolution-chip--disabled";
-    CssClasses["ENTER"] = "mdc-evolution-chip--enter";
-    CssClasses["EXIT"] = "mdc-evolution-chip--exit";
-    CssClasses["SELECTED"] = "mdc-evolution-chip--selected";
-    CssClasses["HIDDEN"] = "mdc-evolution-chip--hidden";
-    CssClasses["WITH_PRIMARY_ICON"] = "mdc-evolution-chip--with-primary-icon";
-})(CssClasses || (CssClasses = {}));
+export var MDCChipCssClasses;
+(function (MDCChipCssClasses) {
+    MDCChipCssClasses["SELECTING"] = "mdc-evolution-chip--selecting";
+    MDCChipCssClasses["DESELECTING"] = "mdc-evolution-chip--deselecting";
+    MDCChipCssClasses["SELECTING_WITH_PRIMARY_ICON"] = "mdc-evolution-chip--selecting-with-primary-icon";
+    MDCChipCssClasses["DESELECTING_WITH_PRIMARY_ICON"] = "mdc-evolution-chip--deselecting-with-primary-icon";
+    MDCChipCssClasses["DISABLED"] = "mdc-evolution-chip--disabled";
+    MDCChipCssClasses["ENTER"] = "mdc-evolution-chip--enter";
+    MDCChipCssClasses["EXIT"] = "mdc-evolution-chip--exit";
+    MDCChipCssClasses["SELECTED"] = "mdc-evolution-chip--selected";
+    MDCChipCssClasses["HIDDEN"] = "mdc-evolution-chip--hidden";
+    MDCChipCssClasses["WITH_PRIMARY_ICON"] = "mdc-evolution-chip--with-primary-icon";
+})(MDCChipCssClasses || (MDCChipCssClasses = {}));
 /**
- * Events provides the named constants for emitted events.
+ * MDCChipEvents provides the named constants for emitted events.
  */
-export var Events;
-(function (Events) {
-    Events["INTERACTION"] = "MDCChip:interaction";
-    Events["NAVIGATION"] = "MDCChip:navigation";
-    Events["ANIMATION"] = "MDCChip:animation";
-})(Events || (Events = {}));
+export var MDCChipEvents;
+(function (MDCChipEvents) {
+    MDCChipEvents["INTERACTION"] = "MDCChip:interaction";
+    MDCChipEvents["NAVIGATION"] = "MDCChip:navigation";
+    MDCChipEvents["ANIMATION"] = "MDCChip:animation";
+})(MDCChipEvents || (MDCChipEvents = {}));
 /**
- * Events provides the named constants for strings used by the foundation.
+ * MDCChipAttributes provides the named constants for strings used by the
+ * foundation.
  */
-export var Attributes;
-(function (Attributes) {
-    Attributes["DATA_REMOVED_ANNOUNCEMENT"] = "data-mdc-removed-announcement";
-    Attributes["DATA_ADDED_ANNOUNCEMENT"] = "data-mdc-added-announcement";
-})(Attributes || (Attributes = {}));
+export var MDCChipAttributes;
+(function (MDCChipAttributes) {
+    MDCChipAttributes["DATA_REMOVED_ANNOUNCEMENT"] = "data-mdc-removed-announcement";
+    MDCChipAttributes["DATA_ADDED_ANNOUNCEMENT"] = "data-mdc-added-announcement";
+})(MDCChipAttributes || (MDCChipAttributes = {}));
 /**
- * Animation provides the names of runnable animations.
+ * MDCChipAnimation provides the names of runnable animations.
  */
-export var Animation;
-(function (Animation) {
-    Animation["ENTER"] = "mdc-evolution-chip-enter";
-    Animation["EXIT"] = "mdc-evolution-chip-exit";
-})(Animation || (Animation = {}));
+export var MDCChipAnimation;
+(function (MDCChipAnimation) {
+    MDCChipAnimation["ENTER"] = "mdc-evolution-chip-enter";
+    MDCChipAnimation["EXIT"] = "mdc-evolution-chip-exit";
+})(MDCChipAnimation || (MDCChipAnimation = {}));
 //# sourceMappingURL=constants.js.map

@@ -30,6 +30,7 @@
 @use '../theme/custom-properties';
 @use '../base/mixins' as base-mixins;
 @use '../feature-targeting/feature-targeting';
+@use '../rtl/rtl';
 @use '../theme/css';
 @use '../theme/theme';
 @use '../theme/theme-color';
@@ -332,11 +333,11 @@ $transition-timing-function: animation-variables.$standard-curve-timing-function
 
       @if $has-content-sizing {
         top: 0;
-        /* @noflip */
+        @include rtl.ignore-next-line();
         left: 0;
       } @else {
         top: 50%;
-        /* @noflip */
+        @include rtl.ignore-next-line();
         left: 50%;
         transform: translate(-50%, -50%);
       }

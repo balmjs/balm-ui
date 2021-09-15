@@ -65,8 +65,12 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
                 getScrollAreaScrollLeft: function () { return 0; },
                 getScrollContentOffsetWidth: function () { return 0; },
                 getScrollAreaOffsetWidth: function () { return 0; },
-                computeScrollAreaClientRect: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
-                computeScrollContentClientRect: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
+                computeScrollAreaClientRect: function () {
+                    return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 });
+                },
+                computeScrollContentClientRect: function () {
+                    return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 });
+                },
                 computeHorizontalScrollbarHeight: function () { return 0; },
             };
             // tslint:enable:object-literal-sort-keys

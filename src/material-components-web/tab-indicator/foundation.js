@@ -48,7 +48,9 @@ var MDCTabIndicatorFoundation = /** @class */ (function (_super) {
             return {
                 addClass: function () { return undefined; },
                 removeClass: function () { return undefined; },
-                computeContentClientRect: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
+                computeContentClientRect: function () {
+                    return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 });
+                },
                 setContentStyleProperty: function () { return undefined; },
             };
             // tslint:enable:object-literal-sort-keys

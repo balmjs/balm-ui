@@ -37,7 +37,7 @@ export function computePrimaryActionRippleClientRect(clientRect, graphicSelected
         top: clientRect.top,
         right: clientRect.right,
         bottom: clientRect.bottom,
-        left: clientRect.left,
+        left: clientRect.left
     };
 }
 /**

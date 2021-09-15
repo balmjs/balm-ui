@@ -95,7 +95,9 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
             return {
                 addClass: function () { return undefined; },
                 browserSupportsCssVars: function () { return true; },
-                computeBoundingRect: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
+                computeBoundingRect: function () {
+                    return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 });
+                },
                 containsEventTarget: function () { return true; },
                 deregisterDocumentInteractionHandler: function () { return undefined; },
                 deregisterInteractionHandler: function () { return undefined; },

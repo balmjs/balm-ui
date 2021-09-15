@@ -34,7 +34,9 @@ var MDCRipple = /** @class */ (function (_super) {
         return _this;
     }
     MDCRipple.attachTo = function (root, opts) {
-        if (opts === void 0) { opts = { isUnbounded: undefined }; }
+        if (opts === void 0) { opts = {
+            isUnbounded: undefined
+        }; }
         var ripple = new MDCRipple(root);
         // Only override unbounded behavior if option is explicitly specified
         if (opts.isUnbounded !== undefined) {

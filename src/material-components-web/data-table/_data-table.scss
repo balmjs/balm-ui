@@ -31,7 +31,7 @@
 @use '../dom/mixins' as dom;
 @use '../elevation/mixins';
 @use '../feature-targeting/feature-targeting';
-@use '../rtl/mixins' as rtl-mixins;
+@use '../rtl/rtl';
 @use '../shape/mixins' as shape-mixins;
 @use '../theme/theme';
 @use '../theme/theme-color';

@@ -29,12 +29,12 @@
 @use 'sass:meta';
 @use '../animation/functions';
 @use '../checkbox/checkbox-theme';
-@use '../density/functions' as density-functions;
-@use '../density/variables' as density-variables;
+@use '../density/density';
 @use '../elevation/mixins';
 @use '../feature-targeting/feature-targeting';
 @use '../icon-button/icon-button-theme';
-@use '../rtl/mixins' as rtl-mixins;
+@use '../list/evolution-mixins' as list-theme;
+@use '../rtl/rtl';
 @use '../select/select-theme';
 @use '../shape/functions' as shape-functions;
 @use '../shape/mixins' as shape-mixins;
@@ -73,7 +73,7 @@ $cell-trailing-padding: 16px !default;
 
 $minimum-row-height: 36px !default;
 $maximum-row-height: $row-height !default;
-$default-density-scale: density-variables.$default-scale !default;
+$default-density-scale: density.$default-scale !default;
 $density-config: (
   height: (
     maximum: $row-height,
@@ -274,7 +274,7 @@ $pagination-rows-per-page-select-height: 36px;
     @include feature-targeting.targets($feat-structure) {
       @include theme.property(border-top-left-radius, $top-left-radius);
 
-      @include rtl-mixins.rtl {
+      @include rtl.rtl {
         @include theme.property(
           border-top-right-radius,
           if($rtl-reflexive, $top-left-radius, $top-right-radius)
@@ -289,7 +289,7 @@ $pagination-rows-per-page-select-height: 36px;
     @include feature-targeting.targets($feat-structure) {
       @include theme.property(border-top-right-radius, $top-right-radius);
 
-      @include rtl-mixins.rtl {
+      @include rtl.rtl {
         @include theme.property(
           border-top-left-radius,
           if($rtl-reflexive, $top-right-radius, $top-left-radius)
@@ -413,7 +413,7 @@ $pagination-rows-per-page-select-height: 36px;
       }
       $leading-padding: $leading-padding -
         math.div($checkbox-touch-size - $checkbox-icon-size, 2);
-      @include rtl-mixins.reflexive-property(padding, $leading-padding, 0);
+      @include rtl.reflexive-property(padding, $leading-padding, 0);
     }
   }
 }
@@ -444,9 +444,10 @@ $pagination-rows-per-page-select-height: 36px;
 @mixin density(
   $density-scale,
   $row-checkbox-density-scale: null,
+  $pagination-select-density-scale: null,
   $query: feature-targeting.all()
 ) {
-  $height: density-functions.prop-value(
+  $height: density.prop-value(
     $density-config: $density-config,
     $density-scale: $density-scale,
     $property-name: height,
@@ -467,6 +468,24 @@ $pagination-rows-per-page-select-height: 36px;
       @include checkbox-theme.density($row-checkbox-density-scale);
     }
   }
+
+  @if $pagination-select-density-scale {
+    @include select-density($pagination-select-density-scale);
+  }
+}
+
+@mixin select-density($density-scale) {
+  @include select-theme.outlined-height(
+    select-theme.$height + density.$interval * $density-scale
+  );
+  .mdc-list-item {
+    @include list-theme.one-line-item-density(
+      $density-scale + 2,
+      $exclude-variants: true
+    );
+  }
+
+  margin: 0;
 }
 
 ///

@@ -47,8 +47,12 @@ var MDCTextField = /** @class */ (function (_super) {
     MDCTextField.prototype.initialize = function (rippleFactory, lineRippleFactory, helperTextFactory, characterCounterFactory, iconFactory, labelFactory, outlineFactory) {
         if (rippleFactory === void 0) { rippleFactory = function (el, foundation) { return new MDCRipple(el, foundation); }; }
         if (lineRippleFactory === void 0) { lineRippleFactory = function (el) { return new MDCLineRipple(el); }; }
-        if (helperTextFactory === void 0) { helperTextFactory = function (el) { return new MDCTextFieldHelperText(el); }; }
-        if (characterCounterFactory === void 0) { characterCounterFactory = function (el) { return new MDCTextFieldCharacterCounter(el); }; }
+        if (helperTextFactory === void 0) { helperTextFactory = function (el) {
+            return new MDCTextFieldHelperText(el);
+        }; }
+        if (characterCounterFactory === void 0) { characterCounterFactory = function (el) {
+            return new MDCTextFieldCharacterCounter(el);
+        }; }
         if (iconFactory === void 0) { iconFactory = function (el) { return new MDCTextFieldIcon(el); }; }
         if (labelFactory === void 0) { labelFactory = function (el) { return new MDCFloatingLabel(el); }; }
         if (outlineFactory === void 0) { outlineFactory = function (el) { return new MDCNotchedOutline(el); }; }

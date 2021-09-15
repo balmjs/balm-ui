@@ -74,8 +74,12 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
                 activateTabAtIndex: function () { return undefined; },
                 deactivateTabAtIndex: function () { return undefined; },
                 focusTabAtIndex: function () { return undefined; },
-                getTabIndicatorClientRectAtIndex: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
-                getTabDimensionsAtIndex: function () { return ({ rootLeft: 0, rootRight: 0, contentLeft: 0, contentRight: 0 }); },
+                getTabIndicatorClientRectAtIndex: function () {
+                    return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 });
+                },
+                getTabDimensionsAtIndex: function () {
+                    return ({ rootLeft: 0, rootRight: 0, contentLeft: 0, contentRight: 0 });
+                },
                 getPreviousActiveTabIndex: function () { return -1; },
                 getFocusedTabIndex: function () { return -1; },
                 getIndexOfTabById: function () { return -1; },

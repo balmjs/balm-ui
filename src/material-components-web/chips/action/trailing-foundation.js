@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 import { __extends } from "tslib";
-import { ActionType } from './constants';
+import { MDCChipActionType } from './constants';
 import { MDCChipActionFoundation } from './foundation';
 /**
  * MDCChipTrailingActionFoundation provides the business logic for the trailing
@@ -36,7 +36,7 @@ var MDCChipTrailingActionFoundation = /** @class */ (function (_super) {
         return false;
     };
     MDCChipTrailingActionFoundation.prototype.actionType = function () {
-        return ActionType.TRAILING;
+        return MDCChipActionType.TRAILING;
     };
     MDCChipTrailingActionFoundation.prototype.shouldEmitInteractionOnRemoveKey = function () {
         return true;

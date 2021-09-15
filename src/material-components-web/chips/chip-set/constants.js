@@ -21,26 +21,27 @@
  * THE SOFTWARE.
  */
 /**
- * Events provides the named constants for strings used by the foundation.
+ * MDCChipSetAttributes provides the named constants for attributes used by the
+ * foundation.
  */
-export var Attributes;
-(function (Attributes) {
-    Attributes["ARIA_MULTISELECTABLE"] = "aria-multiselectable";
-})(Attributes || (Attributes = {}));
+export var MDCChipSetAttributes;
+(function (MDCChipSetAttributes) {
+    MDCChipSetAttributes["ARIA_MULTISELECTABLE"] = "aria-multiselectable";
+})(MDCChipSetAttributes || (MDCChipSetAttributes = {}));
 /**
- * CssClasses provides the named constants for class names.
+ * MDCChipSetCssClasses provides the named constants for class names.
  */
-export var CssClasses;
-(function (CssClasses) {
-    CssClasses["CHIP"] = "mdc-evolution-chip";
-})(CssClasses || (CssClasses = {}));
+export var MDCChipSetCssClasses;
+(function (MDCChipSetCssClasses) {
+    MDCChipSetCssClasses["CHIP"] = "mdc-evolution-chip";
+})(MDCChipSetCssClasses || (MDCChipSetCssClasses = {}));
 /**
- * Events provides the constants for emitted events.
+ * MDCChipSetEvents provides the constants for emitted events.
  */
-export var Events;
-(function (Events) {
-    Events["INTERACTION"] = "MDCChipSet:interaction";
-    Events["REMOVAL"] = "MDCChipSet:removal";
-    Events["SELECTION"] = "MDCChipSet:selection";
-})(Events || (Events = {}));
+export var MDCChipSetEvents;
+(function (MDCChipSetEvents) {
+    MDCChipSetEvents["INTERACTION"] = "MDCChipSet:interaction";
+    MDCChipSetEvents["REMOVAL"] = "MDCChipSet:removal";
+    MDCChipSetEvents["SELECTION"] = "MDCChipSet:selection";
+})(MDCChipSetEvents || (MDCChipSetEvents = {}));
 //# sourceMappingURL=constants.js.map

@@ -23,7 +23,7 @@
 import { __extends, __read, __values } from "tslib";
 import { MDCComponent } from '../../base/component';
 import { MDCChipAction } from '../action/component';
-import { Events } from '../action/constants';
+import { MDCChipActionEvents } from '../action/constants';
 import { MDCChipFoundation } from './foundation';
 /**
  * MDCChip provides component encapsulation of the foundation implementation.
@@ -55,12 +55,12 @@ var MDCChip = /** @class */ (function (_super) {
         this.handleActionNavigation = function (event) {
             _this.foundation.handleActionNavigation(event);
         };
-        this.listen(Events.INTERACTION, this.handleActionInteraction);
-        this.listen(Events.NAVIGATION, this.handleActionNavigation);
+        this.listen(MDCChipActionEvents.INTERACTION, this.handleActionInteraction);
+        this.listen(MDCChipActionEvents.NAVIGATION, this.handleActionNavigation);
     };
     MDCChip.prototype.destroy = function () {
-        this.unlisten(Events.INTERACTION, this.handleActionInteraction);
-        this.unlisten(Events.NAVIGATION, this.handleActionNavigation);
+        this.unlisten(MDCChipActionEvents.INTERACTION, this.handleActionInteraction);
+        this.unlisten(MDCChipActionEvents.NAVIGATION, this.handleActionNavigation);
         _super.prototype.destroy.call(this);
     };
     MDCChip.prototype.getDefaultFoundation = function () {
@@ -163,7 +163,7 @@ var MDCChip = /** @class */ (function (_super) {
             parent.removeChild(this.root);
         }
     };
-    /** Returns the ActionTypes for the encapsulated actions. */
+    /** Returns the MDCChipActionTypes for the encapsulated actions. */
     MDCChip.prototype.getActions = function () {
         return this.foundation.getActions();
     };

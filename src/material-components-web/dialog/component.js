@@ -75,7 +75,9 @@ var MDCDialog = /** @class */ (function (_super) {
     };
     MDCDialog.prototype.initialize = function (focusTrapFactory) {
         var e_1, _a;
-        if (focusTrapFactory === void 0) { focusTrapFactory = function (el, focusOptions) { return new FocusTrap(el, focusOptions); }; }
+        if (focusTrapFactory === void 0) { focusTrapFactory = function (el, focusOptions) {
+            return new FocusTrap(el, focusOptions);
+        }; }
         var container = this.root.querySelector(strings.CONTAINER_SELECTOR);
         if (!container) {
             throw new Error("Dialog component requires a " + strings.CONTAINER_SELECTOR + " container element");

@@ -21,64 +21,66 @@
  * THE SOFTWARE.
  */
 /**
- * CssClasses provides the classes to be queried and manipulated on the root.
+ * MDCChipActionCssClasses provides the classes to be queried and manipulated on
+ * the root.
  */
-export var CssClasses;
-(function (CssClasses) {
-    CssClasses["PRIMARY_ACTION"] = "mdc-evolution-chip__action--primary";
-    CssClasses["TRAILING_ACTION"] = "mdc-evolution-chip__action--trailing";
-    CssClasses["CHIP_ROOT"] = "mdc-evolution-chip";
-})(CssClasses || (CssClasses = {}));
+export var MDCChipActionCssClasses;
+(function (MDCChipActionCssClasses) {
+    MDCChipActionCssClasses["PRIMARY_ACTION"] = "mdc-evolution-chip__action--primary";
+    MDCChipActionCssClasses["TRAILING_ACTION"] = "mdc-evolution-chip__action--trailing";
+    MDCChipActionCssClasses["CHIP_ROOT"] = "mdc-evolution-chip";
+})(MDCChipActionCssClasses || (MDCChipActionCssClasses = {}));
 /**
- * InteractionTrigger provides detail of the different triggers for action
- * interactions.
+ * MDCChipActionInteractionTrigger provides detail of the different triggers for
+ * action interactions.
  */
-export var InteractionTrigger;
-(function (InteractionTrigger) {
-    InteractionTrigger[InteractionTrigger["UNSPECIFIED"] = 0] = "UNSPECIFIED";
-    InteractionTrigger[InteractionTrigger["CLICK"] = 1] = "CLICK";
-    InteractionTrigger[InteractionTrigger["BACKSPACE_KEY"] = 2] = "BACKSPACE_KEY";
-    InteractionTrigger[InteractionTrigger["DELETE_KEY"] = 3] = "DELETE_KEY";
-    InteractionTrigger[InteractionTrigger["SPACEBAR_KEY"] = 4] = "SPACEBAR_KEY";
-    InteractionTrigger[InteractionTrigger["ENTER_KEY"] = 5] = "ENTER_KEY";
-})(InteractionTrigger || (InteractionTrigger = {}));
+export var MDCChipActionInteractionTrigger;
+(function (MDCChipActionInteractionTrigger) {
+    MDCChipActionInteractionTrigger[MDCChipActionInteractionTrigger["UNSPECIFIED"] = 0] = "UNSPECIFIED";
+    MDCChipActionInteractionTrigger[MDCChipActionInteractionTrigger["CLICK"] = 1] = "CLICK";
+    MDCChipActionInteractionTrigger[MDCChipActionInteractionTrigger["BACKSPACE_KEY"] = 2] = "BACKSPACE_KEY";
+    MDCChipActionInteractionTrigger[MDCChipActionInteractionTrigger["DELETE_KEY"] = 3] = "DELETE_KEY";
+    MDCChipActionInteractionTrigger[MDCChipActionInteractionTrigger["SPACEBAR_KEY"] = 4] = "SPACEBAR_KEY";
+    MDCChipActionInteractionTrigger[MDCChipActionInteractionTrigger["ENTER_KEY"] = 5] = "ENTER_KEY";
+})(MDCChipActionInteractionTrigger || (MDCChipActionInteractionTrigger = {}));
 /**
- * ActionType provides the different types of available actions.
+ * MDCChipActionType provides the different types of available actions.
  */
-export var ActionType;
-(function (ActionType) {
-    ActionType[ActionType["UNSPECIFIED"] = 0] = "UNSPECIFIED";
-    ActionType[ActionType["PRIMARY"] = 1] = "PRIMARY";
-    ActionType[ActionType["TRAILING"] = 2] = "TRAILING";
-})(ActionType || (ActionType = {}));
+export var MDCChipActionType;
+(function (MDCChipActionType) {
+    MDCChipActionType[MDCChipActionType["UNSPECIFIED"] = 0] = "UNSPECIFIED";
+    MDCChipActionType[MDCChipActionType["PRIMARY"] = 1] = "PRIMARY";
+    MDCChipActionType[MDCChipActionType["TRAILING"] = 2] = "TRAILING";
+})(MDCChipActionType || (MDCChipActionType = {}));
 /**
- * Events provides the different events emitted by the action.
+ * MDCChipActionEvents provides the different events emitted by the action.
  */
-export var Events;
-(function (Events) {
-    Events["INTERACTION"] = "MDCChipAction:interaction";
-    Events["NAVIGATION"] = "MDCChipAction:navigation";
-})(Events || (Events = {}));
+export var MDCChipActionEvents;
+(function (MDCChipActionEvents) {
+    MDCChipActionEvents["INTERACTION"] = "MDCChipAction:interaction";
+    MDCChipActionEvents["NAVIGATION"] = "MDCChipAction:navigation";
+})(MDCChipActionEvents || (MDCChipActionEvents = {}));
 /**
- * FocusBehavior provides configurations for focusing or unfocusing an action.
+ * MDCChipActionFocusBehavior provides configurations for focusing or unfocusing
+ * an action.
  */
-export var FocusBehavior;
-(function (FocusBehavior) {
-    FocusBehavior[FocusBehavior["FOCUSABLE"] = 0] = "FOCUSABLE";
-    FocusBehavior[FocusBehavior["FOCUSABLE_AND_FOCUSED"] = 1] = "FOCUSABLE_AND_FOCUSED";
-    FocusBehavior[FocusBehavior["NOT_FOCUSABLE"] = 2] = "NOT_FOCUSABLE";
-})(FocusBehavior || (FocusBehavior = {}));
+export var MDCChipActionFocusBehavior;
+(function (MDCChipActionFocusBehavior) {
+    MDCChipActionFocusBehavior[MDCChipActionFocusBehavior["FOCUSABLE"] = 0] = "FOCUSABLE";
+    MDCChipActionFocusBehavior[MDCChipActionFocusBehavior["FOCUSABLE_AND_FOCUSED"] = 1] = "FOCUSABLE_AND_FOCUSED";
+    MDCChipActionFocusBehavior[MDCChipActionFocusBehavior["NOT_FOCUSABLE"] = 2] = "NOT_FOCUSABLE";
+})(MDCChipActionFocusBehavior || (MDCChipActionFocusBehavior = {}));
 /**
- * Attributes provides the HTML attributes used by the foundation.
+ * MDCChipActionAttributes provides the HTML attributes used by the foundation.
  */
-export var Attributes;
-(function (Attributes) {
-    Attributes["ARIA_DISABLED"] = "aria-disabled";
-    Attributes["ARIA_HIDDEN"] = "aria-hidden";
-    Attributes["ARIA_SELECTED"] = "aria-selected";
-    Attributes["DATA_DELETABLE"] = "data-mdc-deletable";
-    Attributes["DISABLED"] = "disabled";
-    Attributes["ROLE"] = "role";
-    Attributes["TAB_INDEX"] = "tabindex";
-})(Attributes || (Attributes = {}));
+export var MDCChipActionAttributes;
+(function (MDCChipActionAttributes) {
+    MDCChipActionAttributes["ARIA_DISABLED"] = "aria-disabled";
+    MDCChipActionAttributes["ARIA_HIDDEN"] = "aria-hidden";
+    MDCChipActionAttributes["ARIA_SELECTED"] = "aria-selected";
+    MDCChipActionAttributes["DATA_DELETABLE"] = "data-mdc-deletable";
+    MDCChipActionAttributes["DISABLED"] = "disabled";
+    MDCChipActionAttributes["ROLE"] = "role";
+    MDCChipActionAttributes["TAB_INDEX"] = "tabindex";
+})(MDCChipActionAttributes || (MDCChipActionAttributes = {}));
 //# sourceMappingURL=constants.js.map

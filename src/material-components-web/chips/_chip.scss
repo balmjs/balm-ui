@@ -30,6 +30,7 @@
 @use '../feature-targeting/feature-targeting';
 @use '../ripple/ripple';
 @use '../ripple/ripple-theme';
+@use '../rtl/rtl';
 @use '../theme/theme-color';
 @use '../touch-target/touch-target';
 @use './chip-theme';
@@ -86,7 +87,7 @@
       height: 100%;
       width: 100%;
       top: 0;
-      /* @noflip */
+      @include rtl.ignore-next-line();
       left: 0;
     }
   }
@@ -235,7 +236,7 @@
       position: absolute;
       opacity: 0;
       top: 50%;
-      /* @noflip */
+      @include rtl.ignore-next-line();
       left: 50%;
     }
   }
@@ -492,7 +493,7 @@
       height: 100%;
       width: 100%;
       top: 50%;
-      /* @noflip */
+      @include rtl.ignore-next-line();
       left: 50%;
       transform: translate(-50%, -50%);
     }

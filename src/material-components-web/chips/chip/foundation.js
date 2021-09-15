@@ -24,8 +24,8 @@ import { __assign, __extends, __values } from "tslib";
 import { AnimationFrame } from '../../animation/animationframe';
 import { MDCFoundation } from '../../base/foundation';
 import { KEY } from '../../dom/keyboard';
-import { ActionType, FocusBehavior, InteractionTrigger } from '../action/constants';
-import { Animation, Attributes, CssClasses, Events } from './constants';
+import { MDCChipActionFocusBehavior, MDCChipActionInteractionTrigger, MDCChipActionType } from '../action/constants';
+import { MDCChipAnimation, MDCChipAttributes, MDCChipCssClasses, MDCChipEvents } from './constants';
 var Direction;
 (function (Direction) {
     Direction[Direction["UNSPECIFIED"] = 0] = "UNSPECIFIED";
@@ -95,10 +95,10 @@ var MDCChipFoundation = /** @class */ (function (_super) {
             finally { if (e_1) throw e_1.error; }
         }
         if (isDisabled) {
-            this.adapter.addClass(CssClasses.DISABLED);
+            this.adapter.addClass(MDCChipCssClasses.DISABLED);
         }
         else {
-            this.adapter.removeClass(CssClasses.DISABLED);
+            this.adapter.removeClass(MDCChipCssClasses.DISABLED);
         }
     };
     MDCChipFoundation.prototype.isDisabled = function () {
@@ -141,31 +141,31 @@ var MDCChipFoundation = /** @class */ (function (_super) {
         this.animateSelection(isSelected);
     };
     MDCChipFoundation.prototype.startAnimation = function (animation) {
-        if (animation === Animation.ENTER) {
-            this.adapter.addClass(CssClasses.ENTER);
+        if (animation === MDCChipAnimation.ENTER) {
+            this.adapter.addClass(MDCChipCssClasses.ENTER);
             return;
         }
-        if (animation === Animation.EXIT) {
-            this.adapter.addClass(CssClasses.EXIT);
+        if (animation === MDCChipAnimation.EXIT) {
+            this.adapter.addClass(MDCChipCssClasses.EXIT);
             return;
         }
     };
     MDCChipFoundation.prototype.handleAnimationEnd = function (event) {
         var _this = this;
         var animationName = event.animationName;
-        if (animationName === Animation.ENTER) {
-            this.adapter.removeClass(CssClasses.ENTER);
-            this.adapter.emitEvent(Events.ANIMATION, {
+        if (animationName === MDCChipAnimation.ENTER) {
+            this.adapter.removeClass(MDCChipCssClasses.ENTER);
+            this.adapter.emitEvent(MDCChipEvents.ANIMATION, {
                 chipID: this.getElementID(),
-                animation: Animation.ENTER,
+                animation: MDCChipAnimation.ENTER,
                 addedAnnouncement: this.getAddedAnnouncement(),
                 isComplete: true,
             });
             return;
         }
-        if (animationName === Animation.EXIT) {
-            this.adapter.removeClass(CssClasses.EXIT);
-            this.adapter.addClass(CssClasses.HIDDEN);
+        if (animationName === MDCChipAnimation.EXIT) {
+            this.adapter.removeClass(MDCChipCssClasses.EXIT);
+            this.adapter.addClass(MDCChipCssClasses.HIDDEN);
             var width = this.adapter.getOffsetWidth();
             this.adapter.setStyleProperty('width', width + "px");
             // Wait two frames so the width gets applied correctly.
@@ -177,11 +177,11 @@ var MDCChipFoundation = /** @class */ (function (_super) {
         }
     };
     MDCChipFoundation.prototype.handleTransitionEnd = function () {
-        if (!this.adapter.hasClass(CssClasses.HIDDEN))
+        if (!this.adapter.hasClass(MDCChipCssClasses.HIDDEN))
             return;
-        this.adapter.emitEvent(Events.ANIMATION, {
+        this.adapter.emitEvent(MDCChipEvents.ANIMATION, {
             chipID: this.getElementID(),
-            animation: Animation.EXIT,
+            animation: MDCChipAnimation.EXIT,
             removedAnnouncement: this.getRemovedAnnouncement(),
             isComplete: true,
         });
@@ -191,7 +191,7 @@ var MDCChipFoundation = /** @class */ (function (_super) {
         var source = detail.source, actionID = detail.actionID;
         var isSelectable = this.adapter.isActionSelectable(source);
         var isSelected = this.adapter.isActionSelected(source);
-        this.adapter.emitEvent(Events.INTERACTION, {
+        this.adapter.emitEvent(MDCChipEvents.INTERACTION, {
             chipID: this.getElementID(),
             shouldRemove: this.shouldRemove(detail),
             actionID: actionID,
@@ -204,22 +204,22 @@ var MDCChipFoundation = /** @class */ (function (_super) {
         var detail = _a.detail;
         var source = detail.source, key = detail.key;
         var isRTL = this.adapter.isRTL();
-        var isTrailingActionFocusable = this.adapter.isActionFocusable(ActionType.TRAILING);
-        var isPrimaryActionFocusable = this.adapter.isActionFocusable(ActionType.PRIMARY);
+        var isTrailingActionFocusable = this.adapter.isActionFocusable(MDCChipActionType.TRAILING);
+        var isPrimaryActionFocusable = this.adapter.isActionFocusable(MDCChipActionType.PRIMARY);
         var dir = this.directionFromKey(key, isRTL);
-        var shouldNavigateToTrailing = source === ActionType.PRIMARY &&
+        var shouldNavigateToTrailing = source === MDCChipActionType.PRIMARY &&
             dir === Direction.RIGHT && isTrailingActionFocusable;
-        var shouldNavigateToPrimary = source === ActionType.TRAILING &&
+        var shouldNavigateToPrimary = source === MDCChipActionType.TRAILING &&
             dir === Direction.LEFT && isPrimaryActionFocusable;
         if (shouldNavigateToTrailing) {
-            this.navigateActions({ from: source, to: ActionType.TRAILING });
+            this.navigateActions({ from: source, to: MDCChipActionType.TRAILING });
             return;
         }
         if (shouldNavigateToPrimary) {
-            this.navigateActions({ from: source, to: ActionType.PRIMARY });
+            this.navigateActions({ from: source, to: MDCChipActionType.PRIMARY });
             return;
         }
-        this.adapter.emitEvent(Events.NAVIGATION, {
+        this.adapter.emitEvent(MDCChipEvents.NAVIGATION, {
             chipID: this.getElementID(),
             isRTL: isRTL,
             source: source,
@@ -238,23 +238,23 @@ var MDCChipFoundation = /** @class */ (function (_super) {
         return Direction.UNSPECIFIED;
     };
     MDCChipFoundation.prototype.navigateActions = function (nav) {
-        this.adapter.setActionFocus(nav.from, FocusBehavior.NOT_FOCUSABLE);
-        this.adapter.setActionFocus(nav.to, FocusBehavior.FOCUSABLE_AND_FOCUSED);
+        this.adapter.setActionFocus(nav.from, MDCChipActionFocusBehavior.NOT_FOCUSABLE);
+        this.adapter.setActionFocus(nav.to, MDCChipActionFocusBehavior.FOCUSABLE_AND_FOCUSED);
     };
     MDCChipFoundation.prototype.shouldRemove = function (_a) {
         var source = _a.source, trigger = _a.trigger;
-        if (trigger === InteractionTrigger.BACKSPACE_KEY ||
-            trigger === InteractionTrigger.DELETE_KEY) {
+        if (trigger === MDCChipActionInteractionTrigger.BACKSPACE_KEY ||
+            trigger === MDCChipActionInteractionTrigger.DELETE_KEY) {
             return true;
         }
-        return source === ActionType.TRAILING;
+        return source === MDCChipActionType.TRAILING;
     };
     MDCChipFoundation.prototype.getRemovedAnnouncement = function () {
-        var msg = this.adapter.getAttribute(Attributes.DATA_REMOVED_ANNOUNCEMENT);
+        var msg = this.adapter.getAttribute(MDCChipAttributes.DATA_REMOVED_ANNOUNCEMENT);
         return msg || undefined;
     };
     MDCChipFoundation.prototype.getAddedAnnouncement = function () {
-        var msg = this.adapter.getAttribute(Attributes.DATA_ADDED_ANNOUNCEMENT);
+        var msg = this.adapter.getAttribute(MDCChipAttributes.DATA_ADDED_ANNOUNCEMENT);
         return msg || undefined;
     };
     MDCChipFoundation.prototype.animateSelection = function (isSelected) {
@@ -268,39 +268,39 @@ var MDCChipFoundation = /** @class */ (function (_super) {
         });
     };
     MDCChipFoundation.prototype.resetAnimationStyles = function () {
-        this.adapter.removeClass(CssClasses.SELECTING);
-        this.adapter.removeClass(CssClasses.DESELECTING);
-        this.adapter.removeClass(CssClasses.SELECTING_WITH_PRIMARY_ICON);
-        this.adapter.removeClass(CssClasses.DESELECTING_WITH_PRIMARY_ICON);
+        this.adapter.removeClass(MDCChipCssClasses.SELECTING);
+        this.adapter.removeClass(MDCChipCssClasses.DESELECTING);
+        this.adapter.removeClass(MDCChipCssClasses.SELECTING_WITH_PRIMARY_ICON);
+        this.adapter.removeClass(MDCChipCssClasses.DESELECTING_WITH_PRIMARY_ICON);
     };
     MDCChipFoundation.prototype.updateSelectionStyles = function (isSelected) {
         var _this = this;
-        var hasIcon = this.adapter.hasClass(CssClasses.WITH_PRIMARY_ICON);
+        var hasIcon = this.adapter.hasClass(MDCChipCssClasses.WITH_PRIMARY_ICON);
         if (hasIcon && isSelected) {
-            this.adapter.addClass(CssClasses.SELECTING_WITH_PRIMARY_ICON);
+            this.adapter.addClass(MDCChipCssClasses.SELECTING_WITH_PRIMARY_ICON);
             this.animFrame.request(AnimationKeys.SELECTION, function () {
-                _this.adapter.addClass(CssClasses.SELECTED);
+                _this.adapter.addClass(MDCChipCssClasses.SELECTED);
             });
             return;
         }
         if (hasIcon && !isSelected) {
-            this.adapter.addClass(CssClasses.DESELECTING_WITH_PRIMARY_ICON);
+            this.adapter.addClass(MDCChipCssClasses.DESELECTING_WITH_PRIMARY_ICON);
             this.animFrame.request(AnimationKeys.SELECTION, function () {
-                _this.adapter.removeClass(CssClasses.SELECTED);
+                _this.adapter.removeClass(MDCChipCssClasses.SELECTED);
             });
             return;
         }
         if (isSelected) {
-            this.adapter.addClass(CssClasses.SELECTING);
+            this.adapter.addClass(MDCChipCssClasses.SELECTING);
             this.animFrame.request(AnimationKeys.SELECTION, function () {
-                _this.adapter.addClass(CssClasses.SELECTED);
+                _this.adapter.addClass(MDCChipCssClasses.SELECTED);
             });
             return;
         }
         if (!isSelected) {
-            this.adapter.addClass(CssClasses.DESELECTING);
+            this.adapter.addClass(MDCChipCssClasses.DESELECTING);
             this.animFrame.request(AnimationKeys.SELECTION, function () {
-                _this.adapter.removeClass(CssClasses.SELECTED);
+                _this.adapter.removeClass(MDCChipCssClasses.SELECTED);
             });
             return;
         }

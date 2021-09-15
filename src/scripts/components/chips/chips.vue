@@ -74,7 +74,7 @@ export default {
     return {
       $chipSet: null,
       selectedValue: this.modelValue,
-      currentOptions: [],
+      currentOptions: this.options,
       chipsCount: this.chips.length,
       choiceChipId: null // fix(ui): twice trigger
     };
@@ -201,12 +201,15 @@ export default {
               ? adapter.getIndexOfChipById(detail.chipId)
               : -1;
 
-            let selectedValue =
-              selectedIndex > -1
-                ? this.currentOptions[selectedIndex][this.optionFormat.value]
-                : '';
-
-            this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
+            if (this.currentOptions.length) {
+              let selectedValue =
+                selectedIndex > -1
+                  ? this.currentOptions[selectedIndex][this.optionFormat.value]
+                  : '';
+              this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
+            } else {
+              this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndex);
+            }
           }
         } else if (this.filterChips) {
           let selectedIndexes = [];
@@ -215,12 +218,15 @@ export default {
               selectedIndexes.push(index);
             }
           });
-
-          let selectedValue = this.currentOptions
-            .filter((option, index) => selectedIndexes.includes(index))
-            .map((option) => option[this.optionFormat.value]);
-
-          this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
+          if (this.currentOptions.length) {
+            let selectedValue = this.currentOptions
+              .filter((option, index) => selectedIndexes.includes(index))
+              .map((option) => option[this.optionFormat.value]);
+            
+            this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
+          } else {
+            this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndexes);
+          }
         }
       });
     },

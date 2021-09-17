@@ -110,6 +110,7 @@ export default {
 
           this.$nextTick(() => {
             this.currentOptions = val;
+
             if (this.$chipSet) {
               this.$chipSet.destroy();
               this.init();
@@ -117,7 +118,7 @@ export default {
           });
         }
       },
-      deep:true
+      deep: true
     },
     chips(val) {
       if (val.length > this.chipsCount) {
@@ -206,6 +207,7 @@ export default {
                 selectedIndex > -1
                   ? this.currentOptions[selectedIndex][this.optionFormat.value]
                   : '';
+
               this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
             } else {
               this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndex);
@@ -218,11 +220,12 @@ export default {
               selectedIndexes.push(index);
             }
           });
+
           if (this.currentOptions.length) {
             let selectedValue = this.currentOptions
               .filter((option, index) => selectedIndexes.includes(index))
               .map((option) => option[this.optionFormat.value]);
-            
+
             this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
           } else {
             this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndexes);

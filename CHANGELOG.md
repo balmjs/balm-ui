@@ -3,6 +3,16 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.37.3 / 2021-09-17
+
+### Features
+
+- update `mdc@13.0.0-canary.08398f880.0`
+
+### Chore
+
+- `<ui-chips>`: add dynamic choice & filter chipSet
+
 ## v9.37.2 / 2021-08-27
 
 ### Bug Fixes
@@ -40,7 +50,7 @@
 
 ### Features
 
-- update mdc@13.0.0-canary.8de07c02a.0
+- update `mdc@13.0.0-canary.8de07c02a.0`
 
 ### Bug Fixes
 

@@ -44,22 +44,37 @@ var cssClasses = {
     TEXTAREA: 'mdc-text-field--textarea',
     WITH_LEADING_ICON: 'mdc-text-field--with-leading-icon',
     WITH_TRAILING_ICON: 'mdc-text-field--with-trailing-icon',
+    WITH_INTERNAL_COUNTER: 'mdc-text-field--with-internal-counter',
 };
 var numbers = {
     LABEL_SCALE: 0.75,
 };
 /**
- * Whitelist based off of https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation
+ * Whitelist based off of
+ * https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation
  * under the "Validation-related attributes" section.
  */
 var VALIDATION_ATTR_WHITELIST = [
-    'pattern', 'min', 'max', 'required', 'step', 'minlength', 'maxlength',
+    'pattern',
+    'min',
+    'max',
+    'required',
+    'step',
+    'minlength',
+    'maxlength',
 ];
 /**
- * Label should always float for these types as they show some UI even if value is empty.
+ * Label should always float for these types as they show some UI even if value
+ * is empty.
  */
 var ALWAYS_FLOAT_TYPES = [
-    'color', 'date', 'datetime-local', 'month', 'range', 'time', 'week',
+    'color',
+    'date',
+    'datetime-local',
+    'month',
+    'range',
+    'time',
+    'week',
 ];
 export { cssClasses, strings, numbers, VALIDATION_ATTR_WHITELIST, ALWAYS_FLOAT_TYPES };
 //# sourceMappingURL=constants.js.map

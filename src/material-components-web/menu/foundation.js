@@ -66,6 +66,7 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
                 removeClassFromElementAtIndex: function () { return undefined; },
                 addAttributeToElementAtIndex: function () { return undefined; },
                 removeAttributeFromElementAtIndex: function () { return undefined; },
+                getAttributeFromElementAtIndex: function () { return null; },
                 elementContainsClass: function () { return false; },
                 closeSurface: function () { return undefined; },
                 getElementIndex: function () { return -1; },
@@ -101,7 +102,8 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
             return;
         }
         this.adapter.notifySelected({ index: index });
-        this.adapter.closeSurface();
+        var skipRestoreFocus = this.adapter.getAttributeFromElementAtIndex(index, strings.SKIP_RESTORE_FOCUS) === 'true';
+        this.adapter.closeSurface(skipRestoreFocus);
         // Wait for the menu to close before adding/removing classes that affect styles.
         this.closeAnimationEndTimerId = setTimeout(function () {
             // Recompute the index in case the menu contents have changed.

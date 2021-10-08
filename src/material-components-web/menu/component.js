@@ -305,6 +305,10 @@ var MDCMenu = /** @class */ (function (_super) {
                 var list = _this.items;
                 list[index].removeAttribute(attr);
             },
+            getAttributeFromElementAtIndex: function (index, attr) {
+                var list = _this.items;
+                return list[index].getAttribute(attr);
+            },
             elementContainsClass: function (element, className) {
                 return element.classList.contains(className);
             },

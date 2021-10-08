@@ -3,6 +3,13 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.38.0 / 2021-10-08
+
+### Features
+
+- update [`mdc@13.0.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1300-2021-09-24)
+- update material-icons v109
+
 ## v9.37.3 / 2021-09-17
 
 ### Features

@@ -5,11 +5,11 @@ const $replace = require('gulp-replace');
 
 // updated: 2021.07.28
 const LATEST_VERSIONS = {
-  filled: 94,
-  outlined: 69,
-  round: 68,
-  twoTone: 69,
-  sharp: 67
+  filled: 109,
+  outlined: 81,
+  round: 80,
+  twoTone: 79,
+  sharp: 81
 };
 
 // Update Material Components Web for BalmUI

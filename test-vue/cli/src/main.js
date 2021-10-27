@@ -1,15 +1,13 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import App from './App.vue';
 
 import BalmUI from 'balm-ui';
 import BalmUIPlus from 'balm-ui-plus';
 import 'balm-ui-css';
 
-Vue.config.productionTip = false;
+const app = createApp(App);
 
-Vue.use(BalmUI);
-Vue.use(BalmUIPlus);
+app.use(BalmUI);
+app.use(BalmUIPlus);
 
-new Vue({
-  render: (h) => h(App)
-}).$mount('#app');
+app.mount('#app');

@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 import { __extends } from "tslib";
-import { ActionType, Attributes } from './constants';
+import { MDCChipActionAttributes, MDCChipActionType } from './constants';
 import { MDCChipActionFoundation } from './foundation';
 /**
  * MDCChipPrimaryActionFoundation provides the business logic for the primary
@@ -33,13 +33,14 @@ var MDCChipPrimaryActionFoundation = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     MDCChipPrimaryActionFoundation.prototype.isSelectable = function () {
-        return this.adapter.getAttribute(Attributes.ROLE) === 'option';
+        return this.adapter.getAttribute(MDCChipActionAttributes.ROLE) === 'option';
     };
     MDCChipPrimaryActionFoundation.prototype.actionType = function () {
-        return ActionType.PRIMARY;
+        return MDCChipActionType.PRIMARY;
     };
     MDCChipPrimaryActionFoundation.prototype.shouldEmitInteractionOnRemoveKey = function () {
-        return this.adapter.getAttribute(Attributes.DATA_DELETABLE) === 'true';
+        return this.adapter.getAttribute(MDCChipActionAttributes.DATA_DELETABLE) ===
+            'true';
     };
     return MDCChipPrimaryActionFoundation;
 }(MDCChipActionFoundation));

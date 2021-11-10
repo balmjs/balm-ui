@@ -85,8 +85,7 @@ update `balm.config.js`
   ```js
   module.exports = {
     styles: {
-      extname: 'scss',
-      dartSass: true
+      extname: 'scss'
     }
     // Other Options...
   };

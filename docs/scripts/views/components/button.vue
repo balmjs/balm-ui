@@ -22,7 +22,10 @@
     <section class="demo-wrapper">
       <div class="demo-controls">
         <ui-form-field>
-          <ui-checkbox id="toggle-disabled" v-model="disabled"></ui-checkbox>
+          <ui-checkbox
+            v-model="disabled"
+            input-id="toggle-disabled"
+          ></ui-checkbox>
           <label for="toggle-disabled">Disabled buttons</label>
         </ui-form-field>
       </div>

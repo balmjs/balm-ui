@@ -119,7 +119,9 @@ var MDCSlider = /** @class */ (function (_super) {
                     track.appendChild(tickMarksContainer);
                 }
                 if (tickMarks.length !== tickMarksContainer.children.length) {
-                    tickMarksContainer.innerHTML = '';
+                    while (tickMarksContainer.firstChild) {
+                        tickMarksContainer.removeChild(tickMarksContainer.firstChild);
+                    }
                     _this.addTickMarks(tickMarksContainer, tickMarks);
                 }
                 else {

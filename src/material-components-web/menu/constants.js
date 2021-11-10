@@ -31,6 +31,7 @@ var strings = {
     CHECKBOX_SELECTOR: 'input[type="checkbox"]',
     LIST_SELECTOR: '.mdc-list,.mdc-deprecated-list',
     SELECTED_EVENT: 'MDCMenu:selected',
+    SKIP_RESTORE_FOCUS: 'data-menu-item-skip-restore-focus',
 };
 var numbers = {
     FOCUS_ROOT_INDEX: -1,

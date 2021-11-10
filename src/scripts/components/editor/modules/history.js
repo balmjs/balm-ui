@@ -1,16 +1,16 @@
-import { useEditor } from '../quill';
+import { useEditor } from '../core/quill';
 
 function useHistory() {
   const { toolbarHandlers } = useEditor();
 
   toolbarHandlers.undo = () => {
-    const { editor } = useEditor();
-    editor.history.undo();
+    const { quill } = useEditor();
+    quill.history.undo();
   };
 
   toolbarHandlers.redo = () => {
-    const { editor } = useEditor();
-    editor.history.redo();
+    const { quill } = useEditor();
+    quill.history.redo();
   };
 }
 

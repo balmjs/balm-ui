@@ -30,6 +30,7 @@
 @use '../feature-targeting/feature-targeting';
 @use '../ripple/ripple';
 @use '../ripple/ripple-theme';
+@use '../rtl/rtl';
 @use '../theme/theme-color';
 @use '../touch-target/touch-target';
 @use './chip-theme';
@@ -86,7 +87,7 @@
       height: 100%;
       width: 100%;
       top: 0;
-      /* @noflip */
+      @include rtl.ignore-next-line();
       left: 0;
     }
   }
@@ -116,6 +117,7 @@
   .mdc-evolution-chip {
     @include feature-targeting.targets($feat-structure) {
       position: relative;
+      max-width: 100%;
     }
     @include elevation-theme.overlay-dimensions(100%, $query: $query);
   }
@@ -124,6 +126,18 @@
   .mdc-evolution-chip__action {
     @include feature-targeting.targets($feat-structure) {
       height: 100%;
+    }
+  }
+
+  .mdc-evolution-chip__cell--primary {
+    @include feature-targeting.targets($feat-structure) {
+      overflow-x: hidden;
+    }
+  }
+
+  .mdc-evolution-chip__cell--trailing {
+    @include feature-targeting.targets($feat-structure) {
+      flex: 1 0 auto;
     }
   }
 
@@ -146,10 +160,22 @@
     }
   }
 
+  .mdc-evolution-chip__action--presentational {
+    @include feature-targeting.targets($feat-structure) {
+      cursor: auto;
+    }
+  }
+
   .mdc-evolution-chip--disabled,
   .mdc-evolution-chip__action:disabled {
     @include feature-targeting.targets($feat-structure) {
       pointer-events: none;
+    }
+  }
+
+  .mdc-evolution-chip__action--primary {
+    @include feature-targeting.targets($feat-structure) {
+      overflow-x: hidden;
     }
   }
 
@@ -188,6 +214,8 @@
     @include feature-targeting.targets($feat-structure) {
       white-space: nowrap;
       user-select: none;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
   }
 
@@ -199,6 +227,7 @@
       overflow: hidden;
       pointer-events: none;
       position: relative;
+      flex: 1 0 auto;
     }
   }
 
@@ -207,7 +236,7 @@
       position: absolute;
       opacity: 0;
       top: 50%;
-      /* @noflip */
+      @include rtl.ignore-next-line();
       left: 50%;
     }
   }
@@ -396,7 +425,7 @@
 @mixin _high-contrast-mode($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
-  @include dom.ie-high-contrast-mode {
+  @include dom.forced-colors-mode {
     @include chip-theme.outline-color(
       (
         disabled: GrayText,
@@ -448,7 +477,7 @@
     }
   }
 
-  .mdc-evolution-chip__action {
+  .mdc-evolution-chip__action:not(.mdc-evolution-chip__action--presentational) {
     @include ripple-theme.focus() {
       &:after {
         @include feature-targeting.targets($feat-structure) {
@@ -464,7 +493,7 @@
       height: 100%;
       width: 100%;
       top: 50%;
-      /* @noflip */
+      @include rtl.ignore-next-line();
       left: 50%;
       transform: translate(-50%, -50%);
     }

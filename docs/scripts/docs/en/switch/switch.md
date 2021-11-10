@@ -7,21 +7,19 @@
 
 ### Props
 
-| Name                     | Type                    | Default | Description                                                                   |
-| ------------------------ | ----------------------- | ------- | ----------------------------------------------------------------------------- |
-| `modelValue` (`v-model`) | boolean, number, string | `false` | Mandatory.                                                                    |
-| `trueValue`              | boolean, number, string | `true`  |                                                                               |
-| `falseValue`             | boolean, number, string | `false` |                                                                               |
-| `inputId`                | string                  | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
-| `name`                   | string                  | `''`    | The _name_ attribute of the `<input>`.                                        |
-| `disabled`               | boolean                 | `false` | Styles the switch as a disabled switch.                                       |
-| `attrs`                  | object                  | `{}`    | Other attributes for `<input>`.                                               |
+| Name                     | Type                    | Default | Description                             |
+| ------------------------ | ----------------------- | ------- | --------------------------------------- |
+| `modelValue` (`v-model`) | boolean                 | `false` | Mandatory.                              |
+| `trueValue`              | boolean, number, string | `true`  |                                         |
+| `falseValue`             | boolean, number, string | `false` |                                         |
+| `disabled`               | boolean                 | `false` | Styles the switch as a disabled switch. |
 
 ### Events
 
-| Name                | Type                                       | Description                       |
-| ------------------- | ------------------------------------------ | --------------------------------- |
-| `update:modelValue` | `function(value: boolean\|string\|number)` | Emits when the switch is changed. |
+| Name                | Type                                       | Description                        |
+| ------------------- | ------------------------------------------ | ---------------------------------- |
+| `update:modelValue` | `function(value: boolean)`                 | Emits when the switch is changed.  |
+| `selected`          | `function(value: boolean\|string\|number)` | Emits when the switch is selected. |
 
 > NOTE: If you are not using `v-model`, you should listen for the switch using `@update:modelValue` and update the `modelValue` prop.
 

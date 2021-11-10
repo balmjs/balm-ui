@@ -104,11 +104,17 @@ var MDCTooltip = /** @class */ (function (_super) {
     MDCTooltip.prototype.setAnchorBoundaryType = function (type) {
         this.foundation.setAnchorBoundaryType(type);
     };
+    MDCTooltip.prototype.setShowDelay = function (delayMs) {
+        this.foundation.setShowDelay(delayMs);
+    };
+    MDCTooltip.prototype.setHideDelay = function (delayMs) {
+        this.foundation.setHideDelay(delayMs);
+    };
     MDCTooltip.prototype.hide = function () {
         this.foundation.hide();
     };
     MDCTooltip.prototype.isShown = function () {
-        this.foundation.isShown();
+        return this.foundation.isShown();
     };
     /**
      * Method that allows user to specify additional elements that should have a
@@ -134,6 +140,9 @@ var MDCTooltip = /** @class */ (function (_super) {
             setAttribute: function (attr, value) {
                 _this.root.setAttribute(attr, value);
             },
+            removeAttribute: function (attr) {
+                _this.root.removeAttribute(attr);
+            },
             addClass: function (className) {
                 _this.root.classList.add(className);
             },
@@ -147,8 +156,8 @@ var MDCTooltip = /** @class */ (function (_super) {
             setStyleProperty: function (propertyName, value) {
                 _this.root.style.setProperty(propertyName, value);
             },
-            setSurfaceStyleProperty: function (propertyName, value) {
-                var surface = _this.root.querySelector("." + CssClasses.SURFACE);
+            setSurfaceAnimationStyleProperty: function (propertyName, value) {
+                var surface = _this.root.querySelector("." + CssClasses.SURFACE_ANIMATION);
                 surface === null || surface === void 0 ? void 0 : surface.style.setProperty(propertyName, value);
             },
             getViewportWidth: function () { return window.innerWidth; },
@@ -201,7 +210,7 @@ var MDCTooltip = /** @class */ (function (_super) {
             },
             deregisterAnchorEventHandler: function (evt, handler) {
                 var _a;
-                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.addEventListener(evt, handler);
+                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.removeEventListener(evt, handler);
             },
             registerDocumentEventHandler: function (evt, handler) {
                 document.body.addEventListener(evt, handler);
@@ -218,12 +227,12 @@ var MDCTooltip = /** @class */ (function (_super) {
             notifyHidden: function () {
                 _this.emit(events.HIDDEN, {});
             },
-            getTooltipCaretSize: function () {
+            getTooltipCaretBoundingRect: function () {
                 var caret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_TOP);
                 if (!caret) {
                     return null;
                 }
-                return { width: caret.offsetWidth, height: caret.offsetHeight };
+                return caret.getBoundingClientRect();
             },
             setTooltipCaretStyle: function (propertyName, value) {
                 var topCaret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_TOP);
@@ -242,6 +251,9 @@ var MDCTooltip = /** @class */ (function (_super) {
                 }
                 topCaret.removeAttribute('style');
                 bottomCaret.removeAttribute('style');
+            },
+            getActiveElement: function () {
+                return document.activeElement;
             },
         };
         //tslint:enable:object-literal-sort-keys

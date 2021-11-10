@@ -1,6 +1,9 @@
 <template>
   <div :class="className" role="tooltip" aria-hidden="true">
-    <div class="mdc-tooltip__surface" :style="style">
+    <div
+      class="mdc-tooltip__surface mdc-tooltip__surface-animation"
+      :style="style"
+    >
       <template v-if="rich">
         <h2 class="mdc-tooltip__title">
           <slot name="title"></slot>

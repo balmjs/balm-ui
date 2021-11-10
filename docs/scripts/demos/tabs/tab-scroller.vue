@@ -20,7 +20,6 @@
           v-model="scrollValue"
           class="demo-scroll-value"
           type="number"
-          name="scrollLeft"
         />
         <button type="submit" @click="balmUI.onChange('value', +scrollValue)">
           Scroll

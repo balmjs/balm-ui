@@ -7,7 +7,7 @@
 | Name        | Type    | Default | Description                                                       |
 | ----------- | ------- | ------- | ----------------------------------------------------------------- |
 | `icon`      | string  | `''`    | 设置图标。详见 [Material Icons](/#/icons) 图标集。                |
-| `hidden`    | boolean | `false` | 当选项卡选项被选中时隐藏首图标                                    |
+| `selected`  | boolean | `false` | 当选项卡选项被选中时隐藏首图标                                    |
 | `removable` | boolean | `false` | 显示用于删除选项卡选项的尾图标。仅用于输入类型(`input`)的选项卡。 |
 
 ### Slots

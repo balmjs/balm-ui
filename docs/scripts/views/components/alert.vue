@@ -13,8 +13,8 @@
           </ui-select>
           <ui-form-field>
             <ui-checkbox
-              id="state-outlined"
               v-model="stateOutlined"
+              input-id="state-outlined"
             ></ui-checkbox>
             <label for="state-outlined">Outlined State</label>
           </ui-form-field>

@@ -4,10 +4,11 @@
   input-id="basic-switch"
   :true-value="1"
   :false-value="0"
+  @selected="balmUI.onChange('toggle1Label', $event)"
 >
   {{ toggle1 }}
 </ui-switch>
-<label for="basic-switch">{{ toggle1 }}</label>
+<label for="basic-switch">{{ toggle1Label }}</label>
 
 <ui-switch
   v-model="toggle2"
@@ -15,18 +16,28 @@
   class="demo-switch--custom"
   true-value="on"
   false-value="off"
+  @selected="balmUI.onChange('toggle2Label', $event)"
 >
-  {{ toggle2 }} (custom color)
+  {{ toggle2Label }} (custom color)
 </ui-switch>
 <label for="basic-switch-custom">{{ toggle2 }} (custom color)</label>
 ```
 
 ```js
 export default {
+  setup() {
+    const balmUI = useEvent();
+
+    return {
+      balmUI
+    };
+  },
   data() {
     return {
-      toggle1: 0,
-      toggle2: 'on'
+      toggle1: false,
+      toggle1Label: 0,
+      toggle2: true,
+      toggle2Label: 'on'
     };
   }
 };

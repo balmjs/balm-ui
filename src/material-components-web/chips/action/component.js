@@ -21,12 +21,12 @@
  * THE SOFTWARE.
  */
 import { __assign, __extends } from "tslib";
-import { MDCComponent } from '@material/base/component';
-import { closest } from '@material/dom/ponyfill';
-import { MDCRipple } from '@material/ripple/component';
-import { MDCRippleFoundation } from '@material/ripple/foundation';
+import { MDCComponent } from '../../base/component';
+import { closest } from '../../dom/ponyfill';
+import { MDCRipple } from '../../ripple/component';
+import { MDCRippleFoundation } from '../../ripple/foundation';
 import { computePrimaryActionRippleClientRect, GRAPHIC_SELECTED_WIDTH_STYLE_PROP } from './component-ripple';
-import { CssClasses } from './constants';
+import { MDCChipActionCssClasses } from './constants';
 import { MDCChipPrimaryActionFoundation } from './primary-foundation';
 import { MDCChipTrailingActionFoundation } from './trailing-foundation';
 /**
@@ -97,7 +97,7 @@ var MDCChipAction = /** @class */ (function (_super) {
                 _this.root.setAttribute(name, value);
             },
         };
-        if (this.root.classList.contains(CssClasses.TRAILING_ACTION)) {
+        if (this.root.classList.contains(MDCChipActionCssClasses.TRAILING_ACTION)) {
             return new MDCChipTrailingActionFoundation(adapter);
         }
         // Default to the primary foundation
@@ -128,8 +128,8 @@ var MDCChipAction = /** @class */ (function (_super) {
         return this.foundation.actionType();
     };
     MDCChipAction.prototype.computeRippleClientRect = function () {
-        if (this.root.classList.contains(CssClasses.PRIMARY_ACTION)) {
-            var chipRoot = closest(this.root, "." + CssClasses.CHIP_ROOT);
+        if (this.root.classList.contains(MDCChipActionCssClasses.PRIMARY_ACTION)) {
+            var chipRoot = closest(this.root, "." + MDCChipActionCssClasses.CHIP_ROOT);
             // Return the root client rect since it's better than nothing
             if (!chipRoot)
                 return this.root.getBoundingClientRect();

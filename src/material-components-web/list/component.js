@@ -342,7 +342,7 @@ var MDCList = /** @class */ (function (_super) {
      */
     MDCList.prototype.handleFocusInEvent = function (evt) {
         var index = this.getListItemIndex(evt.target);
-        this.foundation.handleFocusIn(evt, index);
+        this.foundation.handleFocusIn(index);
     };
     /**
      * Used to figure out which element was clicked before sending the event to
@@ -350,7 +350,7 @@ var MDCList = /** @class */ (function (_super) {
      */
     MDCList.prototype.handleFocusOutEvent = function (evt) {
         var index = this.getListItemIndex(evt.target);
-        this.foundation.handleFocusOut(evt, index);
+        this.foundation.handleFocusOut(index);
     };
     /**
      * Used to figure out which element was focused when keydown event occurred

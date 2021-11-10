@@ -25,6 +25,7 @@
         class="mdc-data-table__fixed-body"
         :columns-data="columns.data"
         :scroll="scroll"
+        :max-width="maxWidth"
       >
         <mdc-table-body
           :data="data"
@@ -206,7 +207,8 @@ export default {
       columnsData: this.tbody,
       currentData: this.data,
       ticking: false,
-      offsetLeft: 0
+      offsetLeft: 0,
+      maxWidth: 0
     };
   },
   computed: {
@@ -218,11 +220,16 @@ export default {
       };
     },
     hasFixedCell() {
-      return (
-        this.fixedHeader ||
-        this.tbody.some((cell) =>
-          getType(cell) === 'object' ? cell.fixed : false
-        )
+      const fixedFirstColumn =
+        getType(this.tbody[0]) === 'object' ? this.tbody[0].fixed : false;
+      const fixedLastColumn =
+        getType(this.tbody[this.tbody.length - 1]) === 'object'
+          ? this.tbody[this.tbody.length - 1].fixed
+          : false;
+
+      return !!(
+        this.defaultColWidth &&
+        (this.fixedHeader || fixedFirstColumn || fixedLastColumn)
       );
     },
     columns() {
@@ -257,10 +264,9 @@ export default {
       let result = [];
 
       let originTbody = Object.assign([], this.tbody);
-      let leftFixedCell = originTbody.map(({ fixed }) => fixed === 'left');
       if (this.rowCheckbox) {
         originTbody.unshift(
-          leftFixedCell.length
+          this.hasFixedCell
             ? {
                 fixed: 'left',
                 width: UI_TABLE.CHECKBOX_COL_WIDTH
@@ -402,6 +408,14 @@ export default {
 
     if (this.hasFixedCell) {
       this.$refs.content.$el.addEventListener('scroll', this.handleScroll);
+
+      if (this.rowCheckbox) {
+        this.maxWidth += UI_TABLE.CHECKBOX_COL_WIDTH;
+      }
+
+      this.tbody.forEach(({ width }) => {
+        this.maxWidth += width || this.defaultColWidth;
+      });
     }
   },
   beforeUnmount() {

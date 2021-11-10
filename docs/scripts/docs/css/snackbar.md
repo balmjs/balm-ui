@@ -17,6 +17,7 @@
 
   $label-type-scale: body2,
   $dismiss-icon-size: 18px,
+  $dismiss-button-size: 36px, // New in 9.31.0
   $min-width: 344px,
   $max-width: 672px,
   $mobile-breakpoint: 480px,

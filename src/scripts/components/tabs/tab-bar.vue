@@ -42,7 +42,7 @@ export default {
   methods: {
     _activateTab(active = this.modelValue) {
       const activeTabIndex =
-        active > -1 && active < this.tabList.length ? active : 0;
+        active > -1 && active < this.$tabBar.tabList.length ? active : 0;
 
       this.$tabBar.activateTab(activeTabIndex);
     },
@@ -53,8 +53,7 @@ export default {
         this.$emit(UI_TAB_BAR.EVENT.CHANGE, detail.index);
       });
 
-      this.tabList = this.$tabBar.tabList_;
-      if (this.tabList.length) {
+      if (this.$tabBar.tabList.length) {
         this._activateTab();
       }
     },
@@ -63,7 +62,7 @@ export default {
         this.$slots.default()
       );
 
-      if (defaultSlotChildren.length !== this.tabList.length) {
+      if (defaultSlotChildren.length !== this.$tabBar.tabList.length) {
         if (this.$tabBar) {
           this.$tabBar.destroy();
         }

@@ -29,14 +29,14 @@ var MDCTabScrollerRTLDefault = /** @class */ (function (_super) {
     }
     MDCTabScrollerRTLDefault.prototype.getScrollPositionRTL = function () {
         var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
-        var right = this.calculateScrollEdges_().right;
+        var right = this.calculateScrollEdges().right;
         // Scroll values on most browsers are ints instead of floats so we round
         return Math.round(right - currentScrollLeft);
     };
     MDCTabScrollerRTLDefault.prototype.scrollToRTL = function (scrollX) {
-        var edges = this.calculateScrollEdges_();
+        var edges = this.calculateScrollEdges();
         var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
-        var clampedScrollLeft = this.clampScrollValue_(edges.right - scrollX);
+        var clampedScrollLeft = this.clampScrollValue(edges.right - scrollX);
         return {
             finalScrollPosition: clampedScrollLeft,
             scrollDelta: clampedScrollLeft - currentScrollLeft,
@@ -44,7 +44,7 @@ var MDCTabScrollerRTLDefault = /** @class */ (function (_super) {
     };
     MDCTabScrollerRTLDefault.prototype.incrementScrollRTL = function (scrollX) {
         var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
-        var clampedScrollLeft = this.clampScrollValue_(currentScrollLeft - scrollX);
+        var clampedScrollLeft = this.clampScrollValue(currentScrollLeft - scrollX);
         return {
             finalScrollPosition: clampedScrollLeft,
             scrollDelta: clampedScrollLeft - currentScrollLeft,
@@ -53,7 +53,7 @@ var MDCTabScrollerRTLDefault = /** @class */ (function (_super) {
     MDCTabScrollerRTLDefault.prototype.getAnimatingScrollPosition = function (scrollX) {
         return scrollX;
     };
-    MDCTabScrollerRTLDefault.prototype.calculateScrollEdges_ = function () {
+    MDCTabScrollerRTLDefault.prototype.calculateScrollEdges = function () {
         var contentWidth = this.adapter.getScrollContentOffsetWidth();
         var rootWidth = this.adapter.getScrollAreaOffsetWidth();
         return {
@@ -61,8 +61,8 @@ var MDCTabScrollerRTLDefault = /** @class */ (function (_super) {
             right: contentWidth - rootWidth,
         };
     };
-    MDCTabScrollerRTLDefault.prototype.clampScrollValue_ = function (scrollX) {
-        var edges = this.calculateScrollEdges_();
+    MDCTabScrollerRTLDefault.prototype.clampScrollValue = function (scrollX) {
+        var edges = this.calculateScrollEdges();
         return Math.min(Math.max(edges.left, scrollX), edges.right);
     };
     return MDCTabScrollerRTLDefault;

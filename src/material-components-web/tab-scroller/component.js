@@ -34,29 +34,34 @@ var MDCTabScroller = /** @class */ (function (_super) {
     MDCTabScroller.attachTo = function (root) {
         return new MDCTabScroller(root);
     };
+    // initialSyncWithDOM()
     MDCTabScroller.prototype.initialize = function () {
-        this.area_ = this.root.querySelector(MDCTabScrollerFoundation.strings.AREA_SELECTOR);
-        this.content_ = this.root.querySelector(MDCTabScrollerFoundation.strings.CONTENT_SELECTOR);
+        this.area = this.root.querySelector(MDCTabScrollerFoundation.strings.AREA_SELECTOR);
+        this.content = this.root.querySelector(MDCTabScrollerFoundation.strings.CONTENT_SELECTOR);
     };
     MDCTabScroller.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.handleInteraction_ = function () { return _this.foundation.handleInteraction(); };
-        this.handleTransitionEnd_ = function (evt) { return _this.foundation.handleTransitionEnd(evt); };
-        this.area_.addEventListener('wheel', this.handleInteraction_, applyPassive());
-        this.area_.addEventListener('touchstart', this.handleInteraction_, applyPassive());
-        this.area_.addEventListener('pointerdown', this.handleInteraction_, applyPassive());
-        this.area_.addEventListener('mousedown', this.handleInteraction_, applyPassive());
-        this.area_.addEventListener('keydown', this.handleInteraction_, applyPassive());
-        this.content_.addEventListener('transitionend', this.handleTransitionEnd_);
+        this.handleInteraction = function () {
+            _this.foundation.handleInteraction();
+        };
+        this.handleTransitionEnd = function (evt) {
+            _this.foundation.handleTransitionEnd(evt);
+        };
+        this.area.addEventListener('wheel', this.handleInteraction, applyPassive());
+        this.area.addEventListener('touchstart', this.handleInteraction, applyPassive());
+        this.area.addEventListener('pointerdown', this.handleInteraction, applyPassive());
+        this.area.addEventListener('mousedown', this.handleInteraction, applyPassive());
+        this.area.addEventListener('keydown', this.handleInteraction, applyPassive());
+        this.content.addEventListener('transitionend', this.handleTransitionEnd);
     };
     MDCTabScroller.prototype.destroy = function () {
         _super.prototype.destroy.call(this);
-        this.area_.removeEventListener('wheel', this.handleInteraction_, applyPassive());
-        this.area_.removeEventListener('touchstart', this.handleInteraction_, applyPassive());
-        this.area_.removeEventListener('pointerdown', this.handleInteraction_, applyPassive());
-        this.area_.removeEventListener('mousedown', this.handleInteraction_, applyPassive());
-        this.area_.removeEventListener('keydown', this.handleInteraction_, applyPassive());
-        this.content_.removeEventListener('transitionend', this.handleTransitionEnd_);
+        this.area.removeEventListener('wheel', this.handleInteraction, applyPassive());
+        this.area.removeEventListener('touchstart', this.handleInteraction, applyPassive());
+        this.area.removeEventListener('pointerdown', this.handleInteraction, applyPassive());
+        this.area.removeEventListener('mousedown', this.handleInteraction, applyPassive());
+        this.area.removeEventListener('keydown', this.handleInteraction, applyPassive());
+        this.content.removeEventListener('transitionend', this.handleTransitionEnd);
     };
     MDCTabScroller.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -67,25 +72,31 @@ var MDCTabScroller = /** @class */ (function (_super) {
             eventTargetMatchesSelector: function (evtTarget, selector) {
                 return matches(evtTarget, selector);
             },
-            addClass: function (className) { return _this.root.classList.add(className); },
-            removeClass: function (className) { return _this.root.classList.remove(className); },
-            addScrollAreaClass: function (className) { return _this.area_.classList.add(className); },
+            addClass: function (className) {
+                _this.root.classList.add(className);
+            },
+            removeClass: function (className) {
+                _this.root.classList.remove(className);
+            },
+            addScrollAreaClass: function (className) {
+                _this.area.classList.add(className);
+            },
             setScrollAreaStyleProperty: function (prop, value) {
-                return _this.area_.style.setProperty(prop, value);
+                _this.area.style.setProperty(prop, value);
             },
             setScrollContentStyleProperty: function (prop, value) {
-                return _this.content_.style.setProperty(prop, value);
+                _this.content.style.setProperty(prop, value);
             },
             getScrollContentStyleValue: function (propName) {
-                return window.getComputedStyle(_this.content_).getPropertyValue(propName);
+                return window.getComputedStyle(_this.content).getPropertyValue(propName);
             },
-            setScrollAreaScrollLeft: function (scrollX) { return _this.area_.scrollLeft = scrollX; },
-            getScrollAreaScrollLeft: function () { return _this.area_.scrollLeft; },
-            getScrollContentOffsetWidth: function () { return _this.content_.offsetWidth; },
-            getScrollAreaOffsetWidth: function () { return _this.area_.offsetWidth; },
-            computeScrollAreaClientRect: function () { return _this.area_.getBoundingClientRect(); },
+            setScrollAreaScrollLeft: function (scrollX) { return _this.area.scrollLeft = scrollX; },
+            getScrollAreaScrollLeft: function () { return _this.area.scrollLeft; },
+            getScrollContentOffsetWidth: function () { return _this.content.offsetWidth; },
+            getScrollAreaOffsetWidth: function () { return _this.area.offsetWidth; },
+            computeScrollAreaClientRect: function () { return _this.area.getBoundingClientRect(); },
             computeScrollContentClientRect: function () {
-                return _this.content_.getBoundingClientRect();
+                return _this.content.getBoundingClientRect();
             },
             computeHorizontalScrollbarHeight: function () {
                 return util.computeHorizontalScrollbarHeight(document);
@@ -104,7 +115,7 @@ var MDCTabScroller = /** @class */ (function (_super) {
      * Returns the width of the scroll content
      */
     MDCTabScroller.prototype.getScrollContentWidth = function () {
-        return this.content_.offsetWidth;
+        return this.content.offsetWidth;
     };
     /**
      * Increments the scroll value by the given amount

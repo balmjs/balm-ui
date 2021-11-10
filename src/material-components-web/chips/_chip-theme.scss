@@ -24,6 +24,8 @@
 // stylelint-disable selector-class-pattern --
 // Internal styling for Chip MDC component.
 
+@use 'sass:map';
+@use 'sass:math';
 @use 'sass:color';
 @use '../density/density';
 @use '../feature-targeting/feature-targeting';
@@ -31,6 +33,9 @@
 @use '../ripple/ripple-theme';
 @use '../rtl/rtl';
 @use '../theme/theme';
+@use '../theme/keys';
+@use '../elevation/elevation-theme';
+@use '../tokens/resolvers';
 @use '../theme/state';
 @use '../theme/theme-color';
 @use '../typography/typography';
@@ -46,7 +51,7 @@ $density-config: (
     minimum: $minimum-height,
   ),
 );
-$radius: $height / 2;
+$radius: math.div($height, 2);
 $type-scale: body2;
 $container-color: color.mix(
   theme-color.prop-value(on-surface),
@@ -80,6 +85,388 @@ $filter-selected-container-color: color.mix(
   $container-color,
   8%
 );
+
+$_light-theme: (
+  container-elevation: null,
+  container-height: null,
+  container-shadow-color: null,
+  container-shape: null,
+  disabled-label-text-color: null,
+  disabled-label-text-opacity: null,
+  disabled-outline-color: null,
+  disabled-outline-opacity: null,
+  elevated-container-color: null,
+  elevated-container-elevation: null,
+  elevated-container-shadow-color: null,
+  elevated-disabled-container-color: null,
+  elevated-disabled-container-elevation: null,
+  elevated-disabled-container-opacity: null,
+  elevated-focus-container-elevation: null,
+  elevated-hover-container-elevation: null,
+  elevated-pressed-container-elevation: null,
+  elevated-selected-container-color: null,
+  elevated-selected-container-elevation: null,
+  elevated-unselected-container-color: null,
+  flat-container-elevation: null,
+  flat-disabled-outline-color: null,
+  flat-disabled-outline-opacity: null,
+  flat-disabled-selected-outline-color: null,
+  flat-disabled-selected-outline-opacity: null,
+  flat-disabled-unselected-outline-color: null,
+  flat-disabled-unselected-outline-opacity: null,
+  flat-focus-outline-color: null,
+  flat-outline-color: null,
+  flat-outline-width: null,
+  flat-selected-container-color: null,
+  flat-selected-focus-container-elevation: null,
+  flat-selected-hover-container-elevation: null,
+  flat-selected-outline-color: null,
+  flat-selected-outline-width: null,
+  flat-selected-pressed-container-elevation: null,
+  flat-unselected-focus-container-elevation: null,
+  flat-unselected-focus-outline-color: null,
+  flat-unselected-hover-container-elevation: null,
+  flat-unselected-outline-color: null,
+  flat-unselected-outline-width: null,
+  flat-unselected-pressed-container-elevation: null,
+  focus-label-text-color: null,
+  focus-outline-color: null,
+  focus-state-layer-color: null,
+  focus-state-layer-opacity: null,
+  hover-label-text-color: null,
+  hover-state-layer-color: null,
+  hover-state-layer-opacity: null,
+  label-text-color: null,
+  label-text-font: null,
+  label-text-line-height: null,
+  label-text-size: null,
+  label-text-tracking: null,
+  label-text-weight: null,
+  outline-color: null,
+  outline-width: null,
+  pressed-label-text-color: null,
+  pressed-state-layer-color: null,
+  pressed-state-layer-opacity: null,
+  selected-focus-label-text-color: null,
+  selected-focus-state-layer-color: null,
+  selected-focus-state-layer-opacity: null,
+  selected-hover-label-text-color: null,
+  selected-hover-state-layer-color: null,
+  selected-hover-state-layer-opacity: null,
+  selected-label-text-color: null,
+  selected-pressed-label-text-color: null,
+  selected-pressed-state-layer-color: null,
+  selected-pressed-state-layer-opacity: null,
+  unselected-focus-label-text-color: null,
+  unselected-focus-state-layer-color: null,
+  unselected-focus-state-layer-opacity: null,
+  unselected-hover-label-text-color: null,
+  unselected-hover-state-layer-color: null,
+  unselected-hover-state-layer-opacity: null,
+  unselected-label-text-color: null,
+  unselected-pressed-label-text-color: null,
+  unselected-pressed-state-layer-color: null,
+  unselected-pressed-state-layer-opacity: null,
+  with-avatar-avatar-shape: null,
+  with-avatar-avatar-size: null,
+  with-avatar-disabled-avatar-opacity: null,
+  with-icon-disabled-icon-color: null,
+  with-icon-disabled-icon-opacity: null,
+  with-icon-focus-icon-color: null,
+  with-icon-hover-icon-color: null,
+  with-icon-icon-color: null,
+  with-icon-icon-size: null,
+  with-icon-pressed-icon-color: null,
+  with-icon-selected-focus-icon-color: null,
+  with-icon-selected-hover-icon-color: null,
+  with-icon-selected-icon-color: null,
+  with-icon-selected-pressed-icon-color: null,
+  with-icon-unselected-focus-icon-color: null,
+  with-icon-unselected-hover-icon-color: null,
+  with-icon-unselected-icon-color: null,
+  with-icon-unselected-pressed-icon-color: null,
+  with-leading-icon-disabled-leading-icon-color: null,
+  with-leading-icon-disabled-leading-icon-opacity: null,
+  with-leading-icon-focus-leading-icon-color: null,
+  with-leading-icon-hover-leading-icon-color: null,
+  with-leading-icon-leading-icon-color: null,
+  with-leading-icon-leading-icon-size: null,
+  with-leading-icon-pressed-leading-icon-color: null,
+  with-trailing-icon-disabled-trailing-icon-color: null,
+  with-trailing-icon-disabled-trailing-icon-opacity: null,
+  with-trailing-icon-focus-trailing-icon-color: null,
+  with-trailing-icon-hover-trailing-icon-color: null,
+  with-trailing-icon-pressed-trailing-icon-color: null,
+  with-trailing-icon-trailing-icon-color: null,
+  with-trailing-icon-trailing-icon-size: null,
+);
+
+@mixin theme-styles($theme, $resolvers: resolvers.$material) {
+  @include theme.validate-theme-keys($_light-theme, $theme);
+
+  @include _container-shape(map.get($theme, container-shape));
+  @include _avatar-shape(map.get($theme, with-avatar-avatar-shape));
+  @include graphic-size(map.get($theme, with-avatar-avatar-size));
+  @include height(map.get($theme, container-height));
+  @include _container-elevation(
+    map.get($resolvers, elevation),
+    $shadow-color: map.get($theme, container-shadow-color),
+    $map: (default: map.get($theme, container-elevation))
+  );
+  @include _container-elevation(
+    map.get($resolvers, elevation),
+    $shadow-color: map.get($theme, elevated-container-shadow-color),
+    $map: (enabled: map.get($theme, flat-container-elevation))
+  );
+  @include _container-elevation(
+    map.get($resolvers, elevation),
+    $shadow-color: map.get($theme, elevated-container-shadow-color),
+    $map: (
+      enabled: map.get($theme, elevated-container-elevation),
+      disabled: map.get($theme, elevated-disabled-container-elevation),
+      hover: map.get($theme, elevated-hover-container-elevation),
+      focus: map.get($theme, elevated-focus-container-elevation),
+      pressed: map.get($theme, elevated-pressed-container-elevation)
+    )
+  );
+  @include _selected-container-elevation(
+    map.get($resolvers, elevation),
+    $shadow-color: map.get($theme, elevated-container-shadow-color),
+    $map: (
+      enabled: map.get($theme, elevated-selected-container-elevation),
+      disabled: map.get($theme, elevated-selected-disabled-container-elevation),
+      hover: map.get($theme, elevated-selected-hover-container-elevation),
+      focus: map.get($theme, elevated-selected-focus-container-elevation),
+      pressed: map.get($theme, elevated-selected-pressed-container-elevation)
+    )
+  );
+  @include _selected-container-elevation(
+    map.get($resolvers, elevation),
+    $shadow-color: map.get($theme, elevated-container-shadow-color),
+    $map: (
+      enabled: map.get($theme, flat-selected-container-elevation),
+      disabled: map.get($theme, flat-selected-disabled-container-elevation),
+      hover: map.get($theme, flat-selected-hover-container-elevation),
+      focus: map.get($theme, flat-selected-focus-container-elevation),
+      pressed: map.get($theme, flat-selected-pressed-container-elevation)
+    )
+  );
+  @include _unselected-container-elevation(
+    map.get($resolvers, elevation),
+    $shadow-color: map.get($theme, elevated-container-shadow-color),
+    $map: (
+      enabled: map.get($theme, flat-unselected-container-elevation),
+      disabled: map.get($theme, flat-unselected-disabled-container-elevation),
+      hover: map.get($theme, flat-unselected-hover-container-elevation),
+      focus: map.get($theme, flat-unselected-focus-container-elevation),
+      pressed: map.get($theme, flat-unselected-pressed-container-elevation)
+    )
+  );
+  @include outline-color(
+    (
+      enabled: map.get($theme, flat-outline-color),
+      focus: map.get($theme, flat-focus-outline-color),
+      disabled: map.get($theme, flat-disabled-outline-color),
+    )
+  );
+  @include selected-outline-color(
+    (
+      enabled: map.get($theme, flat-selected-outline-color),
+      disabled: map.get($theme, flat-disabled-selected-outline-color),
+    )
+  );
+  @include _unselected-outline-color(
+    (
+      disabled: map.get($theme, flat-disabled-unselected-outline-color),
+      focus: map.get($theme, flat-unselected-focus-outline-color),
+      enabled: map.get($theme, flat-unselected-outline-color),
+    )
+  );
+  @include outline-width(map.get($theme, outline-width));
+  @include outline-width(map.get($theme, flat-outline-width));
+  @include _selected-outline-width(
+    map.get($theme, flat-selected-outline-width)
+  );
+  @include _unselected-outline-width(
+    map.get($theme, flat-unselected-outline-width)
+  );
+  @include container-color(
+    (
+      enabled: map.get($theme, elevated-container-color),
+      disabled: map.get($theme, elevated-disabled-container-color),
+    )
+  );
+  @include selected-container-color(
+    (
+      enabled: map.get($theme, elevated-selected-container-color),
+    )
+  );
+  @include selected-container-color(
+    (
+      enabled: map.get($theme, flat-selected-container-color),
+    )
+  );
+  @include _unselected-container-color(
+    (
+      enabled: map.get($theme, elevated-unselected-container-color),
+    )
+  );
+  @include typography.theme-styles(
+    (
+      font: map.get($theme, label-text-font),
+      line-height: map.get($theme, label-text-line-height),
+      size: map.get($theme, label-text-size),
+      weight: map.get($theme, label-text-weight),
+      tracking: map.get($theme, label-text-tracking),
+    )
+  );
+  @include text-label-color(
+    (
+      enabled: map.get($theme, label-text-color),
+      hover: map.get($theme, hover-label-text-color),
+      focus: map.get($theme, focus-label-text-color),
+      pressed: map.get($theme, pressed-label-text-color),
+      disabled: map.get($theme, disabled-label-text-color),
+    )
+  );
+  @include selected-text-label-color(
+    (
+      enabled: map.get($theme, selected-label-text-color),
+      hover: map.get($theme, selected-hover-label-text-color),
+      focus: map.get($theme, selected-focus-label-text-color),
+      pressed: map.get($theme, selected-pressed-label-text-color),
+      disabled: map.get($theme, selected-disabled-label-text-color),
+    )
+  );
+  @include _unselected-text-label-color(
+    (
+      enabled: map.get($theme, unselected-label-text-color),
+      hover: map.get($theme, unselected-hover-label-text-color),
+      focus: map.get($theme, unselected-focus-label-text-color),
+      pressed: map.get($theme, unselected-pressed-label-text-color),
+      disabled: map.get($theme, unselected-disabled-label-text-color),
+    )
+  );
+
+  @include icon-size(map.get($theme, with-icon-icon-size));
+  @include icon-color(
+    (
+      enabled: map.get($theme, with-icon-icon-color),
+      disabled: map.get($theme, with-icon-disabled-icon-color),
+      hover: map.get($theme, with-icon-hover-icon-color),
+      focus: map.get($theme, with-icon-focus-icon-color),
+      pressed: map.get($theme, with-icon-pressed-icon-color),
+    )
+  );
+  @include _selected-icon-color(
+    (
+      enabled: map.get($theme, with-icon-selected-icon-color),
+      disabled: map.get($theme, with-icon-selected-disabled-icon-color),
+      hover: map.get($theme, with-icon-selected-hover-icon-color),
+      focus: map.get($theme, with-icon-selected-focus-icon-color),
+      pressed: map.get($theme, with-icon-selected-pressed-icon-color),
+    )
+  );
+  @include _unselected-icon-color(
+    (
+      enabled: map.get($theme, with-icon-unselected-icon-color),
+      disabled: map.get($theme, with-icon-unselected-disabled-icon-color),
+      hover: map.get($theme, with-icon-unselected-hover-icon-color),
+      focus: map.get($theme, with-icon-unselected-focus-icon-color),
+      pressed: map.get($theme, with-icon-unselected-pressed-icon-color),
+    )
+  );
+  @include icon-color(
+    (
+      disabled: map.get($theme, with-leading-icon-disabled-leading-icon-color),
+      focus: map.get($theme, with-leading-icon-focus-leading-icon-color),
+      hover: map.get($theme, with-leading-icon-hover-leading-icon-color),
+      enabled: map.get($theme, with-leading-icon-leading-icon-color),
+      pressed: map.get($theme, with-leading-icon-pressed-leading-icon-color),
+    )
+  );
+  @include trailing-action-color(
+    (
+      disabled: map.get($theme, with-trailing-icon-disabled-trailing-icon-color),
+      focus: map.get($theme, with-trailing-icon-focus-trailing-icon-color),
+      hover: map.get($theme, with-trailing-icon-hover-trailing-icon-color),
+      enabled: map.get($theme, with-trailing-icon-trailing-icon-color),
+      pressed: map.get($theme, with-trailing-icon-pressed-trailing-icon-color),
+    )
+  );
+  @include _ripple-theme(
+    (
+      focus-state-layer-color: map.get($theme, focus-state-layer-color),
+      focus-state-layer-opacity: map.get($theme, focus-state-layer-opacity),
+      hover-state-layer-color: map.get($theme, hover-state-layer-color),
+      hover-state-layer-opacity: map.get($theme, hover-state-layer-opacity),
+      pressed-state-layer-color: map.get($theme, pressed-state-layer-color),
+      pressed-state-layer-opacity: map.get($theme, pressed-state-layer-opacity),
+    )
+  );
+  @include _selected-ripple-theme(
+    (
+      focus-state-layer-color: map.get($theme, selected-focus-state-layer-color),
+      focus-state-layer-opacity:
+        map.get($theme, selected-focus-state-layer-opacity),
+      hover-state-layer-color: map.get($theme, selected-hover-state-layer-color),
+      hover-state-layer-opacity:
+        map.get($theme, selected-hover-state-layer-opacity),
+      pressed-state-layer-color:
+        map.get($theme, selected-pressed-state-layer-color),
+      pressed-state-layer-opacity:
+        map.get($theme, selected-pressed-state-layer-opacity),
+    )
+  );
+  @include _unselected-ripple-theme(
+    (
+      focus-state-layer-color:
+        map.get($theme, unselected-focus-state-layer-color),
+      focus-state-layer-opacity:
+        map.get($theme, unselected-focus-state-layer-opacity),
+      hover-state-layer-color:
+        map.get($theme, unselected-hover-state-layer-color),
+      hover-state-layer-opacity:
+        map.get($theme, unselected-hover-state-layer-opacity),
+      pressed-state-layer-color:
+        map.get($theme, unselected-pressed-state-layer-color),
+      pressed-state-layer-opacity:
+        map.get($theme, unselected-pressed-state-layer-opacity),
+    )
+  );
+}
+
+@mixin _ripple-theme($ripple-theme) {
+  .mdc-evolution-chip__action--primary {
+    @include ripple-theme.internal-theme-styles(
+      (
+        focus-state-layer-color: map.get($ripple-theme, focus-state-layer-color),
+        focus-state-layer-opacity:
+          map.get($ripple-theme, focus-state-layer-opacity),
+        hover-state-layer-color: map.get($ripple-theme, hover-state-layer-color),
+        hover-state-layer-opacity:
+          map.get($ripple-theme, hover-state-layer-opacity),
+        pressed-state-layer-color:
+          map.get($ripple-theme, pressed-state-layer-color),
+        pressed-state-layer-opacity:
+          map.get($ripple-theme, pressed-state-layer-opacity),
+      ),
+      $ripple-target: $ripple-target
+    );
+  }
+}
+
+@mixin _selected-ripple-theme($ripple-theme) {
+  @include _is-selected() {
+    @include _ripple-theme($ripple-theme);
+  }
+}
+
+@mixin _unselected-ripple-theme($ripple-theme) {
+  @include _is-unselected() {
+    @include _ripple-theme($ripple-theme);
+  }
+}
 
 ///
 /// Sets the ripple color of the chip.
@@ -201,6 +588,25 @@ $filter-selected-container-color: color.mix(
   }
 }
 
+@mixin _container-shape($radius) {
+  @include shape.radius($radius);
+
+  #{$ripple-target} {
+    @include shape.radius($radius);
+  }
+
+  .mdc-evolution-chip__action--primary:before,
+  .mdc-evolution-chip__action--primary:after {
+    @include shape.radius($radius);
+  }
+}
+
+@mixin _avatar-shape($radius) {
+  .mdc-evolution-chip__icon--primary {
+    @include shape.radius($radius);
+  }
+}
+
 ///
 /// Sets the shape radius of the chip.
 /// @param {Number|List} $radius - Shape radius in `border-radius` CSS format.
@@ -268,11 +674,23 @@ $filter-selected-container-color: color.mix(
   }
 }
 
+@mixin _selected-outline-width($width) {
+  @include _is-selected() {
+    @include outline-width($width);
+  }
+}
+
+@mixin _unselected-outline-width($width) {
+  @include _is-unselected() {
+    @include outline-width($width);
+  }
+}
+
 ///
 /// Customizes the outline color, using a Color or state Map.
 /// - To set only the default color, provide a single Color.
 /// - To set one or more state colors, provide a state Map with optional keys.
-/// - Supported state Map keys: `default`, `focus`, `disabled`.
+/// - Supported state Map keys: `default`, `enabled`, `focus`, `disabled`.
 ///
 /// @example
 ///   @include outline-color(blue);
@@ -282,9 +700,18 @@ $filter-selected-container-color: color.mix(
 ///
 @mixin outline-color($color-or-map, $query: feature-targeting.all()) {
   @include _outline-color(state.get-default-state($color-or-map), $query);
+  @include _is-enabled() {
+    @include _outline-color(state.get-enabled-state($color-or-map), $query);
+  }
   @include _focus-outline-color(state.get-focus-state($color-or-map), $query);
-  &.mdc-evolution-chip--disabled {
+  @include _is-disabled() {
     @include _outline-color(state.get-disabled-state($color-or-map), $query);
+  }
+}
+
+@mixin _selected-outline-color($color-or-map) {
+  @include _is-selected() {
+    @include _outline-color($color-or-map);
   }
 }
 
@@ -292,7 +719,7 @@ $filter-selected-container-color: color.mix(
 /// Customizes the selected outline color, using a Color or state Map.
 /// - To set only the default color, provide a single Color.
 /// - To set one or more state colors, provide a state Map with optional keys.
-/// - Supported state Map keys: `default`, `focus`, `disabled`.
+/// - Supported state Map keys: `default`, `enabled`, `focus`, `disabled`.
 ///
 /// @example
 ///   @include selected-outline-color(blue);
@@ -301,12 +728,18 @@ $filter-selected-container-color: color.mix(
 /// @param {Color | Map} $color-or-map - The outline's color or a state Map
 ///
 @mixin selected-outline-color($color-or-map, $query: feature-targeting.all()) {
-  &.mdc-evolution-chip--selected {
+  @include _is-selected() {
     @include outline-color($color-or-map, $query: $query);
   }
 }
 
-@mixin _outline-color($color, $query) {
+@mixin _unselected-outline-color($color-or-map) {
+  @include _is-unselected() {
+    @include outline-color($color-or-map);
+  }
+}
+
+@mixin _outline-color($color, $query: feature-targeting.all()) {
   $feat-color: feature-targeting.create-target($query, color);
 
   .mdc-evolution-chip__action--primary:before {
@@ -318,10 +751,10 @@ $filter-selected-container-color: color.mix(
   }
 }
 
-@mixin _focus-outline-color($color, $query) {
+@mixin _focus-outline-color($color, $query: feature-targeting.all()) {
   $feat-color: feature-targeting.create-target($query, color);
 
-  .mdc-evolution-chip__action--primary {
+  .mdc-evolution-chip__action--primary:not(.mdc-evolution-chip__action--presentational) {
     @include ripple-theme.focus() {
       &:before {
         @include feature-targeting.targets($feat-color) {
@@ -352,7 +785,7 @@ $filter-selected-container-color: color.mix(
 /// Customizes the container color, using a Color or state Map.
 /// - To set only the default color, provide a single Color.
 /// - To set one or more state colors, provide a state Map with optional keys.
-/// - Supported state Map keys: `default`, `disabled`.
+/// - Supported state Map keys: `default`, `enabled`, `disabled`.
 ///
 /// @example
 ///   @include container-color(blue);
@@ -362,7 +795,10 @@ $filter-selected-container-color: color.mix(
 ///
 @mixin container-color($color-or-map, $query: feature-targeting.all()) {
   @include _container-color(state.get-default-state($color-or-map), $query);
-  &.mdc-evolution-chip--disabled {
+  @include _is-enabled() {
+    @include _container-color(state.get-enabled-state($color-or-map), $query);
+  }
+  @include _is-disabled() {
     @include _container-color(state.get-disabled-state($color-or-map), $query);
   }
 }
@@ -371,7 +807,7 @@ $filter-selected-container-color: color.mix(
 /// Customizes the selected container color, using a Color or state Map.
 /// - To set only the default color, provide a single Color.
 /// - To set one or more state colors, provide a state Map with optional keys.
-/// - Supported state Map keys: `default`, `disabled`.
+/// - Supported state Map keys: `default`, `enabled`, `disabled`.
 ///
 /// @example
 ///   @include selected-container-color(blue);
@@ -383,12 +819,18 @@ $filter-selected-container-color: color.mix(
   $color-or-map,
   $query: feature-targeting.all()
 ) {
-  &.mdc-evolution-chip--selected {
+  @include _is-selected() {
     @include container-color($color-or-map, $query: $query);
   }
 }
 
-@mixin _container-color($color, $query) {
+@mixin _unselected-container-color($color-or-map) {
+  @include _is-unselected() {
+    @include container-color($color-or-map);
+  }
+}
+
+@mixin _container-color($color, $query: feature-targeting.all()) {
   $feat-color: feature-targeting.create-target($query, color);
 
   @include feature-targeting.targets($feat-color) {
@@ -402,7 +844,7 @@ $filter-selected-container-color: color.mix(
 /// Customizes the text label color, using a Color or state Map.
 /// - To set only the default color, provide a single Color.
 /// - To set one or more state colors, provide a state Map with optional keys.
-/// - Supported state Map keys: `default`, `hover`, `focus`, `disabled`.
+/// - Supported state Map keys: `default`, `enabled`, `hover`, `focus`, `disabled`.
 ///
 /// @example
 ///   @include text-label-color(blue);
@@ -412,17 +854,20 @@ $filter-selected-container-color: color.mix(
 ///
 @mixin text-label-color($color-or-map, $query: feature-targeting.all()) {
   @include _text-label-color(state.get-default-state($color-or-map), $query);
-  .mdc-evolution-chip__action--primary:hover {
+  @include _is-enabled() {
+    @include _text-label-color(state.get-enabled-state($color-or-map), $query);
+  }
+  .mdc-evolution-chip__action--primary:not(.mdc-evolution-chip__action--presentational):hover {
     @include _text-label-color(state.get-hover-state($color-or-map), $query);
   }
 
-  .mdc-evolution-chip__action--primary {
+  .mdc-evolution-chip__action--primary:not(.mdc-evolution-chip__action--presentational) {
     @include ripple-theme.focus() {
       @include _text-label-color(state.get-focus-state($color-or-map), $query);
     }
   }
 
-  &.mdc-evolution-chip--disabled {
+  @include _is-disabled() {
     @include _text-label-color(state.get-disabled-state($color-or-map), $query);
   }
 }
@@ -443,8 +888,14 @@ $filter-selected-container-color: color.mix(
   $color-or-map,
   $query: feature-targeting.all()
 ) {
-  &.mdc-evolution-chip--selected {
+  @include _is-selected() {
     @include text-label-color($color-or-map, $query: $query);
+  }
+}
+
+@mixin _unselected-text-label-color($color-or-map) {
+  @include _is-unselected() {
+    @include text-label-color($color-or-map);
   }
 }
 
@@ -484,7 +935,9 @@ $filter-selected-container-color: color.mix(
   // computed based on the unselected bounding client react which will not have
   // enough horizontal space to account for the growth in width.
   &.mdc-evolution-chip--selectable:not(.mdc-evolution-chip--with-primary-icon) {
-    --mdc-chip-graphic-selected-width: #{$size};
+    @if $size {
+      --mdc-chip-graphic-selected-width: #{$size};
+    }
   }
 
   .mdc-evolution-chip__graphic {
@@ -500,7 +953,7 @@ $filter-selected-container-color: color.mix(
 /// Customizes the icon color, using a Color or state Map.
 /// - To set only the default color, provide a single Color.
 /// - To set one or more state colors, provide a state Map with optional keys.
-/// - Supported state Map keys: `default`, `focus`, `disabled`.
+/// - Supported state Map keys: `default`, `enabled`, `focus`, `disabled`.
 ///
 /// @example
 ///   @include icon-color(blue);
@@ -511,18 +964,32 @@ $filter-selected-container-color: color.mix(
 @mixin icon-color($color-or-map, $query: feature-targeting.all()) {
   @include _icon-color(state.get-default-state($color-or-map), $query);
 
-  .mdc-evolution-chip__action--primary:hover {
+  @include _is-enabled() {
+    @include _icon-color(state.get-enabled-state($color-or-map), $query);
+  }
+
+  .mdc-evolution-chip__action--primary:not(.mdc-evolution-chip__action--presentational):hover {
     @include _icon-color(state.get-hover-state($color-or-map), $query);
   }
 
-  .mdc-evolution-chip__action--primary {
+  .mdc-evolution-chip__action--primary:not(.mdc-evolution-chip__action--presentational) {
     @include ripple-theme.focus() {
       @include _icon-color(state.get-focus-state($color-or-map), $query);
     }
   }
 
-  &.mdc-evolution-chip--disabled {
+  @include _is-disabled() {
     @include _icon-color(state.get-disabled-state($color-or-map), $query);
+  }
+}
+
+@mixin _selected-icon-color($color-or-map) {
+  @include checkmark-color($color-or-map);
+}
+
+@mixin _unselected-icon-color($color-or-map) {
+  @include _is-unselected() {
+    @include icon-color($color-or-map);
   }
 }
 
@@ -556,14 +1023,14 @@ $filter-selected-container-color: color.mix(
     $query
   );
 
-  .mdc-evolution-chip__action--primary:hover {
+  .mdc-evolution-chip__action--primary:not(.mdc-evolution-chip__action--presentational):hover {
     @include _icon-container-color(
       state.get-hover-state($color-or-map),
       $query
     );
   }
 
-  .mdc-evolution-chip__action--primary {
+  .mdc-evolution-chip__action--primary:not(.mdc-evolution-chip__action--presentational) {
     @include ripple-theme.focus() {
       @include _icon-container-color(
         state.get-focus-state($color-or-map),
@@ -644,6 +1111,13 @@ $filter-selected-container-color: color.mix(
     $query
   );
 
+  @include _is-enabled() {
+    @include _trailing-action-color(
+      state.get-enabled-state($color-or-map),
+      $query
+    );
+  }
+
   .mdc-evolution-chip__action--trailing:hover {
     @include _trailing-action-color(
       state.get-hover-state($color-or-map),
@@ -660,7 +1134,7 @@ $filter-selected-container-color: color.mix(
     }
   }
 
-  &.mdc-evolution-chip--disabled {
+  @include _is-disabled() {
     @include _trailing-action-color(
       state.get-disabled-state($color-or-map),
       $query
@@ -699,7 +1173,7 @@ $filter-selected-container-color: color.mix(
 /// Customizes the checkmark color, using a Color or state Map.
 /// - To set only the default color, provide a single Color.
 /// - To set one or more state colors, provide a state Map with optional keys.
-/// - Supported state Map keys: `default`, `hover`, `focus`, `disabled`.
+/// - Supported state Map keys: `default`, `enabled`, `hover`, `focus`, `disabled`.
 ///
 /// @example
 ///   @include checkmark-color(blue);
@@ -710,7 +1184,11 @@ $filter-selected-container-color: color.mix(
 @mixin checkmark-color($color-or-map, $query: feature-targeting.all()) {
   @include _checkmark-color(state.get-default-state($color-or-map), $query);
 
-  .mdc-evolution-chip__action--primary:hover {
+  @include _is-enabled() {
+    @include _checkmark-color(state.get-enabled-state($color-or-map), $query);
+  }
+
+  .mdc-evolution-chip__action--primary:not(.mdc-evolution-chip__action--presentational):hover {
     @include _checkmark-color(state.get-hover-state($color-or-map), $query);
   }
 
@@ -720,7 +1198,7 @@ $filter-selected-container-color: color.mix(
     }
   }
 
-  &.mdc-evolution-chip--disabled {
+  @include _is-disabled() {
     @include _checkmark-color(state.get-disabled-state($color-or-map), $query);
   }
 }
@@ -930,5 +1408,83 @@ $filter-selected-container-color: color.mix(
         @include rtl.reflexive-property(padding, 0, 0);
       }
     }
+  }
+}
+
+@mixin _container-elevation($resolver, $shadow-color, $map) {
+  @include _is-enabled() {
+    @include elevation-theme.with-resolver(
+      $resolver,
+      $elevation: state.get-enabled-state($map),
+      $shadow-color: $shadow-color
+    );
+  }
+
+  @include ripple-theme.hover() {
+    @include elevation-theme.with-resolver(
+      $resolver,
+      $elevation: state.get-hover-state($map),
+      $shadow-color: $shadow-color
+    );
+  }
+
+  @include ripple-theme.focus() {
+    @include elevation-theme.with-resolver(
+      $resolver,
+      $elevation: state.get-focus-state($map),
+      $shadow-color: $shadow-color
+    );
+  }
+
+  @include ripple-theme.pressed() {
+    @include elevation-theme.with-resolver(
+      $resolver,
+      $elevation: state.get-pressed-state($map),
+      $shadow-color: $shadow-color
+    );
+  }
+
+  @include _is-disabled() {
+    @include elevation-theme.with-resolver(
+      $resolver,
+      $elevation: state.get-disabled-state($map),
+      $shadow-color: $shadow-color
+    );
+  }
+}
+
+@mixin _selected-container-elevation($resolver, $shadow-color, $map) {
+  @include _is-selected() {
+    @include _container-elevation($resolver, $shadow-color, $map);
+  }
+}
+
+@mixin _unselected-container-elevation($resolver, $shadow-color, $map) {
+  @include _is-unselected() {
+    @include _container-elevation($resolver, $shadow-color, $map);
+  }
+}
+
+@mixin _is-enabled() {
+  &:not(.mdc-evolution-chip--disabled) {
+    @content;
+  }
+}
+
+@mixin _is-disabled() {
+  &.mdc-evolution-chip--disabled {
+    @content;
+  }
+}
+
+@mixin _is-selected() {
+  &.mdc-evolution-chip--selected {
+    @content;
+  }
+}
+
+@mixin _is-unselected() {
+  &:not(.mdc-evolution-chip--selected) {
+    @content;
   }
 }

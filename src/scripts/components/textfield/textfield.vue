@@ -1,6 +1,9 @@
 <template>
   <!-- Container -->
-  <div :class="className.outer">
+  <div
+    :class="className.outer"
+    @click="$emit(UI_TEXTFIELD.EVENT.CLICK, $event)"
+  >
     <div v-if="!isOutlined" class="mdc-text-field__ripple"></div>
 
     <!-- Leading icon (optional) -->
@@ -21,34 +24,32 @@
     </slot>
 
     <!-- Textarea -->
-    <template v-if="isTextarea">
-      <span class="mdc-text-field__resizer">
-        <textarea
-          :id="inputId"
-          v-model="inputValue"
-          :class="className.input"
-          :placeholder="placeholder"
-          :disabled="disabled"
-          :required="required"
-          :minlength="minlength"
-          :maxlength="maxlength"
-          :rows="rows"
-          :cols="cols"
-          :aria-controls="helperTextId"
-          :aria-describedby="helperTextId"
-          v-bind="attrs"
-          @focus="handleFocus"
-          @keydown="handleKeydown"
-          @input="handleInput"
-          @keyup="handleKeyup"
-          @change="handleChange"
-          @keyup.enter="handleEnter"
-          @blur="handleBlur"
-        ></textarea>
-        <!-- Character counter (optional) -->
-        <mdc-textfield-counter v-if="withCounter"></mdc-textfield-counter>
-      </span>
-    </template>
+    <span v-if="isTextarea" class="mdc-text-field__resizer">
+      <textarea
+        :id="inputId"
+        v-model="inputValue"
+        :class="className.input"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :required="required"
+        :minlength="minlength"
+        :maxlength="maxlength"
+        :rows="rows"
+        :cols="cols"
+        :aria-controls="helperTextId"
+        :aria-describedby="helperTextId"
+        v-bind="attrs"
+        @focus="handleFocus"
+        @keydown="handleKeydown"
+        @input="handleInput"
+        @keyup="handleKeyup"
+        @change="handleChange"
+        @keyup.enter="handleEnter"
+        @blur="handleBlur"
+      ></textarea>
+      <!-- Character counter (optional) -->
+      <mdc-textfield-counter v-if="withCounter"></mdc-textfield-counter>
+    </span>
     <!-- Input text -->
     <template v-else>
       <span
@@ -142,6 +143,7 @@ const UI_TEXTFIELD = {
     outlined: 1
   },
   EVENT: {
+    CLICK: 'click',
     FOCUS: 'focus',
     KEYDOWN: 'keydown',
     INPUT: 'update:modelValue',
@@ -242,6 +244,7 @@ export default {
     }
   },
   emits: [
+    UI_TEXTFIELD.EVENT.CLICK,
     UI_TEXTFIELD.EVENT.FOCUS,
     UI_TEXTFIELD.EVENT.KEYDOWN,
     UI_TEXTFIELD.EVENT.INPUT,

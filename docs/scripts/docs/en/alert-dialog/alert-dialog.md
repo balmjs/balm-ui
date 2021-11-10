@@ -50,7 +50,7 @@ interface AlertDialog {
 ### Use `$alert` without `.vue` component
 
 ```js
-import { useAlert } from 'balm-ui/dist/balm-ui-plus';
+import { useAlert } from 'balm-ui';
 // OR
 // import { useAlert } from 'balm-ui/plugins/alert';
 

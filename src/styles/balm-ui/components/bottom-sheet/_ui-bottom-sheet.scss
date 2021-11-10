@@ -1,0 +1,61 @@
+@use '@material/theme/theme-color';
+@use '@material/elevation/mixins' as elevation-mixins;
+@use './variables' as bottom-sheet-variables;
+@use './mixins' as bottom-sheet-mixins;
+
+.mdc-bottom-sheet,
+.mdc-bottom-sheet__scrim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.mdc-bottom-sheet {
+  display: none;
+  z-index: 7;
+
+  &.mdc-bottom-sheet--open {
+    display: block;
+  }
+}
+
+.mdc-bottom-sheet__scrim {
+  opacity: 0;
+  z-index: -1;
+  background-color: rgba(
+    theme-color.prop-value(bottom-sheet-variables.$scrim-color),
+    bottom-sheet-variables.$scrim-opacity
+  );
+}
+
+.mdc-bottom-sheet__content {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  backface-visibility: hidden;
+  width: 100%;
+  background-color: bottom-sheet-variables.$background;
+  border-top-left-radius: bottom-sheet-variables.$border-top-radius;
+  border-top-right-radius: bottom-sheet-variables.$border-top-radius;
+  overflow: hidden;
+
+  @include bottom-sheet-mixins.mdc-bottom-sheet-animate;
+  @include elevation-mixins.elevation(4);
+}
+
+.mdc-bottom-sheet--open {
+  .mdc-bottom-sheet__scrim {
+    opacity: 1;
+  }
+
+  .mdc-bottom-sheet__content {
+    @include bottom-sheet-mixins.mdc-bottom-sheet-slide-in-up;
+  }
+}
+
+.mdc-bottom-sheet--closing .mdc-bottom-sheet__content {
+  @include bottom-sheet-mixins.mdc-bottom-sheet-slide-out-down;
+}

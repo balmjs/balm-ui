@@ -21,9 +21,9 @@
  * THE SOFTWARE.
  */
 import { __assign, __extends } from "tslib";
-import { MDCComponent } from '@material/base/component';
-import { MDCRipple } from '@material/ripple/component';
-import { MDCRippleFoundation } from '@material/ripple/foundation';
+import { MDCComponent } from '../../../base/component';
+import { MDCRipple } from '../../../ripple/component';
+import { MDCRippleFoundation } from '../../../ripple/foundation';
 import { MDCChipTrailingAction } from '../trailingaction/component';
 import { strings as trailingActionStrings } from '../trailingaction/constants';
 import { strings } from './constants';
@@ -77,7 +77,7 @@ var MDCChip = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCChip.prototype, "ripple", {
         get: function () {
-            return this.ripple_;
+            return this.rippleSurface;
         },
         enumerable: false,
         configurable: true
@@ -96,66 +96,66 @@ var MDCChip = /** @class */ (function (_super) {
         var _this = this;
         if (rippleFactory === void 0) { rippleFactory = function (el, foundation) { return new MDCRipple(el, foundation); }; }
         if (trailingActionFactory === void 0) { trailingActionFactory = function (el) { return new MDCChipTrailingAction(el); }; }
-        this.leadingIcon_ = this.root.querySelector(strings.LEADING_ICON_SELECTOR);
-        this.checkmark_ = this.root.querySelector(strings.CHECKMARK_SELECTOR);
-        this.primaryAction_ =
+        this.leadingIcon = this.root.querySelector(strings.LEADING_ICON_SELECTOR);
+        this.checkmark = this.root.querySelector(strings.CHECKMARK_SELECTOR);
+        this.primaryAction =
             this.root.querySelector(strings.PRIMARY_ACTION_SELECTOR);
         var trailingActionEl = this.root.querySelector(strings.TRAILING_ACTION_SELECTOR);
         if (trailingActionEl) {
-            this.trailingAction_ = trailingActionFactory(trailingActionEl);
+            this.trailingAction = trailingActionFactory(trailingActionEl);
         }
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var rippleAdapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { computeBoundingRect: function () { return _this.foundation.getDimensions(); } });
-        this.ripple_ =
+        this.rippleSurface =
             rippleFactory(this.root, new MDCRippleFoundation(rippleAdapter));
     };
     MDCChip.prototype.initialSyncWithDOM = function () {
         var _this = this;
         // Custom events
-        this.handleTrailingActionInteraction_ = function () {
+        this.handleTrailingActionInteraction = function () {
             _this.foundation.handleTrailingActionInteraction();
         };
-        this.handleTrailingActionNavigation_ =
+        this.handleTrailingActionNavigation =
             function (evt) {
                 _this.foundation.handleTrailingActionNavigation(evt);
             };
         // Native events
-        this.handleClick_ = function () {
+        this.handleClick = function () {
             _this.foundation.handleClick();
         };
-        this.handleKeydown_ = function (evt) {
+        this.handleKeydown = function (evt) {
             _this.foundation.handleKeydown(evt);
         };
-        this.handleTransitionEnd_ = function (evt) {
+        this.handleTransitionEnd = function (evt) {
             _this.foundation.handleTransitionEnd(evt);
         };
-        this.handleFocusIn_ = function (evt) {
+        this.handleFocusIn = function (evt) {
             _this.foundation.handleFocusIn(evt);
         };
-        this.handleFocusOut_ = function (evt) {
+        this.handleFocusOut = function (evt) {
             _this.foundation.handleFocusOut(evt);
         };
-        this.listen('transitionend', this.handleTransitionEnd_);
-        this.listen('click', this.handleClick_);
-        this.listen('keydown', this.handleKeydown_);
-        this.listen('focusin', this.handleFocusIn_);
-        this.listen('focusout', this.handleFocusOut_);
-        if (this.trailingAction_) {
-            this.listen(trailingActionStrings.INTERACTION_EVENT, this.handleTrailingActionInteraction_);
-            this.listen(trailingActionStrings.NAVIGATION_EVENT, this.handleTrailingActionNavigation_);
+        this.listen('transitionend', this.handleTransitionEnd);
+        this.listen('click', this.handleClick);
+        this.listen('keydown', this.handleKeydown);
+        this.listen('focusin', this.handleFocusIn);
+        this.listen('focusout', this.handleFocusOut);
+        if (this.trailingAction) {
+            this.listen(trailingActionStrings.INTERACTION_EVENT, this.handleTrailingActionInteraction);
+            this.listen(trailingActionStrings.NAVIGATION_EVENT, this.handleTrailingActionNavigation);
         }
     };
     MDCChip.prototype.destroy = function () {
-        this.ripple_.destroy();
-        this.unlisten('transitionend', this.handleTransitionEnd_);
-        this.unlisten('keydown', this.handleKeydown_);
-        this.unlisten('click', this.handleClick_);
-        this.unlisten('focusin', this.handleFocusIn_);
-        this.unlisten('focusout', this.handleFocusOut_);
-        if (this.trailingAction_) {
-            this.unlisten(trailingActionStrings.INTERACTION_EVENT, this.handleTrailingActionInteraction_);
-            this.unlisten(trailingActionStrings.NAVIGATION_EVENT, this.handleTrailingActionNavigation_);
+        this.rippleSurface.destroy();
+        this.unlisten('transitionend', this.handleTransitionEnd);
+        this.unlisten('keydown', this.handleKeydown);
+        this.unlisten('click', this.handleClick);
+        this.unlisten('focusin', this.handleFocusIn);
+        this.unlisten('focusout', this.handleFocusOut);
+        if (this.trailingAction) {
+            this.unlisten(trailingActionStrings.INTERACTION_EVENT, this.handleTrailingActionInteraction);
+            this.unlisten(trailingActionStrings.NAVIGATION_EVENT, this.handleTrailingActionNavigation);
         }
         _super.prototype.destroy.call(this);
     };
@@ -172,37 +172,37 @@ var MDCChip = /** @class */ (function (_super) {
         var adapter = {
             addClass: function (className) { return _this.root.classList.add(className); },
             addClassToLeadingIcon: function (className) {
-                if (_this.leadingIcon_) {
-                    _this.leadingIcon_.classList.add(className);
+                if (_this.leadingIcon) {
+                    _this.leadingIcon.classList.add(className);
                 }
             },
             eventTargetHasClass: function (target, className) {
                 return target ? target.classList.contains(className) : false;
             },
             focusPrimaryAction: function () {
-                if (_this.primaryAction_) {
-                    _this.primaryAction_.focus();
+                if (_this.primaryAction) {
+                    _this.primaryAction.focus();
                 }
             },
             focusTrailingAction: function () {
-                if (_this.trailingAction_) {
-                    _this.trailingAction_.focus();
+                if (_this.trailingAction) {
+                    _this.trailingAction.focus();
                 }
             },
             getAttribute: function (attr) { return _this.root.getAttribute(attr); },
             getCheckmarkBoundingClientRect: function () {
-                return _this.checkmark_ ? _this.checkmark_.getBoundingClientRect() : null;
+                return _this.checkmark ? _this.checkmark.getBoundingClientRect() : null;
             },
             getComputedStyleValue: function (propertyName) {
                 return window.getComputedStyle(_this.root).getPropertyValue(propertyName);
             },
             getRootBoundingClientRect: function () { return _this.root.getBoundingClientRect(); },
             hasClass: function (className) { return _this.root.classList.contains(className); },
-            hasLeadingIcon: function () { return !!_this.leadingIcon_; },
+            hasLeadingIcon: function () { return !!_this.leadingIcon; },
             isRTL: function () { return window.getComputedStyle(_this.root).getPropertyValue('direction') === 'rtl'; },
             isTrailingActionNavigable: function () {
-                if (_this.trailingAction_) {
-                    return _this.trailingAction_.isNavigable();
+                if (_this.trailingAction) {
+                    return _this.trailingAction.isNavigable();
                 }
                 return false;
             },
@@ -223,18 +223,18 @@ var MDCChip = /** @class */ (function (_super) {
             notifyEditFinish: function () { },
             removeClass: function (className) { return _this.root.classList.remove(className); },
             removeClassFromLeadingIcon: function (className) {
-                if (_this.leadingIcon_) {
-                    _this.leadingIcon_.classList.remove(className);
+                if (_this.leadingIcon) {
+                    _this.leadingIcon.classList.remove(className);
                 }
             },
             removeTrailingActionFocus: function () {
-                if (_this.trailingAction_) {
-                    _this.trailingAction_.removeFocus();
+                if (_this.trailingAction) {
+                    _this.trailingAction.removeFocus();
                 }
             },
             setPrimaryActionAttr: function (attr, value) {
-                if (_this.primaryAction_) {
-                    _this.primaryAction_.setAttribute(attr, value);
+                if (_this.primaryAction) {
+                    _this.primaryAction.setAttribute(attr, value);
                 }
             },
             setStyleProperty: function (propertyName, value) {

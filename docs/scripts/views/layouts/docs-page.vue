@@ -137,7 +137,7 @@ export default {
       switch (key) {
         case 'css':
           let filename = `${key}/${name}`;
-          let docs = require(`@/docs/${filename}.md`);
+          let docs = require(`@/docs/${filename}.md`).default;
           result = docs;
           break;
         case 'usage':
@@ -148,7 +148,7 @@ export default {
           result = {};
           usageDocs.forEach((usageDoc) => {
             let filename = `${key}/${name}/${usageDoc}`;
-            let docs = require(`@/docs/${filename}.md`);
+            let docs = require(`@/docs/${filename}.md`).default;
             result[usageDoc] = docs;
           });
           break;
@@ -157,13 +157,13 @@ export default {
             // apidocs
             result = key.map((apiDocs) => {
               let filename = `${this.$store.lang}/${name}/${apiDocs}`;
-              let docs = require(`@/docs/${filename}.md`);
+              let docs = require(`@/docs/${filename}.md`).default;
               return docs;
             });
           } else {
             // intro
             let filename = `${this.$store.lang}/${name}/${key}`;
-            let docs = require(`@/docs/${filename}.md`);
+            let docs = require(`@/docs/${filename}.md`).default;
             result = docs;
           }
       }

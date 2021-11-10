@@ -8,24 +8,23 @@
       <div v-else ref="editor" class="mdc-editor"></div>
     </div>
     <div v-if="withCounter" ref="counter" class="mdc-editor-counter"></div>
-    <template v-if="customImageHandler">
-      <input
-        ref="file"
-        type="file"
-        hidden
-        @change="
-          handleFileChange($event, (result) => {
-            $emit(UI_EDITOR.EVENT.FILE_CHANGE, result[0], insertImage);
-          })
-        "
-      />
-    </template>
+    <input
+      v-if="customImageHandler"
+      ref="file"
+      type="file"
+      hidden
+      @change="
+        handleFileChange($event, (result) => {
+          $emit(UI_EDITOR.EVENT.FILE_CHANGE, result[0], insertImage);
+        })
+      "
+    />
     <slot></slot>
   </div>
 </template>
 
 <script>
-import { createEditor, Emotion } from './quill';
+import { createEditor, Emotion } from './core';
 import { onBlurEmojiHandler } from './extensions/emoji/module';
 import UI_EDITOR from './constants';
 import handleFileChange from '../../utils/file';
@@ -128,8 +127,8 @@ export default {
     }
   },
   mounted() {
-    this.$nextTick(() => {
-      this.$editor = createEditor(this.$refs.editor, {
+    this.$nextTick(async () => {
+      this.$editor = await createEditor(this.$refs.editor, {
         toolbarIcons: Object.assign(UI_EDITOR.toolbarIcons, this.toolbarIcons),
         toolbarTips: this.toolbarTips,
         toolbarOptions: this.toolbarOptions,

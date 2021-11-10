@@ -53,7 +53,7 @@ $word-break-custom-prop: custom-properties.create(
 );
 $word-break-default: custom-properties.create-var($word-break-custom-prop);
 $word-break-ie11-fallback: break-all;
-$z-index: 2;
+$z-index: 9;
 
 // Sets the border-radius for the tooltip element.
 // @param {Number | String} $radius Desired border radius value, accepts either
@@ -168,6 +168,20 @@ $z-index: 2;
     .mdc-tooltip__caret-surface-bottom {
       @include feature-targeting.targets($feat-color) {
         @include theme.property(background-color, $color);
+      }
+    }
+  }
+}
+
+// Sets the max-height of the rich tooltip.
+// @param {Number} $max-height
+@mixin rich-max-height($max-height, $query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  &.mdc-tooltip--rich {
+    .mdc-tooltip__surface {
+      @include feature-targeting.targets($feat-structure) {
+        @include theme.property(max-height, $max-height);
       }
     }
   }

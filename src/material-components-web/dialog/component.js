@@ -75,7 +75,9 @@ var MDCDialog = /** @class */ (function (_super) {
     };
     MDCDialog.prototype.initialize = function (focusTrapFactory) {
         var e_1, _a;
-        if (focusTrapFactory === void 0) { focusTrapFactory = function (el, focusOptions) { return new FocusTrap(el, focusOptions); }; }
+        if (focusTrapFactory === void 0) { focusTrapFactory = function (el, focusOptions) {
+            return new FocusTrap(el, focusOptions);
+        }; }
         var container = this.root.querySelector(strings.CONTAINER_SELECTOR);
         if (!container) {
             throw new Error("Dialog component requires a " + strings.CONTAINER_SELECTOR + " container element");
@@ -150,7 +152,7 @@ var MDCDialog = /** @class */ (function (_super) {
             addClass: function (className) { return _this.root.classList.add(className); },
             areButtonsStacked: function () { return util.areTopsMisaligned(_this.buttons); },
             clickDefaultButton: function () {
-                if (_this.defaultButton) {
+                if (_this.defaultButton && !_this.defaultButton.disabled) {
                     _this.defaultButton.click();
                 }
             },

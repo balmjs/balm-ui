@@ -5,7 +5,6 @@
       v-model="selectedValue"
       class="mdc-radio__native-control"
       type="radio"
-      :name="name"
       :value="value"
       :disabled="disabled"
       v-bind="attrs"
@@ -44,10 +43,6 @@ export default {
       default: ''
     },
     // <input type="radio"> attributes
-    name: {
-      type: String,
-      default: ''
-    },
     value: {
       type: [String, Number],
       default: ''
@@ -88,9 +83,9 @@ export default {
     }
   },
   mounted() {
-    this.$radio = new MDCRadio(this.el);
-
     this.$nextTick(() => {
+      this.$radio = new MDCRadio(this.el);
+
       if (this.$parent.$formField) {
         this.$parent.$formField.input = this.$radio;
       }

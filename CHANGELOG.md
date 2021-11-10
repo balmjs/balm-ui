@@ -3,6 +3,228 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.38.0 / 2021-10-08
+
+### Features
+
+- update [`mdc@13.0.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1300-2021-09-24)
+- update material-icons v109
+
+## v9.37.3 / 2021-09-17
+
+### Features
+
+- update `mdc@13.0.0-canary.08398f880.0`
+
+### Chore
+
+- `<ui-chips>`: add dynamic choice & filter chipSet
+
+## v9.37.2 / 2021-08-27
+
+### Bug Fixes
+
+- `<ui-slider>`: fix step bug
+
+## v9.37.1 / 2021-08-26
+
+### Bug Fixes
+
+- `<ui-drawer>`: fix type watcher bug
+
+## v9.37.0 / 2021-08-26
+
+### Features
+
+- `<ui-switch>`: add `selected` event
+
+### Bug Fixes
+
+- `<ui-chips>`: fix selected value bug
+
+### Code Refactoring
+
+- `<ui-switch>`: update new switch
+
+### BREAKING CHANGES
+
+- `<ui-checkbox>`, `<ui-radio>`, `<ui-switch>`: the `name` prop is deprecated
+- `<ui-chip>`: rename prop `hidden` to `selected`
+- `<ui-switch>`: remove prop `inputId`, use `id` instead
+- `<ui-switch>`: remove prop `attrs`
+
+## v9.36.0 / 2021-08-24
+
+### Features
+
+- update `mdc@13.0.0-canary.8de07c02a.0`
+
+### Bug Fixes
+
+- `<ui-drawer>`: fix animation bug
+
+## v9.35.0 / 2021-08-04
+
+### Features
+
+- `<ui-tree>`:
+  - add `selectedEvent` parameter for `@change` event
+  - add `disabled` field for `dataFormat` prop
+
+## v9.34.1 / 2021-08-02
+
+### Bug Fixes
+
+- `<ui-tree>`: fix prop `singleChecked` default value bug
+
+## v9.34.0 / 2021-07-29
+
+### Features
+
+- update [`mdc@12.0.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1200-2021-07-27)
+- update material-icons v94
+- `<ui-chips>`, `<ui-select>`: add prop `optionFormat` (`{ label: 'label', value: 'value' }`)
+- `<ui-tree>`: add prop `singleChecked`, add event `selected`
+- docs: update sass docs for all
+
+### BREAKING CHANGES
+
+- `<ui-chips>`, `<ui-select>`: remove prop `optionLabel` and `optionValue`, use `optionFormat` instead
+
+## v9.33.1 / 2021-07-27
+
+### Chore
+
+- test: update test for vite (vite does not support source code usage)
+
+## v9.32.0 / 2021-07-20
+
+### Features
+
+- `<ui-tree>`: add slot `before`
+
+### BREAKING CHANGES
+
+- `<ui-tree>`: rename slot `action` to `after`
+
+## v9.31.4 / 2021-07-13
+
+### Bug Fixes
+
+- `<ui-pagination>`: update pageSize watcher
+
+### Chore
+
+- `<ui-table>`: optimize fixed table
+
+## v9.31.3 / 2021-07-05
+
+### Bug Fixes
+
+- `<ui-tree>`: fix reset selected value bug
+- `<ui-rangepicker>`: update css
+- `<ui-badge>`: fix zero count render bug
+- `<ui-chips>`: fix dynamic options bug
+
+### Chore
+
+- `<ui-badge>`, `<ui-collapse>`, `<ui-menuitem>`, `<ui-tab>`, `<ui-textfield>`: add click event
+- `<ui-tree>`: add `$refs.tree.getNode(nodeKey)` function
+
+## v9.31.2 / 2021-06-18
+
+### Chore
+
+- `<ui-form-field>`: optimize performance
+
+## v9.31.1 / 2021-06-18
+
+### Bug Fixes
+
+- `<ui-form-field>`: fix form-field label bug for form component props
+- `<ui-tree>`: fix selected default value for single tree
+
+## v9.31.0 / 2021-06-11
+
+### Features
+
+- `<ui-tree>`: add method `updateNode(type: 'create' | 'update' | 'delete', parentKey: string | number, nodeData: object)` for tree operations
+
+## v9.30.1 / 2021-06-08
+
+### Code Refactoring
+
+- `<ui-editor>`: optimize editor core
+
+### Bug Fixes
+
+- `$theme`: fix some bug for ssr
+
+## v9.29.0 / 2021-05-28
+
+### Features
+
+- update docs for mdc sass usage
+- `<ui-collapse>`: add prop `iconEndAligned`
+
+### Bug Fixes
+
+- `<ui-form-field>`: fix css bug for the action label
+
+## v9.28.0 / 2021-05-27
+
+### Features
+
+- add `$theme` init config
+- add helpers: `toCamelCase`, `toCapitalize`
+
+## v9.27.0 / 2021-05-25
+
+### Bug Fixes
+
+- fix SSR bug for bundler
+
+### BREAKING CHANGES
+
+- move components: `UiAutocomplete`, `UiDatepicker`, `UiRangepicker` from `balm-ui-plus.js` to `balm-ui.js` library
+- move plugins: `$alert`, `$confirm`, `$toast` from `balm-ui-plus.js` to `balm-ui.js` library
+
+## v9.26.0 / 2021-05-20
+
+### Bug Fixes
+
+- `<ui-tree>`: fix init `selectedNodes` bug and `defaultExpandedKeys` bug
+
+### BREAKING CHANGES
+
+- `<ui-tree>`: remove prop `defaultSelectedKeys`
+
+## v9.25.0 / 2021-04-22
+
+### Features
+
+- new components for next:
+  - `<ui-bottom-navigation>`
+  - `<ui-bottom-sheet>`
+
+### BREAKING CHANGES
+
+- `<ui-drawer-backdrop>`: the component is deprecated, just use `<ui-drawer type="modal">`
+- `<ui-dialog>`: the `noBackdrop` prop rename to `noScrim`
+
+## v9.24.1 / 2021-04-16
+
+### Bug Fixes
+
+- `v-button`: individual package
+
+## v9.24.0 / 2021-04-16
+
+### Features
+
+- update [`mdc@11.0.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1100-2021-04-15)
+- update material-icons v85
+
 ## v9.23.0 / 2021-04-12
 
 ### Features

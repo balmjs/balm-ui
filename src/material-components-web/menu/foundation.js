@@ -29,8 +29,9 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
     __extends(MDCMenuFoundation, _super);
     function MDCMenuFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCMenuFoundation.defaultAdapter), adapter)) || this;
-        _this.closeAnimationEndTimerId_ = 0;
-        _this.defaultFocusState_ = DefaultFocusState.LIST_ROOT;
+        _this.closeAnimationEndTimerId = 0;
+        _this.defaultFocusState = DefaultFocusState.LIST_ROOT;
+        _this.selectedIndex = -1;
         return _this;
     }
     Object.defineProperty(MDCMenuFoundation, "cssClasses", {
@@ -65,6 +66,7 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
                 removeClassFromElementAtIndex: function () { return undefined; },
                 addAttributeToElementAtIndex: function () { return undefined; },
                 removeAttributeFromElementAtIndex: function () { return undefined; },
+                getAttributeFromElementAtIndex: function () { return null; },
                 elementContainsClass: function () { return false; },
                 closeSurface: function () { return undefined; },
                 getElementIndex: function () { return -1; },
@@ -81,8 +83,8 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     MDCMenuFoundation.prototype.destroy = function () {
-        if (this.closeAnimationEndTimerId_) {
-            clearTimeout(this.closeAnimationEndTimerId_);
+        if (this.closeAnimationEndTimerId) {
+            clearTimeout(this.closeAnimationEndTimerId);
         }
         this.adapter.closeSurface();
     };
@@ -100,9 +102,10 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
             return;
         }
         this.adapter.notifySelected({ index: index });
-        this.adapter.closeSurface();
+        var skipRestoreFocus = this.adapter.getAttributeFromElementAtIndex(index, strings.SKIP_RESTORE_FOCUS) === 'true';
+        this.adapter.closeSurface(skipRestoreFocus);
         // Wait for the menu to close before adding/removing classes that affect styles.
-        this.closeAnimationEndTimerId_ = setTimeout(function () {
+        this.closeAnimationEndTimerId = setTimeout(function () {
             // Recompute the index in case the menu contents have changed.
             var recomputedIndex = _this.adapter.getElementIndex(listItem);
             if (recomputedIndex >= 0 &&
@@ -112,7 +115,7 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
         }, MDCMenuSurfaceFoundation.numbers.TRANSITION_CLOSE_DURATION);
     };
     MDCMenuFoundation.prototype.handleMenuSurfaceOpened = function () {
-        switch (this.defaultFocusState_) {
+        switch (this.defaultFocusState) {
             case DefaultFocusState.FIRST_ITEM:
                 this.adapter.focusItemAtIndex(0);
                 break;
@@ -133,14 +136,18 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
      * default.
      */
     MDCMenuFoundation.prototype.setDefaultFocusState = function (focusState) {
-        this.defaultFocusState_ = focusState;
+        this.defaultFocusState = focusState;
+    };
+    /** @return Index of the currently selected list item within the menu. */
+    MDCMenuFoundation.prototype.getSelectedIndex = function () {
+        return this.selectedIndex;
     };
     /**
      * Selects the list item at `index` within the menu.
      * @param index Index of list item within the menu.
      */
     MDCMenuFoundation.prototype.setSelectedIndex = function (index) {
-        this.validatedIndex_(index);
+        this.validatedIndex(index);
         if (!this.adapter.isSelectableItemAtIndex(index)) {
             throw new Error('MDCMenuFoundation: No selection group at specified index.');
         }
@@ -151,6 +158,7 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
         }
         this.adapter.addClassToElementAtIndex(index, cssClasses.MENU_SELECTED_LIST_ITEM);
         this.adapter.addAttributeToElementAtIndex(index, strings.ARIA_CHECKED_ATTR, 'true');
+        this.selectedIndex = index;
     };
     /**
      * Sets the enabled state to isEnabled for the menu item at the given index.
@@ -158,7 +166,7 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
      * @param isEnabled The desired enabled state of the menu item.
      */
     MDCMenuFoundation.prototype.setEnabled = function (index, isEnabled) {
-        this.validatedIndex_(index);
+        this.validatedIndex(index);
         if (isEnabled) {
             this.adapter.removeClassFromElementAtIndex(index, listCssClasses.LIST_ITEM_DISABLED_CLASS);
             this.adapter.addAttributeToElementAtIndex(index, strings.ARIA_DISABLED_ATTR, 'false');
@@ -168,7 +176,7 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
             this.adapter.addAttributeToElementAtIndex(index, strings.ARIA_DISABLED_ATTR, 'true');
         }
     };
-    MDCMenuFoundation.prototype.validatedIndex_ = function (index) {
+    MDCMenuFoundation.prototype.validatedIndex = function (index) {
         var menuSize = this.adapter.getMenuItemCount();
         var isIndexInRange = index >= 0 && index < menuSize;
         if (!isIndexInRange) {

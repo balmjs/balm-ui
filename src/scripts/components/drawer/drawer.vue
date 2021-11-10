@@ -3,6 +3,7 @@
   <aside :class="className">
     <slot></slot>
   </aside>
+  <!-- Scrim (modal and bottom only) -->
 </template>
 
 <script>
@@ -19,7 +20,8 @@ const UI_DRAWER = {
     modal: 2
   },
   cssClasses: {
-    root: 'mdc-drawer-root'
+    root: 'mdc-drawer-root',
+    scrim: 'mdc-drawer-scrim'
   },
   EVENT: {
     NAV: 'nav',
@@ -54,7 +56,8 @@ export default {
   emits: [UI_DRAWER.EVENT.NAV, UI_DRAWER.EVENT.CHANGE],
   data() {
     return {
-      $drawer: null
+      $drawer: null,
+      scrimEl: null
     };
   },
   computed: {
@@ -71,8 +74,7 @@ export default {
       return {
         'mdc-drawer': true,
         'mdc-drawer--dismissible': this.isDismissible,
-        'mdc-drawer--modal': this.isModal,
-        'mdc-drawer--open': this.modelValue
+        'mdc-drawer--modal': this.isModal
       };
     }
   },
@@ -81,6 +83,17 @@ export default {
       if (this.$drawer) {
         this.$drawer.open = val;
       }
+    },
+    type() {
+      this.$nextTick(() => {
+        if (this.isModal) {
+          this.createScrim();
+
+          if (!this.$drawer) {
+            this.init();
+          }
+        }
+      });
     }
   },
   mounted() {
@@ -89,20 +102,21 @@ export default {
     }
 
     if (this.isDismissible || this.isModal) {
-      this.$drawer = new MDCDrawer(this.el);
-
-      this.$drawer.listen(strings.OPEN_EVENT, () => {
-        this.$emit(UI_DRAWER.EVENT.NAV, true);
-      });
-      this.$drawer.listen(strings.CLOSE_EVENT, () => {
-        this.$emit(UI_DRAWER.EVENT.NAV, false);
-        this.$emit(UI_DRAWER.EVENT.CHANGE, false);
-      });
+      this.createScrim();
 
       this.init();
     }
   },
   methods: {
+    createScrim() {
+      if (this.isModal && !this.scrimEl) {
+        this.scrimEl = document.createElement('div');
+        this.scrimEl.className = UI_DRAWER.cssClasses.scrim;
+        this.scrimEl.addEventListener('click', this.handleClose);
+
+        this.el.parentNode.insertBefore(this.scrimEl, this.el.nextSibling);
+      }
+    },
     checkNav() {
       let result = true;
 
@@ -117,6 +131,13 @@ export default {
       return result;
     },
     init() {
+      this.$drawer = new MDCDrawer(this.el);
+
+      this.$drawer.listen(strings.OPEN_EVENT, () => {
+        this.$emit(UI_DRAWER.EVENT.NAV, true);
+      });
+      this.$drawer.listen(strings.CLOSE_EVENT, this.handleClose);
+
       if (this.navId && document.getElementById(this.navId)) {
         this.checkNav();
 
@@ -128,6 +149,10 @@ export default {
 
         this.$drawer.open = this.modelValue;
       }
+    },
+    handleClose() {
+      this.$emit(UI_DRAWER.EVENT.NAV, false);
+      this.$emit(UI_DRAWER.EVENT.CHANGE, false);
     }
   }
 };

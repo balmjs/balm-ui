@@ -1,0 +1,36 @@
+$duration: 0.3s;
+
+@keyframes slideInDown {
+  0% {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translateZ(0);
+  }
+}
+
+@keyframes slideOutDown {
+  0% {
+    transform: translateZ(0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@mixin mdc-bottom-sheet-animate() {
+  animation-duration: $duration;
+  animation-fill-mode: both;
+}
+
+@mixin mdc-bottom-sheet-slide-in-up() {
+  animation-name: slideInDown;
+}
+
+@mixin mdc-bottom-sheet-slide-out-down() {
+  animation-name: slideOutDown;
+}

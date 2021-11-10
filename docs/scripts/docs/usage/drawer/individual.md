@@ -5,17 +5,10 @@
 ```
 
 ```js
-<<<<<<< HEAD
 import UiDrawerComponents from 'balm-ui/components/drawer';
+import UiListComponents from 'balm-ui/components/list';
 
 // `app`: Vue app
 app.use(UiDrawerComponents);
-=======
-import Vue from 'vue';
-import UiListComponents from 'balm-ui/components/list';
-import UiDrawerComponents from 'balm-ui/components/drawer';
-
-Vue.use(UiListComponents);
-Vue.use(UiDrawerComponents);
->>>>>>> origin/8.x
+app.use(UiListComponents);
 ```

@@ -11,14 +11,16 @@
 | `modelValue` (`v-model`) | boolean | `false` | Mandatory.                                                                                                               |         |
 | `escapeKey`              | boolean | `true`  | Sets the action reflected when the Escape key is pressed. Setting to `false` disables closing the dialog via Escape key. | 9.13.0  |
 | `closable`               | boolean | `true`  | Closes the dialog, when a user actions on the accept or cancel button.                                                   |         |
-| `maskClosable`           | boolean | `false` | Closes the dialog, when the dialog backdrop is clicked.                                                                  |         |
-| `noBackdrop`             | boolean | `false` | Hides the dialog backdrop.                                                                                               |         |
+| `maskClosable`           | boolean | `false` | Closes the dialog, when the dialog scrim is clicked.                                                                     |         |
+| `noScrim`                | boolean | `false` | Hides the dialog scrim.                                                                                                  |         |
 | `resetScroll`            | boolean | `false` | Reset scroll bar, when the dialog is closed.                                                                             |         |
 | `scrollable`             | boolean | `false` | Optional. Applied automatically when the dialog has overflowing content to warrant scrolling.                            |         |
 | `stacked`                | boolean | `false` | Optional. Applied automatically when the dialog's action buttons can't fit on a single line and must be stacked.         |         |
 | `fullscreen`             | boolean | `false` | Styles a full-screen dialog.                                                                                             | 9.14.0  |
 
-> **Note:** Full-screen dialogs are intended for mobile/small-screen devices. The dialog's size will adapt to the screen size, and so becomes modal if used on larger screen sizes.
+> NOTE: The `noBackdrop` prop rename to `noScrim` in 9.25.0
+
+> NOTE: Full-screen dialogs are intended for mobile/small-screen devices. The dialog's size will adapt to the screen size, and so becomes modal if used on larger screen sizes.
 
 ### Slots
 

@@ -3,6 +3,8 @@ import autoInstall from './config/auto-install';
 /**
  * Components
  */
+// Theme
+import UiIcon from './components/icon/icon.vue';
 // General
 import UiButton from './components/button/button.vue';
 import UiFab from './components/fab/fab.vue';
@@ -21,7 +23,6 @@ import UiDrawerTitle from './components/drawer/drawer-title.vue';
 import UiDrawerSubtitle from './components/drawer/drawer-subtitle.vue';
 import UiDrawerContent from './components/drawer/drawer-content.vue';
 import UiDrawerAppContent from './components/drawer/drawer-app-content.vue';
-import UiDrawerBackdrop from './components/drawer/drawer-backdrop.vue';
 import UiTabs from './components/tabs/tabs.vue';
 import UiTabBar from './components/tabs/tab-bar.vue';
 import UiTabScroller from './components/tabs/tab-scroller.vue';
@@ -35,14 +36,15 @@ import UiMenuitem from './components/menu/menuitem.vue';
 import UiMenuitemIcon from './components/menu/menuitem-icon.vue';
 import UiMenuitemText from './components/menu/menuitem-text.vue';
 import UiPagination from './components/pagination/pagination.vue'; // Custom
-// Theme
-import UiIcon from './components/icon/icon.vue';
 // Data Entry
 import UiForm from './components/form/form.vue'; // Custom
 import UiFormField from './components/form-field/form-field.vue';
 import UiTextfield from './components/textfield/textfield.vue';
 import UiTextfieldHelper from './components/textfield/textfield-helper.vue';
 import UiTextfieldIcon from './components/textfield/textfield-icon.vue';
+import UiAutocomplete from './components/autocomplete/autocomplete.vue'; // Custom
+import UiDatepicker from './components/datepicker/datepicker.vue'; // Custom
+import UiRangepicker from './components/rangepicker/rangepicker.vue'; // Custom
 import UiSelect from './components/select/select.vue';
 import UiSelectHelper from './components/select/select-helper.vue';
 import UiSelectIcon from './components/select/select-icon.vue';
@@ -99,6 +101,9 @@ import $store, { useStore } from './plugins/store'; // Custom
 import $grid, { useGrid } from './plugins/grid';
 import $theme, { useTheme } from './plugins/theme';
 import $typography, { useTypography } from './plugins/typography';
+import $alert, { useAlert } from './plugins/alert'; // Custom
+import $confirm, { useConfirm } from './plugins/confirm'; // Custom
+import $toast, { useToast } from './plugins/toast'; // Custom
 import $validator, { useValidator } from './plugins/validator'; // Custom
 /**
  * Directives
@@ -118,6 +123,7 @@ import helpers from './utils/helpers';
 import detectIE from './utils/ie';
 
 const Components = {
+  UiAutocomplete,
   UiBadge,
   UiBanner,
   UiButton,
@@ -132,6 +138,7 @@ const Components = {
   UiCheckbox,
   UiChip,
   UiChips,
+  UiDatepicker,
   UiDialog,
   UiDialogActions,
   UiDialogContent,
@@ -143,7 +150,6 @@ const Components = {
   UiDrawerSubtitle,
   UiDrawerContent,
   UiDrawerAppContent,
-  UiDrawerBackdrop,
   UiFab,
   UiFile,
   UiForm,
@@ -178,6 +184,7 @@ const Components = {
   UiPanel,
   UiProgress,
   UiRadio,
+  UiRangepicker,
   UiSegmentedButtons,
   UiSegmentedButton,
   UiSelect,
@@ -202,10 +209,13 @@ const Components = {
 };
 
 const Plugins = {
+  $alert,
+  $confirm,
   $event,
   $grid,
   $store,
   $theme,
+  $toast,
   $typography,
   $validator
 };
@@ -235,6 +245,7 @@ const BalmUI = {
 export default BalmUI;
 export { version, install };
 export {
+  UiAutocomplete,
   UiBadge,
   UiBanner,
   UiButton,
@@ -249,6 +260,7 @@ export {
   UiCheckbox,
   UiChip,
   UiChips,
+  UiDatepicker,
   UiDialog,
   UiDialogActions,
   UiDialogContent,
@@ -260,7 +272,6 @@ export {
   UiDrawerSubtitle,
   UiDrawerContent,
   UiDrawerAppContent,
-  UiDrawerBackdrop,
   UiFab,
   UiFile,
   UiForm,
@@ -295,6 +306,7 @@ export {
   UiPanel,
   UiProgress,
   UiRadio,
+  UiRangepicker,
   UiSegmentedButtons,
   UiSegmentedButton,
   UiSelect,
@@ -317,13 +329,26 @@ export {
   UiTooltip,
   UiTopAppBar
 };
-export { $event, $grid, $store, $theme, $typography, $validator };
 export {
-  useEvent,
+  $alert,
+  $confirm,
+  $event,
+  $grid,
+  $store,
+  $theme,
+  $toast,
+  $typography,
+  $validator
+};
+export {
+  useAlert,
   useBus,
+  useConfirm,
+  useEvent,
   useGrid,
   useStore,
   useTheme,
+  useToast,
   useTypography,
   useValidator
 };

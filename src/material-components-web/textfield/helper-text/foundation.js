@@ -120,20 +120,34 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
         var validationMsgNeedsDisplay = helperTextIsValidationMsg && !inputIsValid;
         if (validationMsgNeedsDisplay) {
             this.showToScreenReader();
-            this.adapter.setAttr(strings.ROLE, 'alert');
+            // If role is already alert, refresh it to trigger another announcement
+            // from screenreader.
+            if (this.adapter.getAttr(strings.ROLE) === 'alert') {
+                this.refreshAlertRole();
+            }
+            else {
+                this.adapter.setAttr(strings.ROLE, 'alert');
+            }
         }
         else {
             this.adapter.removeAttr(strings.ROLE);
         }
         if (!helperTextIsPersistent && !validationMsgNeedsDisplay) {
-            this.hide_();
+            this.hide();
         }
     };
     /**
      * Hides the help text from screen readers.
      */
-    MDCTextFieldHelperTextFoundation.prototype.hide_ = function () {
+    MDCTextFieldHelperTextFoundation.prototype.hide = function () {
         this.adapter.setAttr(strings.ARIA_HIDDEN, 'true');
+    };
+    MDCTextFieldHelperTextFoundation.prototype.refreshAlertRole = function () {
+        var _this = this;
+        this.adapter.removeAttr(strings.ROLE);
+        requestAnimationFrame(function () {
+            _this.adapter.setAttr(strings.ROLE, 'alert');
+        });
     };
     return MDCTextFieldHelperTextFoundation;
 }(MDCFoundation));

@@ -22,7 +22,7 @@ const createTooltipAnchor = () => {
 
 const createTooltip = (id, text) => {
   return `<div id="${id}" class="mdc-tooltip" role="tooltip" aria-hidden="true">
-    <div class="mdc-tooltip__surface">${text}</div>
+    <div class="mdc-tooltip__surface mdc-tooltip__surface-animation">${text}</div>
   </div>`;
 };
 
@@ -36,7 +36,7 @@ const initTooltipAnchor = () => {
   }
 };
 
-const initTooltip = (el, { value }) => {
+const addTooltip = (el, { value }) => {
   initTooltipAnchor();
 
   const id = el.getAttribute(UI_TOOLTIP.attrs.ariaId);
@@ -63,7 +63,7 @@ const removeTooltip = (el) => {
 const vTooltip = {
   name: 'tooltip',
   mounted(el, binding) {
-    initTooltip(el, binding);
+    addTooltip(el, binding);
   },
   beforeUnmount(el) {
     removeTooltip(el);

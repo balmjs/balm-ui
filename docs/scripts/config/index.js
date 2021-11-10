@@ -31,8 +31,8 @@ export const themes = {
     error: '#b00020'
   },
   dark: {
-    primary: '#ce93d8',
-    secondary: '#80cbc4',
+    primary: '#bb86fc',
+    secondary: '#03dac6',
     background: '#121212',
     surface: '#121212',
     error: '#cf6679'

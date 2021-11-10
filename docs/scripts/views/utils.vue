@@ -14,7 +14,7 @@ export default {
   computed: {
     docs() {
       let filename = `${this.$store.lang}/utils/intro`;
-      return require(`@/docs/${filename}.md`); // NOTE: just one variable in `require`
+      return require(`@/docs/${filename}.md`).default; // NOTE: just one variable in `require`
     }
   }
 };

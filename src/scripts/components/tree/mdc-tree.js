@@ -1,13 +1,13 @@
 const checkLeaf = (item, isLeaf, hasChildren) => item[isLeaf] || !hasChildren;
 
 const getNode = (
-  nodeMap,
-  { value, children, hasChildren, isLeaf },
-  originItem,
-  { level, parentKey, checked }
+  { selectedValue, nodeMap, dataFormat },
+  originNodeData,
+  { level, parentKey }
 ) => {
-  let item = Object.assign({}, originItem);
+  let item = Object.assign({}, originNodeData);
 
+  const { value, children, hasChildren, isLeaf, disabled } = dataFormat;
   const nodeKey = item[value];
   const nodeChildren = item[children];
   const nodeHasChildren = item[hasChildren] || nodeChildren;
@@ -17,9 +17,11 @@ const getNode = (
   item.isRoot = !level;
   item.isLeaf = nodeIsLeaf;
   item.expanded = false;
-  item.selected = false;
-  item.checked = checked;
+  item.selected = !Array.isArray(selectedValue) && nodeKey === selectedValue;
+  item.checked =
+    Array.isArray(selectedValue) && selectedValue.includes(nodeKey);
   item.parentKey = parentKey;
+  item.disabled = item[disabled];
 
   if (!nodeChildren) {
     item[children] = [];
@@ -36,30 +38,29 @@ const getNode = (
   return item;
 };
 
+let selectedNodes = [];
+
 class MdcTree {
   constructor(treeData) {
-    const { dataFormat, maxLevel, nodeMap } = treeData;
-
-    this.dataFormat = dataFormat;
-    this.maxLevel = maxLevel;
-    this.nodeMap = nodeMap;
+    this.treeData = treeData;
   }
 
   getData(nodes, level = 0, parentKey = '') {
+    const { dataFormat, maxLevel } = this.treeData;
+
     const list = [];
-    const { value, children, hasChildren } = this.dataFormat;
+    const { value, children, hasChildren } = dataFormat;
 
     for (let i = 0, len = nodes.length; i < len; i++) {
-      let item = getNode(this.nodeMap, this.dataFormat, nodes[i], {
+      let item = getNode(this.treeData, nodes[i], {
         level,
-        parentKey,
-        checked: false
+        parentKey
       });
 
       const nodeChildren = item[children];
       const nodeHasChildren = item[hasChildren] || nodeChildren;
 
-      if (level < this.maxLevel && nodeHasChildren) {
+      if (level < maxLevel && nodeHasChildren) {
         item[children] = this.getData(nodeChildren, level + 1, item[value]);
       }
 
@@ -77,17 +78,15 @@ class MdcTree {
     const { value, children } = dataFormat;
     const level = item.level + 1;
     const parentKey = item[value];
-    const checked = item.checked;
 
     for (let i = 0, len = nodes.length; i < len; i++) {
-      let subitem = getNode(nodeMap, dataFormat, nodes[i], {
+      let subitem = getNode(treeData, nodes[i], {
         level,
-        parentKey,
-        checked
+        parentKey
       });
 
       if (subitem.checked) {
-        this.setMultipleSelectedValue(treeData, subitem[value], checked);
+        this.setMultipleSelectedValue(treeData, subitem[value], true);
       }
 
       list.push(subitem);
@@ -122,22 +121,31 @@ class MdcTree {
 
   /** For single tree **/
 
-  static setSingleSelectedValue(nodeMap, nodeKey, selected) {
-    if (nodeMap.get(nodeKey)) {
-      nodeMap.get(nodeKey).selected = selected;
+  static setSingleSelectedValue(treeData, nodeKey, selected) {
+    const { nodeMap } = treeData;
+    const item = nodeMap.get(nodeKey);
+
+    if (item) {
+      item.selected = selected;
+
+      treeData.selectedEvent = {
+        selected,
+        selectedNodes: nodeKey,
+        node: item
+      };
     }
   }
 
   static onSelect(treeData, item) {
-    const { dataFormat, nodeMap, selectedValue } = treeData;
+    const { dataFormat, selectedValue } = treeData;
     const nodeKey = item[dataFormat.value];
 
     if (selectedValue) {
-      this.setSingleSelectedValue(nodeMap, selectedValue, false);
+      this.setSingleSelectedValue(treeData, selectedValue, false);
     }
 
     treeData.selectedValue = nodeKey;
-    this.setSingleSelectedValue(nodeMap, nodeKey, true);
+    this.setSingleSelectedValue(treeData, nodeKey, true);
   }
 
   /** For multiple tree **/
@@ -146,7 +154,9 @@ class MdcTree {
     const { indeterminate } = treeData.nodeMap.get(currentNodeKey);
 
     if (checked && !indeterminate) {
-      treeData.selectedValue.push(currentNodeKey);
+      if (!treeData.selectedValue.includes(currentNodeKey)) {
+        treeData.selectedValue.push(currentNodeKey);
+      }
     } else {
       treeData.selectedValue = treeData.selectedValue.filter(
         (value) => value !== currentNodeKey
@@ -163,10 +173,17 @@ class MdcTree {
 
       const nodeKey = item[value];
       const nodeChildren = item[children];
+      const subitem = nodeMap.get(nodeKey);
 
-      if (nodeMap.get(nodeKey)) {
-        nodeMap.get(nodeKey).indeterminate = false;
-        nodeMap.get(nodeKey).checked = checked;
+      if (subitem) {
+        if (checked) {
+          !subitem.checked && selectedNodes.push(nodeKey);
+        } else {
+          subitem.checked && selectedNodes.push(nodeKey);
+        }
+
+        subitem.indeterminate = false;
+        subitem.checked = checked;
         this.setMultipleSelectedValue(treeData, nodeKey, checked);
       }
 
@@ -180,55 +197,88 @@ class MdcTree {
     const { dataFormat, nodeMap } = treeData;
     const { value, children } = dataFormat;
 
-    const nodeKey = item[value];
-    const nodeChildren = item[children];
-    const nodeCheckedList = nodeChildren.filter(
-      (subitem) => subitem.checked || subitem.indeterminate
-    );
+    if (item) {
+      const nodeKey = item[value];
+      const nodeChildren = item[children];
+      const nodeCheckedList = nodeChildren.filter(
+        (subitem) => subitem.checked || subitem.indeterminate
+      );
+      const subitem = nodeMap.get(nodeKey);
 
-    if (nodeCheckedList.length) {
-      const checkedAllList = nodeCheckedList.filter(
-        (subitem) => subitem.checked
-      ).length;
-      const checkedAll = checkedAllList === nodeChildren.length;
+      if (nodeCheckedList.length) {
+        const checkedAllList = nodeCheckedList.filter(
+          (subitem) => subitem.checked
+        ).length;
+        const checkedAll = checkedAllList === nodeChildren.length;
 
-      nodeMap.get(nodeKey).checked = checkedAll;
-      nodeMap.get(nodeKey).indeterminate = !checkedAll;
-      this.setMultipleSelectedValue(treeData, nodeKey, checkedAll);
-    } else {
-      nodeMap.get(nodeKey).checked = false;
-      nodeMap.get(nodeKey).indeterminate = false;
-    }
+        if (checkedAll) {
+          !subitem.checked && selectedNodes.push(nodeKey);
+        } else {
+          subitem.checked && selectedNodes.push(nodeKey);
+        }
 
-    if (!item.isRoot && nodeMap.get(item.parentKey)) {
-      this.setParentCheckedValue(treeData, nodeMap.get(item.parentKey));
+        subitem.checked = checkedAll;
+        subitem.indeterminate = !checkedAll;
+        this.setMultipleSelectedValue(treeData, nodeKey, checkedAll);
+      } else {
+        subitem.checked = false;
+        subitem.indeterminate = false;
+      }
+
+      if (!item.isRoot) {
+        this.setParentCheckedValue(treeData, nodeMap.get(item.parentKey));
+      }
     }
   }
 
-  static onCheck(treeData, item) {
+  static onCheck(treeData, item, forceChecked = null) {
     let checked = !item.checked;
+    if (typeof forceChecked === 'boolean') {
+      checked = forceChecked;
+    }
 
-    const { dataFormat, nodeMap } = treeData;
+    const { dataFormat, nodeMap, singleChecked } = treeData;
     const { value, children, isLeaf } = dataFormat;
     const nodeKey = item[value];
     const nodeChildren = item[children];
 
-    if (item[isLeaf]) {
+    if (singleChecked) {
       item.checked = checked;
       this.setMultipleSelectedValue(treeData, nodeKey, checked);
+
+      console.log('gg');
+
+      treeData.selectedEvent = {
+        checked,
+        checkedNodes: [nodeKey],
+        node: item
+      };
     } else {
-      if (item.indeterminate) {
-        item.indeterminate = false;
-        checked = true;
+      selectedNodes = [nodeKey];
+
+      if (item[isLeaf]) {
+        item.checked = checked;
+        this.setMultipleSelectedValue(treeData, nodeKey, checked);
+      } else {
+        if (item.indeterminate) {
+          item.indeterminate = false;
+          checked = true;
+        }
+
+        item.checked = checked;
+        this.setMultipleSelectedValue(treeData, nodeKey, checked);
+        this.setChildrenCheckedValue(treeData, nodeChildren, checked);
       }
 
-      item.checked = checked;
-      this.setMultipleSelectedValue(treeData, nodeKey, checked);
-      this.setChildrenCheckedValue(treeData, nodeChildren, checked);
-    }
+      if (!item.isRoot) {
+        this.setParentCheckedValue(treeData, nodeMap.get(item.parentKey));
+      }
 
-    if (!item.isRoot && nodeMap.get(item.parentKey)) {
-      this.setParentCheckedValue(treeData, nodeMap.get(item.parentKey));
+      treeData.selectedEvent = {
+        checked,
+        checkedNodes: selectedNodes,
+        node: item
+      };
     }
   }
 
@@ -236,7 +286,7 @@ class MdcTree {
   static async setExpanded(
     treeData,
     nodeList,
-    { autoExpandParent, defaultExpandedKeys, defaultSelectedKeys }
+    { autoExpandParent, defaultExpandedKeys }
   ) {
     const { dataFormat, nodeMap } = treeData;
 
@@ -251,22 +301,120 @@ class MdcTree {
         const nodeKey = node[dataFormat.value];
         const item = nodeMap.get(nodeKey);
 
-        if (item[dataFormat.hasChildren]) {
-          this.onExpand(treeData, item);
+        this.onExpand(treeData, item);
+      }
+    }
+  }
+
+  static resetSelected(treeData, oldSelectedKeys) {
+    const { nodeMap } = treeData;
+
+    for (let i = 0, len = oldSelectedKeys.length; i < len; i++) {
+      const nodeKey = oldSelectedKeys[i];
+      const item = nodeMap.get(nodeKey);
+      if (item) {
+        this.onCheck(treeData, item, false);
+      }
+    }
+  }
+
+  static setSelected(treeData, newSelectedKeys) {
+    const { nodeMap, multiple } = treeData;
+
+    const selectedKeys = Array.isArray(newSelectedKeys)
+      ? newSelectedKeys
+      : [newSelectedKeys];
+    for (let i = 0, len = selectedKeys.length; i < len; i++) {
+      const nodeKey = selectedKeys[i];
+      const item = nodeMap.get(nodeKey);
+      if (item) {
+        multiple
+          ? this.onCheck(treeData, item, true)
+          : this.onSelect(treeData, item);
+      }
+    }
+  }
+
+  /** For tree operation **/
+  static async createNode(treeData, parentKey, originNodeData) {
+    const { dataFormat, nodeMap } = treeData;
+    const { value, children, hasChildren, isLeaf } = dataFormat;
+
+    const parentItem = nodeMap.get(parentKey);
+    const nodeKey = originNodeData[value];
+
+    let item = getNode(nodeMap, dataFormat, originNodeData, {
+      level: parentItem.level + 1,
+      parentKey,
+      checked: false
+    });
+
+    if (parentItem[isLeaf]) {
+      parentItem[children].unshift(item);
+      if (!parentItem[hasChildren]) {
+        parentItem[hasChildren] = true;
+      }
+      parentItem[isLeaf] = false;
+    } else {
+      if (parentItem[hasChildren]) {
+        if (parentItem[children].length) {
+          parentItem[children].unshift(item);
+        } else {
+          await this.onExpand(treeData, parentItem);
         }
+      } else {
+        parentItem[children].unshift(item);
+        parentItem[hasChildren] = true;
+        parentItem.expanded = true;
       }
     }
 
-    this.setSelected(treeData, defaultSelectedKeys);
+    nodeMap.set(parentKey, parentItem);
+    nodeMap.set(nodeKey, item);
   }
 
-  static setSelected(treeData, defaultSelectedKeys) {
-    const { nodeMap, multiple } = treeData;
+  static updateNode(treeData, parentKey, originNodeData) {
+    const { dataFormat, nodeMap } = treeData;
+    const { value, children } = dataFormat;
 
-    for (let i = 0, len = defaultSelectedKeys.length; i < len; i++) {
-      const nodeKey = defaultSelectedKeys[i];
-      const item = nodeMap.get(nodeKey);
-      multiple ? this.onCheck(treeData, item) : this.onSelect(treeData, item);
+    const nodeKey = originNodeData[value];
+    const item = nodeMap.get(nodeKey);
+    Object.keys(item).forEach((key) => {
+      if (typeof originNodeData[key] !== 'undefined') {
+        item[key] = originNodeData[key];
+      }
+    });
+
+    const parentItem = nodeMap.get(parentKey);
+    const parentChildren = parentItem[children];
+    const index = parentChildren.findIndex((item) => item[value] === nodeKey);
+    parentItem[children][index] = item;
+
+    nodeMap.set(parentKey, parentItem);
+    nodeMap.set(nodeKey, item);
+  }
+
+  static deleteNode(treeData, parentKey, originNodeData) {
+    const { dataFormat, nodeMap } = treeData;
+    const { value, children, hasChildren } = dataFormat;
+
+    const nodeKey = originNodeData[value];
+    if (nodeMap.has(nodeKey)) {
+      const parentItem = nodeMap.get(parentKey);
+      const parentChildren = parentItem[children];
+
+      parentChildren.splice(
+        parentChildren.findIndex((item) => item[value] === nodeKey),
+        1
+      );
+      parentItem[hasChildren] = parentChildren.length;
+      if (!parentItem[hasChildren]) {
+        parentItem.isLeaf = true;
+        parentItem.expanded = false;
+      }
+
+      nodeMap.set(parentKey, parentItem);
+      nodeMap.delete(nodeKey);
     }
   }
 }

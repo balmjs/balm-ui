@@ -70,8 +70,7 @@
           :tbody="tbody3"
           :tfoot="tfoot3"
           :default-col-width="200"
-          :scroll="{ x: 1600, y: 300 }"
-          style="max-width: 800px"
+          :scroll="{ y: 300 }"
         ></ui-table>
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>

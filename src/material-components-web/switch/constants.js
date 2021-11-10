@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2018 Google Inc.
+ * Copyright 2021 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/** CSS classes used by the switch. */
-var cssClasses = {
-    /** Class used for a switch that is in the "checked" (on) position. */
-    CHECKED: 'mdc-switch--checked',
-    /** Class used for a switch that is disabled. */
-    DISABLED: 'mdc-switch--disabled',
-};
-/** String constants used by the switch. */
-var strings = {
-    /** Aria attribute for checked or unchecked state of switch */
-    ARIA_CHECKED_ATTR: 'aria-checked',
-    /** A CSS selector used to locate the native HTML control for the switch.  */
-    NATIVE_CONTROL_SELECTOR: '.mdc-switch__native-control',
-    /** A CSS selector used to locate the ripple surface element for the switch. */
-    RIPPLE_SURFACE_SELECTOR: '.mdc-switch__thumb-underlay',
-};
-export { cssClasses, strings };
+/**
+ * CSS classes used for switch.
+ */
+export var CssClasses;
+(function (CssClasses) {
+    CssClasses["PROCESSING"] = "mdc-switch--processing";
+    CssClasses["SELECTED"] = "mdc-switch--selected";
+    CssClasses["UNSELECTED"] = "mdc-switch--unselected";
+})(CssClasses || (CssClasses = {}));
+/**
+ * Query selectors used for switch.
+ */
+export var Selectors;
+(function (Selectors) {
+    Selectors["RIPPLE"] = ".mdc-switch__ripple";
+})(Selectors || (Selectors = {}));
 //# sourceMappingURL=constants.js.map

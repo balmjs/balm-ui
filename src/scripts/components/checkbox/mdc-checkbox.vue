@@ -6,6 +6,7 @@
         type="checkbox"
         class="mdc-checkbox__native-control"
         :checked="checked"
+        :disabled="disabled"
       />
     </slot>
     <div class="mdc-checkbox__background">
@@ -33,11 +34,27 @@ export default {
     indeterminate: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
     indeterminate(val) {
       this.$refs.checkbox.indeterminate = val;
+    },
+    disabled(val) {
+      this.$refs.checkbox.disabled = val;
+    }
+  },
+  mounted() {
+    if (this.indeterminate) {
+      this.$refs.checkbox.indeterminate = this.indeterminate;
+    }
+
+    if (this.disabled) {
+      this.$refs.checkbox.disabled = this.disabled;
     }
   },
   methods: {

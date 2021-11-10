@@ -1,9 +1,19 @@
 # 升级向导
 
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9_27">从 9.x 升级到 9.27.0+</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9">从 8.x 升级到 9.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">从 7.x 升级到 8.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">从 6.x 升级到 7.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">从 5.x 升级到 6.0</a>
+
+<div id="up-to-9_27"></div>
+
+## 从 9.x 升级到 9.27.0+
+
+### BREAKING CHANGES
+
+- 组件平移: 移动 `UiAutocomplete`, `UiDatepicker`, `UiRangepicker` 从 `balm-ui-plus.js` 到 `balm-ui.js` 库
+- 插件平移: 移动 `$alert`, `$confirm`, `$toast` 从 `balm-ui-plus.js` 到 `balm-ui.js` 库
 
 <div id="up-to-9"></div>
 
@@ -13,16 +23,16 @@
 
 #### Props
 
-- `<ui-icon-button>`, `<ui-textfield>`, `<ui-autocomplete>`, `<ui-editor>`, `<ui-select>`, `<ui-checkbox>`, `<ui-radio>`, `<ui-chips>`, `<ui-datepicker>`, `<ui-rangepicker>`, `<ui-switch>`, `<ui-slider>`: rename prop `model` -> `modelValue`
-- `<ui-drawer>`, `<ui-menu>`: rename prop `open` -> `modelValue`
-- `<ui-tab-bar>`, `<ui-tabs>`: rename prop `active` -> `modelValue`
-- `<ui-pagination>`: rename prop `page` -> `modelValue`
-- `<ui-textfield>`, `<ui-autocomplete>`, `<ui-checkbox>`, `<ui-radio>`, `<ui-file>`, `<ui-datepicker>`, `<ui-switch>`: rename prop `id` -> `inputId`
+- `<ui-icon-button>`, `<ui-textfield>`, `<ui-autocomplete>`, `<ui-editor>`, `<ui-select>`, `<ui-checkbox>`, `<ui-radio>`, `<ui-chips>`, `<ui-datepicker>`, `<ui-rangepicker>`, `<ui-switch>`, `<ui-slider>`: 重命名属性 `model` 为 `modelValue`
+- `<ui-drawer>`, `<ui-menu>`: 重命名属性 `open` 为 `modelValue`
+- `<ui-tab-bar>`, `<ui-tabs>`: 重命名属性 `active` 为 `modelValue`
+- `<ui-pagination>`: 重命名属性 `page` 为 `modelValue`
+- `<ui-textfield>`, `<ui-autocomplete>`, `<ui-checkbox>`, `<ui-radio>`, `<ui-file>`, `<ui-datepicker>`, `<ui-switch>`: 重命名属性 `id` 为 `inputId`
 
 #### Events
 
-- `<ui-icon-button>`, `<ui-drawer>`, `<ui-tab-bar>`, `<ui-tabs>`, `<ui-menu>`, `<ui-pagination>`, `<ui-editor>`, `<ui-select>`, `<ui-checkbox>`, `<ui-radio>`, `<ui-chips>`, `<ui-datepicker>`, `<ui-rangepicker>`, `<ui-switch>`, `<ui-slider>`: rename event `@change` -> `@update:modelValue`
-- `<ui-textfield>`, `<ui-autocomplete>`: rename event `@input` -> `@update:modelValue`
+- `<ui-icon-button>`, `<ui-drawer>`, `<ui-tab-bar>`, `<ui-tabs>`, `<ui-menu>`, `<ui-pagination>`, `<ui-editor>`, `<ui-select>`, `<ui-checkbox>`, `<ui-radio>`, `<ui-chips>`, `<ui-datepicker>`, `<ui-rangepicker>`, `<ui-switch>`, `<ui-slider>`: 事件属性 `@change` 为 `@update:modelValue`
+- `<ui-textfield>`, `<ui-autocomplete>`: 事件属性 `@input` 为 `@update:modelValue`
 
 <div id="up-to-8"></div>
 

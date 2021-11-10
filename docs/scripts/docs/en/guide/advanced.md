@@ -24,8 +24,7 @@
   ```js
   module.exports = {
     styles: {
-      extname: 'scss',
-      dartSass: true // required
+      extname: 'scss'
     },
     scripts: {
       alias: {

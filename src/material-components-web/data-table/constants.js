@@ -117,9 +117,10 @@ export var SortValue;
  * Event names used in component.
  */
 export var events = {
+    ROW_CLICK: 'MDCDataTable:rowClick',
     ROW_SELECTION_CHANGED: 'MDCDataTable:rowSelectionChanged',
     SELECTED_ALL: 'MDCDataTable:selectedAll',
-    UNSELECTED_ALL: 'MDCDataTable:unselectedAll',
     SORTED: 'MDCDataTable:sorted',
+    UNSELECTED_ALL: 'MDCDataTable:unselectedAll',
 };
 //# sourceMappingURL=constants.js.map

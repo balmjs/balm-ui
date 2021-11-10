@@ -1,6 +1,12 @@
 <template>
   <!-- Tab item -->
-  <button :class="className" role="tab" aria-selected="false" tabindex="-1">
+  <button
+    :class="className"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    @click="$emit(UI_TAB.EVENT.CLICK, $event)"
+  >
     <span class="mdc-tab__content">
       <template v-if="isTextWithIcon">
         <!-- Icon -->
@@ -70,6 +76,7 @@ export default {
       default: ''
     }
   },
+  emits: [UI_TAB.EVENT.CLICK],
   data() {
     return {
       UI_TAB,

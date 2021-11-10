@@ -4,6 +4,7 @@ var menu = [
   'checkbox',
   'dialog',
   'drawer',
+  'editor',
   'fab',
   'form',
   'grid',

@@ -1,6 +1,6 @@
 <template>
   <div class="page--bottom-navigation-container">
-    <ui-top-app-bar content-selector=".demo-content">
+    <ui-top-app-bar content-selector=".demo-content" fixed>
       <template #nav-icon="{ navIconClass }">
         <ui-icon-button
           icon="arrow_back"
@@ -9,6 +9,9 @@
         ></ui-icon-button>
       </template>
       <span class="catalog-title">Bottom Navigation</span>
+      <template #toolbar="{ toolbarItemClass }">
+        <top-app-toolbar :item-class="toolbarItemClass"></top-app-toolbar>
+      </template>
     </ui-top-app-bar>
 
     <docs-page class="demo-content" name="bottom-navigation" demo-count="1">
@@ -20,44 +23,57 @@
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </docs-page>
 
-    <ui-bottom-navigation content-selector=".page--bottom-navigation-container">
+    <ui-bottom-navigation content-selector=".demo-content" stacked>
       <ui-tabs
         v-model="active"
+        type="textWithIcon"
         :items="items"
-        @update:modelValue="onChange"
+        stacked
+        @change="onChange"
       ></ui-tabs>
     </ui-bottom-navigation>
   </div>
 </template>
 
 <script>
+import TopAppToolbar from '@/components/top-app-toolbar';
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Bottom Navigation'
+  },
+  components: {
+    TopAppToolbar
   },
   data() {
     return {
       // hero
       items: [
         {
-          text: 'Nav menu 1',
-          icon: 'watch_later'
+          text: 'Favorites',
+          icon: 'favorite',
+          url: 'url 1'
         },
         {
-          text: 'Nav menu 2',
-          icon: 'near_me'
+          text: 'Music',
+          icon: 'music_note',
+          url: 'url 2'
         },
         {
-          text: 'Nav menu 3',
-          icon: 'favorite'
+          text: 'Places',
+          icon: 'place'
+        },
+        {
+          text: 'News',
+          icon: 'fiber_new'
         }
       ],
-      active: 0
+      active: 1
     };
   },
   methods: {
-    onChange(active) {
-      console.log(active);
+    onChange(index) {
+      console.log(index);
     }
   }
 };

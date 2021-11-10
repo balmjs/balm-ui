@@ -1,7 +1,7 @@
 <template>
   <div class="demo-container page--drawer page--modal-drawer">
     <!-- Drawer -->
-    <ui-drawer v-model="open" type="modal" nav-id="demo-menu">
+    <ui-drawer type="modal" nav-id="demo-menu">
       <ui-drawer-header>
         <ui-drawer-title :class="$theme.getTextClass('primary', $store.theme)">
           Title
@@ -38,7 +38,6 @@
         </ui-nav>
       </ui-drawer-content>
     </ui-drawer>
-    <ui-drawer-backdrop></ui-drawer-backdrop>
     <!-- Content -->
     <div class="demo-content">
       <!-- App bar -->
@@ -64,28 +63,11 @@ export default {
   metaInfo: {
     titleTemplate: '%s - Modal Drawer'
   },
-  data() {
-    return {
-      open: false
-    };
-  },
   created() {
     this.$store.initSnippet('drawer', 5);
   },
   mounted() {
     this.$store.setTheme();
-  },
-  methods: {
-    openMenu() {
-      this.open = true;
-    },
-    onOpen(val) {
-      console.log('open', val);
-    },
-    onClose(val) {
-      this.open = false;
-      console.log('close', val);
-    }
   }
 };
 </script>

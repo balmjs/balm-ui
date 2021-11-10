@@ -11,7 +11,6 @@
 | ------------------------ | -------------- | ------- | ----------------------------------------------------------------------------- |
 | `modelValue` (`v-model`) | string, number | `''`    | Mandatory.                                                                    |
 | `inputId`                | string         | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
-| `name`                   | string         | `''`    | The _name_ attribute of the `<input>`.                                        |
 | `value`                  | string, number | `''`    | The _value_ attribute of the `<input>`.                                       |
 | `disabled`               | boolean        | `false` | Styles the radio button as a disabled radio button.                           |
 | `attrs`                  | object         | `{}`    | Other attributes for `<input>`.                                               |

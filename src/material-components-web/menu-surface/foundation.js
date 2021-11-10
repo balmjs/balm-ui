@@ -133,7 +133,8 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         cancelAnimationFrame(this.animationRequestId);
     };
     /**
-     * @param corner Default anchor corner alignment of top-left menu surface corner.
+     * @param corner Default anchor corner alignment of top-left menu surface
+     *     corner.
      */
     MDCMenuSurfaceFoundation.prototype.setAnchorCorner = function (corner) {
         this.anchorCorner = corner;
@@ -157,9 +158,17 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
     MDCMenuSurfaceFoundation.prototype.setIsHoisted = function (isHoisted) {
         this.isHoistedElement = isHoisted;
     };
-    /** Used to set the menu-surface calculations based on a fixed position menu. */
+    /**
+     * Used to set the menu-surface calculations based on a fixed position menu.
+     */
     MDCMenuSurfaceFoundation.prototype.setFixedPosition = function (isFixedPosition) {
         this.isFixedPosition = isFixedPosition;
+    };
+    /**
+     * @return Returns true if menu is in fixed (`position: fixed`) position.
+     */
+    MDCMenuSurfaceFoundation.prototype.isFixed = function () {
+        return this.isFixedPosition;
     };
     /** Sets the menu-surface position on the page. */
     MDCMenuSurfaceFoundation.prototype.setAbsolutePosition = function (x, y) {
@@ -203,9 +212,9 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         else {
             this.adapter.addClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_OPEN);
             this.animationRequestId = requestAnimationFrame(function () {
-                _this.adapter.addClass(MDCMenuSurfaceFoundation.cssClasses.OPEN);
                 _this.dimensions = _this.adapter.getInnerDimensions();
                 _this.autoposition();
+                _this.adapter.addClass(MDCMenuSurfaceFoundation.cssClasses.OPEN);
                 _this.openAnimationEndTimerId = setTimeout(function () {
                     _this.openAnimationEndTimerId = 0;
                     _this.adapter.removeClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_OPEN);
@@ -281,11 +290,14 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
             _a[horizontalAlignment] = horizontalOffset,
             _a[verticalAlignment] = verticalOffset,
             _a);
-        // Center align when anchor width is comparable or greater than menu surface, otherwise keep corner.
-        if (anchorSize.width / surfaceSize.width > numbers.ANCHOR_TO_MENU_SURFACE_WIDTH_RATIO) {
+        // Center align when anchor width is comparable or greater than menu
+        // surface, otherwise keep corner.
+        if (anchorSize.width / surfaceSize.width >
+            numbers.ANCHOR_TO_MENU_SURFACE_WIDTH_RATIO) {
             horizontalAlignment = 'center';
         }
-        // If the menu-surface has been hoisted to the body, it's no longer relative to the anchor element
+        // If the menu-surface has been hoisted to the body, it's no longer relative
+        // to the anchor element
         if (this.isHoistedElement || this.isFixedPosition) {
             this.adjustPositionForHoistedElement(position);
         }
@@ -409,7 +421,8 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
     };
     /**
      * @param corner Origin corner of the menu surface.
-     * @return Maximum height of the menu surface, based on available space. 0 indicates should not be set.
+     * @return Maximum height of the menu surface, based on available space. 0
+     *     indicates should not be set.
      */
     MDCMenuSurfaceFoundation.prototype.getMenuSurfaceMaxHeight = function (corner) {
         if (this.maxHeight > 0) {
@@ -438,7 +451,8 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
     };
     /**
      * @param corner Origin corner of the menu surface.
-     * @return Horizontal offset of menu surface origin corner from corresponding anchor corner.
+     * @return Horizontal offset of menu surface origin corner from corresponding
+     *     anchor corner.
      */
     MDCMenuSurfaceFoundation.prototype.getHorizontalOriginOffset = function (corner) {
         var anchorSize = this.measurements.anchorSize;
@@ -465,7 +479,8 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
     };
     /**
      * @param corner Origin corner of the menu surface.
-     * @return Vertical offset of menu surface origin corner from corresponding anchor corner.
+     * @return Vertical offset of menu surface origin corner from corresponding
+     *     anchor corner.
      */
     MDCMenuSurfaceFoundation.prototype.getVerticalOriginOffset = function (corner) {
         var anchorSize = this.measurements.anchorSize;
@@ -483,7 +498,10 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         }
         return y;
     };
-    /** Calculates the offsets for positioning the menu-surface when the menu-surface has been hoisted to the body. */
+    /**
+     * Calculates the offsets for positioning the menu-surface when the
+     * menu-surface has been hoisted to the body.
+     */
     MDCMenuSurfaceFoundation.prototype.adjustPositionForHoistedElement = function (position) {
         var e_1, _a;
         var _b = this.measurements, windowScroll = _b.windowScroll, viewportDistance = _b.viewportDistance, surfaceSize = _b.surfaceSize, viewportSize = _b.viewportSize;
@@ -497,11 +515,11 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
                     position[prop] = (viewportSize.width - surfaceSize.width) / 2;
                     continue;
                 }
-                // Hoisted surfaces need to have the anchor elements location on the page added to the
-                // position properties for proper alignment on the body.
+                // Hoisted surfaces need to have the anchor elements location on the page
+                // added to the position properties for proper alignment on the body.
                 value += viewportDistance[prop];
-                // Surfaces that are absolutely positioned need to have additional calculations for scroll
-                // and bottom positioning.
+                // Surfaces that are absolutely positioned need to have additional
+                // calculations for scroll and bottom positioning.
                 if (!this.isFixedPosition) {
                     if (prop === 'top') {
                         value += windowScroll.y;
@@ -528,15 +546,23 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         }
     };
     /**
-     * The last focused element when the menu surface was opened should regain focus, if the user is
-     * focused on or within the menu surface when it is closed.
+     * The last focused element when the menu surface was opened should regain
+     * focus, if the user is focused on or within the menu surface when it is
+     * closed.
      */
     MDCMenuSurfaceFoundation.prototype.maybeRestoreFocus = function () {
+        var _this = this;
         var isRootFocused = this.adapter.isFocused();
         var childHasFocus = document.activeElement &&
             this.adapter.isElementInContainer(document.activeElement);
         if (isRootFocused || childHasFocus) {
-            this.adapter.restoreFocus();
+            // Wait before restoring focus when closing the menu surface. This is
+            // important because if a touch event triggered the menu close, and the
+            // subsequent mouse event occurs after focus is restored, then the
+            // restored focus would be lost.
+            setTimeout(function () {
+                _this.adapter.restoreFocus();
+            }, numbers.TOUCH_EVENT_WAIT_MS);
         }
     };
     MDCMenuSurfaceFoundation.prototype.hasBit = function (corner, bit) {

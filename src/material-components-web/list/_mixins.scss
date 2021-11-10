@@ -26,7 +26,7 @@
 @use 'sass:map';
 @use '../density/functions' as density-functions;
 @use '../dom/mixins' as dom-mixins;
-@use '../rtl/mixins' as rtl-mixins;
+@use '../rtl/rtl';
 @use '../theme/theme';
 @use '../shape/functions' as shape-functions;
 @use '../shape/mixins' as shape-mixins;
@@ -259,12 +259,20 @@
     }
 
     @include feature-targeting.targets($feat-structure) {
-      @include rtl-mixins.reflexive-property(
-        margin,
-        auto,
-        0,
-        '.mdc-deprecated-list-item'
-      );
+      @include rtl.ignore-next-line();
+      margin-left: auto;
+      @include rtl.ignore-next-line();
+      margin-right: 0;
+
+      @at-root {
+        .mdc-deprecated-list-item[dir='rtl'] &,
+        [dir='rtl'] .mdc-deprecated-list-item & {
+          @include rtl.ignore-next-line();
+          margin-left: 0;
+          @include rtl.ignore-next-line();
+          margin-right: auto;
+        }
+      }
     }
   }
 
@@ -781,7 +789,7 @@
   $feat-structure: feature-targeting.create-target($query, structure);
 
   @include feature-targeting.targets($feat-structure) {
-    @include rtl-mixins.reflexive-property(
+    @include rtl.reflexive-property(
       padding,
       $leading-padding,
       variables.$deprecated-trailing-padding
@@ -831,7 +839,7 @@
 
   @include feature-targeting.targets($feat-structure) {
     .mdc-deprecated-list-item__graphic {
-      @include rtl-mixins.reflexive-box(margin, right, $margin);
+      @include rtl.reflexive-box(margin, right, $margin);
     }
   }
 }
@@ -948,7 +956,7 @@
     $leading-padding
   );
   @include feature-targeting.targets($feat-structure) {
-    @include rtl-mixins.reflexive-box(margin, right, $margin-value);
+    @include rtl.reflexive-box(margin, right, $margin-value);
     width: $width;
     height: $height;
   }
@@ -1013,7 +1021,7 @@
 
   @include feature-targeting.targets($feat-structure) {
     @if $leading {
-      @include rtl-mixins.reflexive-box(margin, left, $leading-inset);
+      @include rtl.reflexive-box(margin, left, $leading-inset);
     }
     width: calc(100% - #{$leading-inset + $trailing-inset});
   }

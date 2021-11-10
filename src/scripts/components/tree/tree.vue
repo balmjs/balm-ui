@@ -19,11 +19,20 @@ const UI_TREE = {
     value: 'value',
     children: 'children',
     hasChildren: 'hasChildren',
-    isLeaf: 'isLeaf'
+    isLeaf: 'isLeaf',
+    disabled: 'disabled'
   },
   EVENT: {
-    CHANGE: 'update:modelValue'
+    CHANGE: 'update:modelValue',
+    SELECTED: 'selected'
   }
+};
+
+const haveSameContents = (a, b) => {
+  for (const v of new Set([...a, ...b]))
+    if (a.filter((e) => e === v).length !== b.filter((e) => e === v).length)
+      return false;
+  return true;
 };
 
 export default {
@@ -58,6 +67,10 @@ export default {
       type: Boolean,
       default: false
     },
+    singleChecked: {
+      type: Boolean,
+      default: false
+    },
     loadData: {
       type: [Function, null],
       default: null
@@ -67,12 +80,6 @@ export default {
       default: false
     },
     defaultExpandedKeys: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
-    defaultSelectedKeys: {
       type: Array,
       default() {
         return [];
@@ -90,7 +97,9 @@ export default {
         nodeMap: new Map(),
         selectedValue: this.modelValue,
         multiple: this.multiple,
-        loadData: this.loadData
+        singleChecked: this.singleChecked,
+        loadData: this.loadData,
+        selectedEvent: {}
       }
     };
   },
@@ -106,11 +115,28 @@ export default {
     }
   },
   watch: {
-    selectedValue(val) {
-      this.$emit(UI_TREE.EVENT.CHANGE, val);
+    modelValue(val, oldVal) {
+      if (Array.isArray(val)) {
+        if (!haveSameContents(this.treeData.selectedValue, val)) {
+          this.updateSelectedValue(val, oldVal);
+        }
+      } else {
+        if (this.treeData.selectedValue !== val) {
+          this.updateSelectedValue(val);
+        }
+      }
     },
     data(val) {
       this.init(val);
+    },
+    selectedValue(val) {
+      this.$emit(UI_TREE.EVENT.CHANGE, val, this.treeData.selectedEvent);
+      this.$emit(
+        UI_TREE.EVENT.SELECTED,
+        Array.isArray(val)
+          ? val.map((nodeKey) => this.getNode(nodeKey))
+          : this.getNode(val)
+      );
     }
   },
   created() {
@@ -126,17 +152,41 @@ export default {
   },
   methods: {
     init(originData = this.data) {
-      if (!this.nodeList.length) {
-        this.nodeList = this.$tree.getData(originData);
-      }
+      this.nodeList = this.$tree.getData(originData);
 
       if (this.nodeList.length) {
         MdcTree.setExpanded(this.treeData, this.nodeList, {
           autoExpandParent: this.autoExpandParent,
-          defaultExpandedKeys: this.defaultExpandedKeys,
-          defaultSelectedKeys: this.defaultSelectedKeys
+          defaultExpandedKeys: this.defaultExpandedKeys
         });
+
+        MdcTree.setSelected(this.treeData, this.selectedValue);
       }
+    },
+    updateSelectedValue(val, oldVal = []) {
+      this.$nextTick(() => {
+        if (oldVal.length) {
+          MdcTree.resetSelected(this.treeData, oldVal);
+        }
+
+        this.treeData.selectedValue = val;
+        MdcTree.setSelected(this.treeData, val);
+      });
+    },
+    updateNode(type, parentKey, nodeData) {
+      switch (type) {
+        case 'create':
+          MdcTree.createNode(this.treeData, parentKey, nodeData);
+          break;
+        case 'delete':
+          MdcTree.deleteNode(this.treeData, parentKey, nodeData);
+          break;
+        default:
+          MdcTree.updateNode(this.treeData, parentKey, nodeData);
+      }
+    },
+    getNode(nodeKey) {
+      return this.treeData.nodeMap.get(nodeKey);
     }
   }
 };

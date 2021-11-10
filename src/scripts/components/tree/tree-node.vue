@@ -3,7 +3,13 @@
     <li
       v-for="(nodeData, nodeIndex) in children"
       :key="nodeIndex"
-      class="mdc-tree-node"
+      :class="[
+        'mdc-tree-node',
+        {
+          'mdc-tree-node--root': nodeData.isRoot,
+          'mdc-tree-node--leaf': nodeData.isLeaf
+        }
+      ]"
     >
       <div
         :class="[
@@ -13,6 +19,8 @@
           }
         ]"
       >
+        <slot name="before" :data="getData(nodeData)"></slot>
+
         <div v-if="nodeData.level" class="mdc-tree-node__indent">
           <span
             v-for="level in nodeData.level"
@@ -51,11 +59,13 @@
           <mdc-checkbox
             v-if="nodeData[dataFormat.isLeaf]"
             :checked="nodeData.checked"
+            :disabled="nodeData.disabled"
           ></mdc-checkbox>
           <mdc-checkbox
             v-else
             :checked="nodeData.checked"
             :indeterminate="nodeData.indeterminate"
+            :disabled="nodeData.disabled"
           ></mdc-checkbox>
         </div>
 
@@ -70,7 +80,7 @@
           }}</slot>
         </label>
 
-        <slot name="action" :data="getData(nodeData)"></slot>
+        <slot name="after" :data="getData(nodeData)"></slot>
       </div>
 
       <ui-tree-node
@@ -125,7 +135,9 @@ export default {
       MdcTree.onSelect(this.treeData, item);
     },
     handleCheck(item) {
-      MdcTree.onCheck(this.treeData, item);
+      if (!item.disabled) {
+        MdcTree.onCheck(this.treeData, item);
+      }
     },
     getData(item) {
       const { children, ...newItem } = item;

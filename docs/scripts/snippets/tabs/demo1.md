@@ -12,7 +12,7 @@
     <ui-tab
       v-for="(tab, index) in tabs"
       :key="index"
-      type="icon"
+      type="iconOnly"
       :icon="tab.icon"
     >
     </ui-tab>

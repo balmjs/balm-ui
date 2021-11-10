@@ -35,11 +35,21 @@
       </div>
     </div>
 
-    <script src="./menu.js"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://cdn.jsdelivr.net/npm/vue@next/dist/vue.esm-browser.js",
+        "menu": "./menu.mjs",
+        "balm-ui": "/dist/balm-ui.esm.js",
+        "balm-ui-plus": "/dist/balm-ui-plus.esm.js"
+      }
+    }
+    </script>
     <script type="module">
-      import { createApp } from '/node_modules/vue/dist/vue.esm-browser.js';
-      import BalmUI from '/dist/balm-ui.esm-browser.js'; // TODO: build
-      // import BalmUIPlus from '/dist/balm-ui-plus.esm-browser.js';
+      import { createApp } from 'vue';
+      import menu from 'menu';
+      import BalmUI from 'balm-ui';
+      import BalmUIPlus from 'balm-ui-plus';
 
       let message = 'Hello BalmUI';
 
@@ -53,7 +63,7 @@
       });
 
       app.use(BalmUI);
-      // app.use(BalmUIPlus);
+      app.use(BalmUIPlus);
 
       app.mount('#app');
     </script>

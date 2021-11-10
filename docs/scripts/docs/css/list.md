@@ -1,4 +1,4 @@
-> ⚠️ The `deprecated-` prefix is required in `balm-ui` >= 9.14.0 until MDC releases version 11.
+> ⚠️ The `deprecated-` prefix is required in `balm-ui` >= 9.14.0
 
 ```scss
 @use '@material/list' with (

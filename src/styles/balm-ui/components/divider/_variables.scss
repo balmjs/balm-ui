@@ -1,10 +1,10 @@
 @use '@material/theme/theme-color';
-@use '@material/list/evolution-variables' as list-variables;
+@use '@material/list/variables' as list-variables;
 
 $color: if(
   theme-color.tone(theme-color.$background) == 'dark',
-  list-variables.$divider-color-on-dark-bg,
-  list-variables.$divider-color-on-light-bg
+  list-variables.$deprecated-divider-color-on-dark-bg,
+  list-variables.$deprecated-divider-color-on-light-bg
 ) !default;
 
 $horizontal-height: 2px !default;

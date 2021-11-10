@@ -34,7 +34,9 @@ var MDCRipple = /** @class */ (function (_super) {
         return _this;
     }
     MDCRipple.attachTo = function (root, opts) {
-        if (opts === void 0) { opts = { isUnbounded: undefined }; }
+        if (opts === void 0) { opts = {
+            isUnbounded: undefined
+        }; }
         var ripple = new MDCRipple(root);
         // Only override unbounded behavior if option is explicitly specified
         if (opts.isUnbounded !== undefined) {
@@ -82,11 +84,11 @@ var MDCRipple = /** @class */ (function (_super) {
     };
     Object.defineProperty(MDCRipple.prototype, "unbounded", {
         get: function () {
-            return Boolean(this.unbounded_);
+            return Boolean(this.isUnbounded);
         },
         set: function (unbounded) {
-            this.unbounded_ = Boolean(unbounded);
-            this.setUnbounded_();
+            this.isUnbounded = Boolean(unbounded);
+            this.setUnbounded();
         },
         enumerable: false,
         configurable: true
@@ -105,7 +107,7 @@ var MDCRipple = /** @class */ (function (_super) {
     };
     MDCRipple.prototype.initialSyncWithDOM = function () {
         var root = this.root;
-        this.unbounded = 'mdcRippleIsUnbounded' in root.dataset;
+        this.isUnbounded = 'mdcRippleIsUnbounded' in root.dataset;
     };
     /**
      * Closure Compiler throws an access control error when directly accessing a
@@ -113,8 +115,8 @@ var MDCRipple = /** @class */ (function (_super) {
      * By accessing the protected property inside a method, we solve that problem.
      * That's why this function exists.
      */
-    MDCRipple.prototype.setUnbounded_ = function () {
-        this.foundation.setUnbounded(Boolean(this.unbounded_));
+    MDCRipple.prototype.setUnbounded = function () {
+        this.foundation.setUnbounded(Boolean(this.isUnbounded));
     };
     return MDCRipple;
 }(MDCComponent));

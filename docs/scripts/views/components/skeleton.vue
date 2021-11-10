@@ -27,7 +27,7 @@
       </h6>
       <p class="demo-controls">
         <ui-form-field>
-          <ui-switch id="demo-loading" v-model="loading"></ui-switch>
+          <ui-switch v-model="loading" input-id="demo-loading"></ui-switch>
           <label for="demo-loading">Loading</label>
         </ui-form-field>
       </p>

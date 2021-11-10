@@ -20,13 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __extends } from "tslib";
+import { __extends, __values } from "tslib";
 import { MDCComponent } from '../../base/component';
 import { MDCSegmentedButtonSegment } from '../segment/component';
 import { events, selectors } from './constants';
 import { MDCSegmentedButtonFoundation } from './foundation';
-// TODO(b/152410470): Remove trailing underscores from private properties
-// tslint:disable:strip-private-property-underscore
 var MDCSegmentedButton = /** @class */ (function (_super) {
     __extends(MDCSegmentedButton, _super);
     function MDCSegmentedButton() {
@@ -37,7 +35,7 @@ var MDCSegmentedButton = /** @class */ (function (_super) {
     };
     Object.defineProperty(MDCSegmentedButton.prototype, "segments", {
         get: function () {
-            return this.segments_.slice();
+            return this.segmentsList.slice();
         },
         enumerable: false,
         configurable: true
@@ -48,7 +46,7 @@ var MDCSegmentedButton = /** @class */ (function (_super) {
             return new MDCSegmentedButtonSegment(el);
         }; }
         this.segmentFactory = segmentFactory;
-        this.segments_ = this.instantiateSegments(this.segmentFactory);
+        this.segmentsList = this.instantiateSegments(this.segmentFactory);
     };
     /**
      * @param segmentFactory Factory to create new child segments
@@ -65,13 +63,14 @@ var MDCSegmentedButton = /** @class */ (function (_super) {
         };
         this.listen(events.SELECTED, this.handleSelected);
         var isSingleSelect = this.foundation.isSingleSelect();
-        this.segments_.forEach(function (segment, index) {
-            segment.setIndex(index);
+        for (var i = 0; i < this.segmentsList.length; i++) {
+            var segment = this.segmentsList[i];
+            segment.setIndex(i);
             segment.setIsSingleSelect(isSingleSelect);
-        });
-        var selectedSegments = this.segments_.filter(function (segment) { return segment.isSelected(); });
-        if (isSingleSelect && selectedSegments.length == 0 &&
-            this.segments_.length > 0) {
+        }
+        var selectedSegments = this.segmentsList.filter(function (segment) { return segment.isSelected(); });
+        if (isSingleSelect && selectedSegments.length === 0 &&
+            this.segmentsList.length > 0) {
             throw new Error('No segment selected in singleSelect mdc-segmented-button');
         }
         else if (isSingleSelect && selectedSegments.length > 1) {
@@ -79,9 +78,20 @@ var MDCSegmentedButton = /** @class */ (function (_super) {
         }
     };
     MDCSegmentedButton.prototype.destroy = function () {
-        this.segments_.forEach(function (segment) {
-            segment.destroy();
-        });
+        var e_1, _a;
+        try {
+            for (var _b = __values(this.segmentsList), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var segment = _c.value;
+                segment.destroy();
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
         this.unlisten(events.SELECTED, this.handleSelected);
         _super.prototype.destroy.call(this);
     };
@@ -95,17 +105,17 @@ var MDCSegmentedButton = /** @class */ (function (_super) {
                 return _this.mappedSegments();
             },
             selectSegment: function (indexOrSegmentId) {
-                var segmentDetail = _this.mappedSegments().find(function (_segmentDetail) { return _segmentDetail.index === indexOrSegmentId ||
-                    _segmentDetail.segmentId === indexOrSegmentId; });
+                var segmentDetail = _this.mappedSegments().find(function (detail) { return detail.index === indexOrSegmentId ||
+                    detail.segmentId === indexOrSegmentId; });
                 if (segmentDetail) {
-                    _this.segments_[segmentDetail.index].setSelected();
+                    _this.segmentsList[segmentDetail.index].setSelected();
                 }
             },
             unselectSegment: function (indexOrSegmentId) {
-                var segmentDetail = _this.mappedSegments().find(function (_segmentDetail) { return _segmentDetail.index === indexOrSegmentId ||
-                    _segmentDetail.segmentId === indexOrSegmentId; });
+                var segmentDetail = _this.mappedSegments().find(function (detail) { return detail.index === indexOrSegmentId ||
+                    detail.segmentId === indexOrSegmentId; });
                 if (segmentDetail) {
-                    _this.segments_[segmentDetail.index].setUnselected();
+                    _this.segmentsList[segmentDetail.index].setUnselected();
                 }
             },
             notifySelectedChange: function (detail) {
@@ -151,7 +161,7 @@ var MDCSegmentedButton = /** @class */ (function (_super) {
      * @return Returns child segments mapped to readonly SegmentDetail list
      */
     MDCSegmentedButton.prototype.mappedSegments = function () {
-        return this.segments_.map(function (segment, index) {
+        return this.segmentsList.map(function (segment, index) {
             return {
                 index: index,
                 selected: segment.isSelected(),

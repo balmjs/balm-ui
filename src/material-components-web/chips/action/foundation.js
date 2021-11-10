@@ -21,14 +21,14 @@
  * THE SOFTWARE.
  */
 import { __assign, __extends } from "tslib";
-import { MDCFoundation } from '@material/base/foundation';
-import { isNavigationEvent, KEY, normalizeKey } from '@material/dom/keyboard';
-import { Attributes, Events, FocusBehavior, InteractionTrigger } from './constants';
+import { MDCFoundation } from '../../base/foundation';
+import { isNavigationEvent, KEY, normalizeKey } from '../../dom/keyboard';
+import { MDCChipActionAttributes, MDCChipActionEvents, MDCChipActionFocusBehavior, MDCChipActionInteractionTrigger } from './constants';
 var triggerMap = new Map();
-triggerMap.set(KEY.SPACEBAR, InteractionTrigger.SPACEBAR_KEY);
-triggerMap.set(KEY.ENTER, InteractionTrigger.ENTER_KEY);
-triggerMap.set(KEY.DELETE, InteractionTrigger.DELETE_KEY);
-triggerMap.set(KEY.BACKSPACE, InteractionTrigger.BACKSPACE_KEY);
+triggerMap.set(KEY.SPACEBAR, MDCChipActionInteractionTrigger.SPACEBAR_KEY);
+triggerMap.set(KEY.ENTER, MDCChipActionInteractionTrigger.ENTER_KEY);
+triggerMap.set(KEY.DELETE, MDCChipActionInteractionTrigger.DELETE_KEY);
+triggerMap.set(KEY.BACKSPACE, MDCChipActionInteractionTrigger.BACKSPACE_KEY);
 /**
  * MDCChipActionFoundation provides a base abstract foundation for all chip
  * actions.
@@ -57,7 +57,7 @@ var MDCChipActionFoundation = /** @class */ (function (_super) {
         // user's pointer (i.e. programmatic click from AT).
         if (this.isDisabled())
             return;
-        this.emitInteraction(InteractionTrigger.CLICK);
+        this.emitInteraction(MDCChipActionInteractionTrigger.CLICK);
     };
     MDCChipActionFoundation.prototype.handleKeydown = function (event) {
         var key = normalizeKey(event);
@@ -75,21 +75,22 @@ var MDCChipActionFoundation = /** @class */ (function (_super) {
     MDCChipActionFoundation.prototype.setDisabled = function (isDisabled) {
         // Use `aria-disabled` for the selectable (listbox) disabled state
         if (this.isSelectable()) {
-            this.adapter.setAttribute(Attributes.ARIA_DISABLED, "" + isDisabled);
+            this.adapter.setAttribute(MDCChipActionAttributes.ARIA_DISABLED, "" + isDisabled);
             return;
         }
         if (isDisabled) {
-            this.adapter.setAttribute(Attributes.DISABLED, 'true');
+            this.adapter.setAttribute(MDCChipActionAttributes.DISABLED, 'true');
         }
         else {
-            this.adapter.removeAttribute(Attributes.DISABLED);
+            this.adapter.removeAttribute(MDCChipActionAttributes.DISABLED);
         }
     };
     MDCChipActionFoundation.prototype.isDisabled = function () {
-        if (this.adapter.getAttribute(Attributes.ARIA_DISABLED) === 'true') {
+        if (this.adapter.getAttribute(MDCChipActionAttributes.ARIA_DISABLED) ===
+            'true') {
             return true;
         }
-        if (this.adapter.getAttribute(Attributes.DISABLED) !== null) {
+        if (this.adapter.getAttribute(MDCChipActionAttributes.DISABLED) !== null) {
             return true;
         }
         return false;
@@ -100,19 +101,19 @@ var MDCChipActionFoundation = /** @class */ (function (_super) {
             return;
         }
         // Add it to the tab order and give focus
-        if (behavior === FocusBehavior.FOCUSABLE_AND_FOCUSED) {
-            this.adapter.setAttribute(Attributes.TAB_INDEX, '0');
+        if (behavior === MDCChipActionFocusBehavior.FOCUSABLE_AND_FOCUSED) {
+            this.adapter.setAttribute(MDCChipActionAttributes.TAB_INDEX, '0');
             this.adapter.focus();
             return;
         }
         // Add to the tab order
-        if (behavior === FocusBehavior.FOCUSABLE) {
-            this.adapter.setAttribute(Attributes.TAB_INDEX, '0');
+        if (behavior === MDCChipActionFocusBehavior.FOCUSABLE) {
+            this.adapter.setAttribute(MDCChipActionAttributes.TAB_INDEX, '0');
             return;
         }
         // Remove it from the tab order
-        if (behavior === FocusBehavior.NOT_FOCUSABLE) {
-            this.adapter.setAttribute(Attributes.TAB_INDEX, '-1');
+        if (behavior === MDCChipActionFocusBehavior.NOT_FOCUSABLE) {
+            this.adapter.setAttribute(MDCChipActionAttributes.TAB_INDEX, '-1');
             return;
         }
     };
@@ -120,7 +121,8 @@ var MDCChipActionFoundation = /** @class */ (function (_super) {
         if (this.isDisabled()) {
             return false;
         }
-        if (this.adapter.getAttribute(Attributes.ARIA_HIDDEN) === 'true') {
+        if (this.adapter.getAttribute(MDCChipActionAttributes.ARIA_HIDDEN) ===
+            'true') {
             return false;
         }
         return true;
@@ -130,20 +132,21 @@ var MDCChipActionFoundation = /** @class */ (function (_super) {
         if (!this.isSelectable()) {
             return;
         }
-        this.adapter.setAttribute(Attributes.ARIA_SELECTED, "" + isSelected);
+        this.adapter.setAttribute(MDCChipActionAttributes.ARIA_SELECTED, "" + isSelected);
     };
     MDCChipActionFoundation.prototype.isSelected = function () {
-        return this.adapter.getAttribute(Attributes.ARIA_SELECTED) === 'true';
+        return this.adapter.getAttribute(MDCChipActionAttributes.ARIA_SELECTED) ===
+            'true';
     };
     MDCChipActionFoundation.prototype.emitInteraction = function (trigger) {
-        this.adapter.emitEvent(Events.INTERACTION, {
+        this.adapter.emitEvent(MDCChipActionEvents.INTERACTION, {
             actionID: this.adapter.getElementID(),
             source: this.actionType(),
             trigger: trigger,
         });
     };
     MDCChipActionFoundation.prototype.emitNavigation = function (key) {
-        this.adapter.emitEvent(Events.NAVIGATION, {
+        this.adapter.emitEvent(MDCChipActionEvents.NAVIGATION, {
             source: this.actionType(),
             key: key,
         });
@@ -165,7 +168,7 @@ var MDCChipActionFoundation = /** @class */ (function (_super) {
             return trigger;
         }
         // Default case, should ideally never be returned
-        return InteractionTrigger.UNSPECIFIED;
+        return MDCChipActionInteractionTrigger.UNSPECIFIED;
     };
     return MDCChipActionFoundation;
 }(MDCFoundation));

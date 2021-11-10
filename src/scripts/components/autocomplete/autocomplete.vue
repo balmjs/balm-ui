@@ -73,6 +73,10 @@ import textfieldMixin from '../../mixins/textfield';
 import deprecatedListMixin from '../../mixins/deprecated-list';
 import getType from '../../utils/typeof';
 import { UI_TEXTFIELD_ICON } from '../textfield/constants';
+import {
+  optionFormatDefaultValue,
+  checkOptionFormat
+} from '../../utils/option-format';
 
 // Define autocomplete constants
 const UI_AUTOCOMPLETE = {
@@ -122,10 +126,7 @@ export default {
     sourceFormat: {
       type: Object,
       default() {
-        return {
-          label: 'label',
-          value: 'value'
-        };
+        return optionFormatDefaultValue;
       }
     },
     // <ui-textfield> props
@@ -213,6 +214,9 @@ export default {
       this.setDataSource(data);
       this.show();
     }
+  },
+  beforeMount() {
+    checkOptionFormat('<ui-autocomplete>', this.sourceFormat);
   },
   mounted() {
     this.$autocomplete = this.$refs.autocomplete;
@@ -406,8 +410,10 @@ export default {
             ) {
               this.currentSuggestion.index = MAX;
 
-              this.scroll.currentFirstIndex = this.scroll.defaultReversedFirstIndex;
-              this.scroll.currentLastIndex = this.scroll.defaultReversedLastIndex;
+              this.scroll.currentFirstIndex =
+                this.scroll.defaultReversedFirstIndex;
+              this.scroll.currentLastIndex =
+                this.scroll.defaultReversedLastIndex;
               this.scroll.$view.scrollTop =
                 this.scroll.itemHeight * this.scroll.defaultReversedFirstIndex;
             } else {
@@ -429,9 +435,8 @@ export default {
             event.preventDefault();
             break;
           case KEYCODE.ENTER:
-            let selectedItem = this.currentSuggestion.data[
-              this.currentSuggestion.index
-            ];
+            let selectedItem =
+              this.currentSuggestion.data[this.currentSuggestion.index];
             this.handleSelected(selectedItem);
             event.preventDefault();
             break;

@@ -14,7 +14,7 @@
       <div class="hero-demo">
         <ui-dialog
           v-if="typeOption === 0"
-          no-backdrop
+          no-scrim
           :stacked="!!buttonOption"
           class="hero-dialog mdc-dialog--open"
         >
@@ -36,7 +36,7 @@
         </ui-dialog>
         <ui-dialog
           v-if="typeOption === 1"
-          no-backdrop
+          no-scrim
           class="hero-dialog mdc-dialog--open"
         >
           <ui-dialog-title
@@ -64,7 +64,7 @@
         </ui-dialog>
         <ui-dialog
           v-if="typeOption === 2"
-          no-backdrop
+          no-scrim
           scrollable
           :stacked="!!buttonOption"
           class="demo-confirmation-dialog hero-dialog mdc-dialog--open"
@@ -77,11 +77,7 @@
           <ui-dialog-content>
             <ui-form>
               <ui-form-field v-for="i in 4" :key="i">
-                <ui-radio
-                  name="hero-radio"
-                  :input-id="`hero-radio${i}`"
-                  :value="i"
-                ></ui-radio>
+                <ui-radio :input-id="`hero-radio${i}`" :value="i"></ui-radio>
                 <label
                   :for="`hero-radio${i}`"
                   :class="$theme.getTextClass('secondary', $store.theme)"
@@ -108,8 +104,8 @@
         <div class="hero-option">
           <ui-form-field v-if="typeOption === 0">
             <ui-checkbox
-              id="hero-checkbox-title"
               v-model="hasTitle"
+              input-id="hero-checkbox-title"
               value="1"
             ></ui-checkbox>
             <label for="hero-checkbox-title">Title</label>
@@ -122,7 +118,6 @@
               <ui-radio
                 v-model="buttonOption"
                 :input-id="`hero-button${item.value}`"
-                name="dialog-button"
                 :value="item.value"
               ></ui-radio>
               <label :for="`hero-button${item.value}`">{{ item.label }}</label>

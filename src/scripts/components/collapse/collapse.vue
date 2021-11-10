@@ -1,5 +1,9 @@
 <template>
-  <div :class="className" :aria-expanded="isExpanded">
+  <div
+    :class="className"
+    :aria-expanded="isExpanded"
+    @click="$emit(UI_COLLAPSE.EVENT.CLICK, $event)"
+  >
     <div v-ripple="ripple" class="mdc-collapse__header" @click="handleToggle">
       <template v-if="isExpanded">
         <slot name="expand-more-icon" :iconClass="UI_COLLAPSE.cssClasses.icon">
@@ -42,6 +46,7 @@ const UI_COLLAPSE = {
     icon: 'mdc-collapse__icon'
   },
   EVENT: {
+    CLICK: 'click',
     CHANGE: 'update:modelValue'
   }
 };
@@ -59,12 +64,16 @@ export default {
       type: Boolean,
       default: false
     },
+    iconEndAligned: {
+      type: Boolean,
+      default: false
+    },
     ripple: {
       type: [Boolean, Number],
       default: false
     }
   },
-  emits: [UI_COLLAPSE.EVENT.CHANGE],
+  emits: [UI_COLLAPSE.EVENT.CLICK, UI_COLLAPSE.EVENT.CHANGE],
   data() {
     return {
       UI_GLOBAL,
@@ -77,7 +86,8 @@ export default {
       return {
         'mdc-collapse': true,
         'mdc-collapse--expanded': this.isExpanded,
-        'mdc-collapse--with-icon': this.withIcon
+        'mdc-collapse--with-icon': this.withIcon,
+        'mdc-collapse--icon-end-aligned': this.iconEndAligned
       };
     }
   },

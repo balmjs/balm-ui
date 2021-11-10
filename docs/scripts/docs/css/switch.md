@@ -1,5 +1,9 @@
+### @deprecation `<ui-switch>` sass variables is deprecated in `balm-ui` >= 9.37.0
+
+> ⚠️ The `deprecated` path is required in `balm-ui` >= 9.34.0
+
 ```scss
-@use '@material/switch' with (
+@use '@material/switch/deprecated/variables' with (
   $track-width: 36px,
   $track-height: 14px,
   $thumb-diameter: 20px,

@@ -20,8 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+export * from './action/index';
+export * from './chip/index';
+export * from './chip-set/index';
 /**
- * Backwards compatibility for Angular Material.
+ * Backwards compatibility for existing clients.
  */
 import * as deprecated from './deprecated/index';
 export { deprecated, };

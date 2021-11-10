@@ -40,8 +40,8 @@
         <div class="hero-option hero-options">
           <ui-form-field>
             <ui-checkbox
-              id="options"
               v-model="textLabel"
+              input-id="options"
               :disabled="!iconOption"
             ></ui-checkbox>
             <label for="options">Text label</label>

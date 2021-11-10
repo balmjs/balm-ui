@@ -34,11 +34,7 @@
               <label>Radio:</label>
               <div :class="subitemClass">
                 <ui-form-field v-for="i in 3" :key="i">
-                  <ui-radio
-                    name="radio"
-                    :value="i"
-                    :input-id="`radio1-${i}`"
-                  ></ui-radio>
+                  <ui-radio :value="i" :input-id="`radio1-${i}`"></ui-radio>
                   <label :for="`radio1-${i}`">Radio {{ i }}</label>
                 </ui-form-field>
               </div>
@@ -82,11 +78,7 @@
               <label>Radio:</label>
               <div :class="subitemClass">
                 <ui-form-field v-for="i in 3" :key="i">
-                  <ui-radio
-                    name="radio"
-                    :value="i"
-                    :input-id="`radio2-${i}`"
-                  ></ui-radio>
+                  <ui-radio :value="i" :input-id="`radio2-${i}`"></ui-radio>
                   <label :for="`radio2-${i}`">Radio {{ i }}</label>
                 </ui-form-field>
               </div>

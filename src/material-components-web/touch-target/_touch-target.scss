@@ -23,8 +23,10 @@
 // Selector '.mdc-*' should only be used in this project.
 // stylelint-disable selector-class-pattern
 
+@use 'sass:math';
 @use '../base/mixins' as base-mixins;
 @use '../feature-targeting/feature-targeting';
+@use '../rtl/rtl';
 
 $height: 48px !default;
 $width: $height !default;
@@ -51,19 +53,25 @@ $width: $height !default;
 /// height ($mdc-touch-target-height).
 /// @param {Boolean} $set-width [false] - Sets the inner element width to the
 ///     minimum touch target width ($mdc-touch-target-width).
-@mixin touch-target($set-width: false, $query: feature-targeting.all()) {
+/// @param $height [$mdc-touch-target-height] - Touch target height.
+/// @param $width [$mdc-touch-target-width] - Touch target width.
+@mixin touch-target(
+  $set-width: false,
+  $query: feature-targeting.all(),
+  $height: $height,
+  $width: $width
+) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
   @include feature-targeting.targets($feat-structure) {
     position: absolute;
     top: 50%;
-    right: 0;
     height: $height;
   }
 
   @if $set-width {
     @include feature-targeting.targets($feat-structure) {
-      /* @noflip */
+      @include rtl.ignore-next-line();
       left: 50%;
       width: $width;
       transform: translate(-50%, -50%);
@@ -71,6 +79,7 @@ $width: $height !default;
   } @else {
     @include feature-targeting.targets($feat-structure) {
       left: 0;
+      right: 0;
       transform: translateY(-50%);
     }
   }
@@ -87,7 +96,7 @@ $width: $height !default;
 ) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
-  $vertical-margin-value: ($touch-target-height - $component-height) / 2;
+  $vertical-margin-value: math.div($touch-target-height - $component-height, 2);
 
   @include feature-targeting.targets($feat-structure) {
     margin-top: $vertical-margin-value;
@@ -95,7 +104,10 @@ $width: $height !default;
   }
 
   @if $component-width {
-    $horizontal-margin-value: ($touch-target-width - $component-width) / 2;
+    $horizontal-margin-value: math.div(
+      $touch-target-width - $component-width,
+      2
+    );
 
     @include feature-targeting.targets($feat-structure) {
       margin-right: $horizontal-margin-value;

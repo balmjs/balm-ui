@@ -34,7 +34,7 @@ var MDCTabScrollerRTLReverse = /** @class */ (function (_super) {
     };
     MDCTabScrollerRTLReverse.prototype.scrollToRTL = function (scrollX) {
         var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
-        var clampedScrollLeft = this.clampScrollValue_(scrollX);
+        var clampedScrollLeft = this.clampScrollValue(scrollX);
         return {
             finalScrollPosition: clampedScrollLeft,
             scrollDelta: currentScrollLeft - clampedScrollLeft,
@@ -42,7 +42,7 @@ var MDCTabScrollerRTLReverse = /** @class */ (function (_super) {
     };
     MDCTabScrollerRTLReverse.prototype.incrementScrollRTL = function (scrollX) {
         var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
-        var clampedScrollLeft = this.clampScrollValue_(currentScrollLeft + scrollX);
+        var clampedScrollLeft = this.clampScrollValue(currentScrollLeft + scrollX);
         return {
             finalScrollPosition: clampedScrollLeft,
             scrollDelta: currentScrollLeft - clampedScrollLeft,
@@ -51,7 +51,7 @@ var MDCTabScrollerRTLReverse = /** @class */ (function (_super) {
     MDCTabScrollerRTLReverse.prototype.getAnimatingScrollPosition = function (scrollX, translateX) {
         return scrollX + translateX;
     };
-    MDCTabScrollerRTLReverse.prototype.calculateScrollEdges_ = function () {
+    MDCTabScrollerRTLReverse.prototype.calculateScrollEdges = function () {
         var contentWidth = this.adapter.getScrollContentOffsetWidth();
         var rootWidth = this.adapter.getScrollAreaOffsetWidth();
         return {
@@ -59,8 +59,8 @@ var MDCTabScrollerRTLReverse = /** @class */ (function (_super) {
             right: 0,
         };
     };
-    MDCTabScrollerRTLReverse.prototype.clampScrollValue_ = function (scrollX) {
-        var edges = this.calculateScrollEdges_();
+    MDCTabScrollerRTLReverse.prototype.clampScrollValue = function (scrollX) {
+        var edges = this.calculateScrollEdges();
         return Math.min(Math.max(edges.right, scrollX), edges.left);
     };
     return MDCTabScrollerRTLReverse;

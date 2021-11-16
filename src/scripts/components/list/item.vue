@@ -1,6 +1,9 @@
 <template>
   <li :class="className" :role="role" @click="handleClick">
-    <span :class="deprecatedListClassNameMap['mdc-list-item__ripple']"></span>
+    <span
+      v-if="hasRipple"
+      :class="deprecatedListClassNameMap['mdc-list-item__ripple']"
+    ></span>
     <slot name="before" :iconClass="UI_ITEM.cssClasses.firstTile"></slot>
     <slot>
       <!-- text content -->

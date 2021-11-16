@@ -16,3 +16,9 @@
     }
   }
 }
+
+.mdc-deprecated-list--non-interactive {
+  .mdc-deprecated-list-item {
+    cursor: default;
+  }
+}

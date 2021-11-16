@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.46.3 / 2021-11-16
+
+### Chore
+
+- `<ui-list>`: update non-Interactive lists
+
 ## v8.46.2 / 2021-08-27
 
 ### Bug Fixes

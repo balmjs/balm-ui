@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.38.1 / 2021-11-16
+
+### Chore
+
+- `<ui-list>`: update non-Interactive lists
+
 ## v9.38.0 / 2021-10-08
 
 ### Features

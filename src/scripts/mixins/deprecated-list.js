@@ -6,6 +6,11 @@ export default {
       deprecatedListClassNameMap
     };
   },
+  computed: {
+    hasRipple() {
+      return !this.$parent.nonInteractive;
+    }
+  },
   methods: {
     getDeprecatedItemClasses({ disabled, selected, activated }) {
       let result = [];

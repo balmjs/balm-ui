@@ -13,16 +13,6 @@ import HelloBalmUI from './components/HelloBalmUI.vue';
 </script>
 
 <style lang="scss">
-@use '@material/theme/variables' as theme-variables with (
-  $primary: #f00
-);
-
-@use 'balm-ui/components/icon' with (
-  $font-path: 'balm-ui/fonts'
-);
-
-@use 'balm-ui/dist/balm-ui';
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

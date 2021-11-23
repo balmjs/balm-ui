@@ -8,9 +8,3 @@
     @include ui-mixins.background;
   }
 }
-
-// fix(@material-components): dark theme
-.mdc-data-table__header-cell,
-.mdc-data-table__cell {
-  @include theme.property(color, on-surface);
-}

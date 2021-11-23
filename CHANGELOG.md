@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.46.4 / 2021-11-23
+
+### Bug Fixes
+
+- `<ui-table>`: fix override variables (`$header-row-text-color`, `$row-text-color`) bug
+
 ## v8.46.3 / 2021-11-16
 
 ### Chore
@@ -742,7 +748,7 @@
 - `v-anchor`: optimize for dynamic html
 - `$theme`: new theme apis
 - `v-shape`: new shape apis
-- overwrite variables become more concise and clear
+- override variables become more concise and clear
 
   - Old
 

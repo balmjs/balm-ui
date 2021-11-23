@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.38.2 / 2021-11-23
+
+### Bug Fixes
+
+- `<ui-table>`: fix override variables (`$header-row-text-color`, `$row-text-color`) bug
+
 ## v9.38.1 / 2021-11-16
 
 ### Chore

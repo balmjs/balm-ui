@@ -1,13 +1,19 @@
 ## 手动自定义全局栅格属性
 
-- `$setGrid(property, size, value)`
+- `$grid`
+
+  ```ts
+  interface VueInstance {
+    set: BalmUIGrid;
+  }
+  ```
 
   ```ts
   type GridProperty = 'margin' | 'gutter' | 'column-width';
   type GridSize = 'desktop' | 'tablet' | 'phone';
 
-  interface VueInstance {
-    $setGrid(property: GridProperty, size: GridSize, value: string): void;
+  interface BalmUIGrid {
+    set(property: GridProperty, size: GridSize, value: string): void;
   }
   ```
 
@@ -22,12 +28,12 @@
   - `gutter`: 单元之间的装订线的大小
   - `column-width`: 栅格内列的宽度
 
-### 在非 `.vue` 组件中使用 `$setGrid`
+### 在非 `.vue` 组件中使用 `$grid`
 
 ```js
 import { useGrid } from 'balm-ui';
 // 或
 // import { useGrid } from 'balm-ui/plugins/grid';
 
-const $setGrid = useGrid();
+const $grid = useGrid();
 ```

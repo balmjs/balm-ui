@@ -1,15 +1,23 @@
 ## Manual custom grid for global
 
-- `$setGrid(property, size, value)`
+- `$grid`
+
+  ```ts
+  interface VueInstance {
+    set: BalmUIGrid;
+  }
+  ```
 
   ```ts
   type GridProperty = 'margin' | 'gutter' | 'column-width';
   type GridSize = 'desktop' | 'tablet' | 'phone';
 
-  interface VueInstance {
-    $setGrid(property: GridProperty, size: GridSize, value: string): void;
+  interface BalmUIGrid {
+    set(property: GridProperty, size: GridSize, value: string): void;
   }
   ```
+
+> NOTE: If `balm-ui < 8.27.0`, please use `$setGrid` instead of `$grid.set`.
 
 | Param      | Type   | Default | Description                                                 |
 | ---------- | ------ | ------- | ----------------------------------------------------------- |
@@ -22,7 +30,7 @@
   - `gutter`: the size of the gutter between cells.
   - `column-width`: the width of the column within the grid.
 
-### Use `$setGrid` without `.vue` component
+### Use `$grid` without `.vue` component
 
 > New in 8.1.0
 
@@ -31,5 +39,5 @@ import { useGrid } from 'balm-ui';
 // OR
 // import { useGrid } from 'balm-ui/plugins/grid';
 
-const $setGrid = useGrid();
+const $grid = useGrid();
 ```

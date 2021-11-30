@@ -307,6 +307,7 @@
 ### BREAKING CHANGES
 
 - `<ui-banner>`: remove prop `message`
+- `$setGrid`: The `$setGrid` has been deprecated. Use the `$grid.set` instead.
 
 ## v8.26.0 / 2021-03-24
 

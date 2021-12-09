@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "8.46.4",
+  "version": "8.46.5",
   "description": "Next Generation Material UI for Vue.js",
   "keywords": [
     "balm",
@@ -68,7 +68,7 @@
     "clipboard": "^2.0.8",
     "core-js": "^3.19.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.3.0",
+    "eslint": "^8.4.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "6",
@@ -79,7 +79,7 @@
     "jest-serializer-vue": "^2.0.0",
     "markdown-loader": "^6.0.0",
     "nyc": "^15.1.0",
-    "prettier": "^2.4.1",
+    "prettier": "^2.5.1",
     "prismjs": "^1.25.0",
     "sanitize.css": "^13.0.0",
     "vue": "2",

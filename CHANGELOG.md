@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.46.5 / 2021-12-09
+
+### Bug Fixes
+
+- `<ui-autocomplete>`: throwing error on pressing enter key
+
+### Chore
+
+- `<ui-table>`: optimize fixed table
+
 ## v8.46.4 / 2021-11-23
 
 ### Bug Fixes

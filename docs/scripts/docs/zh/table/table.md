@@ -18,7 +18,7 @@
 | `sortIconAlignEnd`         | boolean         | `false`                  | 设置排序图标位于标签之后                           |         |
 | `showProgress`             | boolean         | `false`                  | 启用数据表进度指示器表示加载数据中                 | 8.16.0  |
 | `fixedHeader`              | boolean         | `false`                  | 数据表头部固定模式                                 | 8.16.0  |
-| `defaultColWidth`          | number          | `100`                    | 设置固定模式数据表每列的默认宽度                   | 8.16.0  |
+| `defaultColWidth`          | number          | `0`                      | 设置固定模式数据表每列的默认宽度                   | 8.16.0  |
 | `scroll`                   | object          | `{ x: false, y: false }` | 设置固定模式数据表容器的大小                       | 8.16.0  |
 
 - `thead` & `tbody` & `tfoot` 属性通用格式

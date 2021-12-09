@@ -18,7 +18,7 @@
 | `sortIconAlignEnd`         | boolean         | `false`                  | The sort icon will be positioned after the label.                |         |
 | `showProgress`             | boolean         | `false`                  | Styles the table with progress indicator for data loading.       | 8.16.0  |
 | `fixedHeader`              | boolean         | `false`                  | Styles the table as a fixed header.                              | 8.16.0  |
-| `defaultColWidth`          | number          | `100`                    | Set the default column width for the fixed table.                | 8.16.0  |
+| `defaultColWidth`          | number          | `0`                      | Set the default column width for the fixed table.                | 8.16.0  |
 | `scroll`                   | object          | `{ x: false, y: false }` | Set the table container size for the fixed table.                | 8.16.0  |
 
 - `thead` & `tbody` & `tfoot` props common format

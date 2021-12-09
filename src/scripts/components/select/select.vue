@@ -253,8 +253,11 @@ export default {
 
       this.setCurrentOption();
     },
-    options(val) {
-      this.init(val);
+    options: {
+      handler(val) {
+        this.init(val)
+      },
+      deep: true
     },
     disabled(val) {
       if (this.$select) {

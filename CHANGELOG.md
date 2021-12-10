@@ -3,6 +3,17 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.38.3 / 2021-12-10
+
+### Bug Fixes
+
+- `<ui-autocomplete>`: throwing error on pressing enter key
+- `<ui-table>`: fix the table cell checkbox handler bug
+
+### Chore
+
+- `<ui-table>`: optimize fixed table
+
 ## v9.38.2 / 2021-11-23
 
 ### Bug Fixes

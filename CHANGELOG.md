@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.46.6 / 2021-12-10
+
+### Bug Fixes
+
+- `<ui-table>`: fix the table cell checkbox handler bug
+
 ## v8.46.5 / 2021-12-09
 
 ### Bug Fixes

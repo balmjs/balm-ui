@@ -67,7 +67,7 @@ export default {
   },
   watch: {
     selectedRows(val) {
-      if (!val.length) {
+      if (this.$refs.checkbox && !val.length) {
         this.$refs.checkbox.reset();
       }
     }

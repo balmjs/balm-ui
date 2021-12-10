@@ -227,10 +227,7 @@ export default {
           ? this.tbody[this.tbody.length - 1].fixed
           : false;
 
-      return !!(
-        this.defaultColWidth &&
-        (this.fixedHeader || fixedFirstColumn || fixedLastColumn)
-      );
+      return !!(this.fixedHeader || fixedFirstColumn || fixedLastColumn);
     },
     columns() {
       let count = this.columnsData.length;

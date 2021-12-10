@@ -293,7 +293,7 @@ export default {
       });
     });
 
-    // fix(@material-components-web): overflow inside of the component
+    // fix(@material-components): overflow inside of the component
     if (this.fixed) {
       this.$select.menu.setFixedPosition(true);
     }

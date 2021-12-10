@@ -67,9 +67,8 @@ var MDCDataTable = /** @class */ (function (_super) {
         };
         this.content.addEventListener('click', this.handleContentClick);
         this.handleRowCheckboxChange = function (event) {
-          if (event.target.getAttribute('type') === 'checkbox') {
+          if (event.target.getAttribute('type') === 'checkbox')
             _this.foundation.handleRowCheckboxChange(event);
-          }
         };
         this.content.addEventListener('change', this.handleRowCheckboxChange);
         this.layout();
@@ -220,6 +219,7 @@ var MDCDataTable = /** @class */ (function (_super) {
                 return _this.root.querySelectorAll(selectors.ROW_SELECTED).length;
             },
             isCheckboxAtRowIndexChecked: function (rowIndex) {
+              if (_this.rowCheckboxList)
                 return _this.rowCheckboxList[rowIndex].checked;
             },
             isHeaderRowCheckboxChecked: function () { return _this.headerRowCheckbox.checked; },
@@ -271,9 +271,11 @@ var MDCDataTable = /** @class */ (function (_super) {
                 _this.getRows()[rowIndex].setAttribute(attr, value);
             },
             setHeaderRowCheckboxChecked: function (checked) {
+              if (_this.headerRowCheckbox)
                 _this.headerRowCheckbox.checked = checked;
             },
             setHeaderRowCheckboxIndeterminate: function (indeterminate) {
+              if (_this.headerRowCheckbox)
                 _this.headerRowCheckbox.indeterminate = indeterminate;
             },
             setRowCheckboxCheckedAtIndex: function (rowIndex, checked) {

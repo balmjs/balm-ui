@@ -435,9 +435,13 @@ export default {
             event.preventDefault();
             break;
           case KEYCODE.ENTER:
-            let selectedItem =
-              this.currentSuggestion.data[this.currentSuggestion.index];
-            this.handleSelected(selectedItem);
+            // Only autocomplete when text is inputted
+            if(this.inputValue.length > 0) {
+              // If no option is selected, use first option
+              let selectedItem =
+                this.currentSuggestion.data[this.currentSuggestion.index < MIN ? MIN : this.currentSuggestion.index];
+              this.handleSelected(selectedItem);
+            }
             event.preventDefault();
             break;
         }

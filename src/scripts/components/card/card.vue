@@ -19,7 +19,7 @@ export default {
     className() {
       return {
         'mdc-card': true,
-        'mdc-theme--on-surface': true, // fix(@material-components): dark theme
+        'mdc-theme--on-surface': true, // fix(@material-components/material-components-web): dark theme
         'mdc-card--outlined': this.outlined
       };
     }

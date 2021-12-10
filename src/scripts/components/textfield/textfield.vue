@@ -295,7 +295,7 @@ export default {
         // fix(ui): focus bug
         if (oldVal && !val) {
           try {
-            // fix(@material): sync counter bug
+            // fix(@material-components/material-components-web): sync counter bug
             this.maxlength &&
               this.$textField.characterCounter_.foundation.setCounterValue(
                 0,

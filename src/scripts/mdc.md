@@ -1,4 +1,4 @@
-# fix(@material-components-web)
+# fix(@material-components/material-components-web)
 
 - `data-table`:
 
@@ -14,16 +14,14 @@
 
     ```js
     // return _this.rowCheckboxList[rowIndex].checked;
-    if (_this.rowCheckboxList)
-      return _this.rowCheckboxList[rowIndex].checked;
+    if (_this.rowCheckboxList) return _this.rowCheckboxList[rowIndex].checked;
     ```
 
   - component.js line 256, 260
 
     ```js
     // _this.headerRowCheckbox.checked = checked;
-    if (_this.headerRowCheckbox)
-       _this.headerRowCheckbox.checked = checked;
+    if (_this.headerRowCheckbox) _this.headerRowCheckbox.checked = checked;
     ```
 
     ```js

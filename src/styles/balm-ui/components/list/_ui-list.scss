@@ -1,7 +1,7 @@
 @use '@material/theme/theme';
 @use '@material/theme/theme-color';
 
-// fix(@material-components): for `<ui-list>` in `<ui-drawer>`
+// fix(@material-components/material-components-web): for `<ui-list>` in `<ui-drawer>`
 .mdc-drawer {
   .mdc-deprecated-list-item--activated {
     @include theme.property(color, primary);

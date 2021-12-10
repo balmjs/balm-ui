@@ -1,4 +1,4 @@
-# fix(@material-components/material-components-web)
+# fix(@material-components)
 
 - `data-table`:
 

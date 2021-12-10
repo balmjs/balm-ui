@@ -1,6 +1,6 @@
 @use '@material/theme/theme';
 
-// fix(@material-components/material-components-web): dark theme
+// fix(@material-components): dark theme
 .mdc-top-app-bar {
   @include theme.property(color, on-primary);
 }

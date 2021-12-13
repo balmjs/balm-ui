@@ -68,16 +68,22 @@ function getConfig(balm) {
               '@babel/runtime-corejs3',
               'axios',
               'clipboard',
-              'deepmerge',
-              'flatpickr',
+              'core-js',
+              'core-js-pure',
               'prismjs',
               'vue',
               'vue-i18n',
               'vue-meta',
               'vue-router'
             ],
-            balm: ['src/material-components-web'],
-            ui: ['@material', 'core-js', 'core-js-pure', 'src/scripts'],
+            'balm-ui': [
+              '@material',
+              'deepmerge',
+              'flatpickr',
+              'quill',
+              'src/material-components-web',
+              'src/scripts'
+            ],
             app: './docs/scripts/index.js'
           }
         : {

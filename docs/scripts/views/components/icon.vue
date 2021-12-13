@@ -201,7 +201,7 @@ async function init() {
   const $http = useHttp();
 
   const url = `${domain}/data/icons.json`;
-  const { icons, tags } = await $http.get(url);
+  const { icons, tags } = await $http.get(url, { loading: true });
 
   Object.keys(icons).map((category) => {
     state.categories.push({

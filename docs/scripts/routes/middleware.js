@@ -1,4 +1,5 @@
 import { useBus, useStore } from 'balm-ui';
+import { statistics } from '@/config/analytics';
 
 const CLASS_NAMESPACE = 'balmui';
 
@@ -40,6 +41,10 @@ export function initRouter(router) {
     if (to.name) {
       let toName = to.name.replace('.', '_');
       pageClassList.add(`${CLASS_NAMESPACE}-${toName}`);
+    }
+
+    if (to.name !== from.name) {
+      statistics(to.fullPath);
     }
 
     if (store && !store.isFirstLoad) {

@@ -193,7 +193,7 @@ import {
 } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-import { useEvent, useBus, useStore } from 'balm-ui';
+import { useEvent, useBus, useStore, useAlert } from 'balm-ui';
 import TopAppToolbar from '@/components/top-app-toolbar';
 import { VERSION, lazyLoadedTime, $MIN_WIDTH } from '@/config';
 import menu from '@/config/menu';
@@ -202,6 +202,7 @@ const state = reactive({
   bodyEl: document.documentElement || document.body,
   isWideScreen: true,
   drawerType: 'permanent',
+  httpLoading: false,
   pageLoad: {
     loading: false,
     progress: 0,
@@ -246,6 +247,7 @@ export default {
     const bus = useBus();
     const { t, locale } = useI18n();
     const store = useStore();
+    const $alert = useAlert();
 
     const noLayout = computed(() => {
       return route.name ? route.meta && route.meta.noLayout : true;
@@ -262,6 +264,18 @@ export default {
 
     onMounted(() => {
       root.value.parentNode.removeAttribute('class');
+
+      bus.on('request', () => {
+        state.httpLoading = true;
+      });
+
+      bus.on('response', () => {
+        state.httpLoading = false;
+      });
+
+      bus.on('on-error', (message) => {
+        $alert(message);
+      });
 
       bus.on('page-loading', () => {
         state.pageLoad.loading = true;

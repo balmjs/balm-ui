@@ -1,12 +1,15 @@
 import axios from 'axios';
-// import { useBus } from 'balm-ui';
+import { useBus } from 'balm-ui';
 
-// axios.defaults.baseURL = '/api';
+// axios.defaults.baseURL = API_ENDPOINT;
 
-// const bus = useBus();
+const bus = useBus();
 
 axios.interceptors.request.use(
   (config) => {
+    if (config.loading) {
+      bus.emit('request');
+    }
     return config;
   },
   (error) => {
@@ -16,12 +19,18 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (response) => {
-    // bus.emit('off-loading');
+    response.config.loading && bus.emit('response');
 
     return response.data;
   },
   (error) => {
-    // bus.emit('off-loading');
+    if (error.response) {
+      bus.emit('on-error', 'Response Error');
+    } else if (error.request) {
+      bus.emit('on-error', 'Request Error');
+    } else {
+      bus.emit('on-error', 'Unknown Error');
+    }
 
     return Promise.reject(error);
   }

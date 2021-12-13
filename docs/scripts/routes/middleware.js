@@ -1,4 +1,5 @@
 import { useBus } from 'balm-ui';
+import { statistics } from '@/config/analytics';
 
 function initRouter(router) {
   const bus = useBus();
@@ -32,6 +33,10 @@ function initRouter(router) {
     if (to.name) {
       let toName = to.name.replace('.', '_');
       pageClassList.add(`${CLASS_NAMESPACE}-${toName}`);
+    }
+
+    if (to.name !== from.name) {
+      statistics(to.fullPath);
     }
 
     bus.emit('page-loaded');

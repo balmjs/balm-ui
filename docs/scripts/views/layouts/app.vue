@@ -241,6 +241,10 @@ export default {
     }
   },
   mounted() {
+    this.$bus.on('on-error', (message) => {
+      this.$alert(message);
+    });
+
     this.$bus.on('page-loading', () => {
       this.pageLoad.loading = true;
 

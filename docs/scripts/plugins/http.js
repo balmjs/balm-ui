@@ -25,6 +25,14 @@ export default {
       (error) => {
         bus.emit('off-loading');
 
+        if (error.response) {
+          bus.emit('on-error', 'Response Error');
+        } else if (error.request) {
+          bus.emit('on-error', 'Request Error');
+        } else {
+          bus.emit('on-error', 'Unknown Error');
+        }
+
         return Promise.reject(error);
       }
     );

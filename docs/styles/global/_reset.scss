@@ -7,6 +7,7 @@ body {
 }
 
 html {
+  margin: 0;
   word-break: initial; // NOTE: bugfix for `sanitize.css`
 }
 

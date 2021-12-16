@@ -12,6 +12,7 @@
 | `showTotal`              | boolean         | `false`           | Display total info.                                             |         |
 | `pageSize`               | number, array   | `10`              | The number of data items per page.                              |         |
 | `pageSizeText`           | string, array   | `'Rows per page'` | The page size before/after text.                                |         |
+| `ofText`                 | string          | `'of'`            | The page total of text.                                         | 9.39.0  |
 | `showJumper`             | boolean         | `false`           | Determine whether you can jump to pages directly.               |         |
 | `jumperText`             | string, array   | `'Goto'`          | The jumper before/after text.                                   |         |
 | `jumperButtonOutlined`   | boolean         | `false`           | Styles an outlined jumper button.                               | 9.11.0  |

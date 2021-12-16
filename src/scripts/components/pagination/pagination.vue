@@ -22,7 +22,7 @@
         <!-- Total -->
         <div v-if="showTotal" class="mdc-data-table__pagination-total">
           <slot :currentMinRow="currentMinRow" :currentMaxRow="currentMaxRow">
-            {{ currentMinRow }}‑{{ currentMaxRow }} of {{ total }}
+            {{ currentMinRow }}‑{{ currentMaxRow }} {{ ofText }} {{ total }}
           </slot>
         </div>
         <!-- Navigation buttons -->
@@ -191,6 +191,10 @@ export default {
     pageSizeText: {
       type: [String, Array],
       default: 'Rows per page'
+    },
+    ofText: {
+      type: String,
+      default: 'of'
     },
     showJumper: {
       type: Boolean,

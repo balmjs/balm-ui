@@ -3,6 +3,17 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.39.0 / 2021-12-16
+
+### Features
+
+- `<ui-pagination>`: add prop `ofText`
+
+### Chore
+
+- `v-debounce`: optimize the default delay (`250ms`) for debounce
+- `<ui-table>`: optimize the fixed table
+
 ## v9.38.3 / 2021-12-10
 
 ### Bug Fixes

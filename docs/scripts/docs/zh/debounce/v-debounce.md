@@ -5,6 +5,6 @@
 ```ts
 interface Debounce {
   callback: Function;
-  delay?: number;
+  delay?: number; // defaults: 250 ms
 }
 ```

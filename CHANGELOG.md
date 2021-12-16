@@ -2,6 +2,17 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.47.0 / 2021-12-16
+
+### Features
+
+- `<ui-pagination>`: add prop `ofText`
+
+### Chore
+
+- `v-debounce`: optimize the default delay (`250ms`) for debounce
+- `<ui-table>`: optimize the fixed table
+
 ## v8.46.6 / 2021-12-10
 
 ### Bug Fixes

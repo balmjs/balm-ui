@@ -250,7 +250,7 @@ export default {
 
         return {
           class: colClass,
-          style: colWidth ? { width: colWidth } : null
+          style: colWidth ? { width: `${colWidth}px` } : null
         };
       });
 

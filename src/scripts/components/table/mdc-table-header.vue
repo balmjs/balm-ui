@@ -71,7 +71,11 @@
           </div>
         </template>
       </th>
-      <th v-if="fixed" :class="theadCellClassName({ scrollbar: true })"></th>
+      <th
+        v-if="fixed"
+        :class="theadCellClassName({ scrollbar: true })"
+        :style="fixedScrollPlaceholderStyle"
+      ></th>
     </tr>
   </thead>
 </template>
@@ -89,10 +93,22 @@ export default {
     MdcIconButton
   },
   mixins: [tableHeaderMixin],
+  props: {
+    fixedScrollWidth: {
+      type: Number,
+      default: 0
+    }
+  },
   data() {
     return {
       UI_TABLE
     };
+  },
+  computed: {
+    fixedScrollPlaceholderStyle() {
+      const padding = Math.ceil(this.fixedScrollWidth / 2);
+      return `padding: ${padding}px`;
+    }
   }
 };
 </script>

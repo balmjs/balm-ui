@@ -18,7 +18,7 @@ const vDebounce = {
         }
         timer = setTimeout(() => {
           callback();
-        }, delay || 1e3);
+        }, delay || 250);
       });
     } else {
       throw new Error(

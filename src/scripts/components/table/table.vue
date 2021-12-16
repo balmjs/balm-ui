@@ -14,6 +14,7 @@
           :sort-icon-align-end="sortIconAlignEnd"
           :fixed="hasFixedCell"
           :cell-style="cellStyle"
+          :fixed-scroll-width="fixedScrollWidth"
         >
           <template v-for="(_, name) in $slots" #[name]="slotData">
             <slot :name="name" v-bind="slotData"></slot>
@@ -208,7 +209,8 @@ export default {
       currentData: this.data,
       ticking: false,
       offsetLeft: 0,
-      maxWidth: 0
+      maxWidth: 0,
+      fixedScrollWidth: 0
     };
   },
   computed: {
@@ -227,16 +229,24 @@ export default {
           ? this.tbody[this.tbody.length - 1].fixed
           : false;
 
-      return !!(this.fixedHeader || fixedFirstColumn || fixedLastColumn);
+      const hasFixedColumn = !!(
+        this.fixedHeader ||
+        fixedFirstColumn ||
+        fixedLastColumn
+      );
+
+      if (hasFixedColumn && !this.defaultColWidth) {
+        console.warn('[UiTable]', 'You need set defaultColWidth prop first');
+      }
+
+      return this.defaultColWidth && hasFixedColumn;
     },
     columns() {
       let count = this.columnsData.length;
+      let maxWidth = 0;
       let data = this.tbody.map(({ colClass, width }) => {
-        const colWidth = width
-          ? `${width}px`
-          : this.defaultColWidth
-          ? `${this.defaultColWidth}px`
-          : null;
+        const colWidth = width || this.defaultColWidth;
+        maxWidth += colWidth;
 
         return {
           class: colClass,
@@ -246,11 +256,22 @@ export default {
 
       if (this.rowCheckbox) {
         count += 1;
+        maxWidth += UI_TABLE.CHECKBOX_COL_WIDTH;
         data.unshift({
           class: 'checkbox',
           style: { width: `${UI_TABLE.CHECKBOX_COL_WIDTH}px` }
         });
       }
+
+      this.$nextTick(() => {
+        const currentWidth = this.el.offsetWidth;
+        if (this.hasFixedCell && currentWidth > maxWidth) {
+          console.warn(
+            '[UiTable]',
+            `The table max width is ${maxWidth}px, but the current is ${currentWidth}px.`
+          );
+        }
+      });
 
       return {
         count,
@@ -315,6 +336,12 @@ export default {
         this.$table.hideProgress();
         this.$table.layout();
         this.initSelectedRows();
+
+        if (this.$refs.content) {
+          this.fixedScrollWidth =
+            this.$refs.content.$el.offsetWidth -
+            this.$refs.content.$el.clientWidth;
+        }
       });
     },
     showProgress(val) {

@@ -20,6 +20,8 @@ import UiFooterNav from '@/components/footer-nav';
 import UiTocAffix from '@/components/toc-affix';
 import SvgLogo from '@/components/svg-logo';
 // import dotImage from '../images/placeholder/handtinyblack.gif';
+// Error monitoring
+import errorMonitoring from '@/error-monitoring';
 // PWA
 import './my-sw';
 
@@ -52,6 +54,8 @@ function createApp() {
   Vue.component(SvgLogo.name, SvgLogo);
 
   setGlobalProps(Vue);
+
+  errorMonitoring(Vue, router);
 
   new Vue({
     el: '#app',

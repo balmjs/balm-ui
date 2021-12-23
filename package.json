@@ -49,6 +49,8 @@
     "url": "https://github.com/balmjs/balm-ui/issues"
   },
   "dependencies": {
+    "@sentry/tracing": "^6.16.1",
+    "@sentry/vue": "^6.16.1",
     "deepmerge": "^4.2.2",
     "flatpickr": "^4.6.9",
     "material-components-web": "^12.0.0",
@@ -68,7 +70,7 @@
     "clipboard": "^2.0.8",
     "core-js": "^3.20.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.4.0",
+    "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.2.0",

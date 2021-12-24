@@ -121,7 +121,7 @@ export default {
     this.$nextTick(() => {
       setTimeout(() => {
         this.value = 50;
-        this.$refs.slider.recompute();
+        this.$refs.slider && this.$refs.slider.recompute();
       }, 1e3);
     });
   },

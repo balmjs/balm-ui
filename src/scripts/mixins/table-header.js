@@ -67,7 +67,11 @@ export default {
   },
   watch: {
     selectedRows(val) {
-      if (this.$refs.checkbox && !val.length) {
+      if (
+        !val.length &&
+        this.$refs.checkbox &&
+        getType(this.$refs.checkbox) === 'function'
+      ) {
         this.$refs.checkbox[0].reset();
       }
     }

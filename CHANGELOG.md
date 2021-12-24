@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.47.1 / 2021-12-24
+
+### Bug Fixes
+
+- `<ui-table>`: fix some bug for `selectedRows` watcher
+
 ## v8.47.0 / 2021-12-16
 
 ### Features

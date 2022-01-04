@@ -19,7 +19,7 @@
       :class="[itemClass, 'donate']"
       icon="support"
       aria-describedby="donate"
-      @click="$router.push({ name: 'donate' })"
+      @click="$router.push({ name: 'donate' }).catch(() => {})"
     ></ui-icon-button>
     <a href="https://github.com/balmjs/balm-ui" target="_blank" rel="noopener">
       <ui-icon-button :class="[itemClass, 'github']" aria-describedby="github">

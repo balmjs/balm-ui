@@ -336,7 +336,9 @@ export default {
       const newIndex = state.items1.findIndex(
         (item) => item !== '-' && item.text === data.text
       );
-      state.items1[newIndex].selected = true;
+      if (newIndex !== -1) {
+        state.items1[newIndex].selected = true;
+      }
     },
     onSelected2(data) {
       console.log('onSelected', data);

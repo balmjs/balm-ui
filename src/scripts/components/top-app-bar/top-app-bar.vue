@@ -194,9 +194,10 @@ export default {
         if (firstElInContent.classList.contains('mdc-drawer')) {
           fixedAdjustEl = contentEl;
         } else {
-          let existingFixedAdjust = /^mdc-top-app-bar--([a-z]+-)*fixed-adjust$/.test(
-            firstElInContent.className
-          );
+          let existingFixedAdjust =
+            /^mdc-top-app-bar--([a-z]+-)*fixed-adjust$/.test(
+              firstElInContent.className
+            );
 
           if (existingFixedAdjust) {
             fixedAdjustEl = firstElInContent;
@@ -215,7 +216,9 @@ export default {
     createFixedAdjustElement() {
       if (this.contentSelector) {
         const contentEl = document.querySelector(this.contentSelector);
-        const fixedAdjustEl = this.getFixedAdjustElement(contentEl);
+        const fixedAdjustEl = contentEl
+          ? this.getFixedAdjustElement(contentEl)
+          : null;
 
         if (fixedAdjustEl) {
           fixedAdjustEl.classList.remove(

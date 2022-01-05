@@ -123,7 +123,7 @@ export default {
 
     onMounted(() => {
       setTimeout(() => {
-        slider.value.recompute();
+        slider.value && slider.value.recompute();
       }, 300);
 
       setTimeout(() => {

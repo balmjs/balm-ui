@@ -1,0 +1,32 @@
+{
+  "name": "module-federation",
+  "version": "1.0.0",
+  "description": "A Vue.js project for module federation",
+  "author": "elf-mouse <ifmouz@gmail.com>",
+  "scripts": {
+    "dev": "balm",
+    "prod": "balm -p",
+    "test": "jest"
+  },
+  "dependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/test-utils": "^2.0.0-rc.17",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.0.0",
+    "balm": "^4.0.2",
+    "eslint": "^8.6.0",
+    "eslint-plugin-vue": "^8.2.0",
+    "jest": "^27.0.0",
+    "jest-serializer-vue": "^2.0.2",
+    "ts-jest": "^27.0.0",
+    "typescript": "^4.0.0",
+    "vue-jest": "^5.0.0-alpha.10",
+    "vue-loader": "^16.0.0",
+    "webpack": "^5.65.0"
+  },
+  "private": true
+}

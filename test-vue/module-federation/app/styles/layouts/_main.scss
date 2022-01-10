@@ -1,0 +1,11 @@
+@use '../global' as global;
+
+.container {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-size: global.$fontSize-m;
+  text-align: center;
+  color: global.$primaryColor;
+  background-color: global.$primaryBgColor;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

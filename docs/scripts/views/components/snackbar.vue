@@ -89,7 +89,7 @@ export default {
 
     onMounted(() => {
       setTimeout(() => {
-        slider.value.recompute();
+        slider.value && slider.value.recompute();
       }, 300);
     });
 
@@ -97,11 +97,6 @@ export default {
       slider,
       ...toRefs(state)
     };
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.$refs.slider.recompute();
-    });
   },
   methods: {
     actionHandler() {

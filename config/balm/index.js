@@ -147,7 +147,9 @@ function getConfig(balm) {
       ],
       injectHtml: !useBuild,
       htmlPluginOptions: {
-        template: './docs/templates/index.html'
+        template: env.buildDocs
+          ? './docs/templates/prod.html'
+          : './docs/templates/dev.html'
       },
       externals: useBuild
         ? {

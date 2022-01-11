@@ -22,6 +22,7 @@
     "url": "http://elf-mouse.me"
   },
   "files": [
+    "typings",
     "src",
     "dist",
     "fonts",
@@ -30,6 +31,7 @@
     "directives",
     "utils"
   ],
+  "types": "typings/index.d.ts",
   "main": "dist/balm-ui.js",
   "module": "dist/balm-ui.esm.js",
   "scripts": {

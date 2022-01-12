@@ -1,4 +1,6 @@
-type JSONValue =
+import deepmerge = require('deepmerge');
+
+declare type JSONValue =
   | string
   | number
   | boolean
@@ -6,11 +8,11 @@ type JSONValue =
   | JSONValue[]
   | { [key: string]: JSONValue };
 
-interface JSONObject {
+declare interface JSONObject {
   [key: string]: JSONValue;
 }
 
-export interface Types {
+export declare interface Types {
   getType: (any: unknown) => string;
 
   isUndefined: (value: unknown) => boolean;
@@ -24,15 +26,9 @@ export interface Types {
   isFunction: (value: unknown) => boolean;
 }
 
-type MergeFunction = (target: object, source: object) => object;
-type MergeAllFunction = (arrayOfObjects: object[]) => object;
-type Merge =
-  | MergeFunction
-  | {
-      all: MergeAllFunction;
-    };
+declare type Merge = typeof deepmerge;
 
-export interface Helpers {
+export declare interface Helpers {
   isEmpty: (value: unknown) => boolean;
 
   jsonEqual: (a: JSONObject, b: JSONObject) => boolean;
@@ -48,4 +44,4 @@ export interface Helpers {
   toCapitalize: (str: string) => string;
 }
 
-export const detectIE: () => string | false;
+export declare function detectIE(): number | false;

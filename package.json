@@ -31,9 +31,9 @@
     "directives",
     "utils"
   ],
-  "types": "typings/index.d.ts",
   "main": "dist/balm-ui.js",
   "module": "dist/balm-ui.esm.js",
+  "types": "typings/index.d.ts",
   "scripts": {
     "update:mdc": "balm --mdc",
     "update:mdi": "balm --mdi",
@@ -52,8 +52,6 @@
     "url": "https://github.com/balmjs/balm-ui/issues"
   },
   "dependencies": {
-    "@sentry/tracing": "^6.16.1",
-    "@sentry/vue": "^6.16.1",
     "deepmerge": "^4.2.2",
     "flatpickr": "^4.6.9",
     "material-components-web": "^13.0.0",
@@ -69,6 +67,8 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@rollup/plugin-replace": "^3.0.0",
+    "@sentry/tracing": "^6.16.1",
+    "@sentry/vue": "^6.16.1",
     "@types/jest": "^27.0.0",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/test-utils": "^2.0.0-rc.17",

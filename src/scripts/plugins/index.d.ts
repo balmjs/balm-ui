@@ -1,6 +1,6 @@
 import { ComponentInternalInstance } from '@vue/runtime-core';
 
-export interface BalmUIEvent {
+export declare interface BalmUIEvent {
   onChange(property: string, value: any, fn?: Function);
 
   onOpen(property: string, fn?: Function);
@@ -10,24 +10,24 @@ export interface BalmUIEvent {
   onHide(property: string, fn?: Function);
 }
 
-export interface EventBus {
+export declare interface EventBus {
   on: (eventName: string | string[], callback: Function) => void;
   off: (eventName?: string | string[]) => void;
   emit: (eventName: string, ...args) => void;
 }
 
-type Throttle = (oldEvent: string, newEvent: string) => void;
+declare type Throttle = (oldEvent: string, newEvent: string) => void;
 
-export type Store = ComponentInternalInstance;
+export declare type Store = ComponentInternalInstance;
 
-type GridProperty = 'margin' | 'gutter' | 'column-width';
-type GridSize = 'desktop' | 'tablet' | 'phone';
+declare type GridProperty = 'margin' | 'gutter' | 'column-width';
+declare type GridSize = 'desktop' | 'tablet' | 'phone';
 
-export interface Grid {
+export declare interface Grid {
   set: (property: GridProperty, size: GridSize, value: string) => void;
 }
 
-type ThemeColor = {
+declare type ThemeColor = {
   primary?: string;
   secondary?: string;
   background?: string;
@@ -39,7 +39,7 @@ type ThemeColor = {
   'on-error'?: string;
 };
 
-type ThemeColorStyle =
+declare type ThemeColorStyle =
   | 'primary'
   | 'secondary'
   | 'background'
@@ -50,13 +50,13 @@ type ThemeColorStyle =
   | 'on-surface'
   | 'on-error';
 
-type ThemeClassStyle = ThemeColorStyle | 'primary-bg' | 'secondary-bg';
+declare type ThemeClassStyle = ThemeColorStyle | 'primary-bg' | 'secondary-bg';
 
-type TextStyle = 'primary' | 'secondary' | 'hint' | 'disabled' | 'icon';
+declare type TextStyle = 'primary' | 'secondary' | 'hint' | 'disabled' | 'icon';
 
-type ThemeTone = 'background' | 'light' | 'dark';
+declare type ThemeTone = 'background' | 'light' | 'dark';
 
-export interface Theme {
+export declare interface Theme {
   primary(color: string): void;
   secondary(color: string): void;
   background(color: string): void;
@@ -84,7 +84,7 @@ export interface Theme {
   setTextColorOnDark(style: TextStyle, value: string): void;
 }
 
-type TypographyStyle =
+declare type TypographyStyle =
   | 'headline1'
   | 'headline2'
   | 'headline3'
@@ -100,11 +100,11 @@ type TypographyStyle =
   | 'overline'
   | string;
 
-export type Typography = (style: TypographyStyle) => string;
+export declare type Typography = (style: TypographyStyle) => string;
 
-type Message = string;
+declare type Message = string;
 
-interface DialogOptions {
+declare interface DialogOptions {
   className?: string;
   title?: string;
   state?: 'success' | 'info' | 'warning' | 'error' | 'help';
@@ -114,33 +114,35 @@ interface DialogOptions {
   callback?: false | Function;
 }
 
-interface AlertOptions {
+declare interface AlertOptions {
   clone(dialogOptions: DialogOptions): DialogOptions;
   buttonText?: string;
 }
 
-export type AlertDialog = (options: Message | AlertOptions) => Promise<void>;
+export declare type AlertDialog = (
+  options: Message | AlertOptions
+) => Promise<void>;
 
-interface ConfirmOptions {
+declare interface ConfirmOptions {
   clone(dialogOptions: DialogOptions): DialogOptions;
   acceptText?: string;
   cancelText?: string;
 }
 
-export type ConfirmDialog = (
+export declare type ConfirmDialog = (
   options: Message | ConfirmOptions
 ) => Promise<void>;
 
-interface ToastOptions {
+declare interface ToastOptions {
   className?: string;
   timeoutMs?: number;
   message: Message;
   position?: 'bottom' | 'center' | 'top';
 }
 
-export type Toast = (options: Message | ToastOptions) => void;
+export declare type Toast = (options: Message | ToastOptions) => void;
 
-interface BalmUIValidationResult {
+declare interface BalmUIValidationResult {
   valid: boolean;
   validFields: string[];
   invalidFields: string[];
@@ -149,7 +151,7 @@ interface BalmUIValidationResult {
   validMsg: { [fieldName: string]: string };
 }
 
-export interface Validator {
+export declare interface Validator {
   validate(
     formData: { [fieldName: string]: any },
     customFieldset?: string[]

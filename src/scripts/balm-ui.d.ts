@@ -13,9 +13,9 @@ import type {
 } from './plugins';
 import { Types, Helpers, detectIE } from './utils';
 
-type component = DefineComponent<{}, {}, any>;
-
 declare module 'balm-ui' {
+  type component = DefineComponent<{}, {}, any>;
+
   const BalmUI: Plugin;
 
   const version: string;

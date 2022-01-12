@@ -238,7 +238,6 @@ const install = (Vue, options = {}) =>
   });
 
 const BalmUI = {
-  version,
   install
 };
 

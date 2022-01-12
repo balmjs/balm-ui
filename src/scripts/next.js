@@ -29,7 +29,6 @@ const install = (Vue, options = {}) =>
   });
 
 const BalmUINext = {
-  version,
   install
 };
 

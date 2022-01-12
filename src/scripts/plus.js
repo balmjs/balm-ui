@@ -43,7 +43,6 @@ const install = (Vue, options = {}) =>
   });
 
 const BalmUIPlus = {
-  version,
   install
 };
 

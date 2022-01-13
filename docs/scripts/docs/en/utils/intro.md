@@ -88,7 +88,7 @@ import detectIE from 'balm-ui/utils/ie';
 Methods
 
 ```ts
-detectIE(): string | false;
+detectIE(): number | false;
 ```
 
 > IE browser returns version, other browsers return `false`.

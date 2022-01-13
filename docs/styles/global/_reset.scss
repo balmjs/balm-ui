@@ -3,11 +3,11 @@
 
 html,
 body {
+  margin: 0;
   height: 100%;
 }
 
 html {
-  margin: 0;
   word-break: initial; // NOTE: bugfix for `sanitize.css`
 }
 

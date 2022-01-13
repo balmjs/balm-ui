@@ -1,7 +1,7 @@
 <template>
   <pure-page
     name="kill-ie"
-    :prev="{ name: t('menu.advanced'), url: 'guide.advanced' }"
+    :prev="{ name: t('menu.ts'), url: 'guide.ts' }"
   ></pure-page>
 </template>
 

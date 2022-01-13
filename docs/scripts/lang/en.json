@@ -9,6 +9,7 @@
     "intro": "Introduction",
     "quickstart": "Get Started",
     "advanced": "Advanced Usage",
+    "ts": "TypeScript Support",
     "upgrade": "Upgrade Guide",
     "kill-ie": "Kill IE",
     "general": "General",

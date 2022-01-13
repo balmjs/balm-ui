@@ -21,7 +21,7 @@ import UiTocAffix from '@/components/toc-affix';
 import SvgLogo from '@/components/svg-logo';
 // import dotImage from '../images/placeholder/handtinyblack.gif';
 // Error monitoring
-import errorMonitoring from '@/error-monitoring';
+// import errorMonitoring from '@/error-monitoring';
 // PWA
 import './my-sw';
 
@@ -60,7 +60,7 @@ function createBalmUIApp() {
 
   setGlobalProps(app);
 
-  errorMonitoring(app, router);
+  // errorMonitoring(app, router);
 
   app.mount('#app');
 }

@@ -12,6 +12,9 @@ const MATERIAL_COMPONENTS = [
         name: 'advanced'
       },
       {
+        name: 'ts'
+      },
+      {
         name: 'kill-ie'
       },
       {

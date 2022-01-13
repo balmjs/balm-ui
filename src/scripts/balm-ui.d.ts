@@ -10,8 +10,8 @@ import type {
   Toast,
   Typography,
   Validator
-} from './plugins';
-import { Types, Helpers, detectIE } from './utils';
+} from './typings/plugins';
+import { Types, Helpers, detectIE } from './typings/utils';
 
 declare module 'balm-ui' {
   type component = DefineComponent<{}, {}, any>;

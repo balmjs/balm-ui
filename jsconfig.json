@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    // this enables stricter inference for data properties on `this`
+    "strict": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["docs/scripts/*"],
+      "balm-ui": ["./src/scripts/balm-ui.js"],
+      "balm-ui-plus": ["./src/scripts/balm-ui-plus.js"],
+      "balm-ui-next": ["./src/scripts/balm-ui-next.js"]
+    }
+  },
+  "include": ["docs/**/*.js", "src/**/*.d.ts", "src/**/*.js", "src/**/*.vue"],
+  "exclude": ["node_modules", "test/**/*", "test-vue/**/*"]
+}

@@ -15,6 +15,7 @@
 - Powerful theme customization in every detail
 - Integrated a complete set of the latest Material Icons
 - All components and plugins is highly customizable, and can be used individually
+- TypeScript support (updating)
 
 ## Documentation & Demos
 

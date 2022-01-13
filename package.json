@@ -22,7 +22,6 @@
     "url": "http://elf-mouse.me"
   },
   "files": [
-    "typings",
     "src",
     "dist",
     "fonts",

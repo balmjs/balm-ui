@@ -9,11 +9,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["docs/scripts/*"],
-      "balm-ui": ["./src/scripts/balm-ui.js"],
-      "balm-ui-plus": ["./src/scripts/balm-ui-plus.js"],
-      "balm-ui-next": ["./src/scripts/balm-ui-next.js"]
+      "balm-ui": ["src/scripts/balm-ui.d.ts"],
+      "balm-ui-plus": ["src/scripts/balm-ui-plus.d.ts"],
+      "balm-ui-next": ["src/scripts/balm-ui-next.d.ts"]
     }
-  },
-  "include": ["docs/**/*.js", "src/**/*.d.ts", "src/**/*.js", "src/**/*.vue"],
-  "exclude": ["node_modules", "test/**/*", "test-vue/**/*"]
+  }
 }

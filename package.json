@@ -33,6 +33,7 @@
   ],
   "main": "dist/balm-ui.js",
   "module": "dist/balm-ui.esm.js",
+  "types": "dist/balm-ui.d.ts",
   "scripts": {
     "update:mdc": "balm --mdc",
     "update:mdi": "balm --mdi",

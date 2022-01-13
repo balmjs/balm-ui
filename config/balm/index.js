@@ -91,7 +91,7 @@ function getConfig(balm) {
             app: './docs/scripts/index.js'
           }
         : {
-            'balm-ui': './src/scripts/index.js'
+            'balm-ui': './src/scripts/balm-ui.js'
           },
       library: useDocsDev
         ? ''

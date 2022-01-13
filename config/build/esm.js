@@ -64,7 +64,7 @@ function buildESModule(mix) {
   mix.rollup(
     {
       external,
-      input: `./src/scripts/index.js`,
+      input: `./src/scripts/balm-ui.js`,
       plugins
     },
     {
@@ -77,7 +77,7 @@ function buildESModule(mix) {
   mix.rollup(
     {
       external,
-      input: `./src/scripts/plus.js`,
+      input: `./src/scripts/balm-ui-plus.js`,
       plugins
     },
     {

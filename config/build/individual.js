@@ -39,7 +39,7 @@ function buildIndividual(mix) {
   // Build plus & next
   mix.webpack(
     {
-      'balm-ui-plus': './src/scripts/plus.js'
+      'balm-ui-plus': './src/scripts/balm-ui-plus.js'
     },
     config.output.dist,
     {
@@ -54,7 +54,7 @@ function buildIndividual(mix) {
   );
   mix.webpack(
     {
-      'balm-ui-next': './src/scripts/next.js'
+      'balm-ui-next': './src/scripts/balm-ui-next.js'
     },
     config.output.dist,
     {

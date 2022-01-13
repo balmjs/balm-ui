@@ -21,7 +21,7 @@ import UiTocAffix from '@/components/toc-affix';
 import SvgLogo from '@/components/svg-logo';
 // import dotImage from '../images/placeholder/handtinyblack.gif';
 // Error monitoring
-import errorMonitoring from '@/error-monitoring';
+// import errorMonitoring from '@/error-monitoring';
 // PWA
 import './my-sw';
 
@@ -55,7 +55,7 @@ function createApp() {
 
   setGlobalProps(Vue);
 
-  errorMonitoring(Vue, router);
+  // errorMonitoring(Vue, router);
 
   new Vue({
     el: '#app',

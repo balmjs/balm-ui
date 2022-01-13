@@ -87,7 +87,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.$refs.slider.recompute();
+      this.$refs.slider && this.$refs.slider.recompute();
     });
   },
   methods: {

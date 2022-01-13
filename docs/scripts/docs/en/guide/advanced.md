@@ -286,6 +286,16 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
 
 > For the optimal code building solution, the usage is the same as the built versions.
 
+> ⚠️ NOTE: alias for `balm-ui` < 9.40.0
+
+```js
+{
+  'balm-ui-source': 'balm-ui/src/scripts/index.js',
+  'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
+  'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+}
+```
+
 **2.3.1 For Balm CLI**
 
 - Edit `/path/to/my-project/config/balmrc.js`, and add the following lines of code:
@@ -306,9 +316,9 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
       ],
       // Reassign the entry file
       alias: {
-        'balm-ui-source': 'balm-ui/src/scripts',
-        'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
-        'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+        'balm-ui-source': 'balm-ui/src/scripts/balm-ui.js',
+        'balm-ui-plus-source': 'balm-ui/src/scripts/balm-ui-plus.js',
+        'balm-ui-next-source': 'balm-ui/src/scripts/balm-ui-next.js',
       }
     },
     ...
@@ -328,17 +338,17 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
     configureWebpack: {
       resolve: {
         alias: {
-          'balm-ui-source': 'balm-ui/src/scripts',
-          'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
-          'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+          'balm-ui-source': 'balm-ui/src/scripts/balm-ui.js',
+          'balm-ui-plus-source': 'balm-ui/src/scripts/balm-ui-plus.js',
+          'balm-ui-next-source': 'balm-ui/src/scripts/balm-ui-next.js'
         }
       }
     }
     // chainWebpack: (config) => {
     //   config.resolve.alias
-    //     .set('balm-ui-source', 'balm-ui/src/scripts')
-    //     .set('balm-ui-plus-source', 'balm-ui/src/scripts/plus.js')
-    //     .set('balm-ui-next-source', 'balm-ui/src/scripts/next.js');
+    //     .set('balm-ui-source', 'balm-ui/src/scripts/balm-ui.js')
+    //     .set('balm-ui-plus-source', 'balm-ui/src/scripts/balm-ui-plus.js')
+    //     .set('balm-ui-next-source', 'balm-ui/src/scripts/balm-ui-next.js');
     // }
   };
   ```
@@ -355,9 +365,9 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
     resolve: {
       alias: {
         vue: 'vue/dist/vue.esm-bundler.js',
-        'balm-ui-source': 'balm-ui/src/scripts',
-        'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
-        'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+        'balm-ui-source': 'balm-ui/src/scripts/balm-ui.js',
+        'balm-ui-plus-source': 'balm-ui/src/scripts/balm-ui-plus.js',
+        'balm-ui-next-source': 'balm-ui/src/scripts/balm-ui-next.js'
       }
     }
   });

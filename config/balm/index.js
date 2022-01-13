@@ -118,7 +118,9 @@ function getConfig(balm) {
       alias: Object.assign(
         {
           '@': resolve('docs/scripts'),
-          'balm-ui': resolve('src/scripts'),
+          'balm-ui': resolve('src/scripts/balm-ui.js'),
+          'balm-ui-plus': resolve('src/scripts/balm-ui-plus.js'),
+          'balm-ui-next': resolve('src/scripts/balm-ui-next.js'),
           vue$: 'vue/dist/vue.esm-bundler.js',
           pickerLangZh: 'flatpickr/dist/l10n/zh.js'
         }

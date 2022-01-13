@@ -9,8 +9,8 @@ import validatorRules from '@/config/validator-rules';
 import { toolbarTips, toolbarOptions, emotions } from '@/config/editor';
 // BalmUI
 import BalmUI from 'balm-ui';
-import BalmUIPlus from 'balm-ui/plus';
-import BalmUINext from 'balm-ui/next';
+import BalmUIPlus from 'balm-ui-plus';
+import BalmUINext from 'balm-ui-next';
 // Custom components
 import PurePage from '@/views/layouts/pure-page';
 import DocsPage from '@/views/layouts/docs-page';

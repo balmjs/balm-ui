@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.40.0 / 2022-01-13
+
+### Features
+
+- add typescript support
+
 ## v9.39.1 / 2021-12-24
 
 ### Bug Fixes

@@ -4,6 +4,7 @@ const config = require('../build/config');
 const buildIndividual = require('../build/individual');
 const buildESModule = require('../build/esm');
 const fixGridCss = require('../build/fix');
+const createTSDefinition = require('../build/ts');
 
 module.exports = (mix) => {
   if (env.buildDocs) {
@@ -59,6 +60,8 @@ module.exports = (mix) => {
         fixGridCss(mix);
 
         buildESModule(mix);
+
+        createTSDefinition(mix);
       } else {
         mix.copy('./src/material-icons/*', './docs/fonts'); // For new fonts updated
         // Test PWA for local

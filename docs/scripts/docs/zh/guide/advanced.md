@@ -288,6 +288,16 @@
 
 > 这是最优化的代码构建方案，用法和默认构建版本相同。
 
+> ⚠️ 提示：`balm-ui` < 9.40.0 的 alias 配置
+
+```js
+{
+  'balm-ui-source': 'balm-ui/src/scripts/index.js',
+  'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
+  'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+}
+```
+
 **2.3.1 Balm CLI**
 
 - 编辑 `/path/to/my-project/config/balmrc.js`，并添加以下代码：
@@ -308,9 +318,9 @@
       ],
       // Reassign the entry file
       alias: {
-        'balm-ui-source': 'balm-ui/src/scripts',
-        'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
-        'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+        'balm-ui-source': 'balm-ui/src/scripts/balm-ui.js',
+        'balm-ui-plus-source': 'balm-ui/src/scripts/balm-ui-plus.js',
+        'balm-ui-next-source': 'balm-ui/src/scripts/balm-ui-next.js'
       }
     },
     ...
@@ -330,17 +340,17 @@
     configureWebpack: {
       resolve: {
         alias: {
-          'balm-ui-source': 'balm-ui/src/scripts',
-          'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
-          'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+          'balm-ui-source': 'balm-ui/src/scripts/balm-ui.js',
+          'balm-ui-plus-source': 'balm-ui/src/scripts/balm-ui-plus.js',
+          'balm-ui-next-source': 'balm-ui/src/scripts/balm-ui-next.js'
         }
       }
     }
     // chainWebpack: (config) => {
     //   config.resolve.alias
-    //     .set('balm-ui-source', 'balm-ui/src/scripts')
-    //     .set('balm-ui-plus-source', 'balm-ui/src/scripts/plus.js')
-    //     .set('balm-ui-next-source', 'balm-ui/src/scripts/next.js');
+    //     .set('balm-ui-source', 'balm-ui/src/scripts/balm-ui.js')
+    //     .set('balm-ui-plus-source', 'balm-ui/src/scripts/balm-ui-plus.js')
+    //     .set('balm-ui-next-source', 'balm-ui/src/scripts/balm-ui-next.js');
     // }
   };
   ```
@@ -357,9 +367,9 @@
     resolve: {
       alias: {
         vue: 'vue/dist/vue.esm-bundler.js',
-        'balm-ui-source': 'balm-ui/src/scripts',
-        'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
-        'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+        'balm-ui-source': 'balm-ui/src/scripts/balm-ui.js',
+        'balm-ui-plus-source': 'balm-ui/src/scripts/balm-ui-plus.js',
+        'balm-ui-next-source': 'balm-ui/src/scripts/balm-ui-next.js'
       }
     }
   });

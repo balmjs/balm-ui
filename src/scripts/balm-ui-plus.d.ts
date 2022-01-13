@@ -1,6 +1,6 @@
 import type { DefineComponent, Plugin, Directive } from '@vue/runtime-core';
 
-declare module 'balm-ui-plus' {
+declare module './balm-ui-plus' {
   type component = DefineComponent<{}, {}, any>;
 
   const BalmUIPlus: Plugin;

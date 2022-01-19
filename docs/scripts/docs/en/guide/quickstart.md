@@ -31,6 +31,24 @@ The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface t
   npm install -g balm-core balm-cli
   ```
 
+> ⚠️ NOTE: If you are using pnpm, please configure the `.npmrc` file for BalmUI
+
+- Hoisting everything to the the root of node_modules:
+
+  ```ini
+  shamefully-hoist=true
+  ```
+
+- Or, hoisting only packages that match a pattern:
+
+  ```ini
+  public-hoist-pattern[]="*deepmerge*"
+  public-hoist-pattern[]="*flatpickr*"
+  public-hoist-pattern[]="*material-components-web*"
+  public-hoist-pattern[]="@material/*"
+  public-hoist-pattern[]="*quill*"
+  ```
+
 <div id="for-balm-cli"></div>
 
 ## 1. For Balm CLI (Recommended)

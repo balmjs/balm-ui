@@ -1,6 +1,6 @@
 # TypeScript 支持
 
-> `balm-ui` > 9.40.0
+> `balm-ui` >= 9.40.0
 
 ## 推荐配置
 

@@ -31,6 +31,24 @@
   npm install -g balm-core balm-cli
   ```
 
+> ⚠️ 提示：如果你使用 pnpm，请为 BalmUI 配置 `.npmrc` 文件
+
+- 把所有依赖都提升到 node_modules 的根目录：
+
+  ```ini
+  shamefully-hoist=true
+  ```
+
+- 或者只提升匹配的依赖包：
+
+  ```ini
+  public-hoist-pattern[]="*deepmerge*"
+  public-hoist-pattern[]="*flatpickr*"
+  public-hoist-pattern[]="*material-components-web*"
+  public-hoist-pattern[]="@material/*"
+  public-hoist-pattern[]="*quill*"
+  ```
+
 <div id="for-balm-cli"></div>
 
 ## 1. Balm CLI (推荐)

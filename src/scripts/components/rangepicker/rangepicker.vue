@@ -159,6 +159,10 @@ export default {
       this.flatpickr = flatpickr(startInputEl, config);
     }
   },
+  beforeDestroy() {
+    this.flatpickr.destroy();
+    this.flatpickr = null;
+  },
   methods: {
     updateInputs(dates) {
       if (dates.length === 2) {

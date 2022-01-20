@@ -83,7 +83,7 @@ export default {
   emits: [UI_RANGEPICKER.EVENT.CHANGE],
   data() {
     return {
-      flatpickr: null,
+      picker: null,
       startInputValue: '',
       endInputValue: ''
     };
@@ -119,7 +119,7 @@ export default {
     const startInputEl = this.$refs.startInput.el.querySelector('input');
     const endInputEl = this.$refs.endInput.el.querySelector('input');
 
-    if (!this.flatpickr) {
+    if (!this.picker) {
       let config = Object.assign({}, this.config, {
         disableMobile: true, // Mobile Support
         plugins: [
@@ -153,8 +153,12 @@ export default {
         this.onEndInputChange();
       };
 
-      this.flatpickr = flatpickr(startInputEl, config);
+      this.picker = flatpickr(startInputEl, config);
     }
+  },
+  beforeUnmount() {
+    this.picker.destroy();
+    this.picker = null;
   },
   methods: {
     updateInputs(dates) {
@@ -177,7 +181,7 @@ export default {
         }
       }
     },
-    updateInitialValue(instance = this.flatpickr) {
+    updateInitialValue(instance = this.picker) {
       const dateValue =
         this.startInputValue && this.endInputValue
           ? [this.startInputValue, this.endInputValue]

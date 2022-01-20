@@ -27,7 +27,7 @@ export declare interface Grid {
   set: (property: GridProperty, size: GridSize, value: string) => void;
 }
 
-declare type ThemeColor = {
+export declare type ThemeColor = {
   primary?: string;
   secondary?: string;
   background?: string;
@@ -114,7 +114,7 @@ declare interface DialogOptions {
   callback?: false | Function;
 }
 
-declare interface AlertOptions {
+export declare interface AlertOptions {
   clone(dialogOptions: DialogOptions): DialogOptions;
   buttonText?: string;
 }
@@ -123,7 +123,7 @@ export declare type AlertDialog = (
   options: Message | AlertOptions
 ) => Promise<void>;
 
-declare interface ConfirmOptions {
+export declare interface ConfirmOptions {
   clone(dialogOptions: DialogOptions): DialogOptions;
   acceptText?: string;
   cancelText?: string;
@@ -133,7 +133,7 @@ export declare type ConfirmDialog = (
   options: Message | ConfirmOptions
 ) => Promise<void>;
 
-declare interface ToastOptions {
+export declare interface ToastOptions {
   className?: string;
   timeoutMs?: number;
   message: Message;
@@ -142,7 +142,7 @@ declare interface ToastOptions {
 
 export declare type Toast = (options: Message | ToastOptions) => void;
 
-declare interface BalmUIValidationResult {
+declare interface ValidationResult {
   valid: boolean;
   validFields: string[];
   invalidFields: string[];
@@ -155,7 +155,7 @@ export declare interface Validator {
   validate(
     formData: { [fieldName: string]: any },
     customFieldset?: string[]
-  ): BalmUIValidationResult;
+  ): ValidationResult;
 }
 
 declare module '@vue/runtime-core' {
@@ -171,3 +171,13 @@ declare module '@vue/runtime-core' {
     $toast: Toast;
   }
 }
+
+declare interface ValidationRule {
+  label?: string;
+  validate(fieldValue: any, formData?: { [fieldName: string]: any }): boolean;
+  message: string;
+}
+
+export declare type Validations = {
+  [validationRuleName: string]: ValidationRule;
+};

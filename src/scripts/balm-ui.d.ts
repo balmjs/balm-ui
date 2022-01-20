@@ -9,9 +9,92 @@ import type {
   Theme,
   Toast,
   Typography,
-  Validator
+  Validator,
+  ThemeColor,
+  AlertOptions,
+  ConfirmOptions,
+  ToastOptions,
+  Validations
 } from './typings/plugins';
 import { Types, Helpers, detectIE } from './typings/utils';
+import {
+  UiIconProperties,
+  UiButtonProperties,
+  UiFabProperties,
+  UiIconButtonProperties,
+  UiSegmentedButtonsProperties,
+  UiTopAppBarProperties,
+  UiGridProperties,
+  UiGridCellProperties,
+  UiDividerProperties,
+  UiDrawerProperties,
+  UiTabIndicatorProperties,
+  UiMenuAnchorProperties,
+  UiMenuProperties,
+  UiPaginationProperties,
+  UiFormProperties,
+  UiFormFieldProperties,
+  UiTextfieldProperties,
+  UiTextfieldHelperProperties,
+  UiAutocompleteProperties,
+  UiDatepickerProperties,
+  UiRangepickerProperties,
+  UiSelectProperties,
+  UiChipsProperties,
+  UiSwitchProperties,
+  UiSliderProperties,
+  UiFileProperties,
+  UiDialogProperties,
+  UiDialogTitleProperties,
+  UiDialogActionsProperties,
+  UiSnackbarProperties,
+  UiBannerProperties,
+  UiSpinnerProperties,
+  UiTooltipProperties
+} from './typings/components';
+
+export type BalmUIOptions = {
+  UiIcon?: UiIconProperties;
+  UiButton?: UiButtonProperties;
+  UiFab?: UiFabProperties;
+  UiIconButton?: UiIconButtonProperties;
+  UiSegmentedButtons?: UiSegmentedButtonsProperties;
+  UiTopAppBar?: UiTopAppBarProperties;
+  UiGrid?: UiGridProperties;
+  UiGridCell?: UiGridCellProperties;
+  UiDivider?: UiDividerProperties;
+  UiDrawer?: UiDrawerProperties;
+  UiTabIndicator?: UiTabIndicatorProperties;
+  UiMenuAnchor?: UiMenuAnchorProperties;
+  UiMenu?: UiMenuProperties;
+  UiPagination?: UiPaginationProperties;
+  UiForm?: UiFormProperties;
+  UiFormField?: UiFormFieldProperties;
+  UiTextfield?: UiTextfieldProperties;
+  UiTextfieldHelper?: UiTextfieldHelperProperties;
+  UiAutocomplete?: UiAutocompleteProperties;
+  UiDatepicker?: UiDatepickerProperties;
+  UiRangepicker?: UiRangepickerProperties;
+  UiSelect?: UiSelectProperties;
+  UiChips?: UiChipsProperties;
+  UiSwitch?: UiSwitchProperties;
+  UiSlider?: UiSliderProperties;
+  UiFile?: UiFileProperties;
+  UiDialog?: UiDialogProperties;
+  UiDialogTitle?: UiDialogTitleProperties;
+  UiDialogActions?: UiDialogActionsProperties;
+  UiSnackbar?: UiSnackbarProperties;
+  UiBanner?: UiBannerProperties;
+  UiSpinner?: UiSpinnerProperties;
+  UiTooltip?: UiTooltipProperties;
+  $store?: any;
+  $theme?: ThemeColor;
+  $typography?: string[];
+  $alert?: AlertOptions;
+  $confirm?: ConfirmOptions;
+  $toast?: ToastOptions;
+  $validator?: Validations;
+};
 
 declare module 'balm-ui' {
   type component = DefineComponent<{}, {}, any>;

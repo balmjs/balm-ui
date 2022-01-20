@@ -3,6 +3,16 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.40.1 / 2022-01-20
+
+### Features
+
+- typescript: add `BalmUIOptions` type for `app.use(BalmUI, BalmUIOptions)`
+
+### Bug Fixes
+
+- `<ui-rangepicker>`: fix unmount bug
+
 ## v9.40.0 / 2022-01-13
 
 ### Features

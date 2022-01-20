@@ -3,7 +3,7 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
-## v9.40.1 / 2022-01-20
+## v9.40.2 / 2022-01-20
 
 ### Features
 
@@ -12,6 +12,7 @@
 ### Bug Fixes
 
 - `<ui-rangepicker>`: fix unmount bug
+- fix balm-ui.scss for mdc entry
 
 ## v9.40.0 / 2022-01-13
 

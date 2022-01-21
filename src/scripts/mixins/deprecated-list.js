@@ -8,10 +8,16 @@ export default {
   },
   computed: {
     hasRipple() {
-      return !this.$parent.nonInteractive;
+      const parent = this.getListTag(this);
+      return !parent.nonInteractive;
     }
   },
   methods: {
+    getListTag(self) {
+      const parent = self.$parent;
+      const tagName = parent?.$vnode.tag;
+      return /(UiNav|UiList)$/.test(tagName) ? parent : this.getListTag(parent);
+    },
     getDeprecatedItemClasses({ disabled, selected, activated }) {
       let result = [];
 

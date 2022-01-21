@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.40.3 / 2022-01-21
+
+### Bug Fixes
+
+- `<ui-list>`, `<ui-nav>`: fix `nonInteractive` prop bug
+
 ## v9.40.2 / 2022-01-20
 
 ### Features

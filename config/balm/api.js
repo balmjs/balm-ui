@@ -5,6 +5,7 @@ const buildIndividual = require('../build/individual');
 const buildESModule = require('../build/esm');
 const fixGridCss = require('../build/fix');
 const createTSDefinition = require('../build/ts');
+const createVeturHelper = require('../build/vetur');
 
 module.exports = (mix) => {
   if (env.buildDocs) {
@@ -62,6 +63,7 @@ module.exports = (mix) => {
         buildESModule(mix);
 
         createTSDefinition(mix);
+        createVeturHelper(mix);
       } else {
         mix.copy('./src/material-icons/*', './docs/fonts'); // For new fonts updated
         // Test PWA for local

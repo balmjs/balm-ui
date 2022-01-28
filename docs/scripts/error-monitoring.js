@@ -11,7 +11,7 @@ function errorMonitoring(app, router) {
       integrations: [
         new Integrations.BrowserTracing({
           routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-          tracingOrigins: ['localhost', 'next-material.balmjs.com', /^\//]
+          tracingOrigins: ['localhost', 'material.balmjs.com', /^\//]
         })
       ],
       // Set tracesSampleRate to 1.0 to capture 100%

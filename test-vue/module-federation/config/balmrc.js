@@ -43,7 +43,7 @@ module.exports = {
         name: 'test',
         remotes: {
           RemoteBalmUI:
-            'RemoteBalmUI@https://next-material.balmjs.com/remote-balm-ui.js'
+            'RemoteBalmUI@https://material.balmjs.com/remote-balm-ui.js'
         },
         shared: ['vue']
       })

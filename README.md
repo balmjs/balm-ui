@@ -1,10 +1,10 @@
-# [BalmUI](https://next-material.balmjs.com/) [![BalmUI version][balm-ui-image]][balm-ui-url] [![MDC version][mdc-web-image]][mdc-web-url]
+# [BalmUI](https://material.balmjs.com/) [![BalmUI version][balm-ui-image]][balm-ui-url] [![MDC version][mdc-web-image]][mdc-web-url]
 
 > Next Generation Material UI for Vue.js
 
 ## Introduction
 
-[BalmUI](https://next-material.balmjs.com/) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js 3.0.
+[BalmUI](https://material.balmjs.com/) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js 3.0.
 
 > [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) supports for Vue 2
 
@@ -19,8 +19,8 @@
 
 ## Documentation & Demos
 
-- Visit [next-material.balmjs.com](https://next-material.balmjs.com/)
-- Visit [material.balmjs.com](https://material.balmjs.com/) (for Vue 2)
+- Visit [material.balmjs.com](https://material.balmjs.com/)
+- Visit [v8.material.balmjs.com](https://v8.material.balmjs.com/) (for Vue 2)
 
 ## Quick Start
 
@@ -41,16 +41,16 @@ cd my-project
 #### 1.1 Installing `balm-ui`
 
 ```sh
-yarn add balm-ui@next
+yarn add balm-ui
 # OR
-npm install --save balm-ui@next
+npm install --save balm-ui
 ```
 
 #### 1.2 Configuration
 
 update `balm.config.js`
 
-- get [Material Icons](https://next-material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `my-project/app/fonts`)
+- get [Material Icons](https://material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `my-project/app/fonts`)
 
   ```js
   const api = (mix) => {
@@ -182,9 +182,9 @@ npm run prod
 #### 2.1 Installing `balm-ui`
 
 ```sh
-yarn add balm-ui@next
+yarn add balm-ui
 # OR
-npm install --save balm-ui@next
+npm install --save balm-ui
 ```
 
 #### 2.2 Configuration
@@ -262,16 +262,16 @@ npm install --save balm-ui@next
     <title>Hello BalmUI</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/balm-ui@next/dist/balm-ui.css"
+      href="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui.css"
     />
   </head>
   <body>
     <div id="app">
       <ui-button icon="add" @click="$alert(message)">SayHi</ui-button>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-    <script src="https://cdn.jsdelivr.net/npm/balm-ui@next"></script>
-    <script src="https://cdn.jsdelivr.net/npm/balm-ui@next/dist/balm-ui-plus.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui-plus.js"></script>
     <script>
       var app = Vue.createApp({
         setup() {

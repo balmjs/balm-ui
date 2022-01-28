@@ -189,7 +189,8 @@ import {
   toRefs,
   computed,
   onMounted,
-  onBeforeUnmount
+  onBeforeUnmount,
+  nextTick
 } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
@@ -263,7 +264,7 @@ export default {
     };
 
     onMounted(() => {
-      root.value.parentNode.removeAttribute('class');
+      nextTick(() => root.value.parentNode.removeAttribute('class'));
 
       bus.on('request', () => {
         state.httpLoading = true;

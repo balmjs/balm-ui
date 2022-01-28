@@ -79,16 +79,16 @@ npm install
 ### 1.1 安装 `balm-ui`
 
 ```bash
-yarn add balm-ui@next
+yarn add balm-ui
 # OR
-npm install --save balm-ui@next
+npm install --save balm-ui
 ```
 
 ### 1.2 配置
 
 更新 `balm.config.js`
 
-- 获取 [Material Icons](https://next-material.balmjs.com/material-icons.zip) 无需下载（或者下载后解压至 `my-project/app/fonts`）
+- 获取 [Material Icons](https://material.balmjs.com/material-icons.zip) 无需下载（或者下载后解压至 `my-project/app/fonts`）
 
   ```js
   const api = (mix) => {
@@ -222,9 +222,9 @@ npm run prod
 ### 2.1 安装 `balm-ui`
 
 ```bash
-yarn add balm-ui@next
+yarn add balm-ui
 # OR
-npm install --save balm-ui@next
+npm install --save balm-ui
 ```
 
 ### 2.2 配置
@@ -304,16 +304,16 @@ npm install --save balm-ui@next
     <title>Hello BalmUI</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/balm-ui@next/dist/balm-ui.css"
+      href="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui.css"
     />
   </head>
   <body>
     <div id="app">
       <ui-button icon="add" @click="$alert(message)">SayHi</ui-button>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-    <script src="https://cdn.jsdelivr.net/npm/balm-ui@next"></script>
-    <script src="https://cdn.jsdelivr.net/npm/balm-ui@next/dist/balm-ui-plus.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui-plus.js"></script>
     <script>
       var app = Vue.createApp({
         setup() {

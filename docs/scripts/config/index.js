@@ -4,7 +4,7 @@ import prismjs from 'prismjs';
 export const VERSION = pkg.version;
 export const isDev = process.env.NODE_ENV === 'development';
 export const isProd = process.env.NODE_ENV === 'production';
-export const domain = isProd ? '//next-material.balmjs.com' : '';
+export const domain = isProd ? '//material.balmjs.com' : '';
 export const lazyLoadedTime = 1e3;
 
 // 同步 Sass variables

@@ -62,7 +62,7 @@ const source = [
   },
   {
     name: 'BalmUI',
-    url: 'https://next-material.balmjs.com/'
+    url: 'https://material.balmjs.com/'
   },
   {
     name: 'BalmScroll',

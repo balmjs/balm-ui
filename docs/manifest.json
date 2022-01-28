@@ -1,6 +1,6 @@
 {
-  "name": "next-material.balmjs.com",
-  "short_name": "BalmUI@next",
+  "name": "material.balmjs.com",
+  "short_name": "BalmUI",
   "start_url": ".",
   "display": "standalone",
   "orientation": "portrait",

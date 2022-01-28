@@ -25,7 +25,7 @@ fi
 if $canRelease; then
   echo "${tagName} releasing"
 
-  npm publish
+  npm publish --tag vue2
 
   git tag ${tagName}
   git push origin ${tagName}

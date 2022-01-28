@@ -334,7 +334,7 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
 
 <div id="mdi"></div>
 
-## 3. Get [Material Icons](https://material.balmjs.com/material-icons.zip) (without downloading)
+## 3. Get [Material Icons](https://v8.material.balmjs.com/material-icons.zip) (without downloading)
 
 - Edit `/path/to/my-project/balm.config.js`
 

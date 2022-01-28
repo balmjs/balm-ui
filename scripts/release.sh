@@ -5,11 +5,11 @@ npm run prod
 LatestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
 echo -e "Latest version: ${LatestTag}"
 
-echo -e "Input new release version: (e.g. 1.0.0)"
+echo -e "Input new release version: (e.g. 8.0.0)"
 read tagName
 
-regVersion='^([0-9]+\.[0-9]+\.[0-9]+)$'
-regTag='^v([0-9]+\.[0-9]+\.[0-9]+)$'
+regVersion='^(8\.[0-9]+\.[0-9]+)$'
+regTag='^v(8\.[0-9]+\.[0-9]+)$'
 
 canRelease=false
 

@@ -1,6 +1,6 @@
-# [BalmUI](https://material.balmjs.com) ChangeLog
+# [BalmUI](https://v8.material.balmjs.com) ChangeLog
 
-> :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
+> :tada: [`balm-ui`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
 ## v8.47.4 / 2022-01-21
 

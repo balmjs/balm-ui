@@ -334,7 +334,7 @@
 
 <div id="mdi"></div>
 
-## 3. 获取 [Material Icons](https://material.balmjs.com/material-icons.zip)（无需下载）
+## 3. 获取 [Material Icons](https://v8.material.balmjs.com/material-icons.zip)（无需下载）
 
 - 编辑 `/path/to/my-project/balm.config.js`
 

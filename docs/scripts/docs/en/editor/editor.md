@@ -134,12 +134,12 @@ interface Editor {
         {
           name: 'oo',
           alt: '坏笑',
-          src: 'https://material.balmjs.com/images/emoji/p_huaixiao.png'
+          src: 'https://v8.material.balmjs.com/images/emoji/p_huaixiao.png'
         },
         {
           name: 'xx',
           alt: '舔屏',
-          src: 'https://material.balmjs.com/images/emoji/p_tian.png'
+          src: 'https://v8.material.balmjs.com/images/emoji/p_tian.png'
         }
       ]
     },
@@ -164,12 +164,12 @@ interface Editor {
         {
           name: 'yy',
           alt: '神兽',
-          src: 'https://material.balmjs.com/images/emoji/g_shenshou.gif'
+          src: 'https://v8.material.balmjs.com/images/emoji/g_shenshou.gif'
         },
         {
           name: 'zz',
           alt: '浮云',
-          src: 'https://material.balmjs.com/images/emoji/g_fuyun.gif'
+          src: 'https://v8.material.balmjs.com/images/emoji/g_fuyun.gif'
         }
       ]
     }

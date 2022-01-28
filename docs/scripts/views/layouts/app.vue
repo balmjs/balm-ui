@@ -48,11 +48,7 @@
         <template v-if="hasNewVersion">New content is available.</template>
         <template v-else>
           You’re browsing the documentation for vue@2.x.
-          <a
-            href="https://next-material.balmjs.com/"
-            target="_blank"
-            rel="noopener"
-          >
+          <a href="https://material.balmjs.com/" target="_blank" rel="noopener">
             Click here
           </a>
           for vue@3.x documentation.

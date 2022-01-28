@@ -61,16 +61,16 @@ Installs the necessary npm packages, This can take some time.
 ### 1.1 Installing `balm-ui`
 
 ```bash
-yarn add balm-ui
+yarn add balm-ui@8
 # OR
-npm install --save balm-ui
+npm install --save balm-ui@8
 ```
 
 ### 1.2 Configuration
 
 update `balm.config.js`
 
-- get [Material Icons](https://material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `my-project/app/fonts`)
+- get [Material Icons](https://v8.material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `my-project/app/fonts`)
 
   ```js
   const api = (mix) => {
@@ -176,9 +176,9 @@ cd my-project
 ### 2.1 Installing `balm-ui`
 
 ```bash
-yarn add balm-ui
+yarn add balm-ui@8
 # OR
-npm install --save balm-ui
+npm install --save balm-ui@8
 ```
 
 ### 2.2 Configuration
@@ -239,7 +239,7 @@ npm install --save balm-ui
     <div id="app">
       <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/balm-ui"></script>
     <script src="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui-plus.js"></script>
     <script>

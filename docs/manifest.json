@@ -1,6 +1,6 @@
 {
   "name": "v8.material.balmjs.com",
-  "short_name": "BalmUI",
+  "short_name": "BalmUI@8",
   "start_url": ".",
   "display": "standalone",
   "orientation": "portrait",

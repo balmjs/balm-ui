@@ -1,6 +1,6 @@
 # 升级向导
 
-> 🎉 `balm-ui`(v9.0) for Vue 3.0, see [material.balmjs.com](https://material.balmjs.com/)
+> 🎉 `balm-ui`(v9) for Vue 3, see [material.balmjs.com](https://material.balmjs.com/)
 
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_37">从 8.x 升级到 8.37.0+</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">从 7.x 升级到 8.0</a>

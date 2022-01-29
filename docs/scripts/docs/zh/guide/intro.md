@@ -2,6 +2,8 @@
 
 [BalmUI](https://github.com/balmjs/balm-ui) 是为 Vue.js 3.0 量身订制的模块化且高可定制化的 [Material Design](https://material.io/) UI 库。
 
+> **`vue@2.x`** UI 文档请 [点击这里](https://v8.material.balmjs.com/)。
+
 ## 特色
 
 - 提炼自企业级中后台产品的交互效果和视觉风格

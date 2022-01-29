@@ -60,7 +60,7 @@ Open a terminal window.
 Generate a new project and default app by running the following command:
 
 ```bash
-balm init vue#next my-project
+balm init vue my-project
 cd my-project # Go to the project directory
 ```
 

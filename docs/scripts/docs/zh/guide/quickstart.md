@@ -60,7 +60,7 @@
 根据以下命令生成一个新项目：
 
 ```bash
-balm init vue#next my-project
+balm init vue my-project
 cd my-project # Go to the project directory
 ```
 

@@ -22,15 +22,15 @@
 
   ```ts
   interface BalmUITheme {
-    primary(color: string): void;
-    secondary(color: string): void;
-    background(color: string): void;
-    surface(color: string): void;
-    error(color: string): void;
-    onPrimary(color: string): void;
-    onSecondary(color: string): void;
-    onSurface(color: string): void;
-    onError(color: string): void;
+    primary: string;
+    secondary: string;
+    background: string;
+    surface: string;
+    error: string;
+    onPrimary: string;
+    onSecondary: string;
+    onSurface: string;
+    onError: string;
   }
   ```
 
@@ -52,7 +52,7 @@
   }
 
   interface BalmUITheme {
-    colors(color: ThemeColor): void;
+    colors: ThemeColor;
   }
   ```
 

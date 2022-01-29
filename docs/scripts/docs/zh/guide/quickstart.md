@@ -42,7 +42,7 @@
 根据以下命令生成一个新项目：
 
 ```bash
-balm init vue my-project
+balm init vue#legacy my-project
 cd my-project # Go to the project directory
 ```
 

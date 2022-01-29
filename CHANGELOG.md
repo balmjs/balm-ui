@@ -2,6 +2,14 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.48.0 / 2022-01-29
+
+:tada: Vue 3 will become the new default version on Monday, February 7, 2022!
+
+### Features
+
+- update material-icons v121
+
 ## v8.47.4 / 2022-01-21
 
 ### Bug Fixed

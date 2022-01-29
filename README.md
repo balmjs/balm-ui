@@ -2,6 +2,8 @@
 
 > Next Generation Material UI for Vue.js
 
+🎉 [`material.balmjs.com`](https://material.balmjs.com/) -> [`v8.material.balmjs.com`](https://v8.material.balmjs.com/)
+
 ## Introduction
 
 [BalmUI](https://v8.material.balmjs.com/) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js.
@@ -33,7 +35,7 @@
 #### 1.0 Create a project
 
 ```sh
-balm init vue my-project
+balm init vue#legacy my-project
 cd my-project
 ```
 
@@ -259,7 +261,7 @@ We officially support the last two versions of every major browser. Specifically
 - [Vue.js](https://vuejs.org/)
 - [MDC Web](https://github.com/material-components/material-components-web)
 
-[balm-ui-image]: https://badge.fury.io/js/balm-ui.svg
-[balm-ui-url]: https://www.npmjs.com/package/balm-ui
+[balm-ui-image]: https://img.shields.io/npm/v/balm-ui/vue2.svg
+[balm-ui-url]: https://www.npmjs.com/package/balm-ui/v/vue2
 [mdc-web-image]: https://img.shields.io/badge/mdc--web-12.0.0-blue.svg
 [mdc-web-url]: https://www.npmjs.com/package/material-components-web

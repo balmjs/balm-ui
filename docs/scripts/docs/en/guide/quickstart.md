@@ -42,7 +42,7 @@ Open a terminal window.
 Generate a new project and default app by running the following command:
 
 ```bash
-balm init vue my-project
+balm init vue#legacy my-project
 cd my-project # Go to the project directory
 ```
 

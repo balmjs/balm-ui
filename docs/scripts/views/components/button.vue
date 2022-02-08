@@ -44,6 +44,9 @@
         </ui-button>
 
         <a v-button href="javascript:void(0)">Link</a>
+        <router-link v-button :to="{ name: 'general.button' }">
+          Router Link
+        </router-link>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>

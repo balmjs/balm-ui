@@ -13,4 +13,5 @@
 </ui-button>
 
 <a v-button href="javascript:void(0)">Link</a>
+<router-link v-button to="/">Router Link</router-link>
 ```

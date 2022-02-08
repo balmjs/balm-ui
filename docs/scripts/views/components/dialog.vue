@@ -77,7 +77,11 @@
           <ui-dialog-content>
             <ui-form>
               <ui-form-field v-for="i in 4" :key="i">
-                <ui-radio :input-id="`hero-radio${i}`" :value="i"></ui-radio>
+                <ui-radio
+                  v-model="heroCheckedValue"
+                  :input-id="`hero-radio${i}`"
+                  :value="i"
+                ></ui-radio>
                 <label
                   :for="`hero-radio${i}`"
                   :class="$theme.getTextClass('secondary', $store.theme)"
@@ -249,6 +253,7 @@ export default {
       hasTitle: true,
       buttonOption: 0,
       heroSelectedIndex: -1,
+      heroCheckedValue: 0,
       // demo
       open: false,
       open2: false,

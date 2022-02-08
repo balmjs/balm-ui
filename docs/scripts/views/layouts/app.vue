@@ -193,7 +193,7 @@ import {
   nextTick
 } from 'vue';
 import { useRoute } from 'vue-router';
-import { useI18n } from 'vue-i18n';
+import { useI18n } from 'vue-i18n/index';
 import { useEvent, useBus, useStore, useAlert } from 'balm-ui';
 import TopAppToolbar from '@/components/top-app-toolbar';
 import { VERSION, lazyLoadedTime, $MIN_WIDTH } from '@/config';

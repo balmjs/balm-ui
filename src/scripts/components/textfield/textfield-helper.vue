@@ -42,6 +42,17 @@ export default {
         `The 'helperTextId' prop is required for <ui-textfield> with outer counter`
       );
     }
+  },
+  mounted() {
+    const textfieldEl = this.$el.previousElementSibling;
+    const hasTextfield =
+      textfieldEl && textfieldEl.classList.contains('mdc-text-field');
+    if (this.withCounter && !hasTextfield) {
+      console.warn(
+        '[UiTextfield]',
+        `Do not insert any tags between '<ui-textfield>' and '<ui-textfield-helper>' with counter`
+      );
+    }
   }
 };
 </script>

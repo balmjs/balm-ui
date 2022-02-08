@@ -3,7 +3,7 @@
 > Next Generation Material UI for Vue.js
 
 - [`next-material.balmjs.com`](https://next-material.balmjs.com/) -> [`material.balmjs.com`](https://material.balmjs.com/)
-- [`material.balmjs.com`](https://material.balmjs.com/) -> [`v8.material.balmjs.com`](https://v8.material.balmjs.com/) (old v8 URLs will auto redirect to the new address)
+- (old) [`material.balmjs.com`](https://material.balmjs.com/) -> [`v8.material.balmjs.com`](https://v8.material.balmjs.com/)
 
 ## Introduction
 

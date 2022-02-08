@@ -22,7 +22,7 @@ function getConfig(balm) {
     ? {
         modules: false,
         useBuiltIns: 'entry',
-        corejs: { version: '3.20', proposals: true }
+        corejs: { version: '3.21', proposals: true }
       }
     : {
         modules: false
@@ -116,21 +116,14 @@ function getConfig(balm) {
       },
       babelLoaderOptions,
       includeJsResource: useDocsDev ? [resolve('src/scripts')] : [],
-      alias: Object.assign(
-        {
-          '@': resolve('docs/scripts'),
-          'balm-ui': resolve('src/scripts/balm-ui.js'),
-          'balm-ui-plus': resolve('src/scripts/balm-ui-plus.js'),
-          'balm-ui-next': resolve('src/scripts/balm-ui-next.js'),
-          vue$: 'vue/dist/vue.esm-bundler.js',
-          pickerLangZh: 'flatpickr/dist/l10n/zh.js'
-        }
-        // fix(vue@3.0.1+): __VUE_HMR_RUNTIME__ is not defined in development
-        // {
-        //   '@vue/runtime-core':
-        //     '@vue/runtime-core/dist/runtime-core.esm-bundler.js'
-        // }
-      ),
+      alias: Object.assign({
+        '@': resolve('docs/scripts'),
+        'balm-ui': resolve('src/scripts/balm-ui.js'),
+        'balm-ui-plus': resolve('src/scripts/balm-ui-plus.js'),
+        'balm-ui-next': resolve('src/scripts/balm-ui-next.js'),
+        vue$: 'vue/dist/vue.esm-bundler.js',
+        pickerLangZh: 'flatpickr/dist/l10n/zh.js'
+      }),
       plugins: [
         new VueLoaderPlugin(),
         new webpack.DefinePlugin({

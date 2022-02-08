@@ -88,7 +88,8 @@ export default {
           'mdc-data-table__header-cell--numeric': data[this.T_CELL.NUMBER],
           'mdc-data-table__header-cell--with-sort': data.sort,
           'mdc-data-table__header-cell--sorted':
-            data.sort === UI_TABLE.SORTING.ASC,
+            data.sort === UI_TABLE.SORTING.ASC ||
+            data.sort === UI_TABLE.SORTING.DESC,
           'mdc-data-table__header-cell--sorted-descending':
             data.sort === UI_TABLE.SORTING.DESC,
           'mdc-data-table__header-cell--scrollbar': data.scrollbar

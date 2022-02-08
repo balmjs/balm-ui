@@ -2,7 +2,9 @@
 
 > Next Generation Material UI for Vue.js
 
-🎉 [`material.balmjs.com`](https://material.balmjs.com/) -> [`v8.material.balmjs.com`](https://v8.material.balmjs.com/)
+TL;DR: Vue 3 is now the new default version as of Monday, February 7, 2022!
+
+(old) [`material.balmjs.com`](https://material.balmjs.com/) -> [`v8.material.balmjs.com`](https://v8.material.balmjs.com/)
 
 ## Introduction
 
@@ -261,7 +263,7 @@ We officially support the last two versions of every major browser. Specifically
 - [Vue.js](https://vuejs.org/)
 - [MDC Web](https://github.com/material-components/material-components-web)
 
-[balm-ui-image]: https://img.shields.io/npm/v/balm-ui/vue2.svg
-[balm-ui-url]: https://www.npmjs.com/package/balm-ui/v/vue2
+[balm-ui-image]: https://img.shields.io/npm/v/balm-ui/legacy.svg
+[balm-ui-url]: https://www.npmjs.com/package/balm-ui/v/legacy
 [mdc-web-image]: https://img.shields.io/badge/mdc--web-12.0.0-blue.svg
 [mdc-web-url]: https://www.npmjs.com/package/material-components-web

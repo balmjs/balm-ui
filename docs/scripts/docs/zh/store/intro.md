@@ -1,3 +1,3 @@
-# 状态管理 (cover Vuex)
+# 状态管理 (cover Vuex or Pinia)
 
-一种简单的状态管理模式。
+一种更简单的状态管理模式。

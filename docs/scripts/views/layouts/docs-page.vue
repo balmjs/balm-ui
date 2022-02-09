@@ -78,7 +78,89 @@
 </template>
 
 <script>
+import { computed, onBeforeMount } from 'vue';
+import { useStore } from 'balm-ui';
 import useTranslation from '@/utils/t';
+
+// NOTE: just one variable in `require` !important
+function getDocs(name, key, hasRequirement = false) {
+  const store = useStore();
+
+  let result;
+
+  switch (key) {
+    case 'css':
+      let filename = `${key}/${name}`;
+      let docs = require(`@/docs/${filename}.md`).default;
+      result = docs;
+      break;
+    case 'usage':
+      const usageDocs = hasRequirement
+        ? ['requirement', 'default', 'individual']
+        : ['default', 'individual'];
+
+      result = {};
+      usageDocs.forEach((usageDoc) => {
+        let filename = `${key}/${name}/${usageDoc}`;
+        let docs = require(`@/docs/${filename}.md`).default;
+        result[usageDoc] = docs;
+      });
+      break;
+    default:
+      if (Array.isArray(key)) {
+        // apidocs
+        result = key.map((apiDocs) => {
+          let filename = `${store.lang}/${name}/${apiDocs}`;
+          let docs = require(`@/docs/${filename}.md`).default;
+          return docs;
+        });
+      } else {
+        // intro
+        let filename = `${store.lang}/${name}/${key}`;
+        let docs = require(`@/docs/${filename}.md`).default;
+        result = docs;
+      }
+  }
+
+  return result;
+}
+
+function initDocs({ type, name, apis, withoutCss }, hasRequirement) {
+  const options = {
+    apis: apis || [],
+    css: !withoutCss || false
+  };
+
+  let result = {
+    intro: '',
+    usage: '',
+    apis: [],
+    css: ''
+  };
+
+  result.intro = getDocs(name, 'intro', hasRequirement);
+
+  if (name !== 'utils') {
+    result.usage = getDocs(name, 'usage', hasRequirement);
+
+    if (options.apis) {
+      let apidocs;
+      if (options.apis.length) {
+        apidocs = options.apis;
+      } else {
+        const keyName = type === 'directive' ? `v-${name}` : name;
+        apidocs = [keyName];
+      }
+      result.apis = getDocs(name, apidocs, hasRequirement);
+    }
+
+    if (options.css) {
+      result.css = getDocs(name, 'css', hasRequirement);
+    }
+  }
+
+  return result;
+}
 
 export default {
   name: 'DocsPage',
@@ -110,103 +192,23 @@ export default {
       default: false
     }
   },
-  setup() {
+  setup(props) {
+    const store = useStore();
+
+    const hasRequirement = computed(() =>
+      ['store', 'typography', 'validator'].includes(props.name)
+    );
+    const docs = computed(() => initDocs(props, hasRequirement.value));
+
+    onBeforeMount(() => {
+      store.initSnippet(props.name, props.demoCount);
+    });
+
     return {
+      docs,
+      hasRequirement,
       ...useTranslation()
     };
-  },
-  computed: {
-    docs() {
-      return this.initDocs(this.name, {
-        apis: this.apis,
-        css: !this.withoutCss
-      });
-    },
-    hasRequirement() {
-      return ['store', 'typography', 'validator'].includes(this.name);
-    }
-  },
-  created() {
-    this.$store.initSnippet(this.name, this.demoCount);
-  },
-  methods: {
-    // NOTE: just one variable in `require` !important
-    getDocs(name, key) {
-      let result;
-
-      switch (key) {
-        case 'css':
-          let filename = `${key}/${name}`;
-          let docs = require(`@/docs/${filename}.md`).default;
-          result = docs;
-          break;
-        case 'usage':
-          const usageDocs = this.hasRequirement
-            ? ['requirement', 'default', 'individual']
-            : ['default', 'individual'];
-
-          result = {};
-          usageDocs.forEach((usageDoc) => {
-            let filename = `${key}/${name}/${usageDoc}`;
-            let docs = require(`@/docs/${filename}.md`).default;
-            result[usageDoc] = docs;
-          });
-          break;
-        default:
-          if (Array.isArray(key)) {
-            // apidocs
-            result = key.map((apiDocs) => {
-              let filename = `${this.$store.lang}/${name}/${apiDocs}`;
-              let docs = require(`@/docs/${filename}.md`).default;
-              return docs;
-            });
-          } else {
-            // intro
-            let filename = `${this.$store.lang}/${name}/${key}`;
-            let docs = require(`@/docs/${filename}.md`).default;
-            result = docs;
-          }
-      }
-
-      return result;
-    },
-    initDocs(
-      name,
-      options = {
-        apis: [],
-        css: false
-      }
-    ) {
-      let result = {
-        intro: '',
-        usage: '',
-        apis: [],
-        css: ''
-      };
-
-      result.intro = this.getDocs(name, 'intro');
-
-      if (name !== 'utils') {
-        result.usage = this.getDocs(name, 'usage');
-
-        if (options.apis) {
-          let apidocs;
-          if (options.apis.length) {
-            apidocs = options.apis;
-          } else {
-            const keyName = this.type === 'directive' ? `v-${name}` : name;
-            apidocs = [keyName];
-          }
-          result.apis = this.getDocs(name, apidocs);
-        }
-
-        if (options.css) {
-          result.css = this.getDocs(name, 'css');
-        }
-      }
-
-      return result;
-    }
   }
 };
 </script>

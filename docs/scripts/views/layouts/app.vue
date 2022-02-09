@@ -353,7 +353,7 @@ export default {
   data() {
     return {
       title: 'BalmUI',
-      version: VERSION, // .split('-')[0],
+      version: VERSION,
       menu,
       openDrawer: false
     };

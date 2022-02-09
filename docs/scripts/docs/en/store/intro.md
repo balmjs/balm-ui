@@ -1,3 +1,3 @@
-# Store (cover Vuex)
+# Store (cover Vuex or Pinia)
 
-A simple state management pattern.
+A simpler state management pattern.

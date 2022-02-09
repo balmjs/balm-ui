@@ -28,7 +28,8 @@
     "components",
     "plugins",
     "directives",
-    "utils"
+    "utils",
+    "vetur"
   ],
   "main": "dist/balm-ui.js",
   "module": "dist/balm-ui.esm.js",
@@ -49,6 +50,10 @@
   },
   "bugs": {
     "url": "https://github.com/balmjs/balm-ui/issues"
+  },
+  "vetur": {
+    "tags": "vetur/tags.json",
+    "attributes": "vetur/attributes.json"
   },
   "dependencies": {
     "deepmerge": "^4.2.2",

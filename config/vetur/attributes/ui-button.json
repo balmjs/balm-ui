@@ -1,0 +1,11 @@
+{
+  "type": {
+    "type": "string | number",
+    "options": ["text", "outlined", "raised", "unelevated"],
+    "description": "Button type."
+  },
+  "outlined": {
+    "type": "boolean",
+    "description": "Styles an outlined button that is flush with the surface."
+  }
+}

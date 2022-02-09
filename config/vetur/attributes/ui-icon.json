@@ -1,0 +1,39 @@
+{
+  "type": {
+    "type": "string | number",
+    "options": ["filled", "outlined", "round", "twoTone", "sharp"],
+    "description": "Material icon theme."
+  },
+  "outlined": {
+    "type": "boolean",
+    "description": "Outlined icons customize stroke and fill attributes for a light, clean style that works well in dense UIs. The stroke weight of outlined icons can be adjusted to complement or contrast the weight of your typography."
+  },
+  "round": {
+    "type": "boolean",
+    "description": "Rounded icons use a corner radius that pairs well with brands that use heavier typography, curved logos, or circular elements to express their style."
+  },
+  "two-tone": {
+    "type": "boolean",
+    "description": "Two-tone icons have added dimension, using the attributes of stroke, fill, and color. Contrasting stroke and fill colors enables the use of multiple brand colors and can improve legibility."
+  },
+  "sharp": {
+    "type": "boolean",
+    "description": "Sharp icons display corners with straight edges, for a crisp style that remains legible even at smaller scales. These rectangular shapes can support brand styles that aren’t well-reflected by rounded shapes."
+  },
+  "size": {
+    "type": "number",
+    "description": "Material icon sizing."
+  },
+  "dark": {
+    "type": "boolean",
+    "description": "An icon on a light background with a dark foreground color."
+  },
+  "light": {
+    "type": "boolean",
+    "description": "An icon on a dark background with a light foreground color."
+  },
+  "inactive": {
+    "type": "boolean",
+    "description": "An icon is disabled or inactive."
+  }
+}

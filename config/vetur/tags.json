@@ -1,0 +1,28 @@
+{
+  "ui-icon": {
+    "attributes": [
+      "type",
+      "outlined",
+      "round",
+      "two-tone",
+      "sharp",
+      "size",
+      "dark",
+      "light",
+      "inactive"
+    ],
+    "description": "Material icons are delightful, beautifully crafted symbols for common actions and items."
+  },
+  "ui-button": {
+    "attributes": [
+      "type",
+      "outlined",
+      "raised",
+      "unelevated",
+      "icon",
+      "disabled",
+      "native-type"
+    ],
+    "description": "Buttons allow users to take actions, and make choices, with a single tap."
+  }
+}

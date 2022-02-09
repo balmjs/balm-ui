@@ -27,8 +27,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Lazyload'
+  metaInfo() {
+    return {
+      subtitle: 'Lazyload'
+    };
   },
   data() {
     return {

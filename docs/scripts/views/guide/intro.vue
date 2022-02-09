@@ -9,8 +9,10 @@
 import useTranslation from '@/utils/t';
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Introduction'
+  metaInfo() {
+    return {
+      subtitle: 'Introduction'
+    };
   },
   setup() {
     return {

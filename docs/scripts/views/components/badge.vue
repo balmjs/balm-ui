@@ -50,8 +50,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Badge'
+  metaInfo() {
+    return {
+      subtitle: 'Badge'
+    };
   },
   data() {
     return {

@@ -24,8 +24,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - <ui-rangepicker>'
+  metaInfo() {
+    return {
+      subtitle: 'Range Picker'
+    };
   },
   data() {
     return {

@@ -26,8 +26,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Copy'
+  metaInfo() {
+    return {
+      subtitle: 'Copy'
+    };
   },
   data() {
     return {

@@ -1,6 +1,9 @@
 <template>
   <div
-    class="demo-container page--drawer page--dismissible-drawer-full-height-drawer"
+    class="
+      demo-container
+      page--drawer page--dismissible-drawer-full-height-drawer
+    "
   >
     <!-- Drawer -->
     <ui-drawer type="dismissible" viewport-height nav-id="demo-menu">
@@ -62,8 +65,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Dismissible Drawer'
+  metaInfo() {
+    return {
+      subtitle: 'Dismissible Drawer Full Height Drawer'
+    };
   },
   created() {
     this.$store.initSnippet('drawer', 3);

@@ -10,8 +10,10 @@
 import useTranslation from '@/utils/t';
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Quick Start'
+  metaInfo() {
+    return {
+      subtitle: 'Quick Start'
+    };
   },
   setup() {
     return {

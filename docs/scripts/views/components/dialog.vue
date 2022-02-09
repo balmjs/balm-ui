@@ -234,8 +234,10 @@ const ButtonOptions = [
 ];
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Dialog'
+  metaInfo() {
+    return {
+      subtitle: 'Dialog'
+    };
   },
   setup() {
     const balmUI = useEvent();

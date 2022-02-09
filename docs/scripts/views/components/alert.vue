@@ -63,8 +63,10 @@ const StateTypeOptions = [
 ];
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Alert'
+  metaInfo() {
+    return {
+      subtitle: 'Alert'
+    };
   },
   data() {
     return {

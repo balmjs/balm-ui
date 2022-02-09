@@ -8,8 +8,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Utilities'
+  metaInfo() {
+    return {
+      subtitle: 'Utilities'
+    };
   },
   computed: {
     docs() {

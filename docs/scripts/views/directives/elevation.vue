@@ -39,8 +39,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Elevation'
+  metaInfo() {
+    return {
+      subtitle: 'Elevation'
+    };
   }
 };
 </script>

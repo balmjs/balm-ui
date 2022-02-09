@@ -53,8 +53,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Tooltip'
+  metaInfo() {
+    return {
+      subtitle: 'Tooltip'
+    };
   }
 };
 </script>

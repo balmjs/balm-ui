@@ -190,8 +190,10 @@ const TypeOptions = [
 ];
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Fab'
+  metaInfo() {
+    return {
+      subtitle: 'Fab'
+    };
   },
   // using Composable API
   setup() {

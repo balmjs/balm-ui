@@ -60,8 +60,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Modal Drawer'
+  metaInfo() {
+    return {
+      subtitle: 'Modal Drawer'
+    };
   },
   created() {
     this.$store.initSnippet('drawer', 5);

@@ -59,8 +59,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Permanent Drawer Below Toolbar'
+  metaInfo() {
+    return {
+      subtitle: 'Permanent Drawer Below Toolbar'
+    };
   },
   created() {
     this.$store.initSnippet('drawer', 2);

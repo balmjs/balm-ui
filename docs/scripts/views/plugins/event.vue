@@ -92,8 +92,10 @@
 import { useEvent } from 'balm-ui';
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Event'
+  metaInfo() {
+    return {
+      subtitle: 'Event'
+    };
   },
   setup() {
     const balmUI = useEvent();

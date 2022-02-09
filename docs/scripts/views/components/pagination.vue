@@ -72,8 +72,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Pagination'
+  metaInfo() {
+    return {
+      subtitle: 'Pagination'
+    };
   },
   data() {
     return {

@@ -19,6 +19,11 @@
 
 <script>
 export default {
+  metaInfo() {
+    return {
+      subtitle: 'Bottom Sheet'
+    };
+  },
   data() {
     return {
       show: false

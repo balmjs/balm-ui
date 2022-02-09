@@ -39,8 +39,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Anchor'
+  metaInfo() {
+    return {
+      subtitle: 'Anchor'
+    };
   }
 };
 </script>

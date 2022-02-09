@@ -145,8 +145,10 @@ const useEditor = (editor) => {
 };
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Editor'
+  metaInfo() {
+    return {
+      subtitle: 'Editor'
+    };
   },
   setup(props, ctx) {
     const editor = ref(null);

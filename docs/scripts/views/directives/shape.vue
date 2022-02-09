@@ -33,8 +33,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Shape'
+  metaInfo() {
+    return {
+      subtitle: 'Shape'
+    };
   }
 };
 </script>

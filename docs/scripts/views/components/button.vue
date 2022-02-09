@@ -84,8 +84,10 @@ const state = reactive({
 });
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Button'
+  metaInfo() {
+    return {
+      subtitle: 'Button'
+    };
   },
   setup() {
     return {

@@ -213,8 +213,10 @@ const AfterTextOptions = [
 ];
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - List'
+  metaInfo() {
+    return {
+      subtitle: 'List'
+    };
   },
   components: {
     SvgAvatar

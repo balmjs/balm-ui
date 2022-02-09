@@ -26,8 +26,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Spinner'
+  metaInfo() {
+    return {
+      subtitle: 'Spinner'
+    };
   },
   data() {
     return {

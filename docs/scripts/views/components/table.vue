@@ -80,8 +80,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Table'
+  metaInfo() {
+    return {
+      subtitle: 'Data Table'
+    };
   },
   data() {
     return {

@@ -81,8 +81,10 @@ const state = reactive({
 });
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Snackbar'
+  metaInfo() {
+    return {
+      subtitle: 'Snackbar'
+    };
   },
   setup() {
     const slider = ref(null);

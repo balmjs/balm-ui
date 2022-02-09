@@ -39,8 +39,10 @@
 import TopAppToolbar from '@/components/top-app-toolbar';
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Bottom Navigation'
+  metaInfo() {
+    return {
+      subtitle: 'Bottom Navigation'
+    };
   },
   components: {
     TopAppToolbar

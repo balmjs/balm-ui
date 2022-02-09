@@ -7828,6 +7828,11 @@ vue-loader@^16.8.0:
     hash-sum "^2.0.0"
     loader-utils "^2.0.0"
 
+vue-meta@^3.0.0-alpha.9:
+  version "3.0.0-alpha.9"
+  resolved "https://registry.yarnpkg.com/vue-meta/-/vue-meta-3.0.0-alpha.9.tgz#304999dc67337245947c2a08d7d94df984864c61"
+  integrity sha512-/ff7qNKy4c5NwmDl6N5XK2hhiXEdMeUxvk+SXCs40W9DOgu7VWGqPtgdSnXHnYMRoofkT/nKHE+vXklJ47r9Dw==
+
 vue-router@^4.0.0:
   version "4.0.12"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.12.tgz#8dc792cddf5bb1abcc3908f9064136de7e13c460"

@@ -207,7 +207,9 @@
                 <ui-select
                   v-model="phone.width"
                   :options="widthOptions"
-                  @update:modelValue="$grid.set('column-width', 'phone', $event)"
+                  @update:modelValue="
+                    $grid.set('column-width', 'phone', $event)
+                  "
                 ></ui-select>
               </div>
             </ui-grid-cell>
@@ -318,8 +320,10 @@ function initRuler() {
 }
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Layout Grid'
+  metaInfo() {
+    return {
+      subtitle: 'Layout Grid'
+    };
   },
   components: {
     TopAppToolbar

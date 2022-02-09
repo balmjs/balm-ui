@@ -93,8 +93,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Ripple'
+  metaInfo() {
+    return {
+      subtitle: 'Ripple'
+    };
   }
 };
 </script>

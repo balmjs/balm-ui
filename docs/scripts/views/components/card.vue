@@ -227,8 +227,10 @@ const TypeOptions = [
 ];
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Card'
+  metaInfo() {
+    return {
+      subtitle: 'Card'
+    };
   },
   data() {
     return {

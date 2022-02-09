@@ -10,8 +10,10 @@
 import useTranslation from '@/utils/t';
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Advanced Usage'
+  metaInfo() {
+    return {
+      subtitle: 'Advanced Usage'
+    };
   },
   setup() {
     return {

@@ -58,8 +58,10 @@
 import UiRadioDemo from '@/demos/radio';
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Radio'
+  metaInfo() {
+    return {
+      subtitle: 'Radio'
+    };
   },
   components: {
     UiRadioDemo

@@ -306,8 +306,10 @@ const state = reactive({
 });
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Menu'
+  metaInfo() {
+    return {
+      subtitle: 'Menu'
+    };
   },
   components: {
     SvgSelected

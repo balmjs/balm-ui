@@ -17,8 +17,10 @@
 <script>
 export default {
   name: 'Home',
-  metaInfo: {
-    titleTemplate: '%s - Home'
+  metaInfo() {
+    return {
+      subtitle: 'Home'
+    };
   }
 };
 </script>

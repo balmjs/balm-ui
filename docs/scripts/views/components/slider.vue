@@ -115,8 +115,10 @@ const state = reactive({
 });
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Slider'
+  metaInfo() {
+    return {
+      subtitle: 'Slider'
+    };
   },
   setup() {
     const slider = ref(null);

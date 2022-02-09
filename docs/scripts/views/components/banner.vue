@@ -16,8 +16,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Banner'
+  metaInfo() {
+    return {
+      subtitle: 'Banner'
+    };
   },
   beforeUnmount() {
     this.$bus.emit('global-message', false);

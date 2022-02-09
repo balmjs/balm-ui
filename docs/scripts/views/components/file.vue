@@ -80,8 +80,10 @@
 import { useEvent } from 'balm-ui';
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - File'
+  metaInfo() {
+    return {
+      subtitle: 'File'
+    };
   },
   setup() {
     const balmUI = useEvent();

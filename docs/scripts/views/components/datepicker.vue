@@ -100,8 +100,10 @@
 // import lang from 'flatpickr/dist/l10n/zh.js';
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - <ui-datepicker>'
+  metaInfo() {
+    return {
+      subtitle: 'Date Picker'
+    };
   },
   data() {
     return {

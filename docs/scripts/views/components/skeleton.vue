@@ -49,8 +49,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Skeleton'
+  metaInfo() {
+    return {
+      subtitle: 'Skeleton'
+    };
   },
   data() {
     return {

@@ -122,8 +122,10 @@
 import { useEvent } from 'balm-ui';
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Checkbox'
+  metaInfo() {
+    return {
+      subtitle: 'Checkbox'
+    };
   },
   setup() {
     const balmUI = useEvent();

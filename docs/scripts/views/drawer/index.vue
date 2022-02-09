@@ -130,8 +130,10 @@ const menu = [
 ];
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Drawer'
+  metaInfo() {
+    return {
+      subtitle: 'Drawer'
+    };
   },
   setup() {
     return {

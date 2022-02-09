@@ -23,8 +23,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Alert Dialog'
+  metaInfo() {
+    return {
+      subtitle: 'Alert Dialog'
+    };
   },
   methods: {
     showAlert() {

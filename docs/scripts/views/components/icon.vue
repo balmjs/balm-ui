@@ -142,7 +142,7 @@ import { reactive, toRefs, onMounted } from 'vue';
 import { useToast } from 'balm-ui';
 import Clipboard from 'clipboard';
 import { useHttp } from '@/plugins/http';
-import { useConfig } from '@/config';
+import { domain } from '@/config';
 
 const TypeOptions = [
   {
@@ -197,7 +197,6 @@ function filterIcons() {
 }
 
 async function init() {
-  const { domain } = useConfig();
   const $http = useHttp();
 
   const url = `${domain}/data/icons.json`;
@@ -216,8 +215,10 @@ async function init() {
 }
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Icons'
+  metaInfo() {
+    return {
+      subtitle: 'Material Icons'
+    };
   },
   setup() {
     const $toast = useToast();

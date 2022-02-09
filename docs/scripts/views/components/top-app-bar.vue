@@ -131,8 +131,10 @@ const state = reactive({
 });
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Top App Bar'
+  metaInfo() {
+    return {
+      subtitle: 'Top App Bar'
+    };
   },
   components: {
     TopAppToolbar

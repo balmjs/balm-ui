@@ -168,8 +168,10 @@ function initScreen() {
 }
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Tabs'
+  metaInfo() {
+    return {
+      subtitle: 'Tabs'
+    };
   },
   components: {
     UiTabDemo,

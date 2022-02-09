@@ -30,8 +30,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Progress'
+  metaInfo() {
+    return {
+      subtitle: 'Progress'
+    };
   },
   data() {
     return {

@@ -454,8 +454,10 @@ const state = reactive({
 });
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Textfield'
+  metaInfo() {
+    return {
+      subtitle: 'Textfield'
+    };
   },
   components: {
     UiTextfieldControls

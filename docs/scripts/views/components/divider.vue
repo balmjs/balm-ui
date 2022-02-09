@@ -73,8 +73,10 @@ const state = reactive({
 });
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Text Divider'
+  metaInfo() {
+    return {
+      subtitle: 'Divider'
+    };
   },
   setup() {
     return {

@@ -57,8 +57,10 @@
 import { useEvent } from 'balm-ui';
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Switch'
+  metaInfo() {
+    return {
+      subtitle: 'Switch'
+    };
   },
   setup() {
     const balmUI = useEvent();

@@ -25,8 +25,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Confirm Dialog'
+  metaInfo() {
+    return {
+      subtitle: 'Confirm Dialog'
+    };
   },
   methods: {
     show() {

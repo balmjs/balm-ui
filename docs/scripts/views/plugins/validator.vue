@@ -206,8 +206,10 @@ const state = reactive({
 });
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Validator'
+  metaInfo() {
+    return {
+      subtitle: 'Validator'
+    };
   },
   // using Composable API
   setup() {

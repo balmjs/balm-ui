@@ -148,8 +148,10 @@ const state = reactive({
 });
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Icon Button'
+  metaInfo() {
+    return {
+      subtitle: 'Icon Button'
+    };
   },
   // using Composable API
   // setup() {

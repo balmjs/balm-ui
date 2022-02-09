@@ -75,8 +75,10 @@ const heroItems = [
 ];
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Segmented Button'
+  metaInfo() {
+    return {
+      subtitle: 'Segmented Button'
+    };
   },
   data() {
     return {

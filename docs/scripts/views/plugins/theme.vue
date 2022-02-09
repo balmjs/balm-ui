@@ -186,8 +186,10 @@ import ListDemo from '@/demos/theme/list';
 import TableDemo from '@/demos/theme/table';
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Theme'
+  metaInfo() {
+    return {
+      subtitle: 'Theme'
+    };
   },
   components: {
     ButtonDemo,

@@ -9,8 +9,10 @@
 import useTranslation from '@/utils/t';
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Kill IE'
+  metaInfo() {
+    return {
+      subtitle: 'Kill IE'
+    };
   },
   setup() {
     return {

@@ -142,8 +142,10 @@ const CheckboxOptions = [
 ];
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Chips'
+  metaInfo() {
+    return {
+      subtitle: 'Chips'
+    };
   },
   data() {
     return {

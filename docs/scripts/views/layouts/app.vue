@@ -1,4 +1,9 @@
 <template>
+  <metainfo>
+    <template v-slot:title="{ content, metainfo }">
+      {{ metainfo.subtitle ? `${content} - ${metainfo.subtitle}` : content }}
+    </template>
+  </metainfo>
   <div ref="root" class="balmui-container">
     <ui-progress
       v-if="pageLoad.loading"
@@ -235,8 +240,10 @@ function loading() {
 
 export default {
   name: 'BalmUIApp',
-  metaInfo: {
-    title: 'BalmUI'
+  metaInfo() {
+    return {
+      title: 'BalmUI'
+    };
   },
   components: {
     TopAppToolbar

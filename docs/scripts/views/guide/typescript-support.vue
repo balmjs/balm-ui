@@ -10,8 +10,10 @@
 import useTranslation from '@/utils/t';
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - TypeScript Support'
+  metaInfo() {
+    return {
+      subtitle: 'TypeScript Support'
+    };
   },
   setup() {
     return {

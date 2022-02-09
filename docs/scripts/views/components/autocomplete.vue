@@ -96,8 +96,10 @@ const source1 = [
 ];
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Autocomplete'
+  metaInfo() {
+    return {
+      subtitle: 'Autocomplete'
+    };
   },
   data() {
     return {

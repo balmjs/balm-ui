@@ -77,8 +77,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Typography'
+  metaInfo() {
+    return {
+      subtitle: 'Typography'
+    };
   }
 };
 </script>

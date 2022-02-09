@@ -29,8 +29,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Toast'
+  metaInfo() {
+    return {
+      subtitle: 'Toast'
+    };
   },
   data() {
     return {

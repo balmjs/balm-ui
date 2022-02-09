@@ -14,8 +14,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    title: 'Not Found'
+  metaInfo() {
+    return {
+      subtitle: 'Not Found'
+    };
   }
 };
 </script>

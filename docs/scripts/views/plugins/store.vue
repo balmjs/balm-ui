@@ -8,8 +8,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Store'
+  metaInfo() {
+    return {
+      subtitle: 'Store'
+    };
   }
 };
 </script>

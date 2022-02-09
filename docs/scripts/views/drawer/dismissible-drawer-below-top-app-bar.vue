@@ -1,6 +1,9 @@
 <template>
   <div
-    class="demo-container page--drawer page--dismissible-drawer-below-top-app-bar"
+    class="
+      demo-container
+      page--drawer page--dismissible-drawer-below-top-app-bar
+    "
   >
     <!-- App bar -->
     <ui-top-app-bar
@@ -55,8 +58,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Dismissible Drawer'
+  metaInfo() {
+    return {
+      subtitle: 'Dismissible Drawer Below Top App Bar'
+    };
   },
   created() {
     this.$store.initSnippet('drawer', 4);

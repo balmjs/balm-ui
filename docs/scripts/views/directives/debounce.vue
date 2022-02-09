@@ -20,8 +20,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Debounce'
+  metaInfo() {
+    return {
+      subtitle: 'Debounce'
+    };
   },
   data() {
     return {

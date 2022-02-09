@@ -20,7 +20,7 @@ export default {
   setup() {
     const msg = ref('');
 
-    msg.value = 'Hello Vue 3.0 App';
+    msg.value = 'Hello Vue 3 App';
 
     return {
       msg

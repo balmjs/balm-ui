@@ -4,8 +4,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Upgrade Guide'
+  metaInfo() {
+    return {
+      subtitle: 'Upgrade Guide'
+    };
   }
 };
 </script>

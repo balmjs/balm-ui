@@ -314,8 +314,10 @@ const state = reactive({
 });
 
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Select'
+  metaInfo() {
+    return {
+      subtitle: 'Select'
+    };
   },
   components: {
     UiSelectControls

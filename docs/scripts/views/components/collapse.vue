@@ -61,8 +61,10 @@
 
 <script>
 export default {
-  metaInfo: {
-    titleTemplate: '%s - Collapse'
+  metaInfo() {
+    return {
+      subtitle: 'Collapse'
+    };
   },
   data() {
     return {

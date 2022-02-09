@@ -11,6 +11,8 @@
 | `visible`              | boolean         | `false` | Makes the helper text permanently visible.                                      |
 | `withCounter`          | boolean         | `false` | Show character counter. (The `maxlength` prop of `<ui-textfield>` is required)  |
 
+> NOTE: Do not insert any tags between `<ui-textfield>` and `<ui-textfield-helper>` with counter
+
 ```html
 <!-- Single line text field -->
 <ui-textfield maxlength="40"></ui-textfield>

@@ -22,8 +22,8 @@ TL;DR: Vue 3 is now the new default version as of Monday, February 7, 2022!
 
 ## Documentation & Demos
 
-- Visit [v8.material.balmjs.com](https://v8.material.balmjs.com/) (for Vue 2.0)
-- Visit [material.balmjs.com](https://material.balmjs.com/) (for Vue 3.0)
+- Visit [v8.material.balmjs.com](https://v8.material.balmjs.com/) (for Vue 2)
+- Visit [material.balmjs.com](https://material.balmjs.com/) (for Vue 3)
 
 ## Quick Start
 

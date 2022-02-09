@@ -18,7 +18,7 @@
 | Name              | Type            | Default    | Description                                                                  |
 | ----------------- | --------------- | ---------- | ---------------------------------------------------------------------------- |
 | `contentSelector` | string          | (required) | 选择器用于设置顶部导航栏下方内容的样式，以防止顶部导航栏覆盖内容。           |
-| `type`            | number          | `0`        | 顶部导航栏类型                                                               |
+| `type`            | string, number  | `0`        | 顶部导航栏类型                                                               |
 | `fixed`           | boolean         | `false`    | 固定的顶部导航栏位于页面顶部，并且在滚动时位于内容上方。                     |
 | `dense`           | boolean         | `false`    | 密集的顶部导航栏较短。                                                       |
 | `prominent`       | boolean         | `false`    | 突出的顶部导航栏较高。                                                       |

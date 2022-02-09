@@ -1,0 +1,14 @@
+{
+  "v-model": {
+    "type": "boolean",
+    "description": "Sets the toggle state."
+  },
+  "icon": {
+    "type": "string",
+    "description": "Indicates an icon element."
+  },
+  "toggle": {
+    "type": "object",
+    "description": "Two icons of the icon button toggle. (Format: `{ on: string, off: string }`)"
+  }
+}

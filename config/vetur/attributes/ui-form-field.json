@@ -1,0 +1,14 @@
+{
+  "nowrap": {
+    "type": "boolean",
+    "description": "Force the text to stay on a single line and ellipse the overflow text."
+  },
+  "align-end": {
+    "type": "boolean",
+    "description": "Position the input after the label."
+  },
+  "space-between": {
+    "type": "boolean",
+    "description": "Align the input and label space between."
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "type": {
+    "type": "string | number",
+    "options": ["horizontal", "vertical"],
+    "description": "Form type."
+  },
+  "item-margin-bottom": {
+    "type": "number",
+    "description": "Sets the form items margin bottom."
+  },
+  "nowrap": {
+    "type": "boolean",
+    "description": "Force the <label> text to stay on a single line and ellipse the overflow text."
+  },
+  "label-top-aligned": {
+    "type": "boolean",
+    "description": "Styles the form item with a top vertical-aligned label."
+  },
+  "label-right-aligned": {
+    "type": "boolean",
+    "description": "Styles the form item with a right text-aligned label."
+  },
+  "label-top-right-aligned": {
+    "type": "boolean",
+    "description": "Styles the form item with a top vertical-aligned and right text-aligned label."
+  },
+  "label-width": {
+    "type": "number",
+    "description": "Sets the horizontal form items' label width."
+  },
+  "label-margin-right": {
+    "type": "number",
+    "description": "Sets the horizontal form items' label margin right."
+  },
+  "label-margin-bottom": {
+    "type": "number",
+    "description": "Sets the vertical form items' label margin bottom."
+  },
+  "action-align": {
+    "type": "string",
+    "options": ["left", "center", "right"],
+    "description": "Sets the form actions align."
+  }
+}

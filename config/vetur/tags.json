@@ -24,5 +24,68 @@
       "native-type"
     ],
     "description": "Buttons allow users to take actions, and make choices, with a single tap."
+  },
+  "ui-fab": {
+    "attributes": ["type", "extended", "icon", "mini", "exited"],
+    "description": "A floating action button (FAB) represents the primary action of a screen."
+  },
+  "ui-icon-button": {
+    "attributes": ["v-model", "icon", "toggle"],
+    "description": "Icon buttons (Toggle buttons) allow users to take actions, and make choices, with a single tap."
+  },
+  "ui-segmented-buttons": {
+    "attributes": ["v-model", "items", "single-select"],
+    "description": "Segmented buttons allow users to toggle the selected states of grouped buttons."
+  },
+  "ui-segmented-button": {
+    "attributes": ["selected", "text", "icon"],
+    "description": "A segmented button."
+  },
+  "ui-top-app-bar": {
+    "attributes": [
+      "content-selector",
+      "type",
+      "fixed",
+      "dense",
+      "prominent",
+      "prominent-dense",
+      "short",
+      "short-collapsed",
+      "title",
+      "nav-icon",
+      "nav-id"
+    ],
+    "description": "The top app bar displays information and actions relating to the current screen."
+  },
+  "ui-grid": {
+    "attributes": ["fixed-column-width", "position"],
+    "description": "Material design’s responsive UI is based on a column-variate grid layout. It has 12 columns on desktop, 8 columns on tablet and 4 columns on phone."
+  },
+  "ui-grid-cell": {
+    "attributes": ["nested", "columns", "order", "align"],
+    "description": "A grid cell."
+  },
+  "ui-form": {
+    "attributes": [
+      "type",
+      "nowrap",
+      "label-top-aligned",
+      "label-right-aligned",
+      "label-top-right-aligned",
+      "item-margin-bottom",
+      "action-align",
+      "label-width",
+      "label-margin-right",
+      "label-margin-bottom"
+    ],
+    "description": "A form set."
+  },
+  "ui-form-field": {
+    "attributes": ["nowrap", "align-end", "space-between"],
+    "description": "A form field."
+  },
+  "ui-divider": {
+    "attributes": ["type"],
+    "description": "A divider is a thin line that groups content in lists and layouts."
   }
 }

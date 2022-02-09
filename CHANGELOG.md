@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.48.2 / 2022-02-09
+
+### Bug Fixes
+
+- `<ui-table>`: fix sort css bug
+
+### Chore
+
+- `<ui-textfield-helper>`: optimize helper with counter hints
+
 ## v8.48.1 / 2022-02-08
 
 :tada: Vue 3 is now the new default version!

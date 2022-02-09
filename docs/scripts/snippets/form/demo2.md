@@ -22,7 +22,11 @@
       <label>Radio:</label>
       <div :class="subitemClass">
         <ui-form-field v-for="i in 3" :key="i">
-          <ui-radio :value="i" :input-id="`radio-${i}`"></ui-radio>
+          <ui-radio
+            v-model="checkedValue"
+            :value="i"
+            :input-id="`radio-${i}`"
+          ></ui-radio>
           <label :for="`radio-${i}`">Radio {{ i }}</label>
         </ui-form-field>
       </div>

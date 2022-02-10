@@ -91,8 +91,20 @@ const output = {
   components: './components',
   plugins: './plugins',
   directives: './directives',
-  utils: './utils'
+  utils: './utils',
+  vetur: './vetur'
 };
+
+const noAttributesTags = [
+  'ui-drawer-header',
+  'ui-drawer-title',
+  'ui-drawer-subtitle',
+  'ui-drawer-content',
+  'ui-drawer-app-content',
+  'ui-panel',
+  'ui-menuitem-text',
+  'ui-menuitem-icon'
+];
 
 module.exports = {
   input,
@@ -100,5 +112,6 @@ module.exports = {
   plugins,
   directives,
   utils,
-  output
+  output,
+  noAttributesTags
 };

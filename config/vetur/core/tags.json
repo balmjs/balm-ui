@@ -192,5 +192,69 @@
       "mini"
     ],
     "description": "Pagination controls provide swift access to all pages while indicating that more pages exist."
+  },
+  "ui-textfield": {
+    "attributes": [
+      "type",
+      "outlined",
+      "model-value",
+      "input-type",
+      "input-id",
+      "label",
+      "placeholder",
+      "disabled",
+      "required",
+      "fullwidth",
+      "end-aligned",
+      "icon",
+      "with-leading-icon",
+      "with-trailing-icon",
+      "helper-text-id",
+      "prefix-text",
+      "suffix-text",
+      "with-counter",
+      "minlength",
+      "maxlength",
+      "pattern",
+      "min",
+      "max",
+      "step",
+      "rows",
+      "cols",
+      "attrs"
+    ],
+    "description": "Text fields let users enter and edit text."
+  },
+  "ui-textfield-icon": {
+    "attributes": ["trailing", "unclickable"],
+    "description": "Textfield leading/trailing icons."
+  },
+  "ui-textfield-helper": {
+    "attributes": ["valid-msg", "id", "visible", "with-counter"],
+    "description": "Styles the container of helper text and character counter elements."
+  },
+  "ui-autocomplete": {
+    "attributes": [
+      "outlined",
+      "model-value",
+      "source",
+      "source-format",
+      "input-id",
+      "label",
+      "placeholder",
+      "disabled",
+      "required",
+      "autofocus",
+      "delay",
+      "minlength",
+      "remote",
+      "highlight",
+      "fullwidth",
+      "end-aligned",
+      "icon",
+      "with-leading-icon",
+      "with-trailing-icon"
+    ],
+    "description": "A autocomplete textfield."
   }
 }

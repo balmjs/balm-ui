@@ -1,0 +1,63 @@
+{
+  "type": {
+    "type": "string | number",
+    "options": ["filled", "outlined"],
+    "description": "Enhanced select type."
+  },
+  "outlined": {
+    "type": "boolean",
+    "description": "Styles the select as an outlined select."
+  },
+  "model-value": {
+    "type": "string | number",
+    "description": "The value of the currently selected option."
+  },
+  "options": {
+    "type": "array",
+    "description": "An array of options to show to the user."
+  },
+  "options-format": {
+    "type": "object",
+    "description": "Defines the option data format."
+  },
+  "default-label": {
+    "type": "string",
+    "description": "Placeholder item label."
+  },
+  "default-value": {
+    "type": "string | number",
+    "description": "Placeholder item value."
+  },
+  "label": {
+    "type": "string",
+    "description": "A text caption or description for the select."
+  },
+  "disabled": {
+    "type": "boolean",
+    "description": "Styles the select as disabled."
+  },
+  "required": {
+    "type": "boolean",
+    "description": "Styles the select as required."
+  },
+  "fullwidth": {
+    "type": "boolean",
+    "description": "Styles the select as full width select."
+  },
+  "fixed": {
+    "type": "boolean",
+    "description": "Styles the select as fixed select."
+  },
+  "icon": {
+    "type": "string",
+    "description": "Indicates an icon element with a leading icon."
+  },
+  "with-leading-icon": {
+    "type": "boolean",
+    "description": "Styles the select as a select with a leading icon."
+  },
+  "helper-text-id": {
+    "type": "string",
+    "description": "Required for the id attribute of the <ui-select-helper>."
+  }
+}

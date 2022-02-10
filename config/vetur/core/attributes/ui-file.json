@@ -1,0 +1,30 @@
+{
+  "input-id": {
+    "type": "string",
+    "description": "The id attribute of the <input> and the for attribute of the <label>."
+  },
+  "accept": {
+    "type": "string",
+    "description": "File types that can be accepted."
+  },
+  "multiple": {
+    "type": "boolean",
+    "description": "Whether to support selected multiple file."
+  },
+  "disabled": {
+    "type": "boolean",
+    "description": "To disable a upload button."
+  },
+  "outlined": {
+    "type": "boolean",
+    "description": "Styles an outlined upload button that is flush with the surface."
+  },
+  "text": {
+    "type": "string",
+    "description": "Text for the default upload button."
+  },
+  "preview": {
+    "type": "boolean",
+    "description": "Enabled preview file data."
+  }
+}

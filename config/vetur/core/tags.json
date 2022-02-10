@@ -255,6 +255,90 @@
       "with-leading-icon",
       "with-trailing-icon"
     ],
-    "description": "A autocomplete textfield."
+    "description": "An autocomplete textfield."
+  },
+  "ui-select": {
+    "attributes": [
+      "type",
+      "outlined",
+      "model-value",
+      "options",
+      "option-format",
+      "default-label",
+      "default-value",
+      "label",
+      "disabled",
+      "required",
+      "fullwidth",
+      "fixed",
+      "icon",
+      "with-leading-icon",
+      "helper-text-id"
+    ],
+    "description": "A select."
+  },
+  "ui-select-helper": {
+    "attributes": ["valid-msg", "id", "visible"],
+    "description": "Styles the container of helper text."
+  },
+  "ui-select-icon": {
+    "attributes": ["unclickable"],
+    "description": "Select leading/trailing icons."
+  },
+  "ui-checkbox": {
+    "attributes": [
+      "model-value",
+      "indeterminate",
+      "input-id",
+      "value",
+      "disabled",
+      "attrs"
+    ],
+    "description": "Checkboxes allow the user to select one or more items from a set. Checkboxes can be used to turn an option on or off."
+  },
+  "ui-radio": {
+    "attributes": ["model-value", "input-id", "value", "disabled", "attrs"],
+    "description": "Radio buttons allow the user to select one option from a set. Use radio buttons when the user needs to see all available options. If available options can be collapsed, consider using a dropdown menu because it uses less space."
+  },
+  "ui-chips": {
+    "attributes": ["type", "model-value", "options", "option-format", "chips"],
+    "description": "Chips are compact elements that represent an input, attribute, or action."
+  },
+  "ui-chip": {
+    "attributes": ["icon", "selected", "removable"],
+    "description": "A chip item."
+  },
+  "ui-file": {
+    "attributes": [
+      "input-id",
+      "accept",
+      "multiple",
+      "disabled",
+      "outlined",
+      "text",
+      "preview"
+    ],
+    "description": "File uploader."
+  },
+  "ui-datepicker": {
+    "attributes": [
+      "outlined",
+      "model-value",
+      "input-id",
+      "label",
+      "placeholder",
+      "disabled",
+      "required",
+      "fullwidth",
+      "end-aligned",
+      "icon",
+      "with-leading-icon",
+      "with-trailing-icon",
+      "config",
+      "toggle",
+      "clear",
+      "month-options"
+    ],
+    "description": "Date pickers let users select a date, or a range of dates."
   }
 }

@@ -1,0 +1,23 @@
+{
+  "type": {
+    "type": "string | number",
+    "options": ["action", "input", "choice", "filter"],
+    "description": "Chips type."
+  },
+  "model-value": {
+    "type": "string | number | array",
+    "description": "Single or multiple selection from a set of options."
+  },
+  "options": {
+    "type": "array",
+    "description": "An array of options to show to the user. Applicable only for choice or filter chips."
+  },
+  "options-format": {
+    "type": "object",
+    "description": "Defines the option data format."
+  },
+  "chips": {
+    "type": "array",
+    "description": "A set of chips. Applicable only for updating the input chips."
+  }
+}

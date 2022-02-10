@@ -17,7 +17,7 @@
 | `jumperText`             | string, array   | `'Goto'`          | The jumper before/after text.                                   |         |
 | `jumperButtonOutlined`   | boolean         | `false`           | Styles an outlined jumper button.                               | 9.11.0  |
 | `jumperButtonText`       | string          | `''`              | The jumper button text.                                         |         |
-| `position`               | string          | `''`              | The pagination postion.                                         |         |
+| `position`               | string          | `''`              | The pagination position.                                        |         |
 | `mini`                   | boolean         | `false`           | Whether to use simple mode.                                     |         |
 
 ```ts

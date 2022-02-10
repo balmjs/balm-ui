@@ -30,11 +30,11 @@
     "description": "A floating action button (FAB) represents the primary action of a screen."
   },
   "ui-icon-button": {
-    "attributes": ["v-model", "icon", "toggle"],
+    "attributes": ["model-value", "icon", "toggle"],
     "description": "Icon buttons (Toggle buttons) allow users to take actions, and make choices, with a single tap."
   },
   "ui-segmented-buttons": {
-    "attributes": ["v-model", "items", "single-select"],
+    "attributes": ["model-value", "items", "single-select"],
     "description": "Segmented buttons allow users to toggle the selected states of grouped buttons."
   },
   "ui-segmented-button": {
@@ -87,5 +87,110 @@
   "ui-divider": {
     "attributes": ["type"],
     "description": "A divider is a thin line that groups content in lists and layouts."
+  },
+  "ui-drawer": {
+    "attributes": ["type", "nav-id", "model-value", "viewport-height"],
+    "description": "Navigation drawers provide access to destinations in your app."
+  },
+  "ui-drawer-header": {
+    "description": "Non-scrollable element that exists at the top of the drawer."
+  },
+  "ui-drawer-title": {
+    "description": "Title text element of the drawer."
+  },
+  "ui-drawer-subtitle": {
+    "description": "Subtitle text element of the drawer."
+  },
+  "ui-drawer-content": {
+    "description": "Scrollable content area of the drawer."
+  },
+  "ui-drawer-app-content": {
+    "description": "Mandatory for <ui-drawer type=\"dismissible\"> only. Sibling element that is resized when the drawer opens/closes."
+  },
+  "ui-tabs": {
+    "attributes": [
+      "model-value",
+      "items",
+      "type",
+      "stacked",
+      "min-width",
+      "content-indicator"
+    ],
+    "description": "The shorthand for <ui-tab-bar> + <ui-tab>."
+  },
+  "ui-tab-bar": {
+    "attributes": ["model-value"],
+    "description": "Tab items container."
+  },
+  "ui-tab": {
+    "attributes": [
+      "type",
+      "stacked",
+      "min-width",
+      "content-indicator",
+      "text",
+      "icon"
+    ],
+    "description": "Tab item."
+  },
+  "ui-panels": {
+    "attributes": ["model-value"],
+    "description": "Tab panels container."
+  },
+  "ui-panel": {
+    "description": "Tab panel."
+  },
+  "ui-tab-indicator": {
+    "attributes": ["type", "fade"],
+    "description": "Contains the custom tab indicator content."
+  },
+  "ui-tab-scroller": {
+    "attributes": ["scroll-x", "align"],
+    "description": "Contains the custom tab scroller content."
+  },
+  "ui-menu-anchor": {
+    "attributes": ["position", "absolute"],
+    "description": "Used to indicate which element the menu should be anchored to."
+  },
+  "ui-menu": {
+    "attributes": [
+      "model-value",
+      "items",
+      "quick-open",
+      "position",
+      "distance",
+      "fixed",
+      "fullwidth",
+      "css-only"
+    ],
+    "description": "Menus display a list of choices on temporary surfaces."
+  },
+  "ui-menuitem": {
+    "attributes": ["nested", "item", "value", "disabled", "selected"],
+    "description": "A menu item."
+  },
+  "ui-menuitem-text": {
+    "description": "A menu item text."
+  },
+  "ui-menuitem-icon": {
+    "description": "Required when using a <ui-menuitem nested> to indicate which item is selected. Should contain an icon or svg that indicates the selected state of the <ui-menuitem>."
+  },
+  "ui-pagination": {
+    "attributes": [
+      "model-value",
+      "total",
+      "page-span",
+      "show-total",
+      "page-size",
+      "page-size-text",
+      "of-text",
+      "show-jumper",
+      "jumper-text",
+      "jumper-button-outlined",
+      "jumper-button-text",
+      "position",
+      "mini"
+    ],
+    "description": "Pagination controls provide swift access to all pages while indicating that more pages exist."
   }
 }

@@ -1,5 +1,5 @@
 {
-  "v-model": {
+  "model-value": {
     "type": "array | number",
     "description": "Sets the segmented buttons index(es)."
   },

@@ -46,7 +46,7 @@
     "description": "Application title."
   },
   "nav-icon": {
-    "type": "string, boolean",
+    "type": "string | false",
     "description": "A navigation icon. (Set 'close' for the contextual action bar)"
   },
   "nav-id": {

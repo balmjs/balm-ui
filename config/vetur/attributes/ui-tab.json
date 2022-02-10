@@ -1,0 +1,27 @@
+{
+  "type": {
+    "type": "string | number",
+    "options": ["text", "iconOnly", "textWithIcon"],
+    "description": "The permutation of tab labels."
+  },
+  "stacked": {
+    "type": "boolean",
+    "description": "Indicates that the tab icon and label should flow vertically instead of horizontally."
+  },
+  "min-width": {
+    "type": "boolean",
+    "description": "Indicates that the tab should shrink in size to be as narrow as possible without causing text to wrap."
+  },
+  "content-indicator": {
+    "type": "boolean",
+    "description": "Text label width-matching indicator."
+  },
+  "text": {
+    "type": "string",
+    "description": "Tab text."
+  },
+  "icon": {
+    "type": "string",
+    "description": "Tab icon."
+  }
+}

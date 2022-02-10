@@ -1,0 +1,11 @@
+{
+  "type": {
+    "type": "string",
+    "options": ["underline", "icon"],
+    "description": "Indicator type."
+  },
+  "fade": {
+    "type": "boolean",
+    "description": "Sets up the tab indicator to fade in on activation and fade out on deactivation."
+  }
+}

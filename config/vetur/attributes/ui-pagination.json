@@ -1,0 +1,55 @@
+{
+  "model-value": {
+    "type": "number",
+    "description": "Current page number."
+  },
+  "total": {
+    "type": "number",
+    "description": "The total number of data items."
+  },
+  "page-span": {
+    "type": "number | false",
+    "description": "Display the first N pages of the current page. (MIN VALUE: 3)"
+  },
+  "show-total": {
+    "type": "boolean",
+    "description": "Display total info."
+  },
+  "page-size": {
+    "type": "number | array",
+    "description": "The number of data items per page."
+  },
+  "page-size-text": {
+    "type": "string | array",
+    "description": "The page size before/after text."
+  },
+  "of-text": {
+    "type": "string",
+    "description": "The page total of text."
+  },
+  "show-jumper": {
+    "type": "boolean",
+    "description": "Determine whether you can jump to pages directly."
+  },
+  "jumper-text": {
+    "type": "string | array",
+    "description": "The jumper before/after text."
+  },
+  "jumper-button-outlined": {
+    "type": "boolean",
+    "description": "Styles an outlined jumper button."
+  },
+  "jumper-button-text": {
+    "type": "string",
+    "description": "The jumper button text."
+  },
+  "position": {
+    "type": "string",
+    "options": ["left", "center", "right"],
+    "description": "The pagination position."
+  },
+  "mini": {
+    "type": "boolean",
+    "description": "Whether to use simple mode."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "scroll-x": {
+    "type": "number",
+    "description": "The current scroll value."
+  },
+  "align": {
+    "type": "string",
+    "options": ["start", "center", "end"],
+    "description": "Tab alignment."
+  }
+}

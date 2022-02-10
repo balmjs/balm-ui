@@ -1,0 +1,18 @@
+{
+  "position": {
+    "type": "string",
+    "options": [
+      "top left",
+      "top right",
+      "middle left",
+      "middle right",
+      "bottom left",
+      "bottom right"
+    ],
+    "description": "Menu button position to the menu anchor."
+  },
+  "absolute": {
+    "type": "boolean",
+    "description": "The menu surface can use absolute positioning when being displayed. This requires that the element containing the menu has the `position: relative` style."
+  }
+}

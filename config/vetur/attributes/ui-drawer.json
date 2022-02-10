@@ -1,0 +1,19 @@
+{
+  "type": {
+    "type": "string | number",
+    "options": ["permanent", "dismissible", "modal"],
+    "description": "Drawer type."
+  },
+  "nav-id": {
+    "type": "string",
+    "description": "The external menu button selector."
+  },
+  "model-value": {
+    "type": "boolean",
+    "description": "The drawer toggle state."
+  },
+  "viewport-height": {
+    "type": "boolean",
+    "description": "Viewport full height(100vh)."
+  }
+}

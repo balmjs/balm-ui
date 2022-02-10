@@ -1,5 +1,5 @@
 {
-  "v-model": {
+  "model-value": {
     "type": "boolean",
     "description": "Sets the toggle state."
   },

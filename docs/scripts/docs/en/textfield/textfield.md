@@ -26,7 +26,7 @@
 | `withLeadingIcon`        | boolean        | `false`  | Styles the text field as a text field with a leading icon.                                               |
 | `withTrailingIcon`       | boolean        | `false`  | Styles the text field as a text field with a trailing icon.                                              |
 | `prefixText`             | string         | `''`     | Sets the text content of the prefix.                                                                     |
-| `suffixText`             | string         | `''`     | sets the text content of the suffix.                                                                     |
+| `suffixText`             | string         | `''`     | Sets the text content of the suffix.                                                                     |
 | `withCounter`            | boolean        | `false`  | Styles the text area as a text area with an internal character counter.                                  |
 | `helperTextId`           | string         | `null`   | Required for the _id_ attribute of the `<ui-textfield-helper>`.                                          |
 | `attrs`                  | object         | `{}`     | Other attributes for `<input>` or `<textarea>`.                                                          |

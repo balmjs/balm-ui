@@ -63,7 +63,7 @@ module.exports = (mix) => {
         buildESModule(mix);
 
         createTSDefinition(mix);
-        createVeturHelper(mix);
+        createVeturHelper();
       } else {
         mix.copy('./src/material-icons/*', './docs/fonts'); // For new fonts updated
         // Test PWA for local

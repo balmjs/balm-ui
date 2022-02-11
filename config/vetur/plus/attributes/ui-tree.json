@@ -1,1 +1,38 @@
-{}
+{
+  "model-value": {
+    "type": "string | array",
+    "description": "Selected node keys."
+  },
+  "data": {
+    "type": "array",
+    "description": "The tree data source."
+  },
+  "data-format": {
+    "type": "object",
+    "description": "Defines the tree data source format."
+  },
+  "max-level": {
+    "type": "number",
+    "description": "Set max level for tree nodes."
+  },
+  "multiple": {
+    "type": "boolean",
+    "description": "Whether to support selected multiple tree nodes."
+  },
+  "single-checked": {
+    "type": "boolean",
+    "description": "Set single checked. Applicable only for the multiple tree."
+  },
+  "load-data": {
+    "type": "function",
+    "description": "Load data asynchronously."
+  },
+  "auto-expand-parent": {
+    "type": "boolean",
+    "description": "Whether to automatically expand root parent(s) treeNode."
+  },
+  "default-expanded-keys": {
+    "type": "array",
+    "description": "Specify the node keys of the default expanded treeNodes."
+  }
+}

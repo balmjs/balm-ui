@@ -39,31 +39,42 @@ async function loadVeturHelperData(type) {
   };
 }
 
-function saveVeturHelperData(tags, attributes) {
-  if (Object.keys(tags).length) {
-    const data = JSON.stringify(tags, null, 2);
-    fs.writeFile(`${config.output.vetur}/tags.json`, data, (err) => {
-      if (err) throw err;
-      console.log('`tags.json` is ready');
-    });
+async function saveVeturHelperData(tags, attributes) {
+  try {
+    await fs.mkdirSync('vetur');
+  } catch (e) {
+    // console.log('Cannot create folder ', e);
+  }
 
-    if (Object.keys(attributes).length) {
-      const data = JSON.stringify(attributes, null, 2);
-      fs.writeFile(`${config.output.vetur}/attributes.json`, data, (err) => {
-        if (err) throw err;
-        console.log('`attributes.json` is ready');
-      });
-    } else {
-      console.log('Invalid attributes');
+  if (Object.keys(tags).length) {
+    try {
+      const tagsData = JSON.stringify(tags, null, 2);
+      await fs.writeFileSync(`${config.output.vetur}/tags.json`, tagsData);
+      console.log('`tags.json` is ready');
+
+      if (Object.keys(attributes).length) {
+        try {
+          const attributesData = JSON.stringify(attributes, null, 2);
+          await fs.writeFileSync(
+            `${config.output.vetur}/attributes.json`,
+            attributesData
+          );
+          console.log('`attributes.json` is ready');
+        } catch (e) {
+          console.error(e);
+        }
+      } else {
+        console.log('Invalid attributes');
+      }
+    } catch (e) {
+      console.error(e);
     }
   } else {
     console.log('Invalid tags');
   }
 }
 
-async function createVeturHelper(mix) {
-  mix.remove(config.output.vetur);
-
+async function createVeturHelper() {
   let veturTags = {};
   let veturAttributes = {};
 

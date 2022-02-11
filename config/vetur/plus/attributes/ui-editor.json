@@ -1,1 +1,59 @@
-{}
+{
+  "model-value": {
+    "type": "string",
+    "description": "Sets the editor value."
+  },
+  "options": {
+    "type": "object",
+    "description": "Quill options."
+  },
+  "toolbar": {
+    "type": "array | string",
+    "description": "Custom or 'full' editor toolbar."
+  },
+  "placeholder": {
+    "type": "string",
+    "description": "Placeholder text to show when editor is empty."
+  },
+  "readonly": {
+    "type": "boolean",
+    "description": "Whether to instantiate the editor to read-only mode."
+  },
+  "theme": {
+    "type": "string",
+    "options": ["bubble", "snow"],
+    "description": "Name of theme to use."
+  },
+  "toolbar-icons": {
+    "type": "object",
+    "description": "Custom toolbar icons."
+  },
+  "toolbar-tips": {
+    "type": "object",
+    "description": "Custom toolbar tooltips."
+  },
+  "toolbar-options": {
+    "type": "object",
+    "description": "Custom toolbar options of the Font Famliy, Font Size and Line Height."
+  },
+  "toolbar-handlers": {
+    "type": "object",
+    "description": "Custom toolbar handlers."
+  },
+  "custom-image-handler": {
+    "type": "boolean",
+    "description": "Enable custom image handler."
+  },
+  "emotions": {
+    "type": "array",
+    "description": "The emoticon extension. Supports emoji and image."
+  },
+  "with-counter": {
+    "type": "boolean",
+    "description": "Styles the editor with an internal character counter."
+  },
+  "extension": {
+    "type": "object | false",
+    "description": "Custom extension for Quill."
+  }
+}

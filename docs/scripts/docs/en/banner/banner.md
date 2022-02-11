@@ -4,15 +4,15 @@
 
 ### Props
 
-| Name                  | Type    | Default | Description                                                                                                              | Version |
-| --------------------- | ------- | ------- | ------------------------------------------------------------------------------------------------------------------------ | ------- |
-| `open` (`v-model`)    | boolean | `false` | Mandatory.                                                                                                               |         |
-| `centered`            | boolean | `false` | Displayed centered. By default, banners are positioned as leading.                                                       | 9.20.0  |
-| `fixed`               | boolean | `false` | When used below top app bars, banners should remain fixed at the top of the screen.                                      | 9.20.0  |
-| `withImage`           | boolean | `false` | Images can help communicate a banner’s message.                                                                          | 9.20.0  |
-| `mobileStacked`       | boolean | `false` | On mobile view, banners with long text should have their action(s) be positioned below the text instead of alongside it. | 9.20.0  |
-| `primaryButtonText`   | boolean | `'OK'`  | The primary action text.                                                                                                 |         |
-| `secondaryButtonText` | boolean | `''`    | The secondary action text.                                                                                               |         |
+| Name                     | Type    | Default | Description                                                                                                              | Version |
+| ------------------------ | ------- | ------- | ------------------------------------------------------------------------------------------------------------------------ | ------- |
+| `modelValue` (`v-model`) | boolean | `false` | Mandatory.                                                                                                               |         |
+| `centered`               | boolean | `false` | Displayed centered. By default, banners are positioned as leading.                                                       | 9.20.0  |
+| `fixed`                  | boolean | `false` | When used below top app bars, banners should remain fixed at the top of the screen.                                      | 9.20.0  |
+| `withImage`              | boolean | `false` | Images can help communicate a banner’s message.                                                                          | 9.20.0  |
+| `mobileStacked`          | boolean | `false` | On mobile view, banners with long text should have their action(s) be positioned below the text instead of alongside it. | 9.20.0  |
+| `primaryButtonText`      | boolean | `'OK'`  | The primary action text.                                                                                                 |         |
+| `secondaryButtonText`    | boolean | `''`    | The secondary action text.                                                                                               |         |
 
 ### Slots
 

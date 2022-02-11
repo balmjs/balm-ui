@@ -4,15 +4,15 @@
 
 ### Props
 
-| Name                  | Type    | Default | Description                                                                  | Version |
-| --------------------- | ------- | ------- | ---------------------------------------------------------------------------- | ------- |
-| `open` (`v-model`)    | boolean | `false` | 横幅显示状态                                                                 |         |
-| `centered`            | boolean | `false` | 内容居中显示。默认居左。                                                     | 9.20.0  |
-| `fixed`               | boolean | `false` | 在顶部导航栏下方使用横幅时，横幅应固定在屏幕顶部。                           | 9.20.0  |
-| `withImage`           | boolean | `false` | 图片可以帮助传达横幅广告的信息。                                             | 9.20.0  |
-| `mobileStacked`       | boolean | `false` | 带有长文字的横幅在移动视图中，应将其操作区域放置在文字下方，而不是并排放置。 | 9.20.0  |
-| `primaryButtonText`   | boolean | `'OK'`  | 主按钮文本                                                                   |         |
-| `secondaryButtonText` | boolean | `''`    | 辅按钮文本                                                                   |         |
+| Name                     | Type    | Default | Description                                                                  | Version |
+| ------------------------ | ------- | ------- | ---------------------------------------------------------------------------- | ------- |
+| `modelValue` (`v-model`) | boolean | `false` | 横幅显示状态                                                                 |         |
+| `centered`               | boolean | `false` | 内容居中显示。默认居左。                                                     | 9.20.0  |
+| `fixed`                  | boolean | `false` | 在顶部导航栏下方使用横幅时，横幅应固定在屏幕顶部。                           | 9.20.0  |
+| `withImage`              | boolean | `false` | 图片可以帮助传达横幅广告的信息。                                             | 9.20.0  |
+| `mobileStacked`          | boolean | `false` | 带有长文字的横幅在移动视图中，应将其操作区域放置在文字下方，而不是并排放置。 | 9.20.0  |
+| `primaryButtonText`      | boolean | `'OK'`  | 主按钮文本                                                                   |         |
+| `secondaryButtonText`    | boolean | `''`    | 辅按钮文本                                                                   |         |
 
 ### Slots
 

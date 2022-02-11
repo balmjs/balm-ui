@@ -202,9 +202,12 @@ export default {
         this.inputValue = `${val}`;
       }
     },
-    source(data) {
-      this.setDataSource(data);
-      this.show();
+    source: {
+      handler(data) {
+        this.setDataSource(data)
+        this.show()
+      },
+      deep:true
     }
   },
   beforeMount() {

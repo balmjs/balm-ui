@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.42.0 / 2022-02-11
+
+### Features
+
+- add vetur support
+
 ## v9.41.1 / 2022-02-08
 
 ### Bug Fixes

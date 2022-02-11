@@ -2887,10 +2887,10 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-balm@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/balm/-/balm-4.2.0.tgz#6e0f6fa23bf3f63f792fcdf47bd54afed871b594"
-  integrity sha512-7s9yW6k5RIg6V1j/1/0PegV+WsMZAMWgcQBT2fGvF2tqvQqR8I58j8k/mPB+KFvR2HMU395OQPianns1XgC1lA==
+balm@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/balm/-/balm-4.3.0.tgz#61156922046be946e89f15e68234a6c9aacc8c94"
+  integrity sha512-wVF7v1TkUuUFqeO80yrVwTv0iAI2m/VOOZ8UtRQOaK68gt8IVx5Pkl09Ef7g2u/r++xq4gU+d3oJ7WLLhWgbVg==
   dependencies:
     "@babel/core" "^7.16"
     "@babel/plugin-transform-runtime" "^7.16"
@@ -7819,10 +7819,10 @@ vue-jest@^5.0.0-alpha.10:
     source-map "0.5.6"
     tsconfig "^7.0.0"
 
-vue-loader@^16.8.0:
-  version "16.8.3"
-  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-16.8.3.tgz#d43e675def5ba9345d6c7f05914c13d861997087"
-  integrity sha512-7vKN45IxsKxe5GcVCbc2qFU5aWzyiLrYJyUuMz4BQLKctCj/fmCa0w6fGiiQ2cLFetNcek1ppGJQDCup0c1hpA==
+vue-loader@^17.0.0:
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-17.0.0.tgz#2eaa80aab125b19f00faa794b5bd867b17f85acb"
+  integrity sha512-OWSXjrzIvbF2LtOUmxT3HYgwwubbfFelN8PAP9R9dwpIkj48TVioHhWWSx7W7fk+iF5cgg3CBJRxwTdtLU4Ecg==
   dependencies:
     chalk "^4.1.0"
     hash-sum "^2.0.0"

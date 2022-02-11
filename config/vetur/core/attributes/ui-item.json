@@ -1,0 +1,10 @@
+{
+  "selected": {
+    "type": "boolean",
+    "description": "Styles the row in an selected state."
+  },
+  "disabled": {
+    "type": "boolean",
+    "description": "Styles the row in an disabled state."
+  }
+}

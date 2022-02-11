@@ -1,0 +1,30 @@
+{
+  "model-value": {
+    "type": "boolean",
+    "description": "Sets the banner state."
+  },
+  "centered": {
+    "type": "boolean",
+    "description": "Displayed centered. By default, banners are positioned as leading."
+  },
+  "fixed": {
+    "type": "boolean",
+    "description": "When used below top app bars, banners should remain fixed at the top of the screen."
+  },
+  "with-image": {
+    "type": "boolean",
+    "description": "Images can help communicate a banner’s message."
+  },
+  "mobile-stacked": {
+    "type": "boolean",
+    "description": "On mobile view, banners with long text should have their action(s) be positioned below the text instead of alongside it."
+  },
+  "primary-button-text": {
+    "type": "boolean",
+    "description": "The primary action text."
+  },
+  "secondary-button-text": {
+    "type": "boolean",
+    "description": "The secondary action text."
+  }
+}

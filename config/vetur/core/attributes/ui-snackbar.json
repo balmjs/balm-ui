@@ -1,0 +1,35 @@
+{
+  "action-type": {
+    "type": "number",
+    "description": "Sets action button or dismiss icon for the snackbar. (0: action button, 1: dismiss icon)"
+  },
+  "model-value": {
+    "type": "boolean",
+    "description": "Sets the snackbar state."
+  },
+  "timeout-ms": {
+    "type": "number",
+    "description": "The automatic dismiss timeout in milliseconds. Value must be between 4000 and 10000 or an error will be thrown."
+  },
+  "message": {
+    "type": "string",
+    "description": "Message text."
+  },
+  "action-button-text": {
+    "type": "string",
+    "description": "The action button/icon elements, if present."
+  },
+  "stacked": {
+    "type": "boolean",
+    "description": "Positions the action button/icon below the message instead of alongside it."
+  },
+  "leading": {
+    "type": "boolean",
+    "description": "Positions the snackbar on the leading edge of the screen (left in LTR, right in RTL) instead of centered. (tablet and desktop only)"
+  },
+  "position": {
+    "type": "string",
+    "options": ["bottom", "center", "top"],
+    "description": "Snackbar position."
+  }
+}

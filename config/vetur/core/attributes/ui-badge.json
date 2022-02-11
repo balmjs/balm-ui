@@ -1,0 +1,23 @@
+{
+  "count": {
+    "type": "number",
+    "description": "Number to show in badge."
+  },
+  "overlap": {
+    "type": "boolean",
+    "description": "Make the badge overlap with its container."
+  },
+  "max-count": {
+    "type": "number",
+    "description": "Max count to show."
+  },
+  "dot": {
+    "type": "boolean",
+    "description": "Whether to display a dot instead of `count`."
+  },
+  "state": {
+    "type": "string",
+    "options": ["success", "info", "warning", "error", "help"],
+    "description": "State type for text badge."
+  }
+}

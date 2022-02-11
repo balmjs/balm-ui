@@ -1,0 +1,58 @@
+{
+  "data": {
+    "type": "array",
+    "description": "Data source."
+  },
+  "model-value": {
+    "type": "array",
+    "description": "Selected row indexes/ids. (Required: `rowCheckbox: true`)"
+  },
+  "thead": {
+    "type": "array",
+    "description": "Table header renderer."
+  },
+  "tbody": {
+    "type": "array",
+    "description": "Table content renderer."
+  },
+  "tfoot": {
+    "type": "array",
+    "description": "Table footer renderer."
+  },
+  "fullwidth": {
+    "type": "boolean",
+    "description": "Styles the table as a full width table."
+  },
+  "row-checkbox": {
+    "type": "boolean",
+    "description": "Data table with row selection."
+  },
+  "selected-key": {
+    "type": "string | false",
+    "description": "The `model-value` use custom key field, default use row index."
+  },
+  "row-id-prefix": {
+    "type": "string",
+    "description": "The prefix of `data-row-id` attribute value on row element `tr`."
+  },
+  "sort-icon-align-end": {
+    "type": "boolean",
+    "description": "The sort icon will be positioned after the label."
+  },
+  "show-progress": {
+    "type": "boolean",
+    "description": "Styles the table with progress indicator for data loading."
+  },
+  "fixed-header": {
+    "type": "boolean",
+    "description": "Styles the table as a fixed header."
+  },
+  "default-col-width": {
+    "type": "number",
+    "description": "Set the default column width for the fixed table."
+  },
+  "scroll": {
+    "type": "object",
+    "description": "Set the table container size for the fixed table."
+  }
+}

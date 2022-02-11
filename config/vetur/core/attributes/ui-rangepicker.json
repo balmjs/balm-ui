@@ -1,0 +1,26 @@
+{
+  "outlined": {
+    "type": "boolean",
+    "description": "Styles the rangepicker as an outlined text field. (labels or placeholders required)"
+  },
+  "model-value": {
+    "type": "array",
+    "description": "Sets the rangepicker value."
+  },
+  "labels": {
+    "type": "array",
+    "description": "A text caption or description for the rangepicker, which use the start and end input's `placeholder` attribute instead."
+  },
+  "placeholders": {
+    "type": "array",
+    "description": "The placeholder attribute of the start and end <input>."
+  },
+  "disabled": {
+    "type": "boolean",
+    "description": "Styles the rangepicker as a disabled text field."
+  },
+  "config": {
+    "type": "object",
+    "description": "Flatpickr configuration."
+  }
+}

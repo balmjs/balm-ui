@@ -1,0 +1,35 @@
+{
+  "type": {
+    "type": "string | number",
+    "options": ["continuous", "discrete"],
+    "description": "Slider type."
+  },
+  "discrete": {
+    "type": "boolean",
+    "description": "Styles the slider as a discrete slider."
+  },
+  "with-tick-marks": {
+    "type": "boolean",
+    "description": "Discrete sliders support display markers on their tracks."
+  },
+  "model-value": {
+    "type": "number | array",
+    "description": "The current value of the slider. (Array value for range slider)"
+  },
+  "min": {
+    "type": "number",
+    "description": "The minimum value a slider can have."
+  },
+  "max": {
+    "type": "number",
+    "description": "The maximum value a slider can have."
+  },
+  "step": {
+    "type": "number",
+    "description": "Specifies the increments at which a slider value can be set."
+  },
+  "disabled": {
+    "type": "boolean",
+    "description": "Whether or not the slider is disabled."
+  }
+}

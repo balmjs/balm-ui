@@ -340,5 +340,225 @@
       "month-options"
     ],
     "description": "Date pickers let users select a date, or a range of dates."
+  },
+  "ui-rangepicker": {
+    "attributes": [
+      "outlined",
+      "model-value",
+      "labels",
+      "placeholders",
+      "disabled",
+      "config"
+    ],
+    "description": "A range date picker."
+  },
+  "ui-switch": {
+    "attributes": ["model-value", "true-value", "false-value", "disabled"],
+    "description": "Switches toggle the state of a single item on or off. They are the preferred way to adjust settings on mobile."
+  },
+  "ui-slider": {
+    "attributes": [
+      "type",
+      "discrete",
+      "with-tick-marks",
+      "model-value",
+      "min",
+      "max",
+      "step",
+      "disabled"
+    ],
+    "description": "Sliders allow users to make selections from a range of values."
+  },
+  "ui-list": {
+    "attributes": [
+      "type",
+      "single-selection",
+      "model-value",
+      "non-interactive",
+      "dense",
+      "avatar"
+    ],
+    "description": "Lists are continuous, vertical indexes of text or images."
+  },
+  "ui-nav": {
+    "attributes": [
+      "type",
+      "single-selection",
+      "model-value",
+      "non-interactive",
+      "dense",
+      "avatar"
+    ],
+    "description": "A set of navigation links."
+  },
+  "ui-item": {
+    "attributes": ["selected", "disabled"],
+    "description": "A item of list."
+  },
+  "ui-nav-item": {
+    "attributes": ["href", "active"],
+    "description": "A item of nav list."
+  },
+  "ui-item-text-content": {
+    "description": "Wrapper for list item text content (displayed as middle column of the list item)."
+  },
+  "ui-item-text1": {
+    "description": "Primary text for the list item. Should be the child of <ui-item-text-content>."
+  },
+  "ui-item-text2": {
+    "description": "Secondary text for the list item. Displayed below the primary text. Should be the child of <ui-item-text-content>."
+  },
+  "ui-item-first-content": {
+    "description": "The first tile in the row (in LTR languages, the first column of the list item). Typically an icon or image."
+  },
+  "ui-item-last-content": {
+    "description": "The last tile in the row (in LTR languages, the last column of the list item). Typically small text, icon. or image."
+  },
+  "ui-list-group": {
+    "description": "Wrapper around two or more <ui-list> elements to be grouped together."
+  },
+  "ui-list-group-subheader": {
+    "description": "Heading text displayed above each list in a group."
+  },
+  "ui-list-divider": {
+    "attributes": ["padded", "inset"],
+    "description": "A list divider."
+  },
+  "ui-item-divider": {
+    "attributes": ["padded", "inset"],
+    "description": "A list item divider."
+  },
+  "ui-image-list": {
+    "attributes": ["type", "masonry", "text-protection"],
+    "description": "Image lists display a collection of images in an organized grid."
+  },
+  "ui-image-item": {
+    "attributes": ["image", "bg-image"],
+    "description": "Indicates each item in an Image List."
+  },
+  "ui-image-text": {
+    "description": "Indicates the area within each item containing the supporting text label, if the Image List contains text labels."
+  },
+  "ui-card": {
+    "attributes": ["outlined"],
+    "description": "Cards contain content and actions about a single subject."
+  },
+  "ui-card-content": {
+    "description": "The main tappable area of the card. Typically contains most (or all) card content except <ui-card-actions>. Only applicable to cards that have a primary action that the main surface should trigger."
+  },
+  "ui-card-media": {
+    "attributes": ["square", "rectangle"],
+    "description": "Media area that displays a custom `background-image` with `background-size: cover`."
+  },
+  "ui-card-media-content": {
+    "description": "An absolutely-positioned box the same size as the media area, for displaying a title or icon on top of the `background-image`."
+  },
+  "ui-card-text": {
+    "description": "Additional text content."
+  },
+  "ui-card-actions": {
+    "attributes": ["full-bleed"],
+    "description": "Row containing action buttons and/or icons."
+  },
+  "ui-card-buttons": {
+    "description": "A group of action buttons, displayed on the left side of the card (in LTR), adjacent to <ui-card-icons>."
+  },
+  "ui-card-icons": {
+    "description": "A group of supplemental action icons, displayed on the right side of the card (in LTR), adjacent to <ui-card-buttons>."
+  },
+  "ui-table": {
+    "attributes": [
+      "data",
+      "model-value",
+      "thead",
+      "tbody",
+      "tfoot",
+      "fullwidth",
+      "row-checkbox",
+      "selected-key",
+      "row-id-prefix",
+      "sort-icon-align-end",
+      "show-progress",
+      "fixed-header",
+      "default-col-width",
+      "scroll"
+    ],
+    "description": "Data tables display sets of data across rows and columns."
+  },
+  "ui-badge": {
+    "attributes": ["count", "overlap", "max-count", "dot", "state"],
+    "description": "Small status descriptors for UI components."
+  },
+  "ui-dialog": {
+    "attributes": [
+      "model-value",
+      "escape-key",
+      "closable",
+      "mask-closable",
+      "no-scrim",
+      "reset-scroll",
+      "scrollable",
+      "stacked",
+      "fullscreen"
+    ],
+    "description": "Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks."
+  },
+  "ui-dialog-title": {
+    "attributes": ["closable"],
+    "description": "Brief summary of the dialog's purpose."
+  },
+  "ui-dialog-content": {
+    "description": "Primary content area. May contain a list, a form, or prose."
+  },
+  "ui-dialog-actions": {
+    "attributes": ["accept-text", "cancel-text"],
+    "description": "Footer area containing the dialog's action buttons."
+  },
+  "ui-snackbar": {
+    "attributes": [
+      "action-type",
+      "model-value",
+      "timeout-ms",
+      "message",
+      "action-button-text",
+      "stacked",
+      "leading",
+      "position"
+    ],
+    "description": "Snackbars provide brief messages about app processes at the bottom of the screen."
+  },
+  "ui-banner": {
+    "attributes": [
+      "model-value",
+      "centered",
+      "fixed",
+      "with-image",
+      "mobile-stacked",
+      "primary-button-text",
+      "secondary-button-text"
+    ],
+    "description": "A banner displays a prominent message and related optional actions."
+  },
+  "ui-progress": {
+    "attributes": ["active", "progress", "buffer", "label", "closed"],
+    "description": "Linear progress indicators display progress by animating an indicator along the length of a fixed, visible track. The behavior of the indicator is dependent on whether the progress of a process is known."
+  },
+  "ui-spinner": {
+    "attributes": [
+      "active",
+      "progress",
+      "size",
+      "four-colored",
+      "label",
+      "closed"
+    ],
+    "description": "Circular progress indicators display progress by animating an indicator along an invisible circular track in a clockwise direction. They can be applied directly to a surface, such as a button or card."
+  },
+  "ui-tooltip": {
+    "attributes": ["type", "rich", "width"],
+    "description": "Tooltips display informative text when users hover over, focus on, or tap an element."
+  },
+  "ui-tooltip-anchor": {
+    "description": "Rich tooltip wrapper."
   }
 }

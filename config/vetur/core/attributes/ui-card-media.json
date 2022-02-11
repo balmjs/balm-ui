@@ -1,0 +1,10 @@
+{
+  "square": {
+    "type": "boolean",
+    "description": "Automatically scales the media area's height to equal its width."
+  },
+  "rectangle": {
+    "type": "boolean",
+    "description": "Automatically scales the media area's height according to its width, maintaining a 16:9 aspect ratio."
+  }
+}

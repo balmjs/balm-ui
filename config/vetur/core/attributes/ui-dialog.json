@@ -1,0 +1,38 @@
+{
+  "model-value": {
+    "type": "boolean",
+    "description": "Sets the dialog state."
+  },
+  "escape-key": {
+    "type": "boolean",
+    "description": "Sets the action reflected when the Escape key is pressed. Setting to `false` disables closing the dialog via Escape key."
+  },
+  "closable": {
+    "type": "boolean",
+    "description": "Closes the dialog, when a user actions on the accept or cancel button."
+  },
+  "mask-closable": {
+    "type": "boolean",
+    "description": "Closes the dialog, when the dialog scrim is clicked."
+  },
+  "no-scrim": {
+    "type": "boolean",
+    "description": "Hides the dialog scrim."
+  },
+  "reset-scroll": {
+    "type": "boolean",
+    "description": "Reset scroll bar, when the dialog is closed."
+  },
+  "scrollable": {
+    "type": "boolean",
+    "description": "Applied automatically when the dialog has overflowing content to warrant scrolling."
+  },
+  "stacked": {
+    "type": "boolean",
+    "description": "Applied automatically when the dialog's action buttons can't fit on a single line and must be stacked."
+  },
+  "fullscreen": {
+    "type": "boolean",
+    "description": "Styles a full-screen dialog for mobile/small-screen devices."
+  }
+}

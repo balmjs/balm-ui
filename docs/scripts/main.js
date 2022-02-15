@@ -21,14 +21,10 @@ import './my-sw';
 
 function createBalmUIApp() {
   const app = createApp(App);
-  const metaManager = createMetaManager();
 
   app.use(router);
-  app.use(metaManager);
-  app.use(metaPlugin);
   app.use(i18n);
   app.use($http);
-
   app.use(BalmUI, {
     $store: myStore,
     $typography: ['custom-style-1', 'custom-style-2'],
@@ -46,6 +42,11 @@ function createBalmUIApp() {
     //   src: dotImage
     // }
   });
+
+  // TODO: vue-meta has some bug in mobile chrome
+  // const metaManager = createMetaManager();
+  // app.use(metaManager);
+  // app.use(metaPlugin);
 
   registerGlobalComponents(app);
   setGlobalProperties(app);

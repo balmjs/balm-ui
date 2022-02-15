@@ -1,9 +1,9 @@
 <template>
-  <metainfo>
+  <!-- <metainfo>
     <template v-slot:title="{ content, metainfo }">
       {{ metainfo.subtitle ? `${content} - ${metainfo.subtitle}` : content }}
     </template>
-  </metainfo>
+  </metainfo> -->
   <div ref="root" class="balmui-container">
     <ui-progress
       v-if="pageLoad.loading"

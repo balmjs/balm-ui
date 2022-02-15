@@ -2,7 +2,7 @@ import prismjs from 'prismjs';
 import { domain } from '@/config';
 
 function setGlobalProperties(app) {
-  app.config.isCustomElement = (tag) => tag.startsWith('ui-');
+  app.config.compilerOptions.isCustomElement = (tag) => tag.startsWith('ui-');
 
   app.config.globalProperties.$domain = domain;
 

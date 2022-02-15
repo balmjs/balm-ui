@@ -21,7 +21,7 @@ Even better: propose a fix with a pull request and link it to the issue!
 
 ## Pull Request Guidelines
 
-- The `master` branch is just a snapshot of the latest stable release. All development should be done in dedicated branches. **Do not submit PRs against the `master` branch.**
+- The `main` branch is just a snapshot of the latest stable release. All development should be done in dedicated branches. **Do not submit PRs against the `main` branch.**
 
 - Checkout a topic branch from a base branch, e.g. `dev`, and merge back against that branch.
 

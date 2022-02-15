@@ -1,0 +1,78 @@
+{
+  "outlined": {
+    "type": "boolean",
+    "description": "Styles the autocomplete as an outlined text field. (`label` or `placeholder` required)"
+  },
+  "model-value": {
+    "type": "string | number",
+    "description": "Sets the autocomplete value."
+  },
+  "source": {
+    "type": "array",
+    "description": "Defines the data to use, must be specified."
+  },
+  "source-format": {
+    "type": "object",
+    "description": "Defines the data source format."
+  },
+  "input-id": {
+    "type": "string",
+    "description": "The id attribute of the <input> and the for attribute of the <label>."
+  },
+  "label": {
+    "type": "string",
+    "description": "A text caption or description for the autocomplete, which use the input's `placeholder` attribute instead."
+  },
+  "placeholder": {
+    "type": "string",
+    "description": "The placeholder attribute of the <input>."
+  },
+  "disabled": {
+    "type": "boolean",
+    "description": "Styles the autocomplete as a disabled text field."
+  },
+  "required": {
+    "type": "boolean",
+    "description": "Styles the autocomplete as a required text field."
+  },
+  "autofocus": {
+    "type": "boolean",
+    "description": "If set to `true` the first item will automatically be focused when the menu is shown."
+  },
+  "delay": {
+    "type": "number",
+    "description": "The delay in milliseconds between when a keystroke occurs and when a search is performed. A zero-delay makes sense for local data (more responsive), but can produce a lot of load for remote data, while being less responsive."
+  },
+  "minlength": {
+    "type": "number",
+    "description": "The minimum number of characters a user must type before a search is performed. Zero is useful for local data with just a few items, but a higher value should be used when a single character search could match a few thousand items."
+  },
+  "remote": {
+    "type": "boolean",
+    "description": "Get data by AJAX. Default usage for local data."
+  },
+  "highlight": {
+    "type": "boolean",
+    "description": "Styles the autocomplete suggestion value as a strong text."
+  },
+  "fullwidth": {
+    "type": "boolean",
+    "description": "Styles the autocomplete as a full width text field."
+  },
+  "end-aligned": {
+    "type": "boolean",
+    "description": "Styles the autocomplete with an end-aligned input."
+  },
+  "icon": {
+    "type": "string",
+    "description": "Indicates an icon element with a leading icon."
+  },
+  "with-leading-icon": {
+    "type": "boolean",
+    "description": "Styles the autocomplete as a text field with a leading icon."
+  },
+  "with-trailing-icon": {
+    "type": "boolean",
+    "description": "Styles the autocomplete as a text field with a trailing icon."
+  }
+}

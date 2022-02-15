@@ -1,0 +1,18 @@
+{
+  "nested": {
+    "type": "boolean",
+    "description": "The nested layout grid."
+  },
+  "columns": {
+    "type": "number | object",
+    "description": "Specifies the number of columns the cell spans."
+  },
+  "order": {
+    "type": "number",
+    "description": "Specifies the order of the cell."
+  },
+  "align": {
+    "type": "string",
+    "description": "Specifies the alignment of cell."
+  }
+}

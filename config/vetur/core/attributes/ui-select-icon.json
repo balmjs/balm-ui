@@ -1,0 +1,6 @@
+{
+  "unclickable": {
+    "type": "boolean",
+    "description": "Display un-clickable icon."
+  }
+}

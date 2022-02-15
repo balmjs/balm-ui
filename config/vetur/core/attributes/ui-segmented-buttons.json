@@ -1,0 +1,14 @@
+{
+  "model-value": {
+    "type": "array | number",
+    "description": "Sets the segmented buttons index(es)."
+  },
+  "items": {
+    "type": "array",
+    "description": "Segmented button items."
+  },
+  "singleSelect": {
+    "type": "boolean",
+    "description": "To make the segmented button single select."
+  }
+}

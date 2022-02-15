@@ -1,0 +1,6 @@
+{
+  "outlined": {
+    "type": "boolean",
+    "description": "Removes the shadow and displays a hairline outline instead."
+  }
+}

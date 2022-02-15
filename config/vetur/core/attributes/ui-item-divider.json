@@ -1,0 +1,10 @@
+{
+  "padded": {
+    "type": "boolean",
+    "description": "Leaves gaps on each side of divider to match padding of the last tile."
+  },
+  "inset": {
+    "type": "boolean",
+    "description": "Increases the leading margin of the divider so that it does not intersect the avatar column."
+  }
+}

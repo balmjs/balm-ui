@@ -1,0 +1,15 @@
+{
+  "type": {
+    "type": "string | number",
+    "options": ["standard", "masonry"],
+    "description": "Image list type."
+  },
+  "masonry": {
+    "type": "boolean",
+    "description": "Indicates that this Image List should use the Masonry variant."
+  },
+  "text-protection": {
+    "type": "boolean",
+    "description": "Indicates that supporting content should be positioned in a scrim overlaying each image (instead of positioned separately under each image)."
+  }
+}

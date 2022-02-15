@@ -1,0 +1,18 @@
+{
+  "model-value": {
+    "type": "boolean",
+    "description": "Sets the switch value."
+  },
+  "true-value": {
+    "type": "boolean | number | string",
+    "description": "Switch true value."
+  },
+  "false-value": {
+    "type": "boolean | number | string",
+    "description": "Switch false value."
+  },
+  "disabled": {
+    "type": "boolean",
+    "description": "Styles the switch as a disabled switch."
+  }
+}

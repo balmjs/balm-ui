@@ -1,0 +1,6 @@
+{
+  "model-value": {
+    "type": "number",
+    "description": "Sets the tabs index."
+  }
+}

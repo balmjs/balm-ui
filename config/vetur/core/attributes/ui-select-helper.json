@@ -1,0 +1,14 @@
+{
+  "valid-msg": {
+    "type": "string | false",
+    "description": "Indicates the helper text is a validation message."
+  },
+  "id": {
+    "type": "string",
+    "description": "Corresponding to the `helper-text-id` prop matching <ui-select>"
+  },
+  "visible": {
+    "type": "boolean",
+    "description": "Makes the helper text permanently visible."
+  }
+}

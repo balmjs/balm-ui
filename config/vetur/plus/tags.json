@@ -1,0 +1,47 @@
+{
+  "ui-editor": {
+    "attributes": [
+      "model-value",
+      "options",
+      "toolbar",
+      "placeholder",
+      "readonly",
+      "theme",
+      "toolbar-icons",
+      "toolbar-tips",
+      "toolbar-options",
+      "toolbar-handlers",
+      "custom-image-handler",
+      "emotions",
+      "with-counter",
+      "extension"
+    ],
+    "description": "A modern WYSIWYG editor (based on Quill with built-in extension features)."
+  },
+  "ui-collapse": {
+    "attributes": ["model-value", "with-icon", "icon-end-aligned", "ripple"],
+    "description": "A content area which can be collapsed and expanded."
+  },
+  "ui-tree": {
+    "attributes": [
+      "model-value",
+      "data",
+      "data-format",
+      "max-level",
+      "multiple",
+      "single-checked",
+      "load-data",
+      "auto-expand-parent",
+      "default-expanded-keys"
+    ],
+    "description": "A tree."
+  },
+  "ui-alert": {
+    "attributes": ["state", "state-outlined", "closable"],
+    "description": "Alerts provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages."
+  },
+  "ui-skeleton": {
+    "attributes": ["loading", "active", "avatar", "title", "paragraph"],
+    "description": "Skeleton provide a placeholder while you wait for content to load, or to visualise content that doesn't exist yet."
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "model-value": {
+    "type": "boolean",
+    "description": "Sets the menu state."
+  },
+  "items": {
+    "type": "array",
+    "description": "Menu items."
+  },
+  "quick-open": {
+    "type": "boolean",
+    "description": "Turn off menu open animations."
+  },
+  "position": {
+    "type": "string",
+    "options": [
+      "TOP_LEFT",
+      "TOP_RIGHT",
+      "BOTTOM_LEFT",
+      "BOTTOM_RIGHT",
+      "TOP_START",
+      "TOP_END",
+      "BOTTOM_START",
+      "BOTTOM_END"
+    ],
+    "description": "Menu position to the menu button."
+  },
+  "distance": {
+    "type": "object",
+    "description": "Anchor margin. (Format: `{ top, right, bottom, left }`)"
+  },
+  "fixed": {
+    "type": "boolean",
+    "description": "Used to indicate that the menu is using fixed positioning."
+  },
+  "fullwidth": {
+    "type": "boolean",
+    "description": "Sets the menu surface's width to match that of its parent anchor. Do not use with `fixed` or if hoisting to body."
+  },
+  "css-only": {
+    "type": "boolean",
+    "description": "Show static menu."
+  }
+}

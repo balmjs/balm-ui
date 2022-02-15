@@ -1,0 +1,27 @@
+{
+  "active": {
+    "type": "boolean",
+    "description": "Puts the circular progress indicator in an indeterminate state."
+  },
+  "progress": {
+    "type": "number",
+    "description": "Sets the progress bar to this value. Value should be between [0, 1]."
+  },
+  "size": {
+    "type": "string",
+    "options": ["large", "medium", "small"],
+    "description": "To set the circular progress size."
+  },
+  "four-colored": {
+    "type": "boolean",
+    "description": "You may choose to have the indicator in inderminate state animate through 4 colors."
+  },
+  "label": {
+    "type": "string",
+    "description": "Label indicating how the progress bar should be announced to the user."
+  },
+  "closed": {
+    "type": "boolean",
+    "description": "Hides the circular progress indicator."
+  }
+}

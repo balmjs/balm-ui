@@ -1,0 +1,32 @@
+{
+  "type": {
+    "type": "string | number",
+    "options": ["text", "outlined", "raised", "unelevated"],
+    "description": "Button type."
+  },
+  "outlined": {
+    "type": "boolean",
+    "description": "Styles an outlined button that is flush with the surface."
+  },
+  "raised": {
+    "type": "boolean",
+    "description": "Styles a contained button that is elevated above the surface."
+  },
+  "unelevated": {
+    "type": "boolean",
+    "description": "Styles a contained button that is flush with the surface."
+  },
+  "icon": {
+    "type": "string",
+    "description": "Indicates an icon element."
+  },
+  "disabled": {
+    "type": "boolean",
+    "description": "Disabled buttons cannot be interacted with and have no visual interaction effect."
+  },
+  "native-type": {
+    "type": "string",
+    "options": ["button", "submit", "reset"],
+    "description": "The <button> native attribute."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "active": {
+    "type": "boolean",
+    "description": "Puts the linear progress indicator in an indeterminate state."
+  },
+  "progress": {
+    "type": "number",
+    "description": "Sets the progress bar to this value. Value should be between [0, 1]."
+  },
+  "buffer": {
+    "type": "number",
+    "description": "Sets the buffer bar to this value. Value should be between [0, 1]."
+  },
+  "label": {
+    "type": "string",
+    "description": "Label indicating how the progress bar should be announced to the user."
+  },
+  "closed": {
+    "type": "boolean",
+    "description": "Hides the linear progress indicator."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "type": {
+    "type": "string | number",
+    "options": ["horizontal", "vertical"],
+    "description": "Text divider type."
+  }
+}

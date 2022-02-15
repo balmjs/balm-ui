@@ -1,0 +1,22 @@
+{
+  "nested": {
+    "type": "boolean",
+    "description": "Used to wrap a group of <ui-menuitem> that will represent a selection group."
+  },
+  "item": {
+    "type": "object",
+    "description": "A menu item."
+  },
+  "value": {
+    "type": "string",
+    "description": "The menu selected value."
+  },
+  "disabled": {
+    "type": "boolean",
+    "description": "To disable an item."
+  },
+  "selected": {
+    "type": "boolean",
+    "description": "Used to indicate which element in an item group is selected."
+  }
+}

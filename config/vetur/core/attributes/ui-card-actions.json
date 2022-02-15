@@ -1,0 +1,6 @@
+{
+  "full-bleed": {
+    "type": "boolean",
+    "description": "Removes the action area's padding and causes its only child (a `mdc-card__action` element) to consume 100% of the action area's width"
+  }
+}

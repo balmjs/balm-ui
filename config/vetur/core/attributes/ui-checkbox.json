@@ -1,0 +1,26 @@
+{
+  "model-value": {
+    "type": "boolean | array",
+    "description": "Sets the checkbox value."
+  },
+  "indeterminate": {
+    "type": "boolean",
+    "description": "Styles the checkbox as an indeterminate checkbox."
+  },
+  "input-id": {
+    "type": "string",
+    "description": "The id attribute of the <input> and the for attribute of the <label>."
+  },
+  "value": {
+    "type": "string | number",
+    "description": "The value attribute of the <input>."
+  },
+  "disabled": {
+    "type": "boolean",
+    "description": "Styles the checkbox as a disabled checkbox."
+  },
+  "attrs": {
+    "type": "object",
+    "description": "Other attributes for <input>."
+  }
+}

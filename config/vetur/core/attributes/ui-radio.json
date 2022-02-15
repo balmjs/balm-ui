@@ -1,0 +1,22 @@
+{
+  "model-value": {
+    "type": "boolean | array",
+    "description": "Sets the radio value."
+  },
+  "input-id": {
+    "type": "string",
+    "description": "The id attribute of the <input> and the for attribute of the <label>."
+  },
+  "value": {
+    "type": "string | number",
+    "description": "The value attribute of the <input>."
+  },
+  "disabled": {
+    "type": "boolean",
+    "description": "Styles the radio button as a disabled radio button."
+  },
+  "attrs": {
+    "type": "object",
+    "description": "Other attributes for <input>."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "fixed-column-width": {
+    "type": "boolean",
+    "description": "Specifies the grid should have fixed column width."
+  },
+  "position": {
+    "type": "string",
+    "options": ["left", "right"],
+    "description": "Specifies the alignment of the whole grid."
+  }
+}

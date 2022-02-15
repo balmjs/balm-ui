@@ -3,6 +3,7 @@ const constants = require('./constants');
 const individual = require('./individual');
 const buildIndividual = require('./build.individual');
 const fixGridCss = require('./build.fix');
+const createVeturHelper = require('./vetur');
 
 module.exports = (mix) => {
   if (env.buildDocs) {
@@ -56,12 +57,16 @@ module.exports = (mix) => {
 
         // Fix `grid` css bug for cssnano
         fixGridCss(mix);
+
+        createVeturHelper();
       } else {
         mix.copy('./src/material-icons/*', './docs/fonts'); // For new fonts updated
         // Test PWA for local
         // const workboxSw = 'node_modules/workbox-sw/build/workbox-sw.js';
         // mix.copy(workboxSw, '.tmp');
         // mix.injectManifest();
+
+        createVeturHelper();
       }
     }
   }

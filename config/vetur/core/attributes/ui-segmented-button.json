@@ -1,0 +1,14 @@
+{
+  "selected": {
+    "type": "boolean",
+    "description": "Styles a selected segmented button."
+  },
+  "text": {
+    "type": "string",
+    "description": "Segmented button text."
+  },
+  "icon": {
+    "type": "string",
+    "description": "Segmented button icon."
+  }
+}

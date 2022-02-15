@@ -1,0 +1,15 @@
+{
+  "state": {
+    "type": "string",
+    "options": ["success", "info", "warning", "error", "help"],
+    "description": "State type."
+  },
+  "state-outlined": {
+    "type": "boolean",
+    "description": "Show outlined state."
+  },
+  "closable": {
+    "type": "boolean",
+    "description": "Whether alert can be closed."
+  }
+}

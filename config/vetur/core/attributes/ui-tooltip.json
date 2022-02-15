@@ -1,0 +1,15 @@
+{
+  "type": {
+    "type": "string | number",
+    "options": ["plain", "rich"],
+    "description": "Tooltip type."
+  },
+  "rich": {
+    "type": "boolean",
+    "description": "Styles a rich tooltip."
+  },
+  "width": {
+    "type": "number",
+    "description": "Custom max width for tooltip."
+  }
+}

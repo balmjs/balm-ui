@@ -1,0 +1,22 @@
+{
+  "loading": {
+    "type": "boolean",
+    "description": "Display the skeleton."
+  },
+  "active": {
+    "type": "boolean",
+    "description": "Show animation effect."
+  },
+  "avatar": {
+    "type": "boolean | object",
+    "description": "Show avatar placeholder."
+  },
+  "title": {
+    "type": "boolean | object",
+    "description": "Show title placeholder."
+  },
+  "paragraph": {
+    "type": "boolean | object",
+    "description": "Show paragraph placeholder."
+  }
+}

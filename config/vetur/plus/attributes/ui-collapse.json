@@ -1,0 +1,18 @@
+{
+  "model-value": {
+    "type": "boolean",
+    "description": "Default expanded state."
+  },
+  "with-icon": {
+    "type": "boolean",
+    "description": "Default icons."
+  },
+  "icon-end-aligned": {
+    "type": "boolean",
+    "description": "Styles icon end aligned."
+  },
+  "ripple": {
+    "type": "boolean | number",
+    "description": "Sets the ripple color."
+  }
+}

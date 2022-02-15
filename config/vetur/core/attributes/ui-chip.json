@@ -1,0 +1,14 @@
+{
+  "icon": {
+    "type": "string",
+    "description": "Indicates an leading icon element."
+  },
+  "selected": {
+    "type": "boolean",
+    "description": "Hides the leading icon in a filter chip when the chip is selected."
+  },
+  "removable": {
+    "type": "boolean",
+    "description": "Indicates a trailing icon which removes the chip from the DOM. Only use with input chips."
+  }
+}

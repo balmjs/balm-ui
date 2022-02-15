@@ -1,0 +1,112 @@
+{
+  "type": {
+    "type": "string | number",
+    "options": ["filled", "outlined"],
+    "description": "Text field type."
+  },
+  "outlined": {
+    "type": "boolean",
+    "description": "Styles the text field as an outlined text field. (`label` or `placeholder` required)"
+  },
+  "model-value": {
+    "type": "string | number",
+    "description": "Sets the text field value."
+  },
+  "input-type": {
+    "type": "string",
+    "options": ["text", "password", "email", "number", "search", "url", "tel"],
+    "description": "Native <input> type."
+  },
+  "input-id": {
+    "type": "string",
+    "description": "The id attribute of the <input> and the for attribute of the <label>."
+  },
+  "label": {
+    "type": "string",
+    "description": "A text caption or description for the text field, which use the input's `placeholder` attribute instead."
+  },
+  "placeholder": {
+    "type": "string",
+    "description": "The placeholder attribute of the <input>."
+  },
+  "disabled": {
+    "type": "boolean",
+    "description": "Styles the text field as a disabled text field."
+  },
+  "required": {
+    "type": "boolean",
+    "description": "Styles the text field as a required text field."
+  },
+  "fullwidth": {
+    "type": "boolean",
+    "description": "Styles the text field as a full width text field."
+  },
+  "end-aligned": {
+    "type": "boolean",
+    "description": "Styles the text field with an end-aligned input."
+  },
+  "icon": {
+    "type": "string",
+    "description": "Indicates an icon element with a leading icon."
+  },
+  "with-leading-icon": {
+    "type": "boolean",
+    "description": "Styles the text field as a text field with a leading icon."
+  },
+  "with-trailing-icon": {
+    "type": "boolean",
+    "description": "Styles the text field as a text field with a trailing icon."
+  },
+  "prefix-text": {
+    "type": "string",
+    "description": "Sets the text content of the prefix."
+  },
+  "suffix-text": {
+    "type": "string",
+    "description": "Sets the text content of the suffix."
+  },
+  "with-counter": {
+    "type": "boolean",
+    "description": "Styles the text area as a text area with an internal character counter."
+  },
+  "helper-text-id": {
+    "type": "string",
+    "description": "Required for the id attribute of the <ui-textfield-helper>."
+  },
+  "pattern": {
+    "type": "string",
+    "description": "Specifies a regular expression that an <input> element's value is checked against"
+  },
+  "minlength": {
+    "type": "number",
+    "description": "Specifies the minimum number of characters required in an <input> element"
+  },
+  "maxlength": {
+    "type": "number",
+    "description": "Specifies the maximum number of characters allowed in an <input> element"
+  },
+  "min": {
+    "type": "number",
+    "description": "Specifies a minimum value for an <input> element"
+  },
+  "max": {
+    "type": "number",
+    "description": "Specifies the maximum value for an <input> element"
+  },
+  "step": {
+    "type": "number",
+    "description": "Specifies the interval between legal numbers in an input field"
+  },
+  "rows": {
+    "type": "number",
+    "description": "Specifies the visible number of lines in a text area"
+  },
+  "cols": {
+    "type": "number",
+    "description": "Specifies the visible width of a text area"
+  },
+  "attrs": {
+    "type": "object",
+    "description": "Other attributes for <input> or <textarea>."
+  }
+}

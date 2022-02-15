@@ -1,0 +1,10 @@
+{
+  "image": {
+    "type": "string",
+    "description": "Add the `src` attribute directly to the <img> in the image container."
+  },
+  "bg-image": {
+    "type": "string",
+    "description": "Use a <div> instead of <img> element."
+  }
+}

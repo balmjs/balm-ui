@@ -1,0 +1,6 @@
+{
+  "closable": {
+    "type": "boolean",
+    "description": "Displays close icon button."
+  }
+}

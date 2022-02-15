@@ -1,0 +1,10 @@
+{
+  "trailing": {
+    "type": "boolean",
+    "description": "Display trailing icon."
+  },
+  "unclickable": {
+    "type": "boolean",
+    "description": "Display un-clickable icon."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "href": {
+    "type": "string",
+    "description": "Resolved url. This would be the `href` attribute of an `a` element."
+  },
+  "active": {
+    "type": "boolean",
+    "description": "Styles the row in an activated state."
+  }
+}

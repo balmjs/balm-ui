@@ -1,0 +1,27 @@
+{
+  "type": {
+    "type": "string | number",
+    "options": ["singleLine", "twoLine"],
+    "description": "List type."
+  },
+  "single-selection": {
+    "type": "boolean",
+    "description": "The list can handle selecting/deselecting list elements based on click or keyboard action."
+  },
+  "model-value": {
+    "type": "number",
+    "description": "The index of the selected list item. Applicable only for the single selection list."
+  },
+  "non-interactive": {
+    "type": "boolean",
+    "description": "Disables interactivity affordances."
+  },
+  "dense": {
+    "type": "boolean",
+    "description": "Styles the density of the list, making it appear more compact."
+  },
+  "avatar": {
+    "type": "boolean",
+    "description": "Configures the leading tiles of each row to display images instead of icons. This will make the graphics of the list items larger."
+  }
+}

@@ -16,9 +16,11 @@ export default {
     getListTag(self) {
       const parent = self.$parent;
       const tagName = parent.$.type?.name;
-      return tagName === 'UiNav' || tagName === 'UiList'
-        ? parent
-        : this.getListTag(parent);
+      return tagName
+        ? tagName === 'UiNav' || tagName === 'UiList'
+          ? parent
+          : this.getListTag(parent)
+        : {};
     },
     getDeprecatedItemClasses({ disabled, selected, activated }) {
       let result = [];

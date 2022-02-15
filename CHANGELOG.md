@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.49.0 / 2022-02-15
+
+### Features
+
+- add vetur support
+
 ## v8.48.2 / 2022-02-09
 
 ### Bug Fixes

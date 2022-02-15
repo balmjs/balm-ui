@@ -6,7 +6,7 @@
 
 | Name               | Type    | Default    | Description                                                                                                                                   | Version |
 | ------------------ | ------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `actionType`       | number  | `0`        | Mandatory. Set action button or dismiss icon for the snackbar. (`0`: action button, `1`: dismiss icon)                                        |         |
+| `actionType`       | number  | `0`        | Mandatory. Sets action button or dismiss icon for the snackbar. (`0`: action button, `1`: dismiss icon)                                       |         |
 | `open` (`v-model`) | boolean | `false`    | Mandatory.                                                                                                                                    |         |
 | `timeoutMs`        | number  | `5000`     | Optional. The automatic dismiss timeout in milliseconds. Value must be between `4000` and `10000` or an error will be thrown.                 |         |
 | `message`          | string  | `''`       | Mandatory. Message text.                                                                                                                      |         |

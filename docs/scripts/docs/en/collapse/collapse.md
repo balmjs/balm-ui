@@ -7,7 +7,7 @@
 | Name                   | Type            | Default | Description              | Version |
 | ---------------------- | --------------- | ------- | ------------------------ | ------- |
 | `expanded` (`v-model`) | boolean         | `false` | Default expanded state.  |         |
-| `withIcon`             | boolean         | `false` | default icons.           |         |
+| `withIcon`             | boolean         | `false` | Default icons.           |         |
 | `iconEndAligned`       | boolean         | `false` | Styles icon end aligned. | 8.39.0  |
 | `ripple`               | boolean, number | `false` | Sets the ripple color.   |         |
 

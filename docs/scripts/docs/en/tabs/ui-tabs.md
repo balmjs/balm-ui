@@ -20,9 +20,9 @@
 | Component            | Description                                    |
 | -------------------- | ---------------------------------------------- |
 | `<ui-tabs>`          | The shorthand for `<ui-tab-bar>` + `<ui-tab>`. |
-| `<ui-tab-bar>`       | Tab item container.                            |
+| `<ui-tab-bar>`       | Tab items container.                           |
 | `<ui-tab>`           | Tab item.                                      |
-| `<ui-panels>`        | Tab panel container.                           |
+| `<ui-panels>`        | Tab panels container.                          |
 | `<ui-panel>`         | Tab panel.                                     |
 | `<ui-tab-indicator>` | Contains the custom tab indicator content.     |
 | `<ui-tab-scroller>`  | Contains the custom tab scroller content.      |

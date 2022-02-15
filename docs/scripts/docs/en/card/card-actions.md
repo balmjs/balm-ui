@@ -4,9 +4,9 @@
 
 ### Props
 
-| Name        | Type    | Default | Description                                                                                                                            |
-| ----------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `fullBleed` | boolean | `false` | Removes the action area's padding and causes its only child (an `mdc-card__action` element) to consume 100% of the action area's width |
+| Name        | Type    | Default | Description                                                                                                                           |
+| ----------- | ------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `fullBleed` | boolean | `false` | Removes the action area's padding and causes its only child (a `mdc-card__action` element) to consume 100% of the action area's width |
 
 ### Slots
 

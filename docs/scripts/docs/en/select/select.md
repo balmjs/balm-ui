@@ -21,7 +21,7 @@
 | `label`             | string         | `''`                                 | A text caption or description for the select.                                                 |         |
 | `disabled`          | boolean        | `false`                              | Styles the select as disabled.                                                                |         |
 | `required`          | boolean        | `false`                              | Styles the select as required.                                                                |         |
-| `fullwidth`         | boolean        | `false`                              | Optional. Styles the select as fullwidth select.                                              |         |
+| `fullwidth`         | boolean        | `false`                              | Optional. Styles the select as full width select.                                             |         |
 | `icon`              | string         | `''`                                 | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list. |         |
 | `withLeadingIcon`   | boolean        | `false`                              | Styles the select as a select with a leading icon.                                            |         |
 | `fixed`             | boolean        | `false`                              | Optional. Styles the select as fixed select.                                                  | 8.12.0  |

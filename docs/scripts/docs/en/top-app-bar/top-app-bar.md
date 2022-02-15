@@ -18,7 +18,7 @@
 | Name              | Type            | Default    | Description                                                                                                                 |
 | ----------------- | --------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------- |
 | `contentSelector` | string          | (required) | Selector used to style the content below the top app bar, to prevent the top app bar from covering it.                      |
-| `type`            | number          | `0`        | Mandatory. Top app bar types.                                                                                               |
+| `type`            | string, number  | `0`        | Mandatory. Top app bar types.                                                                                               |
 | `fixed`           | boolean         | `false`    | Fixed top app bars stay at the top of the page and elevate above the content when scrolled.                                 |
 | `dense`           | boolean         | `false`    | The dense top app bar is shorter.                                                                                           |
 | `prominent`       | boolean         | `false`    | The prominent top app bar is taller.                                                                                        |

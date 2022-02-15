@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.49.1 / 2022-02-15
+
+### Bug Fixes
+
+- `<ui-list>`, `<ui-nav>`: fix getListTag bug
+
 ## v8.49.0 / 2022-02-15
 
 ### Features

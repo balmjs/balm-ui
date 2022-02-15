@@ -15,8 +15,12 @@ export default {
   methods: {
     getListTag(self) {
       const parent = self.$parent;
-      const tagName = parent?.$vnode.tag;
-      return /(UiNav|UiList)$/.test(tagName) ? parent : this.getListTag(parent);
+      const tagName = parent?.$vnode?.tag;
+      return tagName
+        ? /(UiNav|UiList)$/.test(tagName)
+          ? parent
+          : this.getListTag(parent)
+        : {};
     },
     getDeprecatedItemClasses({ disabled, selected, activated }) {
       let result = [];

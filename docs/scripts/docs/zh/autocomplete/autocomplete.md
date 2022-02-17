@@ -22,7 +22,7 @@
 | `highlight`              | boolean        | `false`                              | 将自动完成文本框建议值设置为加粗                                                                                                             |
 | `fullwidth`              | boolean        | `false`                              | 全屏宽度样式                                                                                                                                 |
 | `endAligned`             | boolean        | `false`                              | 输入文本右对齐                                                                                                                               |
-| `icon`                   | string         | `''`                                 | 设置首图标。详见 [Material Icons](/#/icons) 图标集。                                                                                         |
+| `icon`                   | string         | `''`                                 | 设置首图标。详见 [Material Icons](/icons) 图标集。                                                                                           |
 | `withLeadingIcon`        | boolean        | `false`                              | 启用首图标样（需使用 `before` 插槽）                                                                                                         |
 | `withTrailingIcon`       | boolean        | `false`                              | 启用尾图标样式（需使用 `after` 插槽）                                                                                                        |
 

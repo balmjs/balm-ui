@@ -4,11 +4,11 @@
 
 ### Props
 
-| Name       | Type    | Default | Description                                        |
-| ---------- | ------- | ------- | -------------------------------------------------- |
-| `selected` | boolean | `false` | 设置选中状态样式                                   |
-| `text`     | string  | `''`    | 按钮文字                                           |
-| `icon`     | string  | `''`    | 按钮图标。详见 [Material Icons](/#/icons) 图标集。 |
+| Name       | Type    | Default | Description                                      |
+| ---------- | ------- | ------- | ------------------------------------------------ |
+| `selected` | boolean | `false` | 设置选中状态样式                                 |
+| `text`     | string  | `''`    | 按钮文字                                         |
+| `icon`     | string  | `''`    | 按钮图标。详见 [Material Icons](/icons) 图标集。 |
 
 ### Slots
 

@@ -23,7 +23,7 @@
 | `required`               | boolean               | `false` | 必填字段样                                                                                 |
 | `fullwidth`              | boolean               | `false` | 全屏宽度样式                                                                               |
 | `endAligned`             | boolean               | `false` | 输入文本右对齐                                                                             |
-| `icon`                   | string                | `''`    | 设置首图标。详见 [Material Icons](/#/icons) 图标集。                                       |
+| `icon`                   | string                | `''`    | 设置首图标。详见 [Material Icons](/icons) 图标集。                                         |
 | `withLeadingIcon`        | boolean, string       | `false` | 启用首图标样（需使用 `before` 插槽）                                                       |
 | `withTrailingIcon`       | boolean, string       | `false` | 启用尾图标样式（需使用 `after` 插槽）                                                      |
 | `config`                 | object                | `{}`    | 详见 [Flatpickr configuration](https://flatpickr.js.org/options/)                          |

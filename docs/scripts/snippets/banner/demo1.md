@@ -34,4 +34,4 @@
   };
   ```
 
-  > **`$bus`**: see BalmUI [event plugin](/#/misc/event) docs for details
+  > **`$bus`**: see BalmUI [event plugin](/misc/event) docs for details

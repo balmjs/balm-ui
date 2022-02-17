@@ -22,7 +22,7 @@
 | `required`               | boolean        | `false`  | Styles the text field as a required text field.                                                          |
 | `fullwidth`              | boolean        | `false`  | Styles the text field as a full width text field.                                                        |
 | `endAligned`             | boolean        | `false`  | Styles the text field with an end-aligned input.                                                         |
-| `icon`                   | string         | `''`     | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list.            |
+| `icon`                   | string         | `''`     | Optional. Indicates an icon element with a leading icon. See [Material Icons](/icons) list.              |
 | `withLeadingIcon`        | boolean        | `false`  | Styles the text field as a text field with a leading icon.                                               |
 | `withTrailingIcon`       | boolean        | `false`  | Styles the text field as a text field with a trailing icon.                                              |
 | `prefixText`             | string         | `''`     | Sets the text content of the prefix.                                                                     |

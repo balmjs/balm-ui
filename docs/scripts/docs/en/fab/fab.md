@@ -15,7 +15,7 @@
 | ---------- | -------------- | ------- | ------------------------------------------------------------------------------------------------ |
 | `type`     | string, number | `0`     | Mandatory. FAB types.                                                                            |
 | `extended` | boolean        | `false` | Optional. modifies the FAB to wider size which includes a text label.                            |
-| `icon`     | string         | `''`    | Optional. for the icon element. See [Material Icons](/#/icons) list.                             |
+| `icon`     | string         | `''`    | Optional. for the icon element. See [Material Icons](/icons) list.                               |
 | `mini`     | boolean        | `false` | Optional. modifies the FAB to a smaller size.                                                    |
 | `exited`   | boolean        | `false` | Optional. animates the FAB out of view. When this class is removed, the FAB will return to view. |
 

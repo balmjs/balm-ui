@@ -22,7 +22,7 @@
 | `required`               | boolean        | `false`  | 必填字段样式                                                  |
 | `fullwidth`              | boolean        | `false`  | 全屏宽度样式                                                  |
 | `endAligned`             | boolean        | `false`  | 输入文本右对齐                                                |
-| `icon`                   | string         | `''`     | 设置首图标。详见 [Material Icons](/#/icons) 图标集。          |
+| `icon`                   | string         | `''`     | 设置首图标。详见 [Material Icons](/icons) 图标集。            |
 | `withLeadingIcon`        | boolean        | `false`  | 启用首图标样式                                                |
 | `withTrailingIcon`       | boolean        | `false`  | 启用尾图标样式                                                |
 | `prefixText`             | string         | `''`     | 设置文本前缀内容                                              |

@@ -15,7 +15,7 @@
 | ---------- | -------------- | ------- | -------------------------------------------------------- |
 | `type`     | string, number | `0`     | 浮动按钮类型                                             |
 | `extended` | boolean        | `false` | 扩展浮动按钮。将浮动按钮修改为更大的尺寸，包括文本标签。 |
-| `icon`     | string         | `''`    | 设置图标。详见 [Material Icons](/#/icons) 图标集。       |
+| `icon`     | string         | `''`    | 设置图标。详见 [Material Icons](/icons) 图标集。         |
 | `mini`     | boolean        | `false` | 迷你浮动按钮                                             |
 | `exited`   | boolean        | `false` | 对浮动按钮进行动画处理                                   |
 

@@ -19,10 +19,10 @@
 
 ### `<ui-tab>` Props
 
-| Name   | Type   | Default | Description                                    |
-| ------ | ------ | ------- | ---------------------------------------------- |
-| `text` | string | `''`    | Tab text.                                      |
-| `icon` | string | `''`    | Tab icon. See [Material Icons](/#/icons) list. |
+| Name   | Type   | Default | Description                                  |
+| ------ | ------ | ------- | -------------------------------------------- |
+| `text` | string | `''`    | Tab text.                                    |
+| `icon` | string | `''`    | Tab icon. See [Material Icons](/icons) list. |
 
 ### Slots
 

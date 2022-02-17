@@ -19,10 +19,10 @@
 
 ### `<ui-tab>` Props
 
-| Name   | Type   | Default | Description                                        |
-| ------ | ------ | ------- | -------------------------------------------------- |
-| `text` | string | `''`    | 标签文本                                           |
-| `icon` | string | `''`    | 标签图标。详见 [Material Icons](/#/icons) 图标集。 |
+| Name   | Type   | Default | Description                                      |
+| ------ | ------ | ------- | ------------------------------------------------ |
+| `text` | string | `''`    | 标签文本                                         |
+| `icon` | string | `''`    | 标签图标。详见 [Material Icons](/icons) 图标集。 |
 
 ### Slots
 

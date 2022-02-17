@@ -11,9 +11,9 @@
 
 ### Slots
 
-| Name      | Props | Description                                                               |
-| --------- | ----- | ------------------------------------------------------------------------- |
-| `default` |       | default 插槽包含图标组件及 HTML。详见 [Material Icons](/#/icons) 图标集。 |
+| Name      | Props | Description                                                             |
+| --------- | ----- | ----------------------------------------------------------------------- |
+| `default` |       | default 插槽包含图标组件及 HTML。详见 [Material Icons](/icons) 图标集。 |
 
 ### Events
 

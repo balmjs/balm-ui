@@ -4,11 +4,11 @@
 
 ### Props
 
-| Name                     | Type    | Default | Description                                                          |
-| ------------------------ | ------- | ------- | -------------------------------------------------------------------- |
-| `modelValue` (`v-model`) | boolean | `false` | 切换状态                                                             |
-| `icon`                   | string  | `''`    | 设置单个图标。详见 [Material Icons](/#/icons) 图标集。               |
-| `toggle`                 | object  | `{}`    | 设置切换按钮两个状态的图标。详见 [Material Icons](/#/icons) 图标集。 |
+| Name                     | Type    | Default | Description                                                        |
+| ------------------------ | ------- | ------- | ------------------------------------------------------------------ |
+| `modelValue` (`v-model`) | boolean | `false` | 切换状态                                                           |
+| `icon`                   | string  | `''`    | 设置单个图标。详见 [Material Icons](/icons) 图标集。               |
+| `toggle`                 | object  | `{}`    | 设置切换按钮两个状态的图标。详见 [Material Icons](/icons) 图标集。 |
 
 - 通过 `toggle.on` 和 `toggle.off` 属性配置切换按钮状态的图标
 

@@ -4,11 +4,11 @@
 
 ### Props
 
-| Name       | Type    | Default | Description                                                 |
-| ---------- | ------- | ------- | ----------------------------------------------------------- |
-| `selected` | boolean | `false` | Styles a selected segmented button.                         |
-| `text`     | string  | `''`    | Segmented button text.                                      |
-| `icon`     | string  | `''`    | Segmented button icon. See [Material Icons](/#/icons) list. |
+| Name       | Type    | Default | Description                                               |
+| ---------- | ------- | ------- | --------------------------------------------------------- |
+| `selected` | boolean | `false` | Styles a selected segmented button.                       |
+| `text`     | string  | `''`    | Segmented button text.                                    |
+| `icon`     | string  | `''`    | Segmented button icon. See [Material Icons](/icons) list. |
 
 ### Slots
 

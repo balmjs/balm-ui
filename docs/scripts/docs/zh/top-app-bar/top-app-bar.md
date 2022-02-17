@@ -15,19 +15,19 @@
 
 ### Props
 
-| Name              | Type            | Default    | Description                                                                  |
-| ----------------- | --------------- | ---------- | ---------------------------------------------------------------------------- |
-| `contentSelector` | string          | (required) | 选择器用于设置顶部导航栏下方内容的样式，以防止顶部导航栏覆盖内容。           |
-| `type`            | string, number  | `0`        | 顶部导航栏类型                                                               |
-| `fixed`           | boolean         | `false`    | 固定的顶部导航栏位于页面顶部，并且在滚动时位于内容上方。                     |
-| `dense`           | boolean         | `false`    | 密集的顶部导航栏较短。                                                       |
-| `prominent`       | boolean         | `false`    | 突出的顶部导航栏较高。                                                       |
-| `prominentDense`  | boolean         | `false`    | 突出且密集的顶部导航栏                                                       |
-| `short`           | boolean         | `false`    | 顶部短导航，滚动时可以折叠到导航图标的一侧。                                 |
-| `shortCollapsed`  | boolean         | `false`    | 设置顶部短导航始终显示折叠状态。                                             |
-| `title`           | string          | `''`       | 设置导航标题                                                                 |
-| `navIcon`         | string, boolean | `'menu'`   | 设置导航图标                                                                 |
-| `navId`           | string          | `null`     | 侧边导航栏的元素 ID（请参考 [drawer](/#/navigation/drawer) 的 `navId` 属性） |
+| Name              | Type            | Default    | Description                                                                |
+| ----------------- | --------------- | ---------- | -------------------------------------------------------------------------- |
+| `contentSelector` | string          | (required) | 选择器用于设置顶部导航栏下方内容的样式，以防止顶部导航栏覆盖内容。         |
+| `type`            | string, number  | `0`        | 顶部导航栏类型                                                             |
+| `fixed`           | boolean         | `false`    | 固定的顶部导航栏位于页面顶部，并且在滚动时位于内容上方。                   |
+| `dense`           | boolean         | `false`    | 密集的顶部导航栏较短。                                                     |
+| `prominent`       | boolean         | `false`    | 突出的顶部导航栏较高。                                                     |
+| `prominentDense`  | boolean         | `false`    | 突出且密集的顶部导航栏                                                     |
+| `short`           | boolean         | `false`    | 顶部短导航，滚动时可以折叠到导航图标的一侧。                               |
+| `shortCollapsed`  | boolean         | `false`    | 设置顶部短导航始终显示折叠状态。                                           |
+| `title`           | string          | `''`       | 设置导航标题                                                               |
+| `navIcon`         | string, boolean | `'menu'`   | 设置导航图标                                                               |
+| `navId`           | string          | `null`     | 侧边导航栏的元素 ID（请参考 [drawer](/navigation/drawer) 的 `navId` 属性） |
 
 > 顶部短导航应与最多 1 个动作项一起使用。
 

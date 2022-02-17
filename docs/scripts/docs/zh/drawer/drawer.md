@@ -15,12 +15,12 @@
 
 ### Props
 
-| Name                     | Type           | Default | Description                                                                       |
-| ------------------------ | -------------- | ------- | --------------------------------------------------------------------------------- |
-| `type`                   | string, number | `0`     | 侧边导航栏类型                                                                    |
-| `navId`                  | string         | `null`  | 外部菜单按钮选择器（请参考 [top app bar](/#/layout/top-app-bar) 的 `navId` 属性） |
-| `modelValue` (`v-model`) | boolean        | `false` | 导航切换的状态                                                                    |
-| `viewportHeight`         | boolean        | `false` | 设置视窗全高度（`100vh`）                                                         |
+| Name                     | Type           | Default | Description                                                                     |
+| ------------------------ | -------------- | ------- | ------------------------------------------------------------------------------- |
+| `type`                   | string, number | `0`     | 侧边导航栏类型                                                                  |
+| `navId`                  | string         | `null`  | 外部菜单按钮选择器（请参考 [top app bar](/layout/top-app-bar) 的 `navId` 属性） |
+| `modelValue` (`v-model`) | boolean        | `false` | 导航切换的状态                                                                  |
+| `viewportHeight`         | boolean        | `false` | 设置视窗全高度（`100vh`）                                                       |
 
 ### Slots
 

@@ -15,19 +15,19 @@
 
 ### Props
 
-| Name              | Type            | Default    | Description                                                                                                                 |
-| ----------------- | --------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `contentSelector` | string          | (required) | Selector used to style the content below the top app bar, to prevent the top app bar from covering it.                      |
-| `type`            | string, number  | `0`        | Mandatory. Top app bar types.                                                                                               |
-| `fixed`           | boolean         | `false`    | Fixed top app bars stay at the top of the page and elevate above the content when scrolled.                                 |
-| `dense`           | boolean         | `false`    | The dense top app bar is shorter.                                                                                           |
-| `prominent`       | boolean         | `false`    | The prominent top app bar is taller.                                                                                        |
-| `prominentDense`  | boolean         | `false`    | The prominent top app bar with dense.                                                                                       |
-| `short`           | boolean         | `false`    | Short top app bars are top app bars that can collapse to the navigation icon side when scrolled.                            |
-| `shortCollapsed`  | boolean         | `false`    | Short top app bars can be configured to always appear collapsed.                                                            |
-| `title`           | string          | `''`       | Application title.                                                                                                          |
-| `navIcon`         | string, boolean | `'menu'`   | A navigation icon. (Set `'close'` for the contextual action bar)                                                            |
-| `navId`           | string          | `null`     | Control the navigation drawer is opened or closed. (Please refer to the `navId` prop of the [drawer](/#/navigation/drawer)) |
+| Name              | Type            | Default    | Description                                                                                                               |
+| ----------------- | --------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `contentSelector` | string          | (required) | Selector used to style the content below the top app bar, to prevent the top app bar from covering it.                    |
+| `type`            | string, number  | `0`        | Mandatory. Top app bar types.                                                                                             |
+| `fixed`           | boolean         | `false`    | Fixed top app bars stay at the top of the page and elevate above the content when scrolled.                               |
+| `dense`           | boolean         | `false`    | The dense top app bar is shorter.                                                                                         |
+| `prominent`       | boolean         | `false`    | The prominent top app bar is taller.                                                                                      |
+| `prominentDense`  | boolean         | `false`    | The prominent top app bar with dense.                                                                                     |
+| `short`           | boolean         | `false`    | Short top app bars are top app bars that can collapse to the navigation icon side when scrolled.                          |
+| `shortCollapsed`  | boolean         | `false`    | Short top app bars can be configured to always appear collapsed.                                                          |
+| `title`           | string          | `''`       | Application title.                                                                                                        |
+| `navIcon`         | string, boolean | `'menu'`   | A navigation icon. (Set `'close'` for the contextual action bar)                                                          |
+| `navId`           | string          | `null`     | Control the navigation drawer is opened or closed. (Please refer to the `navId` prop of the [drawer](/navigation/drawer)) |
 
 > Short top app bars should be used with no more than 1 action item.
 

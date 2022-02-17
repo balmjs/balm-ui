@@ -54,6 +54,9 @@ function getConfig(balm) {
     : {};
 
   return {
+    server: {
+      historyOptions: true
+    },
     roots: {
       source: useDocsDev ? 'docs' : 'src'
     },

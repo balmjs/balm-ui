@@ -180,6 +180,9 @@ function getConfig(balm) {
     pwa: {
       enabled: env.buildDocs,
       mode: 'injectManifest',
+      options: {
+        globIgnores: ['404.html']
+      },
       version: `v${pkg.version.replace(/\./g, '')}`
     },
     useDefaults: env.useDefaults,

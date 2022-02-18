@@ -1,6 +1,6 @@
 @use '@material/radio/mixins' as radio-mixins;
 @use '@material/ripple/mixins' as ripple-mixins;
-@use '../global/color' as color;
+@use '@material/theme' as color;
 
 .demo-radio--custom .mdc-radio {
   $color: color.$red-500;

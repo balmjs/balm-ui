@@ -37,11 +37,6 @@ export default {
 ```
 
 ```css
-.demo-card {
-  width: 350px;
-  margin: 48px;
-}
-
 .demo-card--photo {
   width: 200px;
 }

@@ -53,15 +53,11 @@ export default {
 ```
 
 ```scss
-/* Sass code */
 .demo-card {
-  width: 350px;
-  margin: 48px;
+  width: 320px;
 }
 
 .demo-card-article-group-heading {
-  @include mdc-theme-prop(color, text-secondary-on-light);
-
   padding: 8px 16px;
 }
 
@@ -76,8 +72,6 @@ export default {
 }
 
 .demo-card-article__snippet {
-  @include mdc-theme-prop(color, text-secondary-on-light);
-
   margin: 0;
 }
 ```

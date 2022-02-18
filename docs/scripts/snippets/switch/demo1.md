@@ -44,12 +44,29 @@ export default {
 ```
 
 ```scss
-/* Sass code */
-.demo-switch--custom {
-  $color: $material-color-red-500;
+@use 'sass:color';
+@use '@material/switch/switch-theme' as switch-theme;
+@use '@material/theme' as theme-color;
 
-  @include mdc-switch-track-color($color);
-  @include mdc-switch-knob-color($color);
-  @include mdc-switch-focus-indicator-color($color);
+.demo-switch--custom {
+  $primary-color: theme-color.$red-500;
+  $_inverse-primary: color.scale($primary-color, $lightness: 75%);
+  $_primary-state-content: color.scale($primary-color, $blackness: 50%);
+
+  @include switch-theme.theme-styles(
+    (
+      selected-focus-handle-color: $_primary-state-content,
+      selected-focus-state-layer-color: $primary-color,
+      selected-focus-track-color: $_inverse-primary,
+      selected-handle-color: $primary-color,
+      selected-hover-handle-color: $_primary-state-content,
+      selected-hover-state-layer-color: $primary-color,
+      selected-hover-track-color: $_inverse-primary,
+      selected-pressed-handle-color: $_primary-state-content,
+      selected-pressed-state-layer-color: $primary-color,
+      selected-pressed-track-color: $_inverse-primary,
+      selected-track-color: $_inverse-primary
+    )
+  );
 }
 ```

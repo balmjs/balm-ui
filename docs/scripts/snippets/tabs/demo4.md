@@ -18,25 +18,29 @@
 ```
 
 ```scss
-/* Sass code */
+@use '@material/tab/mixins' as tab-mixins;
+@use '@material/tab-indicator/mixins' as tab-indicator-mixins;
+@use '@material/ripple/mixins' as ripple-mixins;
+@use '@material/theme' as color;
+
 .demo-tab {
   flex: 0 1 auto;
 }
 
 .custom-tab {
-  @include mdc-tab-text-label-color($material-color-blue-300);
-  @include mdc-tab-icon-color($material-color-orange-300);
+  @include tab-mixins.text-label-color(color.$blue-300);
+  @include tab-mixins.icon-color(color.$orange-300);
   .custom-tab-indicator {
-    @include mdc-tab-indicator-underline-color($material-color-pink-a700);
-    @include mdc-tab-indicator-underline-height(5px);
-    @include mdc-tab-indicator-underline-top-corner-radius(5px);
+    @include tab-indicator-mixins.underline-color(color.$pink-a700);
+    @include tab-indicator-mixins.underline-height(5px);
+    @include tab-indicator-mixins.underline-top-corner-radius(5px);
   }
   .mdc-tab__ripple {
-    @include mdc-states($material-color-pink-100);
+    @include ripple-mixins.states(color.$pink-100);
   }
   &.mdc-tab--active {
-    @include mdc-tab-text-label-color($material-color-blue-900);
-    @include mdc-tab-icon-color($material-color-orange-900);
+    @include tab-mixins.text-label-color(color.$blue-900);
+    @include tab-mixins.icon-color(color.$orange-900);
   }
 }
 ```

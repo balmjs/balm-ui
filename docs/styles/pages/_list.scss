@@ -1,5 +1,5 @@
 @use '@material/elevation/mixins' as elevation-mixins;
-@use '../global/color' as color;
+@use '@material/theme' as color;
 
 .page--list {
   .mdc-deprecated-list,

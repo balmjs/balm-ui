@@ -34,7 +34,6 @@ export default {
 ```
 
 ```scss
-/* Sass code */
 .list-enter,
 .list-leave-to {
   opacity: 0;

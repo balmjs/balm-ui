@@ -1,16 +1,25 @@
-@use '@material/switch/deprecated/mixins' as switch-mixins;
-@use '../global/color' as color;
-
-.demo-switch-wrapper {
-  display: inline-block;
-  margin-right: 16px;
-}
+@use 'sass:color';
+@use '@material/switch/switch-theme' as switch-theme;
+@use '@material/theme' as theme-color;
 
 .mdc-switch.demo-switch--custom {
-  $color: color.$red-500;
-  @include switch-mixins.toggled-on-color($color);
-}
+  $primary-color: theme-color.$red-500;
+  $_inverse-primary: color.scale($primary-color, $lightness: 75%);
+  $_primary-state-content: color.scale($primary-color, $blackness: 50%);
 
-.rtl-toggle {
-  margin: 16px;
+  @include switch-theme.theme-styles(
+    (
+      selected-focus-handle-color: $_primary-state-content,
+      selected-focus-state-layer-color: $primary-color,
+      selected-focus-track-color: $_inverse-primary,
+      selected-handle-color: $primary-color,
+      selected-hover-handle-color: $_primary-state-content,
+      selected-hover-state-layer-color: $primary-color,
+      selected-hover-track-color: $_inverse-primary,
+      selected-pressed-handle-color: $_primary-state-content,
+      selected-pressed-state-layer-color: $primary-color,
+      selected-pressed-track-color: $_inverse-primary,
+      selected-track-color: $_inverse-primary
+    )
+  );
 }

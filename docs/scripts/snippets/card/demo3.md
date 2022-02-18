@@ -33,10 +33,11 @@
 ```
 
 ```scss
-/* Sass code */
+@use '@material/card/mixins' as card-mixins;
+@use '@material/rtl/mixins' as rtl-mixins;
+
 .demo-card {
-  width: 350px;
-  margin: 48px;
+  width: 320px;
 }
 
 .demo-card__media {
@@ -44,18 +45,14 @@
 }
 
 .demo-card--music {
-  @include mdc-card-corner-radius(24px 4px);
-
-  @include mdc-rtl {
-    @include mdc-card-corner-radius(4px 24px);
-  }
+  @include card-mixins.shape-radius((24px, 4px), true);
 }
 
 .demo-card__music-row {
   display: flex;
   border-top-left-radius: inherit;
 
-  @include mdc-rtl {
+  @include rtl-mixins.rtl {
     border-top-left-radius: 0;
     border-top-right-radius: inherit;
   }
@@ -65,7 +62,7 @@
   width: 110px;
   border-top-left-radius: inherit;
 
-  @include mdc-rtl {
+  @include rtl-mixins.rtl {
     border-top-left-radius: 0;
     border-top-right-radius: inherit;
   }

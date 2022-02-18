@@ -1,5 +1,5 @@
 @use '../global/index' as global;
-@use '../global/color' as color;
+@use '@material/theme' as color;
 
 a {
   color: global.$primary;

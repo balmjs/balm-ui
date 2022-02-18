@@ -1,6 +1,6 @@
 // TODO: mdc@8.0 changed
 // @use '@material/slider/mixins' as slider-mixins;
-@use '../global/color' as color;
+@use '@material/theme' as color;
 
 .demo-slider--custom {
   // @include slider-mixins.highlight-color(color.$red-700);

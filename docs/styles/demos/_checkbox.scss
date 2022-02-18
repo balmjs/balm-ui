@@ -1,6 +1,6 @@
 @use '@material/checkbox/mixins' as checkbox-mixins;
 @use '@material/ripple/mixins' as ripple-mixins;
-@use '../global/color' as color;
+@use '@material/theme' as color;
 
 .demo-checkbox--custom-all .mdc-checkbox {
   $color: color.$red-500;

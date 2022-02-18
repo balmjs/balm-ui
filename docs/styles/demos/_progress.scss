@@ -1,5 +1,5 @@
 @use '@material/linear-progress/mixins' as linear-progress-mixins;
-@use '../global/color' as color;
+@use '@material/theme' as color;
 
 .demo-linear-progress--custom {
   @include linear-progress-mixins.bar-color(color.$red-500);

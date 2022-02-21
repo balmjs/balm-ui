@@ -1,4 +1,4 @@
-import { getCurrentElement } from './dom';
+import { computed, onMounted } from 'vue';
 import getType from '../utils/typeof';
 
 // Define card constants
@@ -10,32 +10,29 @@ const UI_CARD = {
   }
 };
 
-export default {
-  data() {
-    return {
-      cardButton: false,
-      cardIcon: false
-    };
-  },
-  computed: {
-    cardActionClassName() {
-      return {
-        'mdc-card__action': this.cardButton || this.cardIcon,
-        'mdc-card__action--button': this.cardButton,
-        'mdc-card__action--icon': this.cardIcon
-      };
-    }
-  },
-  mounted() {
-    if (this.$parent.$el) {
-      const parentEl = getCurrentElement(this.$parent.$el);
-
-      if (parentEl && getType(parentEl) === 'htmldivelement') {
-        this.cardButton =
-          parentEl.classList.contains(UI_CARD.cssClasses.button) ||
-          parentEl.classList.contains(UI_CARD.cssClasses.action);
-        this.cardIcon = parentEl.classList.contains(UI_CARD.cssClasses.icon);
-      }
-    }
-  }
+const data = {
+  cardButton: false,
+  cardIcon: false
 };
+
+function getCardActionOptions(nodeRef) {
+  const cardActionClassName = computed(() => ({
+    'mdc-card__action': data.cardButton || data.cardIcon,
+    'mdc-card__action--button': data.cardButton,
+    'mdc-card__action--icon': data.cardIcon
+  }));
+
+  onMounted(() => {
+    const parentEl = nodeRef.value?.parentNode;
+    if (parentEl && getType(parentEl) === 'htmldivelement') {
+      data.cardButton =
+        parentEl.classList.contains(UI_CARD.cssClasses.button) ||
+        parentEl.classList.contains(UI_CARD.cssClasses.action);
+      data.cardIcon = parentEl.classList.contains(UI_CARD.cssClasses.icon);
+    }
+  });
+
+  return { cardActionClassName };
+}
+
+export default getCardActionOptions;

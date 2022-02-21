@@ -47,8 +47,8 @@ export default {
 import { ref, computed, watch, onMounted } from 'vue';
 import { MDCIconButtonToggle } from '../../../material-components-web/icon-button';
 import { strings } from '../../../material-components-web/icon-button/constants';
-import { icon, getMaterialIconOptions } from '../../mixins/material-icon';
-import getCardActionOptions from '../../mixins/card-action';
+import { icon, useMaterialIcon } from '../../mixins/material-icon';
+import { useCardAction } from '../../mixins/card-action';
 
 const props = defineProps({
   // States
@@ -71,8 +71,8 @@ const emit = defineEmits([
 
 const iconButtonEl = ref();
 
-const { materialIcon } = getMaterialIconOptions(props);
-const { cardActionClassName } = getCardActionOptions(iconButtonEl);
+const { materialIcon } = useMaterialIcon(props);
+const { cardActionClassName } = useCardAction(iconButtonEl);
 
 const toggleButton = computed(() => props.toggle.on && props.toggle.off);
 const className = computed(() => [

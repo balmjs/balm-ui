@@ -15,7 +15,7 @@ const data = {
   cardIcon: false
 };
 
-function getCardActionOptions(nodeRef) {
+function useCardAction(nodeRef) {
   const cardActionClassName = computed(() => ({
     'mdc-card__action': data.cardButton || data.cardIcon,
     'mdc-card__action--button': data.cardButton,
@@ -35,4 +35,4 @@ function getCardActionOptions(nodeRef) {
   return { cardActionClassName };
 }
 
-export default getCardActionOptions;
+export { useCardAction };

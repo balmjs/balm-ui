@@ -7,7 +7,7 @@ const icon = {
   default: ''
 };
 
-function getMaterialIconOptions(props) {
+function useMaterialIcon(props) {
   const materialIcon = computed(() => props.icon || false);
 
   return { materialIcon };
@@ -18,4 +18,4 @@ const getIconClassName = (...componentIconClass) => [
   ...componentIconClass
 ];
 
-export { icon, getMaterialIconOptions, getIconClassName };
+export { icon, useMaterialIcon, getIconClassName };

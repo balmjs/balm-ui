@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.42.2 / 2022-02-21
+
+### Chore
+
+- update peerDependencies (`vue >=3 <=3.2.30`) for the mounted compatibility
+
 ## v9.42.1 / 2022-02-15
 
 ### Bug Fixes

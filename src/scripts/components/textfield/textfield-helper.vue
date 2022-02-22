@@ -1,6 +1,6 @@
 <template>
   <!-- Assistive area (optional) -->
-  <div class="mdc-text-field-helper-line">
+  <div ref="textfieldHelper" class="mdc-text-field-helper-line">
     <!-- Helper text (optional) -->
     <div :id="id" :class="className" aria-hidden="true">
       <slot>{{ validMessage }}</slot>
@@ -11,48 +11,60 @@
 </template>
 
 <script>
-import MdcTextfieldCounter from './mdc-textfield-counter.vue';
-import { helperTextMixin } from '../../mixins/helper-text';
+import { UI_HELPER_TEXT } from '../../mixins/helper-text';
 
 export default {
   name: 'UiTextfieldHelper',
-  components: {
-    MdcTextfieldCounter
-  },
-  mixins: [helperTextMixin],
-  props: {
-    withCounter: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-text-field-helper-text': true,
-        'mdc-text-field-helper-text--persistent': this.visible,
-        'mdc-text-field-helper-text--validation-msg': this.hasValidMsg
-      };
-    }
-  },
-  beforeMount() {
-    if (!this.id && this.withCounter) {
-      console.warn(
-        '[UiTextfield]',
-        `The 'helperTextId' prop is required for <ui-textfield> with outer counter`
-      );
-    }
-  },
-  mounted() {
-    const textfieldEl = this.$el.previousElementSibling;
-    const hasTextfield =
-      textfieldEl && textfieldEl.classList.contains('mdc-text-field');
-    if (this.withCounter && !hasTextfield) {
-      console.warn(
-        '[UiTextfield]',
-        `Do not insert any tags between '<ui-textfield>' and '<ui-textfield-helper>' with counter`
-      );
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_HELPER_TEXT
   }
 };
+</script>
+
+<script>
+import { ref, computed, onBeforeMount, onMounted } from 'vue';
+import MdcTextfieldCounter from './mdc-textfield-counter.vue';
+import { helperTextProps, useHelperText } from '../../mixins/helper-text';
+
+const props = defineProps({
+  ...helperTextProps,
+  withCounter: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([UI_HELPER_TEXT.EVENTS.CHANGE]);
+
+const textfieldHelper = ref(null);
+
+const { hasValidMsg, validMessage } = useHelperText(textfieldHelper, props);
+
+const className = computed(() => ({
+  'mdc-text-field-helper-text': true,
+  'mdc-text-field-helper-text--persistent': props.visible,
+  'mdc-text-field-helper-text--validation-msg': hasValidMsg
+}));
+
+onBeforeMount(() => {
+  if (!props.id && props.withCounter) {
+    console.warn(
+      '[UiTextfield]',
+      `The 'helperTextId' prop is required for <ui-textfield> with outer counter`
+    );
+  }
+});
+
+onMounted(() => {
+  const textfieldEl = textfieldHelper.value.previousElementSibling;
+  const hasTextfield =
+    textfieldEl && textfieldEl.classList.contains('mdc-text-field');
+  if (props.withCounter && !hasTextfield) {
+    console.warn(
+      '[UiTextfield]',
+      `Do not insert any tags between '<ui-textfield>' and '<ui-textfield-helper>' with counter`
+    );
+  }
+});
 </script>

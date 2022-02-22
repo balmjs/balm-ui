@@ -1,3 +1,4 @@
+import { computed, watch, onMounted } from 'vue';
 import getType from '../utils/typeof';
 
 export const UI_HELPER_TEXT = {
@@ -12,55 +13,65 @@ export const UI_HELPER_TEXT = {
  * textfield-previous: $textField or $select
  * textfield-next: helper text
  */
-export const instanceMap = new Map();
+const instanceMap = new Map();
 
-export const componentHelperTextMixin = {
-  props: {
-    helperTextId: {
-      type: [String, null],
-      default: null
-    }
+const helperTextId = {
+  type: [String, null],
+  default: null
+};
+
+const helperTextProps = {
+  // Element attributes
+  id: {
+    type: [String, null],
+    default: null
+  },
+  // UI attributes
+  visible: {
+    type: Boolean,
+    default: false
+  },
+  validMsg: {
+    type: [String, Boolean], // NOTE: string first
+    default: false
   }
 };
 
-export const helperTextMixin = {
-  props: {
-    // Element attributes
-    id: {
-      type: [String, null],
-      default: null
-    },
-    // UI attributes
-    visible: {
-      type: Boolean,
-      default: false
-    },
-    validMsg: {
-      type: [String, Boolean], // NOTE: string first
-      default: false
+function useHelperText(elementRef, props) {
+  const hasValidMsg = computed(() =>
+    getType(props.validMsg) === 'string'
+      ? !!props.validMsg.length
+      : props.validMsg
+  ).value;
+  const validMessage = computed(() =>
+    getType(props.validMsg) === 'string' ? props.validMsg : ''
+  );
+
+  onMounted(() => {
+    if (props.id) {
+      instanceMap.set(`${props.id}-next`, elementRef);
     }
-  },
-  emits: [UI_HELPER_TEXT.EVENT.CHANGE],
-  computed: {
-    hasValidMsg() {
-      return getType(this.validMsg) === 'string'
-        ? !!this.validMsg.length
-        : this.validMsg;
-    },
-    validMessage() {
-      return getType(this.validMsg) === 'string' ? this.validMsg : '';
-    }
-  },
-  watch: {
-    validMsg() {
-      if (instanceMap.get(`${this.id}-previous`)) {
-        instanceMap.get(`${this.id}-previous`).valid = !this.hasValidMsg;
+
+    watch(
+      () => props.validMsg,
+      () => {
+        if (instanceMap.get(`${props.id}-previous`)) {
+          instanceMap.get(`${props.id}-previous`).valid = !hasValidMsg;
+        }
       }
-    }
-  },
-  mounted() {
-    if (this.id) {
-      instanceMap.set(`${this.id}-next`, this);
-    }
-  }
+    );
+  });
+
+  return {
+    hasValidMsg,
+    validMessage
+  };
+}
+
+export {
+  instanceMap,
+  helperTextId,
+  UI_HELPER_TEXT,
+  helperTextProps,
+  useHelperText
 };

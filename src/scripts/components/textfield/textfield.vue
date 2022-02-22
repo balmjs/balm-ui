@@ -1,8 +1,9 @@
 <template>
   <!-- Container -->
   <div
+    ref="textfield"
     :class="className.outer"
-    @click="$emit(UI_TEXTFIELD.EVENT.CLICK, $event)"
+    @click="$emit(UI_TEXTFIELD.EVENTS.CLICK, $event)"
   >
     <div v-if="!isOutlined" class="mdc-text-field__ripple"></div>
 
@@ -14,7 +15,7 @@
       <i
         v-if="materialIcon"
         :class="
-          getIconClassName([
+          getMaterialIconClass([
             UI_TEXTFIELD_ICON.cssClasses.icon,
             UI_TEXTFIELD_ICON.cssClasses.leadingIcon
           ])
@@ -120,21 +121,9 @@
 </template>
 
 <script>
-import { MDCTextField } from '../../../material-components-web/textfield';
-import MdcFloatingLabel from '../floating-label/mdc-floating-label.vue';
-import MdcLineRipple from '../floating-label/mdc-line-ripple.vue';
-import MdcNotchedOutline from '../floating-label/mdc-notched-outline.vue';
-import MdcTextfieldCounter from './mdc-textfield-counter.vue';
-import domMixin from '../../mixins/dom';
-import textfieldMixin from '../../mixins/textfield';
-import typeMixin from '../../mixins/type';
-import inputMixin from '../../mixins/input';
-import {
-  UI_HELPER_TEXT,
-  instanceMap,
-  componentHelperTextMixin
-} from '../../mixins/helper-text';
+import { getMaterialIconClass } from '../../mixins/material-icon';
 import { UI_TEXTFIELD_ICON } from './constants';
+import { UI_HELPER_TEXT } from '../../mixins/helper-text';
 
 // Define textfield constants
 const UI_TEXTFIELD = {
@@ -157,234 +146,249 @@ const UI_TEXTFIELD = {
 
 export default {
   name: 'UiTextfield',
-  components: {
-    MdcFloatingLabel,
-    MdcLineRipple,
-    MdcNotchedOutline,
-    MdcTextfieldCounter
-  },
-  mixins: [
-    domMixin,
-    textfieldMixin,
-    typeMixin,
-    inputMixin,
-    componentHelperTextMixin
-  ],
-  props: {
-    // UI variants
-    type: {
-      type: [String, Number],
-      default: 0
-    },
-    outlined: {
-      type: Boolean,
-      default: false
-    },
-    // States
-    modelValue: {
-      type: [String, Number, Array], // NOTE: Array for `<ui-datepicker>`
-      default: ''
-    },
-    // common attributes
-    minlength: {
-      type: [String, Number, null],
-      default: null
-    },
-    maxlength: {
-      type: [String, Number, null],
-      default: null
-    },
-    // <input> attributes
-    inputType: {
-      type: String,
-      default: 'text'
-    },
-    pattern: {
-      type: [String, null],
-      default: null
-    },
-    min: {
-      type: [String, Number, null],
-      default: null
-    },
-    max: {
-      type: [String, Number, null],
-      default: null
-    },
-    step: {
-      type: [String, Number, null],
-      default: null
-    },
-    // <textarea> attributes
-    rows: {
-      type: [Number, String],
-      default: 1
-    },
-    cols: {
-      type: [Number, String],
-      default: 20
-    },
-    // UI attributes
-    prefixText: {
-      type: String,
-      default: ''
-    },
-    suffixText: {
-      type: String,
-      default: ''
-    },
-    withCounter: {
-      type: Boolean,
-      default: false
-    },
-    // For plus
-    plus: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [
-    UI_TEXTFIELD.EVENT.CLICK,
-    UI_TEXTFIELD.EVENT.FOCUS,
-    UI_TEXTFIELD.EVENT.KEYDOWN,
-    UI_TEXTFIELD.EVENT.INPUT,
-    UI_TEXTFIELD.EVENT.KEYUP,
-    UI_TEXTFIELD.EVENT.CHANGE,
-    UI_TEXTFIELD.EVENT.ENTER,
-    UI_TEXTFIELD.EVENT.BLUR
-  ],
-  data() {
-    return {
-      UI_TEXTFIELD,
-      UI_TEXTFIELD_ICON,
-      $textField: null,
-      inputValue: this.modelValue
-    };
-  },
-  computed: {
-    isOutlined() {
-      return this.checkType(UI_TEXTFIELD.TYPES, 'outlined');
-    },
-    isTextarea() {
-      return this.inputType === 'textarea';
-    },
-    hasLeadingIcon() {
-      return !!(
-        this.materialIcon ||
-        this.withLeadingIcon ||
-        this.hasBeforeSlot()
-      );
-    },
-    hasTrailingIcon() {
-      return !!(this.withTrailingIcon || this.hasAfterSlot());
-    },
-    noLabel() {
-      const hasLabel = this.label || this.$slots.default;
-      return !!(this.placeholder || !hasLabel);
-    },
-    className() {
-      return {
-        outer: {
-          'mdc-text-field': true,
-          'mdc-text-field--filled': !this.isOutlined,
-          'mdc-text-field--outlined': this.isOutlined,
-          'mdc-text-field--fullwidth': this.fullwidth,
-          'mdc-text-field--textarea': this.isTextarea,
-          'mdc-text-field--disabled': this.disabled,
-          'mdc-text-field--with-leading-icon': this.hasLeadingIcon,
-          'mdc-text-field--with-trailing-icon': this.hasTrailingIcon,
-          'mdc-text-field--no-label': this.noLabel,
-          'mdc-text-field--end-aligned': this.endAligned,
-          'mdc-text-field--with-internal-counter': this.withCounter
-        },
-        input: 'mdc-text-field__input'
-      };
-    }
-  },
-  watch: {
-    modelValue(val, oldVal) {
-      this.inputValue = val;
+  inheritAttrs: false,
+  customOptions: {
+    UI_TEXTFIELD,
+    UI_TEXTFIELD_ICON,
+    UI_HELPER_TEXT,
+    getMaterialIconClass
+  }
+};
+</script>
 
-      if (this.$textField) {
+<script setup>
+import { ref, computed, watch, onMounted, useSlots } from 'vue';
+import { MDCTextField } from '../../../material-components-web/textfield';
+import MdcFloatingLabel from '../floating-label/mdc-floating-label.vue';
+import MdcLineRipple from '../floating-label/mdc-line-ripple.vue';
+import MdcNotchedOutline from '../floating-label/mdc-notched-outline.vue';
+import MdcTextfieldCounter from './mdc-textfield-counter.vue';
+import { textfieldProps } from '../../mixins/textfield';
+import { icon, useMaterialIcon } from '../../mixins/material-icon';
+import checkType from '../../mixins/type';
+import { inputProps } from '../../mixins/input';
+import { helperTextId, instanceMap } from '../../mixins/helper-text';
+
+const props = defineProps({
+  // UI variants
+  type: {
+    type: [String, Number],
+    default: 0
+  },
+  outlined: {
+    type: Boolean,
+    default: false
+  },
+  // States
+  modelValue: {
+    type: [String, Number, Array], // NOTE: Array for `<ui-datepicker>`
+    default: ''
+  },
+  // common attributes
+  ...inputProps,
+  minlength: {
+    type: [String, Number, null],
+    default: null
+  },
+  maxlength: {
+    type: [String, Number, null],
+    default: null
+  },
+  // <input> attributes
+  inputType: {
+    type: String,
+    default: 'text'
+  },
+  pattern: {
+    type: [String, null],
+    default: null
+  },
+  min: {
+    type: [String, Number, null],
+    default: null
+  },
+  max: {
+    type: [String, Number, null],
+    default: null
+  },
+  step: {
+    type: [String, Number, null],
+    default: null
+  },
+  // <textarea> attributes
+  rows: {
+    type: [Number, String],
+    default: 1
+  },
+  cols: {
+    type: [Number, String],
+    default: 20
+  },
+  // UI attributes
+  icon,
+  ...textfieldProps,
+  prefixText: {
+    type: String,
+    default: ''
+  },
+  suffixText: {
+    type: String,
+    default: ''
+  },
+  withCounter: {
+    type: Boolean,
+    default: false
+  },
+  helperTextId,
+  // For plus
+  plus: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([
+  UI_TEXTFIELD.EVENTS.CLICK,
+  UI_TEXTFIELD.EVENTS.FOCUS,
+  UI_TEXTFIELD.EVENTS.KEYDOWN,
+  UI_TEXTFIELD.EVENTS.INPUT,
+  UI_TEXTFIELD.EVENTS.KEYUP,
+  UI_TEXTFIELD.EVENTS.CHANGE,
+  UI_TEXTFIELD.EVENTS.ENTER,
+  UI_TEXTFIELD.EVENTS.BLUR
+]);
+
+const { materialIcon } = useMaterialIcon(props);
+
+const isOutlined = computed(() =>
+  checkType(props, UI_TEXTFIELD.TYPES, 'outlined')
+).value;
+const isTextarea = computed(() => props.inputType === 'textarea').value;
+const hasLeadingIcon = computed(
+  () => !!(materialIcon || props.withLeadingIcon || hasBeforeSlot())
+).value;
+const hasTrailingIcon = computed(
+  () => !!(props.withTrailingIcon || hasAfterSlot())
+).value;
+const noLabel = computed(() => {
+  const slots = useSlots();
+  const hasLabel = props.label || slots.default;
+  return !!(props.placeholder || !hasLabel);
+}).value;
+
+const className = computed(() => ({
+  outer: {
+    'mdc-text-field': true,
+    'mdc-text-field--filled': !isOutlined,
+    'mdc-text-field--outlined': isOutlined,
+    'mdc-text-field--fullwidth': props.fullwidth,
+    'mdc-text-field--textarea': isTextarea,
+    'mdc-text-field--disabled': props.disabled,
+    'mdc-text-field--with-leading-icon': hasLeadingIcon,
+    'mdc-text-field--with-trailing-icon': hasTrailingIcon,
+    'mdc-text-field--no-label': noLabel,
+    'mdc-text-field--end-aligned': props.endAligned,
+    'mdc-text-field--with-internal-counter': props.withCounter
+  },
+  input: 'mdc-text-field__input'
+}));
+
+const textfield = ref(null);
+const inputValue = ref(props.modelValue);
+
+onMounted(() => {
+  const $textField = new MDCTextField(textfield.value);
+
+  if (props.helperTextId) {
+    instanceMap.set(`${props.helperTextId}-previous`, $textField);
+  }
+
+  watch(
+    () => props.modelValue,
+    (val, oldVal) => {
+      inputValue.value = val;
+
+      if ($textField) {
         // fix(ui): dynamic assignment bug
         if (!oldVal && val) {
-          this.$textField.value = val;
+          $textField.value = val;
         }
 
         // fix(ui): focus bug
         if (oldVal && !val) {
           try {
             // fix(@material-components): sync counter bug
-            this.maxlength &&
-              this.$textField.characterCounter_.foundation.setCounterValue(
+            props.maxlength &&
+              $textField.characterCounter_.foundation.setCounterValue(
                 0,
-                this.maxlength
+                props.maxlength
               );
           } catch (e) {}
 
           setTimeout(() => {
-            this.$textField.foundation.deactivateFocus();
+            $textField.foundation.deactivateFocus();
           }, 1);
         }
       }
-    },
-    disabled(val) {
-      if (this.$textField) {
-        this.$textField.disabled = val;
+    }
+  );
+  watch(
+    () => props.disabled,
+    (val) => {
+      if ($textField) {
+        $textField.disabled = val;
       }
     }
-  },
-  mounted() {
-    this.$textField = new MDCTextField(this.el);
+  );
+});
 
-    if (this.helperTextId) {
-      instanceMap.set(`${this.helperTextId}-previous`, this.$textField);
-    }
-  },
-  methods: {
-    hasBeforeSlot() {
-      return this.$parent &&
-        typeof this.$parent.$.type === 'object' &&
-        UI_TEXTFIELD.PLUS_COMPONENTS.includes(this.$parent.$.type.name)
-        ? this.$parent.hasLeadingIcon
-        : this.$slots.before;
-    },
-    hasAfterSlot() {
-      return this.$parent &&
-        typeof this.$parent.$.type === 'object' &&
-        UI_TEXTFIELD.PLUS_COMPONENTS.includes(this.$parent.$.type.name)
-        ? this.$parent.hasTrailingIcon
-        : this.$slots.after;
-    },
-    handleFocus(event) {
-      this.$emit(UI_TEXTFIELD.EVENT.FOCUS, event);
-    },
-    handleKeydown(event) {
-      this.$emit(UI_TEXTFIELD.EVENT.KEYDOWN, event);
-    },
-    handleInput(event) {
-      this.$emit(UI_TEXTFIELD.EVENT.INPUT, event.target.value);
-    },
-    handleKeyup(event) {
-      this.$emit(UI_TEXTFIELD.EVENT.KEYUP, event);
-    },
-    handleChange(event) {
-      this.$emit(UI_TEXTFIELD.EVENT.CHANGE, event);
-    },
-    handleEnter(event) {
-      this.$emit(UI_TEXTFIELD.EVENT.ENTER, event.target.value);
-    },
-    handleBlur(event) {
-      // fix(@material-components): valid bug on blur
-      if (instanceMap.get(`${this.helperTextId}-next`)) {
-        const helperText = instanceMap.get(`${this.helperTextId}-next`);
-        if (helperText.validMsg !== true) {
-          helperText.$emit(UI_HELPER_TEXT.EVENT.CHANGE, false);
-        }
-      }
+function hasBeforeSlot() {
+  const el = textfield.value;
+  const slots = useSlots();
 
-      this.$emit(UI_TEXTFIELD.EVENT.BLUR, event);
+  return el.$parent &&
+    typeof el.$parent.$.type === 'object' &&
+    UI_TEXTFIELD.PLUS_COMPONENTS.includes(el.$parent.$.type.name)
+    ? el.$parent.hasLeadingIcon
+    : slots.before;
+}
+function hasAfterSlot() {
+  const el = textfield.value;
+  const slots = useSlots();
+
+  return el.$parent &&
+    typeof el.$parent.$.type === 'object' &&
+    UI_TEXTFIELD.PLUS_COMPONENTS.includes(el.$parent.$.type.name)
+    ? el.$parent.hasTrailingIcon
+    : slots.after;
+}
+function handleFocus(event) {
+  emit(UI_TEXTFIELD.EVENTS.FOCUS, event);
+}
+function handleKeydown(event) {
+  emit(UI_TEXTFIELD.EVENTS.KEYDOWN, event);
+}
+function handleInput(event) {
+  emit(UI_TEXTFIELD.EVENTS.INPUT, event.target.value);
+}
+function handleKeyup(event) {
+  emit(UI_TEXTFIELD.EVENTS.KEYUP, event);
+}
+function handleChange(event) {
+  emit(UI_TEXTFIELD.EVENTS.CHANGE, event);
+}
+function handleEnter(event) {
+  emit(UI_TEXTFIELD.EVENTS.ENTER, event.target.value);
+}
+function handleBlur(event) {
+  // fix(@material-components): valid bug on blur
+  if (instanceMap.get(`${props.helperTextId}-next`)) {
+    const helperText = instanceMap.get(`${props.helperTextId}-next`);
+    if (helperText.validMsg !== true) {
+      helperText.$emit(UI_HELPER_TEXT.EVENTS.CHANGE, false);
     }
   }
-};
+
+  emit(UI_TEXTFIELD.EVENTS.BLUR, event);
+}
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" :style="style">
+  <div ref="formField" :class="className" :style="style">
     <slot>
       <!-- Form item: checkbox or radio + label -->
     </slot>
@@ -7,117 +7,110 @@
 </template>
 
 <script>
-import { MDCFormField } from '../../../material-components-web/form-field';
-import domMixin from '../../mixins/dom';
-
 export default {
   name: 'UiFormField',
-  mixins: [domMixin],
-  props: {
-    // UI attributes
-    nowrap: {
-      type: Boolean,
-      default: false
-    },
-    alignEnd: {
-      type: Boolean,
-      default: false
-    },
-    spaceBetween: {
-      type: Boolean,
-      default: false
-    }
+  inheritAttrs: false,
+  customOptions: {}
+};
+</script>
+
+<script setup>
+import { ref, computed, onMounted, useSlots } from 'vue';
+import { MDCFormField } from '../../../material-components-web/form-field';
+
+const props = defineProps({
+  // UI attributes
+  nowrap: {
+    type: Boolean,
+    default: false
   },
-  data() {
-    return {
-      $formField: null,
-      form: null
-    };
+  alignEnd: {
+    type: Boolean,
+    default: false
   },
-  computed: {
-    className() {
-      return {
-        'mdc-form-field': true,
-        'mdc-form-field--nowrap': this.nowrap,
-        'mdc-form-field--align-end': this.alignEnd,
-        'mdc-form-field--space-between': this.spaceBetween
-      };
-    },
-    isCustomFormItem() {
-      return this.el.classList.contains('mdc-form__item');
-    },
-    style() {
-      return this.form && this.form.itemMarginBottom
-        ? {
-            'margin-bottom': `${this.form.itemMarginBottom}px`
-          }
-        : 0;
-    },
-    // horizontal form
-    flexBasis() {
-      return this.form && this.form.labelWidth ? +this.form.labelWidth : 0;
-    },
-    marginRight() {
-      return this.form && this.form.labelMarginRight
-        ? +this.form.labelMarginRight
-        : 0;
-    },
-    actionPaddingLeft() {
-      return this.form &&
-        this.form.actionAlign === 'left' &&
-        (this.flexBasis || this.marginRight)
-        ? this.flexBasis + this.marginRight
-        : 0;
-    },
-    // vertical form
-    marginBottom() {
-      return this.form && this.form.labelMarginBottom
-        ? +this.form.labelMarginBottom
-        : 0;
-    }
-  },
-  mounted() {
-    this.$formField = new MDCFormField(this.el);
+  spaceBetween: {
+    type: Boolean,
+    default: false
+  }
+});
 
-    this.form = this.getFrom();
+const formField = ref(null);
+let form = null;
 
-    this.formLabel();
-  },
-  methods: {
-    getFrom(self = this) {
-      const parent = self.$parent;
-
-      return parent.$.type.name === 'UiForm'
-        ? parent
-        : this.isCustomFormItem
-        ? this.getFrom(parent)
-        : null;
-    },
-    formLabel() {
-      if (this.$slots.default) {
-        const $label = this.$slots.default().find((component) => {
-          return component.type === 'label';
-        });
-
-        if ($label) {
-          const label = $label.el;
-          ['flexBasis', 'marginRight', 'marginBottom'].forEach((key) => {
-            if (this[key]) {
-              label.style[key] = `${this[key]}px`;
-            }
-          });
-        }
-
-        const formFieldEl = this.el;
-        if (
-          formFieldEl &&
-          formFieldEl.classList.contains('mdc-form__actions') &&
-          this.actionPaddingLeft
-        ) {
-          formFieldEl.style.paddingLeft = `${this.actionPaddingLeft}px`;
-        }
+const className = computed(() => {
+  return {
+    'mdc-form-field': true,
+    'mdc-form-field--nowrap': props.nowrap,
+    'mdc-form-field--align-end': props.alignEnd,
+    'mdc-form-field--space-between': props.spaceBetween
+  };
+});
+const isCustomFormItem = computed(
+  () => formField.value && formField.value.classList.contains('mdc-form__item')
+).value;
+const style = computed(() => {
+  return form && form.itemMarginBottom
+    ? {
+        'margin-bottom': `${form.itemMarginBottom}px`
       }
+    : 0;
+});
+// horizontal form
+const flexBasis = computed(() => {
+  return form && form.labelWidth ? +form.labelWidth : 0;
+}).value;
+const marginRight = computed(() => {
+  return form && form.labelMarginRight ? +form.labelMarginRight : 0;
+}).value;
+const actionPaddingLeft = computed(() => {
+  return form && form.actionAlign === 'left' && (flexBasis || marginRight)
+    ? flexBasis + marginRight
+    : 0;
+}).value;
+// vertical form
+const marginBottom = computed(() => {
+  return form && form.labelMarginBottom ? +form.labelMarginBottom : 0;
+});
+
+function getFrom(self = formField) {
+  const parent = self.$parent;
+
+  return parent.$.type.name === 'UiForm'
+    ? parent
+    : isCustomFormItem
+    ? getFrom(parent)
+    : null;
+}
+
+function initFormLabel() {
+  const slots = useSlots();
+
+  if (slots.default) {
+    const $label = slots.default().find((component) => {
+      return component.type === 'label';
+    });
+
+    if ($label) {
+      const label = $label.el;
+      ['flexBasis', 'marginRight', 'marginBottom'].forEach((key) => {
+        if (key) {
+          label.style[key] = `${key}px`;
+        }
+      });
+    }
+
+    const el = formField.value;
+    if (el && el.classList.contains('mdc-form__actions') && actionPaddingLeft) {
+      el.style.paddingLeft = `${actionPaddingLeft}px`;
     }
   }
-};
+}
+
+onMounted(() => {
+  new MDCFormField(formField.value);
+
+  form = getFrom();
+
+  initFormLabel();
+});
 </script>

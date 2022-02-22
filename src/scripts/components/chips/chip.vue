@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <div class="mdc-chip" role="row" @click="handleClick">
+  <div ref="chip" class="mdc-chip" role="row" @click="handleClick">
     <div class="mdc-chip__ripple"></div>
     <!-- Thumbnail (optional) -->
     <slot name="before" :iconClass="UI_CHIP.cssClasses.icon">
@@ -41,8 +41,6 @@
 </template>
 
 <script>
-import domMixin from '../../mixins/dom';
-import materialIconMixin from '../../mixins/material-icon';
 import UI_GLOBAL from '../icon/constants';
 
 // Define chip constants
@@ -51,7 +49,7 @@ const UI_CHIP = {
     icon: 'mdc-chip__icon mdc-chip__icon--leading',
     removeIcon: 'mdc-chip__icon mdc-chip__icon--trailing'
   },
-  EVENT: {
+  EVENTS: {
     CLICK: 'click',
     REMOVE: 'remove'
   }
@@ -59,53 +57,63 @@ const UI_CHIP = {
 
 export default {
   name: 'UiChip',
-  mixins: [domMixin, materialIconMixin],
-  props: {
-    selected: {
-      type: Boolean,
-      default: false
-    },
-    removable: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [UI_CHIP.EVENT.CLICK, UI_CHIP.EVENT.REMOVE],
-  data() {
-    return {
-      UI_CHIP
-    };
-  },
-  computed: {
-    thumbnailClassName() {
-      return [
-        UI_GLOBAL.cssClasses.icon,
-        UI_CHIP.cssClasses.icon,
-        { 'mdc-chip__icon--leading-hidden': this.selected }
-      ];
-    },
-    role() {
-      let name = null;
-
-      if (this.$parent.choiceChips) {
-        name = 'radio';
-      } else if (this.$parent.filterChips) {
-        name = 'checkbox';
-      } else {
-        name = 'button';
-      }
-
-      return name;
-    }
-  },
-  methods: {
-    handleClick(event) {
-      this.$parent.choiceChipId = this.el.id; // fix(ui): twice trigger
-      this.$emit(UI_CHIP.EVENT.CLICK, event);
-    },
-    handleRemove(event) {
-      this.$emit(UI_CHIP.EVENT.REMOVE, event);
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_GLOBAL,
+    UI_CHIP
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, onMounted } from 'vue';
+import { icon, useMaterialIcon } from '../../mixins/material-icon';
+
+const props = defineProps({
+  // UI attributes
+  icon,
+  selected: {
+    type: Boolean,
+    default: false
+  },
+  removable: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([UI_CHIP.EVENTS.CLICK, UI_CHIP.EVENTS.REMOVE]);
+
+const chip = ref(null);
+
+const { materialIcon } = useMaterialIcon(props);
+
+const thumbnailClassName = computed(() => [
+  UI_GLOBAL.cssClasses.icon,
+  UI_CHIP.cssClasses.icon,
+  { 'mdc-chip__icon--leading-hidden': props.selected }
+]);
+const role = computed(() => {
+  let name = null;
+
+  if (chip.$parent.choiceChips) {
+    name = 'radio';
+  } else if (chip.$parent.filterChips) {
+    name = 'checkbox';
+  } else {
+    name = 'button';
+  }
+
+  return name;
+});
+
+function handleClick(event) {
+  chip.$parent.choiceChipId = chip.value.id; // fix(ui): twice trigger
+
+  emit(UI_CHIP.EVENTS.CLICK, event);
+}
+
+function handleRemove(event) {
+  emit(UI_CHIP.EVENTS.REMOVE, event);
+}
 </script>

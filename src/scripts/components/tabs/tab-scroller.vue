@@ -26,7 +26,7 @@ export default {
       default: 0
     }
   },
-  emits: [UI_TAB_SCROLLER.EVENT.CHANGE],
+  emits: [UI_TAB_SCROLLER.EVENTS.CHANGE],
   data() {
     return {
       $tabScroller: null,

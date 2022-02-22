@@ -1,8 +1,8 @@
-export default {
-  props: {
-    align: {
-      type: String,
-      default: 'start'
-    }
+const tabScrollerProps = {
+  align: {
+    type: String,
+    default: 'start'
   }
 };
+
+export { tabScrollerProps };

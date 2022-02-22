@@ -4,7 +4,7 @@ const UI_ICON_BUTTON = {
     off: 'mdc-icon-button__icon',
     on: 'mdc-icon-button__icon mdc-icon-button__icon--on'
   },
-  EVENT: {
+  EVENTS: {
     CLICK: 'click',
     CHANGE: 'update:modelValue'
   }

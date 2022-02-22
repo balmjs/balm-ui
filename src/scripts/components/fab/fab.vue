@@ -1,13 +1,13 @@
 <template>
   <!-- Container -->
-  <button type="button" :class="className" @click="handleClick">
+  <button ref="fab" type="button" :class="className" @click="handleClick">
     <div class="mdc-fab__ripple"></div>
     <template v-if="isExtended">
       <!-- Icon (optional) -->
       <slot name="before" :iconClass="UI_FAB.cssClasses.icon">
         <i
           v-if="materialIcon"
-          :class="getIconClassName(UI_FAB.cssClasses.icon)"
+          :class="getMaterialIconClass(UI_FAB.cssClasses.icon)"
           v-text="materialIcon"
         ></i>
       </slot>
@@ -23,7 +23,7 @@
       <slot :iconClass="UI_FAB.cssClasses.icon">
         <i
           v-if="materialIcon"
-          :class="getIconClassName(UI_FAB.cssClasses.icon)"
+          :class="getMaterialIconClass(UI_FAB.cssClasses.icon)"
           v-text="materialIcon"
         ></i>
       </slot>
@@ -32,65 +32,65 @@
 </template>
 
 <script>
-import buttonMixin from '../../mixins/button';
-
-// Define fab constants
-const UI_FAB = {
-  TYPES: {
-    regular: 0,
-    extended: 1
-  },
-  cssClasses: {
-    icon: 'mdc-fab__icon',
-    touch: 'mdc-fab--touch'
-  }
-};
+import { getMaterialIconClass } from '../../mixins/material-icon';
+import UI_FAB from './constants';
 
 export default {
   name: 'UiFab',
-  mixins: [buttonMixin],
-  props: {
-    // UI variants
-    type: {
-      type: [String, Number],
-      default: 0
-    },
-    extended: {
-      type: Boolean,
-      default: false
-    },
-    // UI attributes
-    mini: {
-      type: Boolean,
-      default: false
-    },
-    exited: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data() {
-    return {
-      UI_FAB
-    };
-  },
-  computed: {
-    isExtended() {
-      return this.checkType(UI_FAB.TYPES, 'extended');
-    },
-    className() {
-      const isTouch =
-        this.el && this.el.classList.contains(UI_FAB.cssClasses.touch);
-
-      return {
-        'mdc-fab': true,
-        'mdc-fab--extended': this.isExtended,
-        'mdc-fab--mini': this.mini,
-        'mdc-fab--exited': this.exited,
-        // Accessibility
-        'mdc-fab--touch': isTouch
-      };
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_FAB,
+    getMaterialIconClass
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, onMounted } from 'vue';
+import { useButton } from '../../mixins/button';
+import { icon, useMaterialIcon } from '../../mixins/material-icon';
+import checkType from '../../mixins/type';
+
+const props = defineProps({
+  // UI variants
+  type: {
+    type: [String, Number],
+    default: 0
+  },
+  extended: {
+    type: Boolean,
+    default: false
+  },
+  // UI attributes
+  icon,
+  mini: {
+    type: Boolean,
+    default: false
+  },
+  exited: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([UI_FAB.EVENTS.CLICK]);
+
+const fab = ref(null);
+
+const { handleClick } = useButton(fab, props, { emit });
+const { materialIcon } = useMaterialIcon(props);
+
+const isExtended = computed(() => checkType(UI_FAB.TYPES, 'extended')).value;
+const isAccessible = computed(
+  () => fab.value && fab.value.classList.contains(UI_FAB.cssClasses.touch)
+).value;
+
+const className = computed(() => ({
+  'mdc-fab': true,
+  'mdc-fab--extended': isExtended,
+  'mdc-fab--mini': props.mini,
+  'mdc-fab--exited': props.exited,
+  // Accessibility
+  'mdc-fab--touch': isAccessible
+}));
 </script>

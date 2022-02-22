@@ -10,20 +10,20 @@ const UI_CARD = {
   }
 };
 
-const data = {
+let data = {
   cardButton: false,
   cardIcon: false
 };
 
-function useCardAction(nodeRef) {
-  const cardActionClassName = computed(() => ({
+function useCardAction(elementRef) {
+  const cardActionClasses = computed(() => ({
     'mdc-card__action': data.cardButton || data.cardIcon,
     'mdc-card__action--button': data.cardButton,
     'mdc-card__action--icon': data.cardIcon
-  }));
+  })).value;
 
   onMounted(() => {
-    const parentEl = nodeRef.value?.parentNode;
+    const parentEl = elementRef.value?.parentNode;
     if (parentEl && getType(parentEl) === 'htmldivelement') {
       data.cardButton =
         parentEl.classList.contains(UI_CARD.cssClasses.button) ||
@@ -32,7 +32,9 @@ function useCardAction(nodeRef) {
     }
   });
 
-  return { cardActionClassName };
+  return {
+    cardActionClasses
+  };
 }
 
 export { useCardAction };

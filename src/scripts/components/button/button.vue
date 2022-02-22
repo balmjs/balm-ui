@@ -1,12 +1,17 @@
 <template>
   <!-- Container -->
-  <button :type="nativeType" :class="className" @click="handleClick">
+  <button
+    ref="button"
+    :type="nativeType"
+    :class="className"
+    @click="handleClick"
+  >
     <div class="mdc-button__ripple"></div>
     <!-- Icon (optional) -->
     <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">
       <i
         v-if="materialIcon"
-        :class="getIconClassName(UI_BUTTON.cssClasses.icon)"
+        :class="getMaterialIconClass(UI_BUTTON.cssClasses.icon)"
         aria-hidden="true"
         v-text="materialIcon"
       ></i>
@@ -21,85 +26,87 @@
 </template>
 
 <script>
-import buttonMixin from '../../mixins/button';
-import cardActionMixin from '../../mixins/card-action';
-
-// Define button constants
-const UI_BUTTON = {
-  TYPES: {
-    text: 0,
-    outlined: 1,
-    raised: 2,
-    unelevated: 3
-  },
-  cssClasses: {
-    icon: 'mdc-button__icon',
-    label: 'mdc-button__label',
-    touch: 'mdc-button--touch'
-  }
-};
+import { getMaterialIconClass } from '../../mixins/material-icon';
+import UI_BUTTON from './constants';
 
 export default {
   name: 'UiButton',
-  mixins: [buttonMixin, cardActionMixin],
-  props: {
-    // UI variants
-    type: {
-      type: [String, Number],
-      default: 0
-    },
-    outlined: {
-      type: Boolean,
-      default: false
-    },
-    raised: {
-      type: Boolean,
-      default: false
-    },
-    unelevated: {
-      type: Boolean,
-      default: false
-    },
-    // native button attributes
-    nativeType: {
-      type: String,
-      default: 'button'
-    }
-  },
-  data() {
-    return {
-      UI_BUTTON
-    };
-  },
-  computed: {
-    isOutlined() {
-      return this.checkType(UI_BUTTON.TYPES, 'outlined');
-    },
-    isRaised() {
-      return this.checkType(UI_BUTTON.TYPES, 'raised');
-    },
-    isUnelevated() {
-      return this.checkType(UI_BUTTON.TYPES, 'unelevated');
-    },
-    className() {
-      const isAccessible =
-        this.el && this.el.classList.contains(UI_BUTTON.cssClasses.touch);
-
-      return [
-        {
-          // Text button
-          'mdc-button': true,
-          // Outlined button
-          'mdc-button--outlined': this.isOutlined,
-          // Contained button
-          'mdc-button--raised': this.isRaised,
-          'mdc-button--unelevated': this.isUnelevated,
-          // Accessibility
-          'mdc-button--touch': isAccessible
-        },
-        this.cardActionClassName
-      ];
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_BUTTON,
+    getMaterialIconClass
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, onMounted } from 'vue';
+import { useButton } from '../../mixins/button';
+import { icon, useMaterialIcon } from '../../mixins/material-icon';
+import { useCardAction } from '../../mixins/card-action';
+import checkType from '../../mixins/type';
+
+const props = defineProps({
+  // UI variants
+  type: {
+    type: [String, Number],
+    default: 0
+  },
+  outlined: {
+    type: Boolean,
+    default: false
+  },
+  raised: {
+    type: Boolean,
+    default: false
+  },
+  unelevated: {
+    type: Boolean,
+    default: false
+  },
+  // UI attributes
+  icon,
+  // Native button attributes
+  nativeType: {
+    type: String,
+    default: 'button'
+  }
+});
+
+const emit = defineEmits([UI_BUTTON.EVENTS.CLICK]);
+
+const button = ref(null);
+
+const { handleClick } = useButton(button, props, { emit });
+const { materialIcon } = useMaterialIcon(props);
+const { cardActionClasses } = useCardAction(button);
+
+const isOutlined = computed(() =>
+  checkType(props, UI_BUTTON.TYPES, 'outlined')
+).value;
+const isRaised = computed(() =>
+  checkType(props, UI_BUTTON.TYPES, 'raised')
+).value;
+const isUnelevated = computed(() =>
+  checkType(props, UI_BUTTON.TYPES, 'unelevated')
+).value;
+const isAccessible = computed(
+  () =>
+    button.value && button.value.classList.contains(UI_BUTTON.cssClasses.touch)
+).value;
+
+const className = computed(() => [
+  {
+    // Text button
+    'mdc-button': true,
+    // Outlined button
+    'mdc-button--outlined': isOutlined,
+    // Contained button
+    'mdc-button--raised': isRaised,
+    'mdc-button--unelevated': isUnelevated,
+    // Accessibility
+    'mdc-button--touch': isAccessible
+  },
+  cardActionClasses
+]);
 </script>

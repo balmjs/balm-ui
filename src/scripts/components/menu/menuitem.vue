@@ -1,5 +1,6 @@
 <template>
   <li
+    ref="menuitem"
     :class="nested ? null : getClass(item)"
     :role="nested ? null : 'menuitem'"
     :data-value="item.value || value"
@@ -26,70 +27,74 @@
 </template>
 
 <script>
-import UiMenuitemIcon from './menuitem-icon.vue';
-import UiMenuitemText from './menuitem-text.vue';
-import domMixin from '../../mixins/dom';
-import rippleMixin from '../../mixins/ripple';
-import deprecatedListMixin from '../../mixins/deprecated-list';
 import UI_GLOBAL from '../icon/constants';
 
 export default {
   name: 'UiMenuitem',
-  components: {
-    UiMenuitemIcon,
-    UiMenuitemText
-  },
-  mixins: [domMixin, rippleMixin, deprecatedListMixin],
-  props: {
-    // Layout
-    nested: {
-      type: Boolean,
-      default: false
-    },
-    // States
-    item: {
-      type: Object,
-      default() {
-        return {}; // { text: string, icon: string, value: string }
-      }
-    },
-    value: {
-      type: null, // NOTE: String usually
-      default: null
-    },
-    // UI attributes
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    selected: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: ['click'],
-  data() {
-    return {
-      UI_GLOBAL
-    };
-  },
-  mounted() {
-    if (!this.nested) {
-      this.initRipple(this.el);
-    }
-  },
-  methods: {
-    getClass(item) {
-      return [
-        this.deprecatedListClassNameMap['mdc-list-item'],
-        ...this.getDeprecatedItemClasses({
-          disabled: this.disabled || item.disabled
-        }),
-        {
-          'mdc-menu-item--selected': this.selected || item.selected
-        }
-      ];
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_GLOBAL
   }
 };
+</script>
+
+<script setup>
+import { onMounted } from 'vue';
+import UiMenuitemIcon from './menuitem-icon.vue';
+import UiMenuitemText from './menuitem-text.vue';
+import { useRipple } from '../../mixins/ripple';
+import { useDeprecatedList } from '../../mixins/deprecated-list';
+
+const props = defineProps({
+  // Layout
+  nested: {
+    type: Boolean,
+    default: false
+  },
+  // States
+  item: {
+    type: Object,
+    default() {
+      return {}; // { text: string, icon: string, value: string }
+    }
+  },
+  value: {
+    type: null, // NOTE: String usually
+    default: null
+  },
+  // UI attributes
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  selected: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits(['click']);
+
+const menuitem = ref(null);
+
+onMounted(() => {
+  if (!props.nested) {
+    useRipple(menuitem.value);
+  }
+});
+
+const { deprecatedListClassNameMap, getDeprecatedItemClasses } =
+  useDeprecatedList(menuitem);
+
+function getClass(item) {
+  return [
+    deprecatedListClassNameMap['mdc-list-item'],
+    ...getDeprecatedItemClasses({
+      disabled: props.disabled || item.disabled
+    }),
+    {
+      'mdc-menu-item--selected': props.selected || item.selected
+    }
+  ];
+}
 </script>

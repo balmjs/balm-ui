@@ -5,12 +5,12 @@ import {
 } from '../../material-components-web/list/constants';
 import domMixin from './dom';
 import typeMixin from './type';
-import rippleMixin from './ripple';
+import { useRipple } from './ripple';
 import { getCurrentElement } from '../mixins/dom';
 import { UI_LIST, UI_ITEM } from '../components/list/constants';
 
 export default {
-  mixins: [domMixin, typeMixin, rippleMixin],
+  mixins: [domMixin, typeMixin],
   props: {
     // UI variants
     type: {
@@ -98,7 +98,7 @@ export default {
 
       if (!this.nonInteractive) {
         this.$list.listElements.forEach((listItemEl) => {
-          this.initRipple(listItemEl);
+          useRipple(listItemEl);
 
           let itemRole = listItemEl.getAttribute('role');
           if (itemRole === 'checkbox' || itemRole === 'radio') {

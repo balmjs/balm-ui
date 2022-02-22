@@ -1,6 +1,6 @@
 // Define tab bar constants
 const UI_TAB_BAR = {
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue'
   }
 };
@@ -8,7 +8,7 @@ const UI_TAB_BAR = {
 // Define tab scroller constants
 const UI_TAB_SCROLLER = {
   ALIGN: ['start', 'center', 'end'],
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:scrollX'
   }
 };
@@ -30,7 +30,7 @@ const UI_TAB = {
     active: 'mdc-tab--active',
     icon: 'mdc-tab__icon'
   },
-  EVENT: {
+  EVENTS: {
     CLICK: 'click'
   },
   idPrefix: 'mdc-tab-'

@@ -20,26 +20,37 @@
 </template>
 
 <script>
-import UiTabBar from './tab-bar.vue';
-import UiTab from './tab.vue';
-import tabBarMixin from '../../mixins/tab-bar';
-import tabScrollerMixin from '../../mixins/tab-scroller';
-import tabMixin from '../../mixins/tab';
+import { UI_TAB_BAR } from './constants';
 
 export default {
   name: 'UiTabs',
-  components: {
-    UiTabBar,
-    UiTab
-  },
-  mixins: [tabBarMixin, tabScrollerMixin, tabMixin],
-  props: {
-    items: {
-      type: Array,
-      default() {
-        return []; // Data: { text: string, icon: string }
-      }
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_TAB_BAR
   }
 };
+</script>
+
+<script setup>
+import UiTabBar from './tab-bar.vue';
+import UiTab from './tab.vue';
+import { tabBarProps, useTabBar } from '../../mixins/tab-bar';
+import { tabScrollerProps } from '../../mixins/tab-scroller';
+import { tabProps } from '../../mixins/tab';
+
+const props = defineProps({
+  ...tabBarProps,
+  ...tabScrollerProps,
+  ...tabProps,
+  items: {
+    type: Array,
+    default() {
+      return []; // Data: { text: string, icon: string }
+    }
+  }
+});
+
+const emit = defineEmits([UI_TAB_BAR.EVENTS.CHANGE]);
+
+const { handleChange } = useTabBar({ emit });
 </script>

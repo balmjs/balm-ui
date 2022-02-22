@@ -13,9 +13,9 @@ function useMaterialIcon(props) {
   return { materialIcon };
 }
 
-const getIconClassName = (...componentIconClass) => [
+const getMaterialIconClass = (...componentClasses) => [
   MaterialIconClassName,
-  ...componentIconClass
+  ...componentClasses
 ];
 
-export { icon, useMaterialIcon, getIconClassName };
+export { icon, useMaterialIcon, getMaterialIconClass };

@@ -1,7 +1,7 @@
 <template>
   <!-- Container -->
   <button
-    ref="iconButtonEl"
+    ref="iconButton"
     type="button"
     :class="className"
     @click="handleClick"
@@ -10,11 +10,11 @@
     <!-- Icon -->
     <template v-if="toggleButton">
       <i
-        :class="getIconClassName(UI_ICON_BUTTON.cssClasses.off)"
+        :class="getMaterialIconClass(UI_ICON_BUTTON.cssClasses.off)"
         v-text="toggle.off"
       ></i>
       <i
-        :class="getIconClassName(UI_ICON_BUTTON.cssClasses.on)"
+        :class="getMaterialIconClass(UI_ICON_BUTTON.cssClasses.on)"
         v-text="toggle.on"
       ></i>
     </template>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { getIconClassName } from '../../mixins/material-icon';
+import { getMaterialIconClass } from '../../mixins/material-icon';
 import UI_ICON_BUTTON from './constants';
 
 export default {
@@ -38,7 +38,7 @@ export default {
   inheritAttrs: false,
   customOptions: {
     UI_ICON_BUTTON,
-    getIconClassName
+    getMaterialIconClass
   }
 };
 </script>
@@ -47,7 +47,7 @@ export default {
 import { ref, computed, watch, onMounted } from 'vue';
 import { MDCIconButtonToggle } from '../../../material-components-web/icon-button';
 import { strings } from '../../../material-components-web/icon-button/constants';
-import { icon, useMaterialIcon } from '../../mixins/material-icon';
+import { icon } from '../../mixins/material-icon';
 import { useCardAction } from '../../mixins/card-action';
 
 const props = defineProps({
@@ -65,34 +65,33 @@ const props = defineProps({
 });
 
 const emit = defineEmits([
-  UI_ICON_BUTTON.EVENT.CLICK,
-  UI_ICON_BUTTON.EVENT.CHANGE
+  UI_ICON_BUTTON.EVENTS.CLICK,
+  UI_ICON_BUTTON.EVENTS.CHANGE
 ]);
 
-const iconButtonEl = ref();
+const iconButton = ref(null);
 
-const { materialIcon } = useMaterialIcon(props);
-const { cardActionClassName } = useCardAction(iconButtonEl);
+const { cardActionClasses } = useCardAction(iconButton);
 
-const toggleButton = computed(() => props.toggle.on && props.toggle.off);
+const toggleButton = computed(() => props.toggle.on && props.toggle.off).value;
 const className = computed(() => [
   {
     'mdc-icon-button': true,
-    'material-icons': !toggleButton.value
+    'material-icons': !toggleButton
   },
-  cardActionClassName
+  cardActionClasses
 ]);
 
 function handleClick(event) {
-  emit(UI_ICON_BUTTON.EVENT.CLICK, event);
+  emit(UI_ICON_BUTTON.EVENTS.CLICK, event);
 }
 
 onMounted(() => {
-  const $iconButton = new MDCIconButtonToggle(iconButtonEl.value);
+  const $iconButton = new MDCIconButtonToggle(iconButton.value);
 
   // For default and custom icon button
   $iconButton.listen(strings.CHANGE_EVENT, ({ detail }) => {
-    emit(UI_ICON_BUTTON.EVENT.CHANGE, detail.isOn);
+    emit(UI_ICON_BUTTON.EVENTS.CHANGE, detail.isOn);
   });
 
   // Init

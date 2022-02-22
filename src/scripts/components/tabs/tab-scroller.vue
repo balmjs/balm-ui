@@ -11,62 +11,74 @@
 </template>
 
 <script>
-import { MDCTabScroller } from '../../../material-components-web/tab-scroller';
-import domMixin from '../../mixins/dom';
-import tabScrollerMixin from '../../mixins/tab-scroller';
 import { UI_TAB_SCROLLER } from './constants';
 
 export default {
   name: 'UiTabScroller',
-  mixins: [domMixin, tabScrollerMixin],
-  props: {
-    // States
-    scrollX: {
-      type: Number,
-      default: 0
-    }
-  },
-  emits: [UI_TAB_SCROLLER.EVENTS.CHANGE],
-  data() {
-    return {
-      $tabScroller: null,
-      scrollValue: this.scrollX
-    };
-  },
-  computed: {
-    className() {
-      let result = ['mdc-tab-scroller'];
-
-      if (UI_TAB_SCROLLER.ALIGN.includes(this.align)) {
-        result.push(`mdc-tab-scroller--align-${this.align}`);
-      }
-
-      return result.join(' ');
-    }
-  },
-  watch: {
-    scrollX(val) {
-      let newScrollValue = +val;
-      this.$tabScroller.scrollTo(newScrollValue);
-
-      this.scrollValue = newScrollValue;
-    }
-  },
-  mounted() {
-    this.$tabScroller = new MDCTabScroller(this.el);
-  },
-  methods: {
-    increment(scrollX = 0) {
-      let offsetScrollX = +scrollX;
-      this.$tabScroller.incrementScroll(offsetScrollX);
-
-      this.scrollValue += offsetScrollX;
-      if (this.scrollValue < 0) {
-        this.scrollValue = 0;
-      }
-
-      this.$emit(UI_TAB_SCROLLER.EVENT.CHANGE, this.scrollValue);
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_TAB_SCROLLER
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, watch, onMounted } from 'vue';
+import { MDCTabScroller } from '../../../material-components-web/tab-scroller';
+import { tabScrollerProps } from '../../mixins/tab-scroller';
+
+const props = defineProps({
+  ...tabScrollerProps,
+  // States
+  scrollX: {
+    type: Number,
+    default: 0
+  }
+});
+
+const emit = defineEmits([UI_TAB_SCROLLER.EVENTS.CHANGE]);
+
+const className = computed(() => {
+  let result = ['mdc-tab-scroller'];
+
+  if (UI_TAB_SCROLLER.ALIGN.includes(props.align)) {
+    result.push(`mdc-tab-scroller--align-${props.align}`);
+  }
+
+  return result.join(' ');
+});
+
+let $tabScroller = null;
+let scroll = ref(props.scrollX);
+
+onMounted(() => {
+  $tabScroller = new MDCTabScroller(this.el);
+
+  watch(
+    () => props.scrollX,
+    (val) => {
+      let newScrollValue = +val;
+      $tabScroller.scrollTo(newScrollValue);
+
+      scroll.value = newScrollValue;
+    }
+  );
+});
+
+function increment(scrollX = 0) {
+  let offsetScrollX = +scrollX;
+  $tabScroller.incrementScroll(offsetScrollX);
+
+  let scrollValue = scroll.value;
+  scrollValue += offsetScrollX;
+  if (scrollValue < 0) {
+    scrollValue = 0;
+  }
+
+  emit(UI_TAB_SCROLLER.EVENTS.CHANGE, scrollValue);
+}
+
+defineExpose({
+  increment
+});
 </script>

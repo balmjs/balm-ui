@@ -46,7 +46,7 @@ const UI_SNACKBAR = {
     BOTTOM: 'bottom',
     CENTER: 'center'
   },
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue',
     CLOSED: 'closed'
   }

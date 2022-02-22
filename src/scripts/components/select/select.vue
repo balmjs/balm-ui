@@ -118,7 +118,7 @@ const UI_SELECT = {
   cssClasses: {
     icon: 'mdc-select__icon'
   },
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue',
     SELECTED: 'selected'
   },
@@ -255,7 +255,7 @@ export default {
     },
     options: {
       handler(val) {
-        this.init(val)
+        this.init(val);
       },
       deep: true
     },

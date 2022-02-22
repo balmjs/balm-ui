@@ -12,7 +12,7 @@
 <script>
 // Define bottom sheet constants
 const UI_BOTTOM_SHEET = {
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue'
   }
 };

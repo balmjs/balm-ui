@@ -16,7 +16,7 @@ const UI_LIST = {
     singleLine: 1,
     twoLine: 2
   },
-  EVENT: {
+  EVENTS: {
     ACTION: 'update:modelValue'
   }
 };
@@ -28,7 +28,7 @@ const UI_ITEM = {
     firstTile: deprecatedListClassNameMap['mdc-list-item__graphic'],
     lastTile: deprecatedListClassNameMap['mdc-list-item__meta']
   },
-  EVENT: {
+  EVENTS: {
     CLICK: 'click'
   }
 };

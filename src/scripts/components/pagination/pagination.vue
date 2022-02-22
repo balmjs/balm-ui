@@ -143,196 +143,202 @@
 </template>
 
 <script>
-import MdcButton from '../button/mdc-button.vue';
-
 // Define pagination constants
 const UI_PAGINATION = {
   POSITIONS: ['left', 'center', 'right'],
   MIN_PAGE_SPAN: 3,
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue'
   }
 };
 
 export default {
   name: 'UiPagination',
-  components: {
-    MdcButton
-  },
-  props: {
-    // States
-    modelValue: {
-      type: Number,
-      default: 1
-    },
-    total: {
-      type: Number,
-      default: 0
-    },
-    // UI attributes
-    pageSpan: {
-      type: [Number, Boolean],
-      default: UI_PAGINATION.MIN_PAGE_SPAN
-    },
-    showTotal: {
-      type: Boolean,
-      default: false
-    },
-    pageSize: {
-      type: [Number, Array],
-      default: 10
-    },
-    pageSizeText: {
-      type: [String, Array],
-      default: 'Rows per page'
-    },
-    ofText: {
-      type: String,
-      default: 'of'
-    },
-    showJumper: {
-      type: Boolean,
-      default: false
-    },
-    jumperText: {
-      type: [String, Array],
-      default: 'Goto'
-    },
-    jumperButtonOutlined: {
-      type: Boolean,
-      default: false
-    },
-    jumperButtonText: {
-      type: String,
-      default: ''
-    },
-    position: {
-      type: String,
-      default: ''
-    },
-    mini: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [UI_PAGINATION.EVENT.CHANGE],
-  data() {
-    return {
-      currentPage: this.modelValue,
-      currentPageSize: Array.isArray(this.pageSize)
-        ? this.pageSize[0]
-        : this.pageSize,
-      jumpPage: this.modelValue
-    };
-  },
-  computed: {
-    className() {
-      let result = [
-        'mdc-data-table__pagination',
-        'mdc-pagination',
-        { 'mdc-pagination--mini': this.mini }
-      ];
-
-      if (UI_PAGINATION.POSITIONS.includes(this.position)) {
-        result.push(`mdc-pagination--${this.position}`);
-      }
-
-      return result;
-    },
-    pageCount() {
-      return Math.ceil(this.total / this.currentPageSize);
-    },
-    currentMinRow() {
-      return this.currentPageSize * (this.currentPage - 1) + 1;
-    },
-    currentMaxRow() {
-      const max = this.currentPageSize * this.currentPage;
-      return max > this.total ? this.total : max;
-    },
-    hasPageSpan() {
-      return (
-        this.mini ||
-        (this.pageSpan && this.pageSpan >= UI_PAGINATION.MIN_PAGE_SPAN)
-      );
-    },
-    pageSizeBeforeText() {
-      return Array.isArray(this.pageSizeText)
-        ? this.pageSizeText[0]
-        : this.pageSizeText;
-    },
-    pageSizeAfterText() {
-      return Array.isArray(this.pageSizeText) ? this.pageSizeText[1] : '';
-    },
-    jumperBeforeText() {
-      return Array.isArray(this.jumperText)
-        ? this.jumperText[0]
-        : this.jumperText;
-    },
-    jumperAfterText() {
-      return Array.isArray(this.jumperText) ? this.jumperText[1] : '';
-    }
-  },
-  watch: {
-    modelValue(val) {
-      this.currentPage = val;
-    },
-    pageSize(val) {
-      if (!Array.isArray(val)) {
-        this.currentPageSize = val;
-      }
-    }
-  },
-  methods: {
-    isShow(page) {
-      let show = false;
-      switch (true) {
-        case page === 1:
-        case page === this.pageCount:
-        case this.currentPage >= page &&
-          page >= this.currentPage - this.pageSpan:
-        case this.currentPage <= page &&
-          page <= this.currentPage + this.pageSpan:
-          show = true;
-          break;
-      }
-      return show;
-    },
-    showPage(page) {
-      let isExisted =
-        this.currentPage === page - this.pageSpan ||
-        this.currentPage === page + this.pageSpan;
-      let nonFirstOrLast = page !== 1 && page !== this.pageCount;
-      return !(isExisted && nonFirstOrLast);
-    },
-    getPage(page) {
-      switch (true) {
-        case page > this.pageCount:
-          page = this.pageCount;
-          break;
-        case page < 1:
-          page = 1;
-          break;
-      }
-      return page;
-    },
-    handleClick(page) {
-      if (this.currentPage !== page) {
-        if (isNaN(page)) {
-          this.jumpPage = this.currentPage;
-        } else {
-          page = this.getPage(page);
-          this.jumpPage = page;
-          this.$emit(UI_PAGINATION.EVENT.CHANGE, +page);
-        }
-      }
-    },
-    handleChange() {
-      let page = this.getPage(this.currentPage);
-      if (this.currentPage !== page) {
-        this.jumpPage = page;
-        this.$emit(UI_PAGINATION.EVENT.CHANGE, +page);
-      }
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_PAGINATION
   }
 };
+</script>
+
+<script setup>
+import { computed, watch } from 'vue';
+import MdcButton from '../button/mdc-button.vue';
+
+const props = defineProps({
+  // States
+  modelValue: {
+    type: Number,
+    default: 1
+  },
+  total: {
+    type: Number,
+    default: 0
+  },
+  // UI attributes
+  pageSpan: {
+    type: [Number, Boolean],
+    default: UI_PAGINATION.MIN_PAGE_SPAN
+  },
+  showTotal: {
+    type: Boolean,
+    default: false
+  },
+  pageSize: {
+    type: [Number, Array],
+    default: 10
+  },
+  pageSizeText: {
+    type: [String, Array],
+    default: 'Rows per page'
+  },
+  ofText: {
+    type: String,
+    default: 'of'
+  },
+  showJumper: {
+    type: Boolean,
+    default: false
+  },
+  jumperText: {
+    type: [String, Array],
+    default: 'Goto'
+  },
+  jumperButtonOutlined: {
+    type: Boolean,
+    default: false
+  },
+  jumperButtonText: {
+    type: String,
+    default: ''
+  },
+  position: {
+    type: String,
+    default: ''
+  },
+  mini: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([UI_PAGINATION.EVENTS.CHANGE]);
+
+let currentPage = props.modelValue;
+let currentPageSize = Array.isArray(props.pageSize)
+  ? props.pageSize[0]
+  : props.pageSize;
+let jumpPage = props.modelValue;
+
+const className = computed(() => {
+  let result = [
+    'mdc-data-table__pagination',
+    'mdc-pagination',
+    { 'mdc-pagination--mini': props.mini }
+  ];
+
+  if (UI_PAGINATION.POSITIONS.includes(props.position)) {
+    result.push(`mdc-pagination--${props.position}`);
+  }
+
+  return result;
+});
+
+const pageCount = computed(() => {
+  return Math.ceil(props.total / currentPageSize);
+});
+const currentMinRow = computed(() => {
+  return currentPageSize * (currentPage - 1) + 1;
+});
+const currentMaxRow = computed(() => {
+  const max = currentPageSize * currentPage;
+  return max > props.total ? props.total : max;
+});
+const hasPageSpan = computed(() => {
+  return (
+    props.mini ||
+    (props.pageSpan && props.pageSpan >= UI_PAGINATION.MIN_PAGE_SPAN)
+  );
+});
+const pageSizeBeforeText = computed(() => {
+  return Array.isArray(props.pageSizeText)
+    ? props.pageSizeText[0]
+    : props.pageSizeText;
+});
+const pageSizeAfterText = computed(() => {
+  return Array.isArray(props.pageSizeText) ? props.pageSizeText[1] : '';
+});
+const jumperBeforeText = computed(() => {
+  return Array.isArray(props.jumperText)
+    ? props.jumperText[0]
+    : props.jumperText;
+});
+const jumperAfterText = computed(() => {
+  return Array.isArray(props.jumperText) ? props.jumperText[1] : '';
+});
+
+watch(
+  () => props.modelValue,
+  (val) => {
+    currentPage = val;
+  }
+);
+
+watch(
+  () => props.pageSize,
+  (val) => {
+    if (!Array.isArray(val)) {
+      currentPageSize = val;
+    }
+  }
+);
+
+function isShow(page) {
+  let show = false;
+  switch (true) {
+    case page === 1:
+    case page === props.pageCount:
+    case currentPage >= page && page >= currentPage - props.pageSpan:
+    case currentPage <= page && page <= currentPage + props.pageSpan:
+      show = true;
+      break;
+  }
+  return show;
+}
+function showPage(page) {
+  let isExisted =
+    currentPage === page - props.pageSpan ||
+    currentPage === page + props.pageSpan;
+  let nonFirstOrLast = page !== 1 && page !== props.pageCount;
+  return !(isExisted && nonFirstOrLast);
+}
+function getPage(page) {
+  switch (true) {
+    case page > props.pageCount:
+      page = props.pageCount;
+      break;
+    case page < 1:
+      page = 1;
+      break;
+  }
+  return page;
+}
+function handleClick(page) {
+  if (currentPage !== page) {
+    if (isNaN(page)) {
+      jumpPage = currentPage;
+    } else {
+      page = props.getPage(page);
+      jumpPage = page;
+      emit(UI_PAGINATION.EVENTS.CHANGE, +page);
+    }
+  }
+}
+function handleChange() {
+  let page = props.getPage(currentPage);
+  if (currentPage !== page) {
+    jumpPage = page;
+    emit(UI_PAGINATION.EVENTS.CHANGE, +page);
+  }
+}
 </script>

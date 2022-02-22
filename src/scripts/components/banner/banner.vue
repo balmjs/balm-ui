@@ -31,7 +31,7 @@ import domMixin from '../../mixins/dom';
 
 // Define banner constants
 const UI_BANNER = {
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue',
     CLOSED: 'closed'
   }

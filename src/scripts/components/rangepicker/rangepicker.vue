@@ -31,7 +31,7 @@ import UiTextfield from '../textfield/textfield.vue';
 
 // Define rangepicker constants
 const UI_RANGEPICKER = {
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue'
   }
 };

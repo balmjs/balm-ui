@@ -2,7 +2,7 @@
   <button
     type="button"
     class="mdc-icon-button material-icons"
-    @click="$emit('click', $event)"
+    @click="handleClick"
   >
     <div class="mdc-icon-button__ripple"></div>
     <slot>
@@ -14,6 +14,15 @@
 <script>
 export default {
   name: 'MdcIconButton',
-  emits: ['click']
+  inheritAttrs: false,
+  customOptions: {}
 };
+</script>
+
+<script setup>
+const emit = defineEmits(['click']);
+
+function handleClick(event) {
+  emit('click', event);
+}
 </script>

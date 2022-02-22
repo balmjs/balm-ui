@@ -36,7 +36,7 @@ const UI_DIALOG = {
   cssClasses: {
     content: 'mdc-dialog__content'
   },
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue',
     CLOSE: 'close',
     CONFIRM: 'confirm'

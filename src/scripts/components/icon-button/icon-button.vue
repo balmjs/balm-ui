@@ -31,7 +31,18 @@
 
 <script>
 import { getMaterialIconClass } from '../../mixins/material-icon';
-import UI_ICON_BUTTON from './constants';
+
+// Define icon/toggle button constants
+const UI_ICON_BUTTON = {
+  cssClasses: {
+    off: 'mdc-icon-button__icon',
+    on: 'mdc-icon-button__icon mdc-icon-button__icon--on'
+  },
+  EVENTS: {
+    CLICK: 'click',
+    CHANGE: 'update:modelValue'
+  }
+};
 
 export default {
   name: 'UiIconButton',

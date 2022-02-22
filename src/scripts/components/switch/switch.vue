@@ -41,7 +41,7 @@ import domMixin from '../../mixins/dom';
 
 // Define switch constants
 const UI_SWITCH = {
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue',
     SELECTED: 'selected'
   }

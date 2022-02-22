@@ -7,7 +7,16 @@
 </template>
 
 <script>
-import typeMixin from '../../mixins/type';
+export default {
+  name: 'UiIcon',
+  inheritAttrs: false,
+  customOptions: {}
+};
+</script>
+
+<script setup>
+import { computed, onBeforeMount } from 'vue';
+import checkType from '../../mixins/type';
 
 // Define material icons constants
 const UI_ICON = {
@@ -19,107 +28,96 @@ const UI_ICON = {
     sharp: 4
   },
   DEFAULT_SIZE: 24,
-  EVENT: {
+  EVENTS: {
     CLICK: 'click'
   }
 };
 
-export default {
-  name: 'UiIcon',
-  mixins: [typeMixin],
-  props: {
-    // UI styles
-    type: {
-      type: [String, Number],
-      default: 0
-    },
-    outlined: {
-      type: Boolean,
-      default: false
-    },
-    round: {
-      type: Boolean,
-      default: false
-    },
-    twoTone: {
-      type: Boolean,
-      default: false
-    },
-    sharp: {
-      type: Boolean,
-      default: false
-    },
-    // UI attributes
-    size: {
-      type: [Number, String],
-      default: UI_ICON.DEFAULT_SIZE
-    },
-    dark: {
-      type: Boolean,
-      default: false
-    },
-    light: {
-      type: Boolean,
-      default: false
-    },
-    inactive: {
-      type: Boolean,
-      default: false
-    }
+const props = defineProps({
+  // UI styles
+  type: {
+    type: [String, Number],
+    default: 0
   },
-  emits: [UI_ICON.EVENT.CLICK],
-  computed: {
-    isFilled() {
-      return this.checkType(UI_ICON.TYPES, 'filled');
-    },
-    isOutlined() {
-      return this.checkType(UI_ICON.TYPES, 'outlined');
-    },
-    isRound() {
-      return this.checkType(UI_ICON.TYPES, 'round');
-    },
-    isTwoTone() {
-      return this.checkType(UI_ICON.TYPES, 'twoTone');
-    },
-    isSharp() {
-      return this.checkType(UI_ICON.TYPES, 'sharp');
-    },
-    invalidIcon() {
-      return this.dark && this.light;
-    },
-    activeIcon() {
-      return this.dark || this.light;
-    },
-    className() {
-      let result = {
-        'material-icons': this.isFilled,
-        'material-icons-outlined': this.isOutlined,
-        'material-icons-round': this.isRound,
-        'material-icons-two-tone': this.isTwoTone,
-        'material-icons-sharp': this.isSharp,
-        'md-dark': this.dark && !this.light,
-        'md-light': this.light && !this.dark,
-        'md-inactive': this.inactive
-      };
-
-      if (+this.size !== UI_ICON.DEFAULT_SIZE && this.size > 0) {
-        result[`md-${this.size}`] = true;
-      }
-
-      return result;
-    }
+  outlined: {
+    type: Boolean,
+    default: false
   },
-  created() {
-    if (this.invalidIcon || (!this.activeIcon && this.inactive)) {
-      console.warn('[UiIcon]', 'Invalid dark or light icon');
-    }
+  round: {
+    type: Boolean,
+    default: false
   },
-  methods: {
-    handleClick(event) {
-      if (!this.inactive) {
-        this.$emit(UI_ICON.EVENT.CLICK, event);
-      }
-    }
+  twoTone: {
+    type: Boolean,
+    default: false
+  },
+  sharp: {
+    type: Boolean,
+    default: false
+  },
+  // UI attributes
+  size: {
+    type: [Number, String],
+    default: UI_ICON.DEFAULT_SIZE
+  },
+  dark: {
+    type: Boolean,
+    default: false
+  },
+  light: {
+    type: Boolean,
+    default: false
+  },
+  inactive: {
+    type: Boolean,
+    default: false
   }
-};
+});
+
+const emit = defineEmits([UI_ICON.EVENTS.CLICK]);
+
+const isFilled = computed(() =>
+  checkType(props, UI_ICON.TYPES, 'filled')
+).value;
+const isOutlined = computed(() =>
+  checkType(props, UI_ICON.TYPES, 'outlined')
+).value;
+const isRound = computed(() => checkType(props, UI_ICON.TYPES, 'round')).value;
+const isTwoTone = computed(() =>
+  checkType(props, UI_ICON.TYPES, 'twoTone')
+).value;
+const isSharp = computed(() => checkType(props, UI_ICON.TYPES, 'sharp')).value;
+const invalidIcon = computed(() => props.dark && props.light).value;
+const activeIcon = computed(() => props.dark || props.light).value;
+
+const className = computed(() => {
+  let result = {
+    'material-icons': isFilled,
+    'material-icons-outlined': isOutlined,
+    'material-icons-round': isRound,
+    'material-icons-two-tone': isTwoTone,
+    'material-icons-sharp': isSharp,
+    'md-dark': props.dark && !props.light,
+    'md-light': props.light && !props.dark,
+    'md-inactive': props.inactive
+  };
+
+  if (+props.size !== UI_ICON.DEFAULT_SIZE && props.size > 0) {
+    result[`md-${props.size}`] = true;
+  }
+
+  return result;
+});
+
+onBeforeMount(() => {
+  if (invalidIcon || (!activeIcon && props.inactive)) {
+    console.warn('[UiIcon]', 'Invalid dark or light icon');
+  }
+});
+
+function handleClick(event) {
+  if (!props.inactive) {
+    emit(UI_ICON.EVENTS.CLICK, event);
+  }
+}
 </script>

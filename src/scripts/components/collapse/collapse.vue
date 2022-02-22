@@ -45,7 +45,7 @@ const UI_COLLAPSE = {
   cssClasses: {
     icon: 'mdc-collapse__icon'
   },
-  EVENT: {
+  EVENTS: {
     CLICK: 'click',
     CHANGE: 'update:modelValue'
   }

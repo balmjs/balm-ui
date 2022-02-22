@@ -27,7 +27,7 @@ const UI_CHIPS = {
     choice: 2,
     filter: 3
   },
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue'
   }
 };

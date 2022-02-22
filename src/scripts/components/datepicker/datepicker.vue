@@ -90,7 +90,7 @@ const UI_DATEPICKER = {
     MONTH: 'month', // Custom
     TIME: 'time' // Custom
   },
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue'
   }
 };

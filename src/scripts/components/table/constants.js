@@ -39,7 +39,7 @@ export default {
     MAX: 'max',
     MIN: 'min'
   },
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue'
   },
   CHECKBOX_COL_WIDTH: 50 // px

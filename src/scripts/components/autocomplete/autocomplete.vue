@@ -83,7 +83,7 @@ const UI_AUTOCOMPLETE = {
   cssClasses: {
     selected: 'selected'
   },
-  EVENT: {
+  EVENTS: {
     INPUT: 'update:modelValue',
     SEARCH: 'search',
     SELECTED: 'selected',
@@ -436,10 +436,14 @@ export default {
             break;
           case KEYCODE.ENTER:
             // Only autocomplete when text is inputted
-            if(this.inputValue.length > 0) {
+            if (this.inputValue.length > 0) {
               // If no option is selected, use first option
               let selectedItem =
-                this.currentSuggestion.data[this.currentSuggestion.index < MIN ? MIN : this.currentSuggestion.index];
+                this.currentSuggestion.data[
+                  this.currentSuggestion.index < MIN
+                    ? MIN
+                    : this.currentSuggestion.index
+                ];
               this.handleSelected(selectedItem);
             }
             event.preventDefault();

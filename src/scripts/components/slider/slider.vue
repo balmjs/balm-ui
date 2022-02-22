@@ -65,7 +65,7 @@ const UI_SLIDER = {
     continuous: 0,
     discrete: 1
   },
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue'
   }
 };

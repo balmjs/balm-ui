@@ -3,7 +3,7 @@
     <slot name="icon">
       <i
         v-if="materialIcon"
-        :class="getIconClassName('mdc-alert__icon')"
+        :class="getMaterialIconClass(stateClassName, 'mdc-alert__icon')"
         v-text="materialIcon"
       ></i>
     </slot>
@@ -21,51 +21,55 @@
 </template>
 
 <script>
-import stateTypeMixins from '../../mixins/state-type';
+import { getMaterialIconClass } from '../../mixins/material-icon';
 
 export default {
   name: 'UiAlert',
-  mixins: [stateTypeMixins],
-  props: {
-    // UI attributes
-    state: {
-      type: String,
-      default: '' // success, info, warning, error, help
-    },
-    stateOutlined: {
-      type: Boolean,
-      default: false
-    },
-    closable: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data() {
-    return {
-      closed: false,
-      destroyed: false
-    };
-  },
-  computed: {
-    className() {
-      return [
-        'mdc-alert',
-        `mdc-alert--${this.stateType}`,
-        {
-          'mdc-alert--closed': this.closed
-        }
-      ];
-    }
-  },
-  methods: {
-    onClose() {
-      this.closed = true;
-
-      setTimeout(() => {
-        this.destroyed = true;
-      }, 200);
-    }
+  inheritAttrs: false,
+  customOptions: {
+    getMaterialIconClass
   }
 };
+</script>
+
+<script setup>
+import { computed } from 'vue';
+import { useStateType } from '../../mixins/state-type';
+
+const props = defineProps({
+  // UI attributes
+  state: {
+    type: String,
+    default: '' // success, info, warning, error, help
+  },
+  stateOutlined: {
+    type: Boolean,
+    default: false
+  },
+  closable: {
+    type: Boolean,
+    default: false
+  }
+});
+
+let closed = ref(false);
+let destroyed = ref(false);
+
+const { stateType, stateClassName, materialIcon } = useStateType(props);
+
+const className = computed(() => [
+  'mdc-alert',
+  `mdc-alert--${stateType}`,
+  {
+    'mdc-alert--closed': closed
+  }
+]);
+
+function onClose() {
+  closed.value = true;
+
+  setTimeout(() => {
+    destroyed.value = true;
+  }, 200);
+}
 </script>

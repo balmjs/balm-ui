@@ -1,7 +1,7 @@
 import getType from '../utils/typeof';
 
 export const UI_HELPER_TEXT = {
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:validMsg'
   }
 };

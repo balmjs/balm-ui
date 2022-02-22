@@ -22,7 +22,7 @@ const UI_TREE = {
     isLeaf: 'isLeaf',
     disabled: 'disabled'
   },
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue',
     SELECTED: 'selected'
   }

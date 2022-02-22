@@ -46,7 +46,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import { useButton } from '../../mixins/button';
 import { icon, useMaterialIcon } from '../../mixins/material-icon';
 import checkType from '../../mixins/type';

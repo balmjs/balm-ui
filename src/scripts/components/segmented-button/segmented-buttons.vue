@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" :role="role">
+  <div ref="segmentedButtons" :class="className" :role="role">
     <slot>
       <ui-segmented-button
         v-for="(buttonItem, buttonIndex) in items"
@@ -14,14 +14,9 @@
 </template>
 
 <script>
-import { MDCSegmentedButton } from '../../../material-components-web/segmented-button';
-import { events } from '../../../material-components-web/segmented-button/segmented-button/constants';
-import UiSegmentedButton from './segmented-button.vue';
-import domMixin from '../../mixins/dom';
-
 // Define segmented buttons constants
 const UI_SEGMENTED_BUTTONS = {
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue',
     SELECTED: 'selected'
   }
@@ -29,98 +24,99 @@ const UI_SEGMENTED_BUTTONS = {
 
 export default {
   name: 'UiSegmentedButtons',
-  components: {
-    UiSegmentedButton
-  },
-  mixins: [domMixin],
-  props: {
-    // States
-    modelValue: {
-      type: [Array, Number],
-      default() {
-        return [];
-      }
-    },
-    items: {
-      type: Array,
-      default() {
-        return []; // Data: { text: string, icon: string }
-      }
-    },
-    // UI attributes
-    singleSelect: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [
-    UI_SEGMENTED_BUTTONS.EVENT.CHANGE,
-    UI_SEGMENTED_BUTTONS.EVENT.SELECTED
-  ],
-  data() {
-    return {
-      $segmentedButton: null,
-      selectedValue: this.modelValue
-    };
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-segmented-button': true,
-        'mdc-segmented-button--single-select': this.singleSelect
-      };
-    },
-    role() {
-      return this.singleSelect ? 'radiogroup' : 'group';
-    }
-  },
-  mounted() {
-    try {
-      this.init();
-    } catch (e) {
-      // No segment selected in singleSelect mdc-segmented-button
-    }
-  },
-  methods: {
-    init() {
-      this.$segmentedButton = new MDCSegmentedButton(this.el);
-
-      this.$segmentedButton.listen(events.CHANGE, ({ detail }) => {
-        const currentIndex = detail.index;
-
-        if (this.singleSelect) {
-          this.selectedValue = currentIndex;
-        } else {
-          if (detail.selected) {
-            this.selectedValue.push(currentIndex);
-            this.selectedValue = [...new Set(this.selectedValue)];
-          } else {
-            this.selectedValue = this.selectedValue.filter(
-              (value) => value != currentIndex
-            );
-          }
-          this.selectedValue.sort((a, b) => a - b);
-        }
-
-        this.$emit(UI_SEGMENTED_BUTTONS.EVENT.CHANGE, this.selectedValue);
-        this.$emit(UI_SEGMENTED_BUTTONS.EVENT.SELECTED, currentIndex);
-      });
-
-      const selectedSegments = this.$segmentedButton.segments.filter(
-        (segment, index) => this.selectedValue.includes(index)
-      );
-      if (selectedSegments.length) {
-        selectedSegments.forEach((segment) => segment.setSelected());
-      }
-    },
-    handleClick(event, index) {
-      if (this.singleSelect) {
-        this.selectedValue = index;
-
-        this.$emit(UI_SEGMENTED_BUTTONS.EVENT.CHANGE, this.selectedValue);
-        this.$emit(UI_SEGMENTED_BUTTONS.EVENT.SELECTED, index);
-      }
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_SEGMENTED_BUTTONS
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, onMounted } from 'vue';
+import { MDCSegmentedButton } from '../../../material-components-web/segmented-button';
+import { events } from '../../../material-components-web/segmented-button/segmented-button/constants';
+import UiSegmentedButton from './segmented-button.vue';
+
+const props = defineProps({
+  // States
+  modelValue: {
+    type: [Array, Number],
+    default() {
+      return [];
+    }
+  },
+  items: {
+    type: Array,
+    default() {
+      return []; // Data: { text: string, icon: string }
+    }
+  },
+  // UI attributes
+  singleSelect: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([
+  UI_SEGMENTED_BUTTONS.EVENTS.CHANGE,
+  UI_SEGMENTED_BUTTONS.EVENTS.SELECTED
+]);
+
+const segmentedButtons = ref(null);
+let selected = ref(props.modelValue);
+
+const className = computed(() => ({
+  'mdc-segmented-button': true,
+  'mdc-segmented-button--single-select': props.singleSelect
+}));
+const role = computed(() => (props.singleSelect ? 'radiogroup' : 'group'));
+
+function init(el) {
+  const $segmentedButton = new MDCSegmentedButton(el);
+
+  $segmentedButton.listen(events.CHANGE, ({ detail }) => {
+    const currentIndex = detail.index;
+
+    let selectedValue = selected.value;
+    if (props.singleSelect) {
+      selectedValue = currentIndex;
+    } else {
+      if (detail.selected) {
+        selectedValue.push(currentIndex);
+        selectedValue = [...new Set(selectedValue)];
+      } else {
+        selectedValue = selectedValue.filter((value) => value != currentIndex);
+      }
+      selectedValue.sort((a, b) => a - b);
+    }
+
+    emit(UI_SEGMENTED_BUTTONS.EVENTS.CHANGE, selectedValue);
+    emit(UI_SEGMENTED_BUTTONS.EVENTS.SELECTED, currentIndex);
+  });
+
+  const selectedSegments = $segmentedButton.segments.filter((segment, index) =>
+    selectedValue.includes(index)
+  );
+  if (selectedSegments.length) {
+    selectedSegments.forEach((segment) => segment.setSelected());
+  }
+}
+
+onMounted(() => {
+  try {
+    init(segmentedButtons.value);
+  } catch (e) {
+    // No segment selected in singleSelect mdc-segmented-button
+  }
+});
+
+function handleClick(event, index) {
+  if (props.singleSelect) {
+    selected.value = index;
+
+    emit(UI_SEGMENTED_BUTTONS.EVENTS.CHANGE, selected.value);
+    emit(UI_SEGMENTED_BUTTONS.EVENTS.SELECTED, index);
+  }
+}
 </script>

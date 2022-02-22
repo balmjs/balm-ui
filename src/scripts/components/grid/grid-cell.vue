@@ -10,9 +10,6 @@
 </template>
 
 <script>
-import UiGridInner from './grid-inner.vue';
-import getType from '../../utils/typeof';
-
 // Define grid cell constants
 const UI_GRID_CELL = {
   cssClasses: 'mdc-layout-grid__cell',
@@ -27,89 +24,87 @@ const UI_GRID_CELL = {
 
 export default {
   name: 'UiGridCell',
-  components: {
-    UiGridInner
-  },
-  props: {
-    // UI layout
-    nested: {
-      type: Boolean,
-      default: false
-    },
-    // UI attributes
-    columns: {
-      type: [Number, String, Object],
-      default: 4
-    },
-    order: {
-      type: [Number, String],
-      default: 0
-    },
-    align: {
-      type: String,
-      default: ''
-    }
-  },
-  computed: {
-    className() {
-      let result = [UI_GRID_CELL.cssClasses];
-
-      // mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>
-      // mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>-<TYPE_OF_DEVICE>
-      if (this.columns) {
-        result = this.handleCell(
-          UI_GRID_CELL.TYPE.COLUMNS,
-          result,
-          this.columns
-        );
-      }
-
-      // mdc-layout-grid__cell--order-<INDEX>
-      if (this.order) {
-        let orderIndex = +this.order;
-        if (orderIndex >= 1 && orderIndex <= 12) {
-          result = this.handleCell(UI_GRID_CELL.TYPE.ORDER, result, orderIndex);
-        } else {
-          console.warn(
-            '[UiGridCell]',
-            'Order <INDEX> is an integer between 1 and 12'
-          );
-        }
-      }
-
-      // mdc-layout-grid__cell--align-<POSITION>
-      if (this.align) {
-        let alignPosition = this.align.toLowerCase();
-        if (UI_GRID_CELL.POSITION.includes(alignPosition)) {
-          result = this.handleCell(
-            UI_GRID_CELL.TYPE.ALIGN,
-            result,
-            alignPosition
-          );
-        }
-      }
-
-      return result;
-    }
-  },
-  methods: {
-    handleCell(type, result, data) {
-      if (getType(data) === 'object') {
-        for (let key in data) {
-          let value = data[key];
-          if (UI_GRID_CELL.TYPE_OF_DEVICE.includes(key)) {
-            result.push(`${UI_GRID_CELL.cssClasses}--${type}-${value}-${key}`);
-          } else if (key === 'default') {
-            result.push(`${UI_GRID_CELL.cssClasses}--${type}-${value}`);
-          }
-        }
-      } else {
-        let value = data;
-        result.push(`${UI_GRID_CELL.cssClasses}--${type}-${value}`);
-      }
-
-      return result;
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_GRID_CELL
   }
 };
+</script>
+
+<script setup>
+import { computed } from 'vue';
+import UiGridInner from './grid-inner.vue';
+import getType from '../../utils/typeof';
+
+const props = defineProps({
+  // UI layout
+  nested: {
+    type: Boolean,
+    default: false
+  },
+  // UI attributes
+  columns: {
+    type: [Number, String, Object],
+    default: 4
+  },
+  order: {
+    type: [Number, String],
+    default: 0
+  },
+  align: {
+    type: String,
+    default: ''
+  }
+});
+
+function handleCell(type, result, data) {
+  if (getType(data) === 'object') {
+    for (let key in data) {
+      let value = data[key];
+      if (UI_GRID_CELL.TYPE_OF_DEVICE.includes(key)) {
+        result.push(`${UI_GRID_CELL.cssClasses}--${type}-${value}-${key}`);
+      } else if (key === 'default') {
+        result.push(`${UI_GRID_CELL.cssClasses}--${type}-${value}`);
+      }
+    }
+  } else {
+    let value = data;
+    result.push(`${UI_GRID_CELL.cssClasses}--${type}-${value}`);
+  }
+
+  return result;
+}
+
+const className = computed(() => {
+  let result = [UI_GRID_CELL.cssClasses];
+
+  // mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>
+  // mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>-<TYPE_OF_DEVICE>
+  if (props.columns) {
+    result = handleCell(UI_GRID_CELL.TYPE.COLUMNS, result, props.columns);
+  }
+
+  // mdc-layout-grid__cell--order-<INDEX>
+  if (props.order) {
+    let orderIndex = +props.order;
+    if (orderIndex >= 1 && orderIndex <= 12) {
+      result = handleCell(UI_GRID_CELL.TYPE.ORDER, result, orderIndex);
+    } else {
+      console.warn(
+        '[UiGridCell]',
+        'Order <INDEX> is an integer between 1 and 12'
+      );
+    }
+  }
+
+  // mdc-layout-grid__cell--align-<POSITION>
+  if (props.align) {
+    let alignPosition = props.align.toLowerCase();
+    if (UI_GRID_CELL.POSITION.includes(alignPosition)) {
+      result = handleCell(UI_GRID_CELL.TYPE.ALIGN, result, alignPosition);
+    }
+  }
+
+  return result;
+});
 </script>

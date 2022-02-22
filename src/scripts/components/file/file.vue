@@ -35,7 +35,7 @@ import handleFileChange from '../../utils/file';
 
 // Define file constants
 const UI_FILE = {
-  EVENT: {
+  EVENTS: {
     CHANGE: 'change'
   }
 };

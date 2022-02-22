@@ -16,7 +16,7 @@ const UI_IMAGE_LIST = {
   cssClasses: {
     image: 'mdc-image-list__image'
   },
-  EVENT: {
+  EVENTS: {
     CLICK: 'click'
   }
 };

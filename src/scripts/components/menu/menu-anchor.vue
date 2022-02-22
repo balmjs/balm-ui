@@ -17,44 +17,51 @@ const ANCHOR_POSITIONS = [
 
 export default {
   name: 'UiMenuAnchor',
-  props: {
-    // UI attributes
-    position: {
-      type: String,
-      default: ''
-    },
-    absolute: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-menu-surface--anchor': true,
-        'mdc-menu-surface--absolute': this.absolute
-      };
-    },
-    positionStyle() {
-      let result = '';
-      let anchorPosition = this.position;
-
-      if (anchorPosition) {
-        if (ANCHOR_POSITIONS.includes(anchorPosition)) {
-          let positions = anchorPosition.split(' ');
-
-          if (positions[0] === 'middle') {
-            result = `top:50%;${positions[1]}:0;transform:translateY(-50%);`;
-          } else {
-            result = positions.map((position) => `${position}:0`).join(';');
-          }
-        } else {
-          console.warn('[UiMenuAnchor]', 'Invalid anchor position');
-        }
-      }
-
-      return result;
-    }
+  inheritAttrs: false,
+  customOptions: {
+    ANCHOR_POSITIONS
   }
 };
+</script>
+
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+  // UI attributes
+  position: {
+    type: String,
+    default: ''
+  },
+  absolute: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const className = computed(() => ({
+  'mdc-menu-surface--anchor': true,
+  'mdc-menu-surface--absolute': props.absolute
+}));
+
+const positionStyle = computed(() => {
+  let result = '';
+  let anchorPosition = props.position;
+
+  if (anchorPosition) {
+    if (ANCHOR_POSITIONS.includes(anchorPosition)) {
+      let positions = anchorPosition.split(' ');
+
+      if (positions[0] === 'middle') {
+        result = `top:50%;${positions[1]}:0;transform:translateY(-50%);`;
+      } else {
+        result = positions.map((position) => `${position}:0`).join(';');
+      }
+    } else {
+      console.warn('[UiMenuAnchor]', 'Invalid anchor position');
+    }
+  }
+
+  return result;
+});
 </script>

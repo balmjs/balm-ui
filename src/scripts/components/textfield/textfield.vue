@@ -142,7 +142,7 @@ const UI_TEXTFIELD = {
     filled: 0,
     outlined: 1
   },
-  EVENT: {
+  EVENTS: {
     CLICK: 'click',
     FOCUS: 'focus',
     KEYDOWN: 'keydown',

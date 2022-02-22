@@ -1,3 +1,5 @@
+import { computed } from 'vue';
+
 const STATE_TYPES = ['success', 'info', 'warn', 'warning', 'error', 'help'];
 const STATE_ICONS = {
   defaults: {
@@ -14,62 +16,63 @@ const STATE_ICONS = {
   }
 };
 
-export default {
-  computed: {
-    stateType() {
-      let result = false;
+function useStateType(props) {
+  const stateType = computed(() => {
+    let result = false;
 
-      if (STATE_TYPES.includes(this.state)) {
-        switch (this.state) {
-          case 'success':
-            result = 'success';
-            break;
-          case 'info':
-          case 'help':
-            result = 'info';
-            break;
-          case 'warn':
-          case 'warning':
-            result = 'warning';
-            break;
-          case 'error':
-            result = 'error';
-            break;
-        }
+    if (STATE_TYPES.includes(props.state)) {
+      switch (props.state) {
+        case 'success':
+          result = 'success';
+          break;
+        case 'info':
+        case 'help':
+          result = 'info';
+          break;
+        case 'warn':
+        case 'warning':
+          result = 'warning';
+          break;
+        case 'error':
+          result = 'error';
+          break;
       }
-
-      return result;
-    },
-    stateClassName() {
-      let result = false;
-
-      if (this.stateType) {
-        result = `md-${this.stateType}-icon`;
-
-        if (this.stateOutlined) {
-          result += '--outlined';
-        }
-      }
-
-      return result;
-    },
-    materialIcon() {
-      let result = false;
-
-      if (STATE_TYPES.includes(this.state)) {
-        const stateStyle = this.stateOutlined ? 'outlined' : 'defaults';
-
-        result = ['info', 'warn', 'warning'].includes(this.state)
-          ? STATE_ICONS[stateStyle].info
-          : STATE_ICONS[stateStyle][this.state];
-      }
-
-      return result;
     }
-  },
-  methods: {
-    getIconClassName(...componentIconClass) {
-      return ['material-icons', this.stateClassName, ...componentIconClass];
+
+    return result;
+  }).value;
+
+  const stateClassName = computed(() => {
+    let result = false;
+
+    if (stateType) {
+      result = `md-${stateType}-icon`;
+
+      if (props.stateOutlined) {
+        result += '--outlined';
+      }
     }
-  }
-};
+
+    return result;
+  }).value;
+
+  const materialIcon = computed(() => {
+    let result = false;
+
+    if (STATE_TYPES.includes(props.state)) {
+      const stateStyle = props.stateOutlined ? 'outlined' : 'defaults';
+
+      result = ['info', 'warn', 'warning'].includes(props.state)
+        ? STATE_ICONS[stateStyle].info
+        : STATE_ICONS[stateStyle][props.state];
+    }
+
+    return result;
+  });
+
+  return {
+    stateType,
+    stateClassName,
+    materialIcon
+  };
+}

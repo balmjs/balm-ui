@@ -1,8 +1,8 @@
 <template>
   <!-- Container -->
-  <div :class="className">
+  <div ref="menu" :class="className">
     <ul
-      :class="deprecatedListClassNameMap['mdc-list']"
+      :class="deprecatedClassNameMap['mdc-list']"
       tabindex="-1"
       role="menu"
       aria-hidden="true"
@@ -55,13 +55,7 @@
 </template>
 
 <script>
-import { MDCMenu } from '../../../material-components-web/menu';
-import { Corner } from '../../../material-components-web/menu-surface/constants';
-import UiMenuitem from './menuitem.vue';
-import UiMenuitemText from './menuitem-text.vue';
-import UiItemDivider from '../list/item-divider.vue';
-import domMixin from '../../mixins/dom';
-import deprecatedListMixin from '../../mixins/deprecated-list';
+import { deprecatedClassNameMap } from '../../../material-components-web/list/constants';
 import getType from '../../utils/typeof';
 
 // Define menu constants
@@ -77,7 +71,7 @@ const UI_MENU = {
     'BOTTOM_START',
     'BOTTOM_END'
   ],
-  EVENT: {
+  EVENTS: {
     SELECTED: 'selected',
     CLOSED: 'closed',
     OPENED: 'opened',
@@ -87,190 +81,212 @@ const UI_MENU = {
 
 export default {
   name: 'UiMenu',
-  components: {
-    UiMenuitem,
-    UiMenuitemText,
-    UiItemDivider
-  },
-  mixins: [domMixin, deprecatedListMixin],
-  props: {
-    // States
-    modelValue: {
-      type: Boolean,
-      default: false
-    },
-    items: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
-    quickOpen: {
-      type: Boolean,
-      default: false
-    },
-    // UI attributes
-    position: {
-      type: String,
-      default: 'TOP_LEFT'
-    },
-    distance: {
-      type: Object,
-      default() {
-        return {};
-      }
-    },
-    fixed: {
-      type: Boolean,
-      default: false
-    },
-    fullwidth: {
-      type: Boolean,
-      default: false
-    },
-    cssOnly: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [
-    UI_MENU.EVENT.SELECTED,
-    UI_MENU.EVENT.CLOSED,
-    UI_MENU.EVENT.OPENED,
-    UI_MENU.EVENT.CHANGE
-  ],
-  data() {
-    return {
-      getType,
-      $menu: null,
-      currentItems: this.items,
-      currentTextItems: [],
-      currentItem: null
-    };
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-menu': true,
-        'mdc-menu-surface': true,
-        'mdc-menu-surface--fixed': this.fixed,
-        'mdc-menu-surface--fullwidth': this.fullwidth && !this.fixed,
-        'mdc-menu-surface--open': this.cssOnly
-      };
-    },
-    menuDistance() {
-      return Object.assign({}, this.distance);
-    }
-  },
-  watch: {
-    modelValue(val) {
-      if (this.$menu.open !== val) {
-        this.$menu.open = val;
-      }
-    },
-    items(val) {
-      this.currentItems = val;
-      this.initItems();
-    },
-    quickOpen(val) {
-      this.setQuickOpen(val);
-    },
-    position(val) {
-      this.setAnchorCorner(val);
-    },
-    menuDistance(val) {
-      this.setAnchorMargin(val);
-    }
-  },
-  mounted() {
-    this.initItems();
-
-    if (!this.cssOnly) {
-      this.$menu = new MDCMenu(this.el);
-
-      // Listen for selected item
-      this.el.addEventListener(
-        `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
-        ({ detail }) => {
-          const index = detail.index;
-          const dataValue = detail.item.dataset.value;
-          const currentTextItem = this.currentTextItems[index];
-          const item =
-            getType(currentTextItem) === 'object'
-              ? currentTextItem
-              : { value: currentTextItem };
-
-          this.currentItem = item;
-          this.$emit(UI_MENU.EVENT.SELECTED, {
-            index, // number
-            text: this.$menu.getPrimaryTextAtIndex(index), // string
-            value: item.value || dataValue // string
-          });
-        }
-      );
-
-      this.el.addEventListener(`MDCMenuSurface:${UI_MENU.EVENT.CLOSED}`, () => {
-        this.$emit(UI_MENU.EVENT.CHANGE, false);
-        this.$emit(UI_MENU.EVENT.CLOSED);
-      });
-
-      this.el.addEventListener(`MDCMenuSurface:${UI_MENU.EVENT.OPENED}`, () => {
-        this.$emit(UI_MENU.EVENT.OPENED);
-      });
-
-      this.setQuickOpen();
-      this.setAnchorCorner();
-      this.setAnchorMargin();
-    }
-  },
-  methods: {
-    isDivider(item) {
-      return item === UI_MENU.DIVIDER;
-    },
-    initItems() {
-      this.currentTextItems = this.currentItems.filter((item) =>
-        getType(item) === 'object'
-          ? item.text !== UI_MENU.DIVIDER
-          : item !== UI_MENU.DIVIDER
-      );
-    },
-    isSelected(item) {
-      let selected = false;
-
-      if (
-        getType(item) === 'object' &&
-        getType(this.currentItem) === 'object'
-      ) {
-        selected = item.text === this.currentItem.text;
-      } else {
-        selected = item === this.currentItem;
-      }
-
-      return selected;
-    },
-    setQuickOpen(quickOpen = this.quickOpen) {
-      this.$menu.quickOpen = quickOpen;
-    },
-    hasAnchor() {
-      return (
-        this.el.parentElement &&
-        this.el.parentElement.classList.contains('mdc-menu-surface--anchor')
-      );
-    },
-    setAnchorCorner(menuPosition = this.position) {
-      if (this.hasAnchor()) {
-        if (UI_MENU.MENU_POSITIONS.includes(menuPosition)) {
-          this.$menu.setAnchorCorner(Corner[menuPosition]);
-        } else {
-          console.warn('[UiMenu]', 'Invalid menu position');
-        }
-      }
-    },
-    setAnchorMargin(distance = this.distance) {
-      if (this.hasAnchor() && Object.keys(distance).length) {
-        this.$menu.setAnchorMargin(distance);
-      }
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_MENU,
+    getType,
+    deprecatedClassNameMap
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, watch, onMounted } from 'vue';
+import { MDCMenu } from '../../../material-components-web/menu';
+import { Corner } from '../../../material-components-web/menu-surface/constants';
+import UiMenuitem from './menuitem.vue';
+import UiMenuitemText from './menuitem-text.vue';
+import UiItemDivider from '../list/item-divider.vue';
+
+const props = defineProps({
+  // States
+  modelValue: {
+    type: Boolean,
+    default: false
+  },
+  items: {
+    type: Array,
+    default() {
+      return [];
+    }
+  },
+  quickOpen: {
+    type: Boolean,
+    default: false
+  },
+  // UI attributes
+  position: {
+    type: String,
+    default: 'TOP_LEFT'
+  },
+  distance: {
+    type: Object,
+    default() {
+      return {};
+    }
+  },
+  fixed: {
+    type: Boolean,
+    default: false
+  },
+  fullwidth: {
+    type: Boolean,
+    default: false
+  },
+  cssOnly: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([
+  UI_MENU.EVENTS.SELECTED,
+  UI_MENU.EVENTS.CLOSED,
+  UI_MENU.EVENTS.OPENED,
+  UI_MENU.EVENTS.CHANGE
+]);
+
+const className = computed(() => {
+  return {
+    'mdc-menu': true,
+    'mdc-menu-surface': true,
+    'mdc-menu-surface--fixed': props.fixed,
+    'mdc-menu-surface--fullwidth': props.fullwidth && !props.fixed,
+    'mdc-menu-surface--open': props.cssOnly
+  };
+});
+
+const menuDistance = computed(() => {
+  return Object.assign({}, props.distance);
+});
+
+const menu = ref(null);
+let $menu = null;
+let currentItems = props.items;
+let currentTextItems = [];
+let currentItem = null;
+
+onMounted(() => {
+  initItems();
+
+  if (!props.cssOnly) {
+    const el = menu.value;
+    $menu = new MDCMenu(el);
+
+    // Listen for selected item
+    el.addEventListener(`MDCMenu:${UI_MENU.EVENTS.SELECTED}`, ({ detail }) => {
+      const index = detail.index;
+      const dataValue = detail.item.dataset.value;
+      const currentTextItem = currentTextItems[index];
+      const item =
+        getType(currentTextItem) === 'object'
+          ? currentTextItem
+          : { value: currentTextItem };
+
+      currentItem = item;
+      emit(UI_MENU.EVENTS.SELECTED, {
+        index, // number
+        text: $menu.getPrimaryTextAtIndex(index), // string
+        value: item.value || dataValue // string
+      });
+    });
+
+    el.addEventListener(`MDCMenuSurface:${UI_MENU.EVENTS.CLOSED}`, () => {
+      emit(UI_MENU.EVENTS.CHANGE, false);
+      emit(UI_MENU.EVENTS.CLOSED);
+    });
+
+    el.addEventListener(`MDCMenuSurface:${UI_MENU.EVENTS.OPENED}`, () => {
+      emit(UI_MENU.EVENTS.OPENED);
+    });
+
+    setQuickOpen();
+    setAnchorCorner();
+    setAnchorMargin();
+
+    watch(
+      () => props.modelValue,
+      (val) => {
+        if ($menu.open !== val) {
+          $menu.open = val;
+        }
+      }
+    );
+    watch(
+      () => props.items,
+      (val) => {
+        currentItems = val;
+        initItems();
+      }
+    );
+    watch(
+      () => props.quickOpen,
+      (val) => {
+        setQuickOpen(val);
+      }
+    );
+    watch(
+      () => props.position,
+      (val) => {
+        setAnchorCorner(val);
+      }
+    );
+    watch(
+      () => props.menuDistance,
+      (val) => {
+        setAnchorMargin(val);
+      }
+    );
+  }
+});
+
+const isDivider = (item) => item === UI_MENU.DIVIDER;
+
+function initItems() {
+  currentTextItems = currentItems.filter((item) =>
+    getType(item) === 'object'
+      ? item.text !== UI_MENU.DIVIDER
+      : item !== UI_MENU.DIVIDER
+  );
+}
+
+function isSelected(item) {
+  let selected = false;
+
+  if (getType(item) === 'object' && getType(currentItem) === 'object') {
+    selected = item.text === currentItem.text;
+  } else {
+    selected = item === currentItem;
+  }
+
+  return selected;
+}
+
+function setQuickOpen(quickOpen = props.quickOpen) {
+  $menu.quickOpen = quickOpen;
+}
+
+function hasAnchor() {
+  const el = menu.value;
+  return (
+    el.parentElement &&
+    el.parentElement.classList.contains('mdc-menu-surface--anchor')
+  );
+}
+
+function setAnchorCorner(menuPosition = props.position) {
+  if (hasAnchor()) {
+    if (UI_MENU.MENU_POSITIONS.includes(menuPosition)) {
+      $menu.setAnchorCorner(Corner[menuPosition]);
+    } else {
+      console.warn('[UiMenu]', 'Invalid menu position');
+    }
+  }
+}
+
+function setAnchorMargin(distance = props.distance) {
+  if (hasAnchor() && Object.keys(distance).length) {
+    $menu.setAnchorMargin(distance);
+  }
+}
 </script>

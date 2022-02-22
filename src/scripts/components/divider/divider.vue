@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import typeMixin from '../../mixins/type';
-
 // Define divider constants
 const UI_DIVIDER = {
   TYPES: {
@@ -34,29 +32,37 @@ const UI_DIVIDER = {
 
 export default {
   name: 'UiDivider',
-  mixins: [typeMixin],
-  props: {
-    // UI variants
-    type: {
-      type: [String, Number],
-      default: 0
-    }
-  },
-  computed: {
-    isVertical() {
-      return this.checkType(UI_DIVIDER.TYPES, 'vertical') || this.type === '|';
-    },
-    hasText() {
-      return this.$slots.default;
-    },
-    className() {
-      return {
-        'mdc-divider': true,
-        'mdc-divider--horizontal': !this.isVertical,
-        'mdc-divider--vertical': this.isVertical,
-        'mdc-divider--no-text': !this.hasText
-      };
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_DIVIDER
   }
 };
+</script>
+
+<script setup>
+import { computed, useSlots } from 'vue';
+import checkType from '../../mixins/type';
+
+const props = defineProps({
+  // UI variants
+  type: {
+    type: [String, Number],
+    default: 0
+  }
+});
+
+const isVertical = computed(
+  () => checkType(props, UI_DIVIDER.TYPES, 'vertical') || props.type === '|'
+).value;
+const hasText = computed(() => {
+  const slots = useSlots();
+  return !!slots.default;
+}).value;
+
+const className = computed(() => ({
+  'mdc-divider': true,
+  'mdc-divider--horizontal': !isVertical,
+  'mdc-divider--vertical': isVertical,
+  'mdc-divider--no-text': !hasText
+}));
 </script>

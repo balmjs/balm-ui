@@ -1,6 +1,6 @@
 // Define editor constants
 export default {
-  EVENT: {
+  EVENTS: {
     TEXT_CHANGE: 'update:modelValue',
     FILE_CHANGE: 'file-change'
   },

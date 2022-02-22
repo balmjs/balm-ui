@@ -25,7 +25,7 @@ const UI_CHECKBOX = {
   cssClasses: {
     touch: 'mdc-checkbox--touch'
   },
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue'
   }
 };

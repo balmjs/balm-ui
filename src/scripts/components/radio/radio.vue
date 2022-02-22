@@ -28,7 +28,7 @@ const UI_RADIO = {
   cssClasses: {
     touch: 'mdc-radio--touch'
   },
-  EVENT: {
+  EVENTS: {
     CHANGE: 'update:modelValue'
   }
 };

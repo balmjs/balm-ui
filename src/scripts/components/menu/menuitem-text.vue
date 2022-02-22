@@ -5,10 +5,13 @@
 </template>
 
 <script>
-import deprecatedListMixin from '../../mixins/deprecated-list';
+import { deprecatedClassNameMap } from '../../../material-components-web/list/constants';
 
 export default {
   name: 'UiMenuitemText',
-  mixins: [deprecatedListMixin]
+  inheritAttrs: false,
+  customOptions: {
+    deprecatedClassNameMap
+  }
 };
 </script>

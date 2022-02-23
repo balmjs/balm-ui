@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" role="tooltip" aria-hidden="true">
+  <div ref="tooltip" :class="className" role="tooltip" aria-hidden="true">
     <div
       class="mdc-tooltip__surface mdc-tooltip__surface-animation"
       :style="style"
@@ -20,10 +20,6 @@
 </template>
 
 <script>
-import { MDCTooltip } from '../../../material-components-web/tooltip';
-import domMixin from '../../mixins/dom';
-import typeMixin from '../../mixins/type';
-
 // Define tooltip constants
 const UI_TOOLTIP = {
   TYPES: {
@@ -37,49 +33,49 @@ const UI_TOOLTIP = {
 
 export default {
   name: 'UiTooltip',
-  mixins: [domMixin, typeMixin],
-  props: {
-    // UI variants
-    type: {
-      type: [String, Number],
-      default: 0
-    },
-    rich: {
-      type: Boolean,
-      default: false
-    },
-    // UI attributes
-    width: {
-      type: [String, Number],
-      default: 0
-    }
-  },
-  data() {
-    return {
-      UI_TOOLTIP,
-      $tooltip: null
-    };
-  },
-  computed: {
-    isRich() {
-      return this.checkType(UI_TOOLTIP.TYPES, 'rich');
-    },
-    className() {
-      return {
-        'mdc-tooltip': true,
-        'mdc-tooltip--rich': this.isRich
-      };
-    },
-    style() {
-      return this.width
-        ? {
-            'max-width': `${this.width}px`
-          }
-        : {};
-    }
-  },
-  mounted() {
-    this.$tooltip = new MDCTooltip(this.el);
+  inheritAttrs: false,
+  customOptions: {
+    UI_TOOLTIP
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, onMounted } from 'vue';
+import { MDCTooltip } from '../../../material-components-web/tooltip';
+import checkType from '../../mixins/type';
+
+const props = defineProps({
+  // UI variants
+  type: {
+    type: [String, Number],
+    default: 0
+  },
+  rich: {
+    type: Boolean,
+    default: false
+  },
+  // UI attributes
+  width: {
+    type: [String, Number],
+    default: 0
+  }
+});
+
+const tooltip = ref(null);
+
+const isRich = computed(() => checkType(props, UI_TOOLTIP.TYPES, 'rich')).value;
+const className = computed(() => ({
+  'mdc-tooltip': true,
+  'mdc-tooltip--rich': isRich
+}));
+const style = computed(() =>
+  props.width
+    ? {
+        'max-width': `${props.width}px`
+      }
+    : {}
+);
+
+onMounted(() => new MDCTooltip(tooltip.value));
 </script>

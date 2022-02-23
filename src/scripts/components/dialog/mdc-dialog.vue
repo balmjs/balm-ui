@@ -29,66 +29,72 @@
 </template>
 
 <script>
-import stateTypeMixins from '../../mixins/state-type';
-
 // For $alert/$confirm
 export default {
   name: 'MdcDialog',
-  mixins: [stateTypeMixins],
-  props: {
-    // States
-    open: {
-      type: Boolean,
-      default: false
-    },
-    // UI attributes
-    options: {
-      type: Object,
-      default: () => ({})
-    }
+  inheritAttrs: false,
+  customOptions: {}
+};
+</script>
+
+<script setup>
+import { reactive, computed, watch, onBeforeMount } from 'vue';
+import { useStateType } from '../../mixins/state-type';
+
+const props = defineProps({
+  // States
+  open: {
+    type: Boolean,
+    default: false
   },
-  data() {
-    return {
-      opening: true,
-      opened: false,
-      state: '',
-      stateOutlined: false
-    };
-  },
-  computed: {
-    className() {
-      return [
-        'mdc-dialog',
-        this.options.className,
-        {
-          'mdc-dialog--opening': this.opening,
-          'mdc-dialog--open': this.opened
-        }
-      ];
-    }
-  },
-  watch: {
-    open(val) {
-      if (val) {
-        // animation
+  // UI attributes
+  options: {
+    type: Object,
+    default: () => ({})
+  }
+});
+
+const state = reactive({
+  opening: true,
+  opened: false,
+  state: '',
+  stateOutlined: false
+});
+
+const { materialIcon } = useStateType(state);
+
+const className = computed(() => [
+  'mdc-dialog',
+  props.options.className,
+  {
+    'mdc-dialog--opening': state.opening,
+    'mdc-dialog--open': state.opened
+  }
+]);
+
+watch(
+  () => props.open,
+  (val) => {
+    if (val) {
+      // animation
+      setTimeout(() => {
+        state.opened = true;
         setTimeout(() => {
-          this.opened = true;
-          setTimeout(() => {
-            this.opening = false;
-          }, 150);
+          state.opening = false;
         }, 150);
-      } else {
-        // reset
-        this.opening = true;
-        this.opened = false;
-      }
-    }
-  },
-  created() {
-    if (this.options.state) {
-      this.state = this.options.state;
-      this.stateOutlined = this.options.stateOutlined;
+      }, 150);
+    } else {
+      // reset
+      state.opening = true;
+      state.opened = false;
     }
   }
-};
+);
+
+onBeforeMount(() => {
+  if (props.options.state) {
+    state.state = props.options.state;
+    state.stateOutlined = props.options.stateOutlined;
+  }
+});
 </script>

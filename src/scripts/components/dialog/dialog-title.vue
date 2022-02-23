@@ -1,5 +1,5 @@
 <template>
-  <div :class="className">
+  <div ref="dialogTitle" :class="className">
     <!-- Title (optional) -->
     <h2 class="mdc-dialog__title">
       <slot></slot>
@@ -15,29 +15,32 @@
 </template>
 
 <script>
-import MdcIconButton from '../icon-button/mdc-icon-button.vue';
-
 export default {
   name: 'UiDialogTitle',
-  components: {
-    MdcIconButton
-  },
-  props: {
-    closable: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-dialog__header': true,
-        'mdc-dialog__title--closable': this.closable
-      };
-    },
-    hasCloseAction() {
-      return this.$parent.fullscreen || this.closable;
-    }
-  }
+  inheritAttrs: false,
+  customOptions: {}
 };
+</script>
+
+<script setup>
+import { ref, computed } from 'vue';
+import MdcIconButton from '../icon-button/mdc-icon-button.vue';
+
+const props = defineProps({
+  // UI attributes
+  closable: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const dialogTitle = ref(null);
+
+const className = computed(() => ({
+  'mdc-dialog__header': true,
+  'mdc-dialog__title--closable': props.closable
+}));
+const hasCloseAction = computed(
+  () => dialogTitle.$parent.fullscreen || props.closable
+);
 </script>

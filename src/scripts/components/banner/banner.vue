@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <div :class="className" role="banner">
+  <div ref="banner" :class="className" role="banner">
     <div v-if="fixed" class="mdc-banner__fixed">
       <mdc-banner-content
         :primary-button-text="primaryButtonText"
@@ -24,11 +24,6 @@
 </template>
 
 <script>
-import { MDCBanner } from '../../../material-components-web/banner';
-import { events } from '../../../material-components-web/banner/constants';
-import MdcBannerContent from './mdc-banner-content.vue';
-import domMixin from '../../mixins/dom';
-
 // Define banner constants
 const UI_BANNER = {
   EVENTS: {
@@ -39,71 +34,78 @@ const UI_BANNER = {
 
 export default {
   name: 'UiBanner',
-  components: {
-    MdcBannerContent
-  },
-  mixins: [domMixin],
-  props: {
-    // States
-    modelValue: {
-      type: Boolean,
-      default: false
-    },
-    // UI attributes
-    centered: {
-      type: Boolean,
-      default: false
-    },
-    fixed: {
-      type: Boolean,
-      default: false
-    },
-    withImage: {
-      type: Boolean,
-      default: false
-    },
-    mobileStacked: {
-      type: Boolean,
-      default: false
-    },
-    primaryButtonText: {
-      type: String,
-      default: 'OK'
-    },
-    secondaryButtonText: {
-      type: String,
-      default: ''
-    }
-  },
-  emits: [UI_BANNER.EVENT.CHANGE, UI_BANNER.EVENT.CLOSED],
-  data() {
-    return {
-      $banner: null
-    };
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-banner': true,
-        'mdc-banner--centered': this.centered,
-        'mdc-banner--mobile-stacked': this.mobileStacked
-      };
-    }
-  },
-  watch: {
-    modelValue(val) {
-      if (this.$banner) {
-        val ? this.$banner.open() : this.$banner.close();
-      }
-    }
-  },
-  mounted() {
-    this.$banner = new MDCBanner(this.el);
-
-    this.$banner.listen(events.CLOSED, ({ detail }) => {
-      this.$emit(UI_BANNER.EVENT.CHANGE, false);
-      this.$emit(UI_BANNER.EVENT.CLOSED, detail.reason);
-    });
+  inheritAttrs: false,
+  customOptions: {
+    UI_BANNER
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, watch, onMounted } from 'vue';
+import { MDCBanner } from '../../../material-components-web/banner';
+import { events } from '../../../material-components-web/banner/constants';
+import MdcBannerContent from './mdc-banner-content.vue';
+
+const props = defineProps({
+  // States
+  modelValue: {
+    type: Boolean,
+    default: false
+  },
+  // UI attributes
+  centered: {
+    type: Boolean,
+    default: false
+  },
+  fixed: {
+    type: Boolean,
+    default: false
+  },
+  withImage: {
+    type: Boolean,
+    default: false
+  },
+  mobileStacked: {
+    type: Boolean,
+    default: false
+  },
+  primaryButtonText: {
+    type: String,
+    default: 'OK'
+  },
+  secondaryButtonText: {
+    type: String,
+    default: ''
+  }
+});
+
+const emit = defineEmits([UI_BANNER.EVENTS.CHANGE, UI_BANNER.EVENTS.CLOSED]);
+
+const banner = ref(null);
+let $banner = null;
+
+const className = computed(() => ({
+  'mdc-banner': true,
+  'mdc-banner--centered': props.centered,
+  'mdc-banner--mobile-stacked': props.mobileStacked
+}));
+
+watch(
+  () => props.modelValue,
+  (val) => {
+    if ($banner) {
+      val ? $banner.open() : $banner.close();
+    }
+  }
+);
+
+onMounted(() => {
+  $banner = new MDCBanner(banner.value);
+
+  $banner.listen(events.CLOSED, ({ detail }) => {
+    emit(UI_BANNER.EVENTS.CHANGE, false);
+    emit(UI_BANNER.EVENTS.CLOSED, detail.reason);
+  });
+});
 </script>

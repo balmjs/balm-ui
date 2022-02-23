@@ -1,7 +1,9 @@
 <template>
   <div class="mdc-circular-progress__spinner-layer">
     <div
-      class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left"
+      class="
+        mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left
+      "
     >
       <svg
         :class="UI_CIRCULAR_PROGRESS_INDETERMINATE.cssClasses.circle"
@@ -35,7 +37,10 @@
       </svg>
     </div>
     <div
-      class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right"
+      class="
+        mdc-circular-progress__circle-clipper
+        mdc-circular-progress__circle-right
+      "
     >
       <svg
         :class="UI_CIRCULAR_PROGRESS_INDETERMINATE.cssClasses.circle"
@@ -65,24 +70,23 @@ const UI_CIRCULAR_PROGRESS_INDETERMINATE = {
 
 export default {
   name: 'MdcSpinnerLayer',
-  props: {
-    svg: {
-      type: Object,
-      required: true
-    }
-  },
-  data() {
-    return {
-      UI_CIRCULAR_PROGRESS_INDETERMINATE
-    };
-  },
-  computed: {
-    gapStroke() {
-      return this.svg.stroke / 2;
-    },
-    gapWidth() {
-      return this.svg.width * 0.8;
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_CIRCULAR_PROGRESS_INDETERMINATE
   }
 };
+</script>
+
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+  svg: {
+    type: Object,
+    required: true
+  }
+});
+
+const gapStroke = computed(() => props.svg.stroke / 2);
+const gapWidth = computed(() => props.svg.width * 0.8);
 </script>

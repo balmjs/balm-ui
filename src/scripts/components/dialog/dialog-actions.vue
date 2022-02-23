@@ -1,6 +1,6 @@
 <template>
   <!-- Buttons -->
-  <footer class="mdc-dialog__actions">
+  <footer ref="dialogActions" class="mdc-dialog__actions">
     <slot :buttonClass="UI_DIALOG_ACTION.cssClasses.button">
       <mdc-button
         :class="UI_DIALOG_ACTION.cssClasses.button"
@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import MdcButton from '../button/mdc-button.vue';
-
 // Define dialog action constants
 const UI_DIALOG_ACTION = {
   cssClasses: {
@@ -33,29 +31,30 @@ const UI_DIALOG_ACTION = {
 
 export default {
   name: 'UiDialogActions',
-  components: {
-    MdcButton
-  },
-  props: {
-    // UI attributes
-    acceptText: {
-      type: String,
-      default: 'OK'
-    },
-    cancelText: {
-      type: String,
-      default: 'Cancel'
-    }
-  },
-  data() {
-    return {
-      UI_DIALOG_ACTION
-    };
-  },
-  computed: {
-    closable() {
-      return this.$parent.closable;
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_DIALOG_ACTION
   }
 };
+</script>
+
+<script setup>
+import { ref, computed } from 'vue';
+import MdcButton from '../button/mdc-button.vue';
+
+const props = defineProps({
+  // UI attributes
+  acceptText: {
+    type: String,
+    default: 'OK'
+  },
+  cancelText: {
+    type: String,
+    default: 'Cancel'
+  }
+});
+
+const dialogActions = ref(null);
+
+const closable = computed(() => dialogActions.$parent.closable);
 </script>

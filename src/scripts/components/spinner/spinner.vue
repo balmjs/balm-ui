@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="circularProgress"
     role="progressbar"
     :class="className"
     :aria-label="label"
@@ -40,10 +41,6 @@
 </template>
 
 <script>
-import { MDCCircularProgress } from '../../../material-components-web/circular-progress';
-import MdcSpinnerLayer from './mdc-spinner-layer.vue';
-import progressMixin from '../../mixins/progress';
-
 // Define circular progress constants
 const UI_CIRCULAR_PROGRESS = {
   SVG: {
@@ -79,66 +76,76 @@ const UI_CIRCULAR_PROGRESS = {
 
 export default {
   name: 'UiSpinner',
-  components: {
-    MdcSpinnerLayer
-  },
-  mixins: [progressMixin],
-  props: {
-    // UI attributes
-    size: {
-      type: String,
-      default: 'large'
-    },
-    fourColored: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data() {
-    return {
-      $circularProgress: null,
-      currentSize: ''
-    };
-  },
-  computed: {
-    className() {
-      return [
-        'mdc-circular-progress',
-        `mdc-circular-progress--${this.currentSize}`,
-        {
-          'mdc-circular-progress--indeterminate': this.active,
-          'mdc-circular-progress--closed': this.closed
-        }
-      ];
-    },
-    svg() {
-      return this.currentSize ? UI_CIRCULAR_PROGRESS.SVG[this.currentSize] : {};
-    }
-  },
-  created() {
-    switch (this.size) {
-      case 'M':
-      case 'medium':
-        this.currentSize = 'medium';
-        break;
-      case 'S':
-      case 'small':
-        this.currentSize = 'small';
-        break;
-      // case 'L':
-      // case 'large':
-      default:
-        this.currentSize = 'large';
-    }
-  },
-  mounted() {
-    if (this.currentSize) {
-      this.$circularProgress = new MDCCircularProgress(this.el);
-
-      this.setProgress(this.progress);
-    } else {
-      console.warn('[UiSpinner]', 'Please choose correct size');
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_CIRCULAR_PROGRESS
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, onBeforeMount, onMounted } from 'vue';
+import { MDCCircularProgress } from '../../../material-components-web/circular-progress';
+import MdcSpinnerLayer from './mdc-spinner-layer.vue';
+import { progressProps, useProgress } from '../../mixins/progress';
+
+const props = defineProps({
+  ...progressProps,
+  // UI attributes
+  size: {
+    type: String,
+    default: 'large'
+  },
+  fourColored: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const circularProgress = ref(null);
+let $circularProgress = null;
+let currentSize = '';
+
+const className = computed(() => {
+  return [
+    'mdc-circular-progress',
+    `mdc-circular-progress--${currentSize}`,
+    {
+      'mdc-circular-progress--indeterminate': props.active,
+      'mdc-circular-progress--closed': props.closed
+    }
+  ];
+});
+const svg = computed(() =>
+  currentSize ? UI_CIRCULAR_PROGRESS.SVG[currentSize] : {}
+);
+
+onBeforeMount(() => {
+  switch (props.size) {
+    case 'M':
+    case 'medium':
+      currentSize = 'medium';
+      break;
+    case 'S':
+    case 'small':
+      currentSize = 'small';
+      break;
+    // case 'L':
+    // case 'large':
+    default:
+      currentSize = 'large';
+  }
+});
+
+onMounted(() => {
+  if (currentSize) {
+    $circularProgress = new MDCCircularProgress(circularProgress.value);
+
+    const { setProgress } = useProgress($circularProgress, props);
+
+    setProgress(props.progress);
+  } else {
+    console.warn('[UiSpinner]', 'Please choose correct size');
+  }
+});
 </script>

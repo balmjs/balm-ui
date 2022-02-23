@@ -76,3 +76,5 @@ function useStateType(props) {
     materialIcon
   };
 }
+
+export { useStateType };

@@ -22,7 +22,7 @@ export default {
 };
 </script>
 
-<script>
+<script setup>
 import { ref, computed, onBeforeMount, onMounted } from 'vue';
 import MdcTextfieldCounter from './mdc-textfield-counter.vue';
 import { helperTextProps, useHelperText } from '../../mixins/helper-text';

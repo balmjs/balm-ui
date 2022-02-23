@@ -1,7 +1,7 @@
 import { computed, watch, onMounted } from 'vue';
 import getType from '../utils/typeof';
 
-export const UI_HELPER_TEXT = {
+const UI_HELPER_TEXT = {
   EVENTS: {
     CHANGE: 'update:validMsg'
   }

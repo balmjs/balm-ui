@@ -43,7 +43,7 @@ function useProgress($progress, props) {
     (val) => setProgress(val)
   );
 
-  export { setProgress };
+  return { setProgress };
 }
 
 export { progressProps, useProgress };

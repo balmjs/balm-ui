@@ -7,17 +7,6 @@
 </template>
 
 <script>
-export default {
-  name: 'UiIcon',
-  inheritAttrs: false,
-  customOptions: {}
-};
-</script>
-
-<script setup>
-import { computed, onBeforeMount } from 'vue';
-import checkType from '../../mixins/type';
-
 // Define material icons constants
 const UI_ICON = {
   TYPES: {
@@ -32,6 +21,19 @@ const UI_ICON = {
     CLICK: 'click'
   }
 };
+
+export default {
+  name: 'UiIcon',
+  inheritAttrs: false,
+  customOptions: {
+    UI_ICON
+  }
+};
+</script>
+
+<script setup>
+import { computed, onBeforeMount } from 'vue';
+import checkType from '../../mixins/type';
 
 const props = defineProps({
   // UI styles

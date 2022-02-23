@@ -69,7 +69,7 @@
 
 <script>
 import { deprecatedListClassNameMap } from '../list/constants';
-import { UI_TEXTFIELD_ICON } from './constants';
+import { UI_TEXTFIELD_ICON } from '../textfield/constants';
 
 // Define autocomplete constants
 const UI_AUTOCOMPLETE = {

@@ -61,7 +61,7 @@ export default {
 };
 </script>
 
-<script>
+<script setup>
 import MdcCheckbox from '../checkbox/mdc-checkbox.vue';
 import { tableCommonProps } from '../../mixins/table';
 import { tableBodyProps, useTableBody } from '../../mixins/table-body';

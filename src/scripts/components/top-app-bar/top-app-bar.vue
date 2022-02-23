@@ -78,7 +78,7 @@ export default {
 };
 </script>
 
-<script>
+<script setup>
 import { ref, computed, watch, onMounted, nextTick } from 'vue';
 import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
 import { strings } from '../../../material-components-web/top-app-bar/constants';

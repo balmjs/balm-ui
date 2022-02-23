@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { UI_LIST } from '../components/list/constants';
+import { UI_LIST } from './constants';
 
 export default {
   name: 'UiList',

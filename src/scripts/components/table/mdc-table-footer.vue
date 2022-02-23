@@ -31,7 +31,7 @@ export default {
 };
 </script>
 
-<script>
+<script setup>
 import { tableCommonProps } from '../../mixins/table';
 import { tableFooterProps, useTableFooter } from '../../mixins/table-footer';
 

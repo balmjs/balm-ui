@@ -19,36 +19,39 @@ const UI_BOTTOM_SHEET = {
 
 export default {
   name: 'UiBottomSheet',
-  props: {
-    // States
-    modelValue: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [UI_BOTTOM_SHEET.EVENT.CHANGE],
-  data() {
-    return {
-      closing: false
-    };
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-bottom-sheet': true,
-        'mdc-bottom-sheet--open': this.modelValue,
-        'mdc-bottom-sheet--closing': this.closing
-      };
-    }
-  },
-  methods: {
-    handleClose() {
-      this.closing = true;
-      setTimeout(() => {
-        this.$emit(UI_BOTTOM_SHEET.EVENT.CHANGE, false);
-        this.closing = false;
-      }, 300);
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_BOTTOM_SHEET
   }
 };
+</script>
+
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+  // States
+  modelValue: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([UI_BOTTOM_SHEET.EVENTS.CHANGE]);
+
+let closing = false;
+
+const className = computed(() => ({
+  'mdc-bottom-sheet': true,
+  'mdc-bottom-sheet--open': props.modelValue,
+  'mdc-bottom-sheet--closing': closing
+}));
+
+function handleClose() {
+  closing = true;
+  setTimeout(() => {
+    emit(UI_BOTTOM_SHEET.EVENTS.CHANGE, false);
+    closing = false;
+  }, 300);
+}
 </script>

@@ -1,9 +1,5 @@
 <template>
-  <div
-    :class="className"
-    :aria-expanded="isExpanded"
-    @click="$emit(UI_COLLAPSE.EVENT.CLICK, $event)"
-  >
+  <div :class="className" :aria-expanded="isExpanded" @click="handleClick">
     <div v-ripple="ripple" class="mdc-collapse__header" @click="handleToggle">
       <template v-if="isExpanded">
         <slot name="expand-more-icon" :iconClass="UI_COLLAPSE.cssClasses.icon">
@@ -53,55 +49,63 @@ const UI_COLLAPSE = {
 
 export default {
   name: 'UiCollapse',
-  props: {
-    // States
-    modelValue: {
-      type: Boolean,
-      default: false
-    },
-    // UI attributes
-    withIcon: {
-      type: Boolean,
-      default: false
-    },
-    iconEndAligned: {
-      type: Boolean,
-      default: false
-    },
-    ripple: {
-      type: [Boolean, Number],
-      default: false
-    }
-  },
-  emits: [UI_COLLAPSE.EVENT.CLICK, UI_COLLAPSE.EVENT.CHANGE],
-  data() {
-    return {
-      UI_GLOBAL,
-      UI_COLLAPSE,
-      isExpanded: this.modelValue
-    };
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-collapse': true,
-        'mdc-collapse--expanded': this.isExpanded,
-        'mdc-collapse--with-icon': this.withIcon,
-        'mdc-collapse--icon-end-aligned': this.iconEndAligned
-      };
-    }
-  },
-  watch: {
-    modelValue(val) {
-      this.isExpanded = val;
-    }
-  },
-  methods: {
-    handleToggle() {
-      this.isExpanded = !this.isExpanded;
-
-      this.$emit(UI_COLLAPSE.EVENT.CHANGE, this.isExpanded);
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_GLOBAL,
+    UI_COLLAPSE
   }
 };
+</script>
+
+<script setup>
+import { computed, watch } from 'vue';
+
+const props = defineProps({
+  // States
+  modelValue: {
+    type: Boolean,
+    default: false
+  },
+  // UI attributes
+  withIcon: {
+    type: Boolean,
+    default: false
+  },
+  iconEndAligned: {
+    type: Boolean,
+    default: false
+  },
+  ripple: {
+    type: [Boolean, Number],
+    default: false
+  }
+});
+
+const emit = defineEmits([UI_COLLAPSE.EVENTS.CLICK, UI_COLLAPSE.EVENTS.CHANGE]);
+
+const isExpanded = ref(props.modelValue);
+
+const className = computed(() => ({
+  'mdc-collapse': true,
+  'mdc-collapse--expanded': isExpanded.value,
+  'mdc-collapse--with-icon': props.withIcon,
+  'mdc-collapse--icon-end-aligned': props.iconEndAligned
+}));
+
+watch(
+  () => props.modelValue,
+  (val) => {
+    isExpanded.value = val;
+  }
+);
+
+function handleClick(event) {
+  $emit(UI_COLLAPSE.EVENTS.CLICK, event);
+}
+
+function handleToggle() {
+  isExpanded.value = !isExpanded.value;
+
+  emit(UI_COLLAPSE.EVENTS.CHANGE, isExpanded.value);
+}
 </script>

@@ -20,111 +20,116 @@
 </template>
 
 <script>
-import getType from '../../utils/typeof';
-
 export default {
   name: 'UiSkeleton',
-  props: {
-    // States
-    loading: {
-      type: Boolean,
-      default: true
-    },
-    // UI attributes
-    active: {
-      type: Boolean,
-      default: false
-    },
-    avatar: {
-      type: [Boolean, Object],
-      default: false
-    },
-    title: {
-      type: [Boolean, Object],
-      default: true
-    },
-    paragraph: {
-      type: [Boolean, Object],
-      default: true
-    }
-  },
-  computed: {
-    className() {
-      return this.loading
-        ? {
-            'mdc-skeleton': true,
-            'mdc-skeleton--with-avatar': this.avatar,
-            'mdc-skeleton--active': this.active
-          }
-        : {};
-    },
-    skeletonAvatar() {
-      return getType(this.avatar) === 'object' ? this.avatar : {};
-    },
-    avatarClassName() {
-      return {
-        'mdc-skeleton-avatar': true,
-        'mdc-skeleton-avatar--circle': this.skeletonAvatar.shape !== 'square',
-        'mdc-skeleton-avatar--large': this.skeletonAvatar.size === 'large',
-        'mdc-skeleton-avatar--small': this.skeletonAvatar.size === 'small'
-      };
-    },
-    avatarSize() {
-      const size = this.skeletonAvatar.size;
-
-      return getType(size) === 'number'
-        ? {
-            width: `${size}px`,
-            height: `${size}px`,
-            lineHeight: `${size}px`
-          }
-        : {};
-    },
-    titleWidth() {
-      let style = {};
-
-      if (!this.avatar && this.paragraph) {
-        style = { width: '38%' };
-      }
-
-      if (this.avatar && this.paragraph) {
-        style = { width: '50%' };
-      }
-
-      if (getType(this.title) === 'object' && this.title.width) {
-        style = { width: this.title.width };
-      }
-
-      return style;
-    },
-    paragraphWidth() {
-      let style = {};
-
-      if (!this.avatar || !this.title) {
-        style = { width: '61%' };
-      }
-
-      if (getType(this.paragraph) === 'object' && this.paragraph.width) {
-        style = { width: this.paragraph.width };
-      }
-
-      return style;
-    },
-    paragraphRows() {
-      let rows = 0;
-
-      if (!this.avatar && this.title) {
-        rows = 3;
-      } else {
-        rows = 2;
-      }
-
-      if (getType(this.paragraph) === 'object' && this.paragraph.rows) {
-        rows = this.paragraph.rows;
-      }
-
-      return rows;
-    }
-  }
+  inheritAttrs: false,
+  customOptions: {}
 };
+</script>
+
+<script setup>
+import { computed } from 'vue';
+import getType from '../../utils/typeof';
+
+const props = defineProps({
+  // States
+  loading: {
+    type: Boolean,
+    default: true
+  },
+  // UI attributes
+  active: {
+    type: Boolean,
+    default: false
+  },
+  avatar: {
+    type: [Boolean, Object],
+    default: false
+  },
+  title: {
+    type: [Boolean, Object],
+    default: true
+  },
+  paragraph: {
+    type: [Boolean, Object],
+    default: true
+  }
+});
+
+const className = computed(() =>
+  props.loading
+    ? {
+        'mdc-skeleton': true,
+        'mdc-skeleton--with-avatar': props.avatar,
+        'mdc-skeleton--active': props.active
+      }
+    : {}
+);
+
+const skeletonAvatar = computed(() =>
+  getType(props.avatar) === 'object' ? props.avatar : {}
+).value;
+const avatarClassName = computed(() => ({
+  'mdc-skeleton-avatar': true,
+  'mdc-skeleton-avatar--circle': skeletonAvatar.shape !== 'square',
+  'mdc-skeleton-avatar--large': skeletonAvatar.size === 'large',
+  'mdc-skeleton-avatar--small': skeletonAvatar.size === 'small'
+}));
+
+const avatarSize = computed(() => {
+  const { size } = skeletonAvatar;
+
+  return getType(size) === 'number'
+    ? {
+        width: `${size}px`,
+        height: `${size}px`,
+        lineHeight: `${size}px`
+      }
+    : {};
+});
+const titleWidth = computed(() => {
+  let style = {};
+
+  if (!props.avatar && props.paragraph) {
+    style = { width: '38%' };
+  }
+
+  if (props.avatar && props.paragraph) {
+    style = { width: '50%' };
+  }
+
+  if (getType(props.title) === 'object' && props.title.width) {
+    style = { width: props.title.width };
+  }
+
+  return style;
+});
+const paragraphWidth = computed(() => {
+  let style = {};
+
+  if (!props.avatar || !props.title) {
+    style = { width: '61%' };
+  }
+
+  if (getType(props.paragraph) === 'object' && props.paragraph.width) {
+    style = { width: props.paragraph.width };
+  }
+
+  return style;
+});
+const paragraphRows = computed(() => {
+  let rows = 0;
+
+  if (!props.avatar && props.title) {
+    rows = 3;
+  } else {
+    rows = 2;
+  }
+
+  if (getType(props.paragraph) === 'object' && props.paragraph.rows) {
+    rows = props.paragraph.rows;
+  }
+
+  return rows;
+});
 </script>

@@ -13,224 +13,236 @@
       ref="file"
       type="file"
       hidden
-      @change="
-        handleFileChange($event, (result) => {
-          $emit(UI_EDITOR.EVENT.FILE_CHANGE, result[0], insertImage);
-        })
-      "
+      @change="handleChange"
     />
     <slot></slot>
   </div>
 </template>
 
 <script>
-import { createEditor, Emotion } from './core';
-import { onBlurEmojiHandler } from './extensions/emoji/module';
 import UI_EDITOR from './constants';
-import handleFileChange from '../../utils/file';
-import getType from '../../utils/typeof';
 
 export default {
   name: 'UiEditor',
-  props: {
-    // States
-    modelValue: {
-      type: String,
-      default: ''
-    },
-    options: {
-      type: Object,
-      default: () => ({})
-    },
-    // UI attributes
-    toolbar: {
-      type: [Array, String, null],
-      default: null
-    },
-    placeholder: {
-      type: [String, null],
-      default: null
-    },
-    readonly: {
-      type: Boolean,
-      default: false
-    },
-    theme: {
-      type: String,
-      default: 'snow'
-    },
-    // Extension attributes
-    toolbarIcons: {
-      type: Object,
-      default: () => ({})
-    },
-    toolbarTips: {
-      type: Object,
-      default: () => ({})
-    },
-    toolbarOptions: {
-      type: Object,
-      default: () => ({})
-    },
-    toolbarHandlers: {
-      type: Object,
-      default: () => ({})
-    },
-    customImageHandler: {
-      type: Boolean,
-      default: false
-    },
-    emotions: {
-      type: Array,
-      default: () => [] // format: [{ type, title, content: { name, value, src } }]
-    },
-    withCounter: {
-      type: Boolean,
-      default: false
-    },
-    extension: {
-      type: [Boolean, Object],
-      default: false
-    }
-  },
-  emits: [UI_EDITOR.EVENT.TEXT_CHANGE, UI_EDITOR.EVENT.FILE_CHANGE],
-  data() {
-    return {
-      UI_EDITOR,
-      $editor: null,
-      htmlContent: '',
-      editSourceCode: false // TODO
-    };
-  },
-  watch: {
-    modelValue(val) {
-      if (val) {
-        if (this.htmlContent !== val) {
-          this.setHTML(val);
-          this.$editor.blur();
-        }
-      } else {
-        this.setHTML('');
-      }
-    }
-  },
-  mounted() {
-    this.$nextTick(async () => {
-      this.$editor = await createEditor(this.$refs.editor, {
-        toolbarIcons: Object.assign(UI_EDITOR.toolbarIcons, this.toolbarIcons),
-        toolbarTips: this.toolbarTips,
-        toolbarOptions: this.toolbarOptions,
-        options: this.getOptions(),
-        emotions: this.emotions,
-        extension: this.extension
-      });
-
-      if (this.modelValue) {
-        this.setHTML(this.modelValue);
-      }
-
-      this.$editor.on('text-change', (delta, oldDelta, source) => {
-        let html = this.getHTML();
-        if (html === UI_EDITOR.BLANK) {
-          html = '';
-        }
-
-        this.htmlContent = html;
-        this.$emit(UI_EDITOR.EVENT.TEXT_CHANGE, html);
-      });
-    });
-
-    document.addEventListener('click', onBlurEmojiHandler);
-  },
-  beforeUnmount() {
-    Emotion.clear();
-
-    document.removeEventListener('click', onBlurEmojiHandler);
-  },
-  methods: {
-    setToolbarOption(toolbar, key, value) {
-      for (let format of toolbar) {
-        if (
-          getType(format) === 'object' &&
-          getType(format[key]) === 'array' &&
-          format[key].length === 0
-        ) {
-          format[key] = [false, ...value];
-        } else if (getType(format) === 'array') {
-          this.setToolbarOption(format, key, value);
-        }
-      }
-    },
-    getToolbar() {
-      let customToolbar = this.toolbar;
-      if (getType(customToolbar) === 'array') {
-        Object.keys(this.toolbarOptions).forEach((format) => {
-          let value = this.toolbarOptions[format];
-          if (value.length) {
-            this.setToolbarOption(
-              customToolbar,
-              format,
-              this.toolbarOptions[format]
-            );
-          }
-        });
-      }
-      return this.toolbar === 'full' ? UI_EDITOR.defaultToolbar : customToolbar;
-    },
-    getOptions(counterEl) {
-      const defaultOptions = {
-        modules: {},
-        placeholder: this.placeholder,
-        readOnly: this.readonly,
-        theme: this.theme
-      };
-      let options = Object.assign(defaultOptions, this.options);
-
-      options.modules.toolbar = {
-        container: this.getToolbar(),
-        handlers: {}
-      };
-
-      if (this.withCounter) {
-        options.modules.counter = {
-          container: counterEl
-          // unit: 'word'
-        };
-      }
-
-      // Custom event handlers
-      const toolbarHandlers = options.modules.toolbar.handlers;
-
-      if (this.customImageHandler) {
-        toolbarHandlers.image = () => {
-          this.$refs.file.click();
-        };
-      }
-
-      Object.keys(this.toolbarHandlers).forEach((format) => {
-        toolbarHandlers[format] = (value) => {
-          this.toolbarHandlers[format](this.$editor, value);
-        };
-      });
-
-      return options;
-    },
-    getHTML() {
-      return this.$editor.root.innerHTML;
-    },
-    setHTML(html) {
-      this.$editor.root.innerHTML = html;
-    },
-    handleFileChange,
-    insertImage(url) {
-      this.$editor.insert('image', url);
-    },
-    encodeEmoji(html) {
-      return Emotion.encode(html); // output: content
-    },
-    decodeEmoji(content) {
-      return Emotion.decode(content); // output: html
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_EDITOR
   }
 };
+</script>
+
+<script setup>
+import { ref, watch, onMounted, onBeforeUnmount, nextTick } from 'vue';
+import { createEditor, Emotion } from './core';
+import { onBlurEmojiHandler } from './extensions/emoji/module';
+import handleFileChange from '../../utils/file';
+import getType from '../../utils/typeof';
+
+const props = defineProps({
+  // States
+  modelValue: {
+    type: String,
+    default: ''
+  },
+  options: {
+    type: Object,
+    default: () => ({})
+  },
+  // UI attributes
+  toolbar: {
+    type: [Array, String, null],
+    default: null
+  },
+  placeholder: {
+    type: [String, null],
+    default: null
+  },
+  readonly: {
+    type: Boolean,
+    default: false
+  },
+  theme: {
+    type: String,
+    default: 'snow'
+  },
+  // Extension attributes
+  toolbarIcons: {
+    type: Object,
+    default: () => ({})
+  },
+  toolbarTips: {
+    type: Object,
+    default: () => ({})
+  },
+  toolbarOptions: {
+    type: Object,
+    default: () => ({})
+  },
+  toolbarHandlers: {
+    type: Object,
+    default: () => ({})
+  },
+  customImageHandler: {
+    type: Boolean,
+    default: false
+  },
+  emotions: {
+    type: Array,
+    default: () => [] // format: [{ type, title, content: { name, value, src } }]
+  },
+  withCounter: {
+    type: Boolean,
+    default: false
+  },
+  extension: {
+    type: [Boolean, Object],
+    default: false
+  }
+});
+
+const emit = defineEmits([
+  UI_EDITOR.EVENTS.TEXT_CHANGE,
+  UI_EDITOR.EVENTS.FILE_CHANGE
+]);
+
+const editor = ref(null);
+const file = ref(null);
+let $editor = null;
+let htmlContent = '';
+let editSourceCode = false; // TODO
+
+watch(
+  () => props.modelValue,
+  (val) => {
+    if (val) {
+      if (htmlContent !== val) {
+        setHTML(val);
+        $editor.blur();
+      }
+    } else {
+      setHTML('');
+    }
+  }
+);
+
+onMounted(() => {
+  nextTick(async () => {
+    const { toolbarTips, toolbarOptions, emotions, extension } = props;
+    $editor = await createEditor(editor.value, {
+      toolbarIcons: Object.assign(UI_EDITOR.toolbarIcons, props.toolbarIcons),
+      toolbarTips,
+      toolbarOptions,
+      options: getOptions(),
+      emotions,
+      extension
+    });
+
+    if (props.modelValue) {
+      setHTML(props.modelValue);
+    }
+
+    $editor.on('text-change', (delta, oldDelta, source) => {
+      let html = getHTML();
+      if (html === UI_EDITOR.BLANK) {
+        html = '';
+      }
+
+      htmlContent = html;
+      emit(UI_EDITOR.EVENTS.TEXT_CHANGE, html);
+    });
+  });
+
+  document.addEventListener('click', onBlurEmojiHandler);
+});
+
+onBeforeUnmount(() => {
+  Emotion.clear();
+
+  document.removeEventListener('click', onBlurEmojiHandler);
+});
+
+function setToolbarOption(toolbar, key, value) {
+  for (let format of toolbar) {
+    if (
+      getType(format) === 'object' &&
+      getType(format[key]) === 'array' &&
+      format[key].length === 0
+    ) {
+      format[key] = [false, ...value];
+    } else if (getType(format) === 'array') {
+      setToolbarOption(format, key, value);
+    }
+  }
+}
+
+function getToolbar() {
+  let customToolbar = props.toolbar;
+  if (getType(customToolbar) === 'array') {
+    Object.keys(props.toolbarOptions).forEach((format) => {
+      let value = props.toolbarOptions[format];
+      if (value.length) {
+        setToolbarOption(customToolbar, format, props.toolbarOptions[format]);
+      }
+    });
+  }
+  return props.toolbar === 'full' ? UI_EDITOR.defaultToolbar : customToolbar;
+}
+
+function getOptions(counterEl) {
+  const { placeholder, readOnly, theme } = props;
+  const defaultOptions = {
+    modules: {},
+    placeholder,
+    readOnly,
+    theme
+  };
+  let options = Object.assign(defaultOptions, props.options);
+
+  options.modules.toolbar = {
+    container: getToolbar(),
+    handlers: {}
+  };
+
+  if (props.withCounter) {
+    options.modules.counter = {
+      container: counterEl
+      // unit: 'word'
+    };
+  }
+
+  // Custom event handlers
+  const toolbarHandlers = options.modules.toolbar.handlers;
+
+  if (props.customImageHandler) {
+    toolbarHandlers.image = () => {
+      file.value.click();
+    };
+  }
+
+  Object.keys(props.toolbarHandlers).forEach((format) => {
+    toolbarHandlers[format] = (value) => {
+      props.toolbarHandlers[format]($editor, value);
+    };
+  });
+
+  return options;
+}
+
+const getHTML = () => $editor.root.innerHTML;
+const setHTML = (html) => ($editor.root.innerHTML = html);
+
+const insertImage = (url) => $editor.insert('image', url);
+function handleChange(event) {
+  handleFileChange(event, (result) => {
+    emit(UI_EDITOR.EVENTS.FILE_CHANGE, result[0], insertImage);
+  });
+}
+
+const encodeEmoji = (html) => Emotion.encode(html); // output: content
+const decodeEmoji = (content) => Emotion.decode(content); // output: html
+
+defineExpose({
+  encodeEmoji,
+  decodeEmoji
+});
 </script>

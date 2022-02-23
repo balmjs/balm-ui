@@ -98,47 +98,47 @@
 </template>
 
 <script>
-import { MdcTree } from './mdc-tree';
-import MdcCheckbox from '../checkbox/mdc-checkbox.vue';
 import UI_GLOBAL from '../icon/constants';
 
 export default {
   name: 'UiTreeNode',
-  components: {
-    MdcCheckbox
-  },
-  props: {
-    children: {
-      type: Array,
-      default: () => []
-    },
-    treeData: {
-      type: Object,
-      default: () => ({})
-    }
-  },
-  data() {
-    return {
-      UI_GLOBAL,
-      dataFormat: this.treeData.dataFormat
-    };
-  },
-  methods: {
-    handleExpand(item) {
-      MdcTree.onExpand(this.treeData, item);
-    },
-    handleSelect(item) {
-      MdcTree.onSelect(this.treeData, item);
-    },
-    handleCheck(item) {
-      if (!item.disabled) {
-        MdcTree.onCheck(this.treeData, item);
-      }
-    },
-    getData(item) {
-      const { children, ...newItem } = item;
-      return item[this.dataFormat.isLeaf] ? item : newItem;
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_GLOBAL
   }
 };
+</script>
+
+<script setup>
+import { MdcTree } from './mdc-tree';
+import MdcCheckbox from '../checkbox/mdc-checkbox.vue';
+
+const props = defineProps({
+  children: {
+    type: Array,
+    default: () => []
+  },
+  treeData: {
+    type: Object,
+    default: () => ({})
+  }
+});
+
+const dataFormat = props.treeData.dataFormat;
+
+function handleExpand(item) {
+  MdcTree.onExpand(props.treeData, item);
+}
+function handleSelect(item) {
+  MdcTree.onSelect(props.treeData, item);
+}
+function handleCheck(item) {
+  if (!item.disabled) {
+    MdcTree.onCheck(props.treeData, item);
+  }
+}
+function getData(item) {
+  const { children, ...newItem } = item;
+  return item[dataFormat.isLeaf] ? item : newItem;
+}
 </script>

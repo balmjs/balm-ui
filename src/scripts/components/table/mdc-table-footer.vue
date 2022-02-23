@@ -6,24 +6,39 @@
         v-for="(tfootCellData, tfootCellIndex) in tfootData"
         :key="tfootCellIndex"
         :class="tfootCellClassName(tfootCellData)"
-        :style="tfootCellData[T_CELL.STYLE] || null"
+        :style="tfootCellData[UI_TABLE.CELL.STYLE] || null"
       >
         <slot
-          v-if="tfootCellData[T_CELL.SLOT]"
-          :name="tfootCellData[T_CELL.SLOT]"
-          :data="tfootCellData[T_CELL.VALUE]"
+          v-if="tfootCellData[UI_TABLE.CELL.SLOT]"
+          :name="tfootCellData[UI_TABLE.CELL.SLOT]"
+          :data="tfootCellData[UI_TABLE.CELL.VALUE]"
         ></slot>
-        <template v-else>{{ tfootCellData[T_CELL.VALUE] }}</template>
+        <template v-else>{{ tfootCellData[UI_TABLE.CELL.VALUE] }}</template>
       </td>
     </tr>
   </tfoot>
 </template>
 
 <script>
-import tableFooterMixin from '../../mixins/table-footer';
+import UI_TABLE from './constants';
 
 export default {
   name: 'MdcTableFooter',
-  mixins: [tableFooterMixin]
+  inheritAttrs: false,
+  customOptions: {
+    UI_TABLE
+  }
 };
+</script>
+
+<script>
+import { tableCommonProps } from '../../mixins/table';
+import { tableFooterProps, useTableFooter } from '../../mixins/table-footer';
+
+const props = defineProps({
+  ...tableCommonProps,
+  ...tableFooterProps
+});
+
+const { tfootData, tfootCellClassName } = useTableFooter(props);
 </script>

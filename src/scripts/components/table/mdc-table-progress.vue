@@ -11,12 +11,13 @@
 </template>
 
 <script>
-import MdcLinearProgress from '../progress/mdc-linear-progress.vue';
-
 export default {
   name: 'MdcTableProgress',
-  components: {
-    MdcLinearProgress
-  }
+  inheritAttrs: false,
+  customOptions: {}
 };
+</script>
+
+<script setup>
+import MdcLinearProgress from '../progress/mdc-linear-progress.vue';
 </script>

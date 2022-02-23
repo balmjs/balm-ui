@@ -3,10 +3,17 @@
 </template>
 
 <script>
-import listDividerMixin from '../../mixins/list-divider';
-
 export default {
   name: 'UiItemDivider',
-  mixins: [listDividerMixin]
+  inheritAttrs: false,
+  customOptions: {}
 };
+</script>
+
+<script setup>
+import { listDividerProps, useListDivider } from '../../mixins/list-divider';
+
+const props = defineProps(listDividerProps);
+
+const { className } = useListDivider(props);
 </script>

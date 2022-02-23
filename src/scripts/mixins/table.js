@@ -1,52 +1,51 @@
 import getType from '../utils/typeof';
 import UI_TABLE from '../components/table/constants';
 
-export default {
-  props: {
-    cellStyle: {
-      type: Array,
-      default: () => []
-    }
-  },
-  data() {
-    return {
-      T_CELL: UI_TABLE.CELL
-    };
-  },
-  methods: {
-    isString(any) {
-      return getType(any) === 'string';
-    },
-    isObject(any) {
-      return getType(any) === 'object';
-    },
-    isFunction(any) {
-      return getType(any) === 'function';
-    },
-    setTextAlignClassName(className, data) {
-      if (data[this.T_CELL.ALIGN]) {
-        switch (data[this.T_CELL.ALIGN].toLowerCase()) {
-          case 'left':
-            className.push(UI_TABLE.cssClasses.left);
-            break;
-          case 'center':
-            className.push(UI_TABLE.cssClasses.center);
-            break;
-          case 'right':
-            className.push(UI_TABLE.cssClasses.right);
-            break;
-          default:
-        }
-      }
+const tableCommonProps = {
+  cellStyle: {
+    type: Array,
+    default: () => []
+  }
+};
 
-      return className;
-    },
-    setCustomClassName(className, data) {
-      if (data[this.T_CELL.CLASS]) {
-        className.push(data[this.T_CELL.CLASS]);
-      }
+const isString = (any) => getType(any) === 'string';
 
-      return className;
+const isObject = (any) => getType(any) === 'object';
+
+const isFunction = (any) => getType(any) === 'function';
+
+function setTextAlignClassName(className, data) {
+  if (data[UI_TABLE.CELL.ALIGN]) {
+    switch (data[UI_TABLE.CELL.ALIGN].toLowerCase()) {
+      case 'left':
+        className.push(UI_TABLE.cssClasses.left);
+        break;
+      case 'center':
+        className.push(UI_TABLE.cssClasses.center);
+        break;
+      case 'right':
+        className.push(UI_TABLE.cssClasses.right);
+        break;
+      default:
     }
   }
+
+  return className;
+}
+
+function setCustomClassName(className, data) {
+  if (data[UI_TABLE.CELL.CLASS]) {
+    className.push(data[UI_TABLE.CELL.CLASS]);
+  }
+
+  return className;
+}
+
+export {
+  tableCommonProps,
+  isString,
+  isObject,
+  isFunction,
+  setTextAlignClassName,
+  setCustomClassName
 };

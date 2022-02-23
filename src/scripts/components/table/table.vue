@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <div :class="className">
+  <div ref="table" :class="className">
     <template v-if="hasFixedCell">
       <mdc-table-frame
         class="mdc-data-table__fixed-header"
@@ -22,11 +22,11 @@
         </mdc-table-header>
       </mdc-table-frame>
       <mdc-table-frame
-        ref="content"
+        ref="tableContent"
         class="mdc-data-table__fixed-body"
         :columns-data="columns.data"
         :scroll="scroll"
-        :max-width="maxWidth"
+        :max-width="currentMaxWidth"
       >
         <mdc-table-body
           :data="data"
@@ -104,6 +104,26 @@
 </template>
 
 <script>
+import UI_TABLE from './constants';
+
+export default {
+  name: 'UiTable',
+  inheritAttrs: false,
+  customOptions: {
+    UI_TABLE
+  }
+};
+</script>
+
+<script setup>
+import {
+  ref,
+  computed,
+  watch,
+  onMounted,
+  onBeforeUnmount,
+  nextTick
+} from 'vue';
 import { MDCDataTable } from '../../../material-components-web/data-table';
 import { events } from '../../../material-components-web/data-table/constants';
 import MdcTableFrame from './mdc-table-frame.vue';
@@ -111,411 +131,393 @@ import MdcTableHeader from './mdc-table-header.vue';
 import MdcTableBody from './mdc-table-body.vue';
 import MdcTableFooter from './mdc-table-footer.vue';
 import MdcTableProgress from './mdc-table-progress.vue';
-import domMixin from '../../mixins/dom';
-import UI_TABLE from './constants';
 import getType from '../../utils/typeof';
 
-export default {
-  name: 'UiTable',
-  components: {
-    MdcTableFrame,
-    MdcTableHeader,
-    MdcTableBody,
-    MdcTableFooter,
-    MdcTableProgress
+const props = defineProps({
+  // States
+  data: {
+    type: Array,
+    default: () => []
   },
-  mixins: [domMixin],
-  props: {
-    // States
-    data: {
-      type: Array,
-      default: () => []
-    },
-    modelValue: {
-      type: Array,
-      default: () => []
-    },
-    // UI attributes
-    thead: {
-      type: Array,
-      default: () => []
-    },
-    tbody: {
-      type: Array,
-      default: () => []
-    },
-    tfoot: {
-      type: Array,
-      default: () => []
-    },
-    fullwidth: {
-      type: Boolean,
-      default: false
-    },
-    rowCheckbox: {
-      type: Boolean,
-      default: false
-    },
-    selectedKey: {
-      type: [Boolean, String],
-      default: false
-    },
-    rowIdPrefix: {
-      type: String,
-      default: ''
-    },
-    sortIconAlignEnd: {
-      type: Boolean,
-      default: false
-    },
-    showProgress: {
-      type: Boolean,
-      default: false
-    },
-    fixedHeader: {
-      type: Boolean,
-      default: false
-    },
-    defaultColWidth: {
-      type: Number,
-      default: 0
-    },
-    scroll: {
-      type: Object,
-      default: () => ({
-        x: false,
-        y: false
-      })
-    }
+  modelValue: {
+    type: Array,
+    default: () => []
   },
-  emits: [UI_TABLE.EVENT.CHANGE],
-  data() {
+  // UI attributes
+  thead: {
+    type: Array,
+    default: () => []
+  },
+  tbody: {
+    type: Array,
+    default: () => []
+  },
+  tfoot: {
+    type: Array,
+    default: () => []
+  },
+  fullwidth: {
+    type: Boolean,
+    default: false
+  },
+  rowCheckbox: {
+    type: Boolean,
+    default: false
+  },
+  selectedKey: {
+    type: [Boolean, String],
+    default: false
+  },
+  rowIdPrefix: {
+    type: String,
+    default: ''
+  },
+  sortIconAlignEnd: {
+    type: Boolean,
+    default: false
+  },
+  showProgress: {
+    type: Boolean,
+    default: false
+  },
+  fixedHeader: {
+    type: Boolean,
+    default: false
+  },
+  defaultColWidth: {
+    type: Number,
+    default: 0
+  },
+  scroll: {
+    type: Object,
+    default: () => ({
+      x: false,
+      y: false
+    })
+  }
+});
+
+const emit = defineEmits([UI_TABLE.EVENTS.CHANGE]);
+
+const table = ref(null);
+const tableContent = ref(null);
+let $table = null;
+let columnsData = props.tbody;
+let currentData = props.data;
+let ticking = false;
+let currentOffsetLeft = 0;
+let currentMaxWidth = 0;
+let fixedScrollWidth = 0;
+
+const hasFixedCell = computed(() => {
+  const fixedFirstColumn =
+    getType(props.tbody[0]) === 'object' ? props.tbody[0].fixed : false;
+  const fixedLastColumn =
+    getType(props.tbody[props.tbody.length - 1]) === 'object'
+      ? props.tbody[props.tbody.length - 1].fixed
+      : false;
+
+  const hasFixedColumn = !!(
+    props.fixedHeader ||
+    fixedFirstColumn ||
+    fixedLastColumn
+  );
+
+  if (hasFixedColumn && !props.defaultColWidth) {
+    console.warn('[UiTable]', 'You need set defaultColWidth prop first');
+  }
+
+  return props.defaultColWidth && hasFixedColumn;
+}).value;
+
+const className = computed(() => ({
+  'mdc-data-table': true,
+  'mdc-data-table--fixed': hasFixedCell,
+  'mdc-data-table--fullwidth': props.fullwidth
+}));
+
+const columns = computed(() => {
+  let count = columnsData.length;
+  let maxWidth = 0;
+  let data = props.tbody.map(({ colClass, width }) => {
+    const colWidth = width || props.defaultColWidth;
+    maxWidth += colWidth;
+
     return {
-      UI_TABLE,
-      $table: null,
-      columnsData: this.tbody,
-      currentData: this.data,
-      ticking: false,
-      offsetLeft: 0,
-      maxWidth: 0,
-      fixedScrollWidth: 0
+      class: colClass,
+      style: colWidth ? { width: `${colWidth}px` } : null
     };
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-data-table': true,
-        'mdc-data-table--fixed': this.hasFixedCell,
-        'mdc-data-table--fullwidth': this.fullwidth
-      };
-    },
-    hasFixedCell() {
-      const fixedFirstColumn =
-        getType(this.tbody[0]) === 'object' ? this.tbody[0].fixed : false;
-      const fixedLastColumn =
-        getType(this.tbody[this.tbody.length - 1]) === 'object'
-          ? this.tbody[this.tbody.length - 1].fixed
-          : false;
+  });
 
-      const hasFixedColumn = !!(
-        this.fixedHeader ||
-        fixedFirstColumn ||
-        fixedLastColumn
+  if (props.rowCheckbox) {
+    count += 1;
+    maxWidth += UI_TABLE.CHECKBOX_COL_WIDTH;
+    data.unshift({
+      class: 'checkbox',
+      style: { width: `${UI_TABLE.CHECKBOX_COL_WIDTH}px` }
+    });
+  }
+
+  nextTick(() => {
+    const currentWidth = table.value.offsetWidth;
+    if (hasFixedCell && currentWidth > maxWidth) {
+      console.warn(
+        '[UiTable]',
+        `The table max width is ${maxWidth}px, but the current is ${currentWidth}px.`
       );
-
-      if (hasFixedColumn && !this.defaultColWidth) {
-        console.warn('[UiTable]', 'You need set defaultColWidth prop first');
-      }
-
-      return this.defaultColWidth && hasFixedColumn;
-    },
-    columns() {
-      let count = this.columnsData.length;
-      let maxWidth = 0;
-      let data = this.tbody.map(({ colClass, width }) => {
-        const colWidth = width || this.defaultColWidth;
-        maxWidth += colWidth;
-
-        return {
-          class: colClass,
-          style: colWidth ? { width: `${colWidth}px` } : null
-        };
-      });
-
-      if (this.rowCheckbox) {
-        count += 1;
-        maxWidth += UI_TABLE.CHECKBOX_COL_WIDTH;
-        data.unshift({
-          class: 'checkbox',
-          style: { width: `${UI_TABLE.CHECKBOX_COL_WIDTH}px` }
-        });
-      }
-
-      this.$nextTick(() => {
-        const currentWidth = this.el.offsetWidth;
-        if (this.hasFixedCell && currentWidth > maxWidth) {
-          console.warn(
-            '[UiTable]',
-            `The table max width is ${maxWidth}px, but the current is ${currentWidth}px.`
-          );
-        }
-      });
-
-      return {
-        count,
-        data
-      };
-    },
-    cellStyle() {
-      let result = [];
-
-      let originTbody = Object.assign([], this.tbody);
-      if (this.rowCheckbox) {
-        originTbody.unshift(
-          this.hasFixedCell
-            ? {
-                fixed: 'left',
-                width: UI_TABLE.CHECKBOX_COL_WIDTH
-              }
-            : {}
-        );
-      }
-
-      let sumWidth = 0;
-      for (let index = 0, len = originTbody.length; index < len; index++) {
-        let style;
-
-        let { fixed } = originTbody[index];
-        let fixedWidth = 0;
-        switch (fixed) {
-          case 'left':
-            if (index > 0) {
-              let { width } = originTbody[index - 1];
-              sumWidth += width;
-              fixedWidth = `${sumWidth}px`;
-            }
-            style = { position: 'sticky', left: fixedWidth };
-            break;
-          case 'right':
-            if (index < len - 1) {
-              sumWidth = 0;
-              for (let j = index + 1; j < len; j++) {
-                let { width } = originTbody[j];
-                sumWidth += width;
-              }
-              fixedWidth = `${sumWidth}px`;
-            }
-            style = { position: 'sticky', right: fixedWidth };
-            break;
-          default:
-        }
-
-        result.push(style);
-      }
-
-      return result;
     }
-  },
-  watch: {
-    data(val) {
-      this.currentData = val;
+  });
 
-      this.$nextTick(() => {
-        this.$table.hideProgress();
-        this.$table.layout();
-        this.initSelectedRows();
+  return {
+    count,
+    data
+  };
+});
 
-        if (this.$refs.content) {
-          this.fixedScrollWidth =
-            this.$refs.content.$el.offsetWidth -
-            this.$refs.content.$el.clientWidth;
-        }
-      });
-    },
-    showProgress(val) {
-      if (val) {
-        this.$table.showProgress();
-      } else {
-        this.$table.hideProgress();
-      }
-    }
-  },
-  mounted() {
-    this.$table = new MDCDataTable(this.el);
+const cellStyle = computed(() => {
+  let result = [];
 
-    this.$table.listen(events.ROW_SELECTION_CHANGED, ({ detail }) => {
-      let selectedRows = this.modelValue; // NOTE: cache selected rows for pagination
-
-      this.currentData.forEach((tbodyRowData, tbodyRowIndex) => {
-        let selectedRowId = this.selectedKey
-          ? tbodyRowData[this.selectedKey]
-          : tbodyRowIndex;
-
-        if (tbodyRowIndex === detail.rowIndex) {
-          // checked
-          if (detail.selected) {
-            selectedRows.push(selectedRowId);
-          } else {
-            // unchecked
-            selectedRows.splice(
-              selectedRows.findIndex(
-                (selectedKey) => selectedKey === selectedRowId
-              ),
-              1
-            );
+  let originTbody = Object.assign([], props.tbody);
+  if (props.rowCheckbox) {
+    originTbody.unshift(
+      hasFixedCell
+        ? {
+            fixed: 'left',
+            width: UI_TABLE.CHECKBOX_COL_WIDTH
           }
+        : {}
+    );
+  }
+
+  let sumWidth = 0;
+  for (let index = 0, len = originTbody.length; index < len; index++) {
+    let style;
+
+    let { fixed } = originTbody[index];
+    let fixedWidth = 0;
+    switch (fixed) {
+      case 'left':
+        if (index > 0) {
+          let { width } = originTbody[index - 1];
+          sumWidth += width;
+          fixedWidth = `${sumWidth}px`;
         }
-      });
-
-      this.$emit(UI_TABLE.EVENT.CHANGE, selectedRows);
-    });
-
-    this.$table.listen(events.SELECTED_ALL, () => {
-      let oldSelectedRows = this.modelValue; // NOTE: cache selected rows for pagination
-
-      let newSelectedRows = this.currentData.map(
-        (tbodyRowData, tbodyRowIndex) => {
-          return this.selectedKey
-            ? tbodyRowData[this.selectedKey]
-            : tbodyRowIndex;
+        style = { position: 'sticky', left: fixedWidth };
+        break;
+      case 'right':
+        if (index < len - 1) {
+          sumWidth = 0;
+          for (let j = index + 1; j < len; j++) {
+            let { width } = originTbody[j];
+            sumWidth += width;
+          }
+          fixedWidth = `${sumWidth}px`;
         }
-      );
-
-      let selectedRows = [...new Set(oldSelectedRows.concat(newSelectedRows))]; // merge + unique
-
-      this.$emit(UI_TABLE.EVENT.CHANGE, selectedRows);
-    });
-
-    this.$table.listen(events.UNSELECTED_ALL, () => {
-      let oldSelectedRows = this.modelValue; // NOTE: cache selected rows for pagination
-
-      let newSelectedRows = this.currentData.map(
-        (tbodyRowData, tbodyRowIndex) => {
-          return this.selectedKey
-            ? tbodyRowData[this.selectedKey]
-            : tbodyRowIndex;
-        }
-      );
-
-      // Difference set
-      let a = new Set(oldSelectedRows);
-      let b = new Set(newSelectedRows);
-      let selectedRows = Array.from(new Set([...a].filter((x) => !b.has(x))));
-
-      this.$emit(UI_TABLE.EVENT.CHANGE, selectedRows);
-    });
-
-    this.$table.listen(events.SORTED, ({ detail }) => {
-      // TODO: multi-row header is unsupported
-      this.handleSort(detail);
-    });
-
-    if (this.modelValue.length) {
-      this.initSelectedRows();
+        style = { position: 'sticky', right: fixedWidth };
+        break;
+      default:
     }
 
-    if (this.showProgress) {
-      this.$table.showProgress();
-    }
+    result.push(style);
+  }
 
-    if (this.hasFixedCell) {
-      this.$refs.content.$el.addEventListener('scroll', this.handleScroll);
+  return result;
+});
 
-      if (this.rowCheckbox) {
-        this.maxWidth += UI_TABLE.CHECKBOX_COL_WIDTH;
-      }
+onMounted(() => {
+  $table = new MDCDataTable(table.value);
 
-      this.tbody.forEach(({ width }) => {
-        this.maxWidth += width || this.defaultColWidth;
-      });
-    }
-  },
-  beforeUnmount() {
-    if (this.hasFixedCell) {
-      this.$refs.content.$el.removeEventListener('scroll', this.handleScroll);
-    }
-  },
-  methods: {
-    handleSort({ columnId, sortValue }) {
-      let newSelectedRows = [];
+  $table.listen(events.ROW_SELECTION_CHANGED, ({ detail }) => {
+    let selectedRows = props.modelValue; // NOTE: cache selected rows for pagination
 
-      if (sortValue) {
-        const isNumber = this.currentData.every(
-          (data) => getType(data[columnId]) === 'number'
-        );
+    currentData.forEach((tbodyRowData, tbodyRowIndex) => {
+      let selectedRowId = props.selectedKey
+        ? tbodyRowData[props.selectedKey]
+        : tbodyRowIndex;
 
-        if (sortValue === 'descending') {
-          this.currentData.sort(
-            isNumber
-              ? (a, b) => {
-                  return b[columnId] - a[columnId];
-                }
-              : (a, b) => {
-                  return b[columnId].localeCompare(a[columnId]);
-                }
-          );
-        } else if (sortValue === 'ascending') {
-          this.currentData.sort(
-            isNumber
-              ? (a, b) => {
-                  return a[columnId] - b[columnId];
-                }
-              : (a, b) => {
-                  return a[columnId].localeCompare(b[columnId]);
-                }
-          );
-        }
-
-        let oldSelectedRows = this.modelValue;
-        if (this.selectedKey) {
-          newSelectedRows = [...oldSelectedRows];
+      if (tbodyRowIndex === detail.rowIndex) {
+        // checked
+        if (detail.selected) {
+          selectedRows.push(selectedRowId);
         } else {
-          const tableRowCount = this.currentData.length;
-
-          let oldSelectedIndex = 0;
-          for (let index = tableRowCount - 1; index >= 0; index--) {
-            if (oldSelectedRows.includes(oldSelectedIndex)) {
-              newSelectedRows.push(index);
-            }
-            oldSelectedIndex++;
-          }
-          newSelectedRows.sort();
+          // unchecked
+          selectedRows.splice(
+            selectedRows.findIndex(
+              (selectedKey) => selectedKey === selectedRowId
+            ),
+            1
+          );
         }
       }
+    });
 
-      this.$emit(UI_TABLE.EVENT.CHANGE, newSelectedRows);
-    },
-    initSelectedRows() {
-      if (this.rowCheckbox && this.currentData.length) {
-        let rowIds = this.modelValue
-          .map((selectedRow) => {
-            let rowIndex = this.selectedKey
-              ? this.currentData.findIndex(
-                  (tbodyRowData) =>
-                    tbodyRowData[this.selectedKey] === selectedRow
-                )
-              : selectedRow;
-            return `${this.rowIdPrefix}${rowIndex}`;
-          })
-          .filter((row) => row > -1);
+    emit(UI_TABLE.EVENTS.CHANGE, selectedRows);
+  });
 
-        this.$table.setSelectedRowIds(rowIds);
+  $table.listen(events.SELECTED_ALL, () => {
+    let oldSelectedRows = props.modelValue; // NOTE: cache selected rows for pagination
+
+    let newSelectedRows = currentData.map((tbodyRowData, tbodyRowIndex) => {
+      return props.selectedKey
+        ? tbodyRowData[props.selectedKey]
+        : tbodyRowIndex;
+    });
+
+    let selectedRows = [...new Set(oldSelectedRows.concat(newSelectedRows))]; // merge + unique
+
+    emit(UI_TABLE.EVENTS.CHANGE, selectedRows);
+  });
+
+  $table.listen(events.UNSELECTED_ALL, () => {
+    let oldSelectedRows = props.modelValue; // NOTE: cache selected rows for pagination
+
+    let newSelectedRows = currentData.map((tbodyRowData, tbodyRowIndex) => {
+      return props.selectedKey
+        ? tbodyRowData[props.selectedKey]
+        : tbodyRowIndex;
+    });
+
+    // Difference set
+    let a = new Set(oldSelectedRows);
+    let b = new Set(newSelectedRows);
+    let selectedRows = Array.from(new Set([...a].filter((x) => !b.has(x))));
+
+    emit(UI_TABLE.EVENTS.CHANGE, selectedRows);
+  });
+
+  $table.listen(events.SORTED, ({ detail }) => {
+    // TODO: multi-row header is unsupported
+    handleSort(detail);
+  });
+
+  if (props.modelValue.length) {
+    initSelectedRows();
+  }
+
+  if (props.showProgress) {
+    $table.showProgress();
+  }
+
+  if (hasFixedCell) {
+    tableContent.value.addEventListener('scroll', handleScroll);
+
+    if (props.rowCheckbox) {
+      currentMaxWidth += UI_TABLE.CHECKBOX_COL_WIDTH;
+    }
+
+    props.tbody.forEach(({ width }) => {
+      currentMaxWidth += width || props.defaultColWidth;
+    });
+  }
+
+  watch(
+    () => props.data,
+    (val) => {
+      currentData = val;
+
+      nextTick(() => {
+        $table.hideProgress();
+        $table.layout();
+        initSelectedRows();
+
+        const el = tableContent.value;
+        if (el) {
+          fixedScrollWidth = el.offsetWidth - el.clientWidth;
+        }
+      });
+    }
+  );
+  watch(
+    () => props.showProgress,
+    (val) => (val ? $table.showProgress() : $table.hideProgress())
+  );
+});
+
+onBeforeUnmount(() => {
+  if (hasFixedCell) {
+    tableContent.value.removeEventListener('scroll', handleScroll);
+  }
+});
+
+function handleSort({ columnId, sortValue }) {
+  let newSelectedRows = [];
+
+  if (sortValue) {
+    const isNumber = currentData.every(
+      (data) => getType(data[columnId]) === 'number'
+    );
+
+    if (sortValue === 'descending') {
+      currentData.sort(
+        isNumber
+          ? (a, b) => {
+              return b[columnId] - a[columnId];
+            }
+          : (a, b) => {
+              return b[columnId].localeCompare(a[columnId]);
+            }
+      );
+    } else if (sortValue === 'ascending') {
+      currentData.sort(
+        isNumber
+          ? (a, b) => {
+              return a[columnId] - b[columnId];
+            }
+          : (a, b) => {
+              return a[columnId].localeCompare(b[columnId]);
+            }
+      );
+    }
+
+    let oldSelectedRows = props.modelValue;
+    if (props.selectedKey) {
+      newSelectedRows = [...oldSelectedRows];
+    } else {
+      const tableRowCount = currentData.length;
+
+      let oldSelectedIndex = 0;
+      for (let index = tableRowCount - 1; index >= 0; index--) {
+        if (oldSelectedRows.includes(oldSelectedIndex)) {
+          newSelectedRows.push(index);
+        }
+        oldSelectedIndex++;
       }
-    },
-    handleScroll(e) {
-      if (!this.ticking) {
-        window.requestAnimationFrame(() => {
-          const offsetLeft = e.target.scrollLeft;
-
-          if (this.offsetLeft != offsetLeft) {
-            this.offsetLeft = offsetLeft;
-          }
-
-          this.ticking = false;
-        });
-        this.ticking = true;
-      }
+      newSelectedRows.sort();
     }
   }
-};
+
+  emit(UI_TABLE.EVENTS.CHANGE, newSelectedRows);
+}
+
+function initSelectedRows() {
+  if (props.rowCheckbox && currentData.length) {
+    let rowIds = props.modelValue
+      .map((selectedRow) => {
+        let rowIndex = props.selectedKey
+          ? currentData.findIndex(
+              (tbodyRowData) => tbodyRowData[props.selectedKey] === selectedRow
+            )
+          : selectedRow;
+        return `${props.rowIdPrefix}${rowIndex}`;
+      })
+      .filter((row) => row > -1);
+
+    $table.setSelectedRowIds(rowIds);
+  }
+}
+
+function handleScroll(e) {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const offsetLeft = e.target.scrollLeft;
+
+      if (currentOffsetLeft != offsetLeft) {
+        currentOffsetLeft = offsetLeft;
+      }
+
+      ticking = false;
+    });
+    ticking = true;
+  }
+}
 </script>

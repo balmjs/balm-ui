@@ -1,14 +1,26 @@
 <template>
-  <nav :class="className">
+  <nav ref="list" :class="className">
     <slot></slot>
   </nav>
 </template>
 
 <script>
-import listMixin from '../../mixins/list';
-
 export default {
   name: 'UiNav',
-  mixins: [listMixin]
+  inheritAttrs: false,
+  customOptions: {}
 };
+</script>
+
+<script setup>
+import { ref } from 'vue';
+import { listProps, useList } from '../../mixins/list';
+
+const props = defineProps({
+  ...listProps
+});
+
+const list = ref(null);
+
+const { className } = useList(list, props, {});
 </script>

@@ -52,7 +52,7 @@
         ref="autocomplete"
         class="mdc-autocomplete__list"
       >
-        <ul :class="deprecatedClassNameMap['mdc-list']">
+        <ul :class="deprecatedListClassNameMap['mdc-list']">
           <li
             v-for="(item, index) in currentSuggestion.data"
             :key="index"
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { deprecatedClassNameMap } from '../../../material-components-web/list/constants';
+import { deprecatedListClassNameMap } from '../list/constants';
 import { UI_TEXTFIELD_ICON } from './constants';
 
 // Define autocomplete constants
@@ -100,7 +100,7 @@ export default {
     UI_TEXTFIELD_ICON,
     UI_AUTOCOMPLETE,
     KEYCODE,
-    deprecatedClassNameMap
+    deprecatedListClassNameMap
   }
 };
 </script>
@@ -544,7 +544,7 @@ function clearSelected() {
 }
 
 const getItemClassName = (index) => [
-  deprecatedClassNameMap['mdc-list-item'],
+  deprecatedListClassNameMap['mdc-list-item'],
   {
     selected: index === currentSuggestion.index
   }

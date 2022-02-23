@@ -9,20 +9,24 @@
 <script>
 export default {
   name: 'UiCard',
-  props: {
-    outlined: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-card': true,
-        'mdc-theme--on-surface': true, // fix(@material-components): dark theme
-        'mdc-card--outlined': this.outlined
-      };
-    }
-  }
+  inheritAttrs: false,
+  customOptions: {}
 };
+</script>
+
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+  outlined: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const className = computed(() => ({
+  'mdc-card': true,
+  'mdc-theme--on-surface': true, // fix(@material-components): dark theme
+  'mdc-card--outlined': props.outlined
+}));
 </script>

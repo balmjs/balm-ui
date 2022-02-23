@@ -7,19 +7,23 @@
 <script>
 export default {
   name: 'UiCardActions',
-  props: {
-    fullBleed: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-card__actions': true,
-        'mdc-card__actions--full-bleed': this.fullBleed
-      };
-    }
-  }
+  inheritAttrs: false,
+  customOptions: {}
 };
+</script>
+
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+  fullBleed: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const className = computed(() => ({
+  'mdc-card__actions': true,
+  'mdc-card__actions--full-bleed': props.fullBleed
+}));
 </script>

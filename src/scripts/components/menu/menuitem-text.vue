@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import { deprecatedClassNameMap } from '../../../material-components-web/list/constants';
+import { deprecatedListClassNameMap } from '../list/constants';
 
 export default {
   name: 'UiMenuitemText',
   inheritAttrs: false,
   customOptions: {
-    deprecatedClassNameMap
+    deprecatedListClassNameMap
   }
 };
 </script>

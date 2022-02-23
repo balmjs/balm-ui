@@ -6,10 +6,13 @@
 </template>
 
 <script>
-import deprecatedListMixin from '../../mixins/deprecated-list';
+import { deprecatedListClassNameMap } from './constants';
 
 export default {
   name: 'UiItemTextContent',
-  mixins: [deprecatedListMixin]
+  inheritAttrs: false,
+  customOptions: {
+    deprecatedListClassNameMap
+  }
 };
 </script>

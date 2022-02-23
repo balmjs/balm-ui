@@ -1,136 +1,95 @@
+import { computed, watch, onMounted, onUpdated } from 'vue';
 import { MDCList } from '../../material-components-web/list';
+import checkType from './type';
 import {
-  strings,
-  deprecatedClassNameMap
-} from '../../material-components-web/list/constants';
-import domMixin from './dom';
-import typeMixin from './type';
-import { useRipple } from './ripple';
-import { getCurrentElement } from '../mixins/dom';
-import { UI_LIST, UI_ITEM } from '../components/list/constants';
+  UI_LIST,
+  UI_ITEM,
+  deprecatedListClassNameMap
+} from '../components/list/constants';
 
-export default {
-  mixins: [domMixin, typeMixin],
-  props: {
-    // UI variants
-    type: {
-      type: [String, Number],
-      default: 1
-    },
-    singleSelection: {
-      type: Boolean,
-      default: false
-    },
-    // States
-    modelValue: {
-      type: Number,
-      default: -1
-    },
-    // UI attributes
-    nonInteractive: {
-      type: Boolean,
-      default: false
-    },
-    dense: {
-      type: Boolean,
-      default: false
-    },
-    avatar: {
-      type: Boolean,
-      default: false
-    }
+const listProps = {
+  // UI variants
+  type: {
+    type: [String, Number],
+    default: 1
   },
-  emits: [UI_LIST.EVENT.ACTION],
-  data() {
-    return {
-      $list: null,
-      role: null
-    };
+  // UI attributes
+  nonInteractive: {
+    type: Boolean,
+    default: false
   },
-  computed: {
-    isTwoLine() {
-      return this.checkType(UI_LIST.TYPES, 'twoLine');
-    },
-    className() {
-      return [
-        deprecatedClassNameMap['mdc-list'],
-        {
-          'mdc-deprecated-list--two-line': this.isTwoLine,
-          'mdc-deprecated-list--non-interactive': this.nonInteractive,
-          'mdc-deprecated-list--dense': this.dense,
-          'mdc-deprecated-list--avatar-list': this.avatar
-        }
-      ];
-    }
+  dense: {
+    type: Boolean,
+    default: false
   },
-  watch: {
-    modelValue(val) {
-      if (this.$list) {
-        this.$list.selectedIndex = val;
-      }
-    }
-  },
-  mounted() {
-    this.$list = new MDCList(this.el);
-
-    this.$list.listen(strings.ACTION_EVENT, ({ detail }) => {
-      this.$emit(UI_LIST.EVENT.ACTION, detail.index);
-    });
-
-    if (this.singleSelection && this.modelValue > -1) {
-      this.$list.singleSelection = true;
-      this.$list.selectedIndex = this.modelValue;
-    }
-
-    // Making lists accessible
-    this.role =
-      this.el.getAttribute('role') ||
-      (this.singleSelection ? 'listbox' : 'list');
-
-    // For `<ui-drawer type="modal">` focus management
-    this.focusTrapOnDrawer();
-  },
-  updated() {
-    if (this.$list) {
-      if (this.singleSelection && this.modelValue > -1) {
-        this.$list.selectedIndex = this.modelValue;
-      }
-
-      if (!this.nonInteractive) {
-        this.$list.listElements.forEach((listItemEl) => {
-          useRipple(listItemEl);
-
-          let itemRole = listItemEl.getAttribute('role');
-          if (itemRole === 'checkbox' || itemRole === 'radio') {
-            this.$list.layout();
-          }
-        });
-      }
-    }
-  },
-  methods: {
-    focusTrapOnDrawer() {
-      if (this.$parent.$el) {
-        const parentEl = getCurrentElement(this.$parent.$el);
-
-        if (
-          parentEl &&
-          parentEl.classList.contains('mdc-drawer__content') &&
-          this.$list.listElements.length
-        ) {
-          const currentItem =
-            this.$list.listElements.find(
-              (item) =>
-                item.classList.contains(UI_ITEM.cssClasses.active) ||
-                item.classList.contains(
-                  deprecatedClassNameMap['mdc-list-item--activated']
-                )
-            ) || this.$list.listElements[0];
-
-          // Solution - https://github.com/material-components/material-components-web/issues/5615
-          currentItem.setAttribute('tabindex', 0);
-        }
-      }
-    }
+  avatar: {
+    type: Boolean,
+    default: false
   }
 };
+
+let $list = null;
+
+function useList(list, props, { init, update }) {
+  const isTwoLine = computed(() =>
+    checkType(props, UI_LIST.TYPES, 'twoLine')
+  ).value;
+
+  const className = computed(() => [
+    deprecatedListClassNameMap['mdc-list'],
+    {
+      'mdc-deprecated-list--two-line': isTwoLine,
+      'mdc-deprecated-list--non-interactive': props.nonInteractive,
+      'mdc-deprecated-list--dense': props.dense,
+      'mdc-deprecated-list--avatar-list': props.avatar
+    }
+  ]);
+
+  onMounted(() => {
+    $list = new MDCList(list.value);
+
+    init && init($list);
+
+    // For `<ui-drawer type="modal">` focus management
+    focusTrapOnDrawer(list);
+
+    watch(
+      () => props.modelValue,
+      (val) => {
+        if ($list) {
+          $list.selectedIndex = val;
+        }
+      }
+    );
+  });
+
+  onUpdated(() => update && update($list));
+
+  return {
+    className
+  };
+}
+
+function focusTrapOnDrawer(list) {
+  const parentEl = list.value.parentNode;
+
+  if (
+    parentEl &&
+    parentEl.classList.contains('mdc-drawer__content') &&
+    $list.listElements.length
+  ) {
+    const currentItem =
+      $list.listElements.find(
+        (item) =>
+          item.classList.contains(UI_ITEM.cssClasses.active) ||
+          item.classList.contains(
+            deprecatedListClassNameMap['mdc-list-item--activated']
+          )
+      ) || $list.listElements[0];
+
+    // Solution - https://github.com/material-components/material-components-web/issues/5615
+    currentItem.setAttribute('tabindex', 0);
+  }
+}
+
+export { listProps, useList };

@@ -1,5 +1,5 @@
 <template>
-  <li :class="className" :role="role" @click="handleClick">
+  <li ref="item" :class="className" :role="role" @click="handleClick">
     <span
       v-if="hasRipple"
       :class="deprecatedListClassNameMap['mdc-list-item__ripple']"
@@ -13,63 +13,68 @@
 </template>
 
 <script>
-import deprecatedListMixin from '../../mixins/deprecated-list';
 import { UI_ITEM } from './constants';
 
 export default {
   name: 'UiItem',
-  mixins: [deprecatedListMixin],
-  props: {
-    // States
-    selected: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [UI_ITEM.EVENT.CLICK],
-  data() {
-    return {
-      UI_ITEM
-    };
-  },
-  computed: {
-    className() {
-      return [
-        this.deprecatedListClassNameMap['mdc-list-item'],
-        ...this.getDeprecatedItemClasses({
-          selected: this.selected,
-          disabled: this.disabled
-        })
-      ];
-    },
-    role() {
-      let name = null;
-
-      if (this.$parent) {
-        switch (this.$parent.role) {
-          case 'listbox':
-            name = 'option';
-            break;
-          case 'radiogroup':
-            name = 'radio';
-            break;
-          case 'group':
-            name = 'checkbox';
-            break;
-        }
-      }
-
-      return name;
-    }
-  },
-  methods: {
-    handleClick(event) {
-      this.$emit(UI_ITEM.EVENT.CLICK, event);
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_ITEM
   }
 };
+</script>
+
+<script setup>
+import { ref, computed } from 'vue';
+import { useDeprecatedList } from '../../mixins/deprecated-list';
+
+const props = defineProps({
+  // States
+  selected: {
+    type: Boolean,
+    default: false
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([UI_ITEM.EVENTS.CLICK]);
+
+const item = ref(null);
+
+const { hasRipple, deprecatedListClassNameMap, getDeprecatedItemClasses } =
+  useDeprecatedList(item);
+
+const className = computed(() => [
+  deprecatedListClassNameMap['mdc-list-item'],
+  ...getDeprecatedItemClasses({
+    selected: props.selected,
+    disabled: props.disabled
+  })
+]);
+const role = computed(() => {
+  let name = null;
+
+  if (item.$parent) {
+    switch (item.$parent.role) {
+      case 'listbox':
+        name = 'option';
+        break;
+      case 'radiogroup':
+        name = 'radio';
+        break;
+      case 'group':
+        name = 'checkbox';
+        break;
+    }
+  }
+
+  return name;
+});
+
+function handleClick(event) {
+  emit(UI_ITEM.EVENTS.CLICK, event);
+}
 </script>

@@ -7,24 +7,28 @@
 <script>
 export default {
   name: 'UiCardMedia',
-  props: {
-    square: {
-      type: Boolean,
-      default: false
-    },
-    rectangle: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-card__media': true,
-        'mdc-card__media--square': this.square,
-        'mdc-card__media--16-9': this.rectangle
-      };
-    }
-  }
+  inheritAttrs: false,
+  customOptions: {}
 };
+</script>
+
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+  square: {
+    type: Boolean,
+    default: false
+  },
+  rectangle: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const className = computed(() => ({
+  'mdc-card__media': true,
+  'mdc-card__media--square': props.square,
+  'mdc-card__media--16-9': props.rectangle
+}));
 </script>

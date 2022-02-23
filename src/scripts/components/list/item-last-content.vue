@@ -12,10 +12,9 @@ import { UI_ITEM } from './constants';
 
 export default {
   name: 'UiItemLastContent',
-  data() {
-    return {
-      UI_ITEM
-    };
+  inheritAttrs: false,
+  customOptions: {
+    UI_ITEM
   }
 };
 </script>

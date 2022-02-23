@@ -1,5 +1,5 @@
 <template>
-  <a :href="href" :class="className" @click="handleClick">
+  <a ref="item" :href="href" :class="className" @click="handleClick">
     <span
       v-if="hasRipple"
       :class="deprecatedListClassNameMap['mdc-list-item__ripple']"
@@ -13,43 +13,48 @@
 </template>
 
 <script>
-import deprecatedListMixin from '../../mixins/deprecated-list';
 import { UI_ITEM } from './constants';
 
 export default {
   name: 'UiNavItem',
-  mixins: [deprecatedListMixin],
-  props: {
-    href: {
-      type: String,
-      required: true
-    },
-    // States
-    active: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [UI_ITEM.EVENT.CLICK],
-  data() {
-    return {
-      UI_ITEM
-    };
-  },
-  computed: {
-    className() {
-      return [
-        this.deprecatedListClassNameMap['mdc-list-item'],
-        ...this.getDeprecatedItemClasses({
-          activated: this.active
-        })
-      ];
-    }
-  },
-  methods: {
-    handleClick(event) {
-      this.$emit(UI_ITEM.EVENT.CLICK, event);
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_ITEM
   }
 };
+</script>
+
+<script setup>
+import { ref, computed } from 'vue';
+import { useDeprecatedList } from '../../mixins/deprecated-list';
+
+const props = defineProps({
+  href: {
+    type: String,
+    required: true
+  },
+  // States
+  active: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([UI_ITEM.EVENTS.CLICK]);
+
+const item = ref(null);
+
+const { hasRipple, deprecatedListClassNameMap, getDeprecatedItemClasses } =
+  useDeprecatedList(item);
+
+const className = computed(() => [
+  deprecatedListClassNameMap['mdc-list-item'],
+  ...getDeprecatedItemClasses({
+    activated: props.active
+  })
+]);
+
+function handleClick(event) {
+  emit(UI_ITEM.EVENTS.CLICK, event);
+}
 </script>

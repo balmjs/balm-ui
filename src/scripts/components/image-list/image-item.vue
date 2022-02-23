@@ -1,6 +1,6 @@
 <template>
   <!-- Image list item -->
-  <li class="mdc-image-list__item" @click="handleClick">
+  <li ref="imageItem" class="mdc-image-list__item" @click="handleClick">
     <!-- Image container -->
     <template v-if="$parent.isMasonry">
       <slot name="image" :imageClass="UI_IMAGE_ITEM.cssClasses.image">
@@ -39,42 +39,46 @@ const UI_IMAGE_ITEM = {
 
 export default {
   name: 'UiImageItem',
-  props: {
-    // UI attributes
-    image: {
-      type: [String, null],
-      default: null
-    },
-    bgImage: {
-      type: [String, null],
-      default: null
-    }
-  },
-  emits: [UI_IMAGE_ITEM.EVENT.CLICK],
-  data() {
-    return {
-      UI_IMAGE_ITEM
-    };
-  },
-  computed: {
-    style() {
-      return {
-        'background-image': `url(${this.bgImage})`
-      };
-    }
-  },
-  created() {
-    if (this.$parent.isMasonry && this.bgImage) {
-      console.warn(
-        '[UiImageItem]',
-        `The 'bgImage' prop is not compatible with the masonry image list, you need to set the 'image' prop`
-      );
-    }
-  },
-  methods: {
-    handleClick(event) {
-      this.$emit(UI_IMAGE_ITEM.EVENT.CLICK, event);
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_IMAGE_ITEM
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, onBeforeMount } from 'vue';
+
+const props = defineProps({
+  // UI attributes
+  image: {
+    type: [String, null],
+    default: null
+  },
+  bgImage: {
+    type: [String, null],
+    default: null
+  }
+});
+
+const emit = defineEmits([UI_IMAGE_ITEM.EVENTS.CLICK]);
+
+const style = computed(() => ({
+  'background-image': `url(${props.bgImage})`
+}));
+
+const imageItem = ref(null);
+
+onBeforeMount(() => {
+  if (imageItem.$parent.isMasonry && props.bgImage) {
+    console.warn(
+      '[UiImageItem]',
+      `The 'bgImage' prop is not compatible with the masonry image list, you need to set the 'image' prop`
+    );
+  }
+});
+
+function handleClick(event) {
+  emit(UI_IMAGE_ITEM.EVENTS.CLICK, event);
+}
 </script>

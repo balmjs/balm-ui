@@ -60,12 +60,12 @@
     </div>
     <!-- Options -->
     <div :class="menuClassName" :style="style">
-      <ul :class="deprecatedClassNameMap['mdc-list']" role="listbox">
+      <ul :class="deprecatedListClassNameMap['mdc-list']" role="listbox">
         <li
           v-for="(option, index) in currentOptions"
           :key="index"
           :class="[
-            deprecatedClassNameMap['mdc-list-item'],
+            deprecatedListClassNameMap['mdc-list-item'],
             ...getDeprecatedItemClasses({
               selected: option[optionFormat.value] === selectedValue,
               disabled: option.disabled
@@ -76,10 +76,12 @@
           :aria-disabled="option.disabled"
           role="option"
         >
-          <span :class="deprecatedClassNameMap['mdc-list-item__ripple']"></span>
+          <span
+            :class="deprecatedListClassNameMap['mdc-list-item__ripple']"
+          ></span>
           <span
             v-if="option[optionFormat.label]"
-            :class="deprecatedClassNameMap['mdc-list-item__text']"
+            :class="deprecatedListClassNameMap['mdc-list-item__text']"
             v-text="option[optionFormat.label]"
           ></span>
         </li>
@@ -89,7 +91,7 @@
 </template>
 
 <script>
-import { deprecatedClassNameMap } from '../../../material-components-web/list/constants';
+import { deprecatedListClassNameMap } from '../list/constants';
 import { getMaterialIconClass } from '../../mixins/material-icon';
 
 // Define select constants
@@ -114,7 +116,7 @@ export default {
   customOptions: {
     UI_SELECT,
     getMaterialIconClass,
-    deprecatedClassNameMap
+    deprecatedListClassNameMap
   }
 };
 </script>

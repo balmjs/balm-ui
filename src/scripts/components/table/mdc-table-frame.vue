@@ -1,5 +1,9 @@
 <template>
-  <div class="mdc-data-table__table-container" :style="containerStyle">
+  <div
+    ref="tableFrame"
+    class="mdc-data-table__table-container"
+    :style="containerStyle"
+  >
     <table class="mdc-data-table__table" :style="tableStyle">
       <colgroup v-if="columnsData.length">
         <col
@@ -17,46 +21,56 @@
 <script>
 export default {
   name: 'MdcTableFrame',
-  props: {
-    columnsData: {
-      type: Array,
-      default: () => []
-    },
-    scroll: {
-      type: Object,
-      default: () => ({})
-    },
-    offsetLeft: {
-      type: Number,
-      default: 0
-    },
-    maxWidth: {
-      type: Number,
-      default: 0
-    }
-  },
-  computed: {
-    containerStyle() {
-      return this.scroll.y
-        ? {
-            'max-height': `${this.scroll.y}px`
-          }
-        : null;
-    },
-    tableStyle() {
-      const scrollX = this.scroll.x || this.maxWidth;
-
-      return scrollX
-        ? {
-            width: `${scrollX}px`
-          }
-        : null;
-    }
-  },
-  watch: {
-    offsetLeft(val) {
-      this.$el.scrollLeft = val;
-    }
-  }
+  inheritAttrs: false,
+  customOptions: {}
 };
+</script>
+
+<script setup>
+import { ref, computed, watch } from 'vue';
+
+const props = defineProps({
+  columnsData: {
+    type: Array,
+    default: () => []
+  },
+  scroll: {
+    type: Object,
+    default: () => ({})
+  },
+  offsetLeft: {
+    type: Number,
+    default: 0
+  },
+  maxWidth: {
+    type: Number,
+    default: 0
+  }
+});
+
+const tableFrame = ref(null);
+
+const containerStyle = computed(() =>
+  props.scroll.y
+    ? {
+        'max-height': `${props.scroll.y}px`
+      }
+    : null
+);
+const tableStyle = computed(() => {
+  const scrollX = props.scroll.x || props.maxWidth;
+
+  return scrollX
+    ? {
+        width: `${scrollX}px`
+      }
+    : null;
+});
+
+watch(
+  () => props.offsetLeft,
+  (val) => {
+    tableFrame.value.scrollLeft = val;
+  }
+);
 </script>

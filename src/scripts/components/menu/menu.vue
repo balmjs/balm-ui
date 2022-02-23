@@ -2,7 +2,7 @@
   <!-- Container -->
   <div ref="menu" :class="className">
     <ul
-      :class="deprecatedClassNameMap['mdc-list']"
+      :class="deprecatedListClassNameMap['mdc-list']"
       tabindex="-1"
       role="menu"
       aria-hidden="true"
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { deprecatedClassNameMap } from '../../../material-components-web/list/constants';
+import { deprecatedListClassNameMap } from '../list/constants';
 import getType from '../../utils/typeof';
 
 // Define menu constants
@@ -85,7 +85,7 @@ export default {
   customOptions: {
     UI_MENU,
     getType,
-    deprecatedClassNameMap
+    deprecatedListClassNameMap
   }
 };
 </script>

@@ -110,15 +110,11 @@ export default {
   props: {
     children: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     treeData: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     }
   },
   data() {

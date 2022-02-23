@@ -7,9 +7,7 @@ const inputProps = {
   },
   attrs: {
     type: Object,
-    default() {
-      return {};
-    }
+    default: () => ({})
   }
 };
 

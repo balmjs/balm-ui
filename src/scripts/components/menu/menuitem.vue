@@ -54,9 +54,7 @@ const props = defineProps({
   // States
   item: {
     type: Object,
-    default() {
-      return {}; // { text: string, icon: string, value: string }
-    }
+    default: () => ({}) // { text: string, icon: string, value: string }
   },
   value: {
     type: null, // NOTE: String usually

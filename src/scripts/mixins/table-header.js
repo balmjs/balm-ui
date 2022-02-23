@@ -7,15 +7,11 @@ export default {
   props: {
     selectedRows: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     thead: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     rowCheckbox: {
       type: Boolean,

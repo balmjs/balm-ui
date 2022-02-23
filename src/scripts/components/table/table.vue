@@ -129,34 +129,24 @@ export default {
     // States
     data: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     modelValue: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     // UI attributes
     thead: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     tbody: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     tfoot: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     fullwidth: {
       type: Boolean,
@@ -192,12 +182,10 @@ export default {
     },
     scroll: {
       type: Object,
-      default() {
-        return {
-          x: false,
-          y: false
-        };
-      }
+      default: () => ({
+        x: false,
+        y: false
+      })
     }
   },
   emits: [UI_TABLE.EVENT.CHANGE],

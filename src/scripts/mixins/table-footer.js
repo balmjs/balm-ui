@@ -6,15 +6,11 @@ export default {
   props: {
     data: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     tfoot: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     rowCheckbox: {
       type: Boolean,

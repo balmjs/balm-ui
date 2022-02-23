@@ -106,9 +106,7 @@ const props = defineProps({
   },
   items: {
     type: Array,
-    default() {
-      return [];
-    }
+    default: () => []
   },
   quickOpen: {
     type: Boolean,
@@ -121,9 +119,7 @@ const props = defineProps({
   },
   distance: {
     type: Object,
-    default() {
-      return {};
-    }
+    default: () => ({})
   },
   fixed: {
     type: Boolean,

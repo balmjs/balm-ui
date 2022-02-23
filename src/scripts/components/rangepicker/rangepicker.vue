@@ -50,9 +50,7 @@ export default {
     // States
     modelValue: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     // <ui-textfield> attributes
     disabled: {
@@ -62,22 +60,16 @@ export default {
     // UI attributes
     placeholders: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     labels: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     // For flatpickr
     config: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     }
   },
   emits: [UI_RANGEPICKER.EVENT.CHANGE],

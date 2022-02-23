@@ -1,5 +1,6 @@
 <template>
   <ui-textfield
+    ref="textfield"
     :model-value="inputValue"
     :class="className"
     :input-id="inputId"
@@ -51,7 +52,7 @@
         ref="autocomplete"
         class="mdc-autocomplete__list"
       >
-        <ul :class="deprecatedListClassNameMap['mdc-list']">
+        <ul :class="deprecatedClassNameMap['mdc-list']">
           <li
             v-for="(item, index) in currentSuggestion.data"
             :key="index"
@@ -67,16 +68,8 @@
 </template>
 
 <script>
-import UiTextfield from '../textfield/textfield.vue';
-import domMixin from '../../mixins/dom';
-import textfieldMixin from '../../mixins/textfield';
-import deprecatedListMixin from '../../mixins/deprecated-list';
-import getType from '../../utils/typeof';
-import { UI_TEXTFIELD_ICON } from '../textfield/constants';
-import {
-  optionFormatDefaultValue,
-  checkOptionFormat
-} from '../../utils/option-format';
+import { deprecatedClassNameMap } from '../../../material-components-web/list/constants';
+import { UI_TEXTFIELD_ICON } from './constants';
 
 // Define autocomplete constants
 const UI_AUTOCOMPLETE = {
@@ -102,436 +95,458 @@ const KEYCODE = {
 
 export default {
   name: 'UiAutocomplete',
-  components: {
-    UiTextfield
-  },
-  mixins: [domMixin, textfieldMixin, deprecatedListMixin],
-  props: {
-    // <ui-textfield> variants
-    outlined: {
-      type: Boolean,
-      default: false
-    },
-    // States
-    modelValue: {
-      type: [String, Number],
-      default: ''
-    },
-    source: {
-      type: Array, // Two supported formats: ['Choice1', 'Choice2'] or [{label: 'Choice1', value: 'value1'}, ...]
-      default() {
-        return [];
-      }
-    },
-    sourceFormat: {
-      type: Object,
-      default() {
-        return optionFormatDefaultValue;
-      }
-    },
-    // <ui-textfield> props
-    inputId: {
-      type: [String, null],
-      default: null
-    },
-    // UI attributes
-    autofocus: {
-      type: Boolean,
-      default: false
-    },
-    delay: {
-      type: [Number, String],
-      default: 300
-    },
-    minlength: {
-      type: [Number, String],
-      default: 1
-    },
-    remote: {
-      type: Boolean,
-      default: false
-    },
-    highlight: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [
-    UI_AUTOCOMPLETE.EVENT.INPUT,
-    UI_AUTOCOMPLETE.EVENT.SEARCH,
-    UI_AUTOCOMPLETE.EVENT.SELECTED
-  ],
-  data() {
-    return {
-      UI_AUTOCOMPLETE,
-      UI_TEXTFIELD_ICON,
-      $autocomplete: null,
-      $listener: null,
-      isExpanded: false,
-      inputValue: this.modelValue,
-      currentSource: [], // source data
-      currentSuggestion: {
-        data: [], // filter data
-        index: -1
-      },
-      currentSelectedItem: null,
-      timer: null,
-      scroll: {
-        $view: null,
-        viewHeight: 0,
-        listHeight: 0,
-        itemHeight: 0,
-        currentFirstIndex: 0,
-        currentLastIndex: 0,
-        defaultFirstIndex: 0,
-        defaultLastIndex: 0,
-        defaultReversedLastIndex: 0,
-        defaultReversedFirstIndex: 0
-      }
-    };
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-autocomplete': true,
-        'mdc-autocomplete--expanded': this.isExpanded
-      };
-    },
-    hasLeadingIcon() {
-      return !!(this.withLeadingIcon || this.$slots.before);
-    },
-    hasTrailingIcon() {
-      return !!(this.withTrailingIcon || this.$slots.after);
-    }
-  },
-  watch: {
-    modelValue(val) {
-      if (this.inputValue !== val) {
-        this.inputValue = `${val}`;
-      }
-    },
-    source(data) {
-      this.setDataSource(data);
-      this.show();
-    }
-  },
-  beforeMount() {
-    checkOptionFormat('<ui-autocomplete>', this.sourceFormat);
-  },
-  mounted() {
-    this.$autocomplete = this.$refs.autocomplete;
-    this.$autocomplete.addEventListener(
-      UI_AUTOCOMPLETE.EVENT.MOUSEMOVE,
-      this.handleMousemove
-    );
-    this.$autocomplete.addEventListener(
-      UI_AUTOCOMPLETE.EVENT.MOUSELEAVE,
-      this.handleMouseleave
-    );
-
-    this.setDataSource(this.source);
-  },
-  beforeUnmount() {
-    if (this.$listener) {
-      document.removeEventListener(UI_AUTOCOMPLETE.EVENT.CLICK, this.$listener);
-    }
-    this.$autocomplete.removeEventListener(
-      UI_AUTOCOMPLETE.EVENT.MOUSEMOVE,
-      this.handleMousemove
-    );
-    this.$autocomplete.removeEventListener(
-      UI_AUTOCOMPLETE.EVENT.MOUSELEAVE,
-      this.handleMouseleave
-    );
-  },
-  methods: {
-    initClientHeight() {
-      let view = this.$autocomplete;
-      let list = view.querySelector('ul');
-      let item = view.querySelector('li');
-
-      if (!this.scroll.$view) {
-        this.scroll.$view = view;
-        this.scroll.viewHeight = view.offsetHeight;
-      }
-      if (!this.scroll.item) {
-        this.scroll.itemHeight = item.offsetHeight;
-      }
-      if (this.scroll.list !== list.offsetHeight) {
-        this.scroll.listHeight = list.offsetHeight;
-      }
-
-      this.scroll.defaultFirstIndex = 0;
-      this.scroll.defaultLastIndex =
-        parseInt(this.scroll.viewHeight / this.scroll.itemHeight, 10) - 1;
-      let maxHeight = this.currentSuggestion.data.length - 1;
-      if (this.scroll.defaultReversedLastIndex !== maxHeight) {
-        this.scroll.defaultReversedLastIndex = maxHeight;
-        this.scroll.defaultReversedFirstIndex =
-          this.scroll.defaultReversedLastIndex - this.scroll.defaultLastIndex;
-      }
-
-      this.scroll.currentLastIndex = this.scroll.defaultLastIndex;
-    },
-    escapeRegExChars(value) {
-      return value.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
-    },
-    sanitize(value) {
-      return value
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    },
-    formatResult(keywords) {
-      const pattern = '(' + this.escapeRegExChars(keywords) + ')';
-      const regExp = new RegExp(pattern, 'gi');
-
-      // Local datasource
-      this.currentSuggestion.data = this.currentSource
-        .filter(
-          (word) =>
-            word[this.sourceFormat.label].toLowerCase().indexOf(keywords) !== -1
-        )
-        .map((word) => {
-          const suggestionLabel = word[this.sourceFormat.label];
-
-          word.html = this.highlight
-            ? this.sanitize(
-                suggestionLabel.replace(regExp, '<strong>$1</strong>')
-              ).replace(/&lt;(\/?strong)&gt;/g, '<$1>')
-            : this.sanitize(suggestionLabel);
-
-          return word;
-        });
-    },
-    show() {
-      let keywords = this.inputValue;
-
-      if (getType(keywords) === 'string') {
-        this.formatResult(keywords.trim().toLowerCase());
-      } else {
-        throw new Error(
-          '[UiAutocomplete]: The keywords value must be a string'
-        );
-      }
-
-      if (
-        keywords.length >= this.minlength &&
-        this.currentSuggestion.data.length
-      ) {
-        this.isExpanded = true;
-        this.$nextTick(() => {
-          this.initClientHeight();
-        });
-      }
-    },
-    hide() {
-      this.isExpanded = false;
-      this.currentSuggestion.index = -1;
-      this.clearSelected();
-    },
-    search(keywords) {
-      if (this.remote) {
-        // Remote datasource
-        if (this.timer) {
-          clearTimeout(this.timer);
-        }
-
-        this.timer = setTimeout(() => {
-          this.$emit(UI_AUTOCOMPLETE.EVENT.SEARCH, keywords); // AJAX
-        }, this.delay);
-      } else {
-        this.show();
-      }
-    },
-    setDataSource(dataSource) {
-      if (getType(dataSource) === 'array') {
-        this.currentSource = dataSource.map((data) => {
-          let item = {};
-
-          if (getType(data) === 'string' || getType(data) === 'number') {
-            item[this.sourceFormat.label] = data;
-            item[this.sourceFormat.value] = data;
-          } else if (getType(data) === 'object') {
-            item = data;
-          } else {
-            console.warn(
-              '[UiAutocomplete]',
-              `The item of the 'source' prop must be a string or object`
-            );
-          }
-
-          return item;
-        });
-
-        this.currentSuggestion.data = this.currentSource;
-      }
-    },
-    handleFocus() {
-      if (this.autofocus) {
-        this.show();
-      }
-    },
-    handleKeydown(event) {
-      if (this.currentSuggestion.data.length) {
-        const MIN = 0;
-        const MAX = this.currentSuggestion.data.length - 1;
-
-        switch (event.keyCode) {
-          case KEYCODE.DOWN:
-            this.clearSelected();
-
-            if (this.currentSuggestion.index === MAX) {
-              this.currentSuggestion.index = MIN;
-
-              this.scroll.currentFirstIndex = this.scroll.defaultFirstIndex;
-              this.scroll.currentLastIndex = this.scroll.defaultLastIndex;
-              this.scroll.$view.scrollTop = 0;
-            } else {
-              this.currentSuggestion.index++;
-
-              if (this.currentSuggestion.index > this.scroll.currentLastIndex) {
-                this.scroll.currentFirstIndex++;
-                this.scroll.currentLastIndex++;
-                this.scroll.$view.scrollTop += this.scroll.itemHeight;
-              }
-            }
-
-            this.$autocomplete.blur(); // Hide mouse
-            event.preventDefault();
-            break;
-          case KEYCODE.UP:
-            this.clearSelected();
-
-            if (
-              this.currentSuggestion.index === MIN ||
-              this.currentSuggestion.index === -1
-            ) {
-              this.currentSuggestion.index = MAX;
-
-              this.scroll.currentFirstIndex =
-                this.scroll.defaultReversedFirstIndex;
-              this.scroll.currentLastIndex =
-                this.scroll.defaultReversedLastIndex;
-              this.scroll.$view.scrollTop =
-                this.scroll.itemHeight * this.scroll.defaultReversedFirstIndex;
-            } else {
-              this.currentSuggestion.index--;
-
-              if (this.currentSuggestion.index < this.scroll.currentLastIndex) {
-                this.scroll.currentFirstIndex--;
-                this.scroll.currentLastIndex--;
-                if (
-                  this.currentSuggestion.index <
-                  this.scroll.defaultReversedFirstIndex
-                ) {
-                  this.scroll.$view.scrollTop -= this.scroll.itemHeight;
-                }
-              }
-            }
-
-            this.$autocomplete.blur(); // Hide mouse
-            event.preventDefault();
-            break;
-          case KEYCODE.ENTER:
-            // Only autocomplete when text is inputted
-            if (this.inputValue.length > 0) {
-              // If no option is selected, use first option
-              let selectedItem =
-                this.currentSuggestion.data[
-                  this.currentSuggestion.index < MIN
-                    ? MIN
-                    : this.currentSuggestion.index
-                ];
-              this.handleSelected(selectedItem);
-            }
-            event.preventDefault();
-            break;
-        }
-      }
-    },
-    handleInput(value) {
-      this.inputValue = `${value}`;
-      this.$emit(UI_AUTOCOMPLETE.EVENT.INPUT, this.inputValue);
-
-      let keywords = this.inputValue.trim();
-      if (keywords.length >= this.minlength) {
-        this.search(keywords);
-      } else {
-        this.hide();
-      }
-    },
-    handleBlur(event) {
-      if (!this.$listener) {
-        this.$listener = (e) => {
-          let inTextfield = false;
-          let parentEl = e.target;
-
-          while (parentEl && parentEl !== this.el) {
-            parentEl = parentEl.parentNode;
-            if (parentEl === this.el) {
-              inTextfield = true;
-            }
-          }
-
-          if (e !== event && this.isExpanded && !inTextfield) {
-            document.removeEventListener(
-              UI_AUTOCOMPLETE.EVENT.CLICK,
-              this.$listener
-            );
-            this.hide();
-          }
-        };
-      }
-      document.addEventListener(UI_AUTOCOMPLETE.EVENT.CLICK, this.$listener);
-    },
-    handleMousemove(event) {
-      let el = event.target;
-      if (
-        el.tagName === 'LI' &&
-        !el.classList.contains(UI_AUTOCOMPLETE.cssClasses.selected)
-      ) {
-        this.currentSelectedItem = el;
-
-        this.clearSelected();
-
-        el.classList.add(UI_AUTOCOMPLETE.cssClasses.selected);
-        this.currentSuggestion.index = el.dataset.index;
-      }
-    },
-    handleMouseleave() {
-      this.currentSelectedItem &&
-        this.currentSelectedItem.classList.remove(
-          UI_AUTOCOMPLETE.cssClasses.selected
-        );
-    },
-    handleSelected(selectedItem) {
-      this.hide();
-
-      delete selectedItem[UI_AUTOCOMPLETE.cssClasses.selected];
-      delete selectedItem.html;
-
-      this.$emit(
-        UI_AUTOCOMPLETE.EVENT.INPUT,
-        selectedItem[this.sourceFormat.label]
-      );
-      this.$emit(UI_AUTOCOMPLETE.EVENT.SELECTED, selectedItem); // selectedItem: any
-    },
-    clearSelected() {
-      let selectedItem = this.$autocomplete.querySelector(
-        `li.${UI_AUTOCOMPLETE.cssClasses.selected}`
-      );
-      if (selectedItem) {
-        selectedItem.classList.remove(UI_AUTOCOMPLETE.cssClasses.selected);
-      }
-    },
-    getItemClassName(index) {
-      return [
-        this.deprecatedListClassNameMap['mdc-list-item'],
-        { selected: index === this.currentSuggestion.index }
-      ];
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_TEXTFIELD_ICON,
+    UI_AUTOCOMPLETE,
+    KEYCODE,
+    deprecatedClassNameMap
   }
 };
+</script>
+
+<script setup>
+import {
+  ref,
+  computed,
+  watch,
+  onBeforeMount,
+  onMounted,
+  onBeforeUnmount,
+  nextTick,
+  useSlots
+} from 'vue';
+import UiTextfield from '../textfield/textfield.vue';
+import { textfieldProps } from '../../mixins/textfield';
+import getType from '../../utils/typeof';
+import {
+  optionFormatDefaultValue,
+  checkOptionFormat
+} from '../../utils/option-format';
+
+const props = defineProps({
+  ...textfieldProps,
+  // <ui-textfield> variants
+  outlined: {
+    type: Boolean,
+    default: false
+  },
+  // States
+  modelValue: {
+    type: [String, Number],
+    default: ''
+  },
+  source: {
+    type: Array, // Two supported formats: ['Choice1', 'Choice2'] or [{label: 'Choice1', value: 'value1'}, ...]
+    default: () => []
+  },
+  sourceFormat: {
+    type: Object,
+    default: () => optionFormatDefaultValue
+  },
+  // <ui-textfield> props
+  inputId: {
+    type: [String, null],
+    default: null
+  },
+  // UI attributes
+  autofocus: {
+    type: Boolean,
+    default: false
+  },
+  delay: {
+    type: [Number, String],
+    default: 300
+  },
+  minlength: {
+    type: [Number, String],
+    default: 1
+  },
+  remote: {
+    type: Boolean,
+    default: false
+  },
+  highlight: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([
+  UI_AUTOCOMPLETE.EVENTS.INPUT,
+  UI_AUTOCOMPLETE.EVENTS.SEARCH,
+  UI_AUTOCOMPLETE.EVENTS.SELECTED
+]);
+
+const textfield = ref(null);
+const autocomplete = ref(null);
+let autocompleteEl = null;
+let autocompleteListener = null;
+let isExpanded = false;
+const inputValue = ref(props.modelValue);
+let currentSource = []; // source data
+const currentSuggestion = {
+  data: [], // filter data
+  index: -1
+};
+let currentSelectedItem = null;
+let timer = null;
+let scroll = {
+  $view: null,
+  viewHeight: 0,
+  listHeight: 0,
+  itemHeight: 0,
+  currentFirstIndex: 0,
+  currentLastIndex: 0,
+  defaultFirstIndex: 0,
+  defaultLastIndex: 0,
+  defaultReversedLastIndex: 0,
+  defaultReversedFirstIndex: 0
+};
+
+const className = computed(() => ({
+  'mdc-autocomplete': true,
+  'mdc-autocomplete--expanded': isExpanded
+}));
+const hasLeadingIcon = computed(() => {
+  const slots = useSlots();
+  return !!(props.withLeadingIcon || slots.before);
+});
+const hasTrailingIcon = computed(() => {
+  const slots = useSlots();
+  return !!(props.withTrailingIcon || slots.after);
+});
+
+onBeforeMount(() => checkOptionFormat('<ui-autocomplete>', props.sourceFormat));
+
+onMounted(() => {
+  autocompleteEl = autocomplete.value;
+  autocompleteEl.addEventListener(
+    UI_AUTOCOMPLETE.EVENTS.MOUSEMOVE,
+    handleMousemove
+  );
+  autocompleteEl.addEventListener(
+    UI_AUTOCOMPLETE.EVENTS.MOUSELEAVE,
+    handleMouseleave
+  );
+
+  setDataSource(props.source);
+
+  watch(
+    () => props.modelValue,
+    (val) => {
+      if (inputValue.value !== val) {
+        inputValue.value = `${val}`;
+      }
+    }
+  );
+  watch(
+    () => props.source,
+    (data) => {
+      setDataSource(data);
+      on();
+    }
+  );
+});
+
+onBeforeUnmount(() => {
+  if (autocompleteListener) {
+    document.removeEventListener(
+      UI_AUTOCOMPLETE.EVENTS.CLICK,
+      autocompleteListener
+    );
+  }
+  autocompleteEl.removeEventListener(
+    UI_AUTOCOMPLETE.EVENTS.MOUSEMOVE,
+    handleMousemove
+  );
+  autocompleteEl.removeEventListener(
+    UI_AUTOCOMPLETE.EVENTS.MOUSELEAVE,
+    handleMouseleave
+  );
+});
+
+function initClientHeight() {
+  const view = autocompleteEl;
+  const list = view.querySelector('ul');
+  const item = view.querySelector('li');
+
+  if (!scroll.$view) {
+    scroll.$view = view;
+    scroll.viewHeight = view.offsetHeight;
+  }
+  if (!scroll.item) {
+    scroll.itemHeight = item.offsetHeight;
+  }
+  if (scroll.list !== list.offsetHeight) {
+    scroll.listHeight = list.offsetHeight;
+  }
+
+  scroll.defaultFirstIndex = 0;
+  scroll.defaultLastIndex =
+    parseInt(scroll.viewHeight / scroll.itemHeight, 10) - 1;
+  let maxHeight = currentSuggestion.data.length - 1;
+  if (scroll.defaultReversedLastIndex !== maxHeight) {
+    scroll.defaultReversedLastIndex = maxHeight;
+    scroll.defaultReversedFirstIndex =
+      scroll.defaultReversedLastIndex - scroll.defaultLastIndex;
+  }
+
+  scroll.currentLastIndex = scroll.defaultLastIndex;
+}
+
+const escapeRegExChars = (value) =>
+  value.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
+
+const sanitize = (value) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+
+function formatResult(keywords) {
+  const pattern = '(' + escapeRegExChars(keywords) + ')';
+  const regExp = new RegExp(pattern, 'gi');
+
+  // Local data source
+  currentSuggestion.data = currentSource
+    .filter(
+      (word) =>
+        word[props.sourceFormat.label].toLowerCase().indexOf(keywords) !== -1
+    )
+    .map((word) => {
+      const suggestionLabel = word[props.sourceFormat.label];
+
+      word.html = props.highlight
+        ? sanitize(
+            suggestionLabel.replace(regExp, '<strong>$1</strong>')
+          ).replace(/&lt;(\/?strong)&gt;/g, '<$1>')
+        : sanitize(suggestionLabel);
+
+      return word;
+    });
+}
+
+function on() {
+  const keywords = inputValue.value;
+
+  if (getType(keywords) === 'string') {
+    formatResult(keywords.trim().toLowerCase());
+  } else {
+    throw new Error('[UiAutocomplete]: The keywords value must be a string');
+  }
+
+  if (keywords.length >= props.minlength && currentSuggestion.data.length) {
+    isExpanded = true;
+    nextTick(() => initClientHeight());
+  }
+}
+
+function off() {
+  isExpanded = false;
+  currentSuggestion.index = -1;
+  clearSelected();
+}
+
+function search(keywords) {
+  if (props.remote) {
+    // Remote datasource
+    if (timer) {
+      clearTimeout(timer);
+    }
+
+    timer = setTimeout(() => {
+      emit(UI_AUTOCOMPLETE.EVENTS.SEARCH, keywords); // AJAX
+    }, props.delay);
+  } else {
+    on();
+  }
+}
+
+function setDataSource(dataSource) {
+  if (getType(dataSource) === 'array') {
+    currentSource = dataSource.map((data) => {
+      let item = {};
+
+      if (getType(data) === 'string' || getType(data) === 'number') {
+        item[props.sourceFormat.label] = data;
+        item[props.sourceFormat.value] = data;
+      } else if (getType(data) === 'object') {
+        item = data;
+      } else {
+        console.warn(
+          '[UiAutocomplete]',
+          `The item of the 'source' prop must be a string or object`
+        );
+      }
+
+      return item;
+    });
+
+    currentSuggestion.data = currentSource;
+  }
+}
+
+function handleFocus() {
+  if (props.autofocus) {
+    on();
+  }
+}
+
+function handleKeydown(event) {
+  if (currentSuggestion.data.length) {
+    const MIN = 0;
+    const MAX = currentSuggestion.data.length - 1;
+
+    switch (event.keyCode) {
+      case KEYCODE.DOWN:
+        clearSelected();
+
+        if (currentSuggestion.index === MAX) {
+          currentSuggestion.index = MIN;
+
+          scroll.currentFirstIndex = scroll.defaultFirstIndex;
+          scroll.currentLastIndex = scroll.defaultLastIndex;
+          scroll.$view.scrollTop = 0;
+        } else {
+          currentSuggestion.index++;
+
+          if (currentSuggestion.index > scroll.currentLastIndex) {
+            scroll.currentFirstIndex++;
+            scroll.currentLastIndex++;
+            scroll.$view.scrollTop += scroll.itemHeight;
+          }
+        }
+
+        autocompleteEl.blur(); // Hide mouse
+        event.preventDefault();
+        break;
+      case KEYCODE.UP:
+        clearSelected();
+
+        if (currentSuggestion.index === MIN || currentSuggestion.index === -1) {
+          currentSuggestion.index = MAX;
+
+          scroll.currentFirstIndex = scroll.defaultReversedFirstIndex;
+          scroll.currentLastIndex = scroll.defaultReversedLastIndex;
+          scroll.$view.scrollTop =
+            scroll.itemHeight * scroll.defaultReversedFirstIndex;
+        } else {
+          currentSuggestion.index--;
+
+          if (currentSuggestion.index < scroll.currentLastIndex) {
+            scroll.currentFirstIndex--;
+            scroll.currentLastIndex--;
+            if (currentSuggestion.index < scroll.defaultReversedFirstIndex) {
+              scroll.$view.scrollTop -= scroll.itemHeight;
+            }
+          }
+        }
+
+        autocompleteEl.blur(); // Hide mouse
+        event.preventDefault();
+        break;
+      case KEYCODE.ENTER:
+        // Only autocomplete when text is inputted
+        if (inputValue.value.length > 0) {
+          // If no option is selected, use first option
+          let selectedItem =
+            currentSuggestion.data[
+              currentSuggestion.index < MIN ? MIN : currentSuggestion.index
+            ];
+          handleSelected(selectedItem);
+        }
+        event.preventDefault();
+        break;
+    }
+  }
+}
+
+function handleInput(value) {
+  inputValue.value = `${value}`;
+  emit(UI_AUTOCOMPLETE.EVENTS.INPUT, inputValue.value);
+
+  let keywords = inputValue.value.trim();
+  if (keywords.length >= props.minlength) {
+    search(keywords);
+  } else {
+    off();
+  }
+}
+
+function handleBlur(event) {
+  if (!autocompleteListener) {
+    const el = textfield.value;
+
+    autocompleteListener = (e) => {
+      let inTextfield = false;
+      let parentEl = e.target;
+
+      while (parentEl && parentEl !== el) {
+        parentEl = parentEl.parentNode;
+        if (parentEl === el) {
+          inTextfield = true;
+        }
+      }
+
+      if (e !== event && isExpanded && !inTextfield) {
+        document.removeEventListener(
+          UI_AUTOCOMPLETE.EVENTS.CLICK,
+          autocompleteListener
+        );
+        off();
+      }
+    };
+  }
+
+  document.addEventListener(UI_AUTOCOMPLETE.EVENTS.CLICK, autocompleteListener);
+}
+
+function handleMousemove(event) {
+  const el = event.target;
+  if (
+    el.tagName === 'LI' &&
+    !el.classList.contains(UI_AUTOCOMPLETE.cssClasses.selected)
+  ) {
+    currentSelectedItem = el;
+
+    clearSelected();
+
+    el.classList.add(UI_AUTOCOMPLETE.cssClasses.selected);
+    currentSuggestion.index = el.dataset.index;
+  }
+}
+
+function handleMouseleave() {
+  if (currentSelectedItem) {
+    currentSelectedItem.classList.remove(UI_AUTOCOMPLETE.cssClasses.selected);
+  }
+}
+
+function handleSelected(selectedItem) {
+  off();
+
+  delete selectedItem[UI_AUTOCOMPLETE.cssClasses.selected];
+  delete selectedItem.html;
+
+  emit(UI_AUTOCOMPLETE.EVENTS.INPUT, selectedItem[props.sourceFormat.label]);
+  emit(UI_AUTOCOMPLETE.EVENTS.SELECTED, selectedItem); // selectedItem: any
+}
+
+function clearSelected() {
+  const selectedItem = autocompleteEl.querySelector(
+    `li.${UI_AUTOCOMPLETE.cssClasses.selected}`
+  );
+  if (selectedItem) {
+    selectedItem.classList.remove(UI_AUTOCOMPLETE.cssClasses.selected);
+  }
+}
+
+const getItemClassName = (index) => [
+  deprecatedClassNameMap['mdc-list-item'],
+  {
+    selected: index === currentSuggestion.index
+  }
+];
 </script>

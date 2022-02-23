@@ -17,39 +17,45 @@ import { UI_TEXTFIELD_ICON } from './constants';
 
 export default {
   name: 'UiTextfieldIcon',
-  props: {
-    trailing: {
-      type: Boolean,
-      default: false
-    },
-    unclickable: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [UI_TEXTFIELD_ICON.EVENT.CLICK],
-  computed: {
-    className() {
-      let result = [
-        UI_GLOBAL.cssClasses.icon,
-        UI_TEXTFIELD_ICON.cssClasses.icon
-      ];
-
-      if (this.trailing) {
-        result.push(UI_TEXTFIELD_ICON.cssClasses.trailingIcon);
-      } else {
-        result.push(UI_TEXTFIELD_ICON.cssClasses.leadingIcon);
-      }
-
-      return result;
-    }
-  },
-  methods: {
-    handleClick(event) {
-      if (!this.unclickable) {
-        this.$emit(UI_TEXTFIELD_ICON.EVENT.CLICK, event);
-      }
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_GLOBAL,
+    UI_TEXTFIELD_ICON
   }
 };
+</script>
+
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+  trailing: {
+    type: Boolean,
+    default: false
+  },
+  unclickable: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([UI_TEXTFIELD_ICON.EVENT.CLICK]);
+
+const className = computed(() => {
+  let result = [UI_GLOBAL.cssClasses.icon, UI_TEXTFIELD_ICON.cssClasses.icon];
+
+  if (props.trailing) {
+    result.push(UI_TEXTFIELD_ICON.cssClasses.trailingIcon);
+  } else {
+    result.push(UI_TEXTFIELD_ICON.cssClasses.leadingIcon);
+  }
+
+  return result;
+});
+
+function handleClick(event) {
+  if (!props.unclickable) {
+    emit(UI_TEXTFIELD_ICON.EVENT.CLICK, event);
+  }
+}
 </script>

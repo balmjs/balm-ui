@@ -48,15 +48,11 @@ export default {
     },
     data: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     dataFormat: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     },
     // UI attributes
     maxLevel: {
@@ -81,9 +77,7 @@ export default {
     },
     defaultExpandedKeys: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     }
   },
   emits: [UI_TREE.EVENT.CHANGE],

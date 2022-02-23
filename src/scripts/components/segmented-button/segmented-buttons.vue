@@ -41,15 +41,11 @@ const props = defineProps({
   // States
   modelValue: {
     type: [Array, Number],
-    default() {
-      return [];
-    }
+    default: () => []
   },
   items: {
     type: Array,
-    default() {
-      return []; // Data: { text: string, icon: string }
-    }
+    default: () => [] // Data: { text: string, icon: string }
   },
   // UI attributes
   singleSelect: {

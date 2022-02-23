@@ -51,22 +51,16 @@ export default {
     },
     options: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     optionFormat: {
       type: Object,
-      default() {
-        return optionFormatDefaultValue;
-      }
+      default: () => optionFormatDefaultValue
     },
     // UI attributes
     chips: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     }
   },
   emits: [UI_CHIPS.EVENT.CHANGE],

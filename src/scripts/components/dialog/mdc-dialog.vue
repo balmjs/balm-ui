@@ -44,9 +44,7 @@ export default {
     // UI attributes
     options: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     }
   },
   data() {

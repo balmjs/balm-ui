@@ -40,9 +40,7 @@ export default {
     },
     options: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     },
     // UI attributes
     toolbar: {
@@ -64,27 +62,19 @@ export default {
     // Extension attributes
     toolbarIcons: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     },
     toolbarTips: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     },
     toolbarOptions: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     },
     toolbarHandlers: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     },
     customImageHandler: {
       type: Boolean,
@@ -92,9 +82,7 @@ export default {
     },
     emotions: {
       type: Array,
-      default() {
-        return []; // format: [{ type, title, content: { name, value, src } }]
-      }
+      default: () => [] // format: [{ type, title, content: { name, value, src } }]
     },
     withCounter: {
       type: Boolean,

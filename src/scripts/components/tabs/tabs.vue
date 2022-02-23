@@ -44,9 +44,7 @@ const props = defineProps({
   ...tabProps,
   items: {
     type: Array,
-    default() {
-      return []; // Data: { text: string, icon: string }
-    }
+    default: () => [] // Data: { text: string, icon: string }
   }
 });
 

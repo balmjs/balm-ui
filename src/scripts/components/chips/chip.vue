@@ -66,7 +66,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import { icon, useMaterialIcon } from '../../mixins/material-icon';
 
 const props = defineProps({

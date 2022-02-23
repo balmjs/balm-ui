@@ -1,7 +1,7 @@
 <template>
   <div class="mdc-rangepicker">
     <ui-textfield
-      ref="startInput"
+      ref="startTextfield"
       v-model="startInputValue"
       class="mdc-rangepicker__start"
       :outlined="outlined"
@@ -13,7 +13,7 @@
       <slot name="separator"></slot>
     </span>
     <ui-textfield
-      ref="endInput"
+      ref="endTextfield"
       v-model="endInputValue"
       class="mdc-rangepicker__end"
       :outlined="outlined"
@@ -25,10 +25,6 @@
 </template>
 
 <script>
-import flatpickr from 'flatpickr';
-import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
-import UiTextfield from '../textfield/textfield.vue';
-
 // Define rangepicker constants
 const UI_RANGEPICKER = {
   EVENTS: {
@@ -38,168 +34,168 @@ const UI_RANGEPICKER = {
 
 export default {
   name: 'UiRangepicker',
-  components: {
-    UiTextfield
-  },
-  props: {
-    // <ui-textfield> variants
-    outlined: {
-      type: Boolean,
-      default: false
-    },
-    // States
-    modelValue: {
-      type: Array,
-      default: () => []
-    },
-    // <ui-textfield> attributes
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    // UI attributes
-    placeholders: {
-      type: Array,
-      default: () => []
-    },
-    labels: {
-      type: Array,
-      default: () => []
-    },
-    // For flatpickr
-    config: {
-      type: Object,
-      default: () => ({})
-    }
-  },
-  emits: [UI_RANGEPICKER.EVENT.CHANGE],
-  data() {
-    return {
-      picker: null,
-      startInputValue: '',
-      endInputValue: ''
-    };
-  },
-  computed: {
-    startLabel() {
-      return this.labels[0] || '';
-    },
-    endLabel() {
-      return this.labels[1] || '';
-    },
-    startPlaceholder() {
-      return this.placeholders[0] || '';
-    },
-    endPlaceholder() {
-      return this.placeholders[1] || '';
-    }
-  },
-  watch: {
-    modelValue(val, oldVal) {
-      let hasOneOldValue = oldVal[0] || oldVal[1];
-      let hasTwoNewValue = val[0] && val[1];
-
-      if (!hasOneOldValue && hasTwoNewValue) {
-        this.updateInputs(val);
-        this.updateInitialValue();
-      } else if (hasOneOldValue && !hasTwoNewValue) {
-        this.clear();
-      }
-    }
-  },
-  mounted() {
-    const startInputEl = this.$refs.startInput.el.querySelector('input');
-    const endInputEl = this.$refs.endInput.el.querySelector('input');
-
-    if (!this.picker) {
-      let config = Object.assign({}, this.config, {
-        disableMobile: true, // Mobile Support
-        plugins: [
-          new rangePlugin({
-            input: endInputEl
-          })
-        ]
-      });
-      // custom event
-      config.onChange = (selectedDates, dateStr, instance) => {
-        this.updateInputs(selectedDates);
-        this.$emit(UI_RANGEPICKER.EVENT.CHANGE, [
-          this.startInputValue,
-          this.endInputValue
-        ]);
-      };
-      config.onClose = () => {
-        startInputEl.blur();
-        endInputEl.blur();
-      };
-      // set default value
-      config.onReady = (selectedDates, dateStr, instance) => {
-        this.updateInputs(this.modelValue);
-        this.updateInitialValue(instance);
-
-        const dateValue = [this.startInputValue, this.endInputValue];
-        this.$emit(UI_RANGEPICKER.EVENT.CHANGE, dateValue);
-      };
-      // fix(@flatpickr): second input onChange bug for rangePlugin (temporary solution)
-      config.onValueUpdate = () => {
-        this.onEndInputChange();
-      };
-
-      this.picker = flatpickr(startInputEl, config);
-    }
-  },
-  beforeUnmount() {
-    this.picker.destroy();
-    this.picker = null;
-  },
-  methods: {
-    updateInputs(dates) {
-      if (dates.length === 2) {
-        const selectedDates = dates.map((value) =>
-          value
-            ? flatpickr.formatDate(
-                new Date(value),
-                this.config.dateFormat || 'Y-m-d'
-              )
-            : ''
-        );
-
-        if (
-          this.startInputValue !== selectedDates[0] ||
-          this.endInputValue !== selectedDates[1]
-        ) {
-          this.startInputValue = selectedDates[0];
-          this.endInputValue = selectedDates[1];
-        }
-      }
-    },
-    updateInitialValue(instance = this.picker) {
-      const dateValue =
-        this.startInputValue && this.endInputValue
-          ? [this.startInputValue, this.endInputValue]
-          : [];
-      instance.setDate(dateValue, true); // Redrawing
-
-      // fix(ui): focus bug for init (temporary solution)
-      this.$refs.startInput.$textField.foundation.deactivateFocus();
-    },
-    clear() {
-      this.startInputValue = '';
-      this.endInputValue = '';
-      this.updateInitialValue();
-    },
-    onEndInputChange() {
-      if (this.config.enableTime) {
-        const endInputValue = this.$refs.endInput.$textField.value;
-        if (endInputValue !== this.endInputValue) {
-          this.updateInputs([this.startInputValue, endInputValue]);
-          this.$emit(UI_RANGEPICKER.EVENT.CHANGE, [
-            this.startInputValue,
-            this.endInputValue
-          ]);
-        }
-      }
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_RANGEPICKER
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
+import flatpickr from 'flatpickr';
+import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
+import UiTextfield from '../textfield/textfield.vue';
+
+const props = defineProps({
+  // <ui-textfield> variants
+  outlined: {
+    type: Boolean,
+    default: false
+  },
+  // States
+  modelValue: {
+    type: Array,
+    default: () => []
+  },
+  // <ui-textfield> attributes
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  // UI attributes
+  placeholders: {
+    type: Array,
+    default: () => []
+  },
+  labels: {
+    type: Array,
+    default: () => []
+  },
+  // For flatpickr
+  config: {
+    type: Object,
+    default: () => ({})
+  }
+});
+
+const emit = defineEmits([UI_RANGEPICKER.EVENTS.CHANGE]);
+
+const startLabel = computed(() => props.labels[0] || '');
+const endLabel = computed(() => props.labels[1] || '');
+const startPlaceholder = computed(() => props.placeholders[0] || '');
+const endPlaceholder = computed(() => props.placeholders[1] || '');
+
+const startTextfield = ref(null);
+const endTextfield = ref(null);
+let picker = null;
+let startInputValue = '';
+let endInputValue = '';
+
+onMounted(() => {
+  const startInputEl = startTextfield.value.querySelector('input');
+  const endInputEl = endTextfield.value.querySelector('input');
+
+  if (!picker) {
+    let config = Object.assign({}, props.config, {
+      disableMobile: true, // Mobile Support
+      plugins: [
+        new rangePlugin({
+          input: endInputEl
+        })
+      ]
+    });
+    // custom event
+    config.onChange = (selectedDates, dateStr, instance) => {
+      updateInputs(selectedDates);
+      emit(UI_RANGEPICKER.EVENTS.CHANGE, [startInputValue, endInputValue]);
+    };
+    config.onClose = () => {
+      startInputEl.blur();
+      endInputEl.blur();
+    };
+    // set default value
+    config.onReady = (selectedDates, dateStr, instance) => {
+      updateInputs(props.modelValue);
+      updateInitialValue(instance);
+
+      const dateValue = [startInputValue, endInputValue];
+      emit(UI_RANGEPICKER.EVENTS.CHANGE, dateValue);
+    };
+    // fix(@flatpickr): second input onChange bug for rangePlugin (temporary solution)
+    config.onValueUpdate = () => {
+      onEndInputChange();
+    };
+
+    picker = flatpickr(startInputEl, config);
+  }
+
+  watch(
+    () => props.modelValue,
+    (val, oldVal) => {
+      const hasOneOldValue = oldVal[0] || oldVal[1];
+      const hasTwoNewValue = val[0] && val[1];
+
+      if (!hasOneOldValue && hasTwoNewValue) {
+        updateInputs(val);
+        updateInitialValue();
+      } else if (hasOneOldValue && !hasTwoNewValue) {
+        clear();
+      }
+    }
+  );
+});
+
+onBeforeUnmount(() => {
+  if (picker) {
+    picker.destroy();
+    picker = null;
+  }
+});
+
+function updateInputs(dates) {
+  if (dates.length === 2) {
+    const selectedDates = dates.map((value) =>
+      value
+        ? flatpickr.formatDate(
+            new Date(value),
+            props.config.dateFormat || 'Y-m-d'
+          )
+        : ''
+    );
+
+    if (
+      startInputValue !== selectedDates[0] ||
+      endInputValue !== selectedDates[1]
+    ) {
+      startInputValue = selectedDates[0];
+      endInputValue = selectedDates[1];
+    }
+  }
+}
+
+function updateInitialValue(instance = picker) {
+  const dateValue =
+    startInputValue && endInputValue ? [startInputValue, endInputValue] : [];
+  instance.setDate(dateValue, true); // Redrawing
+
+  // fix(ui): focus bug for init (temporary solution)
+  startTextfield.$textField.foundation.deactivateFocus();
+}
+
+function clear() {
+  startInputValue = '';
+  endInputValue = '';
+  updateInitialValue();
+}
+
+function onEndInputChange() {
+  if (props.config.enableTime) {
+    const currentEndInputValue = endTextfield.$textField.value;
+    if (currentEndInputValue !== endInputValue) {
+      updateInputs([startInputValue, currentEndInputValue]);
+      emit(UI_RANGEPICKER.EVENTS.CHANGE, [startInputValue, endInputValue]);
+    }
+  }
+}
 </script>

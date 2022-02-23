@@ -1,6 +1,6 @@
 <template>
   <ui-textfield
-    ref="input"
+    ref="textfield"
     :model-value="inputValue"
     class="mdc-datepicker"
     :input-id="inputId"
@@ -74,11 +74,6 @@
 </template>
 
 <script>
-import flatpickr from 'flatpickr';
-import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect';
-import UiTextfield from '../textfield/textfield.vue';
-import domMixin from '../../mixins/dom';
-import textfieldMixin from '../../mixins/textfield';
 import { UI_TEXTFIELD_ICON } from '../textfield/constants';
 
 // Define datepicker constants
@@ -97,208 +92,231 @@ const UI_DATEPICKER = {
 
 export default {
   name: 'UiDatepicker',
-  components: {
-    UiTextfield
-  },
-  mixins: [domMixin, textfieldMixin],
-  props: {
-    // <ui-textfield> variants
-    outlined: {
-      type: Boolean,
-      default: false
-    },
-    // States
-    modelValue: {
-      type: [String, Number, Array],
-      default: ''
-    },
-    // <ui-textfield> attributes
-    inputId: {
-      type: [String, null],
-      default: null
-    },
-    // For flatpickr
-    config: {
-      type: Object,
-      default: () => ({})
-    },
-    toggle: {
-      type: Boolean,
-      default: false
-    },
-    clear: {
-      type: Boolean,
-      default: false
-    },
-    monthOptions: {
-      type: Object,
-      default: () => ({})
-    }
-  },
-  emits: [UI_DATEPICKER.EVENT.CHANGE],
-  data() {
-    return {
-      UI_TEXTFIELD_ICON,
-      picker: null,
-      inputValue: this.modelValue,
-      mode: this.config.mode || UI_DATEPICKER.MODE.SINGLE,
-      rangeSeparator: ''
-    };
-  },
-  computed: {
-    hasLeadingIcon() {
-      return !!(this.withLeadingIcon || this.$slots.before);
-    },
-    hasTrailingIcon() {
-      return !!(
-        this.withTrailingIcon ||
-        this.$slots.after ||
-        this.toggle ||
-        this.clear
-      );
-    }
-  },
-  watch: {
-    modelValue(val) {
-      if (this.mode === UI_DATEPICKER.MODE.RANGE) {
-        this.setRangeDate(val);
-      } else {
-        this.inputValue = val;
-      }
-      this.syncSelectedDates(this.inputValue);
-    }
-  },
-  mounted() {
-    const uiTextField = this.$refs.input;
-    const inputEl = this.el.querySelector('input');
-    inputEl.dataset.input = '';
-
-    if (!this.picker) {
-      let config = Object.assign({}, this.config);
-      switch (this.config.mode) {
-        case UI_DATEPICKER.MODE.MONTH:
-          config = Object.assign(config, {
-            mode: UI_DATEPICKER.MODE.SINGLE,
-            plugins: [new monthSelectPlugin(this.monthOptions)]
-          });
-          break;
-        case UI_DATEPICKER.MODE.TIME:
-          config = Object.assign(config, {
-            enableTime: true,
-            noCalendar: true,
-            dateFormat: 'H:i'
-          });
-          break;
-        default:
-      }
-      // Default config for ui
-      config.disableMobile = true; // mobile support required
-      config.wrap = true; // For toggle & clear icons
-      // Custom event
-      config.onOpen = () => {
-        // fix(ui): `altInput` bug
-        if (config.altInput) {
-          uiTextField.$textField.foundation.activateFocus();
-        }
-      };
-      config.onClose = () => {
-        if (config.altInput) {
-          uiTextField.$textField.foundation.deactivateFocus();
-        }
-
-        // fix(ui): time mode bug when the initial value is empty
-        if (config.mode === UI_DATEPICKER.MODE.TIME && !this.inputValue) {
-          inputEl.value = '';
-        }
-
-        inputEl.blur();
-      };
-      // Set default value
-      if (this.mode === UI_DATEPICKER.MODE.RANGE) {
-        this.rangeSeparator = config.locale
-          ? config.locale.rangeSeparator
-          : ' to ';
-        this.setRangeDate(this.modelValue);
-      } else {
-        config.onReady = (selectedDates, dateStr, instance) => {
-          // defaultDate: 'today'
-          if (dateStr) {
-            this.inputValue = dateStr;
-            this.$emit(UI_DATEPICKER.EVENT.CHANGE, dateStr);
-          }
-        };
-        // fix(ui): `clear` event
-        config.onChange = (selectedDates, dateStr, instance) => {
-          if (!dateStr) {
-            this.$emit(UI_DATEPICKER.EVENT.CHANGE, '');
-          }
-        };
-      }
-      // Init
-      config.defaultDate = this.inputValue;
-      this.picker = flatpickr(this.el, config);
-    }
-  },
-  beforeUnmount() {
-    this.picker.destroy();
-    this.picker = null;
-  },
-  methods: {
-    syncSelectedDates(value) {
-      if (this.picker) {
-        this.picker.setDate(value);
-      }
-    },
-    handleChange(event) {
-      this.inputValue = event.target.value;
-
-      let result;
-      switch (this.mode) {
-        case UI_DATEPICKER.MODE.MULTIPLE:
-          let multipleValue = this.inputValue.replace(/\s,\s/, ',').split(',');
-          result =
-            multipleValue.length === 1
-              ? multipleValue[0] // string
-              : multipleValue; // array
-          break;
-        case UI_DATEPICKER.MODE.RANGE:
-          let rangeValue = this.inputValue.split(this.rangeSeparator);
-          let startDate = rangeValue[0];
-          let endDate = rangeValue[1];
-          if (startDate && endDate) {
-            result =
-              startDate === endDate
-                ? startDate // string
-                : [startDate, endDate]; // array
-
-            this.syncSelectedDates(result);
-          }
-          break;
-        default:
-          result = this.inputValue; // string
-          break;
-      }
-
-      if (result) {
-        this.$emit(UI_DATEPICKER.EVENT.CHANGE, result);
-      }
-    },
-    handleClear(event) {
-      // fix(ui): trigger `<ui-textfield>` focused when clicking the clear button
-      if (!this.inputValue) {
-        event.stopPropagation();
-      }
-    },
-    setRangeDate(selectedDates) {
-      if (Array.isArray(selectedDates) && selectedDates.length === 2) {
-        let startDate = selectedDates[0];
-        let endDate = selectedDates[1];
-        this.inputValue =
-          startDate === endDate
-            ? startDate
-            : `${startDate}${this.rangeSeparator}${endDate}`;
-      }
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_TEXTFIELD_ICON,
+    UI_DATEPICKER
   }
 };
+</script>
+
+<script setup>
+import {
+  ref,
+  computed,
+  watch,
+  onMounted,
+  onBeforeUnmount,
+  useSlots
+} from 'vue';
+import flatpickr from 'flatpickr';
+import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect';
+import UiTextfield from '../textfield/textfield.vue';
+import { textfieldProps } from '../../mixins/textfield';
+
+const props = defineProps({
+  ...textfieldProps,
+  // <ui-textfield> variants
+  outlined: {
+    type: Boolean,
+    default: false
+  },
+  // States
+  modelValue: {
+    type: [String, Number, Array],
+    default: ''
+  },
+  // <ui-textfield> attributes
+  inputId: {
+    type: [String, null],
+    default: null
+  },
+  // For flatpickr
+  config: {
+    type: Object,
+    default: () => ({})
+  },
+  toggle: {
+    type: Boolean,
+    default: false
+  },
+  clear: {
+    type: Boolean,
+    default: false
+  },
+  monthOptions: {
+    type: Object,
+    default: () => ({})
+  }
+});
+
+const emit = defineEmits([UI_DATEPICKER.EVENTS.CHANGE]);
+
+const hasLeadingIcon = computed(() => {
+  const slots = useSlots();
+  return !!(props.withLeadingIcon || slots.before);
+});
+const hasTrailingIcon = computed(() => {
+  const slots = useSlots();
+  return !!(
+    props.withTrailingIcon ||
+    slots.after ||
+    props.toggle ||
+    props.clear
+  );
+});
+
+const textfield = ref(null);
+let picker = null;
+const inputValue = ref(props.modelValue);
+const mode = props.config.mode || UI_DATEPICKER.MODE.SINGLE;
+let rangeSeparator = '';
+
+onMounted(() => {
+  const el = textfield.value;
+  const inputEl = el.querySelector('input');
+  inputEl.dataset.input = '';
+
+  if (!picker) {
+    let config = Object.assign({}, props.config);
+    switch (config.mode) {
+      case UI_DATEPICKER.MODE.MONTH:
+        config = Object.assign(config, {
+          mode: UI_DATEPICKER.MODE.SINGLE,
+          plugins: [new monthSelectPlugin(props.monthOptions)]
+        });
+        break;
+      case UI_DATEPICKER.MODE.TIME:
+        config = Object.assign(config, {
+          enableTime: true,
+          noCalendar: true,
+          dateFormat: 'H:i'
+        });
+        break;
+      default:
+    }
+    // Default config for ui
+    config.disableMobile = true; // mobile support required
+    config.wrap = true; // For toggle & clear icons
+    // Custom event
+    config.onOpen = () => {
+      // fix(ui): `altInput` bug
+      if (config.altInput) {
+        textfield.$textField.foundation.activateFocus();
+      }
+    };
+    config.onClose = () => {
+      if (config.altInput) {
+        textfield.$textField.foundation.deactivateFocus();
+      }
+
+      // fix(ui): time mode bug when the initial value is empty
+      if (config.mode === UI_DATEPICKER.MODE.TIME && !inputValue.value) {
+        inputEl.value = '';
+      }
+
+      inputEl.blur();
+    };
+    // Set default value
+    if (mode === UI_DATEPICKER.MODE.RANGE) {
+      rangeSeparator = config.locale ? config.locale.rangeSeparator : ' to ';
+      setRangeDate(props.modelValue);
+    } else {
+      config.onReady = (selectedDates, dateStr, instance) => {
+        // defaultDate: 'today'
+        if (dateStr) {
+          inputValue.value = dateStr;
+          emit(UI_DATEPICKER.EVENTS.CHANGE, dateStr);
+        }
+      };
+      // fix(ui): `clear` event
+      config.onChange = (selectedDates, dateStr, instance) => {
+        if (!dateStr) {
+          emit(UI_DATEPICKER.EVENTS.CHANGE, '');
+        }
+      };
+    }
+    // Init
+    config.defaultDate = inputValue.value;
+    picker = flatpickr(el, config);
+  }
+
+  watch(
+    () => props.modelValue,
+    (val) => {
+      if (mode === UI_DATEPICKER.MODE.RANGE) {
+        setRangeDate(val);
+      } else {
+        inputValue.value = val;
+      }
+      syncSelectedDates(inputValue.value);
+    }
+  );
+});
+
+onBeforeUnmount(() => {
+  if (picker) {
+    picker.destroy();
+    picker = null;
+  }
+});
+
+function syncSelectedDates(value) {
+  if (picker) {
+    picker.setDate(value);
+  }
+}
+
+function handleChange(event) {
+  inputValue.value = event.target.value;
+
+  let result;
+  switch (mode) {
+    case UI_DATEPICKER.MODE.MULTIPLE:
+      let multipleValue = inputValue.value.replace(/\s,\s/, ',').split(',');
+      result =
+        multipleValue.length === 1
+          ? multipleValue[0] // string
+          : multipleValue; // array
+      break;
+    case UI_DATEPICKER.MODE.RANGE:
+      let rangeValue = inputValue.value.split(rangeSeparator);
+      let startDate = rangeValue[0];
+      let endDate = rangeValue[1];
+      if (startDate && endDate) {
+        result =
+          startDate === endDate
+            ? startDate // string
+            : [startDate, endDate]; // array
+
+        syncSelectedDates(result);
+      }
+      break;
+    default:
+      result = inputValue.value; // string
+      break;
+  }
+
+  if (result) {
+    emit(UI_DATEPICKER.EVENTS.CHANGE, result);
+  }
+}
+
+function handleClear(event) {
+  // fix(ui): trigger `<ui-textfield>` focused when clicking the clear button
+  if (!inputValue.value) {
+    event.stopPropagation();
+  }
+}
+
+function setRangeDate(selectedDates) {
+  if (Array.isArray(selectedDates) && selectedDates.length === 2) {
+    let startDate = selectedDates[0];
+    let endDate = selectedDates[1];
+    inputValue.value =
+      startDate === endDate
+        ? startDate
+        : `${startDate}${rangeSeparator}${endDate}`;
+  }
+}
 </script>

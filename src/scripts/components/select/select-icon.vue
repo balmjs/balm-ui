@@ -23,24 +23,27 @@ const UI_SELECT_ICON = {
 
 export default {
   name: 'UiSelectIcon',
-  props: {
-    unclickable: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [UI_SELECT_ICON.EVENT.CLICK],
-  data() {
-    return {
-      UI_GLOBAL
-    };
-  },
-  methods: {
-    handleClick(event) {
-      if (!this.unclickable) {
-        this.$emit(UI_SELECT_ICON.EVENT.CLICK, event);
-      }
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_GLOBAL,
+    UI_SELECT_ICON
   }
 };
+</script>
+
+<script setup>
+const props = defineProps({
+  unclickable: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([UI_SELECT_ICON.EVENTS.CLICK]);
+
+function handleClick(event) {
+  if (!props.unclickable) {
+    emit(UI_SELECT_ICON.EVENTS.CLICK, event);
+  }
+}
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div :class="className">
+  <div ref="radio" :class="className">
     <input
       :id="inputId"
       v-model="selectedValue"
@@ -19,10 +19,6 @@
 </template>
 
 <script>
-import { MDCRadio } from '../../../material-components-web/radio';
-import domMixin from '../../mixins/dom';
-import inputMixin from '../../mixins/input';
-
 // Define radio constants
 const UI_RADIO = {
   cssClasses: {
@@ -35,66 +31,78 @@ const UI_RADIO = {
 
 export default {
   name: 'UiRadio',
-  mixins: [domMixin, inputMixin],
-  props: {
-    // States
-    modelValue: {
-      type: [String, Number],
-      default: ''
-    },
-    // <input type="radio"> attributes
-    value: {
-      type: [String, Number],
-      default: ''
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [UI_RADIO.EVENT.CHANGE],
-  data() {
-    return {
-      $radio: null,
-      selectedValue: this.modelValue
-    };
-  },
-  computed: {
-    className() {
-      const isTouch =
-        this.el && this.el.classList.contains(UI_RADIO.cssClasses.touch);
-
-      return {
-        'mdc-radio': true,
-        'mdc-radio--disabled': this.disabled,
-        // Accessibility
-        'mdc-radio--touch': isTouch
-      };
-    }
-  },
-  watch: {
-    modelValue(val) {
-      this.selectedValue = val;
-    },
-    disabled(val) {
-      if (this.$radio) {
-        this.$radio.disabled = val;
-      }
-    }
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.$radio = new MDCRadio(this.el);
-
-      if (this.$parent.$formField) {
-        this.$parent.$formField.input = this.$radio;
-      }
-    });
-  },
-  methods: {
-    handleChange() {
-      this.$emit(UI_RADIO.EVENT.CHANGE, this.selectedValue);
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_RADIO
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, watch, onMounted, nextTick } from 'vue';
+import { MDCRadio } from '../../../material-components-web/radio';
+import { inputProps } from '../../mixins/input';
+
+const props = defineProps({
+  // States
+  modelValue: {
+    type: [String, Number],
+    default: ''
+  },
+  // <input type="radio"> attributes
+  ...inputProps,
+  value: {
+    type: [String, Number],
+    default: ''
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([UI_RADIO.EVENTS.CHANGE]);
+
+const radio = ref(null);
+let $radio = null;
+const selectedValue = ref(props.modelValue);
+
+const isAccessible = computed(
+  () => radio.value && radio.value.classList.contains(UI_RADIO.cssClasses.touch)
+).value;
+const className = computed(() => ({
+  'mdc-radio': true,
+  'mdc-radio--disabled': props.disabled,
+  // Accessibility
+  'mdc-radio--touch': isAccessible
+}));
+
+onMounted(() => {
+  nextTick(() => {
+    $radio = new MDCRadio(radio.value);
+
+    if (radio.$parent.$formField) {
+      radio.$parent.$formField.input = $radio;
+    }
+  });
+
+  watch(
+    () => props.modelValue,
+    (val) => {
+      selectedValue.value = val;
+    }
+  );
+  watch(
+    () => props.disabled,
+    (val) => {
+      if ($radio) {
+        $radio.disabled = val;
+      }
+    }
+  );
+});
+
+function handleChange() {
+  emit(UI_RADIO.EVENTS.CHANGE, selectedValue.value);
+}
 </script>

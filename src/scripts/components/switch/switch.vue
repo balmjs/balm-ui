@@ -1,5 +1,6 @@
 <template>
   <button
+    ref="switch"
     :class="className"
     type="button"
     role="switch"
@@ -36,9 +37,6 @@
 </template>
 
 <script>
-import { MDCSwitch } from '../../../material-components-web/switch';
-import domMixin from '../../mixins/dom';
-
 // Define switch constants
 const UI_SWITCH = {
   EVENTS: {
@@ -49,78 +47,88 @@ const UI_SWITCH = {
 
 export default {
   name: 'UiSwitch',
-  mixins: [domMixin],
-  props: {
-    // States
-    modelValue: {
-      type: Boolean,
-      default: false
-    },
-    trueValue: {
-      type: [Boolean, Number, String],
-      default: true
-    },
-    falseValue: {
-      type: [Boolean, Number, String],
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [UI_SWITCH.EVENT.CHANGE, UI_SWITCH.EVENT.SELECTED],
-  data() {
-    return {
-      $switch: null,
-      selectedValue: this.modelValue
-    };
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-switch': true,
-        'mdc-switch--unselected': !this.selectedValue,
-        'mdc-switch--selected': this.selectedValue
-      };
-    }
-  },
-  watch: {
-    modelValue(val) {
-      this.triggerSwitch(val);
-    },
-    disabled(val) {
-      if (this.$switch) {
-        this.$switch.disabled = val;
-      }
-    }
-  },
-  mounted() {
-    this.init();
-  },
-  updated() {
-    // NOTE: Once for init, mdc switch has bug
-    this.init();
-  },
-  methods: {
-    init() {
-      this.$switch = new MDCSwitch(this.el);
-      this.triggerSwitch();
-      this.$switch.selected = this.selectedValue;
-    },
-    triggerSwitch(selected = this.modelValue) {
-      this.selectedValue = selected;
-      // this.$switch.selected = selected; // TODO: mdc switch has bug
-    },
-    handleChange() {
-      const selected = !this.selectedValue;
-
-      this.$emit(UI_SWITCH.EVENT.CHANGE, selected);
-      this.$emit(
-        UI_SWITCH.EVENT.SELECTED,
-        selected ? this.trueValue : this.falseValue
-      );
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_SWITCH
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, watch, onMounted, onUpdated } from 'vue';
+import { MDCSwitch } from '../../../material-components-web/switch';
+
+const props = defineProps({
+  // States
+  modelValue: {
+    type: Boolean,
+    default: false
+  },
+  trueValue: {
+    type: [Boolean, Number, String],
+    default: true
+  },
+  falseValue: {
+    type: [Boolean, Number, String],
+    default: false
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([UI_SWITCH.EVENTS.CHANGE, UI_SWITCH.EVENTS.SELECTED]);
+
+const switchRef = ref(null);
+let $switch = null;
+let selectedValue = ref(props.modelValue);
+
+const className = computed(() => ({
+  'mdc-switch': true,
+  'mdc-switch--unselected': !selectedValue.value,
+  'mdc-switch--selected': selectedValue.value
+}));
+
+onMounted(() => {
+  init();
+
+  watch(
+    () => props.modelValue,
+    (val) => triggerSwitch(val)
+  );
+  watch(
+    () => props.disabled,
+    (val) => {
+      if ($switch) {
+        $switch.disabled = val;
+      }
+    }
+  );
+});
+
+onUpdated(() => init()); // NOTE: Once for init, mdc switch has bug
+
+function init() {
+  $switch = new MDCSwitch(switchRef.value);
+
+  triggerSwitch();
+
+  $switch.selected = selectedValue.value;
+}
+
+function triggerSwitch(selected = props.modelValue) {
+  selectedValue.value = selected;
+  // $switch.selected = selected; // TODO: mdc switch has bug
+}
+
+function handleChange() {
+  const selected = !selectedValue.value;
+
+  emit(UI_SWITCH.EVENTS.CHANGE, selected);
+  emit(
+    UI_SWITCH.EVENTS.SELECTED,
+    selected ? props.trueValue : props.falseValue
+  );
+}
 </script>

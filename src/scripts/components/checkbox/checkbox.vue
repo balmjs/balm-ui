@@ -1,5 +1,5 @@
 <template>
-  <mdc-checkbox :class="className">
+  <mdc-checkbox ref="checkbox" :class="className">
     <input
       :id="inputId"
       v-model="selectedValue"
@@ -15,11 +15,6 @@
 </template>
 
 <script>
-import { MDCCheckbox } from '../../../material-components-web/checkbox';
-import MdcCheckbox from './mdc-checkbox.vue';
-import domMixin from '../../mixins/dom';
-import inputMixin from '../../mixins/input';
-
 // Define checkbox constants
 const UI_CHECKBOX = {
   cssClasses: {
@@ -32,81 +27,97 @@ const UI_CHECKBOX = {
 
 export default {
   name: 'UiCheckbox',
-  components: {
-    MdcCheckbox
-  },
-  mixins: [domMixin, inputMixin],
-  props: {
-    // States
-    modelValue: {
-      type: null, // NOTE: [Boolean, Array] only
-      default: false
-    },
-    indeterminate: {
-      type: Boolean,
-      default: false
-    },
-    // <input type="checkbox"> attributes
-    value: {
-      type: [String, Number],
-      default: ''
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [UI_CHECKBOX.EVENT.CHANGE],
-  data() {
-    return {
-      $checkbox: null,
-      selectedValue: this._setSelectedValue(this.modelValue)
-    };
-  },
-  computed: {
-    className() {
-      const isAccessible =
-        this.el && this.el.classList.contains(UI_CHECKBOX.cssClasses.touch);
-
-      return {
-        'mdc-checkbox--disabled': this.disabled,
-        // Accessibility
-        'mdc-checkbox--touch': isAccessible
-      };
-    }
-  },
-  watch: {
-    modelValue(val) {
-      this.selectedValue = this._setSelectedValue(val);
-    },
-    indeterminate(val) {
-      if (this.$checkbox) {
-        this.$checkbox.indeterminate = val;
-      }
-    },
-    disabled(val) {
-      if (this.$checkbox) {
-        this.$checkbox.disabled = val;
-      }
-    }
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.$checkbox = new MDCCheckbox(this.el);
-      this.$checkbox.indeterminate = this.indeterminate;
-
-      if (this.$parent.$formField) {
-        this.$parent.$formField.input = this.$checkbox;
-      }
-    });
-  },
-  methods: {
-    _setSelectedValue(value) {
-      return Array.isArray(value) ? [...value] : !!value;
-    },
-    handleChange() {
-      this.$emit(UI_CHECKBOX.EVENT.CHANGE, this.selectedValue);
-    }
+  inheritAttrs: false,
+  customOptions: {
+    UI_CHECKBOX
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, watch, onMounted, nextTick } from 'vue';
+import { MDCCheckbox } from '../../../material-components-web/checkbox';
+import MdcCheckbox from './mdc-checkbox.vue';
+import { inputProps } from '../../mixins/input';
+
+const props = defineProps({
+  // States
+  modelValue: {
+    type: null, // NOTE: [Boolean, Array] only
+    default: false
+  },
+  indeterminate: {
+    type: Boolean,
+    default: false
+  },
+  // <input type="checkbox"> attributes
+  ...inputProps,
+  value: {
+    type: [String, Number],
+    default: ''
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([UI_CHECKBOX.EVENTS.CHANGE]);
+
+const checkbox = ref(null);
+let $checkbox = null;
+const selectedValue = ref(setSelectedValue(props.modelValue));
+
+const isAccessible = computed(
+  () =>
+    checkbox.value &&
+    checkbox.value.classList.contains(UI_CHECKBOX.cssClasses.touch)
+).value;
+const className = computed(() => ({
+  'mdc-checkbox--disabled': props.disabled,
+  // Accessibility
+  'mdc-checkbox--touch': isAccessible
+}));
+
+onMounted(() => {
+  nextTick(() => {
+    $checkbox = new MDCCheckbox(checkbox.value);
+    $checkbox.indeterminate = props.indeterminate;
+
+    if (checkbox.$parent.$formField) {
+      checkbox.$parent.$formField.input = $checkbox;
+    }
+  });
+
+  watch(
+    () => props.modelValue,
+    (val) => {
+      selectedValue.value = setSelectedValue(val);
+    }
+  );
+  watch(
+    () => props.indeterminate,
+    (val) => {
+      if ($checkbox) {
+        $checkbox.indeterminate = val;
+      }
+    }
+  );
+  watch(
+    () => props.disabled,
+    (val) => {
+      if ($checkbox) {
+        $checkbox.disabled = val;
+      }
+    }
+  );
+});
+
+function setSelectedValue(value) {
+  return Array.isArray(value) ? [...value] : !!value;
+}
+
+function handleChange() {
+  emit(UI_CHECKBOX.EVENTS.CHANGE, selectedValue.value);
+}
 </script>

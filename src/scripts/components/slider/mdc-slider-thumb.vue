@@ -13,15 +13,20 @@
 <script>
 export default {
   name: 'MdcSliderThumb',
-  props: {
-    isDiscrete: {
-      type: Boolean,
-      default: false
-    },
-    value: {
-      type: Number,
-      default: 0
-    }
-  }
+  inheritAttrs: false,
+  customOptions: {}
 };
+</script>
+
+<script setup>
+const props = defineProps({
+  isDiscrete: {
+    type: Boolean,
+    default: false
+  },
+  value: {
+    type: Number,
+    default: 0
+  }
+});
 </script>

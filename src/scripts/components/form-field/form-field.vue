@@ -35,6 +35,7 @@ const props = defineProps({
 });
 
 const formField = ref(null);
+let $formField = null;
 let form = null;
 
 const className = computed(() => {
@@ -107,10 +108,14 @@ function initFormLabel() {
 }
 
 onMounted(() => {
-  new MDCFormField(formField.value);
+  $formField = new MDCFormField(formField.value);
 
   form = getFrom();
 
   initFormLabel();
+});
+
+defineExpose({
+  $formField
 });
 </script>

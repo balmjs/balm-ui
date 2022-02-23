@@ -9,11 +9,7 @@
       :multiple="multiple"
       :disabled="disabled"
       v-bind="attrs"
-      @change="
-        handleFileChange($event, (result) => {
-          $emit(UI_FILE.EVENT.CHANGE, result);
-        })
-      "
+      @change="handleChange"
     />
     <slot>
       <mdc-button
@@ -29,10 +25,6 @@
 </template>
 
 <script>
-import MdcButton from '../button/mdc-button.vue';
-import inputMixin from '../../mixins/input';
-import handleFileChange from '../../utils/file';
-
 // Define file constants
 const UI_FILE = {
   EVENTS: {
@@ -42,62 +34,68 @@ const UI_FILE = {
 
 export default {
   name: 'UiFile',
-  components: {
-    MdcButton
-  },
-  mixins: [inputMixin],
-  props: {
-    // <input type="file"> attributes
-    accept: {
-      type: String,
-      default: ''
-    },
-    multiple: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    // <ui-button> props
-    outlined: {
-      type: Boolean,
-      default: false
-    },
-    text: {
-      type: String,
-      default: 'Upload'
-    },
-    // UI attributes
-    preview: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [UI_FILE.EVENT.CHANGE],
-  data() {
-    return {
-      UI_FILE
-    };
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-file': true,
-        'mdc-file--single': !this.multiple,
-        'mdc-file--multiple': this.multiple
-      };
-    }
-  },
-  methods: {
-    handleClick() {
-      if (!this.disabled) {
-        let input = this.$refs.file;
-        input && input.click();
-      }
-    },
-    handleFileChange
+  inheritAttrs: false,
+  customOptions: {
+    UI_FILE
   }
 };
+</script>
+
+<script setup>
+import { ref, computed, watch, onMounted } from 'vue';
+import MdcButton from '../button/mdc-button.vue';
+import { inputProps } from '../../mixins/input';
+import handleFileChange from '../../utils/file';
+
+const props = defineProps({
+  ...inputProps,
+  // <input type="file"> attributes
+  accept: {
+    type: String,
+    default: ''
+  },
+  multiple: {
+    type: Boolean,
+    default: false
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  // <ui-button> props
+  outlined: {
+    type: Boolean,
+    default: false
+  },
+  text: {
+    type: String,
+    default: 'Upload'
+  },
+  // UI attributes
+  preview: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits([UI_FILE.EVENTS.CHANGE]);
+
+const className = computed(() => ({
+  'mdc-file': true,
+  'mdc-file--single': !props.multiple,
+  'mdc-file--multiple': props.multiple
+}));
+
+const file = ref(null);
+
+function handleClick() {
+  if (!props.disabled) {
+    const inputEl = file.value;
+    inputEl && inputEl.click();
+  }
+}
+
+function handleChange(event) {
+  handleFileChange(event, (result) => emit(UI_FILE.EVENTS.CHANGE, result));
+}
 </script>

@@ -294,10 +294,11 @@ const className = computed(() => ({
 }));
 
 const textfield = ref(null);
+let $textField = null;
 const inputValue = ref(props.modelValue);
 
 onMounted(() => {
-  const $textField = new MDCTextField(textfield.value);
+  $textField = new MDCTextField(textfield.value);
 
   if (props.helperTextId) {
     instanceMap.set(`${props.helperTextId}-previous`, $textField);
@@ -391,4 +392,8 @@ function handleBlur(event) {
 
   emit(UI_TEXTFIELD.EVENTS.BLUR, event);
 }
+
+defineExpose({
+  $textField
+});
 </script>

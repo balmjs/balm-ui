@@ -131,7 +131,7 @@ function useTableHeader(elementRef, props) {
   watch(
     () => props.selectedRows,
     (val) => {
-      const checkbox = elementRef;
+      const checkbox = elementRef.value;
       if (!val.length && checkbox && isFunction(checkbox.reset)) {
         checkbox.reset();
       }

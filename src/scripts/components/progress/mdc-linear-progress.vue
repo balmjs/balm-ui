@@ -1,5 +1,5 @@
 <template>
-  <div role="progressbar" class="mdc-linear-progress">
+  <div ref="mdcLinearProgress" class="mdc-linear-progress" role="progressbar">
     <div class="mdc-linear-progress__buffer">
       <div class="mdc-linear-progress__buffer-bar"></div>
       <div class="mdc-linear-progress__buffer-dots"></div>
@@ -15,6 +15,17 @@
 
 <script>
 export default {
-  name: 'MdcLinearProgress'
+  name: 'MdcLinearProgress',
+  customOptions: {}
 };
+</script>
+
+<script setup>
+import { ref } from 'vue';
+
+const mdcLinearProgress = ref(null);
+
+defineExpose({
+  mdcLinearProgress
+});
 </script>

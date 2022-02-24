@@ -1,6 +1,6 @@
 <template>
   <ui-textfield
-    ref="textfield"
+    ref="datepicker"
     :model-value="inputValue"
     class="mdc-datepicker"
     :input-id="inputId"
@@ -165,14 +165,14 @@ const hasTrailingIcon = computed(() => {
   );
 });
 
-const textfield = ref(null);
+const datepicker = ref(null);
 let picker = null;
 const inputValue = ref(props.modelValue);
 const mode = props.config.mode || UI_DATEPICKER.MODE.SINGLE;
 let rangeSeparator = '';
 
 onMounted(() => {
-  const el = textfield.value;
+  const el = datepicker.value.textfield;
   const inputEl = el.querySelector('input');
   inputEl.dataset.input = '';
 
@@ -201,12 +201,12 @@ onMounted(() => {
     config.onOpen = () => {
       // fix(ui): `altInput` bug
       if (config.altInput) {
-        textfield.$textField.foundation.activateFocus();
+        datepicker.value.$textField.foundation.activateFocus();
       }
     };
     config.onClose = () => {
       if (config.altInput) {
-        textfield.$textField.foundation.deactivateFocus();
+        datepicker.value.$textField.foundation.deactivateFocus();
       }
 
       // fix(ui): time mode bug when the initial value is empty

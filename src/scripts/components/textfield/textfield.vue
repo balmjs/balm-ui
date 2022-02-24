@@ -392,6 +392,7 @@ function handleBlur(event) {
 }
 
 defineExpose({
+  textfield,
   $textField
 });
 </script>

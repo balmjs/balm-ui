@@ -1,5 +1,5 @@
 <template>
-  <div class="mdc-checkbox">
+  <div ref="mdcCheckbox" class="mdc-checkbox">
     <slot>
       <input
         ref="checkbox"
@@ -48,6 +48,7 @@ const props = defineProps({
   }
 });
 
+const mdcCheckbox = ref(null);
 const checkbox = ref(null);
 
 onMounted(() => {
@@ -82,6 +83,7 @@ function reset() {
 }
 
 defineExpose({
+  mdcCheckbox,
   reset
 });
 </script>

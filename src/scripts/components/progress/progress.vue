@@ -49,12 +49,13 @@ watch(
 );
 
 onMounted(() => {
-  $linearProgress = new MDCLinearProgress(linearProgress.value);
+  const el = linearProgress.value.mdcLinearProgress;
+  $linearProgress = new MDCLinearProgress(el);
 
   const { setProgress } = useProgress($linearProgress, props);
 
   setProgress(props.progress);
-  if (linearProgress.value.dataset.buffer) {
+  if (el.dataset.buffer) {
     setBuffer(props.buffer);
   }
 });

@@ -398,7 +398,8 @@ onMounted(() => {
   }
 
   if (hasFixedCell) {
-    tableContent.value.addEventListener('scroll', handleScroll);
+    const tableFrameEl = tableContent.value.tableFrame;
+    tableFrameEl.addEventListener('scroll', handleScroll);
 
     if (props.rowCheckbox) {
       currentMaxWidth += UI_TABLE.CHECKBOX_COL_WIDTH;
@@ -419,9 +420,10 @@ onMounted(() => {
         $table.layout();
         initSelectedRows();
 
-        const el = tableContent.value;
-        if (el) {
-          fixedScrollWidth = el.offsetWidth - el.clientWidth;
+        const tableFrameEl = tableContent.value.tableFrame;
+        if (tableFrameEl) {
+          fixedScrollWidth =
+            tableFrameEl.offsetWidth - tableFrameEl.clientWidth;
         }
       });
     }
@@ -434,7 +436,8 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   if (hasFixedCell) {
-    tableContent.value.removeEventListener('scroll', handleScroll);
+    const tableFrameEl = tableContent.value.tableFrame;
+    tableFrameEl.removeEventListener('scroll', handleScroll);
   }
 });
 

@@ -72,4 +72,8 @@ watch(
     tableFrame.value.scrollLeft = val;
   }
 );
+
+defineExpose({
+  tableFrame
+});
 </script>

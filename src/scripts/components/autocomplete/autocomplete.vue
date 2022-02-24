@@ -1,6 +1,6 @@
 <template>
   <ui-textfield
-    ref="textfield"
+    ref="autocomplete"
     :model-value="inputValue"
     :class="className"
     :input-id="inputId"
@@ -49,7 +49,7 @@
     <template #plus>
       <div
         v-show="currentSuggestion.data.length"
-        ref="autocomplete"
+        ref="autocompleteList"
         class="mdc-autocomplete__list"
       >
         <ul :class="deprecatedListClassNameMap['mdc-list']">
@@ -177,9 +177,9 @@ const emit = defineEmits([
   UI_AUTOCOMPLETE.EVENTS.SELECTED
 ]);
 
-const textfield = ref(null);
 const autocomplete = ref(null);
-let autocompleteEl = null;
+const autocompleteList = ref(null);
+let autocompleteListEl = null;
 let autocompleteListener = null;
 let isExpanded = false;
 const inputValue = ref(props.modelValue);
@@ -219,12 +219,12 @@ const hasTrailingIcon = computed(() => {
 onBeforeMount(() => checkOptionFormat('<ui-autocomplete>', props.sourceFormat));
 
 onMounted(() => {
-  autocompleteEl = autocomplete.value;
-  autocompleteEl.addEventListener(
+  autocompleteListEl = autocompleteList.value;
+  autocompleteListEl.addEventListener(
     UI_AUTOCOMPLETE.EVENTS.MOUSEMOVE,
     handleMousemove
   );
-  autocompleteEl.addEventListener(
+  autocompleteListEl.addEventListener(
     UI_AUTOCOMPLETE.EVENTS.MOUSELEAVE,
     handleMouseleave
   );
@@ -255,18 +255,18 @@ onBeforeUnmount(() => {
       autocompleteListener
     );
   }
-  autocompleteEl.removeEventListener(
+  autocompleteListEl.removeEventListener(
     UI_AUTOCOMPLETE.EVENTS.MOUSEMOVE,
     handleMousemove
   );
-  autocompleteEl.removeEventListener(
+  autocompleteListEl.removeEventListener(
     UI_AUTOCOMPLETE.EVENTS.MOUSELEAVE,
     handleMouseleave
   );
 });
 
 function initClientHeight() {
-  const view = autocompleteEl;
+  const view = autocompleteListEl;
   const list = view.querySelector('ul');
   const item = view.querySelector('li');
 
@@ -418,7 +418,7 @@ function handleKeydown(event) {
           }
         }
 
-        autocompleteEl.blur(); // Hide mouse
+        autocompleteListEl.blur(); // Hide mouse
         event.preventDefault();
         break;
       case KEYCODE.UP:
@@ -443,7 +443,7 @@ function handleKeydown(event) {
           }
         }
 
-        autocompleteEl.blur(); // Hide mouse
+        autocompleteListEl.blur(); // Hide mouse
         event.preventDefault();
         break;
       case KEYCODE.ENTER:
@@ -476,7 +476,7 @@ function handleInput(value) {
 
 function handleBlur(event) {
   if (!autocompleteListener) {
-    const el = textfield.value;
+    const el = autocomplete.value.textfield;
 
     autocompleteListener = (e) => {
       let inTextfield = false;
@@ -534,7 +534,7 @@ function handleSelected(selectedItem) {
 }
 
 function clearSelected() {
-  const selectedItem = autocompleteEl.querySelector(
+  const selectedItem = autocompleteListEl.querySelector(
     `li.${UI_AUTOCOMPLETE.cssClasses.selected}`
   );
   if (selectedItem) {

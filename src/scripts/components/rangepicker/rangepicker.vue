@@ -1,7 +1,7 @@
 <template>
   <div class="mdc-rangepicker">
     <ui-textfield
-      ref="startTextfield"
+      ref="startDatepicker"
       v-model="startInputValue"
       class="mdc-rangepicker__start"
       :outlined="outlined"
@@ -13,7 +13,7 @@
       <slot name="separator"></slot>
     </span>
     <ui-textfield
-      ref="endTextfield"
+      ref="endDatepicker"
       v-model="endInputValue"
       class="mdc-rangepicker__end"
       :outlined="outlined"
@@ -85,15 +85,15 @@ const endLabel = computed(() => props.labels[1] || '');
 const startPlaceholder = computed(() => props.placeholders[0] || '');
 const endPlaceholder = computed(() => props.placeholders[1] || '');
 
-const startTextfield = ref(null);
-const endTextfield = ref(null);
+const startDatepicker = ref(null);
+const endDatepicker = ref(null);
 let picker = null;
 let startInputValue = '';
 let endInputValue = '';
 
 onMounted(() => {
-  const startInputEl = startTextfield.value.querySelector('input');
-  const endInputEl = endTextfield.value.querySelector('input');
+  const startInputEl = startDatepicker.value.textfield.querySelector('input');
+  const endInputEl = endDatepicker.value.textfield.querySelector('input');
 
   if (!picker) {
     let config = Object.assign({}, props.config, {
@@ -179,7 +179,7 @@ function updateInitialValue(instance = picker) {
   instance.setDate(dateValue, true); // Redrawing
 
   // fix(ui): focus bug for init (temporary solution)
-  startTextfield.$textField.foundation.deactivateFocus();
+  startDatepicker.value.$textField.foundation.deactivateFocus();
 }
 
 function clear() {
@@ -190,7 +190,7 @@ function clear() {
 
 function onEndInputChange() {
   if (props.config.enableTime) {
-    const currentEndInputValue = endTextfield.$textField.value;
+    const currentEndInputValue = endDatepicker.value.$textField.value;
     if (currentEndInputValue !== endInputValue) {
       updateInputs([startInputValue, currentEndInputValue]);
       emit(UI_RANGEPICKER.EVENTS.CHANGE, [startInputValue, endInputValue]);

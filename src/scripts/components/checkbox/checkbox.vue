@@ -67,11 +67,10 @@ const checkbox = ref(null);
 let $checkbox = null;
 const selectedValue = ref(setSelectedValue(props.modelValue));
 
-const isAccessible = computed(
-  () =>
-    checkbox.value &&
-    checkbox.value.classList.contains(UI_CHECKBOX.cssClasses.touch)
-).value;
+const isAccessible = computed(() => {
+  const el = checkbox.value.mdcCheckbox;
+  return el && el.classList.contains(UI_CHECKBOX.cssClasses.touch);
+}).value;
 const className = computed(() => ({
   'mdc-checkbox--disabled': props.disabled,
   // Accessibility
@@ -80,7 +79,8 @@ const className = computed(() => ({
 
 onMounted(() => {
   nextTick(() => {
-    $checkbox = new MDCCheckbox(checkbox.value);
+    const el = checkbox.value.mdcCheckbox;
+    $checkbox = new MDCCheckbox(el);
     $checkbox.indeterminate = props.indeterminate;
 
     if (checkbox.$parent.$formField) {

@@ -56,7 +56,7 @@ export default {
 import { ref, computed, watch, onMounted } from 'vue';
 import { MDCIconButtonToggle } from '../../../material-components-web/icon-button';
 import { strings } from '../../../material-components-web/icon-button/constants';
-import { icon } from '../../mixins/material-icon';
+import { iconProps } from '../../mixins/material-icon';
 import { useCardAction } from '../../mixins/card-action';
 
 const props = defineProps({
@@ -66,7 +66,7 @@ const props = defineProps({
     default: false
   },
   // UI attributes
-  icon,
+  ...iconProps,
   toggle: {
     type: Object,
     default: () => ({})

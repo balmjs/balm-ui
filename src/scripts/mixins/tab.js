@@ -25,9 +25,9 @@ const tabProps = {
 
 function useTab(props) {
   const isTextWithIcon = computed(() =>
-    checkType(UI_TAB.TYPES, 'textWithIcon')
+    checkType(props, UI_TAB.TYPES, 'textWithIcon')
   );
-  const isIconOnly = computed(() => checkType(UI_TAB.TYPES, 'iconOnly'));
+  const isIconOnly = computed(() => checkType(props, UI_TAB.TYPES, 'iconOnly'));
   // const isStacked = computed(() => props.stacked);
   // const isMinWidth = computed(() => props.minWidth);
   // const withIndicator = computed(() => props.contentIndicator);

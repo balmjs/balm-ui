@@ -1,8 +1,10 @@
 import { computed } from 'vue';
 
-const icon = {
-  type: String,
-  default: ''
+const iconProps = {
+  icon: {
+    type: String,
+    default: ''
+  }
 };
 
 function useMaterialIcon(props) {
@@ -11,4 +13,4 @@ function useMaterialIcon(props) {
   return { materialIcon };
 }
 
-export { icon, useMaterialIcon };
+export { iconProps, useMaterialIcon };

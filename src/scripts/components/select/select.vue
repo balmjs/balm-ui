@@ -135,8 +135,8 @@ import { strings } from '../../../material-components-web/select/constants';
 import MdcFloatingLabel from '../floating-label/mdc-floating-label.vue';
 import MdcLineRipple from '../floating-label/mdc-line-ripple.vue';
 import MdcNotchedOutline from '../floating-label/mdc-notched-outline.vue';
-import { icon, useMaterialIcon } from '../../mixins/material-icon';
-import { helperTextId, instanceMap } from '../../mixins/helper-text';
+import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
+import { helperProps, instanceMap } from '../../mixins/helper-text';
 import checkType from '../../mixins/type';
 import {
   optionFormatDefaultValue,
@@ -175,7 +175,7 @@ const props = defineProps({
     default: ''
   },
   // UI attributes
-  icon,
+  ...iconProps,
   label: {
     type: String,
     default: ''
@@ -196,7 +196,7 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  helperTextId,
+  ...helperProps,
   fixed: {
     type: Boolean,
     default: false

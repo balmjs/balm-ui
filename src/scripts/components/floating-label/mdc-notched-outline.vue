@@ -11,11 +11,15 @@
 <script>
 export default {
   name: 'MdcNotchedOutline',
-  props: {
-    hasLabel: {
-      type: Boolean,
-      default: false
-    }
-  }
+  customOptions: {}
 };
+</script>
+
+<script setup>
+const props = defineProps({
+  hasLabel: {
+    type: Boolean,
+    default: false
+  }
+});
 </script>

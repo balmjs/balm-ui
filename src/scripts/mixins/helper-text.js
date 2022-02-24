@@ -15,9 +15,11 @@ const UI_HELPER_TEXT = {
  */
 const instanceMap = new Map();
 
-const helperTextId = {
-  type: [String, null],
-  default: null
+const helperProps = {
+  helperTextId: {
+    type: [String, null],
+    default: null
+  }
 };
 
 const helperTextProps = {
@@ -70,7 +72,7 @@ function useHelperText(elementRef, props) {
 
 export {
   instanceMap,
-  helperTextId,
+  helperProps,
   UI_HELPER_TEXT,
   helperTextProps,
   useHelperText

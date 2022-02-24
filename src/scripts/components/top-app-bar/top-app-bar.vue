@@ -216,15 +216,15 @@ function createFixedAdjustElement() {
         ...Object.values(UI_TOP_APP_BAR.FIXED_ADJUST)
       );
 
-      if (this.isDense) {
+      if (isDense) {
         fixedAdjustEl.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.DENSE);
-      } else if (this.isProminent) {
+      } else if (isProminent) {
         fixedAdjustEl.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.PROMINENT);
-      } else if (this.isProminentDense) {
+      } else if (isProminentDense) {
         fixedAdjustEl.classList.add(
           UI_TOP_APP_BAR.FIXED_ADJUST.DENSE_PROMINENT
         );
-      } else if (this.isShort || this.isShortCollapsed) {
+      } else if (isShort || isShortCollapsed) {
         fixedAdjustEl.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.SHORT);
       } else {
         fixedAdjustEl.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.STANDARD);
@@ -241,8 +241,8 @@ function init() {
   }
 
   nextTick(() => {
-    this.createFixedAdjustElement();
-    $topAppBar = new MDCTopAppBar(this.el);
+    createFixedAdjustElement();
+    $topAppBar = new MDCTopAppBar(topAppBar.value);
 
     $topAppBar.listen(strings.NAVIGATION_EVENT, () => {
       emit(

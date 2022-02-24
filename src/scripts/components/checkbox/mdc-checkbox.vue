@@ -26,46 +26,62 @@
 <script>
 export default {
   name: 'MdcCheckbox',
-  props: {
-    checked: {
-      type: [Boolean, null],
-      default: null
-    },
-    indeterminate: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    }
-  },
-  watch: {
-    indeterminate(val) {
-      this.$refs.checkbox.indeterminate = val;
-    },
-    disabled(val) {
-      this.$refs.checkbox.disabled = val;
-    }
-  },
-  mounted() {
-    if (this.indeterminate) {
-      this.$refs.checkbox.indeterminate = this.indeterminate;
-    }
-
-    if (this.disabled) {
-      this.$refs.checkbox.disabled = this.disabled;
-    }
-  },
-  methods: {
-    // For the row checkbox of `<mdc-table-header>`
-    reset() {
-      if (this.$refs.checkbox.indeterminate) {
-        this.$refs.checkbox.indeterminate = false;
-      } else {
-        this.$refs.checkbox.checked = false;
-      }
-    }
-  }
+  customOptions: {}
 };
+</script>
+
+<script setup>
+import { ref, watch, onMounted } from 'vue';
+
+const props = defineProps({
+  checked: {
+    type: [Boolean, null],
+    default: null
+  },
+  indeterminate: {
+    type: Boolean,
+    default: false
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const checkbox = ref(null);
+
+onMounted(() => {
+  if (props.indeterminate) {
+    checkbox.value.indeterminate = props.indeterminate;
+  }
+  if (props.disabled) {
+    checkbox.value.disabled = props.disabled;
+  }
+
+  watch(
+    () => props.indeterminate,
+    (val) => {
+      checkbox.value.indeterminate = val;
+    }
+  );
+  watch(
+    () => props.disabled,
+    (val) => {
+      checkbox.value.disabled = val;
+    }
+  );
+});
+
+// For the row checkbox of `<mdc-table-header>`
+function reset() {
+  if (checkbox.value.indeterminate) {
+    checkbox.value.indeterminate = false;
+  } else {
+    checkbox.value.checked = false;
+  }
+}
+
+defineExpose({
+  reset
+});
 </script>

@@ -28,22 +28,23 @@
 </template>
 
 <script>
-import MdcButton from '../button/mdc-button.vue';
-
 export default {
   name: 'MdcBannerContent',
-  components: {
-    MdcButton
-  },
-  props: {
-    primaryButtonText: {
-      type: String,
-      default: 'OK'
-    },
-    secondaryButtonText: {
-      type: String,
-      default: ''
-    }
-  }
+  customOptions: {}
 };
+</script>
+
+<script setup>
+import MdcButton from '../button/mdc-button.vue';
+
+const props = defineProps({
+  primaryButtonText: {
+    type: String,
+    default: 'OK'
+  },
+  secondaryButtonText: {
+    type: String,
+    default: ''
+  }
+});
 </script>

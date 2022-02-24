@@ -48,7 +48,7 @@ export default {
 
 <script setup>
 import { ref, computed } from 'vue';
-import { icon, useMaterialIcon } from '../../mixins/material-icon';
+import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 
 const props = defineProps({
   // States
@@ -57,7 +57,7 @@ const props = defineProps({
     default: false
   },
   // UI attributes
-  icon,
+  ...iconProps,
   text: {
     type: String,
     default: ''

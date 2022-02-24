@@ -158,10 +158,10 @@ import MdcLineRipple from '../floating-label/mdc-line-ripple.vue';
 import MdcNotchedOutline from '../floating-label/mdc-notched-outline.vue';
 import MdcTextfieldCounter from './mdc-textfield-counter.vue';
 import { textfieldProps } from '../../mixins/textfield';
-import { icon, useMaterialIcon } from '../../mixins/material-icon';
+import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 import checkType from '../../mixins/type';
 import { inputProps } from '../../mixins/input';
-import { helperTextId, instanceMap } from '../../mixins/helper-text';
+import { helperProps, instanceMap } from '../../mixins/helper-text';
 
 const props = defineProps({
   // UI variants
@@ -219,7 +219,7 @@ const props = defineProps({
     default: 20
   },
   // UI attributes
-  icon,
+  ...iconProps,
   ...textfieldProps,
   prefixText: {
     type: String,
@@ -233,7 +233,7 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  helperTextId,
+  ...helperProps,
   // For plus
   plus: {
     type: Boolean,

@@ -31,7 +31,7 @@ export default {
 
 <script setup>
 import { computed } from 'vue';
-import { icon, useMaterialIcon } from '../../mixins/material-icon';
+import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 
 const props = defineProps({
   // UI variants
@@ -44,7 +44,7 @@ const props = defineProps({
     default: false
   },
   // UI attributes
-  icon,
+  ...iconProps,
   noLabel: {
     type: Boolean,
     default: false

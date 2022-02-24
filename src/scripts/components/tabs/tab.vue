@@ -74,12 +74,12 @@ export default {
 import { ref, computed, onUpdated } from 'vue';
 import UiTabIndicator from './tab-indicator.vue';
 import { tabProps, useTab } from '../../mixins/tab';
-import { icon, useMaterialIcon } from '../../mixins/material-icon';
+import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 
 const props = defineProps({
   ...tabProps,
   // UI attributes
-  icon,
+  ...iconProps,
   text: {
     type: String,
     default: ''

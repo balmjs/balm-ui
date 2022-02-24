@@ -47,7 +47,7 @@ export default {
 <script setup>
 import { ref, computed } from 'vue';
 import { useButton } from '../../mixins/button';
-import { icon, useMaterialIcon } from '../../mixins/material-icon';
+import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 import checkType from '../../mixins/type';
 
 const props = defineProps({
@@ -61,7 +61,7 @@ const props = defineProps({
     default: false
   },
   // UI attributes
-  icon,
+  ...iconProps,
   mini: {
     type: Boolean,
     default: false
@@ -79,7 +79,9 @@ const fab = ref(null);
 const { handleClick } = useButton(fab, props, { emit });
 const { materialIcon } = useMaterialIcon(props);
 
-const isExtended = computed(() => checkType(UI_FAB.TYPES, 'extended')).value;
+const isExtended = computed(() =>
+  checkType(props, UI_FAB.TYPES, 'extended')
+).value;
 const isAccessible = computed(
   () => fab.value && fab.value.classList.contains(UI_FAB.cssClasses.touch)
 ).value;

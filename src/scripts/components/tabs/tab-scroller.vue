@@ -1,5 +1,5 @@
 <template>
-  <div :class="className">
+  <div ref="tabScroller" :class="className">
     <div class="mdc-tab-scroller__scroll-area">
       <div class="mdc-tab-scroller__scroll-content">
         <slot>
@@ -47,11 +47,12 @@ const className = computed(() => {
   return result.join(' ');
 });
 
+const tabScroller = ref(null);
 let $tabScroller = null;
 let scroll = ref(props.scrollX);
 
 onMounted(() => {
-  $tabScroller = new MDCTabScroller(this.el);
+  $tabScroller = new MDCTabScroller(tabScroller.value);
 
   watch(
     () => props.scrollX,

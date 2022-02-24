@@ -55,7 +55,7 @@ export default {
 <script setup>
 import { ref, computed } from 'vue';
 import { useButton } from '../../mixins/button';
-import { icon, useMaterialIcon } from '../../mixins/material-icon';
+import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 import { useCardAction } from '../../mixins/card-action';
 import checkType from '../../mixins/type';
 
@@ -78,7 +78,7 @@ const props = defineProps({
     default: false
   },
   // UI attributes
-  icon,
+  ...iconProps,
   // Native button attributes
   nativeType: {
     type: String,

@@ -99,7 +99,7 @@ watch(
 );
 
 function handleClick(event) {
-  $emit(UI_GLOBAL.EVENTS.CLICK, event);
+  emit(UI_GLOBAL.EVENTS.CLICK, event);
 }
 
 function handleToggle() {

@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" @click="$emit('click', $event)">
+  <div :class="className" @click="handleClick">
     <slot></slot>
     <sup v-if="count" class="mdc-badge__sup">{{ overflowCount }}</sup>
     <template v-else>
@@ -66,4 +66,8 @@ const supClassName = computed(() => [
   },
   stateType ? `mdc-badge__sup--${stateType}` : ''
 ]);
+
+function handleClick(event) {
+  emit('click', event);
+}
 </script>

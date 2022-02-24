@@ -4,7 +4,7 @@
     :class="nested ? null : getClass(item)"
     :role="nested ? null : 'menuitem'"
     :data-value="item.value || value"
-    @click="$emit('click', $event)"
+    @click="handleClick"
   >
     <ul v-if="nested" class="mdc-menu__selection-group">
       <slot></slot>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import UI_GLOBAL from '../icon/constants';
+import UI_GLOBAL from '../../config/constants';
 
 export default {
   name: 'UiMenuitem',
@@ -71,7 +71,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['click']);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 const menuitem = ref(null);
 
@@ -94,5 +94,9 @@ function getClass(item) {
       'mdc-menu-item--selected': props.selected || item.selected
     }
   ];
+}
+
+function handleClick(event) {
+  emit(UI_GLOBAL.EVENTS.CLICK, event);
 }
 </script>

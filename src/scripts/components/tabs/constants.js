@@ -30,9 +30,6 @@ const UI_TAB = {
     active: 'mdc-tab--active',
     icon: 'mdc-tab__icon'
   },
-  EVENTS: {
-    CLICK: 'click'
-  },
   idPrefix: 'mdc-tab-'
 };
 

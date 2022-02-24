@@ -26,7 +26,7 @@
       <slot name="icon" :iconClass="UI_SELECT.cssClasses.icon">
         <i
           v-if="materialIcon"
-          :class="getMaterialIconClass(UI_SELECT.cssClasses.icon)"
+          :class="UI_GLOBAL.getMaterialIconClass(UI_SELECT.cssClasses.icon)"
           v-text="materialIcon"
         ></i>
       </slot>
@@ -91,8 +91,8 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
 import { deprecatedListClassNameMap } from '../list/constants';
-import { getMaterialIconClass } from '../../mixins/material-icon';
 
 // Define select constants
 const UI_SELECT = {
@@ -114,8 +114,8 @@ export default {
   name: 'UiSelect',
   inheritAttrs: false,
   customOptions: {
+    UI_GLOBAL,
     UI_SELECT,
-    getMaterialIconClass,
     deprecatedListClassNameMap
   }
 };

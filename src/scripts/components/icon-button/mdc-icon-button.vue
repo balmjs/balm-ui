@@ -1,7 +1,7 @@
 <template>
   <button
     type="button"
-    class="mdc-icon-button material-icons"
+    :class="['mdc-icon-button', UI_GLOBAL.cssClasses.icon]"
     @click="handleClick"
   >
     <div class="mdc-icon-button__ripple"></div>
@@ -12,17 +12,21 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
+
 export default {
   name: 'MdcIconButton',
   inheritAttrs: false,
-  customOptions: {}
+  customOptions: {
+    UI_GLOBAL
+  }
 };
 </script>
 
 <script setup>
-const emit = defineEmits(['click']);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 function handleClick(event) {
-  emit('click', event);
+  emit(UI_GLOBAL.EVENTS.CLICK, event);
 }
 </script>

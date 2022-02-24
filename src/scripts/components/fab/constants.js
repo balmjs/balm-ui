@@ -7,9 +7,6 @@ const UI_FAB = {
   cssClasses: {
     icon: 'mdc-fab__icon',
     touch: 'mdc-fab--touch'
-  },
-  EVENTS: {
-    CLICK: 'click'
   }
 };
 

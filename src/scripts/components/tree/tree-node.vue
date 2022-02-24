@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import UI_GLOBAL from '../icon/constants';
+import UI_GLOBAL from '../../config/constants';
 
 export default {
   name: 'UiTreeNode',

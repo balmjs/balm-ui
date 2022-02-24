@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import UI_GLOBAL from '../icon/constants';
+import UI_GLOBAL from '../../config/constants';
 import { UI_TEXTFIELD_ICON } from './constants';
 
 export default {
@@ -39,7 +39,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_TEXTFIELD_ICON.EVENTS.CLICK]);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 const className = computed(() => {
   let result = [UI_GLOBAL.cssClasses.icon, UI_TEXTFIELD_ICON.cssClasses.icon];
@@ -55,7 +55,7 @@ const className = computed(() => {
 
 function handleClick(event) {
   if (!props.unclickable) {
-    emit(UI_TEXTFIELD_ICON.EVENTS.CLICK, event);
+    emit(UI_GLOBAL.EVENTS.CLICK, event);
   }
 }
 </script>

@@ -4,9 +4,6 @@ const UI_TEXTFIELD_ICON = {
     icon: 'mdc-text-field__icon',
     leadingIcon: 'mdc-text-field__icon--leading',
     trailingIcon: 'mdc-text-field__icon--trailing'
-  },
-  EVENTS: {
-    CLICK: 'click'
   }
 };
 

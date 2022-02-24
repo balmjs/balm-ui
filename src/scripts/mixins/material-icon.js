@@ -1,7 +1,5 @@
 import { computed } from 'vue';
 
-const MaterialIconClassName = 'material-icons';
-
 const icon = {
   type: String,
   default: ''
@@ -13,9 +11,4 @@ function useMaterialIcon(props) {
   return { materialIcon };
 }
 
-const getMaterialIconClass = (...componentClasses) => [
-  MaterialIconClassName,
-  ...componentClasses
-];
-
-export { icon, useMaterialIcon, getMaterialIconClass };
+export { icon, useMaterialIcon };

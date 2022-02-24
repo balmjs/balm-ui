@@ -7,7 +7,7 @@
       <slot name="before" :iconClass="UI_FAB.cssClasses.icon">
         <i
           v-if="materialIcon"
-          :class="getMaterialIconClass(UI_FAB.cssClasses.icon)"
+          :class="UI_GLOBAL.getMaterialIconClass(UI_FAB.cssClasses.icon)"
           v-text="materialIcon"
         ></i>
       </slot>
@@ -23,7 +23,7 @@
       <slot :iconClass="UI_FAB.cssClasses.icon">
         <i
           v-if="materialIcon"
-          :class="getMaterialIconClass(UI_FAB.cssClasses.icon)"
+          :class="UI_GLOBAL.getMaterialIconClass(UI_FAB.cssClasses.icon)"
           v-text="materialIcon"
         ></i>
       </slot>
@@ -32,15 +32,15 @@
 </template>
 
 <script>
-import { getMaterialIconClass } from '../../mixins/material-icon';
+import UI_GLOBAL from '../../config/constants';
 import UI_FAB from './constants';
 
 export default {
   name: 'UiFab',
   inheritAttrs: false,
   customOptions: {
-    UI_FAB,
-    getMaterialIconClass
+    UI_GLOBAL,
+    UI_FAB
   }
 };
 </script>
@@ -73,7 +73,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_FAB.EVENTS.CLICK]);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 const fab = ref(null);
 

@@ -38,7 +38,7 @@
           @click="handleClick(1)"
         >
           <slot name="first">
-            <i class="material-icons">first_page</i>
+            <i :class="UI_GLOBAL.cssClasses.icon">first_page</i>
           </slot>
         </mdc-button>
         <mdc-button
@@ -52,7 +52,7 @@
           @click="handleClick(currentPage - 1)"
         >
           <slot name="prev">
-            <i class="material-icons">chevron_left</i>
+            <i :class="UI_GLOBAL.cssClasses.icon">chevron_left</i>
           </slot>
         </mdc-button>
         <div
@@ -95,7 +95,7 @@
           @click="handleClick(currentPage + 1)"
         >
           <slot name="next">
-            <i class="material-icons">chevron_right</i>
+            <i :class="UI_GLOBAL.cssClasses.icon">chevron_right</i>
           </slot>
         </mdc-button>
         <mdc-button
@@ -110,7 +110,7 @@
           @click="handleClick(pageCount)"
         >
           <slot name="last">
-            <i class="material-icons">last_page</i>
+            <i :class="UI_GLOBAL.cssClasses.icon">last_page</i>
           </slot>
         </mdc-button>
       </div>
@@ -143,6 +143,8 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
+
 // Define pagination constants
 const UI_PAGINATION = {
   POSITIONS: ['left', 'center', 'right'],
@@ -156,6 +158,7 @@ export default {
   name: 'UiPagination',
   inheritAttrs: false,
   customOptions: {
+    UI_GLOBAL,
     UI_PAGINATION
   }
 };

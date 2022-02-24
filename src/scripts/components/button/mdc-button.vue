@@ -4,7 +4,7 @@
     <slot name="icon">
       <i
         v-if="materialIcon"
-        :class="getMaterialIconClass('mdc-button__icon')"
+        :class="UI_GLOBAL.getMaterialIconClass('mdc-button__icon')"
         aria-hidden="true"
         v-text="materialIcon"
       ></i>
@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import { getMaterialIconClass } from '../../mixins/material-icon';
+import UI_GLOBAL from '../../config/constants';
 
 export default {
   name: 'MdcButton',
   inheritAttrs: false,
   customOptions: {
-    getMaterialIconClass
+    UI_GLOBAL
   }
 };
 </script>
@@ -52,7 +52,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['click']);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 const { materialIcon } = useMaterialIcon(props);
 
@@ -63,6 +63,6 @@ const className = computed(() => ({
 }));
 
 function handleClick(event) {
-  emit('click', event);
+  emit(UI_GLOBAL.EVENTS.CLICK, event);
 }
 </script>

@@ -1,6 +1,7 @@
 import { useEditor } from '../../core/quill';
 import Emotion from './emotion';
 import { emojiClassName, getCode, createEmoji } from './utils';
+import UI_GLOBAL from '../../../../config/constants';
 
 const EMOJI_TOOLBAR = {
   id: 'ql-emoji-toolbar',
@@ -87,7 +88,7 @@ function emojiModule() {
         // add close
         const closeEl = document.createElement('i');
         closeEl.id = EMOJI_TOOLBAR.closeId;
-        closeEl.className = 'material-icons';
+        closeEl.className = UI_GLOBAL.cssClasses.icon;
         closeEl.innerHTML = 'close';
         emojiToolbarEl.appendChild(closeEl);
         // add tab container
@@ -128,7 +129,7 @@ function emojiModule() {
         tabEl.dataset.title = tab.title;
         tabContentEl.appendChild(tabEl);
 
-        tabEl.addEventListener('click', (e) => {
+        tabEl.addEventListener(UI_GLOBAL.EVENTS.CLICK, (e) => {
           let currentTabEl = e.target;
           if (
             !currentTabEl.classList.contains(EMOJI_TOOLBAR.cssClasses.tabActive)
@@ -168,7 +169,7 @@ function emojiModule() {
       const emojiMap = Emotion.getEmotions();
       document
         .querySelector('.ql-emoji-panel')
-        .addEventListener('click', (e) => {
+        .addEventListener(UI_GLOBAL.EVENTS.CLICK, (e) => {
           const el = e.target.parentNode;
           if (el && el.classList.contains(emojiClassName)) {
             let range = this.quill.getSelection(true);
@@ -190,7 +191,10 @@ function emojiModule() {
 
     onCloseHandler() {
       let emojiToolbarCloseEl = document.getElementById(EMOJI_TOOLBAR.closeId);
-      emojiToolbarCloseEl.addEventListener('click', closeEmojiToolbar);
+      emojiToolbarCloseEl.addEventListener(
+        UI_GLOBAL.EVENTS.CLICK,
+        closeEmojiToolbar
+      );
     }
   }
 

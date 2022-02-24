@@ -6,7 +6,7 @@
     role="tab"
     aria-selected="false"
     tabindex="-1"
-    @click="$emit(UI_TAB.EVENTS.CLICK, $event)"
+    @click="handleClick"
   >
     <span class="mdc-tab__content">
       <template v-if="isTextWithIcon">
@@ -14,7 +14,7 @@
         <slot name="icon" :iconClass="UI_TAB.cssClasses.icon">
           <i
             v-if="materialIcon"
-            :class="getMaterialIconClass(UI_TAB.cssClasses.icon)"
+            :class="UI_GLOBAL.getMaterialIconClass(UI_TAB.cssClasses.icon)"
             aria-hidden="true"
             v-text="materialIcon"
           ></i>
@@ -28,7 +28,7 @@
         <slot name="icon" :iconClass="UI_TAB.cssClasses.icon">
           <i
             v-if="materialIcon"
-            :class="getMaterialIconClass(UI_TAB.cssClasses.icon)"
+            :class="UI_GLOBAL.getMaterialIconClass(UI_TAB.cssClasses.icon)"
             aria-hidden="true"
             v-text="materialIcon"
           ></i>
@@ -58,21 +58,21 @@
 </template>
 
 <script>
-import { getMaterialIconClass } from '../../mixins/material-icon';
+import UI_GLOBAL from '../../config/constants';
 import { UI_TAB } from './constants';
 
 export default {
   name: 'UiTab',
   inheritAttrs: false,
   customOptions: {
-    UI_TAB,
-    getMaterialIconClass
+    UI_GLOBAL,
+    UI_TAB
   }
 };
 </script>
 
 <script setup>
-import { ref, computed, onMounted, onUpdated } from 'vue';
+import { ref, computed, onUpdated } from 'vue';
 import UiTabIndicator from './tab-indicator.vue';
 import { tabProps, useTab } from '../../mixins/tab';
 import { icon, useMaterialIcon } from '../../mixins/material-icon';
@@ -87,7 +87,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_TAB.EVENTS.CLICK]);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 const tab = ref(null);
 let $tab = ref(null);
@@ -111,4 +111,8 @@ onUpdated(() => {
     tab.$parent.$parent.updated();
   } catch (e) {}
 });
+
+function handleClick(event) {
+  emit(UI_GLOBAL.EVENTS.CLICK, event);
+}
 </script>

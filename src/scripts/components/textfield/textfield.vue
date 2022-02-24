@@ -1,10 +1,6 @@
 <template>
   <!-- Container -->
-  <div
-    ref="textfield"
-    :class="className.outer"
-    @click="$emit(UI_TEXTFIELD.EVENTS.CLICK, $event)"
-  >
+  <div ref="textfield" :class="className.outer" @click="handleClick">
     <div v-if="!isOutlined" class="mdc-text-field__ripple"></div>
 
     <!-- Leading icon (optional) -->
@@ -15,7 +11,7 @@
       <i
         v-if="materialIcon"
         :class="
-          getMaterialIconClass([
+          UI_GLOBAL.getMaterialIconClass([
             UI_TEXTFIELD_ICON.cssClasses.icon,
             UI_TEXTFIELD_ICON.cssClasses.leadingIcon
           ])
@@ -121,9 +117,9 @@
 </template>
 
 <script>
-import { getMaterialIconClass } from '../../mixins/material-icon';
-import { UI_TEXTFIELD_ICON } from './constants';
+import UI_GLOBAL from '../../config/constants';
 import { UI_HELPER_TEXT } from '../../mixins/helper-text';
+import { UI_TEXTFIELD_ICON } from './constants';
 
 // Define textfield constants
 const UI_TEXTFIELD = {
@@ -132,7 +128,6 @@ const UI_TEXTFIELD = {
     outlined: 1
   },
   EVENTS: {
-    CLICK: 'click',
     FOCUS: 'focus',
     KEYDOWN: 'keydown',
     INPUT: 'update:modelValue',
@@ -148,10 +143,10 @@ export default {
   name: 'UiTextfield',
   inheritAttrs: false,
   customOptions: {
+    UI_GLOBAL,
     UI_TEXTFIELD,
     UI_TEXTFIELD_ICON,
-    UI_HELPER_TEXT,
-    getMaterialIconClass
+    UI_HELPER_TEXT
   }
 };
 </script>
@@ -248,7 +243,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits([
-  UI_TEXTFIELD.EVENTS.CLICK,
+  UI_GLOBAL.EVENTS.CLICK,
   UI_TEXTFIELD.EVENTS.FOCUS,
   UI_TEXTFIELD.EVENTS.KEYDOWN,
   UI_TEXTFIELD.EVENTS.INPUT,
@@ -362,6 +357,10 @@ function hasAfterSlot() {
     UI_TEXTFIELD.PLUS_COMPONENTS.includes(el.$parent.$.type.name)
     ? el.$parent.hasTrailingIcon
     : slots.after;
+}
+
+function handleClick(event) {
+  emit(UI_GLOBAL.EVENTS.CLICK, event);
 }
 function handleFocus(event) {
   emit(UI_TEXTFIELD.EVENTS.FOCUS, event);

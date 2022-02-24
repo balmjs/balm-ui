@@ -11,7 +11,7 @@
     <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">
       <i
         v-if="materialIcon"
-        :class="getMaterialIconClass(UI_BUTTON.cssClasses.icon)"
+        :class="UI_GLOBAL.getMaterialIconClass(UI_BUTTON.cssClasses.icon)"
         aria-hidden="true"
         v-text="materialIcon"
       ></i>
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { getMaterialIconClass } from '../../mixins/material-icon';
+import UI_GLOBAL from '../../config/constants';
 
 // Define button constants
 const UI_BUTTON = {
@@ -40,9 +40,6 @@ const UI_BUTTON = {
     icon: 'mdc-button__icon',
     label: 'mdc-button__label',
     touch: 'mdc-button--touch'
-  },
-  EVENTS: {
-    CLICK: 'click'
   }
 };
 
@@ -50,8 +47,8 @@ export default {
   name: 'UiButton',
   inheritAttrs: false,
   customOptions: {
-    UI_BUTTON,
-    getMaterialIconClass
+    UI_GLOBAL,
+    UI_BUTTON
   }
 };
 </script>
@@ -90,7 +87,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_BUTTON.EVENTS.CLICK]);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 const button = ref(null);
 

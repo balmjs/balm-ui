@@ -1,4 +1,5 @@
 import { useEditor } from '../core/quill';
+import UI_GLOBAL from '../../../config/constants';
 
 export function setToolbarIcons(customIcons = {}) {
   const { Quill } = useEditor();
@@ -39,7 +40,7 @@ export function setToolbarStyle(cutomTooltips = {}) {
   );
 
   [...buttons, ...pickerLabels, ...pickerItems].forEach((el) => {
-    el.classList.add('material-icons');
+    el.classList.add(UI_GLOBAL.cssClasses.icon);
   });
 
   if (Object.keys(cutomTooltips).length) {

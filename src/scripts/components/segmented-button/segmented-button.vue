@@ -9,7 +9,9 @@
     <slot name="before" :iconClass="UI_SEGMENTED_BUTTON.cssClasses.icon">
       <i
         v-if="materialIcon"
-        :class="getMaterialIconClass(UI_SEGMENTED_BUTTON.cssClasses.icon)"
+        :class="
+          UI_GLOBAL.getMaterialIconClass(UI_SEGMENTED_BUTTON.cssClasses.icon)
+        "
         aria-hidden="true"
         v-text="materialIcon"
       ></i>
@@ -24,7 +26,7 @@
 </template>
 
 <script>
-import { getMaterialIconClass } from '../../mixins/material-icon';
+import UI_GLOBAL from '../../config/constants';
 
 // Define segmented button constants
 const UI_SEGMENTED_BUTTON = {
@@ -32,9 +34,6 @@ const UI_SEGMENTED_BUTTON = {
     icon: 'mdc-segmented-button__icon',
     label: 'mdc-segmented-button__label',
     touch: 'mdc-segmented-button--touch'
-  },
-  EVENTS: {
-    CLICK: 'click'
   }
 };
 
@@ -42,8 +41,8 @@ export default {
   name: 'UiSegmentedButton',
   inheritAttrs: false,
   customOptions: {
-    UI_SEGMENTED_BUTTON,
-    getMaterialIconClass
+    UI_GLOBAL,
+    UI_SEGMENTED_BUTTON
   }
 };
 </script>
@@ -66,7 +65,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_SEGMENTED_BUTTON.EVENTS.CLICK]);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 const segmentedButton = ref(null);
 
@@ -88,6 +87,6 @@ const className = computed(() => ({
 }));
 
 function handleClick(event) {
-  emit(UI_SEGMENTED_BUTTON.EVENTS.CLICK, event);
+  emit(UI_GLOBAL.EVENTS.CLICK, event);
 }
 </script>

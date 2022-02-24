@@ -3,7 +3,9 @@
     <slot name="icon">
       <i
         v-if="materialIcon"
-        :class="getMaterialIconClass(stateClassName, 'mdc-alert__icon')"
+        :class="
+          UI_GLOBAL.getMaterialIconClass(stateClassName, 'mdc-alert__icon')
+        "
         v-text="materialIcon"
       ></i>
     </slot>
@@ -12,7 +14,7 @@
     </div>
     <i
       v-if="closable"
-      :class="getMaterialIconClass('mdc-alert__close-button')"
+      :class="UI_GLOBAL.getMaterialIconClass('mdc-alert__close-button')"
       @click="onClose"
     >
       clear
@@ -21,13 +23,13 @@
 </template>
 
 <script>
-import { getMaterialIconClass } from '../../mixins/material-icon';
+import UI_GLOBAL from '../../config/constants';
 
 export default {
   name: 'UiAlert',
   inheritAttrs: false,
   customOptions: {
-    getMaterialIconClass
+    UI_GLOBAL
   }
 };
 </script>

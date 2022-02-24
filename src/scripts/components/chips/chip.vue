@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import UI_GLOBAL from '../icon/constants';
+import UI_GLOBAL from '../../config/constants';
 
 // Define chip constants
 const UI_CHIP = {
@@ -50,7 +50,6 @@ const UI_CHIP = {
     removeIcon: 'mdc-chip__icon mdc-chip__icon--trailing'
   },
   EVENTS: {
-    CLICK: 'click',
     REMOVE: 'remove'
   }
 };
@@ -82,7 +81,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_CHIP.EVENTS.CLICK, UI_CHIP.EVENTS.REMOVE]);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK, UI_CHIP.EVENTS.REMOVE]);
 
 const chip = ref(null);
 
@@ -110,7 +109,7 @@ const role = computed(() => {
 function handleClick(event) {
   chip.$parent.choiceChipId = chip.value.id; // fix(ui): twice trigger
 
-  emit(UI_CHIP.EVENTS.CLICK, event);
+  emit(UI_GLOBAL.EVENTS.CLICK, event);
 }
 
 function handleRemove(event) {

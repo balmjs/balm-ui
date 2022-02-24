@@ -5,7 +5,7 @@
         <slot name="expand-more-icon" :iconClass="UI_COLLAPSE.cssClasses.icon">
           <i
             v-if="withIcon"
-            :class="[UI_GLOBAL.cssClasses.icon, UI_COLLAPSE.cssClasses.icon]"
+            :class="UI_GLOBAL.getMaterialIconClass(UI_COLLAPSE.cssClasses.icon)"
             aria-hidden="true"
           >
             expand_more
@@ -16,7 +16,7 @@
         <slot name="expand-less-icon" :iconClass="UI_COLLAPSE.cssClasses.icon">
           <i
             v-if="withIcon"
-            :class="[UI_GLOBAL.cssClasses.icon, UI_COLLAPSE.cssClasses.icon]"
+            :class="UI_GLOBAL.getMaterialIconClass(UI_COLLAPSE.cssClasses.icon)"
             aria-hidden="true"
           >
             chevron_right
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import UI_GLOBAL from '../icon/constants';
+import UI_GLOBAL from '../../config/constants';
 
 // Define collapse constants
 const UI_COLLAPSE = {
@@ -42,7 +42,6 @@ const UI_COLLAPSE = {
     icon: 'mdc-collapse__icon'
   },
   EVENTS: {
-    CLICK: 'click',
     CHANGE: 'update:modelValue'
   }
 };
@@ -81,7 +80,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_COLLAPSE.EVENTS.CLICK, UI_COLLAPSE.EVENTS.CHANGE]);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK, UI_COLLAPSE.EVENTS.CHANGE]);
 
 const isExpanded = ref(props.modelValue);
 
@@ -100,7 +99,7 @@ watch(
 );
 
 function handleClick(event) {
-  $emit(UI_COLLAPSE.EVENTS.CLICK, event);
+  $emit(UI_GLOBAL.EVENTS.CLICK, event);
 }
 
 function handleToggle() {

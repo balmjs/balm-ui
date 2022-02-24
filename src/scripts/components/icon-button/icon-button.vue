@@ -10,11 +10,11 @@
     <!-- Icon -->
     <template v-if="toggleButton">
       <i
-        :class="getMaterialIconClass(UI_ICON_BUTTON.cssClasses.off)"
+        :class="UI_GLOBAL.getMaterialIconClass(UI_ICON_BUTTON.cssClasses.off)"
         v-text="toggle.off"
       ></i>
       <i
-        :class="getMaterialIconClass(UI_ICON_BUTTON.cssClasses.on)"
+        :class="UI_GLOBAL.getMaterialIconClass(UI_ICON_BUTTON.cssClasses.on)"
         v-text="toggle.on"
       ></i>
     </template>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { getMaterialIconClass } from '../../mixins/material-icon';
+import UI_GLOBAL from '../../config/constants';
 
 // Define icon/toggle button constants
 const UI_ICON_BUTTON = {
@@ -39,7 +39,6 @@ const UI_ICON_BUTTON = {
     on: 'mdc-icon-button__icon mdc-icon-button__icon--on'
   },
   EVENTS: {
-    CLICK: 'click',
     CHANGE: 'update:modelValue'
   }
 };
@@ -48,8 +47,8 @@ export default {
   name: 'UiIconButton',
   inheritAttrs: false,
   customOptions: {
-    UI_ICON_BUTTON,
-    getMaterialIconClass
+    UI_GLOBAL,
+    UI_ICON_BUTTON
   }
 };
 </script>
@@ -76,7 +75,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits([
-  UI_ICON_BUTTON.EVENTS.CLICK,
+  UI_GLOBAL.EVENTS.CLICK,
   UI_ICON_BUTTON.EVENTS.CHANGE
 ]);
 
@@ -94,7 +93,7 @@ const className = computed(() => [
 ]);
 
 function handleClick(event) {
-  emit(UI_ICON_BUTTON.EVENTS.CLICK, event);
+  emit(UI_GLOBAL.EVENTS.CLICK, event);
 }
 
 onMounted(() => {

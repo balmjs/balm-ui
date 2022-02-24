@@ -1,6 +1,6 @@
 <template>
   <i
-    :class="[UI_GLOBAL.cssClasses.icon, 'mdc-select__icon']"
+    :class="UI_GLOBAL.getMaterialIconClass('mdc-select__icon')"
     :tabindex="unclickable ? null : 0"
     :role="unclickable ? null : 'button'"
     @click="handleClick"
@@ -12,21 +12,13 @@
 </template>
 
 <script>
-import UI_GLOBAL from '../icon/constants';
-
-// Define select icon constants
-const UI_SELECT_ICON = {
-  EVENTS: {
-    CLICK: 'click'
-  }
-};
+import UI_GLOBAL from '../../config/constants';
 
 export default {
   name: 'UiSelectIcon',
   inheritAttrs: false,
   customOptions: {
-    UI_GLOBAL,
-    UI_SELECT_ICON
+    UI_GLOBAL
   }
 };
 </script>
@@ -39,11 +31,11 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_SELECT_ICON.EVENTS.CLICK]);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 function handleClick(event) {
   if (!props.unclickable) {
-    emit(UI_SELECT_ICON.EVENTS.CLICK, event);
+    emit(UI_GLOBAL.EVENTS.CLICK, event);
   }
 }
 </script>

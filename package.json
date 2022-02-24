@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "9.42.2",
+  "version": "10.0.0",
   "description": "A modular and customizable UI library based on Material Design and Vue 3",
   "keywords": [
     "balm",
@@ -87,7 +87,7 @@
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^8.4.0",
+    "eslint-plugin-vue": "^8.5.0",
     "font-awesome": "^4.7.0",
     "gulp-replace": "^1.1.0",
     "html-loader": "3.1.0",

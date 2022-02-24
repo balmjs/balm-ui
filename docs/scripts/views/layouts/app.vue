@@ -195,6 +195,7 @@ const title = 'BalmUI';
 
 export default {
   name: 'BalmUIApp',
+  inheritAttrs: false,
   customOptions: {
     title,
     VERSION,

@@ -6,7 +6,7 @@
     role="tab"
     aria-selected="false"
     tabindex="-1"
-    @click="$emit(UI_TAB.EVENT.CLICK, $event)"
+    @click="$emit(UI_TAB.EVENTS.CLICK, $event)"
   >
     <span class="mdc-tab__content">
       <template v-if="isTextWithIcon">

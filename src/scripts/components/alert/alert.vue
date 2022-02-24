@@ -12,7 +12,7 @@
     </div>
     <i
       v-if="closable"
-      class="material-icons mdc-alert__close-button"
+      :class="getMaterialIconClass('mdc-alert__close-button')"
       @click="onClose"
     >
       clear

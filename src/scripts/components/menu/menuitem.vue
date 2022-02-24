@@ -39,7 +39,7 @@ export default {
 </script>
 
 <script setup>
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import UiMenuitemIcon from './menuitem-icon.vue';
 import UiMenuitemText from './menuitem-text.vue';
 import { useRipple } from '../../mixins/ripple';

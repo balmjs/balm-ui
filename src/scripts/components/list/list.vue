@@ -36,7 +36,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_LIST.EVENT.ACTION]);
+const emit = defineEmits([UI_LIST.EVENTS.ACTION]);
 
 const list = ref(null);
 let role = null;

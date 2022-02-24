@@ -88,6 +88,6 @@ const className = computed(() => ({
 }));
 
 function handleClick(event) {
-  emit(UI_SEGMENTED_BUTTON.EVENT.CLICK, event);
+  emit(UI_SEGMENTED_BUTTON.EVENTS.CLICK, event);
 }
 </script>

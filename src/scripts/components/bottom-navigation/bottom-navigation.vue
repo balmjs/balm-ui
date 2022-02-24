@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// Define bottom navigation constants
 const UI_BOTTOM_NAVIGATION = {
   FIXED_ADJUST: {
     STANDARD: 'mdc-bottom-navigation--fixed-adjust',

@@ -39,7 +39,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_TEXTFIELD_ICON.EVENT.CLICK]);
+const emit = defineEmits([UI_TEXTFIELD_ICON.EVENTS.CLICK]);
 
 const className = computed(() => {
   let result = [UI_GLOBAL.cssClasses.icon, UI_TEXTFIELD_ICON.cssClasses.icon];
@@ -55,7 +55,7 @@ const className = computed(() => {
 
 function handleClick(event) {
   if (!props.unclickable) {
-    emit(UI_TEXTFIELD_ICON.EVENT.CLICK, event);
+    emit(UI_TEXTFIELD_ICON.EVENTS.CLICK, event);
   }
 }
 </script>

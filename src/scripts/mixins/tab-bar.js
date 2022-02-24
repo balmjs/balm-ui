@@ -10,7 +10,7 @@ const tabBarProps = {
 
 function useTabBar({ emit }) {
   function handleChange(activeTabIndex) {
-    emit(UI_TAB_BAR.EVENT.CHANGE, activeTabIndex);
+    emit(UI_TAB_BAR.EVENTS.CHANGE, activeTabIndex);
   }
 
   return {

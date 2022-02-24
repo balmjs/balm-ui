@@ -46,7 +46,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, onBeforeMount } from 'vue';
+import { ref, computed, onBeforeMount, getCurrentInstance } from 'vue';
 
 const props = defineProps({
   // UI attributes
@@ -66,10 +66,12 @@ const style = computed(() => ({
   'background-image': `url(${props.bgImage})`
 }));
 
+const instance = getCurrentInstance();
+const $parent = instance.parent;
 const imageItem = ref(null);
 
 onBeforeMount(() => {
-  if (imageItem.$parent.isMasonry && props.bgImage) {
+  if ($parent.props.isMasonry && props.bgImage) {
     console.warn(
       '[UiImageItem]',
       `The 'bgImage' prop is not compatible with the masonry image list, you need to set the 'image' prop`

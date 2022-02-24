@@ -13,7 +13,7 @@
         <div v-else class="mdc-dialog__content">
           <i
             v-if="materialIcon"
-            :class="getIconClassName('mdc-alert-dialog__icon')"
+            :class="UI_GLOBAL.getMaterialIconClass('mdc-alert-dialog__icon')"
           >
             {{ materialIcon }}
           </i>
@@ -29,10 +29,14 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
+
 // For $alert/$confirm
 export default {
   name: 'MdcDialog',
-  customOptions: {}
+  customOptions: {
+    UI_GLOBAL
+  }
 };
 </script>
 

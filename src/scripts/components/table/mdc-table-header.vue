@@ -113,7 +113,10 @@ const props = defineProps({
 
 const checkbox = ref(null);
 
-const { theadData, theadCellClassName } = useTableHeader(checkbox, props);
+const { theadData, theadCellClassName, getSort } = useTableHeader(
+  checkbox,
+  props
+);
 
 const fixedScrollPlaceholderStyle = computed(() => {
   const padding = Math.ceil(props.fixedScrollWidth / 2);

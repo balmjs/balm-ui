@@ -1,6 +1,6 @@
 <template>
   <button
-    ref="switch"
+    ref="switchRef"
     :class="className"
     type="button"
     role="switch"

@@ -28,7 +28,7 @@
     <slot name="after" :iconClass="UI_CHIP.cssClasses.removeIcon">
       <span v-if="$parent.inputChips || removable" role="gridcell">
         <i
-          :class="getIconClassName(UI_CHIP.cssClasses.removeIcon)"
+          :class="UI_GLOBAL.getMaterialIconClass(UI_CHIP.cssClasses.removeIcon)"
           tabindex="-1"
           role="button"
           @click="handleRemove"
@@ -64,7 +64,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, getCurrentInstance } from 'vue';
 import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 
 const props = defineProps({
@@ -82,6 +82,8 @@ const props = defineProps({
 
 const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK, UI_CHIP.EVENTS.REMOVE]);
 
+const instance = getCurrentInstance();
+const $parent = instance.parent;
 const chip = ref(null);
 
 const { materialIcon } = useMaterialIcon(props);
@@ -94,9 +96,9 @@ const thumbnailClassName = computed(() => [
 const role = computed(() => {
   let name = null;
 
-  if (chip.$parent.choiceChips) {
+  if ($parent?.exposed?.choiceChips) {
     name = 'radio';
-  } else if (chip.$parent.filterChips) {
+  } else if ($parent?.exposed?.filterChips) {
     name = 'checkbox';
   } else {
     name = 'button';
@@ -106,7 +108,7 @@ const role = computed(() => {
 });
 
 function handleClick(event) {
-  chip.$parent.choiceChipId = chip.value.id; // fix(ui): twice trigger
+  $parent.exposed.choiceChipId = chip.value.id; // fix(ui): twice trigger
 
   emit(UI_GLOBAL.EVENTS.CLICK, event);
 }

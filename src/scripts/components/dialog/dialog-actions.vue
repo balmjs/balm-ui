@@ -38,7 +38,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, getCurrentInstance } from 'vue';
 import MdcButton from '../button/mdc-button.vue';
 
 const props = defineProps({
@@ -53,7 +53,9 @@ const props = defineProps({
   }
 });
 
+const instance = getCurrentInstance();
+const $parent = instance.parent;
 const dialogActions = ref(null);
 
-const closable = computed(() => dialogActions.$parent.closable);
+const closable = computed(() => $parent.props.closable);
 </script>

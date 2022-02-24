@@ -34,7 +34,7 @@ export default {
 </script>
 
 <script setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import { useStateType } from '../../mixins/state-type';
 
 const props = defineProps({

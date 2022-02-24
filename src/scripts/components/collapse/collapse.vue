@@ -56,7 +56,7 @@ export default {
 </script>
 
 <script setup>
-import { computed, watch } from 'vue';
+import { ref, computed, watch } from 'vue';
 
 const props = defineProps({
   // States

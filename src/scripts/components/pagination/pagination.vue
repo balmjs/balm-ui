@@ -330,14 +330,14 @@ function handleClick(page) {
     if (isNaN(page)) {
       jumpPage = currentPage;
     } else {
-      page = props.getPage(page);
+      page = getPage(page);
       jumpPage = page;
       emit(UI_PAGINATION.EVENTS.CHANGE, +page);
     }
   }
 }
 function handleChange() {
-  let page = props.getPage(currentPage);
+  let page = getPage(currentPage);
   if (currentPage !== page) {
     jumpPage = page;
     emit(UI_PAGINATION.EVENTS.CHANGE, +page);

@@ -20,7 +20,7 @@
       <i
         v-if="materialIcon"
         :class="
-          getIconClassName([
+          UI_GLOBAL.getMaterialIconClass([
             UI_TEXTFIELD_ICON.cssClasses.icon,
             UI_TEXTFIELD_ICON.cssClasses.leadingIcon
           ])
@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
 import { UI_TEXTFIELD_ICON } from '../textfield/constants';
 
 // Define datepicker constants
@@ -93,6 +94,7 @@ const UI_DATEPICKER = {
 export default {
   name: 'UiDatepicker',
   customOptions: {
+    UI_GLOBAL,
     UI_TEXTFIELD_ICON,
     UI_DATEPICKER
   }
@@ -112,8 +114,10 @@ import flatpickr from 'flatpickr';
 import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect';
 import UiTextfield from '../textfield/textfield.vue';
 import { textfieldProps } from '../../mixins/textfield';
+import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 
 const props = defineProps({
+  ...iconProps,
   ...textfieldProps,
   // <ui-textfield> variants
   outlined: {
@@ -150,6 +154,8 @@ const props = defineProps({
 });
 
 const emit = defineEmits([UI_DATEPICKER.EVENTS.CHANGE]);
+
+const { materialIcon } = useMaterialIcon(props);
 
 const hasLeadingIcon = computed(() => {
   const slots = useSlots();
@@ -318,4 +324,9 @@ function setRangeDate(selectedDates) {
         : `${startDate}${rangeSeparator}${endDate}`;
   }
 }
+
+defineExpose({
+  hasLeadingIcon,
+  hasTrailingIcon
+});
 </script>

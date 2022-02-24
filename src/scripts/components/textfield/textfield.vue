@@ -135,8 +135,7 @@ const UI_TEXTFIELD = {
     CHANGE: 'change',
     ENTER: 'enter',
     BLUR: 'blur'
-  },
-  PLUS_COMPONENTS: ['UiAutocomplete', 'UiDatepicker']
+  }
 };
 
 export default {
@@ -151,7 +150,15 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, watch, onMounted, useSlots } from 'vue';
+import {
+  ref,
+  computed,
+  watch,
+  onMounted,
+  useSlots,
+  nextTick,
+  getCurrentInstance
+} from 'vue';
 import { MDCTextField } from '../../../material-components-web/textfield';
 import MdcFloatingLabel from '../floating-label/mdc-floating-label.vue';
 import MdcLineRipple from '../floating-label/mdc-line-ripple.vue';
@@ -287,15 +294,17 @@ const className = computed(() => ({
   input: 'mdc-text-field__input'
 }));
 
+const instance = getCurrentInstance();
+const $parent = instance.parent;
 const textfield = ref(null);
-let $textField = null;
+const $textField = ref(null);
 const inputValue = ref(props.modelValue);
 
 onMounted(() => {
-  $textField = new MDCTextField(textfield.value);
+  $textField.value = new MDCTextField(textfield.value);
 
   if (props.helperTextId) {
-    instanceMap.set(`${props.helperTextId}-previous`, $textField);
+    instanceMap.set(`${props.helperTextId}-previous`, $textField.value);
   }
 
   watch(
@@ -303,10 +312,11 @@ onMounted(() => {
     (val, oldVal) => {
       inputValue.value = val;
 
-      if ($textField) {
+      const $textFieldInstance = $textField.value;
+      if ($textFieldInstance) {
         // fix(ui): dynamic assignment bug
         if (!oldVal && val) {
-          $textField.value = val;
+          $textFieldInstance.value = val;
         }
 
         // fix(ui): focus bug
@@ -314,14 +324,14 @@ onMounted(() => {
           try {
             // fix(@material-components): sync counter bug
             props.maxlength &&
-              $textField.characterCounter_.foundation.setCounterValue(
+              $textFieldInstance.characterCounter_.foundation.setCounterValue(
                 0,
                 props.maxlength
               );
           } catch (e) {}
 
           setTimeout(() => {
-            $textField.foundation.deactivateFocus();
+            $textFieldInstance.foundation.deactivateFocus();
           }, 1);
         }
       }
@@ -330,32 +340,23 @@ onMounted(() => {
   watch(
     () => props.disabled,
     (val) => {
-      if ($textField) {
-        $textField.disabled = val;
+      const $textFieldInstance = $textField.value;
+      if ($textFieldInstance) {
+        $textFieldInstance.disabled = val;
       }
     }
   );
 });
 
 function hasBeforeSlot() {
-  const el = textfield.value;
+  const hasLeadingIcon = $parent?.exposed?.hasLeadingIcon;
   const slots = useSlots();
-
-  return el.$parent &&
-    typeof el.$parent.$.type === 'object' &&
-    UI_TEXTFIELD.PLUS_COMPONENTS.includes(el.$parent.$.type.name)
-    ? el.$parent.hasLeadingIcon
-    : slots.before;
+  return hasLeadingIcon || slots.before;
 }
 function hasAfterSlot() {
-  const el = textfield.value;
+  const hasTrailingIcon = $parent?.exposed?.hasTrailingIcon;
   const slots = useSlots();
-
-  return el.$parent &&
-    typeof el.$parent.$.type === 'object' &&
-    UI_TEXTFIELD.PLUS_COMPONENTS.includes(el.$parent.$.type.name)
-    ? el.$parent.hasTrailingIcon
-    : slots.after;
+  return hasTrailingIcon || slots.after;
 }
 
 function handleClick(event) {

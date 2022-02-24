@@ -24,7 +24,7 @@
       <i
         v-if="materialIcon"
         :class="
-          getIconClassName([
+          UI_GLOBAL.getMaterialIconClass([
             UI_TEXTFIELD_ICON.cssClasses.icon,
             UI_TEXTFIELD_ICON.cssClasses.leadingIcon
           ])
@@ -68,8 +68,9 @@
 </template>
 
 <script>
-import { deprecatedListClassNameMap } from '../list/constants';
+import UI_GLOBAL from '../../config/constants';
 import { UI_TEXTFIELD_ICON } from '../textfield/constants';
+import { deprecatedListClassNameMap } from '../list/constants';
 
 // Define autocomplete constants
 const UI_AUTOCOMPLETE = {
@@ -96,6 +97,7 @@ const KEYCODE = {
 export default {
   name: 'UiAutocomplete',
   customOptions: {
+    UI_GLOBAL,
     UI_TEXTFIELD_ICON,
     UI_AUTOCOMPLETE,
     KEYCODE,
@@ -117,6 +119,7 @@ import {
 } from 'vue';
 import UiTextfield from '../textfield/textfield.vue';
 import { textfieldProps } from '../../mixins/textfield';
+import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 import getType from '../../utils/typeof';
 import {
   optionFormatDefaultValue,
@@ -124,6 +127,7 @@ import {
 } from '../../utils/option-format';
 
 const props = defineProps({
+  ...iconProps,
   ...textfieldProps,
   // <ui-textfield> variants
   outlined: {
@@ -202,6 +206,8 @@ let scroll = {
   defaultReversedLastIndex: 0,
   defaultReversedFirstIndex: 0
 };
+
+const { materialIcon } = useMaterialIcon(props);
 
 const className = computed(() => ({
   'mdc-autocomplete': true,
@@ -548,4 +554,9 @@ const getItemClassName = (index) => [
     selected: index === currentSuggestion.index
   }
 ];
+
+defineExpose({
+  hasLeadingIcon,
+  hasTrailingIcon
+});
 </script>

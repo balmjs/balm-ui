@@ -140,7 +140,8 @@ function useTableHeader(elementRef, props) {
 
   return {
     theadData,
-    theadCellClassName
+    theadCellClassName,
+    getSort
   };
 }
 

@@ -34,7 +34,14 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, watch, onMounted, nextTick } from 'vue';
+import {
+  ref,
+  computed,
+  watch,
+  onMounted,
+  nextTick,
+  getCurrentInstance
+} from 'vue';
 import { MDCCheckbox } from '../../../material-components-web/checkbox';
 import MdcCheckbox from './mdc-checkbox.vue';
 import { inputProps } from '../../mixins/input';
@@ -63,13 +70,15 @@ const props = defineProps({
 
 const emit = defineEmits([UI_CHECKBOX.EVENTS.CHANGE]);
 
+const instance = getCurrentInstance();
+const $parent = instance.parent;
 const checkbox = ref(null);
 let $checkbox = null;
 const selectedValue = ref(setSelectedValue(props.modelValue));
 
 const isAccessible = computed(() => {
-  const el = checkbox.value.mdcCheckbox;
-  return el && el.classList.contains(UI_CHECKBOX.cssClasses.touch);
+  const el = checkbox.value;
+  return el && el.mdcCheckbox.classList.contains(UI_CHECKBOX.cssClasses.touch);
 }).value;
 const className = computed(() => ({
   'mdc-checkbox--disabled': props.disabled,
@@ -79,12 +88,13 @@ const className = computed(() => ({
 
 onMounted(() => {
   nextTick(() => {
-    const el = checkbox.value.mdcCheckbox;
-    $checkbox = new MDCCheckbox(el);
+    const el = checkbox.value;
+    $checkbox = new MDCCheckbox(el.mdcCheckbox);
     $checkbox.indeterminate = props.indeterminate;
 
-    if (checkbox.$parent.$formField) {
-      checkbox.$parent.$formField.input = $checkbox;
+    const $formField = $parent?.exposed?.$formField.value;
+    if ($formField) {
+      $formField.input = $checkbox;
     }
   });
 

@@ -179,7 +179,9 @@ function updateInitialValue(instance = picker) {
   instance.setDate(dateValue, true); // Redrawing
 
   // fix(ui): focus bug for init (temporary solution)
-  startDatepicker.value.$textField.foundation.deactivateFocus();
+  // TODO
+  // const $textFieldInstance = startDatepicker.value.$textField;
+  // $textFieldInstance.foundation.deactivateFocus();
 }
 
 function clear() {

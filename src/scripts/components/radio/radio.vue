@@ -38,7 +38,14 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, watch, onMounted, nextTick } from 'vue';
+import {
+  ref,
+  computed,
+  watch,
+  onMounted,
+  nextTick,
+  getCurrentInstance
+} from 'vue';
 import { MDCRadio } from '../../../material-components-web/radio';
 import { inputProps } from '../../mixins/input';
 
@@ -62,6 +69,8 @@ const props = defineProps({
 
 const emit = defineEmits([UI_RADIO.EVENTS.CHANGE]);
 
+const instance = getCurrentInstance();
+const $parent = instance.parent;
 const radio = ref(null);
 let $radio = null;
 const selectedValue = ref(props.modelValue);
@@ -80,8 +89,9 @@ onMounted(() => {
   nextTick(() => {
     $radio = new MDCRadio(radio.value);
 
-    if (radio.$parent.$formField) {
-      radio.$parent.$formField.input = $radio;
+    const $formField = $parent?.exposed?.$formField.value;
+    if ($formField) {
+      $formField.input = $radio;
     }
   });
 

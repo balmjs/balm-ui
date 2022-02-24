@@ -6,7 +6,7 @@
         :key="buttonIndex"
         :text="buttonItem.text || null"
         :icon="buttonItem.icon || null"
-        :selected="singleSelect ? buttonIndex === selectedValue : false"
+        :selected="singleSelect ? buttonIndex === selected.value : false"
         @click="handleClick($event, buttonIndex)"
       ></ui-segmented-button>
     </slot>

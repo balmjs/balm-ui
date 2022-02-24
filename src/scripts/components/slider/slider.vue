@@ -177,22 +177,22 @@ onMounted(() => {
   );
 });
 
-function update(selectedValue = selectedValue.value) {
+function update(currentSelectedValue = selectedValue.value) {
   if (isRange) {
     let validRangeSlider =
-      selectedValue[0] >= props.min &&
-      selectedValue[1] <= props.max &&
-      selectedValue[0] <= selectedValue[1];
+      currentSelectedValue[0] >= props.min &&
+      currentSelectedValue[1] <= props.max &&
+      currentSelectedValue[0] <= currentSelectedValue[1];
     if (validRangeSlider) {
-      startValue = +selectedValue[0];
-      endValue = +selectedValue[1];
+      startValue = +currentSelectedValue[0];
+      endValue = +currentSelectedValue[1];
       $slider.setValue(endValue); // set first
       $slider.setValueStart(startValue);
     } else {
       console.warn('[UiSlider]', 'Invalid slider value');
     }
   } else {
-    $slider.setValue(selectedValue);
+    $slider.setValue(currentSelectedValue);
   }
 }
 

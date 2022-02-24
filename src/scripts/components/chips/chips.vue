@@ -34,6 +34,7 @@ export default {
 import {
   ref,
   computed,
+  watch,
   onBeforeMount,
   onMounted,
   onUpdated,
@@ -81,7 +82,7 @@ let $chipSet = null;
 let selectedValue = props.modelValue;
 let currentOptions = props.options;
 let chipsCount = props.items.length;
-let choiceChipId = null; // fix(ui): twice trigger
+const choiceChipId = ref(null); // fix(ui): twice trigger
 
 const inputChips = computed(() =>
   checkType(props, UI_CHIPS.TYPES, 'input')
@@ -207,7 +208,7 @@ function initEvent(chips) {
 
   $chipSet.listen(strings.SELECTION_EVENT, ({ detail }) => {
     if (choiceChips) {
-      if (detail.chipId === choiceChipId) {
+      if (detail.chipId === choiceChipId.value) {
         const selectedIndex = detail.selected
           ? adapter.getIndexOfChipById(detail.chipId)
           : -1;
@@ -297,4 +298,10 @@ function clearSelected(newSelectedValue, oldSelectedValue) {
     }
   }
 }
+
+defineExpose({
+  choiceChips,
+  filterChips,
+  choiceChipId
+});
 </script>

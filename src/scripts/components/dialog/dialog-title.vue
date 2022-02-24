@@ -22,7 +22,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, getCurrentInstance } from 'vue';
 import MdcIconButton from '../icon-button/mdc-icon-button.vue';
 
 const props = defineProps({
@@ -33,6 +33,8 @@ const props = defineProps({
   }
 });
 
+const instance = getCurrentInstance();
+const $parent = instance.parent;
 const dialogTitle = ref(null);
 
 const className = computed(() => ({
@@ -40,6 +42,6 @@ const className = computed(() => ({
   'mdc-dialog__title--closable': props.closable
 }));
 const hasCloseAction = computed(
-  () => dialogTitle.$parent.fullscreen || props.closable
+  () => $parent.props.fullscreen || props.closable
 );
 </script>

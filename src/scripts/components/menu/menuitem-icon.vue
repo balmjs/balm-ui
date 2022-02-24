@@ -11,8 +11,10 @@ import { UI_ITEM } from '../list/constants';
 
 export default {
   name: 'UiMenuitemIcon',
-  customOptions: {
-    UI_ITEM
+  data() {
+    return {
+      UI_ITEM
+    };
   }
 };
 </script>

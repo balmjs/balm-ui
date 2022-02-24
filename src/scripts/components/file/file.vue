@@ -41,7 +41,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import MdcButton from '../button/mdc-button.vue';
 import { inputProps } from '../../mixins/input';
 import handleFileChange from '../../utils/file';

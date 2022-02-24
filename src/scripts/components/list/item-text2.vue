@@ -9,8 +9,10 @@ import { deprecatedListClassNameMap } from './constants';
 
 export default {
   name: 'UiItemText2',
-  customOptions: {
-    deprecatedListClassNameMap
+  data() {
+    return {
+      deprecatedListClassNameMap
+    };
   }
 };
 </script>

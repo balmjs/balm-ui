@@ -12,8 +12,10 @@ import { UI_ITEM } from './constants';
 
 export default {
   name: 'UiItemFirstContent',
-  customOptions: {
-    UI_ITEM
+  data() {
+    return {
+      UI_ITEM
+    };
   }
 };
 </script>

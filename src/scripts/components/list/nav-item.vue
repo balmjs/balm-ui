@@ -25,7 +25,10 @@ export default {
 
 <script setup>
 import { ref, computed } from 'vue';
-import { useDeprecatedList } from '../../mixins/deprecated-list';
+import {
+  useDeprecatedList,
+  getDeprecatedItemClasses
+} from '../../mixins/deprecated-list';
 
 const props = defineProps({
   href: {
@@ -43,8 +46,7 @@ const emit = defineEmits([UI_ITEM.EVENTS.CLICK]);
 
 const item = ref(null);
 
-const { hasRipple, deprecatedListClassNameMap, getDeprecatedItemClasses } =
-  useDeprecatedList(item);
+const { hasRipple, deprecatedListClassNameMap } = useDeprecatedList(item);
 
 const className = computed(() => [
   deprecatedListClassNameMap['mdc-list-item'],

@@ -42,7 +42,10 @@ import { ref, onMounted } from 'vue';
 import UiMenuitemIcon from './menuitem-icon.vue';
 import UiMenuitemText from './menuitem-text.vue';
 import { useRipple } from '../../mixins/ripple';
-import { useDeprecatedList } from '../../mixins/deprecated-list';
+import {
+  useDeprecatedList,
+  getDeprecatedItemClasses
+} from '../../mixins/deprecated-list';
 
 const props = defineProps({
   // Layout
@@ -80,8 +83,7 @@ onMounted(() => {
   }
 });
 
-const { deprecatedListClassNameMap, getDeprecatedItemClasses } =
-  useDeprecatedList(menuitem);
+const { deprecatedListClassNameMap } = useDeprecatedList(menuitem);
 
 function getClass(item) {
   return [

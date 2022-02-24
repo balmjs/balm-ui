@@ -137,6 +137,7 @@ import MdcLineRipple from '../floating-label/mdc-line-ripple.vue';
 import MdcNotchedOutline from '../floating-label/mdc-notched-outline.vue';
 import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 import { helperProps, instanceMap } from '../../mixins/helper-text';
+import { getDeprecatedItemClasses } from '../../mixins/deprecated-list';
 import checkType from '../../mixins/type';
 import {
   optionFormatDefaultValue,
@@ -207,7 +208,7 @@ const emit = defineEmits([UI_SELECT.EVENTS.CHANGE, UI_SELECT.EVENTS.SELECTED]);
 
 const select = ref(null);
 let $select = null;
-let currentOptions = [];
+const currentOptions = ref([]);
 const selectedValue = ref(props.modelValue);
 
 const { materialIcon } = useMaterialIcon(props);
@@ -260,8 +261,8 @@ onMounted(() => {
     // NOTE: for dynamic options
     nextTick(() => {
       let hasOptions = props.defaultLabel
-        ? currentOptions.length > 1
-        : currentOptions.length;
+        ? currentOptions.value.length > 1
+        : currentOptions.value.length;
 
       if (hasOptions) {
         const selected = getSelected(detail.index);
@@ -313,7 +314,7 @@ function init(options = props.options) {
     defaultOption[props.optionFormat.value] = props.defaultValue || ' '; // fix(ui): floating label bug when the value is empty
     newOptions.unshift(defaultOption);
   }
-  currentOptions = newOptions;
+  currentOptions.value = newOptions;
 
   // Set current option
   nextTick(() => {
@@ -326,11 +327,11 @@ function setCurrentOption() {
   let currentIndex = UI_SELECT.DEFAULT_SELECTED_INDEX + 1;
 
   for (
-    let index = 0, itemCount = currentOptions.length;
+    let index = 0, itemCount = currentOptions.value.length;
     index < itemCount;
     index++
   ) {
-    let currentOption = currentOptions[index];
+    let currentOption = currentOptions.value[index];
     if (currentOption[props.optionFormat.value] === selectedValue.value) {
       currentIndex = index;
       break;

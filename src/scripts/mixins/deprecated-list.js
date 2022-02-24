@@ -49,9 +49,8 @@ function useDeprecatedList(elementRef) {
 
   return {
     hasRipple,
-    deprecatedListClassNameMap,
-    getDeprecatedItemClasses
+    deprecatedListClassNameMap
   };
 }
 
-export { useDeprecatedList };
+export { getDeprecatedItemClasses, useDeprecatedList };

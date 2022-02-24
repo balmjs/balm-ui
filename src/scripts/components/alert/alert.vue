@@ -27,7 +27,6 @@ import UI_GLOBAL from '../../config/constants';
 
 export default {
   name: 'UiAlert',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL
   }

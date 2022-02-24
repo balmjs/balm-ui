@@ -48,7 +48,6 @@ const UI_COLLAPSE = {
 
 export default {
   name: 'UiCollapse',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL,
     UI_COLLAPSE

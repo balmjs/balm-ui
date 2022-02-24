@@ -31,7 +31,6 @@ import UI_GLOBAL from '../../config/constants';
 
 export default {
   name: 'UiMenuitem',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL
   }

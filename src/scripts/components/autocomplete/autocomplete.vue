@@ -95,7 +95,6 @@ const KEYCODE = {
 
 export default {
   name: 'UiAutocomplete',
-  inheritAttrs: false,
   customOptions: {
     UI_TEXTFIELD_ICON,
     UI_AUTOCOMPLETE,

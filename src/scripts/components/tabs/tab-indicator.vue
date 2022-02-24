@@ -15,7 +15,6 @@ import { UI_TAB_INDICATOR } from './constants';
 
 export default {
   name: 'UiTabIndicator',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL,
     UI_TAB_INDICATOR

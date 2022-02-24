@@ -81,7 +81,6 @@ const UI_MENU = {
 
 export default {
   name: 'UiMenu',
-  inheritAttrs: false,
   customOptions: {
     UI_MENU,
     getType,

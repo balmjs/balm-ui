@@ -27,7 +27,6 @@ const UI_TREE = {
 
 export default {
   name: 'UiTree',
-  inheritAttrs: false,
   customOptions: {
     UI_TREE
   }

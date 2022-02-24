@@ -65,7 +65,6 @@ const UI_SLIDER = {
 
 export default {
   name: 'UiSlider',
-  inheritAttrs: false,
   customOptions: {
     UI_SLIDER
   }

@@ -7,7 +7,6 @@
 <script>
 export default {
   name: 'UiNav',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

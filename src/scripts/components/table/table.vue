@@ -108,7 +108,6 @@ import UI_TABLE from './constants';
 
 export default {
   name: 'UiTable',
-  inheritAttrs: false,
   customOptions: {
     UI_TABLE
   }

@@ -9,7 +9,6 @@
 <script>
 export default {
   name: 'UiFormField',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

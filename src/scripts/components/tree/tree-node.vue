@@ -102,7 +102,6 @@ import UI_GLOBAL from '../../config/constants';
 
 export default {
   name: 'UiTreeNode',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL
   }

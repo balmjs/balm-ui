@@ -9,7 +9,6 @@
 <script>
 export default {
   name: 'UiCard',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

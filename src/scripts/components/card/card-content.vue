@@ -14,7 +14,6 @@
 <script>
 export default {
   name: 'UiCardContent',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

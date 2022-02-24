@@ -112,7 +112,6 @@ const UI_SELECT = {
 
 export default {
   name: 'UiSelect',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL,
     UI_SELECT,

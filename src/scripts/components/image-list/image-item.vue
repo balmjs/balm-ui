@@ -39,7 +39,6 @@ const UI_IMAGE_ITEM = {
 
 export default {
   name: 'UiImageItem',
-  inheritAttrs: false,
   customOptions: {
     UI_IMAGE_ITEM
   }

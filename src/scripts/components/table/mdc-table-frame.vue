@@ -21,7 +21,6 @@
 <script>
 export default {
   name: 'MdcTableFrame',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

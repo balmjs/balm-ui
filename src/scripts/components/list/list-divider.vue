@@ -5,7 +5,6 @@
 <script>
 export default {
   name: 'UiListDivider',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

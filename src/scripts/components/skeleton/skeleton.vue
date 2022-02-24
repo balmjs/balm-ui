@@ -22,7 +22,6 @@
 <script>
 export default {
   name: 'UiSkeleton',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

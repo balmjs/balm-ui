@@ -24,7 +24,6 @@ const UI_FORM = {
 
 export default {
   name: 'UiForm',
-  inheritAttrs: false,
   customOptions: {
     UI_FORM
   }

@@ -71,7 +71,6 @@ const UI_TOP_APP_BAR = {
 
 export default {
   name: 'UiTopAppBar',
-  inheritAttrs: false,
   customOptions: {
     UI_TOP_APP_BAR
   }

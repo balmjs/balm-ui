@@ -56,7 +56,6 @@ const UI_CHIP = {
 
 export default {
   name: 'UiChip',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL,
     UI_CHIP

@@ -34,7 +34,6 @@ const UI_BANNER = {
 
 export default {
   name: 'UiBanner',
-  inheritAttrs: false,
   customOptions: {
     UI_BANNER
   }

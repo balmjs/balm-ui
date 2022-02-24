@@ -14,7 +14,6 @@ const UI_GRID = {
 
 export default {
   name: 'UiGrid',
-  inheritAttrs: false,
   customOptions: {
     UI_GRID
   }

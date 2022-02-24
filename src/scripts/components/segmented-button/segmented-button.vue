@@ -39,7 +39,6 @@ const UI_SEGMENTED_BUTTON = {
 
 export default {
   name: 'UiSegmentedButton',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL,
     UI_SEGMENTED_BUTTON

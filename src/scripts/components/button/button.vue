@@ -45,7 +45,6 @@ const UI_BUTTON = {
 
 export default {
   name: 'UiButton',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL,
     UI_BUTTON

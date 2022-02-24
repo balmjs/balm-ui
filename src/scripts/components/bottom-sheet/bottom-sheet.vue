@@ -19,7 +19,6 @@ const UI_BOTTOM_SHEET = {
 
 export default {
   name: 'UiBottomSheet',
-  inheritAttrs: false,
   customOptions: {
     UI_BOTTOM_SHEET
   }

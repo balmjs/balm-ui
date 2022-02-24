@@ -47,7 +47,6 @@ const UI_SWITCH = {
 
 export default {
   name: 'UiSwitch',
-  inheritAttrs: false,
   customOptions: {
     UI_SWITCH
   }

@@ -24,7 +24,6 @@ import { UI_TAB_BAR } from './constants';
 
 export default {
   name: 'UiTabs',
-  inheritAttrs: false,
   customOptions: {
     UI_TAB_BAR
   }

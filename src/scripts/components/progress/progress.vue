@@ -14,7 +14,6 @@ import { UI_PROGRESS } from './constants';
 
 export default {
   name: 'UiProgress',
-  inheritAttrs: false,
   customOptions: {
     UI_PROGRESS
   }

@@ -15,7 +15,6 @@
 <script>
 export default {
   name: 'MdcSliderInput',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

@@ -141,7 +141,6 @@ const UI_TEXTFIELD = {
 
 export default {
   name: 'UiTextfield',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL,
     UI_TEXTFIELD,

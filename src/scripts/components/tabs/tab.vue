@@ -63,7 +63,6 @@ import { UI_TAB } from './constants';
 
 export default {
   name: 'UiTab',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL,
     UI_TAB

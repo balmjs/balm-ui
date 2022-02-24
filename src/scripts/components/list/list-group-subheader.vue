@@ -9,7 +9,6 @@ import { deprecatedListClassNameMap } from './constants';
 
 export default {
   name: 'UiListGroupSubheader',
-  inheritAttrs: false,
   customOptions: {
     deprecatedListClassNameMap
   }

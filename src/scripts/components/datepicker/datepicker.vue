@@ -92,7 +92,6 @@ const UI_DATEPICKER = {
 
 export default {
   name: 'UiDatepicker',
-  inheritAttrs: false,
   customOptions: {
     UI_TEXTFIELD_ICON,
     UI_DATEPICKER

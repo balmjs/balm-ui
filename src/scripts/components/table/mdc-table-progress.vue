@@ -13,7 +13,6 @@
 <script>
 export default {
   name: 'MdcTableProgress',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

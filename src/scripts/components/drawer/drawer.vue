@@ -26,7 +26,6 @@ const UI_DRAWER = {
 
 export default {
   name: 'UiDrawer',
-  inheritAttrs: false,
   customOptions: {
     UI_DRAWER
   }

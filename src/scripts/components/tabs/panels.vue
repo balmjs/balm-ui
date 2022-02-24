@@ -17,7 +17,6 @@ const UI_PANEL = {
 
 export default {
   name: 'UiPanels',
-  inheritAttrs: false,
   customOptions: {
     UI_PANEL
   }

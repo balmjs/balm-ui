@@ -24,7 +24,6 @@ const UI_ICON = {
 
 export default {
   name: 'UiIcon',
-  inheritAttrs: false,
   customOptions: {
     UI_ICON
   }

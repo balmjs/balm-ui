@@ -34,7 +34,6 @@ const UI_RANGEPICKER = {
 
 export default {
   name: 'UiRangepicker',
-  inheritAttrs: false,
   customOptions: {
     UI_RANGEPICKER
   }

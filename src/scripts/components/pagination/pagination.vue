@@ -156,7 +156,6 @@ const UI_PAGINATION = {
 
 export default {
   name: 'UiPagination',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL,
     UI_PAGINATION

@@ -17,7 +17,6 @@
 <script>
 export default {
   name: 'UiDialogTitle',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

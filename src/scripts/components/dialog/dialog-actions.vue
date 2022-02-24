@@ -31,7 +31,6 @@ const UI_DIALOG_ACTION = {
 
 export default {
   name: 'UiDialogActions',
-  inheritAttrs: false,
   customOptions: {
     UI_DIALOG_ACTION
   }

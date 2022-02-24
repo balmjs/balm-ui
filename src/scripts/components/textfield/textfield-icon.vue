@@ -17,7 +17,6 @@ import { UI_TEXTFIELD_ICON } from './constants';
 
 export default {
   name: 'UiTextfieldIcon',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL,
     UI_TEXTFIELD_ICON

@@ -34,7 +34,6 @@ const UI_FILE = {
 
 export default {
   name: 'UiFile',
-  inheritAttrs: false,
   customOptions: {
     UI_FILE
   }

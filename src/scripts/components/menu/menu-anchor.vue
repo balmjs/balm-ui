@@ -17,7 +17,6 @@ const ANCHOR_POSITIONS = [
 
 export default {
   name: 'UiMenuAnchor',
-  inheritAttrs: false,
   customOptions: {
     ANCHOR_POSITIONS
   }

@@ -9,7 +9,6 @@ import { UI_LIST } from './constants';
 
 export default {
   name: 'UiList',
-  inheritAttrs: false,
   customOptions: {
     UI_LIST
   }

@@ -21,7 +21,6 @@ const UI_IMAGE_LIST = {
 
 export default {
   name: 'UiImageList',
-  inheritAttrs: false,
   customOptions: {
     UI_IMAGE_LIST
   }

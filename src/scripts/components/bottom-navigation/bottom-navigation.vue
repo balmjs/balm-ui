@@ -15,7 +15,6 @@ const UI_BOTTOM_NAVIGATION = {
 
 export default {
   name: 'UiBottomNavigation',
-  inheritAttrs: false,
   customOptions: {
     UI_BOTTOM_NAVIGATION
   }

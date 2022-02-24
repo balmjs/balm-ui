@@ -32,7 +32,6 @@ const UI_DIVIDER = {
 
 export default {
   name: 'UiDivider',
-  inheritAttrs: false,
   customOptions: {
     UI_DIVIDER
   }

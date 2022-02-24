@@ -31,7 +31,6 @@ const UI_RADIO = {
 
 export default {
   name: 'UiRadio',
-  inheritAttrs: false,
   customOptions: {
     UI_RADIO
   }

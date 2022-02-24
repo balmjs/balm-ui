@@ -12,7 +12,6 @@ import { UI_ITEM } from './constants';
 
 export default {
   name: 'UiItemFirstContent',
-  inheritAttrs: false,
   customOptions: {
     UI_ITEM
   }

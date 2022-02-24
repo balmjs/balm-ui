@@ -24,7 +24,6 @@ import UI_EDITOR from './constants';
 
 export default {
   name: 'UiEditor',
-  inheritAttrs: false,
   customOptions: {
     UI_EDITOR
   }

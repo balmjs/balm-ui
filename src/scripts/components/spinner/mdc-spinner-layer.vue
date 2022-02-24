@@ -70,7 +70,6 @@ const UI_CIRCULAR_PROGRESS_INDETERMINATE = {
 
 export default {
   name: 'MdcSpinnerLayer',
-  inheritAttrs: false,
   customOptions: {
     UI_CIRCULAR_PROGRESS_INDETERMINATE
   }

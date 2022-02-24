@@ -38,7 +38,6 @@ const UI_DIALOG = {
 
 export default {
   name: 'UiDialog',
-  inheritAttrs: false,
   customOptions: {
     UI_DIALOG
   }

@@ -24,7 +24,6 @@ import UI_TABLE from './constants';
 
 export default {
   name: 'MdcTableFooter',
-  inheritAttrs: false,
   customOptions: {
     UI_TABLE
   }

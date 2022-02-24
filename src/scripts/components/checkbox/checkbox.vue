@@ -27,7 +27,6 @@ const UI_CHECKBOX = {
 
 export default {
   name: 'UiCheckbox',
-  inheritAttrs: false,
   customOptions: {
     UI_CHECKBOX
   }

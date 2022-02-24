@@ -76,7 +76,6 @@ const UI_CIRCULAR_PROGRESS = {
 
 export default {
   name: 'UiSpinner',
-  inheritAttrs: false,
   customOptions: {
     UI_CIRCULAR_PROGRESS
   }

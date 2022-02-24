@@ -13,7 +13,6 @@
 <script>
 export default {
   name: 'MdcSliderThumb',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

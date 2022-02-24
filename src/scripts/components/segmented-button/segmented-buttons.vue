@@ -24,7 +24,6 @@ const UI_SEGMENTED_BUTTONS = {
 
 export default {
   name: 'UiSegmentedButtons',
-  inheritAttrs: false,
   customOptions: {
     UI_SEGMENTED_BUTTONS
   }

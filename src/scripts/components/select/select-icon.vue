@@ -16,7 +16,6 @@ import UI_GLOBAL from '../../config/constants';
 
 export default {
   name: 'UiSelectIcon',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL
   }

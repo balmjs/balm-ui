@@ -14,7 +14,6 @@
 <script>
 export default {
   name: 'UiBadge',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

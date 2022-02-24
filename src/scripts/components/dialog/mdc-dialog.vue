@@ -32,7 +32,6 @@
 // For $alert/$confirm
 export default {
   name: 'MdcDialog',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

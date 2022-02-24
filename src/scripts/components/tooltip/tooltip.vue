@@ -33,7 +33,6 @@ const UI_TOOLTIP = {
 
 export default {
   name: 'UiTooltip',
-  inheritAttrs: false,
   customOptions: {
     UI_TOOLTIP
   }

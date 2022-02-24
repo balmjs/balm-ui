@@ -15,7 +15,6 @@ import { UI_TAB_SCROLLER } from './constants';
 
 export default {
   name: 'UiTabScroller',
-  inheritAttrs: false,
   customOptions: {
     UI_TAB_SCROLLER
   }

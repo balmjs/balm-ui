@@ -15,7 +15,6 @@ import { UI_HELPER_TEXT } from '../../mixins/helper-text';
 
 export default {
   name: 'UiTextfieldHelper',
-  inheritAttrs: false,
   customOptions: {
     UI_HELPER_TEXT
   }

@@ -48,7 +48,6 @@ const UI_SNACKBAR = {
 
 export default {
   name: 'UiSnackbar',
-  inheritAttrs: false,
   customOptions: {
     UI_SNACKBAR
   }

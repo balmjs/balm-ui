@@ -24,7 +24,6 @@ const UI_CHIPS = {
 
 export default {
   name: 'UiChips',
-  inheritAttrs: false,
   customOptions: {
     UI_CHIPS
   }

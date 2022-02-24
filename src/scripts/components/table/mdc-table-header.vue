@@ -89,7 +89,6 @@ import UI_TABLE from './constants';
 
 export default {
   name: 'MdcTableHeader',
-  inheritAttrs: false,
   customOptions: {
     UI_TABLE
   }

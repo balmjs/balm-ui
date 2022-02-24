@@ -24,7 +24,6 @@ const UI_GRID_CELL = {
 
 export default {
   name: 'UiGridCell',
-  inheritAttrs: false,
   customOptions: {
     UI_GRID_CELL
   }

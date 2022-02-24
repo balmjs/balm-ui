@@ -54,7 +54,6 @@ import UI_TABLE from './constants';
 
 export default {
   name: 'MdcTableBody',
-  inheritAttrs: false,
   customOptions: {
     UI_TABLE
   }

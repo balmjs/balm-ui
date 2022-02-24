@@ -37,7 +37,6 @@ import UI_FAB from './constants';
 
 export default {
   name: 'UiFab',
-  inheritAttrs: false,
   customOptions: {
     UI_GLOBAL,
     UI_FAB

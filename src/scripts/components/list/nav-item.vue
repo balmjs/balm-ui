@@ -17,7 +17,6 @@ import { UI_ITEM } from './constants';
 
 export default {
   name: 'UiNavItem',
-  inheritAttrs: false,
   customOptions: {
     UI_ITEM
   }

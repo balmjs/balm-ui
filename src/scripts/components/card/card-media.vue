@@ -7,7 +7,6 @@
 <script>
 export default {
   name: 'UiCardMedia',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

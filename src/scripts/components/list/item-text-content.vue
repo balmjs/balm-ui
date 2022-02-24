@@ -10,7 +10,6 @@ import { deprecatedListClassNameMap } from './constants';
 
 export default {
   name: 'UiItemTextContent',
-  inheritAttrs: false,
   customOptions: {
     deprecatedListClassNameMap
   }

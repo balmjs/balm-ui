@@ -23,7 +23,7 @@ export default {
 </script>
 
 <script setup>
-import { computed, onBeforeMount } from 'vue';
+import { ref, computed, onBeforeMount } from 'vue';
 
 const props = defineProps({
   // UI attributes

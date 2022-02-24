@@ -20,7 +20,7 @@
         content-selector=".balmui-content"
         nav-id="balmui-menu"
         fixed
-        @nav="balmUI.onChange('openDrawer', !openDrawer)"
+        @nav="balmUI.onChange('drawerOpen', !drawerOpen)"
       >
         <router-link
           :to="{ name: 'home' }"
@@ -62,7 +62,7 @@
           ]"
         >
           <ui-drawer
-            v-model="openDrawer"
+            v-model="drawerOpen"
             :type="drawerType"
             class="balmui-menu"
           >
@@ -81,7 +81,7 @@
               <ui-drawer-subtitle>
                 <i class="balmui-version">
                   v
-                  <span class="version">{{ version }}</span>
+                  <span class="version">{{ VERSION }}</span>
                 </i>
               </ui-drawer-subtitle>
             </ui-drawer-header>
@@ -154,7 +154,7 @@
                       :class="['balmui-version', $tt('subtitle2')]"
                     >
                       v
-                      <span class="version">{{ version }}</span>
+                      <span class="version">{{ VERSION }}</span>
                     </i>
                   </ui-list-group-subheader>
                 </template>
@@ -188,6 +188,29 @@
 </template>
 
 <script>
+import { VERSION, lazyLoadedTime, $MIN_WIDTH } from '@/config';
+import menu from '@/config/menu';
+
+const title = 'BalmUI';
+
+export default {
+  name: 'BalmUIApp',
+  customOptions: {
+    title,
+    VERSION,
+    lazyLoadedTime,
+    $MIN_WIDTH,
+    menu
+  },
+  metaInfo() {
+    return {
+      title
+    };
+  }
+};
+</script>
+
+<script setup>
 import {
   ref,
   reactive,
@@ -201,13 +224,12 @@ import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n/index';
 import { useEvent, useBus, useStore, useAlert } from 'balm-ui';
 import TopAppToolbar from '@/components/top-app-toolbar';
-import { VERSION, lazyLoadedTime, $MIN_WIDTH } from '@/config';
-import menu from '@/config/menu';
 
+const bodyEl = document.documentElement || document.body;
 const state = reactive({
-  bodyEl: document.documentElement || document.body,
-  isWideScreen: true,
   drawerType: 'permanent',
+  drawerOpen: false,
+  isWideScreen: true,
   httpLoading: false,
   pageLoad: {
     loading: false,
@@ -217,6 +239,22 @@ const state = reactive({
   showBanner: false,
   hasNewVersion: false
 });
+
+const root = ref(null);
+const route = useRoute();
+const balmUI = useEvent();
+const bus = useBus();
+const { t, locale } = useI18n();
+const store = useStore();
+const $alert = useAlert();
+const {
+  drawerType,
+  drawerOpen,
+  isWideScreen,
+  pageLoad,
+  showBanner,
+  hasNewVersion
+} = toRefs(state);
 
 function init() {
   state.isWideScreen = window.innerWidth >= $MIN_WIDTH;
@@ -238,135 +276,95 @@ function loading() {
   }
 }
 
-export default {
-  name: 'BalmUIApp',
-  metaInfo() {
-    return {
-      title: 'BalmUI'
-    };
-  },
-  components: {
-    TopAppToolbar
-  },
-  setup(props, ctx) {
-    const root = ref(null);
-    const route = useRoute();
-    const balmUI = useEvent();
-    const bus = useBus();
-    const { t, locale } = useI18n();
-    const store = useStore();
-    const $alert = useAlert();
+const noLayout = computed(() => {
+  return route.name ? route.meta && route.meta.noLayout : true;
+});
 
-    const noLayout = computed(() => {
-      return route.name ? route.meta && route.meta.noLayout : true;
-    });
+store.isFirstLoad = computed(() => route.name == null);
 
-    store.isFirstLoad = computed(() => route.name == null);
-
-    const refresh = () => {
-      if (state.hasNewVersion) {
-        store.serviceWorker.postMessage({ action: 'skipWaiting' });
-        state.hasNewVersion = false;
-      }
-    };
-
-    onMounted(() => {
-      nextTick(() => root.value.parentNode.removeAttribute('class'));
-
-      bus.on('request', () => {
-        state.httpLoading = true;
-      });
-
-      bus.on('response', () => {
-        state.httpLoading = false;
-      });
-
-      bus.on('on-error', (message) => {
-        $alert(message);
-      });
-
-      bus.on('page-loading', () => {
-        state.pageLoad.loading = true;
-
-        state.pageLoad.progress = 0;
-        clearInterval(state.pageLoad.timer);
-
-        state.pageLoad.timer = setInterval(loading, lazyLoadedTime / 5);
-      });
-
-      bus.on('page-loaded', () => {
-        loaded();
-
-        setTimeout(() => {
-          state.pageLoad.loading = false;
-          state.bodyEl.scrollTop = 0;
-        }, 1);
-      });
-
-      bus.on('global-message', (show) => {
-        state.showBanner = show;
-      });
-
-      bus.on('switch-lang', (lang) => {
-        locale.value = lang;
-      });
-
-      // bus.on('off-loading', () => {
-      //   console.log('off-loading');
-      // });
-
-      bus.on('refresh', () => {
-        state.hasNewVersion = true;
-        state.showBanner = true;
-      });
-
-      init();
-      window.addEventListener('balmResize', init);
-
-      if (store.isFirstLoad) {
-        state.pageLoad.loading = false;
-        state.bodyEl.scrollTop = 0;
-      }
-
-      // NOTE: for lang init
-      setTimeout(() => {
-        locale.value = store.lang;
-      }, 1);
-    });
-
-    onBeforeUnmount(() => {
-      bus.off();
-
-      window.removeEventListener('balmResize', init);
-    });
-
-    return {
-      root,
-      ...toRefs(state),
-      noLayout,
-      balmUI,
-      t,
-      locale,
-      refresh
-    };
-  },
-  data() {
-    return {
-      title: 'BalmUI',
-      version: VERSION,
-      menu,
-      openDrawer: false
-    };
-  },
-  methods: {
-    handleMenu(event, navigate) {
-      this.openDrawer = false;
-      if (window.innerWidth < $MIN_WIDTH) {
-        state.isWideScreen = false;
-      }
-
-      navigate(event);
-    }
+const refresh = () => {
+  if (state.hasNewVersion) {
+    store.serviceWorker.postMessage({ action: 'skipWaiting' });
+    state.hasNewVersion = false;
   }
 };
+
+onMounted(() => {
+  nextTick(() => root.value.parentNode.removeAttribute('class'));
+
+  bus.on('request', () => {
+    state.httpLoading = true;
+  });
+
+  bus.on('response', () => {
+    state.httpLoading = false;
+  });
+
+  bus.on('on-error', (message) => {
+    $alert(message);
+  });
+
+  bus.on('page-loading', () => {
+    state.pageLoad.loading = true;
+
+    state.pageLoad.progress = 0;
+    clearInterval(state.pageLoad.timer);
+
+    state.pageLoad.timer = setInterval(loading, lazyLoadedTime / 5);
+  });
+
+  bus.on('page-loaded', () => {
+    loaded();
+
+    setTimeout(() => {
+      state.pageLoad.loading = false;
+      bodyEl.scrollTop = 0;
+    }, 1);
+  });
+
+  bus.on('global-message', (show) => {
+    state.showBanner = show;
+  });
+
+  bus.on('switch-lang', (lang) => {
+    locale.value = lang;
+  });
+
+  // bus.on('off-loading', () => {
+  //   console.log('off-loading');
+  // });
+
+  bus.on('refresh', () => {
+    state.hasNewVersion = true;
+    state.showBanner = true;
+  });
+
+  init();
+  window.addEventListener('balmResize', init);
+
+  if (store.isFirstLoad) {
+    state.pageLoad.loading = false;
+    bodyEl.scrollTop = 0;
+  }
+
+  // NOTE: for lang init
+  setTimeout(() => {
+    locale.value = store.lang;
+  }, 1);
+});
+
+onBeforeUnmount(() => {
+  bus.off();
+
+  window.removeEventListener('balmResize', init);
+});
+
+function handleMenu(event, navigate) {
+  state.drawerOpen = false;
+  if (window.innerWidth < $MIN_WIDTH) {
+    state.isWideScreen = false;
+  }
+
+  navigate(event);
+}
 </script>

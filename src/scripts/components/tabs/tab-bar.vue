@@ -21,7 +21,7 @@ export default {
 </script>
 
 <script setup>
-import { watch, onMounted, useSlots, getTransitionRawChildren } from 'vue';
+import { ref, watch, onMounted, useSlots, getTransitionRawChildren } from 'vue';
 import { MDCTabBar } from '../../../material-components-web/tab-bar';
 import { strings } from '../../../material-components-web/tab-bar/constants';
 import UiTabScroller from './tab-scroller.vue';

@@ -1,15 +1,18 @@
-import { computed } from 'vue';
+import { computed, nextTick } from 'vue';
 import { deprecatedListClassNameMap } from '../components/list/constants';
 
-function getListTag(self) {
-  const parent = self.$parent;
-  const tagName = parent.$.type?.name;
+function getListTag(el) {
+  let result = null;
 
-  return tagName
-    ? tagName === 'UiNav' || tagName === 'UiList'
-      ? parent
-      : getListTag(parent)
-    : {};
+  const parentEl = el.parentNode;
+  if (parentEl) {
+    const isMdcList = parentEl.classList.contains(
+      deprecatedListClassNameMap['mdc-list']
+    );
+    result = isMdcList ? parentEl : getListTag(parentEl);
+  }
+
+  return result;
 }
 
 function getDeprecatedItemClasses({ disabled, selected, activated }) {
@@ -29,9 +32,19 @@ function getDeprecatedItemClasses({ disabled, selected, activated }) {
 }
 
 function useDeprecatedList(elementRef) {
-  const hasRipple = computed(() => {
-    const parent = getListTag(elementRef);
-    return !parent.nonInteractive;
+  let parentEl = null;
+
+  const hasRipple = computed(async () => {
+    await nextTick(() => {
+      const el = elementRef.value;
+      parentEl = getListTag(el);
+    });
+
+    const nonInteractive =
+      parentEl &&
+      parentEl.classList.contains('mdc-deprecated-list--non-interactive');
+
+    return !nonInteractive;
   });
 
   return {

@@ -69,7 +69,10 @@ const tableStyle = computed(() => {
 watch(
   () => props.offsetLeft,
   (val) => {
-    tableFrame.value.scrollLeft = val;
+    const el = tableFrame.value;
+    if (el) {
+      el.scrollLeft = val;
+    }
   }
 );
 

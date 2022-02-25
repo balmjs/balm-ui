@@ -240,14 +240,6 @@ const state = reactive({
   showBanner: false,
   hasNewVersion: false
 });
-
-const root = ref(null);
-const route = useRoute();
-const balmUI = useEvent();
-const bus = useBus();
-const { t, locale } = useI18n();
-const store = useStore();
-const $alert = useAlert();
 const {
   drawerType,
   drawerOpen,
@@ -256,6 +248,14 @@ const {
   showBanner,
   hasNewVersion
 } = toRefs(state);
+
+const root = ref(null);
+const route = useRoute();
+const balmUI = useEvent();
+const bus = useBus();
+const { t, locale } = useI18n();
+const store = useStore();
+const $alert = useAlert();
 
 function init() {
   state.isWideScreen = window.innerWidth >= $MIN_WIDTH;

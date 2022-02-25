@@ -1,4 +1,4 @@
-import { computed, watch, onMounted, onUpdated } from 'vue';
+import { reactive, computed, watch, onMounted, onUpdated } from 'vue';
 import { MDCList } from '../../material-components-web/list';
 import checkType from './type';
 import {
@@ -28,7 +28,9 @@ const listProps = {
   }
 };
 
-let $list = null;
+const state = reactive({
+  $list: null
+});
 
 function useList(list, props, { init, update }) {
   const isTwoLine = computed(() =>
@@ -46,9 +48,9 @@ function useList(list, props, { init, update }) {
   ]);
 
   onMounted(() => {
-    $list = new MDCList(list.value);
+    state.$list = new MDCList(list.value);
 
-    init && init($list);
+    init && init(state.$list);
 
     // For `<ui-drawer type="modal">` focus management
     focusTrapOnDrawer(list);
@@ -56,14 +58,14 @@ function useList(list, props, { init, update }) {
     watch(
       () => props.modelValue,
       (val) => {
-        if ($list) {
-          $list.selectedIndex = val;
+        if (state.$list) {
+          state.$list.selectedIndex = val;
         }
       }
     );
   });
 
-  onUpdated(() => update && update($list));
+  onUpdated(() => update && update(state.$list));
 
   return {
     className
@@ -76,16 +78,16 @@ function focusTrapOnDrawer(list) {
   if (
     parentEl &&
     parentEl.classList.contains('mdc-drawer__content') &&
-    $list.listElements.length
+    state.$list.listElements.length
   ) {
     const currentItem =
-      $list.listElements.find(
+      state.$list.listElements.find(
         (item) =>
           item.classList.contains(UI_ITEM.cssClasses.active) ||
           item.classList.contains(
             deprecatedListClassNameMap['mdc-list-item--activated']
           )
-      ) || $list.listElements[0];
+      ) || state.$list.listElements[0];
 
     // Solution - https://github.com/material-components/material-components-web/issues/5615
     currentItem.setAttribute('tabindex', 0);

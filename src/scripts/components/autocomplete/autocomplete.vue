@@ -178,7 +178,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits([
-  UI_AUTOCOMPLETE.EVENTS.INPUT,
+  UI_AUTOCOMPLETE.EVENTS.INPUT, // TODO: has bug
   UI_AUTOCOMPLETE.EVENTS.SEARCH,
   UI_AUTOCOMPLETE.EVENTS.SELECTED
 ]);
@@ -211,7 +211,7 @@ const state = reactive({
     defaultReversedFirstIndex: 0
   }
 });
-const { inputValue } = toRefs(state);
+const { inputValue, currentSuggestion } = toRefs(state);
 
 const { materialIcon } = useMaterialIcon(props);
 
@@ -294,7 +294,7 @@ function initClientHeight() {
   state.scroll.defaultFirstIndex = 0;
   state.scroll.defaultLastIndex =
     parseInt(state.scroll.viewHeight / state.scroll.itemHeight, 10) - 1;
-  let maxHeight = state.currentSuggestion.data.length - 1;
+  const maxHeight = state.currentSuggestion.data.length - 1;
   if (state.scroll.defaultReversedLastIndex !== maxHeight) {
     state.scroll.defaultReversedLastIndex = maxHeight;
     state.scroll.defaultReversedFirstIndex =
@@ -431,7 +431,7 @@ function handleKeydown(event) {
           }
         }
 
-        autocompleteListEl.blur(); // Hide mouse
+        state.autocompleteListEl.blur(); // Hide mouse
         event.preventDefault();
         break;
       case KEYCODE.UP:
@@ -463,7 +463,7 @@ function handleKeydown(event) {
           }
         }
 
-        autocompleteListEl.blur(); // Hide mouse
+        state.autocompleteListEl.blur(); // Hide mouse
         event.preventDefault();
         break;
       case KEYCODE.ENTER:
@@ -561,7 +561,7 @@ function handleSelected(selectedItem) {
 }
 
 function clearSelected() {
-  const selectedItem = autocompleteListEl.querySelector(
+  const selectedItem = state.autocompleteListEl.querySelector(
     `li.${UI_AUTOCOMPLETE.cssClasses.selected}`
   );
   if (selectedItem) {

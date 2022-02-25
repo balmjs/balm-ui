@@ -34,7 +34,15 @@ export default {
 </script>
 
 <script setup>
-import { computed, watch, onBeforeMount, onMounted, nextTick } from 'vue';
+import {
+  reactive,
+  toRefs,
+  computed,
+  watch,
+  onBeforeMount,
+  onMounted,
+  nextTick
+} from 'vue';
 import { MdcTree } from './mdc-tree';
 import UiTreeNode from './tree-node.vue';
 
@@ -79,27 +87,28 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_TREE.EVENTS.CHANGE]);
+const emit = defineEmits([UI_TREE.EVENTS.CHANGE, UI_TREE.EVENTS.SELECTED]);
 
-let $tree = null;
-let nodeList = [];
-let treeData = {
-  dataFormat: Object.assign(UI_TREE.dataFormat, props.dataFormat),
-  maxLevel: props.maxLevel,
-  nodeMap: new Map(),
-  selectedValue: props.modelValue,
-  multiple: props.multiple,
-  singleChecked: props.singleChecked,
-  loadData: props.loadData,
-  selectedEvent: {}
-};
+const state = reactive({
+  $tree: null,
+  nodeList: [],
+  treeData: {
+    dataFormat: Object.assign(UI_TREE.dataFormat, props.dataFormat),
+    maxLevel: props.maxLevel,
+    nodeMap: new Map(),
+    selectedValue: props.modelValue,
+    multiple: props.multiple,
+    singleChecked: props.singleChecked,
+    loadData: props.loadData,
+    selectedEvent: {}
+  }
+});
+const { nodeList, treeData } = toRefs(state);
 
 const className = computed(() => ({
   'mdc-tree': true,
   'mdc-tree--multiple': props.multiple
 }));
-
-const selectedValue = computed(() => treeData.selectedValue).value;
 
 const haveSameContents = (a, b) => {
   for (const v of new Set([...a, ...b]))
@@ -112,11 +121,11 @@ watch(
   () => props.modelValue,
   (val, oldVal) => {
     if (Array.isArray(val)) {
-      if (!haveSameContents(treeData.selectedValue, val)) {
+      if (!haveSameContents(state.treeData.selectedValue, val)) {
         updateSelectedValue(val, oldVal);
       }
     } else {
-      if (treeData.selectedValue !== val) {
+      if (state.treeData.selectedValue !== val) {
         updateSelectedValue(val);
       }
     }
@@ -127,9 +136,9 @@ watch(
   (val) => init(val)
 );
 watch(
-  () => selectedValue,
+  () => state.treeData.selectedValue,
   (val) => {
-    emit(UI_TREE.EVENTS.CHANGE, val, treeData.selectedEvent);
+    emit(UI_TREE.EVENTS.CHANGE, val, state.treeData.selectedEvent);
     emit(
       UI_TREE.EVENTS.SELECTED,
       Array.isArray(val) ? val.map((nodeKey) => getNode(nodeKey)) : getNode(val)
@@ -138,7 +147,7 @@ watch(
 );
 
 onBeforeMount(() => {
-  if (props.multiple && !Array.isArray(treeData.selectedValue)) {
+  if (props.multiple && !Array.isArray(state.treeData.selectedValue)) {
     throw new Error(
       `[UiTree]: The 'modelValue' prop must be an array in the multiple tree`
     );
@@ -146,48 +155,48 @@ onBeforeMount(() => {
 });
 
 onMounted(() => {
-  $tree = new MdcTree(treeData);
+  state.$tree = new MdcTree(state.treeData);
   init();
 });
 
 function init(originData = props.data) {
-  nodeList = $tree.getData(originData);
+  state.nodeList = state.$tree.getData(originData);
 
-  if (nodeList.length) {
-    MdcTree.setExpanded(treeData, nodeList, {
+  if (state.nodeList.length) {
+    MdcTree.setExpanded(state.treeData, state.nodeList, {
       autoExpandParent: props.autoExpandParent,
       defaultExpandedKeys: props.defaultExpandedKeys
     });
 
-    MdcTree.setSelected(treeData, selectedValue);
+    MdcTree.setSelected(state.treeData, state.treeData.selectedValue);
   }
 }
 
 function updateSelectedValue(val, oldVal = []) {
   nextTick(() => {
     if (oldVal.length) {
-      MdcTree.resetSelected(treeData, oldVal);
+      MdcTree.resetSelected(state.treeData, oldVal);
     }
 
-    treeData.selectedValue = val;
-    MdcTree.setSelected(treeData, val);
+    state.treeData.selectedValue = val;
+    MdcTree.setSelected(state.treeData, val);
   });
 }
 
 function updateNode(type, parentKey, nodeData) {
   switch (type) {
     case 'create':
-      MdcTree.createNode(treeData, parentKey, nodeData);
+      MdcTree.createNode(state.treeData, parentKey, nodeData);
       break;
     case 'delete':
-      MdcTree.deleteNode(treeData, parentKey, nodeData);
+      MdcTree.deleteNode(state.treeData, parentKey, nodeData);
       break;
     default:
-      MdcTree.updateNode(treeData, parentKey, nodeData);
+      MdcTree.updateNode(state.treeData, parentKey, nodeData);
   }
 }
 
-const getNode = (nodeKey) => treeData.nodeMap.get(nodeKey);
+const getNode = (nodeKey) => state.treeData.nodeMap.get(nodeKey);
 
 defineExpose({
   updateNode,

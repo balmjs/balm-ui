@@ -62,7 +62,9 @@ function useHelperText(props, { emit }) {
 
     watch(
       () => props.validMsg,
-      () => {
+      (val) => {
+        // handleChange();
+
         const $input = instanceMap.get(`${props.id}-previous`);
         $input && ($input.valid = !hasValidMsg);
       }

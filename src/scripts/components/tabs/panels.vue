@@ -24,7 +24,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch, onMounted, nextTick } from 'vue';
 
 const props = defineProps({
   // States
@@ -37,18 +37,21 @@ const props = defineProps({
 const panels = ref(null);
 
 function updatePanel(activeIndex) {
-  const panels = panels.value.querySelectorAll('.mdc-panel');
-  if (panels.length) {
-    panels.forEach((panel, index) => {
-      if (
-        index === activeIndex &&
-        !panel.classList.contains(UI_PANEL.cssClasses.active)
-      ) {
-        panel.classList.add(UI_PANEL.cssClasses.active);
-      } else {
-        panel.classList.remove(UI_PANEL.cssClasses.active);
-      }
-    });
+  const el = panels.value;
+  if (el) {
+    const panels = el.querySelectorAll('.mdc-panel');
+    if (panels.length) {
+      panels.forEach((panel, index) => {
+        if (
+          index === activeIndex &&
+          !panel.classList.contains(UI_PANEL.cssClasses.active)
+        ) {
+          panel.classList.add(UI_PANEL.cssClasses.active);
+        } else {
+          panel.classList.remove(UI_PANEL.cssClasses.active);
+        }
+      });
+    }
   }
 }
 

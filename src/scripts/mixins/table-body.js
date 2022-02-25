@@ -1,5 +1,6 @@
 import { computed } from 'vue';
 import {
+  isString,
   isObject,
   isFunction,
   setTextAlignClassName,

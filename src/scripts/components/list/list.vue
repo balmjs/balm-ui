@@ -48,10 +48,7 @@ function init($list) {
     emit(UI_LIST.EVENTS.ACTION, detail.index);
   });
 
-  if (props.singleSelection && props.modelValue > -1) {
-    $list.singleSelection = true;
-    $list.selectedIndex = props.modelValue;
-  }
+  update($list);
 
   // Making lists accessible
   state.role =
@@ -62,14 +59,15 @@ function init($list) {
 function update($list) {
   if ($list) {
     if (props.singleSelection && props.modelValue > -1) {
+      $list.singleSelection = true;
       $list.selectedIndex = props.modelValue;
     }
 
     if (!props.nonInteractive) {
-      $list.listElements.forEach((listItemEl) => {
-        useRipple(listItemEl);
+      $list.listElements.forEach((itemEl) => {
+        useRipple(itemEl);
 
-        let itemRole = listItemEl.getAttribute('role');
+        const itemRole = itemEl.getAttribute('role');
         if (itemRole === 'checkbox' || itemRole === 'radio') {
           $list.layout();
         }

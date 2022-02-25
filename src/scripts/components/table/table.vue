@@ -211,7 +211,7 @@ const state = reactive({
   maxWidth: 0,
   fixedScrollWidth: 0
 });
-const { currentData, maxWidth, fixedScrollWidth } = toRefs(state);
+const { currentData, offsetLeft, maxWidth, fixedScrollWidth } = toRefs(state);
 
 const hasFixedCell = computed(() => {
   const fixedFirstColumn =
@@ -407,8 +407,12 @@ onMounted(() => {
   }
 
   if (hasFixedCell) {
-    const tableFrameEl = tableContent.value.tableFrame.value;
-    tableFrameEl.addEventListener('scroll', handleScroll);
+    nextTick(() => {
+      const tableFrameEl = tableContent.value?.tableFrame;
+      if (tableFrameEl) {
+        tableFrameEl.addEventListener('scroll', handleScroll);
+      }
+    });
 
     if (props.rowCheckbox) {
       state.maxWidth += UI_TABLE.CHECKBOX_COL_WIDTH;
@@ -429,7 +433,7 @@ onMounted(() => {
         state.$table.layout();
         initSelectedRows();
 
-        const tableFrameEl = tableContent.value.tableFrame.value;
+        const tableFrameEl = tableContent.value?.tableFrame;
         if (tableFrameEl) {
           state.fixedScrollWidth =
             tableFrameEl.offsetWidth - tableFrameEl.clientWidth;
@@ -445,7 +449,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   if (hasFixedCell) {
-    const tableFrameEl = tableContent.value.tableFrame.value;
+    const tableFrameEl = tableContent.value.tableFrame;
     tableFrameEl.removeEventListener('scroll', handleScroll);
   }
 });

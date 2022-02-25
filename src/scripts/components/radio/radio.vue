@@ -40,6 +40,8 @@ export default {
 <script setup>
 import {
   ref,
+  reactive,
+  toRefs,
   computed,
   watch,
   onMounted,
@@ -72,8 +74,11 @@ const emit = defineEmits([UI_RADIO.EVENTS.CHANGE]);
 const instance = getCurrentInstance();
 const parent = instance.parent;
 const radio = ref(null);
-let $radio = null;
-const selectedValue = ref(props.modelValue);
+const state = reactive({
+  $radio: null,
+  selectedValue: props.modelValue
+});
+const { selectedValue } = toRefs(state);
 
 const isAccessible = computed(
   () => radio.value && radio.value.classList.contains(UI_RADIO.cssClasses.touch)
@@ -87,31 +92,31 @@ const className = computed(() => ({
 
 onMounted(() => {
   nextTick(() => {
-    $radio = new MDCRadio(radio.value);
+    state.$radio = new MDCRadio(radio.value);
 
     const $formField = parent?.exposed?.$formField.value;
     if ($formField) {
-      $formField.input = $radio;
+      $formField.input = state.$radio;
     }
   });
 
   watch(
     () => props.modelValue,
     (val) => {
-      selectedValue.value = val;
+      state.selectedValue = val;
     }
   );
   watch(
     () => props.disabled,
     (val) => {
-      if ($radio) {
-        $radio.disabled = val;
+      if (state.$radio) {
+        state.$radio.disabled = val;
       }
     }
   );
 });
 
 function handleChange() {
-  emit(UI_RADIO.EVENTS.CHANGE, selectedValue.value);
+  emit(UI_RADIO.EVENTS.CHANGE, state.selectedValue);
 }
 </script>

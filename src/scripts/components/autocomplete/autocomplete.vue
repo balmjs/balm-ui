@@ -109,6 +109,8 @@ export default {
 <script setup>
 import {
   ref,
+  reactive,
+  toRefs,
   computed,
   watch,
   onBeforeMount,
@@ -180,57 +182,59 @@ const emit = defineEmits([
   UI_AUTOCOMPLETE.EVENTS.SEARCH,
   UI_AUTOCOMPLETE.EVENTS.SELECTED
 ]);
+const slots = useSlots();
 
 const autocomplete = ref(null);
 const autocompleteList = ref(null);
-let autocompleteListEl = null;
-let autocompleteListener = null;
-let isExpanded = false;
-const inputValue = ref(props.modelValue);
-let currentSource = []; // source data
-const currentSuggestion = {
-  data: [], // filter data
-  index: -1
-};
-let currentSelectedItem = null;
-let timer = null;
-let scroll = {
-  $view: null,
-  viewHeight: 0,
-  listHeight: 0,
-  itemHeight: 0,
-  currentFirstIndex: 0,
-  currentLastIndex: 0,
-  defaultFirstIndex: 0,
-  defaultLastIndex: 0,
-  defaultReversedLastIndex: 0,
-  defaultReversedFirstIndex: 0
-};
+const state = reactive({
+  autocompleteListEl: null,
+  autocompleteListener: null,
+  isExpanded: false,
+  inputValue: props.modelValue,
+  currentSource: [], // source data
+  currentSuggestion: {
+    data: [], // filter data
+    index: -1
+  },
+  currentSelectedItem: null,
+  timer: null,
+  scroll: {
+    $view: null,
+    viewHeight: 0,
+    listHeight: 0,
+    itemHeight: 0,
+    currentFirstIndex: 0,
+    currentLastIndex: 0,
+    defaultFirstIndex: 0,
+    defaultLastIndex: 0,
+    defaultReversedLastIndex: 0,
+    defaultReversedFirstIndex: 0
+  }
+});
+const { inputValue } = toRefs(state);
 
 const { materialIcon } = useMaterialIcon(props);
 
 const className = computed(() => ({
   'mdc-autocomplete': true,
-  'mdc-autocomplete--expanded': isExpanded
+  'mdc-autocomplete--expanded': state.isExpanded
 }));
-const hasLeadingIcon = computed(() => {
-  const slots = useSlots();
-  return !!(props.withLeadingIcon || slots.before);
-});
-const hasTrailingIcon = computed(() => {
-  const slots = useSlots();
-  return !!(props.withTrailingIcon || slots.after);
-});
+const hasLeadingIcon = computed(
+  () => !!(props.withLeadingIcon || slots.before)
+);
+const hasTrailingIcon = computed(
+  () => !!(props.withTrailingIcon || slots.after)
+);
 
 onBeforeMount(() => checkOptionFormat('<ui-autocomplete>', props.sourceFormat));
 
 onMounted(() => {
-  autocompleteListEl = autocompleteList.value;
-  autocompleteListEl.addEventListener(
+  state.autocompleteListEl = autocompleteList.value;
+  state.autocompleteListEl.addEventListener(
     UI_AUTOCOMPLETE.EVENTS.MOUSEMOVE,
     handleMousemove
   );
-  autocompleteListEl.addEventListener(
+  state.autocompleteListEl.addEventListener(
     UI_AUTOCOMPLETE.EVENTS.MOUSELEAVE,
     handleMouseleave
   );
@@ -255,49 +259,49 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  if (autocompleteListener) {
+  if (state.autocompleteListener) {
     document.removeEventListener(
       UI_AUTOCOMPLETE.EVENTS.CLICK,
-      autocompleteListener
+      state.autocompleteListener
     );
   }
-  autocompleteListEl.removeEventListener(
+  state.autocompleteListEl.removeEventListener(
     UI_AUTOCOMPLETE.EVENTS.MOUSEMOVE,
     handleMousemove
   );
-  autocompleteListEl.removeEventListener(
+  state.autocompleteListEl.removeEventListener(
     UI_AUTOCOMPLETE.EVENTS.MOUSELEAVE,
     handleMouseleave
   );
 });
 
 function initClientHeight() {
-  const view = autocompleteListEl;
+  const view = state.autocompleteListEl;
   const list = view.querySelector('ul');
   const item = view.querySelector('li');
 
-  if (!scroll.$view) {
-    scroll.$view = view;
-    scroll.viewHeight = view.offsetHeight;
+  if (!state.scroll.$view) {
+    state.scroll.$view = view;
+    state.scroll.viewHeight = view.offsetHeight;
   }
-  if (!scroll.item) {
-    scroll.itemHeight = item.offsetHeight;
+  if (!state.scroll.item) {
+    state.scroll.itemHeight = item.offsetHeight;
   }
-  if (scroll.list !== list.offsetHeight) {
-    scroll.listHeight = list.offsetHeight;
-  }
-
-  scroll.defaultFirstIndex = 0;
-  scroll.defaultLastIndex =
-    parseInt(scroll.viewHeight / scroll.itemHeight, 10) - 1;
-  let maxHeight = currentSuggestion.data.length - 1;
-  if (scroll.defaultReversedLastIndex !== maxHeight) {
-    scroll.defaultReversedLastIndex = maxHeight;
-    scroll.defaultReversedFirstIndex =
-      scroll.defaultReversedLastIndex - scroll.defaultLastIndex;
+  if (state.scroll.list !== list.offsetHeight) {
+    state.scroll.listHeight = list.offsetHeight;
   }
 
-  scroll.currentLastIndex = scroll.defaultLastIndex;
+  state.scroll.defaultFirstIndex = 0;
+  state.scroll.defaultLastIndex =
+    parseInt(state.scroll.viewHeight / state.scroll.itemHeight, 10) - 1;
+  let maxHeight = state.currentSuggestion.data.length - 1;
+  if (state.scroll.defaultReversedLastIndex !== maxHeight) {
+    state.scroll.defaultReversedLastIndex = maxHeight;
+    state.scroll.defaultReversedFirstIndex =
+      state.scroll.defaultReversedLastIndex - state.scroll.defaultLastIndex;
+  }
+
+  state.scroll.currentLastIndex = state.scroll.defaultLastIndex;
 }
 
 const escapeRegExChars = (value) =>
@@ -315,7 +319,7 @@ function formatResult(keywords) {
   const regExp = new RegExp(pattern, 'gi');
 
   // Local data source
-  currentSuggestion.data = currentSource
+  state.currentSuggestion.data = state.currentSource
     .filter(
       (word) =>
         word[props.sourceFormat.label].toLowerCase().indexOf(keywords) !== -1
@@ -342,26 +346,29 @@ function on() {
     throw new Error('[UiAutocomplete]: The keywords value must be a string');
   }
 
-  if (keywords.length >= props.minlength && currentSuggestion.data.length) {
-    isExpanded = true;
+  if (
+    keywords.length >= props.minlength &&
+    state.currentSuggestion.data.length
+  ) {
+    state.isExpanded = true;
     nextTick(() => initClientHeight());
   }
 }
 
 function off() {
-  isExpanded = false;
-  currentSuggestion.index = -1;
+  state.isExpanded = false;
+  state.currentSuggestion.index = -1;
   clearSelected();
 }
 
 function search(keywords) {
   if (props.remote) {
-    // Remote datasource
-    if (timer) {
-      clearTimeout(timer);
+    // Remote data source
+    if (state.timer) {
+      clearTimeout(state.timer);
     }
 
-    timer = setTimeout(() => {
+    state.timer = setTimeout(() => {
       emit(UI_AUTOCOMPLETE.EVENTS.SEARCH, keywords); // AJAX
     }, props.delay);
   } else {
@@ -371,7 +378,7 @@ function search(keywords) {
 
 function setDataSource(dataSource) {
   if (getType(dataSource) === 'array') {
-    currentSource = dataSource.map((data) => {
+    state.currentSource = dataSource.map((data) => {
       let item = {};
 
       if (getType(data) === 'string' || getType(data) === 'number') {
@@ -389,7 +396,7 @@ function setDataSource(dataSource) {
       return item;
     });
 
-    currentSuggestion.data = currentSource;
+    state.currentSuggestion.data = state.currentSource;
   }
 }
 
@@ -400,27 +407,27 @@ function handleFocus() {
 }
 
 function handleKeydown(event) {
-  if (currentSuggestion.data.length) {
+  if (state.currentSuggestion.data.length) {
     const MIN = 0;
-    const MAX = currentSuggestion.data.length - 1;
+    const MAX = state.currentSuggestion.data.length - 1;
 
     switch (event.keyCode) {
       case KEYCODE.DOWN:
         clearSelected();
 
-        if (currentSuggestion.index === MAX) {
-          currentSuggestion.index = MIN;
+        if (state.currentSuggestion.index === MAX) {
+          state.currentSuggestion.index = MIN;
 
-          scroll.currentFirstIndex = scroll.defaultFirstIndex;
-          scroll.currentLastIndex = scroll.defaultLastIndex;
-          scroll.$view.scrollTop = 0;
+          state.scroll.currentFirstIndex = state.scroll.defaultFirstIndex;
+          state.scroll.currentLastIndex = state.scroll.defaultLastIndex;
+          state.scroll.$view.scrollTop = 0;
         } else {
-          currentSuggestion.index++;
+          state.currentSuggestion.index++;
 
-          if (currentSuggestion.index > scroll.currentLastIndex) {
-            scroll.currentFirstIndex++;
-            scroll.currentLastIndex++;
-            scroll.$view.scrollTop += scroll.itemHeight;
+          if (state.currentSuggestion.index > state.scroll.currentLastIndex) {
+            state.scroll.currentFirstIndex++;
+            state.scroll.currentLastIndex++;
+            state.scroll.$view.scrollTop += state.scroll.itemHeight;
           }
         }
 
@@ -430,21 +437,28 @@ function handleKeydown(event) {
       case KEYCODE.UP:
         clearSelected();
 
-        if (currentSuggestion.index === MIN || currentSuggestion.index === -1) {
-          currentSuggestion.index = MAX;
+        if (
+          state.currentSuggestion.index === MIN ||
+          state.currentSuggestion.index === -1
+        ) {
+          state.currentSuggestion.index = MAX;
 
-          scroll.currentFirstIndex = scroll.defaultReversedFirstIndex;
-          scroll.currentLastIndex = scroll.defaultReversedLastIndex;
-          scroll.$view.scrollTop =
-            scroll.itemHeight * scroll.defaultReversedFirstIndex;
+          state.scroll.currentFirstIndex =
+            state.scroll.defaultReversedFirstIndex;
+          state.scroll.currentLastIndex = state.scroll.defaultReversedLastIndex;
+          state.scroll.$view.scrollTop =
+            state.scroll.itemHeight * state.scroll.defaultReversedFirstIndex;
         } else {
-          currentSuggestion.index--;
+          state.currentSuggestion.index--;
 
-          if (currentSuggestion.index < scroll.currentLastIndex) {
-            scroll.currentFirstIndex--;
-            scroll.currentLastIndex--;
-            if (currentSuggestion.index < scroll.defaultReversedFirstIndex) {
-              scroll.$view.scrollTop -= scroll.itemHeight;
+          if (state.currentSuggestion.index < state.scroll.currentLastIndex) {
+            state.scroll.currentFirstIndex--;
+            state.scroll.currentLastIndex--;
+            if (
+              state.currentSuggestion.index <
+              state.scroll.defaultReversedFirstIndex
+            ) {
+              state.scroll.$view.scrollTop -= state.scroll.itemHeight;
             }
           }
         }
@@ -457,8 +471,10 @@ function handleKeydown(event) {
         if (inputValue.value.length > 0) {
           // If no option is selected, use first option
           let selectedItem =
-            currentSuggestion.data[
-              currentSuggestion.index < MIN ? MIN : currentSuggestion.index
+            state.currentSuggestion.data[
+              state.currentSuggestion.index < MIN
+                ? MIN
+                : state.currentSuggestion.index
             ];
           handleSelected(selectedItem);
         }
@@ -481,10 +497,10 @@ function handleInput(value) {
 }
 
 function handleBlur(event) {
-  if (!autocompleteListener) {
+  if (!state.autocompleteListener) {
     const el = autocomplete.value.textfield;
 
-    autocompleteListener = (e) => {
+    state.autocompleteListener = (e) => {
       let inTextfield = false;
       let parentEl = e.target;
 
@@ -495,17 +511,20 @@ function handleBlur(event) {
         }
       }
 
-      if (e !== event && isExpanded && !inTextfield) {
+      if (e !== event && state.isExpanded && !inTextfield) {
         document.removeEventListener(
           UI_AUTOCOMPLETE.EVENTS.CLICK,
-          autocompleteListener
+          state.autocompleteListener
         );
         off();
       }
     };
   }
 
-  document.addEventListener(UI_AUTOCOMPLETE.EVENTS.CLICK, autocompleteListener);
+  document.addEventListener(
+    UI_AUTOCOMPLETE.EVENTS.CLICK,
+    state.autocompleteListener
+  );
 }
 
 function handleMousemove(event) {
@@ -514,18 +533,20 @@ function handleMousemove(event) {
     el.tagName === 'LI' &&
     !el.classList.contains(UI_AUTOCOMPLETE.cssClasses.selected)
   ) {
-    currentSelectedItem = el;
+    state.currentSelectedItem = el;
 
     clearSelected();
 
     el.classList.add(UI_AUTOCOMPLETE.cssClasses.selected);
-    currentSuggestion.index = el.dataset.index;
+    state.currentSuggestion.index = el.dataset.index;
   }
 }
 
 function handleMouseleave() {
-  if (currentSelectedItem) {
-    currentSelectedItem.classList.remove(UI_AUTOCOMPLETE.cssClasses.selected);
+  if (state.currentSelectedItem) {
+    state.currentSelectedItem.classList.remove(
+      UI_AUTOCOMPLETE.cssClasses.selected
+    );
   }
 }
 
@@ -551,7 +572,7 @@ function clearSelected() {
 const getItemClassName = (index) => [
   deprecatedListClassNameMap['mdc-list-item'],
   {
-    selected: index === currentSuggestion.index
+    selected: index === state.currentSuggestion.index
   }
 ];
 

@@ -14,7 +14,15 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, onMounted, useSlots, getCurrentInstance } from 'vue';
+import {
+  ref,
+  reactive,
+  toRefs,
+  computed,
+  onMounted,
+  useSlots,
+  getCurrentInstance
+} from 'vue';
 import { MDCFormField } from '../../../material-components-web/form-field';
 
 const props = defineProps({
@@ -33,10 +41,15 @@ const props = defineProps({
   }
 });
 
+const slots = useSlots();
+
 const instance = getCurrentInstance();
 const formField = ref(null);
-const $formField = ref(null);
-const form = ref(null);
+const state = reactive({
+  $formField: null,
+  form: null
+});
+const { $formField } = toRefs(state);
 
 const className = computed(() => {
   return {
@@ -50,7 +63,7 @@ const isCustomFormItem = computed(
   () => formField.value && formField.value.classList.contains('mdc-form__item')
 ).value;
 const style = computed(() => {
-  const formProps = form.value;
+  const formProps = state.form;
   return formProps && formProps.itemMarginBottom
     ? {
         'margin-bottom': `${formProps.itemMarginBottom}px`
@@ -59,17 +72,17 @@ const style = computed(() => {
 });
 // horizontal form
 const flexBasis = computed(() => {
-  const formProps = form.value;
+  const formProps = state.form;
   return formProps && formProps.labelWidth ? +formProps.labelWidth : 0;
 }).value;
 const marginRight = computed(() => {
-  const formProps = form.value;
+  const formProps = state.form;
   return formProps && formProps.labelMarginRight
     ? +formProps.labelMarginRight
     : 0;
 }).value;
 const actionPaddingLeft = computed(() => {
-  const formProps = form.value;
+  const formProps = state.form;
   return formProps &&
     formProps.actionAlign === 'left' &&
     (flexBasis || marginRight)
@@ -78,7 +91,7 @@ const actionPaddingLeft = computed(() => {
 }).value;
 // vertical form
 const marginBottom = computed(() => {
-  const formProps = form.value;
+  const formProps = state.form;
   return formProps && formProps.labelMarginBottom
     ? +formProps.labelMarginBottom
     : 0;
@@ -95,8 +108,6 @@ function getFrom(instance) {
 }
 
 function initFormLabel() {
-  const slots = useSlots();
-
   if (slots.default) {
     const $label = slots.default().find((component) => {
       return component.type === 'label';
@@ -123,9 +134,9 @@ function initFormLabel() {
 }
 
 onMounted(() => {
-  $formField.value = new MDCFormField(formField.value);
+  state.$formField = new MDCFormField(formField.value);
 
-  form.value = getFrom(instance);
+  state.form = getFrom(instance);
 
   initFormLabel();
 });

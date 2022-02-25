@@ -1,6 +1,6 @@
 <template>
   <!-- Image list item -->
-  <li ref="imageItem" class="mdc-image-list__item" @click="handleClick">
+  <li class="mdc-image-list__item" @click="handleClick">
     <!-- Image container -->
     <template v-if="$parent.isMasonry">
       <slot name="image" :imageClass="UI_IMAGE_ITEM.cssClasses.image">
@@ -46,7 +46,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, onBeforeMount, getCurrentInstance } from 'vue';
+import { computed, onBeforeMount, getCurrentInstance } from 'vue';
 
 const props = defineProps({
   // UI attributes
@@ -68,7 +68,6 @@ const style = computed(() => ({
 
 const instance = getCurrentInstance();
 const parent = instance.parent;
-const imageItem = ref(null);
 
 onBeforeMount(() => {
   if (parent.props.isMasonry && props.bgImage) {

@@ -1,6 +1,6 @@
 <template>
   <!-- Buttons -->
-  <footer ref="dialogActions" class="mdc-dialog__actions">
+  <footer class="mdc-dialog__actions">
     <slot :buttonClass="UI_DIALOG_ACTION.cssClasses.button">
       <mdc-button
         :class="UI_DIALOG_ACTION.cssClasses.button"
@@ -55,7 +55,6 @@ const props = defineProps({
 
 const instance = getCurrentInstance();
 const parent = instance.parent;
-const dialogActions = ref(null);
 
 const closable = computed(() => parent.props.closable);
 </script>

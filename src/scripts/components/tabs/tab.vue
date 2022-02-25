@@ -89,7 +89,6 @@ const props = defineProps({
 const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 const tab = ref(null);
-let $tab = ref(null);
 
 const { isTextWithIcon, isIconOnly } = useTab(props);
 const { materialIcon } = useMaterialIcon(props);

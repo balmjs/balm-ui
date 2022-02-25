@@ -26,7 +26,7 @@
         class="mdc-data-table__fixed-body"
         :columns-data="columns.data"
         :scroll="scroll"
-        :max-width="currentMaxWidth"
+        :max-width="maxWidth"
       >
         <mdc-table-body
           :data="data"
@@ -117,6 +117,8 @@ export default {
 <script setup>
 import {
   ref,
+  reactive,
+  toRefs,
   computed,
   watch,
   onMounted,
@@ -200,13 +202,16 @@ const emit = defineEmits([UI_TABLE.EVENTS.CHANGE]);
 
 const table = ref(null);
 const tableContent = ref(null);
-let $table = null;
-let columnsData = props.tbody;
-let currentData = props.data;
-let ticking = false;
-let currentOffsetLeft = 0;
-let currentMaxWidth = 0;
-let fixedScrollWidth = 0;
+const state = reactive({
+  $table: null,
+  columnsData: props.tbody,
+  currentData: props.data,
+  ticking: false,
+  offsetLeft: 0,
+  maxWidth: 0,
+  fixedScrollWidth: 0
+});
+const { currentData, maxWidth, fixedScrollWidth } = toRefs(state);
 
 const hasFixedCell = computed(() => {
   const fixedFirstColumn =
@@ -236,7 +241,7 @@ const className = computed(() => ({
 }));
 
 const columns = computed(() => {
-  let count = columnsData.length;
+  let count = state.columnsData.length;
   let maxWidth = 0;
   let data = props.tbody.map(({ colClass, width }) => {
     const colWidth = width || props.defaultColWidth;
@@ -324,12 +329,12 @@ const cellStyle = computed(() => {
 });
 
 onMounted(() => {
-  $table = new MDCDataTable(table.value);
+  state.$table = new MDCDataTable(table.value);
 
-  $table.listen(events.ROW_SELECTION_CHANGED, ({ detail }) => {
+  state.$table.listen(events.ROW_SELECTION_CHANGED, ({ detail }) => {
     let selectedRows = props.modelValue; // NOTE: cache selected rows for pagination
 
-    currentData.forEach((tbodyRowData, tbodyRowIndex) => {
+    state.currentData.forEach((tbodyRowData, tbodyRowIndex) => {
       let selectedRowId = props.selectedKey
         ? tbodyRowData[props.selectedKey]
         : tbodyRowIndex;
@@ -353,28 +358,32 @@ onMounted(() => {
     emit(UI_TABLE.EVENTS.CHANGE, selectedRows);
   });
 
-  $table.listen(events.SELECTED_ALL, () => {
+  state.$table.listen(events.SELECTED_ALL, () => {
     let oldSelectedRows = props.modelValue; // NOTE: cache selected rows for pagination
 
-    let newSelectedRows = currentData.map((tbodyRowData, tbodyRowIndex) => {
-      return props.selectedKey
-        ? tbodyRowData[props.selectedKey]
-        : tbodyRowIndex;
-    });
+    let newSelectedRows = state.currentData.map(
+      (tbodyRowData, tbodyRowIndex) => {
+        return props.selectedKey
+          ? tbodyRowData[props.selectedKey]
+          : tbodyRowIndex;
+      }
+    );
 
     let selectedRows = [...new Set(oldSelectedRows.concat(newSelectedRows))]; // merge + unique
 
     emit(UI_TABLE.EVENTS.CHANGE, selectedRows);
   });
 
-  $table.listen(events.UNSELECTED_ALL, () => {
+  state.$table.listen(events.UNSELECTED_ALL, () => {
     let oldSelectedRows = props.modelValue; // NOTE: cache selected rows for pagination
 
-    let newSelectedRows = currentData.map((tbodyRowData, tbodyRowIndex) => {
-      return props.selectedKey
-        ? tbodyRowData[props.selectedKey]
-        : tbodyRowIndex;
-    });
+    let newSelectedRows = state.currentData.map(
+      (tbodyRowData, tbodyRowIndex) => {
+        return props.selectedKey
+          ? tbodyRowData[props.selectedKey]
+          : tbodyRowIndex;
+      }
+    );
 
     // Difference set
     let a = new Set(oldSelectedRows);
@@ -384,7 +393,7 @@ onMounted(() => {
     emit(UI_TABLE.EVENTS.CHANGE, selectedRows);
   });
 
-  $table.listen(events.SORTED, ({ detail }) => {
+  state.$table.listen(events.SORTED, ({ detail }) => {
     // TODO: multi-row header is unsupported
     handleSort(detail);
   });
@@ -394,7 +403,7 @@ onMounted(() => {
   }
 
   if (props.showProgress) {
-    $table.showProgress();
+    state.$table.showProgress();
   }
 
   if (hasFixedCell) {
@@ -402,27 +411,27 @@ onMounted(() => {
     tableFrameEl.addEventListener('scroll', handleScroll);
 
     if (props.rowCheckbox) {
-      currentMaxWidth += UI_TABLE.CHECKBOX_COL_WIDTH;
+      state.maxWidth += UI_TABLE.CHECKBOX_COL_WIDTH;
     }
 
     props.tbody.forEach(({ width }) => {
-      currentMaxWidth += width || props.defaultColWidth;
+      state.maxWidth += width || props.defaultColWidth;
     });
   }
 
   watch(
     () => props.data,
     (val) => {
-      currentData = val;
+      state.currentData = val;
 
       nextTick(() => {
-        $table.hideProgress();
-        $table.layout();
+        state.$table.hideProgress();
+        state.$table.layout();
         initSelectedRows();
 
         const tableFrameEl = tableContent.value.tableFrame.value;
         if (tableFrameEl) {
-          fixedScrollWidth =
+          state.fixedScrollWidth =
             tableFrameEl.offsetWidth - tableFrameEl.clientWidth;
         }
       });
@@ -430,7 +439,7 @@ onMounted(() => {
   );
   watch(
     () => props.showProgress,
-    (val) => (val ? $table.showProgress() : $table.hideProgress())
+    (val) => (val ? state.$table.showProgress() : state.$table.hideProgress())
   );
 });
 
@@ -445,12 +454,12 @@ function handleSort({ columnId, sortValue }) {
   let newSelectedRows = [];
 
   if (sortValue) {
-    const isNumber = currentData.every(
+    const isNumber = state.currentData.every(
       (data) => getType(data[columnId]) === 'number'
     );
 
     if (sortValue === 'descending') {
-      currentData.sort(
+      state.currentData.sort(
         isNumber
           ? (a, b) => {
               return b[columnId] - a[columnId];
@@ -460,7 +469,7 @@ function handleSort({ columnId, sortValue }) {
             }
       );
     } else if (sortValue === 'ascending') {
-      currentData.sort(
+      state.currentData.sort(
         isNumber
           ? (a, b) => {
               return a[columnId] - b[columnId];
@@ -475,7 +484,7 @@ function handleSort({ columnId, sortValue }) {
     if (props.selectedKey) {
       newSelectedRows = [...oldSelectedRows];
     } else {
-      const tableRowCount = currentData.length;
+      const tableRowCount = state.currentData.length;
 
       let oldSelectedIndex = 0;
       for (let index = tableRowCount - 1; index >= 0; index--) {
@@ -492,11 +501,11 @@ function handleSort({ columnId, sortValue }) {
 }
 
 function initSelectedRows() {
-  if (props.rowCheckbox && currentData.length) {
+  if (props.rowCheckbox && state.currentData.length) {
     let rowIds = props.modelValue
       .map((selectedRow) => {
         let rowIndex = props.selectedKey
-          ? currentData.findIndex(
+          ? state.currentData.findIndex(
               (tbodyRowData) => tbodyRowData[props.selectedKey] === selectedRow
             )
           : selectedRow;
@@ -504,22 +513,22 @@ function initSelectedRows() {
       })
       .filter((row) => row > -1);
 
-    $table.setSelectedRowIds(rowIds);
+    state.$table.setSelectedRowIds(rowIds);
   }
 }
 
 function handleScroll(e) {
-  if (!ticking) {
+  if (!state.ticking) {
     window.requestAnimationFrame(() => {
       const offsetLeft = e.target.scrollLeft;
 
-      if (currentOffsetLeft != offsetLeft) {
-        currentOffsetLeft = offsetLeft;
+      if (state.offsetLeft != offsetLeft) {
+        state.offsetLeft = offsetLeft;
       }
 
-      ticking = false;
+      state.ticking = false;
     });
-    ticking = true;
+    state.ticking = true;
   }
 }
 </script>

@@ -6,7 +6,7 @@
         :key="buttonIndex"
         :text="buttonItem.text || null"
         :icon="buttonItem.icon || null"
-        :selected="singleSelect ? buttonIndex === selected.value : false"
+        :selected="singleSelect ? buttonIndex === selectedValue : false"
         @click="handleClick($event, buttonIndex)"
       ></ui-segmented-button>
     </slot>
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, reactive, toRefs, computed, onMounted } from 'vue';
 import { MDCSegmentedButton } from '../../../material-components-web/segmented-button';
 import { events } from '../../../material-components-web/segmented-button/segmented-button/constants';
 import UiSegmentedButton from './segmented-button.vue';
@@ -59,7 +59,10 @@ const emit = defineEmits([
 ]);
 
 const segmentedButtons = ref(null);
-let selected = ref(props.modelValue);
+const state = reactive({
+  selectedValue: props.modelValue
+});
+const { selectedValue } = toRefs(state);
 
 const className = computed(() => ({
   'mdc-segmented-button': true,
@@ -73,7 +76,7 @@ function init(el) {
   $segmentedButton.listen(events.CHANGE, ({ detail }) => {
     const currentIndex = detail.index;
 
-    let selectedValue = selected.value;
+    let selectedValue = state.selectedValue;
     if (props.singleSelect) {
       selectedValue = currentIndex;
     } else {
@@ -108,9 +111,9 @@ onMounted(() => {
 
 function handleClick(event, index) {
   if (props.singleSelect) {
-    selected.value = index;
+    state.selectedValue = index;
 
-    emit(UI_SEGMENTED_BUTTONS.EVENTS.CHANGE, selected.value);
+    emit(UI_SEGMENTED_BUTTONS.EVENTS.CHANGE, state.selectedValue);
     emit(UI_SEGMENTED_BUTTONS.EVENTS.SELECTED, index);
   }
 }

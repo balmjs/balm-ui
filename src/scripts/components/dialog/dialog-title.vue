@@ -1,5 +1,5 @@
 <template>
-  <div ref="dialogTitle" :class="className">
+  <div :class="className">
     <!-- Title (optional) -->
     <h2 class="mdc-dialog__title">
       <slot></slot>
@@ -35,7 +35,6 @@ const props = defineProps({
 
 const instance = getCurrentInstance();
 const parent = instance.parent;
-const dialogTitle = ref(null);
 
 const className = computed(() => ({
   'mdc-dialog__header': true,

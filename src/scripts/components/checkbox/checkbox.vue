@@ -36,6 +36,8 @@ export default {
 <script setup>
 import {
   ref,
+  reactive,
+  toRefs,
   computed,
   watch,
   onMounted,
@@ -73,8 +75,11 @@ const emit = defineEmits([UI_CHECKBOX.EVENTS.CHANGE]);
 const instance = getCurrentInstance();
 const parent = instance.parent;
 const checkbox = ref(null);
-let $checkbox = null;
-const selectedValue = ref(setSelectedValue(props.modelValue));
+const state = reactive({
+  $checkbox: null,
+  selectedValue: setSelectedValue(props.modelValue)
+});
+const { selectedValue } = toRefs(state);
 
 const isAccessible = computed(() => {
   const el = checkbox.value;
@@ -89,34 +94,34 @@ const className = computed(() => ({
 onMounted(() => {
   nextTick(() => {
     const el = checkbox.value;
-    $checkbox = new MDCCheckbox(el.mdcCheckbox);
-    $checkbox.indeterminate = props.indeterminate;
+    state.$checkbox = new MDCCheckbox(el.mdcCheckbox);
+    state.$checkbox.indeterminate = props.indeterminate;
 
     const $formField = parent?.exposed?.$formField.value;
     if ($formField) {
-      $formField.input = $checkbox;
+      $formField.input = state.$checkbox;
     }
   });
 
   watch(
     () => props.modelValue,
     (val) => {
-      selectedValue.value = setSelectedValue(val);
+      state.selectedValue = setSelectedValue(val);
     }
   );
   watch(
     () => props.indeterminate,
     (val) => {
-      if ($checkbox) {
-        $checkbox.indeterminate = val;
+      if (state.$checkbox) {
+        state.$checkbox.indeterminate = val;
       }
     }
   );
   watch(
     () => props.disabled,
     (val) => {
-      if ($checkbox) {
-        $checkbox.disabled = val;
+      if (state.$checkbox) {
+        state.$checkbox.disabled = val;
       }
     }
   );
@@ -127,6 +132,6 @@ function setSelectedValue(value) {
 }
 
 function handleChange() {
-  emit(UI_CHECKBOX.EVENTS.CHANGE, selectedValue.value);
+  emit(UI_CHECKBOX.EVENTS.CHANGE, state.selectedValue);
 }
 </script>

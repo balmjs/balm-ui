@@ -12,10 +12,7 @@ const progressProps = {
     default: 0
   },
   // UI attributes
-  label: {
-    type: String,
-    default: ''
-  },
+  label: String,
   closed: {
     type: Boolean,
     default: false

@@ -33,6 +33,8 @@ export default {
 <script setup>
 import {
   ref,
+  reactive,
+  toRefs,
   computed,
   watch,
   onBeforeMount,
@@ -78,11 +80,14 @@ const props = defineProps({
 const emit = defineEmits([UI_CHIPS.EVENTS.CHANGE]);
 
 const chips = ref(null);
-let $chipSet = null;
-let selectedValue = props.modelValue;
-let currentOptions = props.options;
-let chipsCount = props.items.length;
-const choiceChipId = ref(null); // fix(ui): twice trigger
+const state = reactive({
+  $chipSet: null,
+  selectedValue: props.modelValue,
+  currentOptions: props.options,
+  chipsCount: props.items.length,
+  choiceChipId: null // fix(ui): twice trigger
+});
+const { currentOptions, choiceChipId } = toRefs(state);
 
 const inputChips = computed(() =>
   checkType(props, UI_CHIPS.TYPES, 'input')
@@ -110,20 +115,20 @@ onMounted(() => {
     () => props.modelValue,
     (val, oldVal) => {
       clearSelected(val, oldVal);
-      selectedValue = val;
+      state.selectedValue = val;
     }
   );
   watch(
     () => props.options,
     (val) => {
       if (choiceChips || filterChips) {
-        currentOptions = [];
+        state.currentOptions = [];
 
         nextTick(() => {
-          currentOptions = val;
+          state.currentOptions = val;
 
-          if ($chipSet) {
-            $chipSet.destroy();
+          if (state.$chipSet) {
+            state.$chipSet.destroy();
             init();
           }
         });
@@ -134,10 +139,10 @@ onMounted(() => {
   watch(
     () => props.items,
     (val) => {
-      if (val.length > chipsCount) {
+      if (val.length > state.chipsCount) {
         addChip(val.length);
-      } else if (val.length < chipsCount) {
-        chipsCount--;
+      } else if (val.length < state.chipsCount) {
+        state.chipsCount--;
       }
     }
   );
@@ -147,22 +152,22 @@ onUpdated(() => {
   nextTick(() => {
     if (inputChips) {
       addChip();
-    } else if (!$chipSet && (choiceChips || filterChips)) {
+    } else if (!state.$chipSet && (choiceChips || filterChips)) {
       init();
     }
   });
 });
 
 function init() {
-  $chipSet = new MDCChipSet(chips.value);
+  state.$chipSet = new MDCChipSet(chips.value);
 
-  const currentChips = $chipSet.chips;
+  const currentChips = state.$chipSet.chips;
   if (currentChips.length) {
     initData(currentChips);
     initEvent(currentChips);
   } else {
     if (!inputChips) {
-      $chipSet = null;
+      state.$chipSet = null;
     }
   }
 }
@@ -171,14 +176,14 @@ function initData(chips) {
   if (filterChips) {
     let selectedIndexes = [];
 
-    if (currentOptions.length) {
-      currentOptions.forEach((option, index) => {
-        if (selectedValue.includes(option[props.optionFormat.value])) {
+    if (state.currentOptions.length) {
+      state.currentOptions.forEach((option, index) => {
+        if (state.selectedValue.includes(option[props.optionFormat.value])) {
           selectedIndexes.push(index);
         }
       });
     } else {
-      selectedIndexes = selectedValue;
+      selectedIndexes = state.selectedValue;
     }
 
     chips.forEach((chip, index) => {
@@ -189,12 +194,12 @@ function initData(chips) {
   } else if (choiceChips) {
     let selectedIndex = -1;
 
-    if (currentOptions.length) {
-      selectedIndex = currentOptions.findIndex(
-        (option) => option[props.optionFormat.value] === selectedValue
+    if (state.currentOptions.length) {
+      selectedIndex = state.currentOptions.findIndex(
+        (option) => option[props.optionFormat.value] === state.selectedValue
       );
     } else {
-      selectedIndex = selectedValue;
+      selectedIndex = state.selectedValue;
     }
 
     if (selectedIndex > -1 && chips[selectedIndex]) {
@@ -204,22 +209,22 @@ function initData(chips) {
 }
 
 function initEvent(chips) {
-  const adapter = $chipSet.foundation.adapter;
+  const adapter = state.$chipSet.foundation.adapter;
 
-  $chipSet.listen(strings.SELECTION_EVENT, ({ detail }) => {
+  state.$chipSet.listen(strings.SELECTION_EVENT, ({ detail }) => {
     if (choiceChips) {
-      if (detail.chipId === choiceChipId.value) {
+      if (detail.chipId === state.choiceChipId) {
         const selectedIndex = detail.selected
           ? adapter.getIndexOfChipById(detail.chipId)
           : -1;
 
-        if (currentOptions.length) {
-          let selectedValue =
+        if (state.currentOptions.length) {
+          const currentSelectedValue =
             selectedIndex > -1
-              ? currentOptions[selectedIndex][props.optionFormat.value]
+              ? state.currentOptions[selectedIndex][props.optionFormat.value]
               : '';
 
-          emit(UI_CHIPS.EVENTS.CHANGE, selectedValue);
+          emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
         } else {
           emit(UI_CHIPS.EVENTS.CHANGE, selectedIndex);
         }
@@ -232,12 +237,12 @@ function initEvent(chips) {
         }
       });
 
-      if (currentOptions.length) {
-        let selectedValue = currentOptions
+      if (state.currentOptions.length) {
+        const currentSelectedValue = state.currentOptions
           .filter((option, index) => selectedIndexes.includes(index))
           .map((option) => option[props.optionFormat.value]);
 
-        emit(UI_CHIPS.EVENTS.CHANGE, selectedValue);
+        emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
       } else {
         emit(UI_CHIPS.EVENTS.CHANGE, selectedIndexes);
       }
@@ -246,28 +251,28 @@ function initEvent(chips) {
 }
 
 function addChip() {
-  const oldChipsCount = chipsCount;
+  const oldChipsCount = state.chipsCount;
   const newChipsCount = props.items.length;
 
   if (newChipsCount) {
     const el = chips.value;
     if (oldChipsCount === 0) {
       el.querySelectorAll('.mdc-chip').forEach((newChipEl) => {
-        $chipSet.addChip(newChipEl);
+        state.$chipSet.addChip(newChipEl);
       });
-      chipsCount = newChipsCount;
+      state.chipsCount = newChipsCount;
     } else {
       if (newChipsCount > oldChipsCount) {
         let newChipIndex = newChipsCount - 1;
         let newChipEl = el.querySelectorAll('.mdc-chip')[newChipIndex];
-        $chipSet.addChip(newChipEl);
-        chipsCount++;
+        state.$chipSet.addChip(newChipEl);
+        state.chipsCount++;
       } else if (newChipsCount < oldChipsCount) {
-        chipsCount--;
+        state.chipsCount--;
       }
     }
   } else {
-    chipsCount = 0;
+    state.chipsCount = 0;
   }
 }
 
@@ -278,23 +283,23 @@ function clearSelected(newSelectedValue, oldSelectedValue) {
     if (filterChips) {
       let selectedIndexes = [];
 
-      currentOptions.forEach((option, index) => {
+      state.currentOptions.forEach((option, index) => {
         if (oldSelectedValue.includes(option[props.optionFormat.value])) {
           selectedIndexes.push(index);
         }
       });
 
-      $chipSet.chips.forEach((chip, index) => {
+      state.$chipSet.chips.forEach((chip, index) => {
         if (selectedIndexes.includes(index)) {
           chip.selected = false;
         }
       });
     } else if (choiceChips) {
-      let selectedIndex = currentOptions.findIndex((option) =>
+      let selectedIndex = state.currentOptions.findIndex((option) =>
         oldSelectedValue.includes(option[props.optionFormat.value])
       );
 
-      $chipSet.chips[selectedIndex].selected = false;
+      state.$chipSet.chips[selectedIndex].selected = false;
     }
   }
 }

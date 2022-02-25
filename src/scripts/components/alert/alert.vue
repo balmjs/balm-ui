@@ -34,7 +34,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { reactive, toRefs, computed } from 'vue';
 import { useStateType } from '../../mixins/state-type';
 
 const props = defineProps({
@@ -53,8 +53,11 @@ const props = defineProps({
   }
 });
 
-let closed = ref(false);
-let destroyed = ref(false);
+const state = reactive({
+  closed: false,
+  destroyed: false
+});
+const { closed, destroyed } = toRefs(state);
 
 const { stateType, stateClassName, materialIcon } = useStateType(props);
 
@@ -62,15 +65,15 @@ const className = computed(() => [
   'mdc-alert',
   `mdc-alert--${stateType}`,
   {
-    'mdc-alert--closed': closed
+    'mdc-alert--closed': state.closed
   }
 ]);
 
 function onClose() {
-  closed.value = true;
+  state.closed = true;
 
   setTimeout(() => {
-    destroyed.value = true;
+    state.destroyed = true;
   }, 200);
 }
 </script>

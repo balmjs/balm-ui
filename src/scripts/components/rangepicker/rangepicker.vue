@@ -41,7 +41,15 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
+import {
+  ref,
+  reactive,
+  toRefs,
+  computed,
+  watch,
+  onMounted,
+  onBeforeUnmount
+} from 'vue';
 import flatpickr from 'flatpickr';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import UiTextfield from '../textfield/textfield.vue';
@@ -87,15 +95,18 @@ const endPlaceholder = computed(() => props.placeholders[1] || '');
 
 const startDatepicker = ref(null);
 const endDatepicker = ref(null);
-let picker = null;
-let startInputValue = '';
-let endInputValue = '';
+const state = reactive({
+  picker: null,
+  startInputValue: '',
+  endInputValue: ''
+});
+const { startInputValue, endInputValue } = toRefs(state);
 
 onMounted(() => {
   const startInputEl = startDatepicker.value.textfield.querySelector('input');
   const endInputEl = endDatepicker.value.textfield.querySelector('input');
 
-  if (!picker) {
+  if (!state.picker) {
     let config = Object.assign({}, props.config, {
       disableMobile: true, // Mobile Support
       plugins: [
@@ -107,7 +118,10 @@ onMounted(() => {
     // custom event
     config.onChange = (selectedDates, dateStr, instance) => {
       updateInputs(selectedDates);
-      emit(UI_RANGEPICKER.EVENTS.CHANGE, [startInputValue, endInputValue]);
+      emit(UI_RANGEPICKER.EVENTS.CHANGE, [
+        state.startInputValue,
+        state.endInputValue
+      ]);
     };
     config.onClose = () => {
       startInputEl.blur();
@@ -118,7 +132,7 @@ onMounted(() => {
       updateInputs(props.modelValue);
       updateInitialValue(instance);
 
-      const dateValue = [startInputValue, endInputValue];
+      const dateValue = [state.startInputValue, state.endInputValue];
       emit(UI_RANGEPICKER.EVENTS.CHANGE, dateValue);
     };
     // fix(@flatpickr): second input onChange bug for rangePlugin (temporary solution)
@@ -126,7 +140,7 @@ onMounted(() => {
       onEndInputChange();
     };
 
-    picker = flatpickr(startInputEl, config);
+    state.picker = flatpickr(startInputEl, config);
   }
 
   watch(
@@ -146,9 +160,9 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  if (picker) {
-    picker.destroy();
-    picker = null;
+  if (state.picker) {
+    state.picker.destroy();
+    state.picker = null;
   }
 });
 
@@ -164,18 +178,20 @@ function updateInputs(dates) {
     );
 
     if (
-      startInputValue !== selectedDates[0] ||
-      endInputValue !== selectedDates[1]
+      state.startInputValue !== selectedDates[0] ||
+      state.endInputValue !== selectedDates[1]
     ) {
-      startInputValue = selectedDates[0];
-      endInputValue = selectedDates[1];
+      state.startInputValue = selectedDates[0];
+      state.endInputValue = selectedDates[1];
     }
   }
 }
 
-function updateInitialValue(instance = picker) {
+function updateInitialValue(instance = state.picker) {
   const dateValue =
-    startInputValue && endInputValue ? [startInputValue, endInputValue] : [];
+    state.startInputValue && state.endInputValue
+      ? [state.startInputValue, state.endInputValue]
+      : [];
   instance.setDate(dateValue, true); // Redrawing
 
   // fix(ui): focus bug for init (temporary solution)
@@ -185,17 +201,20 @@ function updateInitialValue(instance = picker) {
 }
 
 function clear() {
-  startInputValue = '';
-  endInputValue = '';
+  state.startInputValue = '';
+  state.endInputValue = '';
   updateInitialValue();
 }
 
 function onEndInputChange() {
   if (props.config.enableTime) {
     const currentEndInputValue = endDatepicker.value.$textField.value;
-    if (currentEndInputValue !== endInputValue) {
-      updateInputs([startInputValue, currentEndInputValue]);
-      emit(UI_RANGEPICKER.EVENTS.CHANGE, [startInputValue, endInputValue]);
+    if (currentEndInputValue !== state.endInputValue) {
+      updateInputs([state.startInputValue, currentEndInputValue]);
+      emit(UI_RANGEPICKER.EVENTS.CHANGE, [
+        state.startInputValue,
+        state.endInputValue
+      ]);
     }
   }
 }

@@ -21,7 +21,14 @@ export default {
 </script>
 
 <script setup>
-import { ref, watch, onMounted, useSlots, getTransitionRawChildren } from 'vue';
+import {
+  ref,
+  reactive,
+  watch,
+  onMounted,
+  useSlots,
+  getTransitionRawChildren
+} from 'vue';
 import { MDCTabBar } from '../../../material-components-web/tab-bar';
 import { strings } from '../../../material-components-web/tab-bar/constants';
 import UiTabScroller from './tab-scroller.vue';
@@ -35,25 +42,28 @@ const props = defineProps({
 });
 
 const emit = defineEmits([UI_TAB_BAR.EVENTS.CHANGE]);
+const slots = useSlots();
 
 const tabBar = ref(null);
-let $tabBar = null;
+const state = reactive({
+  $tabBar: null
+});
 
 function activateTab(active = props.modelValue) {
   const activeTabIndex =
-    active > -1 && active < $tabBar.tabList.length ? active : 0;
+    active > -1 && active < state.$tabBar.tabList.length ? active : 0;
 
-  $tabBar.activateTab(activeTabIndex);
+  state.$tabBar.activateTab(activeTabIndex);
 }
 
 function init() {
-  $tabBar = new MDCTabBar(tabBar.value);
+  state.$tabBar = new MDCTabBar(tabBar.value);
 
-  $tabBar.listen(strings.TAB_ACTIVATED_EVENT, ({ detail }) => {
+  state.$tabBar.listen(strings.TAB_ACTIVATED_EVENT, ({ detail }) => {
     emit(UI_TAB_BAR.EVENTS.CHANGE, detail.index);
   });
 
-  if ($tabBar.tabList.length) {
+  if (state.$tabBar.tabList.length) {
     activateTab();
   }
 }
@@ -68,12 +78,11 @@ onMounted(() => {
 });
 
 function updated() {
-  const slots = useSlots();
   const defaultSlotChildren = getTransitionRawChildren(slots.default());
 
-  if (defaultSlotChildren.length !== $tabBar.tabList.length) {
-    if ($tabBar) {
-      $tabBar.destroy();
+  if (defaultSlotChildren.length !== state.$tabBar.tabList.length) {
+    if (state.$tabBar) {
+      state.$tabBar.destroy();
     }
 
     init();

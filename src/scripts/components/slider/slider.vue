@@ -72,7 +72,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, reactive, toRefs, computed, watch, onMounted } from 'vue';
 import { MDCSlider } from '../../../material-components-web/slider';
 import { events } from '../../../material-components-web/slider/constants';
 import MdcSliderInput from './mdc-slider-input.vue';
@@ -120,15 +120,18 @@ const props = defineProps({
 const emit = defineEmits([UI_SLIDER.EVENTS.CHANGE]);
 
 const slider = ref(null);
-let $slider = null;
-let selectedValue = ref(props.modelValue);
-let startValue = 0;
-let endValue = 0;
+const state = reactive({
+  $slider: null,
+  selectedValue: props.modelValue,
+  startValue: 0,
+  endValue: 0
+});
+const { selectedValue, startValue, endValue } = toRefs(state);
 
 const isDiscrete = computed(
   () => checkType(props, UI_SLIDER.TYPES, 'discrete') || props.withTickMarks
 ).value;
-const isRange = computed(() => Array.isArray(selectedValue.value)).value;
+const isRange = computed(() => Array.isArray(state.selectedValue)).value;
 
 const className = computed(() => ({
   'mdc-slider': true,
@@ -139,20 +142,20 @@ const className = computed(() => ({
 }));
 
 onMounted(() => {
-  $slider = new MDCSlider(slider.value);
+  state.$slider = new MDCSlider(slider.value);
 
-  $slider.listen(events.CHANGE, ({ detail }) => {
+  state.$slider.listen(events.CHANGE, ({ detail }) => {
     const valuenow = Math.round(detail.value);
     if (isRange) {
-      if (selectedValue.value[detail.thumb - 1] !== valuenow) {
+      if (state.selectedValue[detail.thumb - 1] !== valuenow) {
         const currentSelectedValue =
           detail.thumb === 1
-            ? [valuenow, selectedValue.value[1]]
-            : [selectedValue.value[0], valuenow];
+            ? [valuenow, state.selectedValue[1]]
+            : [state.selectedValue[0], valuenow];
         emit(UI_SLIDER.EVENTS.CHANGE, currentSelectedValue);
       }
     } else {
-      if (selectedValue.value !== valuenow) {
+      if (state.selectedValue !== valuenow) {
         emit(UI_SLIDER.EVENTS.CHANGE, valuenow);
       }
     }
@@ -163,42 +166,42 @@ onMounted(() => {
   watch(
     () => props.modelValue,
     (val) => {
-      selectedValue.value = val;
+      state.selectedValue = val;
       update(val);
     }
   );
   watch(
     () => props.disabled,
     (val) => {
-      if ($slider) {
-        $slider.setDisabled(val);
+      if (state.$slider) {
+        state.$slider.setDisabled(val);
       }
     }
   );
 });
 
-function update(currentSelectedValue = selectedValue.value) {
+function update(currentSelectedValue = state.selectedValue) {
   if (isRange) {
     let validRangeSlider =
       currentSelectedValue[0] >= props.min &&
       currentSelectedValue[1] <= props.max &&
       currentSelectedValue[0] <= currentSelectedValue[1];
     if (validRangeSlider) {
-      startValue = +currentSelectedValue[0];
-      endValue = +currentSelectedValue[1];
-      $slider.setValue(endValue); // set first
-      $slider.setValueStart(startValue);
+      state.startValue = +currentSelectedValue[0];
+      state.endValue = +currentSelectedValue[1];
+      state.$slider.setValue(state.endValue); // set first
+      state.$slider.setValueStart(state.startValue);
     } else {
       console.warn('[UiSlider]', 'Invalid slider value');
     }
   } else {
-    $slider.setValue(currentSelectedValue);
+    state.$slider.setValue(currentSelectedValue);
   }
 }
 
 function recompute() {
   // Preventing FOUC
-  $slider.layout();
+  state.$slider.layout();
 }
 
 defineExpose({

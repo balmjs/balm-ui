@@ -54,7 +54,15 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, watch, onMounted, onUpdated } from 'vue';
+import {
+  ref,
+  reactive,
+  toRefs,
+  computed,
+  watch,
+  onMounted,
+  onUpdated
+} from 'vue';
 import { MDCSwitch } from '../../../material-components-web/switch';
 
 const props = defineProps({
@@ -80,13 +88,16 @@ const props = defineProps({
 const emit = defineEmits([UI_SWITCH.EVENTS.CHANGE, UI_SWITCH.EVENTS.SELECTED]);
 
 const switchRef = ref(null);
-let $switch = null;
-let selectedValue = ref(props.modelValue);
+const state = reactive({
+  $switch: null,
+  selectedValue: props.modelValue
+});
+const { selectedValue } = toRefs(state);
 
 const className = computed(() => ({
   'mdc-switch': true,
-  'mdc-switch--unselected': !selectedValue.value,
-  'mdc-switch--selected': selectedValue.value
+  'mdc-switch--unselected': !state.selectedValue,
+  'mdc-switch--selected': state.selectedValue
 }));
 
 onMounted(() => {
@@ -99,8 +110,8 @@ onMounted(() => {
   watch(
     () => props.disabled,
     (val) => {
-      if ($switch) {
-        $switch.disabled = val;
+      if (state.$switch) {
+        state.$switch.disabled = val;
       }
     }
   );
@@ -109,20 +120,20 @@ onMounted(() => {
 onUpdated(() => init()); // NOTE: Once for init, mdc switch has bug
 
 function init() {
-  $switch = new MDCSwitch(switchRef.value);
+  state.$switch = new MDCSwitch(switchRef.value);
 
   triggerSwitch();
 
-  $switch.selected = selectedValue.value;
+  state.$switch.selected = state.selectedValue;
 }
 
 function triggerSwitch(selected = props.modelValue) {
-  selectedValue.value = selected;
-  // $switch.selected = selected; // TODO: mdc switch has bug
+  state.selectedValue = selected;
+  // state.$switch.selected = selected; // TODO: mdc switch has bug
 }
 
 function handleChange() {
-  const selected = !selectedValue.value;
+  const selected = !state.selectedValue;
 
   emit(UI_SWITCH.EVENTS.CHANGE, selected);
   emit(

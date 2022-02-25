@@ -33,7 +33,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, watch, onMounted, nextTick } from 'vue';
+import { ref, reactive, computed, watch, onMounted, nextTick } from 'vue';
 import { MDCDrawer } from '../../../material-components-web/drawer';
 import { strings } from '../../../material-components-web/drawer/constants';
 import checkType from '../../mixins/type';
@@ -63,7 +63,9 @@ const props = defineProps({
 const emit = defineEmits([UI_DRAWER.EVENTS.NAV, UI_DRAWER.EVENTS.CHANGE]);
 
 const drawer = ref(null);
-let $drawer = null;
+const state = reactive({
+  $drawer: null
+});
 
 const isPermanent = computed(() =>
   checkType(props, UI_DRAWER.TYPES, 'permanent')
@@ -96,7 +98,7 @@ function createScrim() {
 function checkNav() {
   let result = true;
 
-  if (!($drawer.list && $drawer.list.listElements.length)) {
+  if (!(state.$drawer.list && state.$drawer.list.listElements.length)) {
     result = false;
     console.warn(
       '[UiDrawer]',
@@ -109,23 +111,23 @@ function checkNav() {
 
 function init() {
   const el = drawer.value;
-  $drawer = new MDCDrawer(el);
+  state.$drawer = new MDCDrawer(el);
 
-  $drawer.listen(strings.OPEN_EVENT, () => {
+  state.$drawer.listen(strings.OPEN_EVENT, () => {
     emit(UI_DRAWER.EVENTS.NAV, true);
   });
-  $drawer.listen(strings.CLOSE_EVENT, handleClose);
+  state.$drawer.listen(strings.CLOSE_EVENT, handleClose);
 
   if (props.navId && document.getElementById(props.navId)) {
     checkNav();
 
     document.getElementById(props.navId).addEventListener('click', () => {
       if (checkNav()) {
-        $drawer.open = !$drawer.open;
+        state.$drawer.open = !state.$drawer.open;
       }
     });
 
-    $drawer.open = props.modelValue;
+    state.$drawer.open = props.modelValue;
   }
 }
 
@@ -149,8 +151,8 @@ onMounted(() => {
   watch(
     () => props.modelValue,
     (val) => {
-      if ($drawer) {
-        $drawer.open = val;
+      if (state.$drawer) {
+        state.$drawer.open = val;
       }
     }
   );
@@ -162,7 +164,7 @@ onMounted(() => {
         if (isModal) {
           createScrim();
 
-          if (!$drawer) {
+          if (!state.$drawer) {
             init();
           }
         }

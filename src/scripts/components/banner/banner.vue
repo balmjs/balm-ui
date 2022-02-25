@@ -41,7 +41,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, reactive, computed, watch, onMounted } from 'vue';
 import { MDCBanner } from '../../../material-components-web/banner';
 import { events } from '../../../material-components-web/banner/constants';
 import MdcBannerContent from './mdc-banner-content.vue';
@@ -82,7 +82,9 @@ const props = defineProps({
 const emit = defineEmits([UI_BANNER.EVENTS.CHANGE, UI_BANNER.EVENTS.CLOSED]);
 
 const banner = ref(null);
-let $banner = null;
+const state = reactive({
+  $banner: null
+});
 
 const className = computed(() => ({
   'mdc-banner': true,
@@ -93,16 +95,16 @@ const className = computed(() => ({
 watch(
   () => props.modelValue,
   (val) => {
-    if ($banner) {
-      val ? $banner.open() : $banner.close();
+    if (state.$banner) {
+      val ? state.$banner.open() : state.$banner.close();
     }
   }
 );
 
 onMounted(() => {
-  $banner = new MDCBanner(banner.value);
+  state.$banner = new MDCBanner(banner.value);
 
-  $banner.listen(events.CLOSED, ({ detail }) => {
+  state.$banner.listen(events.CLOSED, ({ detail }) => {
     emit(UI_BANNER.EVENTS.CHANGE, false);
     emit(UI_BANNER.EVENTS.CLOSED, detail.reason);
   });

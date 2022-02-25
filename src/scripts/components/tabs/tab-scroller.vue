@@ -22,7 +22,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, reactive, computed, watch, onMounted } from 'vue';
 import { MDCTabScroller } from '../../../material-components-web/tab-scroller';
 import { tabScrollerProps } from '../../mixins/tab-scroller';
 
@@ -48,34 +48,35 @@ const className = computed(() => {
 });
 
 const tabScroller = ref(null);
-let $tabScroller = null;
-let scroll = ref(props.scrollX);
+const state = reactive({
+  $tabScroller: null,
+  scrollValue: props.scrollX
+});
 
 onMounted(() => {
-  $tabScroller = new MDCTabScroller(tabScroller.value);
+  state.$tabScroller = new MDCTabScroller(tabScroller.value);
 
   watch(
     () => props.scrollX,
     (val) => {
       let newScrollValue = +val;
-      $tabScroller.scrollTo(newScrollValue);
+      state.$tabScroller.scrollTo(newScrollValue);
 
-      scroll.value = newScrollValue;
+      state.scrollValue = newScrollValue;
     }
   );
 });
 
 function increment(scrollX = 0) {
   let offsetScrollX = +scrollX;
-  $tabScroller.incrementScroll(offsetScrollX);
+  state.$tabScroller.incrementScroll(offsetScrollX);
 
-  let scrollValue = scroll.value;
-  scrollValue += offsetScrollX;
-  if (scrollValue < 0) {
-    scrollValue = 0;
+  state.scrollValue += offsetScrollX;
+  if (state.scrollValue < 0) {
+    state.scrollValue = 0;
   }
 
-  emit(UI_TAB_SCROLLER.EVENTS.CHANGE, scrollValue);
+  emit(UI_TAB_SCROLLER.EVENTS.CHANGE, state.scrollValue);
 }
 
 defineExpose({

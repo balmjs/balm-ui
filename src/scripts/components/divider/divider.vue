@@ -50,13 +50,12 @@ const props = defineProps({
   }
 });
 
+const slots = useSlots();
+
 const isVertical = computed(
   () => checkType(props, UI_DIVIDER.TYPES, 'vertical') || props.type === '|'
 ).value;
-const hasText = computed(() => {
-  const slots = useSlots();
-  return !!slots.default;
-}).value;
+const hasText = computed(() => !!slots.default).value;
 
 const className = computed(() => ({
   'mdc-divider': true,

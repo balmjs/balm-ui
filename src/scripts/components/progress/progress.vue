@@ -2,7 +2,7 @@
   <mdc-linear-progress
     ref="linearProgress"
     :class="className"
-    :aria-label="label || null"
+    :aria-label="label"
     aria-valuemin="0"
     aria-valuemax="1"
     :data-buffer="!!buffer"
@@ -21,7 +21,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, reactive, computed, watch, onMounted } from 'vue';
 import { MDCLinearProgress } from '../../../material-components-web/linear-progress';
 import MdcLinearProgress from './mdc-linear-progress.vue';
 import { progressProps, useProgress } from '../../mixins/progress';
@@ -36,7 +36,9 @@ const props = defineProps({
 });
 
 const linearProgress = ref(null);
-let $linearProgress = null;
+const state = reactive({
+  $linearProgress: null
+});
 
 const className = computed(() => ({
   'mdc-linear-progress--indeterminate': props.active,
@@ -50,9 +52,9 @@ watch(
 
 onMounted(() => {
   const el = linearProgress.value.mdcLinearProgress;
-  $linearProgress = new MDCLinearProgress(el);
+  state.$linearProgress = new MDCLinearProgress(el);
 
-  const { setProgress } = useProgress($linearProgress, props);
+  const { setProgress } = useProgress(state.$linearProgress, props);
 
   setProgress(props.progress);
   if (el.dataset.buffer) {
@@ -62,11 +64,11 @@ onMounted(() => {
 
 function setBuffer(value) {
   if (
-    $linearProgress &&
+    state.$linearProgress &&
     value >= UI_PROGRESS.VALUE.MIN &&
     value <= UI_PROGRESS.VALUE.MAX
   ) {
-    $linearProgress.buffer = value;
+    state.$linearProgress.buffer = value;
   } else {
     console.warn(
       '[UiProgress]',

@@ -47,6 +47,7 @@ export default {
 <script setup>
 import {
   ref,
+  reactive,
   computed,
   watch,
   onMounted,
@@ -108,8 +109,10 @@ const emit = defineEmits([
 
 const dialog = ref(null);
 const dialogSurface = ref(null);
-let $dialog = null;
-let dialogBody = null;
+const state = reactive({
+  $dialog: null,
+  dialogBody: null
+});
 
 const className = computed(() => ({
   'mdc-dialog': true,
@@ -120,22 +123,22 @@ const className = computed(() => ({
 
 onMounted(() => {
   const el = dialog.value;
-  $dialog = new MDCDialog(el);
+  state.$dialog = new MDCDialog(el);
 
   nextTick(() => {
-    dialogBody = dialogSurface.value.querySelector(
+    state.dialogBody = dialogSurface.value.querySelector(
       `.${UI_DIALOG.cssClasses.content}`
     );
 
     // Accessibility: Using `aria-hidden` as a fallback for `aria-modal`
-    $dialog.listen(strings.OPENED_EVENT, () => {
-      dialogBody.setAttribute('aria-hidden', 'true');
+    state.$dialog.listen(strings.OPENED_EVENT, () => {
+      state.dialogBody.setAttribute('aria-hidden', 'true');
     });
-    $dialog.listen(strings.CLOSING_EVENT, ({ detail }) => {
-      dialogBody.removeAttribute('aria-hidden');
+    state.$dialog.listen(strings.CLOSING_EVENT, ({ detail }) => {
+      state.dialogBody.removeAttribute('aria-hidden');
 
       // fix: the escape key
-      if ($dialog.escapeKeyAction) {
+      if (state.$dialog.escapeKeyAction) {
         handleClose();
       }
     });
@@ -150,7 +153,7 @@ onMounted(() => {
     }
 
     if (!(props.escapeKey && props.closable)) {
-      $dialog.escapeKeyAction = '';
+      state.$dialog.escapeKeyAction = '';
     }
   });
 
@@ -158,11 +161,11 @@ onMounted(() => {
     () => props.modelValue,
     (val) => {
       if (val) {
-        $dialog.open();
+        state.$dialog.open();
       } else {
-        $dialog.close();
+        state.$dialog.close();
         if (props.resetScroll) {
-          dialogBody.scrollTop = 0;
+          state.dialogBody.scrollTop = 0;
         }
       }
     }

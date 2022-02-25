@@ -39,7 +39,7 @@ const helperTextProps = {
   }
 };
 
-function useHelperText(elementRef, props) {
+function useHelperText(props, { emit }) {
   const hasValidMsg = computed(() =>
     getType(props.validMsg) === 'string'
       ? !!props.validMsg.length
@@ -49,17 +49,22 @@ function useHelperText(elementRef, props) {
     getType(props.validMsg) === 'string' ? props.validMsg : ''
   );
 
+  function handleChange() {
+    if (props.validMsg !== true) {
+      emit(UI_HELPER_TEXT.EVENTS.CHANGE, false);
+    }
+  }
+
   onMounted(() => {
     if (props.id) {
-      instanceMap.set(`${props.id}-next`, elementRef);
+      instanceMap.set(`${props.id}-next`, handleChange);
     }
 
     watch(
       () => props.validMsg,
       () => {
-        if (instanceMap.get(`${props.id}-previous`)) {
-          instanceMap.get(`${props.id}-previous`).valid = !hasValidMsg;
-        }
+        const $input = instanceMap.get(`${props.id}-previous`);
+        $input && ($input.valid = !hasValidMsg);
       }
     );
   });

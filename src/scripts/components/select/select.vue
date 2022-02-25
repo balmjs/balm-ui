@@ -123,6 +123,8 @@ export default {
 <script setup>
 import {
   ref,
+  reactive,
+  toRefs,
   computed,
   watch,
   onBeforeMount,
@@ -205,25 +207,25 @@ const props = defineProps({
 });
 
 const emit = defineEmits([UI_SELECT.EVENTS.CHANGE, UI_SELECT.EVENTS.SELECTED]);
+const slots = useSlots();
 
 const select = ref(null);
-let $select = null;
-const currentOptions = ref([]);
-const selectedValue = ref(props.modelValue);
+const state = reactive({
+  $select: null,
+  currentOptions: [],
+  selectedValue: props.modelValue
+});
+const { currentOptions, selectedValue } = toRefs(state);
 
 const { materialIcon } = useMaterialIcon(props);
 
 const isOutlined = computed(() =>
   checkType(props, UI_SELECT.TYPES, 'outlined')
 ).value;
-const hasLeadingIcon = computed(() => {
-  const slots = useSlots();
-  return !!(materialIcon || props.withLeadingIcon || slots.icon);
-}).value;
-const noLabel = computed(() => {
-  const slots = useSlots();
-  return !(props.label || slots.default);
-}).value;
+const hasLeadingIcon = computed(
+  () => !!(materialIcon || props.withLeadingIcon || slots.icon)
+).value;
+const noLabel = computed(() => !(props.label || slots.default)).value;
 
 const className = computed(() => ({
   'mdc-select': true,
@@ -251,23 +253,23 @@ const style = computed(() => {
 onBeforeMount(() => checkOptionFormat('<ui-select>', props.optionFormat));
 
 onMounted(() => {
-  $select = new MDCSelect(select.value);
+  state.$select = new MDCSelect(select.value);
 
   if (props.helperTextId) {
-    instanceMap.set(`${props.helperTextId}-previous`, $select);
+    instanceMap.set(`${props.helperTextId}-previous`, state.$select);
   }
 
-  $select.listen(strings.CHANGE_EVENT, ({ detail }) => {
+  state.$select.listen(strings.CHANGE_EVENT, ({ detail }) => {
     // NOTE: for dynamic options
     nextTick(() => {
-      let hasOptions = props.defaultLabel
-        ? currentOptions.value.length > 1
-        : currentOptions.value.length;
+      const hasOptions = props.defaultLabel
+        ? state.currentOptions.length > 1
+        : state.currentOptions.length;
 
       if (hasOptions) {
         const selected = getSelected(detail.index);
         // fix(ui): twice trigger
-        if (selectedValue.value !== selected.value) {
+        if (state.selectedValue !== selected.value) {
           emit(UI_SELECT.EVENTS.CHANGE, selected.value);
           emit(UI_SELECT.EVENTS.SELECTED, selected);
         }
@@ -277,7 +279,7 @@ onMounted(() => {
 
   // fix(@material-components): overflow inside of the component
   if (props.fixed) {
-    $select.menu.setFixedPosition(true);
+    state.$select.menu.setFixedPosition(true);
   }
 
   init();
@@ -285,7 +287,7 @@ onMounted(() => {
   watch(
     () => props.modelValue,
     (val) => {
-      selectedValue.value = val;
+      state.selectedValue = val;
 
       setCurrentOption();
     }
@@ -298,8 +300,8 @@ onMounted(() => {
   watch(
     () => props.disabled,
     (val) => {
-      if ($select) {
-        $select.disabled = val;
+      if (state.$select) {
+        state.$select.disabled = val;
       }
     }
   );
@@ -314,11 +316,11 @@ function init(options = props.options) {
     defaultOption[props.optionFormat.value] = props.defaultValue || ' '; // fix(ui): floating label bug when the value is empty
     newOptions.unshift(defaultOption);
   }
-  currentOptions.value = newOptions;
+  state.currentOptions = newOptions;
 
   // Set current option
   nextTick(() => {
-    $select.layoutOptions();
+    state.$select.layoutOptions();
     setCurrentOption();
   });
 }
@@ -327,19 +329,19 @@ function setCurrentOption() {
   let currentIndex = UI_SELECT.DEFAULT_SELECTED_INDEX + 1;
 
   for (
-    let index = 0, itemCount = currentOptions.value.length;
+    let index = 0, itemCount = state.currentOptions.length;
     index < itemCount;
     index++
   ) {
-    let currentOption = currentOptions.value[index];
-    if (currentOption[props.optionFormat.value] === selectedValue.value) {
+    let currentOption = state.currentOptions[index];
+    if (currentOption[props.optionFormat.value] === state.selectedValue) {
       currentIndex = index;
       break;
     }
   }
 
   if (currentIndex > UI_SELECT.DEFAULT_SELECTED_INDEX) {
-    $select.selectedIndex = currentIndex;
+    state.$select.selectedIndex = currentIndex;
   }
 }
 

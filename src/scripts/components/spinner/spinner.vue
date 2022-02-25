@@ -83,7 +83,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, onBeforeMount, onMounted } from 'vue';
+import { ref, reactive, computed, onBeforeMount, onMounted } from 'vue';
 import { MDCCircularProgress } from '../../../material-components-web/circular-progress';
 import MdcSpinnerLayer from './mdc-spinner-layer.vue';
 import { progressProps, useProgress } from '../../mixins/progress';
@@ -102,13 +102,15 @@ const props = defineProps({
 });
 
 const circularProgress = ref(null);
-let $circularProgress = null;
-let currentSize = '';
+const state = reactive({
+  $circularProgress: null,
+  currentSize: ''
+});
 
 const className = computed(() => {
   return [
     'mdc-circular-progress',
-    `mdc-circular-progress--${currentSize}`,
+    `mdc-circular-progress--${state.currentSize}`,
     {
       'mdc-circular-progress--indeterminate': props.active,
       'mdc-circular-progress--closed': props.closed
@@ -116,31 +118,31 @@ const className = computed(() => {
   ];
 });
 const svg = computed(() =>
-  currentSize ? UI_CIRCULAR_PROGRESS.SVG[currentSize] : {}
+  state.currentSize ? UI_CIRCULAR_PROGRESS.SVG[state.currentSize] : {}
 );
 
 onBeforeMount(() => {
   switch (props.size) {
     case 'M':
     case 'medium':
-      currentSize = 'medium';
+      state.currentSize = 'medium';
       break;
     case 'S':
     case 'small':
-      currentSize = 'small';
+      state.currentSize = 'small';
       break;
     // case 'L':
     // case 'large':
     default:
-      currentSize = 'large';
+      state.currentSize = 'large';
   }
 });
 
 onMounted(() => {
-  if (currentSize) {
-    $circularProgress = new MDCCircularProgress(circularProgress.value);
+  if (state.currentSize) {
+    state.$circularProgress = new MDCCircularProgress(circularProgress.value);
 
-    const { setProgress } = useProgress($circularProgress, props);
+    const { setProgress } = useProgress(state.$circularProgress, props);
 
     setProgress(props.progress);
   } else {

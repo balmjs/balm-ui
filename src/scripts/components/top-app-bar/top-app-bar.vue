@@ -78,7 +78,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, watch, onMounted, nextTick } from 'vue';
+import { ref, reactive, computed, watch, onMounted, nextTick } from 'vue';
 import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
 import { strings } from '../../../material-components-web/top-app-bar/constants';
 import MdcIconButton from '../icon-button/mdc-icon-button.vue';
@@ -139,7 +139,9 @@ const emit = defineEmits([
 ]);
 
 const topAppBar = ref(null);
-let $topAppBar = null;
+const state = reactive({
+  $topAppBar: null
+});
 
 const isNonRegular = computed(() =>
   checkType(props, UI_TOP_APP_BAR.TYPES, 'nonRegular')
@@ -236,15 +238,15 @@ function createFixedAdjustElement() {
 }
 
 function init() {
-  if ($topAppBar) {
-    $topAppBar.destroy();
+  if (state.$topAppBar) {
+    state.$topAppBar.destroy();
   }
 
   nextTick(() => {
     createFixedAdjustElement();
-    $topAppBar = new MDCTopAppBar(topAppBar.value);
+    state.$topAppBar = new MDCTopAppBar(topAppBar.value);
 
-    $topAppBar.listen(strings.NAVIGATION_EVENT, () => {
+    state.$topAppBar.listen(strings.NAVIGATION_EVENT, () => {
       emit(
         isNonRegular ? UI_TOP_APP_BAR.EVENTS.CLOSE : UI_TOP_APP_BAR.EVENTS.NAV
       );

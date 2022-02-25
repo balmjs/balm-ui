@@ -90,7 +90,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, reactive, toRefs, computed, watch, onMounted } from 'vue';
 import { MDCMenu } from '../../../material-components-web/menu';
 import { Corner } from '../../../material-components-web/menu-surface/constants';
 import UiMenuitem from './menuitem.vue';
@@ -156,32 +156,35 @@ const menuDistance = computed(() => {
 });
 
 const menu = ref(null);
-let $menu = null;
-let currentItems = props.items;
-let currentTextItems = [];
-let currentItem = null;
+const state = reactive({
+  $menu: null,
+  currentItems: props.items,
+  currentTextItems: [],
+  currentItem: null
+});
+const { currentItems } = toRefs(state);
 
 onMounted(() => {
   initItems();
 
   if (!props.cssOnly) {
     const el = menu.value;
-    $menu = new MDCMenu(el);
+    state.$menu = new MDCMenu(el);
 
     // Listen for selected item
     el.addEventListener(`MDCMenu:${UI_MENU.EVENTS.SELECTED}`, ({ detail }) => {
       const index = detail.index;
       const dataValue = detail.item.dataset.value;
-      const currentTextItem = currentTextItems[index];
+      const currentTextItem = state.currentTextItems[index];
       const item =
         getType(currentTextItem) === 'object'
           ? currentTextItem
           : { value: currentTextItem };
 
-      currentItem = item;
+      state.currentItem = item;
       emit(UI_MENU.EVENTS.SELECTED, {
         index, // number
-        text: $menu.getPrimaryTextAtIndex(index), // string
+        text: state.$menu.getPrimaryTextAtIndex(index), // string
         value: item.value || dataValue // string
       });
     });
@@ -202,15 +205,15 @@ onMounted(() => {
     watch(
       () => props.modelValue,
       (val) => {
-        if ($menu.open !== val) {
-          $menu.open = val;
+        if (state.$menu.open !== val) {
+          state.$menu.open = val;
         }
       }
     );
     watch(
       () => props.items,
       (val) => {
-        currentItems = val;
+        state.currentItems = val;
         initItems();
       }
     );
@@ -238,7 +241,7 @@ onMounted(() => {
 const isDivider = (item) => item === UI_MENU.DIVIDER;
 
 function initItems() {
-  currentTextItems = currentItems.filter((item) =>
+  state.currentTextItems = state.currentItems.filter((item) =>
     getType(item) === 'object'
       ? item.text !== UI_MENU.DIVIDER
       : item !== UI_MENU.DIVIDER
@@ -248,17 +251,17 @@ function initItems() {
 function isSelected(item) {
   let selected = false;
 
-  if (getType(item) === 'object' && getType(currentItem) === 'object') {
-    selected = item.text === currentItem.text;
+  if (getType(item) === 'object' && getType(state.currentItem) === 'object') {
+    selected = item.text === state.currentItem.text;
   } else {
-    selected = item === currentItem;
+    selected = item === state.currentItem;
   }
 
   return selected;
 }
 
 function setQuickOpen(quickOpen = props.quickOpen) {
-  $menu.quickOpen = quickOpen;
+  state.$menu.quickOpen = quickOpen;
 }
 
 function hasAnchor() {
@@ -272,7 +275,7 @@ function hasAnchor() {
 function setAnchorCorner(menuPosition = props.position) {
   if (hasAnchor()) {
     if (UI_MENU.MENU_POSITIONS.includes(menuPosition)) {
-      $menu.setAnchorCorner(Corner[menuPosition]);
+      state.$menu.setAnchorCorner(Corner[menuPosition]);
     } else {
       console.warn('[UiMenu]', 'Invalid menu position');
     }
@@ -281,7 +284,7 @@ function setAnchorCorner(menuPosition = props.position) {
 
 function setAnchorMargin(distance = props.distance) {
   if (hasAnchor() && Object.keys(distance).length) {
-    $menu.setAnchorMargin(distance);
+    state.$menu.setAnchorMargin(distance);
   }
 }
 </script>

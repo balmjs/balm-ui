@@ -31,7 +31,15 @@ export default {
 </script>
 
 <script setup>
-import { ref, watch, onMounted, onBeforeUnmount, nextTick } from 'vue';
+import {
+  ref,
+  reactive,
+  toRefs,
+  watch,
+  onMounted,
+  onBeforeUnmount,
+  nextTick
+} from 'vue';
 import { createEditor, Emotion } from './core';
 import { onBlurEmojiHandler } from './extensions/emoji/module';
 import handleFileChange from '../../utils/file';
@@ -106,17 +114,20 @@ const emit = defineEmits([
 
 const editor = ref(null);
 const file = ref(null);
-let $editor = null;
-let htmlContent = '';
-let editSourceCode = false; // TODO
+const state = reactive({
+  $editor: null,
+  htmlContent: '',
+  editSourceCode: false // TODO
+});
+const { htmlContent, editSourceCode } = toRefs(state);
 
 watch(
   () => props.modelValue,
   (val) => {
     if (val) {
-      if (htmlContent !== val) {
+      if (state.htmlContent !== val) {
         setHTML(val);
-        $editor.blur();
+        state.$editor.blur();
       }
     } else {
       setHTML('');
@@ -127,7 +138,7 @@ watch(
 onMounted(() => {
   nextTick(async () => {
     const { toolbarTips, toolbarOptions, emotions, extension } = props;
-    $editor = await createEditor(editor.value, {
+    state.$editor = await createEditor(editor.value, {
       toolbarIcons: Object.assign(UI_EDITOR.toolbarIcons, props.toolbarIcons),
       toolbarTips,
       toolbarOptions,
@@ -140,13 +151,13 @@ onMounted(() => {
       setHTML(props.modelValue);
     }
 
-    $editor.on('text-change', (delta, oldDelta, source) => {
+    state.$editor.on('text-change', (delta, oldDelta, source) => {
       let html = getHTML();
       if (html === UI_EDITOR.BLANK) {
         html = '';
       }
 
-      htmlContent = html;
+      state.htmlContent = html;
       emit(UI_EDITOR.EVENTS.TEXT_CHANGE, html);
     });
   });
@@ -220,17 +231,17 @@ function getOptions(counterEl) {
 
   Object.keys(props.toolbarHandlers).forEach((format) => {
     toolbarHandlers[format] = (value) => {
-      props.toolbarHandlers[format]($editor, value);
+      props.toolbarHandlers[format](state.$editor, value);
     };
   });
 
   return options;
 }
 
-const getHTML = () => $editor.root.innerHTML;
-const setHTML = (html) => ($editor.root.innerHTML = html);
+const getHTML = () => state.$editor.root.innerHTML;
+const setHTML = (html) => (state.$editor.root.innerHTML = html);
 
-const insertImage = (url) => $editor.insert('image', url);
+const insertImage = (url) => state.$editor.insert('image', url);
 function handleChange(event) {
   handleFileChange(event, (result) => {
     emit(UI_EDITOR.EVENTS.FILE_CHANGE, result[0], insertImage);

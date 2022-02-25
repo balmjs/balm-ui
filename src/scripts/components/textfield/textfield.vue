@@ -152,11 +152,12 @@ export default {
 <script setup>
 import {
   ref,
+  reactive,
+  toRefs,
   computed,
   watch,
   onMounted,
   useSlots,
-  nextTick,
   getCurrentInstance
 } from 'vue';
 import { MDCTextField } from '../../../material-components-web/textfield';
@@ -258,6 +259,7 @@ const emit = defineEmits([
   UI_TEXTFIELD.EVENTS.ENTER,
   UI_TEXTFIELD.EVENTS.BLUR
 ]);
+const slots = useSlots();
 
 const { materialIcon } = useMaterialIcon(props);
 
@@ -272,7 +274,6 @@ const hasTrailingIcon = computed(
   () => !!(props.withTrailingIcon || hasAfterSlot())
 ).value;
 const noLabel = computed(() => {
-  const slots = useSlots();
   const hasLabel = props.label || slots.default;
   return !!(props.placeholder || !hasLabel);
 }).value;
@@ -297,22 +298,25 @@ const className = computed(() => ({
 const instance = getCurrentInstance();
 const parent = instance.parent;
 const textfield = ref(null);
-const $textField = ref(null);
-const inputValue = ref(props.modelValue);
+const state = reactive({
+  $textField: null,
+  inputValue: props.modelValue
+});
+const { $textField, inputValue } = toRefs(state);
 
 onMounted(() => {
-  $textField.value = new MDCTextField(textfield.value);
+  state.$textField = new MDCTextField(textfield.value);
 
   if (props.helperTextId) {
-    instanceMap.set(`${props.helperTextId}-previous`, $textField.value);
+    instanceMap.set(`${props.helperTextId}-previous`, state.$textField);
   }
 
   watch(
     () => props.modelValue,
     (val, oldVal) => {
-      inputValue.value = val;
+      state.inputValue = val;
 
-      const $textFieldInstance = $textField.value;
+      const $textFieldInstance = state.$textField;
       if ($textFieldInstance) {
         // fix(ui): dynamic assignment bug
         if (!oldVal && val) {
@@ -340,7 +344,7 @@ onMounted(() => {
   watch(
     () => props.disabled,
     (val) => {
-      const $textFieldInstance = $textField.value;
+      const $textFieldInstance = state.$textField;
       if ($textFieldInstance) {
         $textFieldInstance.disabled = val;
       }
@@ -350,12 +354,10 @@ onMounted(() => {
 
 function hasBeforeSlot() {
   const hasLeadingIcon = parent?.exposed?.hasLeadingIcon;
-  const slots = useSlots();
   return hasLeadingIcon || slots.before;
 }
 function hasAfterSlot() {
   const hasTrailingIcon = parent?.exposed?.hasTrailingIcon;
-  const slots = useSlots();
   return hasTrailingIcon || slots.after;
 }
 
@@ -382,12 +384,8 @@ function handleEnter(event) {
 }
 function handleBlur(event) {
   // fix(@material-components): valid bug on blur
-  if (instanceMap.get(`${props.helperTextId}-next`)) {
-    const helperText = instanceMap.get(`${props.helperTextId}-next`);
-    if (helperText.validMsg !== true) {
-      helperText.$emit(UI_HELPER_TEXT.EVENTS.CHANGE, false);
-    }
-  }
+  const helperTextChangeHandler = instanceMap.get(`${props.helperTextId}-next`);
+  helperTextChangeHandler && helperTextChangeHandler();
 
   emit(UI_TEXTFIELD.EVENTS.BLUR, event);
 }

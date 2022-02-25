@@ -1,6 +1,6 @@
 <template>
   <!-- Helper text (optional) -->
-  <p ref="selectHelper" :id="id" :class="className" aria-hidden="true">
+  <p :id="id" :class="className" aria-hidden="true">
     <slot>{{ validMessage }}</slot>
   </p>
 </template>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, onBeforeMount } from 'vue';
+import { computed, onBeforeMount } from 'vue';
 import { helperTextProps, useHelperText } from '../../mixins/helper-text';
 
 const props = defineProps({
@@ -26,9 +26,7 @@ const props = defineProps({
 
 const emit = defineEmits([UI_HELPER_TEXT.EVENTS.CHANGE]);
 
-const selectHelper = ref(null);
-
-const { hasValidMsg, validMessage } = useHelperText(selectHelper, props);
+const { hasValidMsg, validMessage } = useHelperText(props, { emit });
 
 const isVisible = computed(() => !props.visible || hasValidMsg).value; // hasValidMsg: For css name bug
 const className = computed(() => ({

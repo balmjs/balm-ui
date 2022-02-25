@@ -55,7 +55,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, reactive, computed, watch, onMounted } from 'vue';
 import { MDCSnackbar } from '../../../material-components-web/snackbar';
 import { strings } from '../../../material-components-web/snackbar/constants';
 import MdcButton from '../button/mdc-button.vue';
@@ -104,7 +104,9 @@ const emit = defineEmits([
 ]);
 
 const snackbar = ref(null);
-let $snackbar = null;
+const state = reactive({
+  $snackbar: null
+});
 
 const positionClassName = computed(() =>
   ['top', 'center'].includes(props.position)
@@ -138,7 +140,7 @@ watch(
   () => props.modelValue,
   (val) => {
     if (val) {
-      $snackbar.open();
+      state.$snackbar.open();
     }
   }
 );
@@ -151,21 +153,21 @@ watch(
 watch(
   () => props.message,
   (val) => {
-    $snackbar.labelText = val;
+    state.$snackbar.labelText = val;
   }
 );
 
 onMounted(() => {
-  $snackbar = new MDCSnackbar(snackbar.value);
+  state.$snackbar = new MDCSnackbar(snackbar.value);
 
   if (props.timeoutMs !== UI_SNACKBAR.timeoutMs.DEFAULTS) {
     setTimeoutMs(+props.timeoutMs);
   }
   if (props.message) {
-    $snackbar.labelText = props.message;
+    state.$snackbar.labelText = props.message;
   }
 
-  $snackbar.listen(strings.CLOSED_EVENT, () => {
+  state.$snackbar.listen(strings.CLOSED_EVENT, () => {
     emit(UI_SNACKBAR.EVENTS.CHANGE, false);
     emit(UI_SNACKBAR.EVENTS.CLOSED);
   });
@@ -173,7 +175,7 @@ onMounted(() => {
 
 function setTimeoutMs(val) {
   if (val >= UI_SNACKBAR.timeoutMs.MIN && val <= UI_SNACKBAR.timeoutMs.MAX) {
-    $snackbar.timeoutMs = val;
+    state.$snackbar.timeoutMs = val;
   } else {
     console.warn(
       '[UiSnackbar]',

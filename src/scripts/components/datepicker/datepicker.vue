@@ -104,6 +104,8 @@ export default {
 <script setup>
 import {
   ref,
+  reactive,
+  toRefs,
   computed,
   watch,
   onMounted,
@@ -154,35 +156,32 @@ const props = defineProps({
 });
 
 const emit = defineEmits([UI_DATEPICKER.EVENTS.CHANGE]);
+const slots = useSlots();
 
 const { materialIcon } = useMaterialIcon(props);
 
-const hasLeadingIcon = computed(() => {
-  const slots = useSlots();
-  return !!(props.withLeadingIcon || slots.before);
-});
-const hasTrailingIcon = computed(() => {
-  const slots = useSlots();
-  return !!(
-    props.withTrailingIcon ||
-    slots.after ||
-    props.toggle ||
-    props.clear
-  );
-});
+const hasLeadingIcon = computed(
+  () => !!(props.withLeadingIcon || slots.before)
+);
+const hasTrailingIcon = computed(
+  () => !!(props.withTrailingIcon || slots.after || props.toggle || props.clear)
+);
 
 const datepicker = ref(null);
-let picker = null;
-const inputValue = ref(props.modelValue);
-const mode = props.config.mode || UI_DATEPICKER.MODE.SINGLE;
-let rangeSeparator = '';
+const state = reactive({
+  picker: null,
+  inputValue: props.modelValue,
+  mode: props.config.mode || UI_DATEPICKER.MODE.SINGLE,
+  rangeSeparator: ''
+});
+const { inputValue } = toRefs(state);
 
 onMounted(() => {
   const el = datepicker.value.textfield;
   const inputEl = el.querySelector('input');
   inputEl.dataset.input = '';
 
-  if (!picker) {
+  if (!state.picker) {
     let config = Object.assign({}, props.config);
     switch (config.mode) {
       case UI_DATEPICKER.MODE.MONTH:
@@ -216,21 +215,23 @@ onMounted(() => {
       }
 
       // fix(ui): time mode bug when the initial value is empty
-      if (config.mode === UI_DATEPICKER.MODE.TIME && !inputValue.value) {
+      if (config.mode === UI_DATEPICKER.MODE.TIME && !state.inputValue) {
         inputEl.value = '';
       }
 
       inputEl.blur();
     };
     // Set default value
-    if (mode === UI_DATEPICKER.MODE.RANGE) {
-      rangeSeparator = config.locale ? config.locale.rangeSeparator : ' to ';
+    if (state.mode === UI_DATEPICKER.MODE.RANGE) {
+      state.rangeSeparator = config.locale
+        ? config.locale.rangeSeparator
+        : ' to ';
       setRangeDate(props.modelValue);
     } else {
       config.onReady = (selectedDates, dateStr, instance) => {
         // defaultDate: 'today'
         if (dateStr) {
-          inputValue.value = dateStr;
+          state.inputValue = dateStr;
           emit(UI_DATEPICKER.EVENTS.CHANGE, dateStr);
         }
       };
@@ -242,50 +243,50 @@ onMounted(() => {
       };
     }
     // Init
-    config.defaultDate = inputValue.value;
-    picker = flatpickr(el, config);
+    config.defaultDate = state.inputValue;
+    state.picker = flatpickr(el, config);
   }
 
   watch(
     () => props.modelValue,
     (val) => {
-      if (mode === UI_DATEPICKER.MODE.RANGE) {
+      if (state.mode === UI_DATEPICKER.MODE.RANGE) {
         setRangeDate(val);
       } else {
-        inputValue.value = val;
+        state.inputValue = val;
       }
-      syncSelectedDates(inputValue.value);
+      syncSelectedDates(state.inputValue);
     }
   );
 });
 
 onBeforeUnmount(() => {
-  if (picker) {
-    picker.destroy();
-    picker = null;
+  if (state.picker) {
+    state.picker.destroy();
+    state.picker = null;
   }
 });
 
 function syncSelectedDates(value) {
-  if (picker) {
-    picker.setDate(value);
+  if (state.picker) {
+    state.picker.setDate(value);
   }
 }
 
 function handleChange(event) {
-  inputValue.value = event.target.value;
+  state.inputValue = event.target.value;
 
   let result;
-  switch (mode) {
+  switch (state.mode) {
     case UI_DATEPICKER.MODE.MULTIPLE:
-      let multipleValue = inputValue.value.replace(/\s,\s/, ',').split(',');
+      let multipleValue = state.inputValue.replace(/\s,\s/, ',').split(',');
       result =
         multipleValue.length === 1
           ? multipleValue[0] // string
           : multipleValue; // array
       break;
     case UI_DATEPICKER.MODE.RANGE:
-      let rangeValue = inputValue.value.split(rangeSeparator);
+      let rangeValue = state.inputValue.split(state.rangeSeparator);
       let startDate = rangeValue[0];
       let endDate = rangeValue[1];
       if (startDate && endDate) {
@@ -298,7 +299,7 @@ function handleChange(event) {
       }
       break;
     default:
-      result = inputValue.value; // string
+      result = state.inputValue; // string
       break;
   }
 
@@ -309,7 +310,7 @@ function handleChange(event) {
 
 function handleClear(event) {
   // fix(ui): trigger `<ui-textfield>` focused when clicking the clear button
-  if (!inputValue.value) {
+  if (!state.inputValue) {
     event.stopPropagation();
   }
 }
@@ -318,10 +319,10 @@ function setRangeDate(selectedDates) {
   if (Array.isArray(selectedDates) && selectedDates.length === 2) {
     let startDate = selectedDates[0];
     let endDate = selectedDates[1];
-    inputValue.value =
+    state.inputValue =
       startDate === endDate
         ? startDate
-        : `${startDate}${rangeSeparator}${endDate}`;
+        : `${startDate}${state.rangeSeparator}${endDate}`;
   }
 }
 

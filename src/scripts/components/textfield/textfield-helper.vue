@@ -38,7 +38,9 @@ const emit = defineEmits([UI_HELPER_TEXT.EVENTS.CHANGE]);
 
 const textfieldHelper = ref(null);
 
-const { hasValidMsg, validMessage } = useHelperText(textfieldHelper, props);
+const { hasValidMsg, validMessage } = useHelperText(props, {
+  emit
+});
 
 const className = computed(() => ({
   'mdc-text-field-helper-text': true,

@@ -68,7 +68,7 @@ function useStateType(props) {
     }
 
     return result;
-  });
+  }).value;
 
   return {
     stateType,

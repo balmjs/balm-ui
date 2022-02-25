@@ -8,7 +8,7 @@ const iconProps = {
 };
 
 function useMaterialIcon(props) {
-  const materialIcon = computed(() => props.icon || false);
+  const materialIcon = computed(() => props.icon || false).value;
 
   return { materialIcon };
 }

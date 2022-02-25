@@ -83,7 +83,7 @@ const props = defineProps({
 const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK, UI_CHIP.EVENTS.REMOVE]);
 
 const instance = getCurrentInstance();
-const $parent = instance.parent;
+const parent = instance.parent;
 const chip = ref(null);
 
 const { materialIcon } = useMaterialIcon(props);
@@ -96,9 +96,9 @@ const thumbnailClassName = computed(() => [
 const role = computed(() => {
   let name = null;
 
-  if ($parent?.exposed?.choiceChips) {
+  if (parent.exposed.choiceChips) {
     name = 'radio';
-  } else if ($parent?.exposed?.filterChips) {
+  } else if (parent.exposed.filterChips) {
     name = 'checkbox';
   } else {
     name = 'button';
@@ -108,7 +108,7 @@ const role = computed(() => {
 });
 
 function handleClick(event) {
-  $parent.exposed.choiceChipId = chip.value.id; // fix(ui): twice trigger
+  parent.exposed.choiceChipId = chip.value.id; // fix(ui): twice trigger
 
   emit(UI_GLOBAL.EVENTS.CLICK, event);
 }

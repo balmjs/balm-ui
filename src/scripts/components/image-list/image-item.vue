@@ -67,11 +67,11 @@ const style = computed(() => ({
 }));
 
 const instance = getCurrentInstance();
-const $parent = instance.parent;
+const parent = instance.parent;
 const imageItem = ref(null);
 
 onBeforeMount(() => {
-  if ($parent.props.isMasonry && props.bgImage) {
+  if (parent.props.isMasonry && props.bgImage) {
     console.warn(
       '[UiImageItem]',
       `The 'bgImage' prop is not compatible with the masonry image list, you need to set the 'image' prop`

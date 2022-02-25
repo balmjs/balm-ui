@@ -295,7 +295,7 @@ const className = computed(() => ({
 }));
 
 const instance = getCurrentInstance();
-const $parent = instance.parent;
+const parent = instance.parent;
 const textfield = ref(null);
 const $textField = ref(null);
 const inputValue = ref(props.modelValue);
@@ -349,12 +349,12 @@ onMounted(() => {
 });
 
 function hasBeforeSlot() {
-  const hasLeadingIcon = $parent?.exposed?.hasLeadingIcon;
+  const hasLeadingIcon = parent?.exposed?.hasLeadingIcon;
   const slots = useSlots();
   return hasLeadingIcon || slots.before;
 }
 function hasAfterSlot() {
-  const hasTrailingIcon = $parent?.exposed?.hasTrailingIcon;
+  const hasTrailingIcon = parent?.exposed?.hasTrailingIcon;
   const slots = useSlots();
   return hasTrailingIcon || slots.after;
 }

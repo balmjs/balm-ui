@@ -85,12 +85,12 @@ const marginBottom = computed(() => {
 }).value;
 
 function getFrom(instance) {
-  const $parent = instance.parent;
+  const parent = instance.parent;
 
-  return $parent.type.name === 'UiForm'
-    ? $parent.props
+  return parent.type.name === 'UiForm'
+    ? parent.props
     : isCustomFormItem
-    ? getFrom($parent)
+    ? getFrom(parent)
     : null;
 }
 

@@ -54,8 +54,8 @@ const props = defineProps({
 });
 
 const instance = getCurrentInstance();
-const $parent = instance.parent;
+const parent = instance.parent;
 const dialogActions = ref(null);
 
-const closable = computed(() => $parent.props.closable);
+const closable = computed(() => parent.props.closable);
 </script>

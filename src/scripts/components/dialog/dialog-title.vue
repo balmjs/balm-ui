@@ -34,7 +34,7 @@ const props = defineProps({
 });
 
 const instance = getCurrentInstance();
-const $parent = instance.parent;
+const parent = instance.parent;
 const dialogTitle = ref(null);
 
 const className = computed(() => ({
@@ -42,6 +42,6 @@ const className = computed(() => ({
   'mdc-dialog__title--closable': props.closable
 }));
 const hasCloseAction = computed(
-  () => $parent.props.fullscreen || props.closable
+  () => parent.props.fullscreen || props.closable
 );
 </script>

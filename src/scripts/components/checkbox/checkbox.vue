@@ -71,7 +71,7 @@ const props = defineProps({
 const emit = defineEmits([UI_CHECKBOX.EVENTS.CHANGE]);
 
 const instance = getCurrentInstance();
-const $parent = instance.parent;
+const parent = instance.parent;
 const checkbox = ref(null);
 let $checkbox = null;
 const selectedValue = ref(setSelectedValue(props.modelValue));
@@ -92,7 +92,7 @@ onMounted(() => {
     $checkbox = new MDCCheckbox(el.mdcCheckbox);
     $checkbox.indeterminate = props.indeterminate;
 
-    const $formField = $parent?.exposed?.$formField.value;
+    const $formField = parent?.exposed?.$formField.value;
     if ($formField) {
       $formField.input = $checkbox;
     }

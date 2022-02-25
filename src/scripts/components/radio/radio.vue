@@ -70,7 +70,7 @@ const props = defineProps({
 const emit = defineEmits([UI_RADIO.EVENTS.CHANGE]);
 
 const instance = getCurrentInstance();
-const $parent = instance.parent;
+const parent = instance.parent;
 const radio = ref(null);
 let $radio = null;
 const selectedValue = ref(props.modelValue);
@@ -89,7 +89,7 @@ onMounted(() => {
   nextTick(() => {
     $radio = new MDCRadio(radio.value);
 
-    const $formField = $parent?.exposed?.$formField.value;
+    const $formField = parent?.exposed?.$formField.value;
     if ($formField) {
       $formField.input = $radio;
     }

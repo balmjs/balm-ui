@@ -300,6 +300,7 @@ function clearSelected(newSelectedValue, oldSelectedValue) {
 }
 
 defineExpose({
+  inputChips,
   choiceChips,
   filterChips,
   choiceChipId

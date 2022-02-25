@@ -23,7 +23,7 @@
         <ui-button outlined dense @click="removeLastOne">
           Delete Last Chip
         </ui-button>
-        <ui-chips v-if="list.length" :chips="list" type="input">
+        <ui-chips v-if="list.length" :items="list" type="input">
           <ui-chip
             v-for="item in list"
             :key="item.id"

@@ -6,7 +6,10 @@
     <!-- Leading icon (optional) -->
     <slot
       name="before"
-      :iconClass="`${UI_TEXTFIELD_ICON.cssClasses.icon} ${UI_TEXTFIELD_ICON.cssClasses.leadingIcon}`"
+      :iconClass="[
+        UI_TEXTFIELD_ICON.cssClasses.icon,
+        UI_TEXTFIELD_ICON.cssClasses.leadingIcon
+      ]"
     >
       <i
         v-if="materialIcon"
@@ -91,7 +94,10 @@
     <!-- Trailing icon (optional) -->
     <slot
       name="after"
-      :iconClass="`${UI_TEXTFIELD_ICON.cssClasses.icon} ${UI_TEXTFIELD_ICON.cssClasses.trailingIcon}`"
+      :iconClass="[
+        UI_TEXTFIELD_ICON.cssClasses.icon,
+        UI_TEXTFIELD_ICON.cssClasses.trailingIcon
+      ]"
     ></slot>
 
     <!-- Label text -->
@@ -135,7 +141,8 @@ const UI_TEXTFIELD = {
     CHANGE: 'change',
     ENTER: 'enter',
     BLUR: 'blur'
-  }
+  },
+  PLUS_COMPONENTS: ['UiAutocomplete', 'UiDatepicker']
 };
 
 export default {
@@ -267,6 +274,9 @@ const isOutlined = computed(() =>
   checkType(props, UI_TEXTFIELD.TYPES, 'outlined')
 );
 const isTextarea = computed(() => props.inputType === 'textarea');
+const isTextfieldPlus = computed(() =>
+  UI_TEXTFIELD.PLUS_COMPONENTS.includes(parent.type.name)
+);
 const hasLeadingIcon = computed(
   () => !!(materialIcon.value || props.withLeadingIcon || hasBeforeSlot())
 );
@@ -351,14 +361,10 @@ onMounted(() => {
   );
 });
 
-function hasBeforeSlot() {
-  const hasLeadingIcon = parent?.exposed?.hasLeadingIcon;
-  return hasLeadingIcon || slots.before;
-}
-function hasAfterSlot() {
-  const hasTrailingIcon = parent?.exposed?.hasTrailingIcon;
-  return hasTrailingIcon || slots.after;
-}
+const hasBeforeSlot = () =>
+  isTextfieldPlus.value ? parent?.exposed?.hasLeadingIcon.value : slots.before;
+const hasAfterSlot = () =>
+  isTextfieldPlus.value ? parent?.exposed?.hasTrailingIcon.value : slots.after;
 
 function handleClick(event) {
   emit(UI_GLOBAL.EVENTS.CLICK, event);

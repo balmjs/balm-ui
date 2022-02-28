@@ -107,7 +107,7 @@ const className = computed(() => ({
 
 onUpdated(() => {
   try {
-    parent.parent.exposed.updated();
+    parent.parent?.exposed?.updated();
   } catch (e) {}
 });
 

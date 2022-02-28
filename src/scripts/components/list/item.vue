@@ -61,7 +61,7 @@ const role = computed(() => {
   let name = null;
 
   if (parent) {
-    switch (parent.exposed.role) {
+    switch (parent?.exposed?.role) {
       case 'listbox':
         name = 'option';
         break;

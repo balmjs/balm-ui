@@ -98,9 +98,9 @@ const thumbnailClassName = computed(() => [
 const role = computed(() => {
   let name = null;
 
-  if (parent.exposed.choiceChips.value) {
+  if (parent?.exposed?.choiceChips.value) {
     name = 'radio';
-  } else if (parent.exposed.filterChips.value) {
+  } else if (parent?.exposed?.filterChips.value) {
     name = 'checkbox';
   } else {
     name = 'button';
@@ -112,7 +112,7 @@ const role = computed(() => {
 function handleClick(event) {
   nextTick(() => {
     // fix(ui): twice trigger
-    const choiceChips = parent.exposed.choiceChips.value;
+    const choiceChips = parent?.exposed?.choiceChips.value;
     if (choiceChips) {
       parent.exposed.choiceChipId.value = chip.value.id;
     }

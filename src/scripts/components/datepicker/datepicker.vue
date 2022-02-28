@@ -19,12 +19,7 @@
     <template #before="{ iconClass }">
       <i
         v-if="materialIcon"
-        :class="
-          UI_GLOBAL.getMaterialIconClass([
-            UI_TEXTFIELD_ICON.cssClasses.icon,
-            UI_TEXTFIELD_ICON.cssClasses.leadingIcon
-          ])
-        "
+        :class="UI_GLOBAL.getMaterialIconClass(iconClass)"
         v-text="materialIcon"
       ></i>
       <template v-else>
@@ -75,7 +70,6 @@
 
 <script>
 import UI_GLOBAL from '../../config/constants';
-import { UI_TEXTFIELD_ICON } from '../textfield/constants';
 
 // Define datepicker constants
 const UI_DATEPICKER = {
@@ -95,7 +89,6 @@ export default {
   name: 'UiDatepicker',
   customOptions: {
     UI_GLOBAL,
-    UI_TEXTFIELD_ICON,
     UI_DATEPICKER
   }
 };

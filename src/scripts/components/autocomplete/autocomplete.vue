@@ -23,12 +23,7 @@
     <template #before="{ iconClass }">
       <i
         v-if="materialIcon"
-        :class="
-          UI_GLOBAL.getMaterialIconClass([
-            UI_TEXTFIELD_ICON.cssClasses.icon,
-            UI_TEXTFIELD_ICON.cssClasses.leadingIcon
-          ])
-        "
+        :class="UI_GLOBAL.getMaterialIconClass(iconClass)"
         v-text="materialIcon"
       ></i>
       <template v-else>
@@ -69,7 +64,6 @@
 
 <script>
 import UI_GLOBAL from '../../config/constants';
-import { UI_TEXTFIELD_ICON } from '../textfield/constants';
 import { deprecatedListClassNameMap } from '../list/constants';
 
 // Define autocomplete constants
@@ -98,7 +92,6 @@ export default {
   name: 'UiAutocomplete',
   customOptions: {
     UI_GLOBAL,
-    UI_TEXTFIELD_ICON,
     UI_AUTOCOMPLETE,
     KEYCODE,
     deprecatedListClassNameMap
@@ -178,7 +171,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits([
-  UI_AUTOCOMPLETE.EVENTS.INPUT, // TODO: has bug
+  UI_AUTOCOMPLETE.EVENTS.INPUT,
   UI_AUTOCOMPLETE.EVENTS.SEARCH,
   UI_AUTOCOMPLETE.EVENTS.SELECTED
 ]);

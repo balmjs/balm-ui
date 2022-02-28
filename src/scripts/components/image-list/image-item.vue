@@ -65,7 +65,7 @@ const instance = getCurrentInstance();
 const parent = instance.parent;
 
 onBeforeMount(() => {
-  if (parent.exposed.isMasonry.value && props.bgImage) {
+  if (parent?.exposed?.isMasonry.value && props.bgImage) {
     console.warn(
       '[UiImageItem]',
       `The 'bgImage' prop is not compatible with the masonry image list, you need to set the 'image' prop`

@@ -265,30 +265,29 @@ const { materialIcon } = useMaterialIcon(props);
 
 const isOutlined = computed(() =>
   checkType(props, UI_TEXTFIELD.TYPES, 'outlined')
-).value;
-const isTextarea = computed(() => props.inputType === 'textarea').value;
+);
+const isTextarea = computed(() => props.inputType === 'textarea');
 const hasLeadingIcon = computed(
-  () => !!(materialIcon || props.withLeadingIcon || hasBeforeSlot())
-).value;
+  () => !!(materialIcon.value || props.withLeadingIcon || hasBeforeSlot())
+);
 const hasTrailingIcon = computed(
   () => !!(props.withTrailingIcon || hasAfterSlot())
-).value;
+);
 const noLabel = computed(() => {
   const hasLabel = props.label || slots.default;
   return !!(props.placeholder || !hasLabel);
-}).value;
-
+});
 const className = computed(() => ({
   outer: {
     'mdc-text-field': true,
-    'mdc-text-field--filled': !isOutlined,
-    'mdc-text-field--outlined': isOutlined,
+    'mdc-text-field--filled': !isOutlined.value,
+    'mdc-text-field--outlined': isOutlined.value,
     'mdc-text-field--fullwidth': props.fullwidth,
-    'mdc-text-field--textarea': isTextarea,
+    'mdc-text-field--textarea': isTextarea.value,
     'mdc-text-field--disabled': props.disabled,
-    'mdc-text-field--with-leading-icon': hasLeadingIcon,
-    'mdc-text-field--with-trailing-icon': hasTrailingIcon,
-    'mdc-text-field--no-label': noLabel,
+    'mdc-text-field--with-leading-icon': hasLeadingIcon.value,
+    'mdc-text-field--with-trailing-icon': hasTrailingIcon.value,
+    'mdc-text-field--no-label': noLabel.value,
     'mdc-text-field--end-aligned': props.endAligned,
     'mdc-text-field--with-internal-counter': props.withCounter
   },

@@ -42,7 +42,6 @@ const className = computed(() => ({
   'mdc-menu-surface--anchor': true,
   'mdc-menu-surface--absolute': props.absolute
 }));
-
 const positionStyle = computed(() => {
   let result = '';
   let anchorPosition = props.position;

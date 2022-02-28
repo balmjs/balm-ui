@@ -4,12 +4,7 @@
     <!-- Image container -->
     <template v-if="$parent.isMasonry">
       <slot name="image" :imageClass="UI_IMAGE_ITEM.cssClasses.image">
-        <div
-          v-if="bgImage"
-          :class="UI_IMAGE_ITEM.cssClasses.image"
-          :style="style"
-        ></div>
-        <img v-else :class="UI_IMAGE_ITEM.cssClasses.image" :src="image" />
+        <img :class="UI_IMAGE_ITEM.cssClasses.image" :src="image" />
       </slot>
     </template>
     <div v-else class="mdc-image-list__image-aspect-container">
@@ -70,7 +65,7 @@ const instance = getCurrentInstance();
 const parent = instance.parent;
 
 onBeforeMount(() => {
-  if (parent.props.isMasonry && props.bgImage) {
+  if (parent.exposed.isMasonry.value && props.bgImage) {
     console.warn(
       '[UiImageItem]',
       `The 'bgImage' prop is not compatible with the masonry image list, you need to set the 'image' prop`

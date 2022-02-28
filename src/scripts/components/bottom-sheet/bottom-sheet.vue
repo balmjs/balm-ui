@@ -26,7 +26,7 @@ export default {
 </script>
 
 <script setup>
-import { computed } from 'vue';
+import { reactive, computed } from 'vue';
 
 const props = defineProps({
   // States
@@ -38,19 +38,21 @@ const props = defineProps({
 
 const emit = defineEmits([UI_BOTTOM_SHEET.EVENTS.CHANGE]);
 
-let closing = false;
+const state = reactive({
+  closing: false
+});
 
 const className = computed(() => ({
   'mdc-bottom-sheet': true,
   'mdc-bottom-sheet--open': props.modelValue,
-  'mdc-bottom-sheet--closing': closing
+  'mdc-bottom-sheet--closing': state.closing
 }));
 
 function handleClose() {
-  closing = true;
+  state.closing = true;
   setTimeout(() => {
     emit(UI_BOTTOM_SHEET.EVENTS.CHANGE, false);
-    closing = false;
+    state.closing = false;
   }, 300);
 }
 </script>

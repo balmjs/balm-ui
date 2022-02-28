@@ -71,7 +71,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, onUpdated } from 'vue';
+import { ref, computed, onUpdated, getCurrentInstance } from 'vue';
 import UiTabIndicator from './tab-indicator.vue';
 import { tabProps, useTab } from '../../mixins/tab';
 import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
@@ -88,6 +88,8 @@ const props = defineProps({
 
 const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
+const instance = getCurrentInstance();
+const parent = instance.parent;
 const tab = ref(null);
 
 const { isTextWithIcon, isIconOnly } = useTab(props);
@@ -95,18 +97,17 @@ const { materialIcon } = useMaterialIcon(props);
 
 const isActive = computed(
   () => tab.value && tab.value.classList.contains(UI_TAB.cssClasses.active)
-).value;
-
+);
 const className = computed(() => ({
   'mdc-tab': true,
   'mdc-tab--stacked': props.stacked,
   'mdc-tab--min-width': props.minWidth,
-  'mdc-tab--active': isActive
+  'mdc-tab--active': isActive.value
 }));
 
 onUpdated(() => {
   try {
-    tab.$parent.$parent.updated();
+    parent.parent.exposed.updated();
   } catch (e) {}
 });
 

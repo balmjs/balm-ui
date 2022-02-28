@@ -76,13 +76,12 @@ const isAccessible = computed(
     segmentedButton.value.classList.contains(
       UI_SEGMENTED_BUTTON.cssClasses.touch
     )
-).value;
-
+);
 const className = computed(() => ({
   'mdc-segmented-button__segment': true,
   'mdc-segmented-button__segment--selected': props.selected,
   // Accessibility
-  'mdc-segmented-button--touch': isAccessible
+  'mdc-segmented-button--touch': isAccessible.value
 }));
 
 function handleClick(event) {

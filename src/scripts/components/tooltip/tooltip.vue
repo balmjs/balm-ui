@@ -63,10 +63,10 @@ const props = defineProps({
 
 const tooltip = ref(null);
 
-const isRich = computed(() => checkType(props, UI_TOOLTIP.TYPES, 'rich')).value;
+const isRich = computed(() => checkType(props, UI_TOOLTIP.TYPES, 'rich'));
 const className = computed(() => ({
   'mdc-tooltip': true,
-  'mdc-tooltip--rich': isRich
+  'mdc-tooltip--rich': isRich.value
 }));
 const style = computed(() =>
   props.width

@@ -72,20 +72,18 @@ const isPermanent = computed(() =>
 );
 const isDismissible = computed(() =>
   checkType(props, UI_DRAWER.TYPES, 'dismissible')
-).value;
-const isModal = computed(() =>
-  checkType(props, UI_DRAWER.TYPES, 'modal')
-).value;
+);
+const isModal = computed(() => checkType(props, UI_DRAWER.TYPES, 'modal'));
 
 const className = computed(() => ({
   'mdc-drawer': true,
-  'mdc-drawer--dismissible': isDismissible,
-  'mdc-drawer--modal': isModal
+  'mdc-drawer--dismissible': isDismissible.value,
+  'mdc-drawer--modal': isModal.value
 }));
 
 let scrimEl = null;
 function createScrim() {
-  if (isModal && !scrimEl) {
+  if (isModal.value && !scrimEl) {
     scrimEl = document.createElement('div');
     scrimEl.className = UI_DRAWER.cssClasses.scrim;
     scrimEl.addEventListener('click', handleClose);
@@ -142,7 +140,7 @@ onMounted(() => {
     el.parentNode.classList.add(UI_DRAWER.cssClasses.root);
   }
 
-  if (isDismissible || isModal) {
+  if (isDismissible.value || isModal.value) {
     createScrim();
 
     init();
@@ -161,7 +159,7 @@ onMounted(() => {
     () => props.type,
     () => {
       nextTick(() => {
-        if (isModal) {
+        if (isModal.value) {
           createScrim();
 
           if (!state.$drawer) {

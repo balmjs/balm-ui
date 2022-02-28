@@ -45,7 +45,7 @@ const { hasValidMsg, validMessage } = useHelperText(props, {
 const className = computed(() => ({
   'mdc-text-field-helper-text': true,
   'mdc-text-field-helper-text--persistent': props.visible,
-  'mdc-text-field-helper-text--validation-msg': hasValidMsg
+  'mdc-text-field-helper-text--validation-msg': hasValidMsg.value
 }));
 
 onBeforeMount(() => {

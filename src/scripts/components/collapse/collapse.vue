@@ -92,9 +92,7 @@ const className = computed(() => ({
 
 watch(
   () => props.modelValue,
-  (val) => {
-    isExpanded.value = val;
-  }
+  (val) => (isExpanded.value = val)
 );
 
 function handleClick(event) {

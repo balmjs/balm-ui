@@ -145,37 +145,31 @@ const state = reactive({
 
 const isNonRegular = computed(() =>
   checkType(props, UI_TOP_APP_BAR.TYPES, 'nonRegular')
-).value;
-const isFixed = computed(() =>
-  checkType(props, UI_TOP_APP_BAR.TYPES, 'fixed')
-).value;
-const isDense = computed(() =>
-  checkType(props, UI_TOP_APP_BAR.TYPES, 'dense')
-).value;
+);
+const isFixed = computed(() => checkType(props, UI_TOP_APP_BAR.TYPES, 'fixed'));
+const isDense = computed(() => checkType(props, UI_TOP_APP_BAR.TYPES, 'dense'));
 const isProminent = computed(() =>
   checkType(props, UI_TOP_APP_BAR.TYPES, 'prominent')
-).value;
+);
 const isProminentDense = computed(
   () =>
     (props.dense && props.prominent) ||
     checkType(props, UI_TOP_APP_BAR.TYPES, 'prominentDense')
-).value;
-const isShort = computed(() =>
-  checkType(props, UI_TOP_APP_BAR.TYPES, 'short')
-).value;
+);
+const isShort = computed(() => checkType(props, UI_TOP_APP_BAR.TYPES, 'short'));
 const isShortCollapsed = computed(() =>
   checkType(props, UI_TOP_APP_BAR.TYPES, 'shortCollapsed')
-).value;
+);
 const className = computed(() => ({
   'mdc-top-app-bar': true,
-  'mdc-top-app-bar--fixed': isFixed,
-  'mdc-top-app-bar--dense': isDense || isProminentDense,
-  'mdc-top-app-bar--prominent': isProminent || isProminentDense,
-  'mdc-top-app-bar--short': isShort || isShortCollapsed,
-  'mdc-top-app-bar--short-collapsed': isShortCollapsed
+  'mdc-top-app-bar--fixed': isFixed.value,
+  'mdc-top-app-bar--dense': isDense.value || isProminentDense.value,
+  'mdc-top-app-bar--prominent': isProminent.value || isProminentDense.value,
+  'mdc-top-app-bar--short': isShort.value || isShortCollapsed.value,
+  'mdc-top-app-bar--short-collapsed': isShortCollapsed.value
 }));
 const defaultNavIcon = computed(() =>
-  isNonRegular ? UI_TOP_APP_BAR.EVENTS.CLOSE : props.navIcon
+  isNonRegular.value ? UI_TOP_APP_BAR.EVENTS.CLOSE : props.navIcon
 );
 
 function getFixedAdjustElement(contentEl) {
@@ -218,15 +212,15 @@ function createFixedAdjustElement() {
         ...Object.values(UI_TOP_APP_BAR.FIXED_ADJUST)
       );
 
-      if (isDense) {
+      if (isDense.value) {
         fixedAdjustEl.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.DENSE);
-      } else if (isProminent) {
+      } else if (isProminent.value) {
         fixedAdjustEl.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.PROMINENT);
-      } else if (isProminentDense) {
+      } else if (isProminentDense.value) {
         fixedAdjustEl.classList.add(
           UI_TOP_APP_BAR.FIXED_ADJUST.DENSE_PROMINENT
         );
-      } else if (isShort || isShortCollapsed) {
+      } else if (isShort.value || isShortCollapsed.value) {
         fixedAdjustEl.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.SHORT);
       } else {
         fixedAdjustEl.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.STANDARD);
@@ -248,7 +242,9 @@ function init() {
 
     state.$topAppBar.listen(strings.NAVIGATION_EVENT, () => {
       emit(
-        isNonRegular ? UI_TOP_APP_BAR.EVENTS.CLOSE : UI_TOP_APP_BAR.EVENTS.NAV
+        isNonRegular.value
+          ? UI_TOP_APP_BAR.EVENTS.CLOSE
+          : UI_TOP_APP_BAR.EVENTS.NAV
       );
     });
   });

@@ -77,4 +77,8 @@ function update($list) {
 }
 
 const { className } = useList(list, props, { init, update });
+
+defineExpose({
+  role
+});
 </script>

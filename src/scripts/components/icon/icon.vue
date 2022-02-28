@@ -77,27 +77,21 @@ const props = defineProps({
 
 const emit = defineEmits([UI_ICON.EVENTS.CLICK]);
 
-const isFilled = computed(() =>
-  checkType(props, UI_ICON.TYPES, 'filled')
-).value;
-const isOutlined = computed(() =>
-  checkType(props, UI_ICON.TYPES, 'outlined')
-).value;
-const isRound = computed(() => checkType(props, UI_ICON.TYPES, 'round')).value;
-const isTwoTone = computed(() =>
-  checkType(props, UI_ICON.TYPES, 'twoTone')
-).value;
-const isSharp = computed(() => checkType(props, UI_ICON.TYPES, 'sharp')).value;
-const invalidIcon = computed(() => props.dark && props.light).value;
-const activeIcon = computed(() => props.dark || props.light).value;
+const isFilled = computed(() => checkType(props, UI_ICON.TYPES, 'filled'));
+const isOutlined = computed(() => checkType(props, UI_ICON.TYPES, 'outlined'));
+const isRound = computed(() => checkType(props, UI_ICON.TYPES, 'round'));
+const isTwoTone = computed(() => checkType(props, UI_ICON.TYPES, 'twoTone'));
+const isSharp = computed(() => checkType(props, UI_ICON.TYPES, 'sharp'));
+const invalidIcon = computed(() => props.dark && props.light);
+const activeIcon = computed(() => props.dark || props.light);
 
 const className = computed(() => {
   let result = {
-    'material-icons': isFilled,
-    'material-icons-outlined': isOutlined,
-    'material-icons-round': isRound,
-    'material-icons-two-tone': isTwoTone,
-    'material-icons-sharp': isSharp,
+    'material-icons': isFilled.value,
+    'material-icons-outlined': isOutlined.value,
+    'material-icons-round': isRound.value,
+    'material-icons-two-tone': isTwoTone.value,
+    'material-icons-sharp': isSharp.value,
     'md-dark': props.dark && !props.light,
     'md-light': props.light && !props.dark,
     'md-inactive': props.inactive
@@ -111,7 +105,7 @@ const className = computed(() => {
 });
 
 onBeforeMount(() => {
-  if (invalidIcon || (!activeIcon && props.inactive)) {
+  if (invalidIcon.value || (!activeIcon.value && props.inactive)) {
     console.warn('[UiIcon]', 'Invalid dark or light icon');
   }
 });

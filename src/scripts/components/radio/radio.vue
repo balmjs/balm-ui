@@ -82,12 +82,12 @@ const { selectedValue } = toRefs(state);
 
 const isAccessible = computed(
   () => radio.value && radio.value.classList.contains(UI_RADIO.cssClasses.touch)
-).value;
+);
 const className = computed(() => ({
   'mdc-radio': true,
   'mdc-radio--disabled': props.disabled,
   // Accessibility
-  'mdc-radio--touch': isAccessible
+  'mdc-radio--touch': isAccessible.value
 }));
 
 onMounted(() => {

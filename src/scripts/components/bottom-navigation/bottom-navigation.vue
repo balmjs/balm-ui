@@ -22,7 +22,7 @@ export default {
 </script>
 
 <script setup>
-import { computed, onBeforeMount, onMounted } from 'vue';
+import { reactive, computed, onBeforeMount, onMounted } from 'vue';
 
 const props = defineProps({
   contentSelector: {
@@ -43,7 +43,9 @@ const props = defineProps({
   }
 });
 
-let destinations = 4;
+const state = reactive({
+  destinations: 4
+});
 
 const className = computed(() => {
   let result = [
@@ -53,7 +55,7 @@ const className = computed(() => {
     }
   ];
 
-  let width = Math.floor(100 / destinations);
+  const width = Math.floor(100 / state.destinations);
   result.push(`mdc-bottom-navigation--dest-${width}`);
 
   return result;
@@ -61,9 +63,9 @@ const className = computed(() => {
 
 onBeforeMount(() => {
   if (props.min) {
-    destinations = 3;
+    state.destinations = 3;
   } else if (props.max) {
-    destinations = 5;
+    state.destinations = 5;
   }
 });
 

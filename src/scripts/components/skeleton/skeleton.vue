@@ -64,19 +64,17 @@ const className = computed(() =>
       }
     : {}
 );
-
 const skeletonAvatar = computed(() =>
   getType(props.avatar) === 'object' ? props.avatar : {}
-).value;
+);
 const avatarClassName = computed(() => ({
   'mdc-skeleton-avatar': true,
-  'mdc-skeleton-avatar--circle': skeletonAvatar.shape !== 'square',
-  'mdc-skeleton-avatar--large': skeletonAvatar.size === 'large',
-  'mdc-skeleton-avatar--small': skeletonAvatar.size === 'small'
+  'mdc-skeleton-avatar--circle': skeletonAvatar.value.shape !== 'square',
+  'mdc-skeleton-avatar--large': skeletonAvatar.value.size === 'large',
+  'mdc-skeleton-avatar--small': skeletonAvatar.value.size === 'small'
 }));
-
 const avatarSize = computed(() => {
-  const { size } = skeletonAvatar;
+  const { size } = skeletonAvatar.value;
 
   return getType(size) === 'number'
     ? {

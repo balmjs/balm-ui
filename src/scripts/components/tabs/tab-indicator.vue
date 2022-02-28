@@ -23,7 +23,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, onBeforeMount } from 'vue';
+import { ref, computed, onBeforeMount, getCurrentInstance } from 'vue';
 
 const props = defineProps({
   // UI attributes
@@ -37,18 +37,16 @@ const props = defineProps({
   }
 });
 
+const instance = getCurrentInstance();
+const parent = instance.parent;
 const tabIndicator = ref(null);
 
-const isActive = computed(
-  () => tabIndicator.$parent && tabIndicator.$parent.$data.modelValue
-).value;
-
+const isActive = computed(() => parent && parent.props.modelValue);
 const className = computed(() => ({
   'mdc-tab-indicator': true,
-  'mdc-tab-indicator--active': isActive,
+  'mdc-tab-indicator--active': isActive.value,
   'mdc-tab-indicator--fade': props.fade
 }));
-
 const innerClassName = computed(() => {
   let result = [
     'mdc-tab-indicator__content',

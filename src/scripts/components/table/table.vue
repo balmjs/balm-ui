@@ -232,14 +232,12 @@ const hasFixedCell = computed(() => {
   }
 
   return props.defaultColWidth && hasFixedColumn;
-}).value;
-
+});
 const className = computed(() => ({
   'mdc-data-table': true,
-  'mdc-data-table--fixed': hasFixedCell,
+  'mdc-data-table--fixed': hasFixedCell.value,
   'mdc-data-table--fullwidth': props.fullwidth
 }));
-
 const columns = computed(() => {
   let count = state.columnsData.length;
   let maxWidth = 0;
@@ -264,7 +262,7 @@ const columns = computed(() => {
 
   nextTick(() => {
     const currentWidth = table.value.offsetWidth;
-    if (hasFixedCell && currentWidth > maxWidth) {
+    if (hasFixedCell.value && currentWidth > maxWidth) {
       console.warn(
         '[UiTable]',
         `The table max width is ${maxWidth}px, but the current is ${currentWidth}px.`
@@ -284,7 +282,7 @@ const cellStyle = computed(() => {
   let originTbody = Object.assign([], props.tbody);
   if (props.rowCheckbox) {
     originTbody.unshift(
-      hasFixedCell
+      hasFixedCell.value
         ? {
             fixed: 'left',
             width: UI_TABLE.CHECKBOX_COL_WIDTH
@@ -406,7 +404,7 @@ onMounted(() => {
     state.$table.showProgress();
   }
 
-  if (hasFixedCell) {
+  if (hasFixedCell.value) {
     nextTick(() => {
       const tableFrameEl = tableContent.value?.tableFrame;
       if (tableFrameEl) {
@@ -448,7 +446,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  if (hasFixedCell) {
+  if (hasFixedCell.value) {
     const tableFrameEl = tableContent.value.tableFrame;
     tableFrameEl.removeEventListener('scroll', handleScroll);
   }

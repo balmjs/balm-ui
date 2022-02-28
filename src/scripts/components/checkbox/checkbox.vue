@@ -84,11 +84,11 @@ const { selectedValue } = toRefs(state);
 const isAccessible = computed(() => {
   const el = checkbox.value;
   return el && el.mdcCheckbox.classList.contains(UI_CHECKBOX.cssClasses.touch);
-}).value;
+});
 const className = computed(() => ({
   'mdc-checkbox--disabled': props.disabled,
   // Accessibility
-  'mdc-checkbox--touch': isAccessible
+  'mdc-checkbox--touch': isAccessible.value
 }));
 
 onMounted(() => {

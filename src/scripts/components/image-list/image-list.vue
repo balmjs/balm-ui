@@ -50,11 +50,14 @@ const props = defineProps({
 
 const isMasonry = computed(() =>
   checkType(props, UI_IMAGE_LIST.TYPES, 'masonry')
-).value;
-
+);
 const className = computed(() => ({
   'mdc-image-list': true,
-  'mdc-image-list--masonry': isMasonry,
+  'mdc-image-list--masonry': isMasonry.value,
   'mdc-image-list--with-text-protection': props.textProtection
 }));
+
+defineExpose({
+  isMasonry
+});
 </script>

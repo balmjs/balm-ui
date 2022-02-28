@@ -82,13 +82,13 @@ const iconButton = ref(null);
 
 const { cardActionClasses } = useCardAction(iconButton);
 
-const toggleButton = computed(() => props.toggle.on && props.toggle.off).value;
+const toggleButton = computed(() => props.toggle.on && props.toggle.off);
 const className = computed(() => [
   {
     'mdc-icon-button': true,
-    'material-icons': !toggleButton
+    'material-icons': !toggleButton.value
   },
-  cardActionClasses
+  cardActionClasses.value
 ]);
 
 function handleClick(event) {

@@ -44,7 +44,7 @@ function useHelperText(props, { emit }) {
     getType(props.validMsg) === 'string'
       ? !!props.validMsg.length
       : props.validMsg
-  ).value;
+  );
   const validMessage = computed(() =>
     getType(props.validMsg) === 'string' ? props.validMsg : ''
   );
@@ -66,7 +66,7 @@ function useHelperText(props, { emit }) {
         // handleChange();
 
         const $input = instanceMap.get(`${props.id}-previous`);
-        $input && ($input.valid = !hasValidMsg);
+        $input && ($input.valid = !hasValidMsg.value);
       }
     );
   });

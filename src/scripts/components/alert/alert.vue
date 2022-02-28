@@ -63,7 +63,7 @@ const { stateType, stateClassName, materialIcon } = useStateType(props);
 
 const className = computed(() => [
   'mdc-alert',
-  `mdc-alert--${stateType}`,
+  `mdc-alert--${stateType.value}`,
   {
     'mdc-alert--closed': state.closed
   }

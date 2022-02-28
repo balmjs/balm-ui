@@ -28,15 +28,15 @@ const emit = defineEmits([UI_HELPER_TEXT.EVENTS.CHANGE]);
 
 const { hasValidMsg, validMessage } = useHelperText(props, { emit });
 
-const isVisible = computed(() => !props.visible || hasValidMsg).value; // hasValidMsg: For css name bug
+const isVisible = computed(() => !props.visible || hasValidMsg.value); // hasValidMsg: For css name bug
 const className = computed(() => ({
   'mdc-select-helper-text': true,
-  'mdc-select-helper-text--validation-msg-persistent': hasValidMsg,
-  'mdc-select-helper-text--validation-msg': isVisible
+  'mdc-select-helper-text--validation-msg-persistent': hasValidMsg.value,
+  'mdc-select-helper-text--validation-msg': isVisible.value
 }));
 
 onBeforeMount(() => {
-  const needHelperTextId = props.visible || hasValidMsg;
+  const needHelperTextId = props.visible || hasValidMsg.value;
 
   if (!props.id && needHelperTextId) {
     console.warn(`The 'helperTextId' prop is required for <ui-select>`);

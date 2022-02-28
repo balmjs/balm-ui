@@ -112,28 +112,27 @@ const positionClassName = computed(() =>
   ['top', 'center'].includes(props.position)
     ? `mdc-snackbar--${props.position}`
     : ''
-).value;
+);
 const isOpen = computed(
   () =>
     snackbar.value && snackbar.value.classList.contains('mdc-snackbar--open')
-).value; // fix(@ui): for `position`
+); // fix(@ui): for `position`
 const className = computed(() => {
   return [
     {
       'mdc-snackbar': true,
       'mdc-snackbar--stacked': props.stacked,
       'mdc-snackbar--leading': props.leading, // tablet and desktop only
-      'mdc-snackbar--open': isOpen
+      'mdc-snackbar--open': isOpen.value
     },
-    positionClassName
+    positionClassName.value
   ];
 });
-
 const canDismiss = computed(
   () => props.actionType === UI_SNACKBAR.ACTION_TYPE.DISMISS_ICON
-).value;
+);
 const actionButtonClassName = computed(() =>
-  canDismiss ? 'mdc-snackbar__dismiss' : 'mdc-snackbar__action'
+  canDismiss.value ? 'mdc-snackbar__dismiss' : 'mdc-snackbar__action'
 );
 
 watch(

@@ -141,19 +141,13 @@ const emit = defineEmits([
   UI_MENU.EVENTS.CHANGE
 ]);
 
-const className = computed(() => {
-  return {
-    'mdc-menu': true,
-    'mdc-menu-surface': true,
-    'mdc-menu-surface--fixed': props.fixed,
-    'mdc-menu-surface--fullwidth': props.fullwidth && !props.fixed,
-    'mdc-menu-surface--open': props.cssOnly
-  };
-});
-
-const menuDistance = computed(() => {
-  return Object.assign({}, props.distance);
-});
+const className = computed(() => ({
+  'mdc-menu': true,
+  'mdc-menu-surface': true,
+  'mdc-menu-surface--fixed': props.fixed,
+  'mdc-menu-surface--fullwidth': props.fullwidth && !props.fixed,
+  'mdc-menu-surface--open': props.cssOnly
+}));
 
 const menu = ref(null);
 const state = reactive({
@@ -230,7 +224,7 @@ onMounted(() => {
       }
     );
     watch(
-      () => props.menuDistance,
+      () => props.distance,
       (val) => {
         setAnchorMargin(val);
       }

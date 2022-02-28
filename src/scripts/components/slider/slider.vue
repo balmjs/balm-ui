@@ -130,14 +130,13 @@ const { selectedValue, startValue, endValue } = toRefs(state);
 
 const isDiscrete = computed(
   () => checkType(props, UI_SLIDER.TYPES, 'discrete') || props.withTickMarks
-).value;
-const isRange = computed(() => Array.isArray(state.selectedValue)).value;
-
+);
+const isRange = computed(() => Array.isArray(state.selectedValue));
 const className = computed(() => ({
   'mdc-slider': true,
-  'mdc-slider--discrete': isDiscrete,
+  'mdc-slider--discrete': isDiscrete.value,
   'mdc-slider--tick-marks': props.withTickMarks,
-  'mdc-slider--range': isRange,
+  'mdc-slider--range': isRange.value,
   'mdc-slider--disabled': props.disabled
 }));
 
@@ -146,7 +145,7 @@ onMounted(() => {
 
   state.$slider.listen(events.CHANGE, ({ detail }) => {
     const valuenow = Math.round(detail.value);
-    if (isRange) {
+    if (isRange.value) {
       if (state.selectedValue[detail.thumb - 1] !== valuenow) {
         const currentSelectedValue =
           detail.thumb === 1
@@ -181,7 +180,7 @@ onMounted(() => {
 });
 
 function update(currentSelectedValue = state.selectedValue) {
-  if (isRange) {
+  if (isRange.value) {
     let validRangeSlider =
       currentSelectedValue[0] >= props.min &&
       currentSelectedValue[1] <= props.max &&

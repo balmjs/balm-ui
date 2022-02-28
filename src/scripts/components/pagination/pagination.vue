@@ -245,39 +245,29 @@ const className = computed(() => {
 
   return result;
 });
-
-const pageCount = computed(() => {
-  return Math.ceil(props.total / currentPageSize);
-});
-const currentMinRow = computed(() => {
-  return currentPageSize * (currentPage - 1) + 1;
-});
+const pageCount = computed(() => Math.ceil(props.total / currentPageSize));
+const currentMinRow = computed(() => currentPageSize * (currentPage - 1) + 1);
 const currentMaxRow = computed(() => {
   const max = currentPageSize * currentPage;
   return max > props.total ? props.total : max;
 });
-const hasPageSpan = computed(() => {
-  return (
+const hasPageSpan = computed(
+  () =>
     props.mini ||
     (props.pageSpan && props.pageSpan >= UI_PAGINATION.MIN_PAGE_SPAN)
-  );
-});
-const pageSizeBeforeText = computed(() => {
-  return Array.isArray(props.pageSizeText)
-    ? props.pageSizeText[0]
-    : props.pageSizeText;
-});
-const pageSizeAfterText = computed(() => {
-  return Array.isArray(props.pageSizeText) ? props.pageSizeText[1] : '';
-});
-const jumperBeforeText = computed(() => {
-  return Array.isArray(props.jumperText)
-    ? props.jumperText[0]
-    : props.jumperText;
-});
-const jumperAfterText = computed(() => {
-  return Array.isArray(props.jumperText) ? props.jumperText[1] : '';
-});
+);
+const pageSizeBeforeText = computed(() =>
+  Array.isArray(props.pageSizeText) ? props.pageSizeText[0] : props.pageSizeText
+);
+const pageSizeAfterText = computed(() =>
+  Array.isArray(props.pageSizeText) ? props.pageSizeText[1] : ''
+);
+const jumperBeforeText = computed(() =>
+  Array.isArray(props.jumperText) ? props.jumperText[0] : props.jumperText
+);
+const jumperAfterText = computed(() =>
+  Array.isArray(props.jumperText) ? props.jumperText[1] : ''
+);
 
 watch(
   () => props.modelValue,
@@ -299,7 +289,7 @@ function isShow(page) {
   let show = false;
   switch (true) {
     case page === 1:
-    case page === props.pageCount:
+    case page === pageCount.value:
     case currentPage >= page && page >= currentPage - props.pageSpan:
     case currentPage <= page && page <= currentPage + props.pageSpan:
       show = true;
@@ -311,13 +301,13 @@ function showPage(page) {
   let isExisted =
     currentPage === page - props.pageSpan ||
     currentPage === page + props.pageSpan;
-  let nonFirstOrLast = page !== 1 && page !== props.pageCount;
+  let nonFirstOrLast = page !== 1 && page !== pageCount.value;
   return !(isExisted && nonFirstOrLast);
 }
 function getPage(page) {
   switch (true) {
-    case page > props.pageCount:
-      page = props.pageCount;
+    case page > pageCount.value:
+      page = pageCount.value;
       break;
     case page < 1:
       page = 1;

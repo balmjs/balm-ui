@@ -33,14 +33,11 @@ const state = reactive({
 });
 
 function useList(list, props, { init, update }) {
-  const isTwoLine = computed(() =>
-    checkType(props, UI_LIST.TYPES, 'twoLine')
-  ).value;
-
+  const isTwoLine = computed(() => checkType(props, UI_LIST.TYPES, 'twoLine'));
   const className = computed(() => [
     deprecatedListClassNameMap['mdc-list'],
     {
-      'mdc-deprecated-list--two-line': isTwoLine,
+      'mdc-deprecated-list--two-line': isTwoLine.value,
       'mdc-deprecated-list--non-interactive': props.nonInteractive,
       'mdc-deprecated-list--dense': props.dense,
       'mdc-deprecated-list--avatar-list': props.avatar

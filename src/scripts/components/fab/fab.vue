@@ -79,19 +79,16 @@ const fab = ref(null);
 const { handleClick } = useButton(fab, props, { emit });
 const { materialIcon } = useMaterialIcon(props);
 
-const isExtended = computed(() =>
-  checkType(props, UI_FAB.TYPES, 'extended')
-).value;
+const isExtended = computed(() => checkType(props, UI_FAB.TYPES, 'extended'));
 const isAccessible = computed(
   () => fab.value && fab.value.classList.contains(UI_FAB.cssClasses.touch)
-).value;
-
+);
 const className = computed(() => ({
   'mdc-fab': true,
-  'mdc-fab--extended': isExtended,
+  'mdc-fab--extended': isExtended.value,
   'mdc-fab--mini': props.mini,
   'mdc-fab--exited': props.exited,
   // Accessibility
-  'mdc-fab--touch': isAccessible
+  'mdc-fab--touch': isAccessible.value
 }));
 </script>

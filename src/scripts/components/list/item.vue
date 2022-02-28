@@ -24,7 +24,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, getCurrentInstance } from 'vue';
 import {
   useDeprecatedList,
   getDeprecatedItemClasses
@@ -44,6 +44,8 @@ const props = defineProps({
 
 const emit = defineEmits([UI_ITEM.EVENTS.CLICK]);
 
+const instance = getCurrentInstance();
+const parent = instance.parent;
 const item = ref(null);
 
 const { hasRipple, deprecatedListClassNameMap } = useDeprecatedList(item);
@@ -58,8 +60,8 @@ const className = computed(() => [
 const role = computed(() => {
   let name = null;
 
-  if (item.$parent) {
-    switch (item.$parent.role) {
+  if (parent) {
+    switch (parent.exposed.role) {
       case 'listbox':
         name = 'option';
         break;

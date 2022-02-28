@@ -95,6 +95,8 @@ function handleClick() {
 }
 
 function handleChange(event) {
-  handleFileChange(event, (result) => emit(UI_FILE.EVENTS.CHANGE, result));
+  handleFileChange(props, event, (result) =>
+    emit(UI_FILE.EVENTS.CHANGE, result)
+  );
 }
 </script>

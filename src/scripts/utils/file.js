@@ -35,8 +35,8 @@ const UI_FILE = {
           resolve(window.URL.createObjectURL(fileObj.sourceFile));
         } else if (window.FileReader) {
           let reader = new FileReader();
-          reader.onload = function () {
-            resolve(this.result);
+          reader.onload = function (event) {
+            resolve(event.target.result);
           };
           reader.readAsDataURL(fileObj.sourceFile);
         } else {
@@ -58,14 +58,14 @@ const UI_FILE = {
   }
 };
 
-async function handleFileChange(event, callback) {
-  let files = [].slice.call(event.target.files);
+async function handleFileChange(props, event, callback) {
+  const files = [].slice.call(event.target.files);
 
   if (files.length) {
-    let result = await Promise.all(
+    const result = await Promise.all(
       files.map(async (file) => {
-        let fileObj = UI_FILE.createFileObject(file);
-        this.preview && (await UI_FILE.handlePreview(fileObj));
+        const fileObj = UI_FILE.createFileObject(file);
+        props.preview && (await UI_FILE.handlePreview(fileObj));
         return Promise.resolve(fileObj);
       })
     );

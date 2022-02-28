@@ -64,7 +64,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, getCurrentInstance } from 'vue';
+import { ref, computed, getCurrentInstance, nextTick } from 'vue';
 import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 
 const props = defineProps({
@@ -91,14 +91,16 @@ const { materialIcon } = useMaterialIcon(props);
 const thumbnailClassName = computed(() => [
   UI_GLOBAL.cssClasses.icon,
   UI_CHIP.cssClasses.icon,
-  { 'mdc-chip__icon--leading-hidden': props.selected }
+  {
+    'mdc-chip__icon--leading-hidden': props.selected
+  }
 ]);
 const role = computed(() => {
   let name = null;
 
-  if (parent.exposed.choiceChips) {
+  if (parent.exposed.choiceChips.value) {
     name = 'radio';
-  } else if (parent.exposed.filterChips) {
+  } else if (parent.exposed.filterChips.value) {
     name = 'checkbox';
   } else {
     name = 'button';
@@ -108,9 +110,15 @@ const role = computed(() => {
 });
 
 function handleClick(event) {
-  parent.exposed.choiceChipId = chip.value.id; // fix(ui): twice trigger
+  nextTick(() => {
+    // fix(ui): twice trigger
+    const choiceChips = parent.exposed.choiceChips.value;
+    if (choiceChips) {
+      parent.exposed.choiceChipId.value = chip.value.id;
+    }
 
-  emit(UI_GLOBAL.EVENTS.CLICK, event);
+    emit(UI_GLOBAL.EVENTS.CLICK, event);
+  });
 }
 
 function handleRemove(event) {

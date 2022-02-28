@@ -243,7 +243,7 @@ const setHTML = (html) => (state.$editor.root.innerHTML = html);
 
 const insertImage = (url) => state.$editor.insert('image', url);
 function handleChange(event) {
-  handleFileChange(event, (result) => {
+  handleFileChange(props, event, (result) => {
     emit(UI_EDITOR.EVENTS.FILE_CHANGE, result[0], insertImage);
   });
 }

@@ -45,7 +45,7 @@ const className = computed(() => {
 
   // mdc-layout-grid--align-<GRID_POSITION>
   if (props.position) {
-    let gridPosition = props.position;
+    const gridPosition = props.position;
     if (UI_GRID.POSITIONS.includes(gridPosition)) {
       result.push(`mdc-layout-grid--align-${gridPosition}`);
     } else {

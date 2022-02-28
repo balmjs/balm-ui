@@ -61,7 +61,7 @@ const className = computed(() => {
 });
 const isCustomFormItem = computed(
   () => formField.value && formField.value.classList.contains('mdc-form__item')
-).value;
+);
 const style = computed(() => {
   const formProps = state.form;
   return formProps && formProps.itemMarginBottom
@@ -74,35 +74,35 @@ const style = computed(() => {
 const flexBasis = computed(() => {
   const formProps = state.form;
   return formProps && formProps.labelWidth ? +formProps.labelWidth : 0;
-}).value;
+});
 const marginRight = computed(() => {
   const formProps = state.form;
   return formProps && formProps.labelMarginRight
     ? +formProps.labelMarginRight
     : 0;
-}).value;
+});
 const actionPaddingLeft = computed(() => {
   const formProps = state.form;
   return formProps &&
     formProps.actionAlign === 'left' &&
-    (flexBasis || marginRight)
-    ? flexBasis + marginRight
+    (flexBasis.value || marginRight.value)
+    ? flexBasis.value + marginRight.value
     : 0;
-}).value;
+});
 // vertical form
 const marginBottom = computed(() => {
   const formProps = state.form;
   return formProps && formProps.labelMarginBottom
     ? +formProps.labelMarginBottom
     : 0;
-}).value;
+});
 
 function getFrom(instance) {
   const parent = instance.parent;
 
   return parent.type.name === 'UiForm'
     ? parent.props
-    : isCustomFormItem
+    : isCustomFormItem.value
     ? getFrom(parent)
     : null;
 }
@@ -115,20 +115,24 @@ function initFormLabel() {
 
     const label = $label?.el;
     if (label) {
-      if (flexBasis) {
-        label.style['flexBasis'] = `${flexBasis}px`;
+      if (flexBasis.value) {
+        label.style['flexBasis'] = `${flexBasis.value}px`;
       }
-      if (marginRight) {
-        label.style['marginRight'] = `${marginRight}px`;
+      if (marginRight.value) {
+        label.style['marginRight'] = `${marginRight.value}px`;
       }
-      if (marginBottom) {
-        label.style['marginBottom'] = `${marginBottom}px`;
+      if (marginBottom.value) {
+        label.style['marginBottom'] = `${marginBottom.value}px`;
       }
     }
 
     const el = formField.value;
-    if (el && el.classList.contains('mdc-form__actions') && actionPaddingLeft) {
-      el.style.paddingLeft = `${actionPaddingLeft}px`;
+    if (
+      el &&
+      el.classList.contains('mdc-form__actions') &&
+      actionPaddingLeft.value
+    ) {
+      el.style.paddingLeft = `${actionPaddingLeft.value}px`;
     }
   }
 }

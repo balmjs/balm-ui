@@ -63,7 +63,7 @@ const supClassName = computed(() => [
     'mdc-badge__sup': true,
     'mdc-badge__sup--dot': props.dot
   },
-  stateType ? `mdc-badge__sup--${stateType}` : ''
+  stateType.value ? `mdc-badge__sup--${stateType.value}` : ''
 ]);
 
 function handleClick(event) {

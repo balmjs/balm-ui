@@ -89,21 +89,14 @@ const state = reactive({
 });
 const { currentOptions, choiceChipId } = toRefs(state);
 
-const inputChips = computed(() =>
-  checkType(props, UI_CHIPS.TYPES, 'input')
-).value;
-const choiceChips = computed(() =>
-  checkType(props, UI_CHIPS.TYPES, 'choice')
-).value;
-const filterChips = computed(() =>
-  checkType(props, UI_CHIPS.TYPES, 'filter')
-).value;
-
+const inputChips = computed(() => checkType(props, UI_CHIPS.TYPES, 'input'));
+const choiceChips = computed(() => checkType(props, UI_CHIPS.TYPES, 'choice'));
+const filterChips = computed(() => checkType(props, UI_CHIPS.TYPES, 'filter'));
 const className = computed(() => ({
   'mdc-chip-set': true,
-  'mdc-chip-set--input': inputChips,
-  'mdc-chip-set--choice': choiceChips,
-  'mdc-chip-set--filter': filterChips
+  'mdc-chip-set--input': inputChips.value,
+  'mdc-chip-set--choice': choiceChips.value,
+  'mdc-chip-set--filter': filterChips.value
 }));
 
 onBeforeMount(() => checkOptionFormat('<ui-chips>', props.optionFormat));
@@ -121,7 +114,7 @@ onMounted(() => {
   watch(
     () => props.options,
     (val) => {
-      if (choiceChips || filterChips) {
+      if (choiceChips.value || filterChips.value) {
         state.currentOptions = [];
 
         nextTick(() => {
@@ -150,9 +143,9 @@ onMounted(() => {
 
 onUpdated(() => {
   nextTick(() => {
-    if (inputChips) {
+    if (inputChips.value) {
       addChip();
-    } else if (!state.$chipSet && (choiceChips || filterChips)) {
+    } else if (!state.$chipSet && (choiceChips.value || filterChips.value)) {
       init();
     }
   });
@@ -166,14 +159,14 @@ function init() {
     initData(currentChips);
     initEvent(currentChips);
   } else {
-    if (!inputChips) {
+    if (!inputChips.value) {
       state.$chipSet = null;
     }
   }
 }
 
 function initData(chips) {
-  if (filterChips) {
+  if (filterChips.value) {
     let selectedIndexes = [];
 
     if (state.currentOptions.length) {
@@ -191,7 +184,7 @@ function initData(chips) {
         chip.selected = true;
       }
     });
-  } else if (choiceChips) {
+  } else if (choiceChips.value) {
     let selectedIndex = -1;
 
     if (state.currentOptions.length) {
@@ -212,7 +205,7 @@ function initEvent(chips) {
   const adapter = state.$chipSet.foundation.adapter;
 
   state.$chipSet.listen(strings.SELECTION_EVENT, ({ detail }) => {
-    if (choiceChips) {
+    if (choiceChips.value) {
       if (detail.chipId === state.choiceChipId) {
         const selectedIndex = detail.selected
           ? adapter.getIndexOfChipById(detail.chipId)
@@ -229,7 +222,7 @@ function initEvent(chips) {
           emit(UI_CHIPS.EVENTS.CHANGE, selectedIndex);
         }
       }
-    } else if (filterChips) {
+    } else if (filterChips.value) {
       let selectedIndexes = [];
       chips.forEach((chip, index) => {
         if (chip.selected) {
@@ -280,7 +273,7 @@ function clearSelected(newSelectedValue, oldSelectedValue) {
   const canClear = !newSelectedValue.length && oldSelectedValue.length;
 
   if (canClear) {
-    if (filterChips) {
+    if (filterChips.value) {
       let selectedIndexes = [];
 
       state.currentOptions.forEach((option, index) => {
@@ -294,7 +287,7 @@ function clearSelected(newSelectedValue, oldSelectedValue) {
           chip.selected = false;
         }
       });
-    } else if (choiceChips) {
+    } else if (choiceChips.value) {
       let selectedIndex = state.currentOptions.findIndex((option) =>
         oldSelectedValue.includes(option[props.optionFormat.value])
       );

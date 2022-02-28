@@ -84,12 +84,11 @@ const props = defineProps({
 
 const isVertical = computed(
   () => checkType(props, UI_FORM.TYPES, 'vertical') || props.type === '|'
-).value;
-
+);
 const className = computed(() => ({
   'mdc-form': true,
-  'mdc-form--horizontal': !isVertical,
-  'mdc-form--vertical': isVertical,
+  'mdc-form--horizontal': !isVertical.value,
+  'mdc-form--vertical': isVertical.value,
   'mdc-form--nowrap': props.nowrap,
   'mdc-form--label-top-aligned': props.labelTopAligned,
   'mdc-form--label-right-aligned': props.labelRightAligned,
@@ -101,7 +100,7 @@ const className = computed(() => ({
 const form = ref(null);
 
 onBeforeMount(() => {
-  if (isVertical) {
+  if (isVertical.value) {
     if (props.labelWidth || props.labelMarginRight) {
       throw new Error(
         `[UiForm]: The 'labelWidth'/'labelMarginRight' prop only takes effect in the horizontal type form`

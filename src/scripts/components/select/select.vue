@@ -221,19 +221,18 @@ const { materialIcon } = useMaterialIcon(props);
 
 const isOutlined = computed(() =>
   checkType(props, UI_SELECT.TYPES, 'outlined')
-).value;
+);
 const hasLeadingIcon = computed(
   () => !!(materialIcon || props.withLeadingIcon || slots.icon)
-).value;
-const noLabel = computed(() => !(props.label || slots.default)).value;
-
+);
+const noLabel = computed(() => !(props.label || slots.default));
 const className = computed(() => ({
   'mdc-select': true,
-  'mdc-select--filled': !isOutlined,
-  'mdc-select--outlined': isOutlined,
+  'mdc-select--filled': !isOutlined.value,
+  'mdc-select--outlined': isOutlined.value,
   'mdc-select--fullwidth': props.fullwidth,
-  'mdc-select--with-leading-icon': hasLeadingIcon,
-  'mdc-select--no-label': noLabel,
+  'mdc-select--with-leading-icon': hasLeadingIcon.value,
+  'mdc-select--no-label': noLabel.value,
   'mdc-select--required': props.required,
   'mdc-select--disabled': props.disabled
 }));

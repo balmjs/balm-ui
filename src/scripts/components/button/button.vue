@@ -96,30 +96,27 @@ const { cardActionClasses } = useCardAction(button);
 
 const isOutlined = computed(() =>
   checkType(props, UI_BUTTON.TYPES, 'outlined')
-).value;
-const isRaised = computed(() =>
-  checkType(props, UI_BUTTON.TYPES, 'raised')
-).value;
+);
+const isRaised = computed(() => checkType(props, UI_BUTTON.TYPES, 'raised'));
 const isUnelevated = computed(() =>
   checkType(props, UI_BUTTON.TYPES, 'unelevated')
-).value;
+);
 const isAccessible = computed(
   () =>
     button.value && button.value.classList.contains(UI_BUTTON.cssClasses.touch)
-).value;
-
+);
 const className = computed(() => [
   {
     // Text button
     'mdc-button': true,
     // Outlined button
-    'mdc-button--outlined': isOutlined,
+    'mdc-button--outlined': isOutlined.value,
     // Contained button
-    'mdc-button--raised': isRaised,
-    'mdc-button--unelevated': isUnelevated,
+    'mdc-button--raised': isRaised.value,
+    'mdc-button--unelevated': isUnelevated.value,
     // Accessibility
-    'mdc-button--touch': isAccessible
+    'mdc-button--touch': isAccessible.value
   },
-  cardActionClasses
+  cardActionClasses.value
 ]);
 </script>

@@ -40,13 +40,12 @@ function useStateType(props) {
     }
 
     return result;
-  }).value;
-
+  });
   const stateClassName = computed(() => {
     let result = false;
 
-    if (stateType) {
-      result = `md-${stateType}-icon`;
+    if (stateType.value) {
+      result = `md-${stateType.value}-icon`;
 
       if (props.stateOutlined) {
         result += '--outlined';
@@ -54,8 +53,7 @@ function useStateType(props) {
     }
 
     return result;
-  }).value;
-
+  });
   const materialIcon = computed(() => {
     let result = false;
 
@@ -68,7 +66,7 @@ function useStateType(props) {
     }
 
     return result;
-  }).value;
+  });
 
   return {
     stateType,

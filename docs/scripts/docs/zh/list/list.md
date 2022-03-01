@@ -4,29 +4,34 @@
 <ui-nav><!-- <ui-nav-item> --></ui-nav>
 ```
 
-**`<ui-list>` 类型**
+**`<ui-list>` & `<ui-nav>` 类型**
 
 - `1`: `'singleLine'`
 - `2`: `'twoLine'`
 
-### Props
+### 共用 Props
 
-| Name                     | Type           | Default | Description                                                        |
-| ------------------------ | -------------- | ------- | ------------------------------------------------------------------ |
-| `type`                   | string, number | `0`     | 列表类型                                                           |
-| `singleSelection`        | boolean        | `false` | 单选模式。该列表可以处理基于单击或键盘操作来选中列表项。           |
-| `modelValue` (`v-model`) | number         | `-1`    | 列表项索引值。仅适用于单选模式。                                   |
-| `nonInteractive`         | boolean        | `false` | 禁用水波纹效果                                                     |
-| `dense`                  | boolean        | `false` | 紧凑型列表样式                                                     |
-| `avatar`                 | boolean        | `false` | 配置每行的前导图块以显示图像而不是图标。这将使列表项目的图形更大。 |
+| Name             | Type           | Default | Description                                                        |
+| ---------------- | -------------- | ------- | ------------------------------------------------------------------ |
+| `type`           | string, number | `0`     | 列表类型                                                           |
+| `nonInteractive` | boolean        | `false` | 禁用水波纹效果                                                     |
+| `dense`          | boolean        | `false` | 紧凑型列表样式                                                     |
+| `avatar`         | boolean        | `false` | 配置每行的前导图块以显示图像而不是图标。这将使列表项目的图形更大。 |
 
-### Slots
+### `<ui-list>` Props
+
+| Name                     | Type    | Default | Description                                              |
+| ------------------------ | ------- | ------- | -------------------------------------------------------- |
+| `modelValue` (`v-model`) | number  | `-1`    | 列表项索引值。仅适用于单选模式。                         |
+| `singleSelection`        | boolean | `false` | 单选模式。该列表可以处理基于单击或键盘操作来选中列表项。 |
+
+### 共用 Slots
 
 | Name      | Slots | Description                       |
 | --------- | ----- | --------------------------------- |
 | `default` |       | default 插槽包含列表项组件及 HTML |
 
-### Events
+### `<ui-list>` Events
 
 | Name                | Type                              | Description            |
 | ------------------- | --------------------------------- | ---------------------- |

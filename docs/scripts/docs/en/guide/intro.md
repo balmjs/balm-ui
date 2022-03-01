@@ -29,5 +29,5 @@ We officially support the last two versions of every major browser. Specifically
 ## Thank you
 
 - [BalmJS](https://balm.js.org/)
-- [Vue.js](https://v3.vuejs.org/)
+- [Vue.js](https://vuejs.org/)
 - [MDC Web](https://github.com/material-components/material-components-web)

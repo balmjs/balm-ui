@@ -16,6 +16,7 @@
 #### Props
 
 - `<ui-chips>`: rename prop `chips` -> `items`
+- `<ui-nav>`: remove prop `modelValue`, `singleSelection` and events
 
 <div id="up-to-9_27"></div>
 

@@ -16,6 +16,7 @@
 #### Props
 
 - `<ui-chips>`: 重命名属性 `chips` 为 `items`
+- `<ui-nav>`: 移除属性 `modelValue`, `singleSelection` 和相关事件
 
 <div id="up-to-9_27"></div>
 

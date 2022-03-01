@@ -314,7 +314,7 @@ We officially support the last two versions of every major browser. Specifically
 ## Special Thanks to
 
 - [BalmJS](https://balm.js.org/)
-- [Vue.js](https://v3.vuejs.org/)
+- [Vue.js](https://vuejs.org/)
 - [MDC Web](https://github.com/material-components/material-components-web)
 
 [balm-ui-image]: https://img.shields.io/npm/v/balm-ui

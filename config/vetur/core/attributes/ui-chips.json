@@ -16,7 +16,7 @@
     "type": "object",
     "description": "Defines the option data format."
   },
-  "chips": {
+  "items": {
     "type": "array",
     "description": "A set of chips. Applicable only for updating the input chips."
   }

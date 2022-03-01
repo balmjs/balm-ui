@@ -214,15 +214,6 @@ interface Editor {
 - `quill.insert(customFormat, value) => {}`: 向富文本插入内容
 - `quill.insert('html', content)`: 向富文本 HTML (New in 9.2.0)
 
-#### Encode & Decode Emoji
-
-```html
-<ui-editor ref="editor" v-model="content"></ui-editor>
-```
-
-- `this.$refs.editor.decodeEmoji(content)`: 获取服务端数据 → 设置客户端展示
-- `this.$refs.editor.encodeEmoji(html)`: 提交客户端数据 → 保存服务端数据
-
 ### Slots
 
 | Name      | Props | Description                           |
@@ -252,3 +243,14 @@ interface Editor {
     @update:modelValue="balmUI.onChange('content', $event)"
   ></ui-editor>
   ```
+
+### Public Methods
+
+Encode & Decode Emoji
+
+```html
+<ui-editor ref="editor" v-model="content"></ui-editor>
+```
+
+- `this.$refs.editor.decodeEmoji(content)`: 获取服务端数据 → 设置客户端展示
+- `this.$refs.editor.encodeEmoji(html)`: 提交客户端数据 → 保存服务端数据

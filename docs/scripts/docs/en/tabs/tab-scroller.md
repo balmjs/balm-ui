@@ -20,3 +20,11 @@ interface TabScroller {
 | Name             | Type                        | Description                             |
 | ---------------- | --------------------------- | --------------------------------------- |
 | `update:scrollX` | `function(scrollX: number)` | Emits when the tab scroller is changed. |
+
+### Public Methods
+
+```html
+<ui-tab-scroller ref="scroller" v-model:scrollX="value"></ui-tab-scroller>
+```
+
+- `$refs.scroller.increment(scrollX: number)`

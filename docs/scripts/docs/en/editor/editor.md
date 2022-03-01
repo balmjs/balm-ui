@@ -208,15 +208,6 @@ interface Editor {
 - `quill.insert(customFormat, value) => {}`: insert content into the editor
 - `quill.insert('html', content)`: insert html into the editor (New in 9.2.0)
 
-#### Encode & Decode Emoji
-
-```html
-<ui-editor ref="editor" v-model="content"></ui-editor>
-```
-
-- `$refs.editor.decodeEmoji(content)`: get back-end data → set front-end view
-- `$refs.editor.encodeEmoji(html)`: submit front-end data → save back-end data
-
 ### Slots
 
 | Name      | Props | Description                                                            |
@@ -246,3 +237,14 @@ interface Editor {
     @update:modelValue="balmUI.onChange('content', $event)"
   ></ui-editor>
   ```
+
+### Public Methods
+
+Encode & Decode Emoji
+
+```html
+<ui-editor ref="editor" v-model="content"></ui-editor>
+```
+
+- `$refs.editor.decodeEmoji(content)`: get back-end data → set front-end view
+- `$refs.editor.encodeEmoji(html)`: submit front-end data → save back-end data

@@ -42,3 +42,13 @@
     @update:modelValue="balmUI.onChange('value', $event)"
   ></ui-slider>
   ```
+
+### Public Methods
+
+For asynchronous data
+
+```html
+<ui-slider ref="slider" v-model="value"></ui-slider>
+```
+
+- `$refs.slider.recompute()`: relayout

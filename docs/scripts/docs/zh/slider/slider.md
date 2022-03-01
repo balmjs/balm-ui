@@ -42,3 +42,13 @@
     @update:modelValue="balmUI.onChange('value', $event)"
   ></ui-slider>
   ```
+
+### Public Methods
+
+针对某些异步数据的情况
+
+```html
+<ui-slider ref="slider" v-model="value"></ui-slider>
+```
+
+- `$refs.slider.recompute()`：重新布局

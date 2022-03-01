@@ -39,16 +39,6 @@
   }
   ```
 
-- Tree node operations (New in 9.31.0)
-
-  ```html
-  <ui-tree ref="tree"></ui-tree>
-  ```
-
-  ```ts
-  this.$refs.tree.updateNode(type: 'create' | 'update' | 'delete', parentKey: string | number, nodeData: object)
-  ```
-
 ### Slots
 
 | Name               | Props  | Description                                                             | Version |
@@ -86,4 +76,18 @@
     :model-value="selectedNodes"
     @update:modelValue="balmUI.onChange('selectedNodes', $event)"
   ></ui-tree>
+  ```
+
+### Public Methods
+
+- Tree node operations (New in 9.31.0)
+
+  ```html
+  <ui-tree ref="tree"></ui-tree>
+  ```
+
+  ```ts
+  $refs.tree.updateNode(type: 'create' | 'update' | 'delete', parentKey: string | number, nodeData: object)
+
+  $refs.tree.getNode(nodeKey: string): object
   ```

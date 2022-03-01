@@ -1,4 +1,4 @@
-import { reactive, computed, watch, onMounted, defineExpose } from 'vue';
+import { reactive, computed, watch, onMounted } from 'vue';
 import createVueApp from '../config/ssr';
 import { getOptions, createModal } from '../utils/modal';
 

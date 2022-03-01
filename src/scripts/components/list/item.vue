@@ -13,11 +13,13 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
 import { UI_ITEM } from './constants';
 
 export default {
   name: 'UiItem',
   customOptions: {
+    UI_GLOBAL,
     UI_ITEM
   }
 };
@@ -25,6 +27,7 @@ export default {
 
 <script setup>
 import { ref, computed, getCurrentInstance } from 'vue';
+import { useGlobal } from '../../config/constants';
 import {
   useDeprecatedList,
   getDeprecatedItemClasses
@@ -42,12 +45,13 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_ITEM.EVENTS.CLICK]);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 const instance = getCurrentInstance();
 const parent = instance.parent;
 const item = ref(null);
 
+const { handleClick } = useGlobal({ emit });
 const { hasRipple, deprecatedListClassNameMap } = useDeprecatedList(item);
 
 const className = computed(() => [
@@ -76,8 +80,4 @@ const role = computed(() => {
 
   return name;
 });
-
-function handleClick(event) {
-  emit(UI_ITEM.EVENTS.CLICK, event);
-}
 </script>

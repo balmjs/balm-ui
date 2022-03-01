@@ -8,9 +8,12 @@
 <script>
 import { UI_HELPER_TEXT } from '../../mixins/helper-text';
 
+const name = 'UiSelectHelper';
+
 export default {
-  name: 'UiSelectHelper',
+  name,
   customOptions: {
+    name,
     UI_HELPER_TEXT
   }
 };
@@ -39,7 +42,9 @@ onBeforeMount(() => {
   const needHelperTextId = props.visible || hasValidMsg.value;
 
   if (!props.id && needHelperTextId) {
-    console.warn(`The 'helperTextId' prop is required for <ui-select>`);
+    console.warn(
+      `[${name}]: The 'helperTextId' prop is required for <ui-select>`
+    );
   }
 });
 </script>

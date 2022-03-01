@@ -13,9 +13,12 @@
 import UI_GLOBAL from '../../config/constants';
 import { UI_TAB_INDICATOR } from './constants';
 
+const name = 'UiTabIndicator';
+
 export default {
-  name: 'UiTabIndicator',
+  name,
   customOptions: {
+    name,
     UI_GLOBAL,
     UI_TAB_INDICATOR
   }
@@ -60,7 +63,7 @@ const innerClassName = computed(() => {
 
 onBeforeMount(() => {
   if (!Object.values(UI_TAB_INDICATOR).includes(props.type)) {
-    console.warn('[UiTabIndicator]', 'Invalid tab indicator type');
+    console.warn(`[${name}]: Invalid tab indicator type`);
   }
 });
 </script>

@@ -59,6 +59,8 @@ import { deprecatedListClassNameMap } from '../list/constants';
 import getType from '../../utils/typeof';
 
 // Define menu constants
+const name = 'UiMenu';
+
 const UI_MENU = {
   DIVIDER: '-',
   MENU_POSITIONS: [
@@ -80,8 +82,9 @@ const UI_MENU = {
 };
 
 export default {
-  name: 'UiMenu',
+  name,
   customOptions: {
+    name,
     UI_MENU,
     getType,
     deprecatedListClassNameMap
@@ -271,7 +274,7 @@ function setAnchorCorner(menuPosition = props.position) {
     if (UI_MENU.MENU_POSITIONS.includes(menuPosition)) {
       state.$menu.setAnchorCorner(Corner[menuPosition]);
     } else {
-      console.warn('[UiMenu]', 'Invalid menu position');
+      console.warn(`[${name}]: Invalid menu position`);
     }
   }
 }

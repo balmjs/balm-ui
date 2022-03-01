@@ -1,3 +1,4 @@
+import { reactive, computed, watch, onMounted, defineExpose } from 'vue';
 import createVueApp from '../config/ssr';
 import { getOptions, createModal } from '../utils/modal';
 
@@ -40,78 +41,80 @@ function createToast(options) {
 
   toastApp = createVueApp({
     name: 'Toast',
-    data() {
-      return {
+    expose: ['render'],
+    setup() {
+      const state = reactive({
         open: false,
         opening: true,
         opened: false,
         options
-      };
-    },
-    computed: {
-      positionClassName() {
-        return ['top', 'center'].includes(this.options.position)
-          ? `mdc-toast--${this.options.position}`
-          : '';
-      },
-      className() {
-        return [
-          'mdc-snackbar',
-          'mdc-toast',
-          this.positionClassName,
-          this.options.className,
-          {
-            'mdc-snackbar--opening': this.opening,
-            'mdc-snackbar--open': this.opened
-          }
-        ];
-      }
-    },
-    watch: {
-      open(val) {
-        if (val) {
-          // animation
-          setTimeout(() => {
-            this.opened = true;
-            setTimeout(() => {
-              this.opening = false;
-            }, 150);
-          }, 150);
-        } else {
-          // reset
-          this.opening = true;
-          this.opened = false;
+      });
+
+      const positionClassName = computed(() =>
+        ['top', 'center'].includes(state.options.position)
+          ? `mdc-toast--${state.options.position}`
+          : ''
+      );
+      const className = computed(() => [
+        'mdc-snackbar',
+        'mdc-toast',
+        positionClassName.value,
+        state.options.className,
+        {
+          'mdc-snackbar--opening': state.opening,
+          'mdc-snackbar--open': state.opened
         }
+      ]);
+
+      watch(
+        () => state.open,
+        (val) => {
+          if (val) {
+            // animation
+            setTimeout(() => {
+              state.opened = true;
+              setTimeout(() => {
+                state.opening = false;
+              }, 150);
+            }, 150);
+          } else {
+            // reset
+            state.opening = true;
+            state.opened = false;
+          }
+        }
+      );
+
+      function hide() {
+        state.open = false;
       }
-    },
-    mounted() {
-      this.render(this.options);
-    },
-    methods: {
-      hide() {
-        this.open = false;
-      },
-      show() {
-        this.open = true;
+      function show() {
+        state.open = true;
         // hide toast
-        toastTimer = setTimeout(() => {
-          this.hide();
-        }, this.options.timeoutMs);
-      },
-      render(options) {
+        toastTimer = setTimeout(() => hide(), state.options.timeoutMs);
+      }
+      function render(options) {
         if (
           options.timeoutMs <= UI_TOAST.timeoutMs.MAX &&
           options.timeoutMs >= UI_TOAST.timeoutMs.MIN
         ) {
-          this.options = options;
+          state.options = options;
 
-          this.show();
+          show();
         } else {
           throw new Error(
             `[$toast]: The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`
           );
         }
       }
+
+      onMounted(() => render(options));
+
+      return {
+        options,
+        className,
+        render
+      };
     },
     template
   });

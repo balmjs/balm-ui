@@ -8,13 +8,16 @@
 
 <script>
 // Define grid constants
+const name = 'UiGrid';
+
 const UI_GRID = {
   POSITIONS: ['left', 'right']
 };
 
 export default {
-  name: 'UiGrid',
+  name,
   customOptions: {
+    name,
     UI_GRID
   }
 };
@@ -49,7 +52,7 @@ const className = computed(() => {
     if (UI_GRID.POSITIONS.includes(gridPosition)) {
       result.push(`mdc-layout-grid--align-${gridPosition}`);
     } else {
-      console.warn('[UiGrid]', 'Invalid <GRID_POSITION>');
+      console.warn(`[${name}]: Invalid <GRID_POSITION>`);
     }
   }
 

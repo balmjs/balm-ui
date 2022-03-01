@@ -12,14 +12,19 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
+
 export default {
   name: 'UiBadge',
-  customOptions: {}
+  customOptions: {
+    UI_GLOBAL
+  }
 };
 </script>
 
 <script setup>
 import { computed } from 'vue';
+import { useGlobal } from '../../config/constants';
 import { useStateType } from '../../mixins/state-type';
 
 const props = defineProps({
@@ -47,8 +52,9 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['click']);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
+const { handleClick } = useGlobal({ emit });
 const { stateType } = useStateType(props);
 
 const className = computed(() => ({
@@ -65,8 +71,4 @@ const supClassName = computed(() => [
   },
   stateType.value ? `mdc-badge__sup--${stateType.value}` : ''
 ]);
-
-function handleClick(event) {
-  emit('click', event);
-}
 </script>

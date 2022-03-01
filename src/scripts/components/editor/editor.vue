@@ -121,20 +121,6 @@ const state = reactive({
 });
 const { htmlContent, editSourceCode } = toRefs(state);
 
-watch(
-  () => props.modelValue,
-  (val) => {
-    if (val) {
-      if (state.htmlContent !== val) {
-        setHTML(val);
-        state.$editor.blur();
-      }
-    } else {
-      setHTML('');
-    }
-  }
-);
-
 onMounted(() => {
   nextTick(async () => {
     const { toolbarTips, toolbarOptions, emotions, extension } = props;
@@ -161,6 +147,20 @@ onMounted(() => {
       emit(UI_EDITOR.EVENTS.TEXT_CHANGE, html);
     });
   });
+
+  watch(
+    () => props.modelValue,
+    (val) => {
+      if (val) {
+        if (state.htmlContent !== val) {
+          setHTML(val);
+          state.$editor.blur();
+        }
+      } else {
+        setHTML('');
+      }
+    }
+  );
 
   document.addEventListener('click', onBlurEmojiHandler);
 });

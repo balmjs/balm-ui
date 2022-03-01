@@ -3,10 +3,10 @@ export const optionFormatDefaultValue = {
   value: 'value'
 };
 
-export const checkOptionFormat = (component, format) => {
+export const checkOptionFormat = (componentName, format) => {
   if (!(format.label && format.value)) {
     console.error(
-      `${component}: Invalid option format ({ label: string; value: string })`
+      `[${componentName}]: Invalid option format ({ label: string; value: string })`
     );
   }
 };

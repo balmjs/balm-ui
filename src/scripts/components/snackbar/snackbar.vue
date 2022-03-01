@@ -25,6 +25,8 @@
 
 <script>
 // Define snackbar constants
+const name = 'UiSnackbar';
+
 const UI_SNACKBAR = {
   ACTION_TYPE: {
     ACTION_BUTTON: 0,
@@ -47,8 +49,9 @@ const UI_SNACKBAR = {
 };
 
 export default {
-  name: 'UiSnackbar',
+  name,
   customOptions: {
+    name,
     UI_SNACKBAR
   }
 };
@@ -177,8 +180,7 @@ function setTimeoutMs(val) {
     state.$snackbar.timeoutMs = val;
   } else {
     console.warn(
-      '[UiSnackbar]',
-      `The 'timeoutMs' prop must be between ${UI_SNACKBAR.timeoutMs.MIN} and ${UI_SNACKBAR.timeoutMs.MAX}`
+      `[${name}]: The 'timeoutMs' prop must be between ${UI_SNACKBAR.timeoutMs.MIN} and ${UI_SNACKBAR.timeoutMs.MAX}`
     );
   }
 }

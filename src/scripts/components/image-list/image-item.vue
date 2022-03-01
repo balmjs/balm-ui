@@ -22,19 +22,22 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
+
 // Define image item constants
+const name = 'UiImageItem';
+
 const UI_IMAGE_ITEM = {
   cssClasses: {
     image: 'mdc-image-list__image'
-  },
-  EVENTS: {
-    CLICK: 'click'
   }
 };
 
 export default {
-  name: 'UiImageItem',
+  name,
   customOptions: {
+    name,
+    UI_GLOBAL,
     UI_IMAGE_ITEM
   }
 };
@@ -42,6 +45,7 @@ export default {
 
 <script setup>
 import { computed, onBeforeMount, getCurrentInstance } from 'vue';
+import { useGlobal } from '../../config/constants';
 
 const props = defineProps({
   // UI attributes
@@ -55,25 +59,22 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_IMAGE_ITEM.EVENTS.CLICK]);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
+
+const instance = getCurrentInstance();
+const parent = instance.parent;
+
+const { handleClick } = useGlobal({ emit });
 
 const style = computed(() => ({
   'background-image': `url(${props.bgImage})`
 }));
 
-const instance = getCurrentInstance();
-const parent = instance.parent;
-
 onBeforeMount(() => {
   if (parent?.exposed?.isMasonry.value && props.bgImage) {
     console.warn(
-      '[UiImageItem]',
-      `The 'bgImage' prop is not compatible with the masonry image list, you need to set the 'image' prop`
+      `[${name}]: The 'bgImage' prop is not compatible with the masonry image list, you need to set the 'image' prop`
     );
   }
 });
-
-function handleClick(event) {
-  emit(UI_IMAGE_ITEM.EVENTS.CLICK, event);
-}
 </script>

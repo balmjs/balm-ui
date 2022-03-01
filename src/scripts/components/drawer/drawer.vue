@@ -8,6 +8,8 @@
 
 <script>
 // Define drawer constants
+const name = 'UiDrawer';
+
 const UI_DRAWER = {
   TYPES: {
     permanent: 0,
@@ -25,7 +27,7 @@ const UI_DRAWER = {
 };
 
 export default {
-  name: 'UiDrawer',
+  name,
   customOptions: {
     UI_DRAWER
   }
@@ -66,6 +68,7 @@ const drawer = ref(null);
 const state = reactive({
   $drawer: null
 });
+let scrimEl = null;
 
 const isPermanent = computed(() =>
   checkType(props, UI_DRAWER.TYPES, 'permanent')
@@ -74,65 +77,11 @@ const isDismissible = computed(() =>
   checkType(props, UI_DRAWER.TYPES, 'dismissible')
 );
 const isModal = computed(() => checkType(props, UI_DRAWER.TYPES, 'modal'));
-
 const className = computed(() => ({
   'mdc-drawer': true,
   'mdc-drawer--dismissible': isDismissible.value,
   'mdc-drawer--modal': isModal.value
 }));
-
-let scrimEl = null;
-function createScrim() {
-  if (isModal.value && !scrimEl) {
-    scrimEl = document.createElement('div');
-    scrimEl.className = UI_DRAWER.cssClasses.scrim;
-    scrimEl.addEventListener('click', handleClose);
-
-    const el = drawer.value;
-    el.parentNode.insertBefore(scrimEl, el.nextSibling);
-  }
-}
-
-function checkNav() {
-  let result = true;
-
-  if (!(state.$drawer.list && state.$drawer.list.listElements.length)) {
-    result = false;
-    console.warn(
-      '[UiDrawer]',
-      `<ui-nav> or <ui-list> is required for <ui-drawer-content> in the drawer`
-    );
-  }
-
-  return result;
-}
-
-function init() {
-  const el = drawer.value;
-  state.$drawer = new MDCDrawer(el);
-
-  state.$drawer.listen(strings.OPEN_EVENT, () => {
-    emit(UI_DRAWER.EVENTS.NAV, true);
-  });
-  state.$drawer.listen(strings.CLOSE_EVENT, handleClose);
-
-  if (props.navId && document.getElementById(props.navId)) {
-    checkNav();
-
-    document.getElementById(props.navId).addEventListener('click', () => {
-      if (checkNav()) {
-        state.$drawer.open = !state.$drawer.open;
-      }
-    });
-
-    state.$drawer.open = props.modelValue;
-  }
-}
-
-function handleClose() {
-  emit(UI_DRAWER.EVENTS.NAV, false);
-  emit(UI_DRAWER.EVENTS.CHANGE, false);
-}
 
 onMounted(() => {
   if (props.viewportHeight) {
@@ -170,4 +119,55 @@ onMounted(() => {
     }
   );
 });
+
+function createScrim() {
+  if (isModal.value && !scrimEl) {
+    scrimEl = document.createElement('div');
+    scrimEl.className = UI_DRAWER.cssClasses.scrim;
+    scrimEl.addEventListener('click', handleClose);
+
+    const el = drawer.value;
+    el.parentNode.insertBefore(scrimEl, el.nextSibling);
+  }
+}
+
+function checkNav() {
+  let result = true;
+
+  if (!(state.$drawer.list && state.$drawer.list.listElements.length)) {
+    result = false;
+    console.warn(
+      `[${name}]: <ui-nav> or <ui-list> is required for <ui-drawer-content> in the drawer`
+    );
+  }
+
+  return result;
+}
+
+function init() {
+  const el = drawer.value;
+  state.$drawer = new MDCDrawer(el);
+
+  state.$drawer.listen(strings.OPEN_EVENT, () => {
+    emit(UI_DRAWER.EVENTS.NAV, true);
+  });
+  state.$drawer.listen(strings.CLOSE_EVENT, handleClose);
+
+  if (props.navId && document.getElementById(props.navId)) {
+    checkNav();
+
+    document.getElementById(props.navId).addEventListener('click', () => {
+      if (checkNav()) {
+        state.$drawer.open = !state.$drawer.open;
+      }
+    });
+
+    state.$drawer.open = props.modelValue;
+  }
+}
+
+function handleClose() {
+  emit(UI_DRAWER.EVENTS.NAV, false);
+  emit(UI_DRAWER.EVENTS.CHANGE, false);
+}
 </script>

@@ -105,25 +105,15 @@ onMounted(() => {
 
   watch(
     () => props.modelValue,
-    (val) => {
-      state.selectedValue = setSelectedValue(val);
-    }
+    (val) => (state.selectedValue = setSelectedValue(val))
   );
   watch(
     () => props.indeterminate,
-    (val) => {
-      if (state.$checkbox) {
-        state.$checkbox.indeterminate = val;
-      }
-    }
+    (val) => (state.$checkbox.indeterminate = val)
   );
   watch(
     () => props.disabled,
-    (val) => {
-      if (state.$checkbox) {
-        state.$checkbox.disabled = val;
-      }
-    }
+    (val) => (state.$checkbox.disabled = val)
   );
 });
 

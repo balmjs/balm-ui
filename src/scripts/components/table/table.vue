@@ -106,9 +106,12 @@
 <script>
 import UI_TABLE from './constants';
 
+const name = 'UiTable';
+
 export default {
-  name: 'UiTable',
+  name,
   customOptions: {
+    name,
     UI_TABLE
   }
 };
@@ -228,7 +231,7 @@ const hasFixedCell = computed(() => {
   );
 
   if (hasFixedColumn && !props.defaultColWidth) {
-    console.warn('[UiTable]', 'You need set defaultColWidth prop first');
+    console.warn(`[${name}]: You need set defaultColWidth prop first`);
   }
 
   return props.defaultColWidth && hasFixedColumn;
@@ -264,8 +267,7 @@ const columns = computed(() => {
     const currentWidth = table.value.offsetWidth;
     if (hasFixedCell.value && currentWidth > maxWidth) {
       console.warn(
-        '[UiTable]',
-        `The table max width is ${maxWidth}px, but the current is ${currentWidth}px.`
+        `[${name}]: The table max width is ${maxWidth}px, but the current is ${currentWidth}px.`
       );
     }
   });

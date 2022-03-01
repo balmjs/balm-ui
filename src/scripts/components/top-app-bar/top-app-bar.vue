@@ -41,6 +41,8 @@
 
 <script>
 // Define top app bar constants
+const name = 'UiTopAppBar';
+
 const UI_TOP_APP_BAR = {
   TYPES: {
     nonRegular: -1, // Contextual action bar
@@ -70,8 +72,9 @@ const UI_TOP_APP_BAR = {
 };
 
 export default {
-  name: 'UiTopAppBar',
+  name,
   customOptions: {
+    name,
     UI_TOP_APP_BAR
   }
 };
@@ -227,7 +230,7 @@ function createFixedAdjustElement() {
       }
     }
   } else {
-    console.warn('[UiTopAppBar]', `The 'contentSelector' prop is required`);
+    console.warn(`[${name}]: The 'contentSelector' prop is required`);
   }
 }
 

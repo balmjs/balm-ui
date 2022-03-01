@@ -42,6 +42,8 @@
 
 <script>
 // Define circular progress constants
+const name = 'UiSpinner';
+
 const UI_CIRCULAR_PROGRESS = {
   SVG: {
     // 48px
@@ -75,8 +77,9 @@ const UI_CIRCULAR_PROGRESS = {
 };
 
 export default {
-  name: 'UiSpinner',
+  name,
   customOptions: {
+    name,
     UI_CIRCULAR_PROGRESS
   }
 };
@@ -146,7 +149,7 @@ onMounted(() => {
 
     setProgress(props.progress);
   } else {
-    console.warn('[UiSpinner]', 'Please choose correct size');
+    console.warn(`[${name}]: Please choose correct size`);
   }
 });
 </script>

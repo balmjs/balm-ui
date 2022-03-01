@@ -12,9 +12,12 @@
 <script>
 import { UI_PROGRESS } from './constants';
 
+const name = 'UiProgress';
+
 export default {
-  name: 'UiProgress',
+  name,
   customOptions: {
+    name,
     UI_PROGRESS
   }
 };
@@ -70,10 +73,7 @@ function setBuffer(value) {
   ) {
     state.$linearProgress.buffer = value;
   } else {
-    console.warn(
-      '[UiProgress]',
-      `The 'buffer' prop value should be between [0, 1]`
-    );
+    console.warn(`[${name}]: The 'buffer' prop value should be between [0, 1]`);
   }
 }
 </script>

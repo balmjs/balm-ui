@@ -11,6 +11,8 @@
 
 <script>
 // Define grid cell constants
+const name = 'UiGridCell';
+
 const UI_GRID_CELL = {
   cssClasses: 'mdc-layout-grid__cell',
   TYPE: {
@@ -23,7 +25,7 @@ const UI_GRID_CELL = {
 };
 
 export default {
-  name: 'UiGridCell',
+  name,
   customOptions: {
     UI_GRID_CELL
   }
@@ -89,10 +91,7 @@ const className = computed(() => {
     if (orderIndex >= 1 && orderIndex <= 12) {
       result = handleCell(UI_GRID_CELL.TYPE.ORDER, result, orderIndex);
     } else {
-      console.warn(
-        '[UiGridCell]',
-        'Order <INDEX> is an integer between 1 and 12'
-      );
+      console.warn(`[${name}]: Order <INDEX> is an integer between 1 and 12`);
     }
   }
 

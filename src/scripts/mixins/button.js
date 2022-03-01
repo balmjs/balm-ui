@@ -1,7 +1,7 @@
 import { watch, onMounted } from 'vue';
 import { useRipple } from './ripple';
 
-function useButton(elementRef, props, { emit }) {
+function useButton(elementRef, props) {
   onMounted(() => {
     const element = elementRef.value;
 
@@ -12,14 +12,6 @@ function useButton(elementRef, props, { emit }) {
       () => useRipple(element)
     );
   });
-
-  function handleClick(event) {
-    emit('click', event);
-  }
-
-  return {
-    handleClick
-  };
 }
 
 export { useButton };

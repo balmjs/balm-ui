@@ -17,6 +17,7 @@ export default {
 import { computed } from 'vue';
 
 const props = defineProps({
+  // UI variants
   outlined: {
     type: Boolean,
     default: false

@@ -46,6 +46,7 @@ export default {
 
 <script setup>
 import { ref, computed } from 'vue';
+import { useGlobal } from '../../config/constants';
 import { useButton } from '../../mixins/button';
 import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 import checkType from '../../mixins/type';
@@ -76,7 +77,8 @@ const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 const fab = ref(null);
 
-const { handleClick } = useButton(fab, props, { emit });
+const { handleClick } = useGlobal({ emit });
+useButton(fab, props);
 const { materialIcon } = useMaterialIcon(props);
 
 const isExtended = computed(() => checkType(props, UI_FAB.TYPES, 'extended'));

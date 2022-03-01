@@ -20,6 +20,7 @@
       <div class="mdc-checkbox__mixedmark"></div>
     </div>
     <div class="mdc-checkbox__ripple"></div>
+    <div class="mdc-checkbox__focus-ring"></div>
   </div>
 </template>
 
@@ -61,15 +62,11 @@ onMounted(() => {
 
   watch(
     () => props.indeterminate,
-    (val) => {
-      checkbox.value.indeterminate = val;
-    }
+    (val) => (checkbox.value.indeterminate = val)
   );
   watch(
     () => props.disabled,
-    (val) => {
-      checkbox.value.disabled = val;
-    }
+    (val) => (checkbox.value.disabled = val)
   );
 });
 

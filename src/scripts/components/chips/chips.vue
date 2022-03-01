@@ -10,6 +10,8 @@
 
 <script>
 // Define chips constants
+const name = 'UiChips';
+
 const UI_CHIPS = {
   TYPES: {
     action: 0,
@@ -23,8 +25,9 @@ const UI_CHIPS = {
 };
 
 export default {
-  name: 'UiChips',
+  name,
   customOptions: {
+    name,
     UI_CHIPS
   }
 };
@@ -99,7 +102,7 @@ const className = computed(() => ({
   'mdc-chip-set--filter': filterChips.value
 }));
 
-onBeforeMount(() => checkOptionFormat('<ui-chips>', props.optionFormat));
+onBeforeMount(() => checkOptionFormat(name, props.optionFormat));
 
 onMounted(() => {
   init();

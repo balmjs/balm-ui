@@ -223,7 +223,7 @@ const isOutlined = computed(() =>
   checkType(props, UI_SELECT.TYPES, 'outlined')
 );
 const hasLeadingIcon = computed(
-  () => !!(materialIcon || props.withLeadingIcon || slots.icon)
+  () => !!(materialIcon.value || props.withLeadingIcon || slots.icon)
 );
 const noLabel = computed(() => !(props.label || slots.default));
 const className = computed(() => ({

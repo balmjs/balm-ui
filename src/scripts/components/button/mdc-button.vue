@@ -31,6 +31,7 @@ export default {
 
 <script setup>
 import { computed } from 'vue';
+import { useGlobal } from '../../config/constants';
 import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 
 const props = defineProps({
@@ -53,6 +54,7 @@ const props = defineProps({
 
 const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
+const { handleClick } = useGlobal({ emit });
 const { materialIcon } = useMaterialIcon(props);
 
 const className = computed(() => ({
@@ -60,8 +62,4 @@ const className = computed(() => ({
   'mdc-button--outlined': props.outlined,
   'mdc-button--unelevated': props.unelevated
 }));
-
-function handleClick(event) {
-  emit(UI_GLOBAL.EVENTS.CLICK, event);
-}
 </script>

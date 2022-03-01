@@ -54,6 +54,7 @@
     </template>
 
     <span class="mdc-tab__ripple"></span>
+    <div class="mdc-tab__focus-ring"></div>
   </button>
 </template>
 
@@ -73,6 +74,7 @@ export default {
 <script setup>
 import { ref, computed, onUpdated, getCurrentInstance } from 'vue';
 import UiTabIndicator from './tab-indicator.vue';
+import { useGlobal } from '../../config/constants';
 import { tabProps, useTab } from '../../mixins/tab';
 import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 
@@ -92,6 +94,7 @@ const instance = getCurrentInstance();
 const parent = instance.parent;
 const tab = ref(null);
 
+const { handleClick } = useGlobal({ emit });
 const { isTextWithIcon, isIconOnly } = useTab(props);
 const { materialIcon } = useMaterialIcon(props);
 
@@ -110,8 +113,4 @@ onUpdated(() => {
     parent.parent?.exposed?.updated();
   } catch (e) {}
 });
-
-function handleClick(event) {
-  emit(UI_GLOBAL.EVENTS.CLICK, event);
-}
 </script>

@@ -15,7 +15,7 @@
     <i
       v-if="closable"
       :class="UI_GLOBAL.getMaterialIconClass('mdc-alert__close-button')"
-      @click="onClose"
+      @click="handleClose"
     >
       clear
     </i>
@@ -41,7 +41,7 @@ const props = defineProps({
   // UI attributes
   state: {
     type: String,
-    default: '' // success, info, warning, error, help
+    default: '' // 'success' | 'info' | 'warning' | 'error' | 'help'
   },
   stateOutlined: {
     type: Boolean,
@@ -69,7 +69,7 @@ const className = computed(() => [
   }
 ]);
 
-function onClose() {
+function handleClose() {
   state.closed = true;
 
   setTimeout(() => {

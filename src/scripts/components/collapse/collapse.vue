@@ -57,6 +57,7 @@ export default {
 
 <script setup>
 import { ref, computed, watch } from 'vue';
+import { useGlobal } from '../../config/constants';
 
 const props = defineProps({
   // States
@@ -83,6 +84,8 @@ const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK, UI_COLLAPSE.EVENTS.CHANGE]);
 
 const isExpanded = ref(props.modelValue);
 
+const { handleClick } = useGlobal({ emit });
+
 const className = computed(() => ({
   'mdc-collapse': true,
   'mdc-collapse--expanded': isExpanded.value,
@@ -94,10 +97,6 @@ watch(
   () => props.modelValue,
   (val) => (isExpanded.value = val)
 );
-
-function handleClick(event) {
-  emit(UI_GLOBAL.EVENTS.CLICK, event);
-}
 
 function handleToggle() {
   isExpanded.value = !isExpanded.value;

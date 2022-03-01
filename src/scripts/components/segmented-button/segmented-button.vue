@@ -48,6 +48,7 @@ export default {
 
 <script setup>
 import { ref, computed } from 'vue';
+import { useGlobal } from '../../config/constants';
 import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 
 const props = defineProps({
@@ -68,6 +69,7 @@ const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 const segmentedButton = ref(null);
 
+const { handleClick } = useGlobal({ emit });
 const { materialIcon } = useMaterialIcon(props);
 
 const isAccessible = computed(
@@ -83,8 +85,4 @@ const className = computed(() => ({
   // Accessibility
   'mdc-segmented-button--touch': isAccessible.value
 }));
-
-function handleClick(event) {
-  emit(UI_GLOBAL.EVENTS.CLICK, event);
-}
 </script>

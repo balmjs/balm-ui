@@ -8,27 +8,31 @@
     <slot>
       <!-- content within actionable area -->
     </slot>
+    <div class="mdc-card__ripple"></div>
   </div>
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
+
 export default {
   name: 'UiCardContent',
-  customOptions: {}
+  customOptions: {
+    UI_GLOBAL
+  }
 };
 </script>
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useGlobal } from '../../config/constants';
 import { useRipple } from '../../mixins/ripple';
 
-const emit = defineEmits(['click']);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 const cardContent = ref(null);
 
-onMounted(() => useRipple(cardContent.value));
+const { handleClick } = useGlobal({ emit });
 
-function handleClick(event) {
-  emit('click', event);
-}
+onMounted(() => useRipple(cardContent.value));
 </script>

@@ -38,7 +38,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, getCurrentInstance } from 'vue';
+import { computed, getCurrentInstance } from 'vue';
 import MdcButton from '../button/mdc-button.vue';
 
 const props = defineProps({

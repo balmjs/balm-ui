@@ -27,9 +27,6 @@ const UI_ITEM = {
     active: deprecatedListClassNameMap['mdc-list-item--activated'],
     firstTile: deprecatedListClassNameMap['mdc-list-item__graphic'],
     lastTile: deprecatedListClassNameMap['mdc-list-item__meta']
-  },
-  EVENTS: {
-    CLICK: 'click'
   }
 };
 

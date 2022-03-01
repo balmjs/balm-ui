@@ -6,6 +6,8 @@
 
 <script>
 // Define anchors and positioning constants
+const name = 'UiMenuAnchor';
+
 const ANCHOR_POSITIONS = [
   'top left',
   'top right',
@@ -16,8 +18,9 @@ const ANCHOR_POSITIONS = [
 ];
 
 export default {
-  name: 'UiMenuAnchor',
+  name,
   customOptions: {
+    name,
     ANCHOR_POSITIONS
   }
 };
@@ -56,7 +59,7 @@ const positionStyle = computed(() => {
         result = positions.map((position) => `${position}:0`).join(';');
       }
     } else {
-      console.warn('[UiMenuAnchor]', 'Invalid anchor position');
+      console.warn(`[${name}]: Invalid anchor position`);
     }
   }
 

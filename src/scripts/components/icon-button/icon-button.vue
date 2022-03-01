@@ -7,6 +7,7 @@
     @click="handleClick"
   >
     <div class="mdc-icon-button__ripple"></div>
+    <span class="mdc-icon-button__focus-ring"></span>
     <!-- Icon -->
     <template v-if="toggleButton">
       <i
@@ -56,6 +57,7 @@ export default {
 import { ref, computed, watch, onMounted } from 'vue';
 import { MDCIconButtonToggle } from '../../../material-components-web/icon-button';
 import { strings } from '../../../material-components-web/icon-button/constants';
+import { useGlobal } from '../../config/constants';
 import { iconProps } from '../../mixins/material-icon';
 import { useCardAction } from '../../mixins/card-action';
 
@@ -80,6 +82,7 @@ const emit = defineEmits([
 
 const iconButton = ref(null);
 
+const { handleClick } = useGlobal({ emit });
 const { cardActionClasses } = useCardAction(iconButton);
 
 const toggleButton = computed(() => props.toggle.on && props.toggle.off);
@@ -90,10 +93,6 @@ const className = computed(() => [
   },
   cardActionClasses.value
 ]);
-
-function handleClick(event) {
-  emit(UI_GLOBAL.EVENTS.CLICK, event);
-}
 
 onMounted(() => {
   const $iconButton = new MDCIconButtonToggle(iconButton.value);

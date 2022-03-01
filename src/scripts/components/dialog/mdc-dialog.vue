@@ -13,7 +13,12 @@
         <div v-else class="mdc-dialog__content">
           <i
             v-if="materialIcon"
-            :class="UI_GLOBAL.getMaterialIconClass('mdc-alert-dialog__icon')"
+            :class="
+              UI_GLOBAL.getMaterialIconClass([
+                stateClassName,
+                'mdc-alert-dialog__icon'
+              ])
+            "
           >
             {{ materialIcon }}
           </i>
@@ -64,7 +69,7 @@ const state = reactive({
   stateOutlined: false
 });
 
-const { materialIcon } = useStateType(state);
+const { stateClassName, materialIcon } = useStateType(state);
 
 const className = computed(() => [
   'mdc-dialog',

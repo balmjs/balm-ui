@@ -151,15 +151,6 @@ const props = defineProps({
 const emit = defineEmits([UI_DATEPICKER.EVENTS.CHANGE]);
 const slots = useSlots();
 
-const { materialIcon } = useMaterialIcon(props);
-
-const hasLeadingIcon = computed(
-  () => !!(props.withLeadingIcon || slots.before)
-);
-const hasTrailingIcon = computed(
-  () => !!(props.withTrailingIcon || slots.after || props.toggle || props.clear)
-);
-
 const datepicker = ref(null);
 const state = reactive({
   picker: null,
@@ -168,6 +159,15 @@ const state = reactive({
   rangeSeparator: ''
 });
 const { inputValue } = toRefs(state);
+
+const { materialIcon } = useMaterialIcon(props);
+
+const hasLeadingIcon = computed(
+  () => !!(props.withLeadingIcon || slots.before)
+);
+const hasTrailingIcon = computed(
+  () => !!(props.withTrailingIcon || slots.after || props.toggle || props.clear)
+);
 
 onMounted(() => {
   const el = datepicker.value.textfield;

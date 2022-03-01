@@ -54,6 +54,7 @@ export default {
 
 <script setup>
 import { ref, computed } from 'vue';
+import { useGlobal } from '../../config/constants';
 import { useButton } from '../../mixins/button';
 import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 import { useCardAction } from '../../mixins/card-action';
@@ -90,7 +91,8 @@ const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 const button = ref(null);
 
-const { handleClick } = useButton(button, props, { emit });
+const { handleClick } = useGlobal({ emit });
+useButton(button, props);
 const { materialIcon } = useMaterialIcon(props);
 const { cardActionClasses } = useCardAction(button);
 

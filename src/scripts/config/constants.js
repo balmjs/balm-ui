@@ -12,4 +12,15 @@ const UI_GLOBAL = {
   ]
 };
 
+function useGlobal({ emit }) {
+  function handleClick(event) {
+    emit(UI_GLOBAL.EVENTS.CLICK, event);
+  }
+
+  return {
+    handleClick
+  };
+}
+
 export default UI_GLOBAL;
+export { useGlobal };

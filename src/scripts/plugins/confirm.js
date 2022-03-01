@@ -1,6 +1,7 @@
 import createVueApp from '../config/ssr';
 import MdcDialog from '../components/dialog/mdc-dialog.vue';
-import { getOptions, createModal, removeModel } from '../utils/modal';
+import { useDialog } from '../mixins/dialog';
+import { getOptions, createModal } from '../utils/modal';
 
 // Define confirm dialog constants
 const UI_CONFIRM_DIALOG = {
@@ -10,7 +11,7 @@ const UI_CONFIRM_DIALOG = {
 const DEFAULT_OPTIONS = {
   className: '',
   title: '',
-  state: '', // success, info, warning, error, help
+  state: '', // 'success' | 'info' | 'warning' | 'error' | 'help'
   stateOutlined: false,
   message: '',
   raw: false,
@@ -20,60 +21,38 @@ const DEFAULT_OPTIONS = {
 };
 
 let globalOptions = DEFAULT_OPTIONS;
-let confirmEl;
 let confirmApp;
 
 const template = `<mdc-dialog class="mdc-confirm-dialog" :open="open" :options="options">
   <button type="button"
     class="mdc-button mdc-button--raised mdc-confirm-dialog__primary-button"
     data-mdc-dialog-button-default
-    @click="handleConfirm(true)">
+    @click="handleClick(true)">
     <span class="mdc-button__label">{{ options.acceptText }}</span>
   </button>
   <button type="button"
     class="mdc-button mdc-button--outlined mdc-confirm-dialog__secondary-button"
-    @click="handleConfirm(false)">
+    @click="handleClick(false)">
     <span class="mdc-button__label">{{ options.cancelText }}</span>
   </button>
 </mdc-dialog>`;
 
 function createConfirmDialog(options, callback) {
-  confirmEl = createModal(UI_CONFIRM_DIALOG.id);
+  const el = createModal(UI_CONFIRM_DIALOG.id);
 
   confirmApp = createVueApp({
     name: 'ConfirmDialog',
     components: {
       MdcDialog
     },
-    data() {
-      return {
-        open: false,
-        options
-      };
-    },
-    mounted() {
-      this.$nextTick(() => {
-        this.open = true;
+    setup() {
+      return useDialog({
+        app: confirmApp,
+        el,
+        constants: UI_CONFIRM_DIALOG,
+        options,
+        callback
       });
-    },
-    unmounted() {
-      removeModel(confirmEl);
-    },
-    methods: {
-      handleClose() {
-        this.open = false;
-
-        confirmApp.unmount(`#${UI_CONFIRM_DIALOG.id}`);
-      },
-      handleConfirm(result) {
-        this.handleClose();
-
-        if (typeof this.options.callback === 'function') {
-          this.options.callback(result);
-        } else {
-          callback(result);
-        }
-      }
     },
     template
   });

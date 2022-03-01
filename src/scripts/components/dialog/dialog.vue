@@ -25,6 +25,8 @@
 
 <script>
 // Define dialog constants
+const name = 'UiDialog';
+
 const UI_DIALOG = {
   cssClasses: {
     content: 'mdc-dialog__content'
@@ -37,8 +39,9 @@ const UI_DIALOG = {
 };
 
 export default {
-  name: 'UiDialog',
+  name,
   customOptions: {
+    name,
     UI_DIALOG
   }
 };
@@ -147,8 +150,7 @@ onMounted(() => {
       !(el.querySelector('.mdc-button') || el.querySelector('.mdc-icon-button'))
     ) {
       console.warn(
-        '[UiDialog]',
-        `At least one <ui-button> or <ui-icon-button> needs to be added to the <ui-dialog>`
+        `[${name}]: At least one <ui-button> or <ui-icon-button> needs to be added to the <ui-dialog>`
       );
     }
 
@@ -182,10 +184,12 @@ function handleClose(forceQuit = false) {
   }
   emit(UI_DIALOG.EVENTS.CLOSE);
 }
+
 function handleAccept() {
   emit(UI_DIALOG.EVENTS.CONFIRM, true);
   handleClose();
 }
+
 function handleCancel() {
   emit(UI_DIALOG.EVENTS.CONFIRM, false);
   handleClose();

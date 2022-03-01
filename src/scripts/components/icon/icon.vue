@@ -7,7 +7,11 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
+
 // Define material icons constants
+const name = 'UiIcon';
+
 const UI_ICON = {
   TYPES: {
     filled: 0,
@@ -16,15 +20,14 @@ const UI_ICON = {
     twoTone: 3,
     sharp: 4
   },
-  DEFAULT_SIZE: 24,
-  EVENTS: {
-    CLICK: 'click'
-  }
+  DEFAULT_SIZE: 24
 };
 
 export default {
-  name: 'UiIcon',
+  name,
   customOptions: {
+    name,
+    UI_GLOBAL,
     UI_ICON
   }
 };
@@ -32,6 +35,7 @@ export default {
 
 <script setup>
 import { computed, onBeforeMount } from 'vue';
+import { useGlobal } from '../../config/constants';
 import checkType from '../../mixins/type';
 
 const props = defineProps({
@@ -75,7 +79,9 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_ICON.EVENTS.CLICK]);
+const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
+
+const { handleClick } = useGlobal({ emit });
 
 const isFilled = computed(() => checkType(props, UI_ICON.TYPES, 'filled'));
 const isOutlined = computed(() => checkType(props, UI_ICON.TYPES, 'outlined'));
@@ -106,13 +112,7 @@ const className = computed(() => {
 
 onBeforeMount(() => {
   if (invalidIcon.value || (!activeIcon.value && props.inactive)) {
-    console.warn('[UiIcon]', 'Invalid dark or light icon');
+    console.warn(`[${name}]: Invalid dark or light icon`);
   }
 });
-
-function handleClick(event) {
-  if (!props.inactive) {
-    emit(UI_ICON.EVENTS.CLICK, event);
-  }
-}
 </script>

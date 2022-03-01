@@ -92,15 +92,6 @@ const className = computed(() => ({
   'mdc-banner--mobile-stacked': props.mobileStacked
 }));
 
-watch(
-  () => props.modelValue,
-  (val) => {
-    if (state.$banner) {
-      val ? state.$banner.open() : state.$banner.close();
-    }
-  }
-);
-
 onMounted(() => {
   state.$banner = new MDCBanner(banner.value);
 
@@ -108,5 +99,10 @@ onMounted(() => {
     emit(UI_BANNER.EVENTS.CHANGE, false);
     emit(UI_BANNER.EVENTS.CLOSED, detail.reason);
   });
+
+  watch(
+    () => props.modelValue,
+    (val) => (val ? state.$banner.open() : state.$banner.close())
+  );
 });
 </script>

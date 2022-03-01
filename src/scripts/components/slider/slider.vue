@@ -53,6 +53,8 @@
 
 <script>
 // Define slider constants
+const name = 'UiSlider';
+
 const UI_SLIDER = {
   TYPES: {
     continuous: 0,
@@ -64,8 +66,9 @@ const UI_SLIDER = {
 };
 
 export default {
-  name: 'UiSlider',
+  name,
   customOptions: {
+    name,
     UI_SLIDER
   }
 };
@@ -191,7 +194,7 @@ function update(currentSelectedValue = state.selectedValue) {
       state.$slider.setValue(state.endValue); // set first
       state.$slider.setValueStart(state.startValue);
     } else {
-      console.warn('[UiSlider]', 'Invalid slider value');
+      console.warn(`[${name}]: Invalid slider value`);
     }
   } else {
     state.$slider.setValue(currentSelectedValue);

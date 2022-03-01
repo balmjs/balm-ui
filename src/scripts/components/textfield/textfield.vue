@@ -172,6 +172,7 @@ import MdcFloatingLabel from '../floating-label/mdc-floating-label.vue';
 import MdcLineRipple from '../floating-label/mdc-line-ripple.vue';
 import MdcNotchedOutline from '../floating-label/mdc-notched-outline.vue';
 import MdcTextfieldCounter from './mdc-textfield-counter.vue';
+import { useGlobal } from '../../config/constants';
 import { textfieldProps } from '../../mixins/textfield';
 import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 import checkType from '../../mixins/type';
@@ -268,6 +269,7 @@ const emit = defineEmits([
 ]);
 const slots = useSlots();
 
+const { handleClick } = useGlobal({ emit });
 const { materialIcon } = useMaterialIcon(props);
 
 const isOutlined = computed(() =>
@@ -366,9 +368,6 @@ const hasBeforeSlot = () =>
 const hasAfterSlot = () =>
   isTextfieldPlus.value ? parent?.exposed?.hasTrailingIcon.value : slots.after;
 
-function handleClick(event) {
-  emit(UI_GLOBAL.EVENTS.CLICK, event);
-}
 function handleFocus(event) {
   emit(UI_TEXTFIELD.EVENTS.FOCUS, event);
 }

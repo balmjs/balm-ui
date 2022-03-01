@@ -1,16 +1,17 @@
 import createVueApp from '../config/ssr';
 import MdcDialog from '../components/dialog/mdc-dialog.vue';
-import { getOptions, createModal, removeModel } from '../utils/modal';
+import { alertDialogId, useDialog } from '../mixins/dialog';
+import { getOptions, createModal } from '../utils/modal';
 
 // Define alert dialog constants
 const UI_ALERT_DIALOG = {
-  id: 'balmui-alert-dialog'
+  id: alertDialogId
 };
 
 const DEFAULT_OPTIONS = {
   className: '',
   title: '',
-  state: '', // success, info, warning, error, help
+  state: '', // 'success' | 'info' | 'warning' | 'error' | 'help'
   stateOutlined: false,
   message: '',
   raw: false,
@@ -19,7 +20,6 @@ const DEFAULT_OPTIONS = {
 };
 
 let globalOptions = DEFAULT_OPTIONS;
-let alertEl;
 let alertApp;
 
 const template = `<mdc-dialog class="mdc-alert-dialog" :open="open" :options="options">
@@ -32,42 +32,21 @@ const template = `<mdc-dialog class="mdc-alert-dialog" :open="open" :options="op
 </mdc-dialog>`;
 
 function createAlertDialog(options, done) {
-  alertEl = createModal(UI_ALERT_DIALOG.id);
+  const el = createModal(UI_ALERT_DIALOG.id);
 
   alertApp = createVueApp({
     name: 'AlertDialog',
     components: {
       MdcDialog
     },
-    data() {
-      return {
-        open: false,
-        options
-      };
-    },
-    mounted() {
-      this.$nextTick(() => {
-        this.open = true;
+    setup() {
+      return useDialog({
+        app: alertApp,
+        el,
+        constants: UI_ALERT_DIALOG,
+        options,
+        done
       });
-    },
-    unmounted() {
-      removeModel(alertEl);
-    },
-    methods: {
-      handleClose() {
-        this.open = false;
-
-        alertApp.unmount(`#${UI_ALERT_DIALOG.id}`);
-      },
-      handleClick() {
-        this.handleClose();
-
-        if (typeof this.options.callback === 'function') {
-          this.options.callback();
-        } else {
-          done();
-        }
-      }
     },
     template
   });

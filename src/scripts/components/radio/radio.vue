@@ -15,6 +15,7 @@
       <div class="mdc-radio__inner-circle"></div>
     </div>
     <div class="mdc-radio__ripple"></div>
+    <div class="mdc-radio__focus-ring"></div>
   </div>
 </template>
 

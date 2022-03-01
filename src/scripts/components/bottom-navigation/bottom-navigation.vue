@@ -6,6 +6,8 @@
 
 <script>
 // Define bottom navigation constants
+const name = 'UiBottomNavigation';
+
 const UI_BOTTOM_NAVIGATION = {
   FIXED_ADJUST: {
     STANDARD: 'mdc-bottom-navigation--fixed-adjust',
@@ -14,8 +16,9 @@ const UI_BOTTOM_NAVIGATION = {
 };
 
 export default {
-  name: 'UiBottomNavigation',
+  name,
   customOptions: {
+    name,
     UI_BOTTOM_NAVIGATION
   }
 };
@@ -62,6 +65,10 @@ const className = computed(() => {
 });
 
 onBeforeMount(() => {
+  if (!props.contentSelector) {
+    console.error(`[${name}]: The 'contentSelector' prop is required`);
+  }
+
   if (props.min) {
     state.destinations = 3;
   } else if (props.max) {
@@ -72,21 +79,15 @@ onBeforeMount(() => {
 onMounted(() => createFixedAdjustElement());
 
 function createFixedAdjustElement() {
-  if (props.contentSelector) {
-    const contentEl = document.querySelector(props.contentSelector);
+  const contentEl = document.querySelector(props.contentSelector);
 
-    const newDiv = document.createElement('div');
-    newDiv.classList.add(
-      props.stacked
-        ? UI_BOTTOM_NAVIGATION.FIXED_ADJUST.STACKED
-        : UI_BOTTOM_NAVIGATION.FIXED_ADJUST.STANDARD
-    );
-    contentEl.appendChild(newDiv);
-  } else {
-    console.warn(
-      '[UiBottomNavigation]',
-      `The 'contentSelector' prop is required`
-    );
-  }
+  const newDiv = document.createElement('div');
+  newDiv.classList.add(
+    props.stacked
+      ? UI_BOTTOM_NAVIGATION.FIXED_ADJUST.STACKED
+      : UI_BOTTOM_NAVIGATION.FIXED_ADJUST.STANDARD
+  );
+
+  contentEl.appendChild(newDiv);
 }
 </script>

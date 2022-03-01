@@ -30,17 +30,15 @@
         <slot name="before" :iconClass="iconClass"></slot>
       </template>
     </template>
-
     <!-- Label text -->
     <template #default>
       <slot></slot>
     </template>
-
     <!-- Trailing icon (optional) -->
     <template #after="{ iconClass }">
       <slot name="after" :iconClass="iconClass"></slot>
     </template>
-
+    <!-- Autocomplete list -->
     <template #plus>
       <div
         v-show="currentSuggestion.data.length"
@@ -67,6 +65,8 @@ import UI_GLOBAL from '../../config/constants';
 import { deprecatedListClassNameMap } from '../list/constants';
 
 // Define autocomplete constants
+const name = 'UiAutocomplete';
+
 const UI_AUTOCOMPLETE = {
   cssClasses: {
     selected: 'selected'
@@ -89,8 +89,9 @@ const KEYCODE = {
 };
 
 export default {
-  name: 'UiAutocomplete',
+  name,
   customOptions: {
+    name,
     UI_GLOBAL,
     UI_AUTOCOMPLETE,
     KEYCODE,
@@ -115,15 +116,15 @@ import {
 import UiTextfield from '../textfield/textfield.vue';
 import { textfieldProps } from '../../mixins/textfield';
 import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
-import getType from '../../utils/typeof';
 import {
   optionFormatDefaultValue,
   checkOptionFormat
 } from '../../utils/option-format';
+import getType from '../../utils/typeof';
 
 const props = defineProps({
-  ...iconProps,
   ...textfieldProps,
+  ...iconProps,
   // <ui-textfield> variants
   outlined: {
     type: Boolean,
@@ -189,21 +190,21 @@ const state = reactive({
     data: [], // filter data
     index: -1
   },
-  currentSelectedItem: null,
-  timer: null,
-  scroll: {
-    $view: null,
-    viewHeight: 0,
-    listHeight: 0,
-    itemHeight: 0,
-    currentFirstIndex: 0,
-    currentLastIndex: 0,
-    defaultFirstIndex: 0,
-    defaultLastIndex: 0,
-    defaultReversedLastIndex: 0,
-    defaultReversedFirstIndex: 0
-  }
+  currentSelectedItem: null
 });
+let timer = null;
+let scroll = {
+  $view: null,
+  viewHeight: 0,
+  listHeight: 0,
+  itemHeight: 0,
+  currentFirstIndex: 0,
+  currentLastIndex: 0,
+  defaultFirstIndex: 0,
+  defaultLastIndex: 0,
+  defaultReversedLastIndex: 0,
+  defaultReversedFirstIndex: 0
+};
 const { inputValue, currentSuggestion } = toRefs(state);
 
 const { materialIcon } = useMaterialIcon(props);
@@ -219,7 +220,7 @@ const hasTrailingIcon = computed(
   () => !!(props.withTrailingIcon || slots.after)
 );
 
-onBeforeMount(() => checkOptionFormat('<ui-autocomplete>', props.sourceFormat));
+onBeforeMount(() => checkOptionFormat(name, props.sourceFormat));
 
 onMounted(() => {
   state.autocompleteListEl = autocompleteList.value;
@@ -273,28 +274,28 @@ function initClientHeight() {
   const list = view.querySelector('ul');
   const item = view.querySelector('li');
 
-  if (!state.scroll.$view) {
-    state.scroll.$view = view;
-    state.scroll.viewHeight = view.offsetHeight;
+  if (!scroll.$view) {
+    scroll.$view = view;
+    scroll.viewHeight = view.offsetHeight;
   }
-  if (!state.scroll.item) {
-    state.scroll.itemHeight = item.offsetHeight;
+  if (!scroll.item) {
+    scroll.itemHeight = item.offsetHeight;
   }
-  if (state.scroll.list !== list.offsetHeight) {
-    state.scroll.listHeight = list.offsetHeight;
+  if (scroll.list !== list.offsetHeight) {
+    scroll.listHeight = list.offsetHeight;
   }
 
-  state.scroll.defaultFirstIndex = 0;
-  state.scroll.defaultLastIndex =
-    parseInt(state.scroll.viewHeight / state.scroll.itemHeight, 10) - 1;
+  scroll.defaultFirstIndex = 0;
+  scroll.defaultLastIndex =
+    parseInt(scroll.viewHeight / scroll.itemHeight, 10) - 1;
   const maxHeight = state.currentSuggestion.data.length - 1;
-  if (state.scroll.defaultReversedLastIndex !== maxHeight) {
-    state.scroll.defaultReversedLastIndex = maxHeight;
-    state.scroll.defaultReversedFirstIndex =
-      state.scroll.defaultReversedLastIndex - state.scroll.defaultLastIndex;
+  if (scroll.defaultReversedLastIndex !== maxHeight) {
+    scroll.defaultReversedLastIndex = maxHeight;
+    scroll.defaultReversedFirstIndex =
+      scroll.defaultReversedLastIndex - scroll.defaultLastIndex;
   }
 
-  state.scroll.currentLastIndex = state.scroll.defaultLastIndex;
+  scroll.currentLastIndex = scroll.defaultLastIndex;
 }
 
 const escapeRegExChars = (value) =>
@@ -357,11 +358,11 @@ function off() {
 function search(keywords) {
   if (props.remote) {
     // Remote data source
-    if (state.timer) {
-      clearTimeout(state.timer);
+    if (timer) {
+      clearTimeout(timer);
     }
 
-    state.timer = setTimeout(() => {
+    timer = setTimeout(() => {
       emit(UI_AUTOCOMPLETE.EVENTS.SEARCH, keywords); // AJAX
     }, props.delay);
   } else {
@@ -381,8 +382,7 @@ function setDataSource(dataSource) {
         item = data;
       } else {
         console.warn(
-          '[UiAutocomplete]',
-          `The item of the 'source' prop must be a string or object`
+          `[${name}]: The item of the 'source' prop must be a string or object`
         );
       }
 
@@ -411,16 +411,16 @@ function handleKeydown(event) {
         if (state.currentSuggestion.index === MAX) {
           state.currentSuggestion.index = MIN;
 
-          state.scroll.currentFirstIndex = state.scroll.defaultFirstIndex;
-          state.scroll.currentLastIndex = state.scroll.defaultLastIndex;
-          state.scroll.$view.scrollTop = 0;
+          scroll.currentFirstIndex = scroll.defaultFirstIndex;
+          scroll.currentLastIndex = scroll.defaultLastIndex;
+          scroll.$view.scrollTop = 0;
         } else {
           state.currentSuggestion.index++;
 
-          if (state.currentSuggestion.index > state.scroll.currentLastIndex) {
-            state.scroll.currentFirstIndex++;
-            state.scroll.currentLastIndex++;
-            state.scroll.$view.scrollTop += state.scroll.itemHeight;
+          if (state.currentSuggestion.index > scroll.currentLastIndex) {
+            scroll.currentFirstIndex++;
+            scroll.currentLastIndex++;
+            scroll.$view.scrollTop += scroll.itemHeight;
           }
         }
 
@@ -436,22 +436,20 @@ function handleKeydown(event) {
         ) {
           state.currentSuggestion.index = MAX;
 
-          state.scroll.currentFirstIndex =
-            state.scroll.defaultReversedFirstIndex;
-          state.scroll.currentLastIndex = state.scroll.defaultReversedLastIndex;
-          state.scroll.$view.scrollTop =
-            state.scroll.itemHeight * state.scroll.defaultReversedFirstIndex;
+          scroll.currentFirstIndex = scroll.defaultReversedFirstIndex;
+          scroll.currentLastIndex = scroll.defaultReversedLastIndex;
+          scroll.$view.scrollTop =
+            scroll.itemHeight * scroll.defaultReversedFirstIndex;
         } else {
           state.currentSuggestion.index--;
 
-          if (state.currentSuggestion.index < state.scroll.currentLastIndex) {
-            state.scroll.currentFirstIndex--;
-            state.scroll.currentLastIndex--;
+          if (state.currentSuggestion.index < scroll.currentLastIndex) {
+            scroll.currentFirstIndex--;
+            scroll.currentLastIndex--;
             if (
-              state.currentSuggestion.index <
-              state.scroll.defaultReversedFirstIndex
+              state.currentSuggestion.index < scroll.defaultReversedFirstIndex
             ) {
-              state.scroll.$view.scrollTop -= state.scroll.itemHeight;
+              scroll.$view.scrollTop -= scroll.itemHeight;
             }
           }
         }

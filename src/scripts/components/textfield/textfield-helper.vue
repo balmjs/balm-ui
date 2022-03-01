@@ -13,9 +13,12 @@
 <script>
 import { UI_HELPER_TEXT } from '../../mixins/helper-text';
 
+const name = 'UiTextfieldHelper';
+
 export default {
-  name: 'UiTextfieldHelper',
+  name,
   customOptions: {
+    name,
     UI_HELPER_TEXT
   }
 };
@@ -51,8 +54,7 @@ const className = computed(() => ({
 onBeforeMount(() => {
   if (!props.id && props.withCounter) {
     console.warn(
-      '[UiTextfield]',
-      `The 'helperTextId' prop is required for <ui-textfield> with outer counter`
+      `[${name}]: The 'helperTextId' prop is required for <ui-textfield> with outer counter`
     );
   }
 });
@@ -63,8 +65,7 @@ onMounted(() => {
     textfieldEl && textfieldEl.classList.contains('mdc-text-field');
   if (props.withCounter && !hasTextfield) {
     console.warn(
-      '[UiTextfield]',
-      `Do not insert any tags between '<ui-textfield>' and '<ui-textfield-helper>' with counter`
+      `[${name}]: Do not insert any tags between '<ui-textfield>' and '<ui-textfield-helper>' with counter`
     );
   }
 });

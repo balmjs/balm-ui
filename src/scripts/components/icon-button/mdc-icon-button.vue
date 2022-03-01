@@ -5,6 +5,7 @@
     @click="handleClick"
   >
     <div class="mdc-icon-button__ripple"></div>
+    <span class="mdc-icon-button__focus-ring"></span>
     <slot>
       <!-- Material icon -->
     </slot>
@@ -23,9 +24,9 @@ export default {
 </script>
 
 <script setup>
+import { useGlobal } from '../../config/constants';
+
 const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
-function handleClick(event) {
-  emit(UI_GLOBAL.EVENTS.CLICK, event);
-}
+const { handleClick } = useGlobal({ emit });
 </script>

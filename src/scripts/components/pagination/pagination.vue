@@ -164,7 +164,7 @@ export default {
 </script>
 
 <script setup>
-import { computed, watch } from 'vue';
+import { reactive, toRefs, computed, watch } from 'vue';
 import MdcButton from '../button/mdc-button.vue';
 
 const props = defineProps({
@@ -226,11 +226,14 @@ const props = defineProps({
 
 const emit = defineEmits([UI_PAGINATION.EVENTS.CHANGE]);
 
-let currentPage = props.modelValue;
-let currentPageSize = Array.isArray(props.pageSize)
-  ? props.pageSize[0]
-  : props.pageSize;
-let jumpPage = props.modelValue;
+const state = reactive({
+  currentPage: props.modelValue,
+  currentPageSize: Array.isArray(props.pageSize)
+    ? props.pageSize[0]
+    : props.pageSize,
+  jumpPage: props.modelValue
+});
+const { currentPage, currentPageSize, jumpPage } = toRefs(state);
 
 const className = computed(() => {
   let result = [
@@ -245,10 +248,14 @@ const className = computed(() => {
 
   return result;
 });
-const pageCount = computed(() => Math.ceil(props.total / currentPageSize));
-const currentMinRow = computed(() => currentPageSize * (currentPage - 1) + 1);
+const pageCount = computed(() =>
+  Math.ceil(props.total / state.currentPageSize)
+);
+const currentMinRow = computed(
+  () => state.currentPageSize * (state.currentPage - 1) + 1
+);
 const currentMaxRow = computed(() => {
-  const max = currentPageSize * currentPage;
+  const max = state.currentPageSize * state.currentPage;
   return max > props.total ? props.total : max;
 });
 const hasPageSpan = computed(
@@ -272,7 +279,7 @@ const jumperAfterText = computed(() =>
 watch(
   () => props.modelValue,
   (val) => {
-    currentPage = val;
+    state.currentPage = val;
   }
 );
 
@@ -280,7 +287,7 @@ watch(
   () => props.pageSize,
   (val) => {
     if (!Array.isArray(val)) {
-      currentPageSize = val;
+      state.currentPageSize = val;
     }
   }
 );
@@ -290,8 +297,10 @@ function isShow(page) {
   switch (true) {
     case page === 1:
     case page === pageCount.value:
-    case currentPage >= page && page >= currentPage - props.pageSpan:
-    case currentPage <= page && page <= currentPage + props.pageSpan:
+    case state.currentPage >= page &&
+      page >= state.currentPage - props.pageSpan:
+    case state.currentPage <= page &&
+      page <= state.currentPage + props.pageSpan:
       show = true;
       break;
   }
@@ -299,8 +308,8 @@ function isShow(page) {
 }
 function showPage(page) {
   let isExisted =
-    currentPage === page - props.pageSpan ||
-    currentPage === page + props.pageSpan;
+    state.currentPage === page - props.pageSpan ||
+    state.currentPage === page + props.pageSpan;
   let nonFirstOrLast = page !== 1 && page !== pageCount.value;
   return !(isExisted && nonFirstOrLast);
 }
@@ -316,20 +325,20 @@ function getPage(page) {
   return page;
 }
 function handleClick(page) {
-  if (currentPage !== page) {
+  if (state.currentPage !== page) {
     if (isNaN(page)) {
-      jumpPage = currentPage;
+      state.jumpPage = state.currentPage;
     } else {
       page = getPage(page);
-      jumpPage = page;
+      state.jumpPage = page;
       emit(UI_PAGINATION.EVENTS.CHANGE, +page);
     }
   }
 }
 function handleChange() {
-  let page = getPage(currentPage);
-  if (currentPage !== page) {
-    jumpPage = page;
+  let page = getPage(state.currentPage);
+  if (state.currentPage !== page) {
+    state.jumpPage = page;
     emit(UI_PAGINATION.EVENTS.CHANGE, +page);
   }
 }

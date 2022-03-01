@@ -42,7 +42,7 @@ function useStateType(props) {
     return result;
   });
   const stateClassName = computed(() => {
-    let result = false;
+    let result = '';
 
     if (stateType.value) {
       result = `md-${stateType.value}-icon`;

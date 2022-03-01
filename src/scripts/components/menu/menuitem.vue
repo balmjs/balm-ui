@@ -41,6 +41,7 @@ export default {
 import { ref, onMounted } from 'vue';
 import UiMenuitemIcon from './menuitem-icon.vue';
 import UiMenuitemText from './menuitem-text.vue';
+import { useGlobal } from '../../config/constants';
 import { useRipple } from '../../mixins/ripple';
 import {
   useDeprecatedList,
@@ -77,13 +78,14 @@ const emit = defineEmits([UI_GLOBAL.EVENTS.CLICK]);
 
 const menuitem = ref(null);
 
+const { handleClick } = useGlobal({ emit });
+const { deprecatedListClassNameMap } = useDeprecatedList(menuitem);
+
 onMounted(() => {
   if (!props.nested) {
     useRipple(menuitem.value);
   }
 });
-
-const { deprecatedListClassNameMap } = useDeprecatedList(menuitem);
 
 function getClass(item) {
   return [
@@ -95,9 +97,5 @@ function getClass(item) {
       'mdc-menu-item--selected': props.selected || item.selected
     }
   ];
-}
-
-function handleClick(event) {
-  emit(UI_GLOBAL.EVENTS.CLICK, event);
 }
 </script>

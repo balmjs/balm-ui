@@ -20,9 +20,10 @@
 | `modelValue` (`v-model`) | string, number, array | `-1`                                 | 选项卡选项值。从一组选项中选择一个或多个。            |         |
 | `options`                | array                 | `[]`                                 | 设置选项卡选项列表                                    |         |
 | `optionFormat`           | object                | `{ label: 'label', value: 'value' }` | 定义选项卡选项数据格式                                | 9.34.0  |
-| `chips`                  | array                 | `[]`                                 | 一组选项卡选项。仅适用于更新输入类型(`input`)的选项卡 |         |
+| `items`                  | array                 | `[]`                                 | 一组选项卡选项。仅适用于更新输入类型(`input`)的选项卡 |         |
 
 > ⚠️ `9.34.0` 中 `optionLabel` 和 `optionValue` 属性已弃用，请使用 `optionFormat` 代替。
+> ⚠️ `10.0.0` 中 `chips` 属性已弃用，请使用 `items` 代替。
 
 ### Slots
 

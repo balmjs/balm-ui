@@ -32,6 +32,10 @@ a {
   }
 }
 
+.top-app-toolbar .mdc-menu-surface--anchor {
+  display: inline-block;
+}
+
 .global-message-banner {
   position: fixed;
   z-index: 3;

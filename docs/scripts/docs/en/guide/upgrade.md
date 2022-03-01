@@ -1,10 +1,21 @@
 # Upgrade Guide
 
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10">Upgrading To 10.0 From 9.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9_27">Upgrading To 9.27.0+ From 9.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9">Upgrading To 9.0 From 8.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">Upgrading To 8.0 From 7.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">Upgrading To 7.0 From 6.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">Upgrading To 6.0 From 5.x</a>
+
+<div id="up-to-10"></div>
+
+## Upgrading To 10.0 From 9.x
+
+### BREAKING CHANGES
+
+#### Props
+
+- `<ui-chips>`: rename prop `chips` -> `items`
 
 <div id="up-to-9_27"></div>
 

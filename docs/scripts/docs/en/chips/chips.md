@@ -20,9 +20,10 @@
 | `modelValue` (`v-model`) | string, number, array | `-1`                                 | Mandatory. Single or multiple selection from a set of options.                       |         |
 | `options`                | array                 | `[]`                                 | An array of options to show to the user. Applicable only for choice or filter chips. |         |
 | `optionFormat`           | object                | `{ label: 'label', value: 'value' }` | Defines the option data format.                                                      | 9.34.0  |
-| `chips`                  | array                 | `[]`                                 | A set of chips. Applicable only for updating the input chips.                        |         |
+| `items`                  | array                 | `[]`                                 | A set of chips. Applicable only for updating the input chips.                        |         |
 
 > ⚠️ The prop `optionLabel` and `optionValue` is deprecated, use `optionFormat` instead in `9.34.0`.
+> ⚠️ The prop `chips` is deprecated, use `items` instead in `10.0.0`.
 
 ### Slots
 

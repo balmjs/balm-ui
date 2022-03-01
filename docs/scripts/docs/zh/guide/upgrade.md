@@ -1,10 +1,21 @@
 # 升级向导
 
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10">从 9.x 升级到 10.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9_27">从 9.x 升级到 9.27.0+</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9">从 8.x 升级到 9.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">从 7.x 升级到 8.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">从 6.x 升级到 7.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">从 5.x 升级到 6.0</a>
+
+<div id="up-to-10"></div>
+
+## 从 9.x 升级到 10.0
+
+### BREAKING CHANGES
+
+#### Props
+
+- `<ui-chips>`: 重命名属性 `chips` 为 `items`
 
 <div id="up-to-9_27"></div>
 

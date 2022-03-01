@@ -19,7 +19,7 @@
   Delete Last Chip
 </ui-button>
 
-<ui-chips id="input-chip-set" type="input" :chips="list">
+<ui-chips id="input-chip-set" type="input" :items="list">
   <ui-chip
     v-for="item in list"
     :key="item.id"

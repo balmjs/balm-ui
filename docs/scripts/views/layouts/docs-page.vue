@@ -78,14 +78,59 @@
 </template>
 
 <script>
+export default {
+  name: 'DocsPage',
+  inheritAttrs: false,
+  customOptions: {}
+};
+</script>
+
+<script setup>
 import { computed, onBeforeMount } from 'vue';
 import { useStore } from 'balm-ui';
 import useTranslation from '@/utils/t';
 
+const props = defineProps({
+  type: {
+    type: String,
+    default: 'component'
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  demoCount: {
+    type: [String, Number],
+    default: 0
+  },
+  apis: {
+    type: Array,
+    default() {
+      return [];
+    }
+  },
+  withoutCss: {
+    type: Boolean,
+    default: false
+  },
+  bottomAffix: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const store = useStore();
+const { t } = useTranslation();
+
+const hasRequirement = computed(() =>
+  ['store', 'typography', 'validator'].includes(props.name)
+);
+const docs = computed(() => initDocs(props, hasRequirement.value));
+
+onBeforeMount(() => store.initSnippet(props.name, props.demoCount));
+
 // NOTE: just one variable in `require` !important
 function getDocs(name, key, hasRequirement = false) {
-  const store = useStore();
-
   let result;
 
   switch (key) {
@@ -161,54 +206,4 @@ function initDocs({ type, name, apis, withoutCss }, hasRequirement) {
 
   return result;
 }
-
-export default {
-  name: 'DocsPage',
-  props: {
-    type: {
-      type: String,
-      default: 'component'
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    demoCount: {
-      type: [String, Number],
-      default: 0
-    },
-    apis: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
-    withoutCss: {
-      type: Boolean,
-      default: false
-    },
-    bottomAffix: {
-      type: Boolean,
-      default: false
-    }
-  },
-  setup(props) {
-    const store = useStore();
-
-    const hasRequirement = computed(() =>
-      ['store', 'typography', 'validator'].includes(props.name)
-    );
-    const docs = computed(() => initDocs(props, hasRequirement.value));
-
-    onBeforeMount(() => {
-      store.initSnippet(props.name, props.demoCount);
-    });
-
-    return {
-      docs,
-      hasRequirement,
-      ...useTranslation()
-    };
-  }
-};
 </script>

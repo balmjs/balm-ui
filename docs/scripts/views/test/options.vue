@@ -1,5 +1,5 @@
 <template>
-  <div>SubTest</div>
+  <div>Options API Test</div>
 </template>
 
 <script>

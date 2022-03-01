@@ -4,6 +4,10 @@
 
 ## v10.0.0 / 2022-03-01
 
+### Features
+
+- update material-icons v125
+
 ### Code Refactoring
 
 - All components and plugins: migrate over to Vue 3 Composition API

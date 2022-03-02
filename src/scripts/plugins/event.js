@@ -9,8 +9,8 @@ const noop = () => {};
 let customEventCreated = false;
 
 function handleAssign(properties, value, data = null) {
-  let key = properties.shift();
-  let currentData = data ? data[key] : this[key];
+  const key = properties.shift();
+  const currentData = data ? data[key] : this[key];
 
   if (properties.length) {
     handleAssign.call(this, properties, value, currentData);
@@ -23,30 +23,26 @@ function handleAssign(properties, value, data = null) {
   }
 }
 
+function handleState(state, _property, value) {
+  if (getType(new Function()) === 'function') {
+    new Function('value', `this.${_property} = value;`).call(state, value);
+  } else {
+    handleAssign.call(state, _property.split('.'), value);
+  }
+}
+
 function handleEvent(_property, value) {
   const currentRootProperty = _property.split('.')[0];
 
   if (currentRootProperty) {
-    if (this.data.hasOwnProperty(currentRootProperty)) {
-      if (getType(new Function()) === 'function') {
-        new Function('value', `this.${_property} = value;`).call(
-          this.data,
-          value
-        );
-      } else {
-        handleAssign.call(this.data, _property.split('.'), value);
-      }
-    } else if (this.setupState.hasOwnProperty(currentRootProperty)) {
-      if (getType(new Function()) === 'function') {
-        new Function('value', `this.${_property} = value;`).call(
-          this.setupState,
-          value
-        );
-      } else {
-        handleAssign.call(this.setupState, _property.split('.'), value);
-      }
+    const { setupState, data } = this;
+
+    if (setupState.hasOwnProperty(currentRootProperty)) {
+      handleState(setupState, _property, value);
+    } else if (data.hasOwnProperty(currentRootProperty)) {
+      handleState(data, _property, value);
     } else {
-      throw new Error(`[$event]: Only support 'data' or 'setup' options.`);
+      throw new Error(`[$event]: Only support 'setup' or 'data' state.`);
     }
   }
 }

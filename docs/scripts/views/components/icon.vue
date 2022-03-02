@@ -18,6 +18,13 @@
       </div>
     </template>
 
+    <template #before>
+      <ui-alert state="info">
+        Version: <strong> v{{ MDI_INFO.version }} </strong>, updated:
+        {{ MDI_INFO.updated }}
+      </ui-alert>
+    </template>
+
     <!-- Content -->
     <!-- <ui-tab-bar class="category-affix">
       <ui-tab
@@ -142,7 +149,7 @@ import { reactive, toRefs, onMounted } from 'vue';
 import { useToast } from 'balm-ui';
 import Clipboard from 'clipboard';
 import { useHttp } from '@/plugins/http';
-import { domain } from '@/config';
+import { MDI_INFO, domain } from '@/config';
 
 const TypeOptions = [
   {
@@ -236,6 +243,7 @@ export default {
     });
 
     return {
+      MDI_INFO,
       TypeOptions,
       ...toRefs(state)
     };

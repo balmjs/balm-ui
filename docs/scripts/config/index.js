@@ -1,13 +1,16 @@
 import pkg from '../../../package.json';
 
 export const VERSION = pkg.version;
+export const MDI_INFO = {
+  version: '125',
+  updated: '2022.03.01'
+};
 export const isDev = process.env.NODE_ENV === 'development';
 export const isProd = process.env.NODE_ENV === 'production';
 export const domain = isProd ? '//material.balmjs.com' : '';
 export const lazyLoadedTime = 1e3;
 
 // 同步 Sass variables
-// export const MDI_VERSION = 53;
 export const $MIN_WIDTH = 1240 + 1;
 
 export const translations = [

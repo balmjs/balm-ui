@@ -33,10 +33,12 @@ class UiValidator {
   }
 
   validate(formData = {}, customFieldset = []) {
+    const { setupState, data } = this.instance;
+
     let result = {
       valid: true,
-      validFields: [], // Valid fieldnames
-      invalidFields: [], // Invalid fieldnames
+      validFields: [], // Valid field names
+      invalidFields: [], // Invalid field names
       messages: [], // All invalid fields' messages
       message: '', // First invalid field's message
       validMsg: {}
@@ -44,12 +46,9 @@ class UiValidator {
 
     this.validations = Object.keys(this.customValidations).length
       ? this.customValidations
-      : this.instance.data.validations ||
-        this.instance.setupState.validations ||
-        {};
+      : setupState.validations || data.validations || {};
 
     let validationFields = Object.keys(this.validations);
-
     if (customFieldset.length) {
       validationFields = validationFields.filter((field) =>
         customFieldset.includes(field)
@@ -60,9 +59,9 @@ class UiValidator {
       let fieldName = validationFields[i]; // Field name
       let fieldOption = this.validations[fieldName]; // The validation option of current field
       let fieldLabel = fieldOption[FIELD_LABEL] || fieldName; // Field alias name
-      let fieldRules = fieldOption[FIELD_VALIDATOR].split(
-        ','
-      ).map((validator) => validator.trim()); // All validation methods of current field
+      let fieldRules = fieldOption[FIELD_VALIDATOR].split(',').map(
+        (validator) => validator.trim()
+      ); // All validation methods of current field
       let isAllValidOfField = true;
 
       for (let j = 0, rulesCount = fieldRules.length; j < rulesCount; j++) {

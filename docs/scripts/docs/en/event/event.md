@@ -1,5 +1,7 @@
 ## 1. Event Shortcut
 
+> ⚠️ `<script setup>` is not supported
+
 ```ts
 interface BalmUIEvent {
   onChange(property: string, value: any, fn?: Function);
@@ -53,7 +55,7 @@ const balmUI = useEvent();
 - `balmResize` (better than `resize`)
 - `balmScroll` (better than `scroll`)
 
-  - using Composable API
+  - Composition API
 
     ```js
     import { onMounted, onBeforeUnmount } from 'vue';
@@ -76,7 +78,7 @@ const balmUI = useEvent();
     };
     ```
 
-  - using Legacy API
+  - Options API
 
     ```js
     export default {
@@ -121,7 +123,7 @@ const balmUI = useEvent();
 
 ### 3.1 Use `$bus` with `.vue` component
 
-- using Composable API
+- Composition API
 
   ```js
   // `/path/to/awesome.vue`
@@ -145,7 +147,7 @@ const balmUI = useEvent();
   };
   ```
 
-- using Legacy API
+- Options API
 
   ```js
   // `/path/to/awesome.vue`

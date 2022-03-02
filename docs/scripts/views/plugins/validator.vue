@@ -141,9 +141,10 @@
   </docs-page>
 </template>
 
+
 <script>
 import { reactive, toRefs } from 'vue';
-import { useValidator } from 'balm-ui';
+import { useValidator, useToast } from 'balm-ui';
 
 const validations = {
   mobile: {
@@ -211,31 +212,32 @@ export default {
       subtitle: 'Validator'
     };
   },
-  // using Composable API
+  // Composition API
   setup() {
     const validator = useValidator();
+    const toast = useToast();
 
-    return {
-      validator,
-      validations,
-      genderOptions,
-      ...toRefs(state)
-    };
-  },
-  methods: {
-    onSubmit() {
-      let result = this.validator.validate(state.formData);
-      let { valid, message, messages, validMsg } = result;
+    function onSubmit() {
+      const result = validator.validate(state.formData);
+
+      const { valid, message, messages, validMsg } = result;
       state.message = message;
       state.messages = messages;
       state.validMsg = validMsg;
 
       if (valid) {
-        this.$toast('ok');
+        toast('ok');
       }
     }
+
+    return {
+      validations,
+      genderOptions,
+      ...toRefs(state),
+      onSubmit
+    };
   }
-  // using Legacy API
+  // Options API
   // data() {
   //   return {
   //     validator: useValidator(),
@@ -254,8 +256,9 @@ export default {
   // },
   // methods: {
   //   onSubmit() {
-  //     let result = this.validator.validate(this.formData);
-  //     let { valid, message, messages, validMsg } = result;
+  //     const result = this.validator.validate(this.formData);
+
+  //     const { valid, message, messages, validMsg } = result;
   //     this.message = message;
   //     this.messages = messages;
   //     this.validMsg = validMsg;

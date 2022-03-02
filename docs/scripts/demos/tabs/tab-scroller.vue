@@ -56,7 +56,7 @@ const state = reactive({
 });
 
 export default {
-  // using Composable API
+  // Composition API
   setup() {
     const balmUI = useEvent();
 
@@ -65,7 +65,7 @@ export default {
       ...toRefs(state)
     };
   }
-  // using Legacy API
+  // Options API
   // data() {
   //   return {
   //     balmUI: useEvent(),

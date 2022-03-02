@@ -1,5 +1,7 @@
 ## 1. 事件缩写
 
+> ⚠️ 不支持 `<script setup>`
+
 ```ts
 interface BalmUIEvent {
   onChange(property: string, value: any, fn?: Function);
@@ -53,7 +55,7 @@ const balmUI = useEvent();
 - `balmResize`（优于 `resize`）
 - `balmScroll`（优于 `scroll`）
 
-  - using Composable API
+  - Composition API
 
     ```js
     import { onMounted, onBeforeUnmount } from 'vue';
@@ -76,7 +78,7 @@ const balmUI = useEvent();
     };
     ```
 
-  - using Legacy API
+  - Options API
 
     ```js
     export default {
@@ -121,7 +123,7 @@ const balmUI = useEvent();
 
 ### 3.1 在 `.vue` 组件中使用 `$bus`
 
-- using Composable API
+- Composition API
 
   ```js
   // `/path/to/awesome.vue`
@@ -145,7 +147,7 @@ const balmUI = useEvent();
   };
   ```
 
-- using Legacy API
+- Options API
 
   ```js
   // `/path/to/awesome.vue`

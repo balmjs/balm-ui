@@ -30,7 +30,7 @@
 </div>
 ```
 
-- using Composable API
+- Composition API
 
   ```js
   import { reactive, toRefs } from 'vue';
@@ -52,7 +52,7 @@
   };
   ```
 
-- using Legacy API
+- Options API
 
   ```js
   import { useEvent } from 'balm-ui';

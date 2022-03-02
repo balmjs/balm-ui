@@ -20,7 +20,7 @@
         content-selector=".balmui-content"
         nav-id="balmui-menu"
         fixed
-        @nav="balmUI.onChange('drawerOpen', !drawerOpen)"
+        @nav="drawerOpen = !drawerOpen"
       >
         <router-link
           :to="{ name: 'home' }"
@@ -47,7 +47,7 @@
         <template v-if="hasNewVersion">New content is available.</template>
         <template v-else>Welcome to BalmUI!</template>
         <template #actions>
-          <ui-button outlined @click="balmUI.onHide('showBanner', refresh)">{{
+          <ui-button outlined @click="hideBanner">{{
             hasNewVersion ? 'Refresh' : 'Good Job'
           }}</ui-button>
         </template>
@@ -223,7 +223,7 @@ import {
 } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n/index';
-import { useEvent, useBus, useStore, useAlert } from 'balm-ui';
+import { useBus, useStore, useAlert } from 'balm-ui';
 import TopAppToolbar from '@/components/top-app-toolbar';
 
 const bodyEl = document.documentElement || document.body;
@@ -251,7 +251,6 @@ const {
 
 const root = ref(null);
 const route = useRoute();
-const balmUI = useEvent();
 const bus = useBus();
 const { t, locale } = useI18n();
 const store = useStore();
@@ -283,12 +282,15 @@ const noLayout = computed(() => {
 
 store.isFirstLoad = computed(() => route.name == null);
 
-const refresh = () => {
+function hideBanner() {
+  state.showBanner = false;
+
+  // Refresh
   if (state.hasNewVersion) {
     store.serviceWorker.postMessage({ action: 'skipWaiting' });
     state.hasNewVersion = false;
   }
-};
+}
 
 onMounted(() => {
   nextTick(() => root.value.parentNode.removeAttribute('class'));

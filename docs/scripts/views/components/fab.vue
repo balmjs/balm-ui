@@ -195,7 +195,7 @@ export default {
       subtitle: 'Fab'
     };
   },
-  // using Composable API
+  // Composition API
   setup() {
     const balmUI = useEvent();
 
@@ -205,7 +205,7 @@ export default {
       ...toRefs(state)
     };
   }
-  // using Legacy API
+  // Options API
   // data() {
   //   return {
   //     // hero

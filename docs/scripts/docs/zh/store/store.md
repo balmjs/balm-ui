@@ -31,7 +31,7 @@ const useDemoStore = () => {
 export default useDemoStore;
 ```
 
-- using Composable API
+- Composition API
 
   ```html
   <ui-button @click="store.getDemoMenu">Test</ui-button>
@@ -58,7 +58,7 @@ export default useDemoStore;
   };
   ```
 
-- using Legacy API
+- Options API
 
   ```html
   <ui-button @click="$store.getDemoMenu">Test</ui-button>

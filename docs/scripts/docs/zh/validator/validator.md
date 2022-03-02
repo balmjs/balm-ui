@@ -65,6 +65,8 @@ const validator = useValidator();
 
 ## 2.1 默认验证
 
+> ⚠️ 不支持 `<script setup>`
+
 ```js
 // 自定义局部验证规则
 const validations = {
@@ -86,7 +88,7 @@ const validations = {
 };
 ```
 
-- using Composable API
+- Composition API
 
   ```js
   import { reactive, toRefs } from 'vue';
@@ -105,28 +107,27 @@ const validations = {
     setup() {
       const validator = useValidator();
 
-      return {
-        validator,
-        validations,
-        ...toRefs(state)
-      };
-    },
-    methods: {
-      onSubmit() {
-        let {
+      function onSubmit() {
+        const {
           valid,
           validFields,
           invalidFields,
           message,
           messages,
           validMsg
-        } = this.validator.validate(state.formData);
+        } = validator.validate(state.formData);
       }
+
+      return {
+        validations,
+        ...toRefs(state),
+        onSubmit
+      };
     }
   };
   ```
 
-- using Legacy API
+- Options API
 
   ```js
   import { useValidator } from 'balm-ui';
@@ -146,7 +147,7 @@ const validations = {
     },
     methods: {
       onSubmit() {
-        let {
+        const {
           valid,
           validFields,
           invalidFields,

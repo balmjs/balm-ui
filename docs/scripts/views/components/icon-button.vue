@@ -153,7 +153,7 @@ export default {
       subtitle: 'Icon Button'
     };
   },
-  // using Composable API
+  // Composition API
   // setup() {
   //   onMounted(() => {
   //     setTimeout(() => {
@@ -169,7 +169,7 @@ export default {
   //     ...toRefs(state)
   //   };
   // },
-  // using Legacy API
+  // Options API
   data() {
     return {
       imageOn,

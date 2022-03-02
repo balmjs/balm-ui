@@ -2,6 +2,16 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.0.1 / 2022-03-02
+
+### Features
+
+- `$store`: support multiple stores
+
+### Chore
+
+- `$event`, `$validator`: optimize state order
+
 ## v10.0.0 / 2022-03-01
 
 ### Features

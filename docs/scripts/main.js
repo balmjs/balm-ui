@@ -17,7 +17,7 @@ import { toolbarTips, toolbarOptions, emotions } from '@/config/editor';
 // Error monitoring
 // import errorMonitoring from '@/error-monitoring';
 // PWA
-// import './my-sw';
+import './my-sw';
 
 function createBalmUIApp() {
   const app = createApp(App);

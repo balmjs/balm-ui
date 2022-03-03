@@ -12,5 +12,5 @@ export default {
 <script setup>
 import { useListDivider } from '../../mixins/list-divider';
 
-const { className } = useListDivider(props);
+const { className } = useListDivider({});
 </script>

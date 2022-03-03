@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.0.3 / 2022-03-03
+
+### Bug Fixes
+
+- `<ui-textfield>`, `<ui-textfield-helper>`: fix textfield invalid class bug on blur
+
 ## v10.0.2 / 2022-03-03
 
 ### Reverts

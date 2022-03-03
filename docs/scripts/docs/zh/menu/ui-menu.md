@@ -11,7 +11,7 @@
       <ui-menuitem-text>Label</ui-menuitem-text>
     </ui-menuitem>
 
-    <ui-item-divider></ui-item-divider>
+    <ui-menuitem-divider></ui-menuitem-divider>
 
     <ui-menuitem nested>
       <ui-menuitem>
@@ -23,10 +23,11 @@
 </ui-menu-anchor>
 ```
 
-| Component            | Description      |
-| -------------------- | ---------------- |
-| `<ui-menu-anchor>`   | 菜单锚定容器元素 |
-| `<ui-menu>`          | 菜单容器元素     |
-| `<ui-menuitem>`      | 菜单项           |
-| `<ui-menuitem-text>` | 菜单文本         |
-| `<ui-menuitem-icon>` | 菜单图标         |
+| Component               | Description                            |
+| ----------------------- | -------------------------------------- |
+| `<ui-menu-anchor>`      | 菜单锚定容器元素                       |
+| `<ui-menu>`             | 菜单容器元素                           |
+| `<ui-menuitem>`         | 菜单项                                 |
+| `<ui-menuitem-text>`    | 菜单文本                               |
+| `<ui-menuitem-icon>`    | 菜单图标                               |
+| `<ui-menuitem-divider>` | 菜单项分割线（同 `<ui-item-divider>`） |

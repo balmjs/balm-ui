@@ -4,7 +4,7 @@
     <div class="component-wrapper menu-component">
       <ui-menu css-only>
         <ui-menuitem>A Menu Item</ui-menuitem>
-        <ui-item-divider></ui-item-divider>
+        <ui-menuitem-divider></ui-menuitem-divider>
         <ui-menuitem>Another Menu Item</ui-menuitem>
       </ui-menu>
     </div>

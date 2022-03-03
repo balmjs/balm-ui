@@ -35,6 +35,7 @@ import UiMenu from './components/menu/menu.vue';
 import UiMenuitem from './components/menu/menuitem.vue';
 import UiMenuitemIcon from './components/menu/menuitem-icon.vue';
 import UiMenuitemText from './components/menu/menuitem-text.vue';
+import UiMenuitemDivider from './components/menu/menuitem-divider.vue';
 import UiPagination from './components/pagination/pagination.vue'; // Custom
 // Data Entry
 import UiForm from './components/form/form.vue'; // Custom
@@ -177,6 +178,7 @@ const Components = {
   UiMenuitem,
   UiMenuitemIcon,
   UiMenuitemText,
+  UiMenuitemDivider,
   UiNav,
   UiNavItem,
   UiPagination,
@@ -298,6 +300,7 @@ export {
   UiMenuitem,
   UiMenuitemIcon,
   UiMenuitemText,
+  UiMenuitemDivider,
   UiNav,
   UiNavItem,
   UiPagination,

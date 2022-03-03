@@ -244,14 +244,14 @@
                   <ui-menuitem-text>Custom: 1.2</ui-menuitem-text>
                 </ui-menuitem>
               </ui-menuitem>
-              <ui-item-divider></ui-item-divider>
+              <ui-menuitem-divider></ui-menuitem-divider>
               <ui-menuitem value="5">
                 <ui-menuitem-text>Add space before paragraph</ui-menuitem-text>
               </ui-menuitem>
               <ui-menuitem value="6">
                 <ui-menuitem-text>Add space after paragraph</ui-menuitem-text>
               </ui-menuitem>
-              <ui-item-divider></ui-item-divider>
+              <ui-menuitem-divider></ui-menuitem-divider>
               <ui-menuitem value="7">
                 <ui-menuitem-text>Custom spacing...</ui-menuitem-text>
               </ui-menuitem>

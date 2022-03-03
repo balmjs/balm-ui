@@ -37,6 +37,7 @@ module.exports = {
   './UiMenuitem': getComponentsPath('menu/menuitem.vue'),
   './UiMenuitemIcon': getComponentsPath('menu/menuitem-icon.vue'),
   './UiMenuitemText': getComponentsPath('menu/menuitem-text.vue'),
+  './UiMenuitemDivider': getComponentsPath('menu/menuitem-divider.vue'),
   './UiPagination': getComponentsPath('pagination/pagination.vue'),
   // Theme
   './UiIcon': getComponentsPath('icon/icon.vue'),

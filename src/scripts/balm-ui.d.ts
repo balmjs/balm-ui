@@ -158,6 +158,7 @@ declare module 'balm-ui' {
   const UiMenuitem: component;
   const UiMenuitemIcon: component;
   const UiMenuitemText: component;
+  const UiMenuitemDivider: component;
   const UiNav: component;
   const UiNavItem: component;
   const UiPagination: component;
@@ -277,6 +278,7 @@ declare module 'balm-ui' {
     UiMenuitem,
     UiMenuitemIcon,
     UiMenuitemText,
+    UiMenuitemDivider,
     UiNav,
     UiNavItem,
     UiPagination,

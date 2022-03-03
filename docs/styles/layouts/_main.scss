@@ -32,8 +32,8 @@ a {
   }
 }
 
-.top-app-toolbar .mdc-menu-surface--anchor {
-  display: inline-block;
+.top-app-toolbar {
+  display: flex;
 }
 
 .global-message-banner {

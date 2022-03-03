@@ -112,8 +112,8 @@ import { textfieldProps } from '../../mixins/textfield';
 import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 
 const props = defineProps({
-  ...iconProps,
   ...textfieldProps,
+  ...iconProps,
   // <ui-textfield> variants
   outlined: {
     type: Boolean,

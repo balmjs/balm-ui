@@ -4,12 +4,12 @@
 
 ### Props
 
-| Name                            | Type            | Default | Description                                                                     |
-| ------------------------------- | --------------- | ------- | ------------------------------------------------------------------------------- |
-| `validMsg` (`v-model:validMsg`) | string, boolean | `false` | Indicates the helper text is a validation message.                              |
-| `id`                            | string          | `null`  | Mandatory. (Corresponding to the `helperTextId` prop matching `<ui-textfield>`) |
-| `visible`                       | boolean         | `false` | Makes the helper text permanently visible.                                      |
-| `withCounter`                   | boolean         | `false` | Show character counter. (The `maxlength` prop of `<ui-textfield>` is required)  |
+| Name          | Type            | Default | Description                                                                     |
+| ------------- | --------------- | ------- | ------------------------------------------------------------------------------- |
+| `id`          | string          | `null`  | Mandatory. (Corresponding to the `helperTextId` prop matching `<ui-textfield>`) |
+| `visible`     | boolean         | `false` | Makes the helper text permanently visible.                                      |
+| `withCounter` | boolean         | `false` | Show character counter. (The `maxlength` prop of `<ui-textfield>` is required)  |
+| `validMsg`    | string, boolean | `false` | Indicates the helper text is a validation message.                              |
 
 > NOTE: Do not insert any tags between `<ui-textfield>` and `<ui-textfield-helper>` with counter
 
@@ -31,9 +31,3 @@
 | Name      | Props | Description                                                             |
 | --------- | ----- | ----------------------------------------------------------------------- |
 | `default` |       | The default slot holds the text field helper text and can contain HTML. |
-
-### Events
-
-| Name              | Type                         | Description                                   |
-| ----------------- | ---------------------------- | --------------------------------------------- |
-| `update:validMsg` | `function(validMsg: string)` | Emits when the validation message is changed. |

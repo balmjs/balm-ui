@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, reactive, toRefs, onMounted } from 'vue';
 
 const root = ref(null);
 

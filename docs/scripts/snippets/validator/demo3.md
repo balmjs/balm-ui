@@ -6,7 +6,7 @@
     </ui-textfield>
     <ui-textfield-helper
       id="mobile-helper-text"
-      v-model:validMsg="validMsg.mobile"
+      :valid-msg="validMsg.mobile"
     ></ui-textfield-helper>
   </ui-form-field>
   <ui-form-field class="form-item">
@@ -19,7 +19,7 @@
     </ui-textfield>
     <ui-textfield-helper
       id="password-helper-text"
-      v-model:validMsg="validMsg.password"
+      :valid-msg="validMsg.password"
     ></ui-textfield-helper>
   </ui-form-field>
   <ui-form-field class="form-item">
@@ -32,7 +32,7 @@
     </ui-textfield>
     <ui-textfield-helper
       id="repassword-helper-text"
-      v-model:validMsg="validMsg.repassword"
+      :valid-msg="validMsg.repassword"
     ></ui-textfield-helper>
   </ui-form-field>
   <ui-form-field>
@@ -46,7 +46,7 @@
     </ui-select>
     <ui-select-helper
       id="gender-helper-text"
-      v-model:validMsg="validMsg.gender"
+      :valid-msg="validMsg.gender"
     ></ui-select-helper>
   </ui-form-field>
 

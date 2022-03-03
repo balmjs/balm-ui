@@ -1,4 +1,4 @@
-var menu = [
+const menu = [
   'button',
   'card',
   'checkbox',

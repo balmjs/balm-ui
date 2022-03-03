@@ -13,14 +13,14 @@
       <ui-button @click="$store.setMsg">Get Store</ui-button>
       <p>Message: {{ $store.message }}</p>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/vue"></script>
     <script src="/components/button/index.js"></script>
     <script src="/plugins/event/index.js"></script>
     <script src="/plugins/store/index.js"></script>
     <script src="./store-demo.js"></script>
     <script src="./store.js"></script>
     <script>
-      var app = Vue.createApp({
+      const app = Vue.createApp({
         mounted() {
           this.$bus.on('custom-event', (msg) => {
             console.log(msg);

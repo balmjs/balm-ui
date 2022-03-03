@@ -19,10 +19,10 @@
       <ui-icon-button v-model="value" :toggle="icon"></ui-icon-button>
       <p>{{ value }}</p>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/vue"></script>
     <script src="/components/icon-button/index.js"></script>
     <script>
-      var app = Vue.createApp({
+      const app = Vue.createApp({
         data() {
           return {
             value: false,

@@ -11,7 +11,6 @@
       }
     </style>
   </head>
-
   <body>
     <div id="app" class="container">
       <ui-drawer viewport-height>
@@ -35,15 +34,16 @@
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/vue"></script>
     <script src="/dist/balm-ui.js"></script>
     <script src="/dist/balm-ui-plus.js"></script>
     <script src="/dist/balm-ui-next.js"></script>
     <script src="./menu.js"></script>
+
     <script>
       var message = 'Hello BalmUI';
 
-      var app = Vue.createApp({
+      const app = Vue.createApp({
         setup() {
           return {
             menu,

@@ -21,13 +21,13 @@
       <div :class="$tt('custom-style-1')">Custom style 1</div>
       <div :class="$tt('custom-style-2')">Custom style 2</div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/vue"></script>
     <script src="/plugins/typography/index.js"></script>
     <script>
-      var customTypography = ['custom-style-1', 'custom-style-2'];
+      const customTypography = ['custom-style-1', 'custom-style-2'];
     </script>
     <script>
-      var app = Vue.createApp({
+      const app = Vue.createApp({
         created() {
           $tt = $typography.useTypography();
 

@@ -29,11 +29,11 @@
       </ui-menu-anchor>
       <p>Selected: {{ selected }}</p>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/vue"></script>
     <script src="/components/button/index.js"></script>
     <script src="/components/menu/index.js"></script>
     <script>
-      var app = Vue.createApp({
+      const app = Vue.createApp({
         data: function () {
           return {
             open: false,

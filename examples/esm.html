@@ -11,7 +11,6 @@
       }
     </style>
   </head>
-
   <body>
     <div id="app" class="container">
       <ui-drawer viewport-height>
@@ -38,13 +37,14 @@
     <script type="importmap">
     {
       "imports": {
-        "vue": "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.js",
+        "vue": "https://unpkg.com/vue/dist/vue.esm-browser.js",
         "menu": "./menu.mjs",
         "balm-ui": "/dist/balm-ui.esm.js",
         "balm-ui-plus": "/dist/balm-ui-plus.esm.js"
       }
     }
     </script>
+
     <script type="module">
       import { createApp } from 'vue';
       import menu from 'menu';
@@ -53,7 +53,7 @@
 
       let message = 'Hello BalmUI';
 
-      let app = createApp({
+      const app = createApp({
         setup() {
           return {
             menu,

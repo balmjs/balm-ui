@@ -124,7 +124,6 @@
 
 <script>
 import UI_GLOBAL from '../../config/constants';
-import { UI_HELPER_TEXT } from '../../mixins/helper-text';
 import { UI_TEXTFIELD_ICON } from './constants';
 
 // Define textfield constants
@@ -150,8 +149,7 @@ export default {
   customOptions: {
     UI_GLOBAL,
     UI_TEXTFIELD,
-    UI_TEXTFIELD_ICON,
-    UI_HELPER_TEXT
+    UI_TEXTFIELD_ICON
   }
 };
 </script>
@@ -235,8 +233,8 @@ const props = defineProps({
     default: 20
   },
   // UI attributes
-  ...iconProps,
   ...textfieldProps,
+  ...iconProps,
   prefixText: {
     type: String,
     default: ''
@@ -327,39 +325,31 @@ onMounted(() => {
     (val, oldVal) => {
       state.inputValue = val;
 
-      const $textFieldInstance = state.$textField;
-      if ($textFieldInstance) {
-        // fix(ui): dynamic assignment bug
-        if (!oldVal && val) {
-          $textFieldInstance.value = val;
-        }
+      // fix(ui): dynamic assignment bug
+      if (!oldVal && val) {
+        state.$textField.value = val;
+      }
 
-        // fix(ui): focus bug
-        if (oldVal && !val) {
-          try {
-            // fix(@material-components): sync counter bug
-            props.maxlength &&
-              $textFieldInstance.characterCounter_.foundation.setCounterValue(
-                0,
-                props.maxlength
-              );
-          } catch (e) {}
+      // fix(ui): focus bug
+      if (oldVal && !val) {
+        try {
+          // fix(@material-components): sync counter bug
+          props.maxlength &&
+            state.$textField.characterCounter_.foundation.setCounterValue(
+              0,
+              props.maxlength
+            );
+        } catch (e) {}
 
-          setTimeout(() => {
-            $textFieldInstance.foundation.deactivateFocus();
-          }, 1);
-        }
+        setTimeout(() => {
+          state.$textField.foundation.deactivateFocus();
+        }, 1);
       }
     }
   );
   watch(
     () => props.disabled,
-    (val) => {
-      const $textFieldInstance = state.$textField;
-      if ($textFieldInstance) {
-        $textFieldInstance.disabled = val;
-      }
-    }
+    (val) => (state.$textField.disabled = val)
   );
 });
 
@@ -388,8 +378,12 @@ function handleEnter(event) {
 }
 function handleBlur(event) {
   // fix(@material-components): valid bug on blur
-  const helperTextChangeHandler = instanceMap.get(`${props.helperTextId}-next`);
-  helperTextChangeHandler && helperTextChangeHandler();
+  setTimeout(() => {
+    const helperTextChangeHandler = instanceMap.get(
+      `${props.helperTextId}-next`
+    );
+    helperTextChangeHandler && helperTextChangeHandler();
+  }, 1);
 
   emit(UI_TEXTFIELD.EVENTS.BLUR, event);
 }

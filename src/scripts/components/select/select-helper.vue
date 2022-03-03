@@ -6,15 +6,12 @@
 </template>
 
 <script>
-import { UI_HELPER_TEXT } from '../../mixins/helper-text';
-
 const name = 'UiSelectHelper';
 
 export default {
   name,
   customOptions: {
-    name,
-    UI_HELPER_TEXT
+    name
   }
 };
 </script>
@@ -27,9 +24,7 @@ const props = defineProps({
   ...helperTextProps
 });
 
-const emit = defineEmits([UI_HELPER_TEXT.EVENTS.CHANGE]);
-
-const { hasValidMsg, validMessage } = useHelperText(props, { emit });
+const { hasValidMsg, validMessage } = useHelperText(props);
 
 const isVisible = computed(() => !props.visible || hasValidMsg.value); // hasValidMsg: For css name bug
 const className = computed(() => ({

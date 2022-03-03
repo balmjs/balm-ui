@@ -11,15 +11,12 @@
 </template>
 
 <script>
-import { UI_HELPER_TEXT } from '../../mixins/helper-text';
-
 const name = 'UiTextfieldHelper';
 
 export default {
   name,
   customOptions: {
-    name,
-    UI_HELPER_TEXT
+    name
   }
 };
 </script>
@@ -37,13 +34,9 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_HELPER_TEXT.EVENTS.CHANGE]);
-
 const textfieldHelper = ref(null);
 
-const { hasValidMsg, validMessage } = useHelperText(props, {
-  emit
-});
+const { hasValidMsg, validMessage } = useHelperText(props);
 
 const className = computed(() => ({
   'mdc-text-field-helper-text': true,

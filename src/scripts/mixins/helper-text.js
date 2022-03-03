@@ -1,12 +1,6 @@
 import { computed, watch, onMounted } from 'vue';
 import getType from '../utils/typeof';
 
-const UI_HELPER_TEXT = {
-  EVENTS: {
-    CHANGE: 'update:validMsg'
-  }
-};
-
 /**
  * fix(@material-components): valid bug for `<ui-textfield>` on blur
  *
@@ -34,25 +28,24 @@ const helperTextProps = {
     default: false
   },
   validMsg: {
-    type: [String, Boolean], // NOTE: string first
+    type: [String, Boolean], // NOTE: `string` first
     default: false
   }
 };
 
-function useHelperText(props, { emit }) {
-  const hasValidMsg = computed(() =>
-    getType(props.validMsg) === 'string'
-      ? !!props.validMsg.length
-      : props.validMsg
-  );
+function useHelperText(props) {
+  const invalid = computed(() => props.validMsg === true);
+  const hasValidMsg = computed(() => !!props.validMsg);
   const validMessage = computed(() =>
     getType(props.validMsg) === 'string' ? props.validMsg : ''
   );
 
   function handleChange() {
-    if (props.validMsg !== true) {
-      emit(UI_HELPER_TEXT.EVENTS.CHANGE, false);
-    }
+    const $input = instanceMap.get(`${props.id}-previous`);
+    $input &&
+      (invalid.value
+        ? ($input.valid = false)
+        : ($input.valid = !hasValidMsg.value));
   }
 
   onMounted(() => {
@@ -62,12 +55,7 @@ function useHelperText(props, { emit }) {
 
     watch(
       () => props.validMsg,
-      (val) => {
-        // handleChange();
-
-        const $input = instanceMap.get(`${props.id}-previous`);
-        $input && ($input.valid = !hasValidMsg.value);
-      }
+      () => handleChange()
     );
   });
 
@@ -77,10 +65,4 @@ function useHelperText(props, { emit }) {
   };
 }
 
-export {
-  instanceMap,
-  helperProps,
-  UI_HELPER_TEXT,
-  helperTextProps,
-  useHelperText
-};
+export { instanceMap, helperProps, helperTextProps, useHelperText };

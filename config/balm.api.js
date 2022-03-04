@@ -65,8 +65,6 @@ module.exports = (mix) => {
         // const workboxSw = 'node_modules/workbox-sw/build/workbox-sw.js';
         // mix.copy(workboxSw, '.tmp');
         // mix.injectManifest();
-
-        createVeturHelper();
       }
     }
   }

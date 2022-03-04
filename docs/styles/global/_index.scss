@@ -1,6 +1,6 @@
-@forward './reset';
-@forward './vendors';
+@use './reset';
+@use './vendors';
 @forward './color-palette';
 @forward './vars';
 @forward './mixins';
-@forward './base';
+@use './base';

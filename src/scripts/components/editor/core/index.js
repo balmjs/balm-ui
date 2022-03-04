@@ -12,7 +12,8 @@ async function createEditor(
   editorEl,
   { toolbarIcons, toolbarTips, toolbarOptions, options, emotions, extension }
 ) {
-  const Quill = require('quill');
+  const QuillModule = await import('quill');
+  const Quill = QuillModule.default;
   const toolbarHandlers = options.modules.toolbar.handlers;
   setEditor({
     Quill,

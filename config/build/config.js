@@ -104,6 +104,7 @@ const noAttributesTags = [
   'ui-panel',
   'ui-menuitem-text',
   'ui-menuitem-icon',
+  'ui-menuitem-divider',
   'ui-item-text-content',
   'ui-item-text1',
   'ui-item-text2',

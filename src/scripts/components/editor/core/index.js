@@ -8,12 +8,11 @@ import { setToolbarStyle } from '../modules/toolbar';
 
 const customFormatHandlers = ['divider', 'emoji'];
 
-async function createEditor(
+function createEditor(
   editorEl,
   { toolbarIcons, toolbarTips, toolbarOptions, options, emotions, extension }
 ) {
-  const QuillModule = await import('quill');
-  const Quill = QuillModule.default;
+  const Quill = require('quill');
   const toolbarHandlers = options.modules.toolbar.handlers;
   setEditor({
     Quill,

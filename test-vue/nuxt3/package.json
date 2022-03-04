@@ -9,6 +9,6 @@
     "nuxt3": "latest"
   },
   "dependencies": {
-    "balm-ui": "^9.39.1"
+    "balm-ui": "^10.0.3"
   }
 }

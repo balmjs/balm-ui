@@ -4,6 +4,8 @@
 </ui-navigation-bar>
 ```
 
+- ⚠️ 提示：10.1.0 中 `<ui-bottom-navigation>` 已弃用，请使用 `<ui-navigation-bar>` 代替。
+
 ### Props
 
 | Name              | Type    | Default    | Description                                                                |

@@ -4,6 +4,8 @@
 </ui-navigation-bar>
 ```
 
+- ⚠️ NOTE: `<ui-bottom-navigation>` is deprecated in 10.1.0, use `<ui-navigation-bar>` instead.
+
 ### Props
 
 | Name              | Type    | Default    | Description                                                                                                             |

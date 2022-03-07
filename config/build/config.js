@@ -51,7 +51,7 @@ const components = [
   'skeleton',
   'tree',
   // Next
-  'bottom-navigation',
+  'navigation-bar',
   'bottom-sheet'
 ];
 const plugins = [

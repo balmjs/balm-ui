@@ -111,8 +111,8 @@ export default {
       date: '',
       // demo
       config1: {
+        // locale: lang.zh,
         defaultDate: 'today'
-        // locale: lang.zh
       },
       date1: '',
       config2: {

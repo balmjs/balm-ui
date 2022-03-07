@@ -1,5 +1,5 @@
 <template>
-  <!-- Container -->
+  <!-- (M3) Container -->
   <button
     ref="button"
     :type="nativeType"
@@ -7,7 +7,7 @@
     @click="handleClick"
   >
     <div class="mdc-button__ripple"></div>
-    <!-- Icon (optional) -->
+    <!-- Leading icon (optional) -->
     <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">
       <i
         v-if="materialIcon"
@@ -16,11 +16,11 @@
         v-text="materialIcon"
       ></i>
     </slot>
-    <!-- Text label -->
+    <!-- Label text -->
     <span :class="UI_BUTTON.cssClasses.label">
       <slot></slot>
     </span>
-    <!-- Icon (optional) -->
+    <!-- Trailing icon (optional) -->
     <slot name="after" :iconClass="UI_BUTTON.cssClasses.icon"></slot>
   </button>
 </template>

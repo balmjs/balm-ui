@@ -8,13 +8,14 @@ declare module './balm-ui-next' {
   const version: string;
   const install: typeof BalmUINext.install;
 
-  const UiBottomNavigation: component;
   const UiBottomSheet: component;
+  const UiNavigationBar: component;
+  const UiNavigationRail: component;
 
   const $lazyload: Plugin;
 
   export default BalmUINext;
   export { version, install };
-  export { UiBottomNavigation, UiBottomSheet };
+  export { UiBottomSheet, UiNavigationBar, UiNavigationRail };
   export { $lazyload };
 }

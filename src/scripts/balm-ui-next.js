@@ -3,16 +3,18 @@ import autoInstall from './config/auto-install';
 /**
  * Components
  */
-import UiBottomNavigation from './components/bottom-navigation/bottom-navigation.vue';
+import UiNavigationBar from './components/navigation-bar/navigation-bar.vue';
 import UiBottomSheet from './components/bottom-sheet/bottom-sheet.vue';
+import UiNavigationRail from './components/navigation-rail/navigation-rail.vue';
 /**
  * Plugins
  */
 import $lazyload from './plugins/lazyload';
 
 const Components = {
-  UiBottomNavigation,
-  UiBottomSheet
+  UiBottomSheet,
+  UiNavigationBar,
+  UiNavigationRail
 };
 
 const Plugins = {
@@ -34,5 +36,5 @@ const BalmUINext = {
 
 export default BalmUINext;
 export { version, install };
-export { UiBottomNavigation, UiBottomSheet };
+export { UiBottomSheet, UiNavigationBar, UiNavigationRail };
 export { $lazyload };

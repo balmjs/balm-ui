@@ -1,17 +1,18 @@
 <template>
+  <!-- (M3) Container -->
   <div :class="className">
     <slot></slot>
   </div>
 </template>
 
 <script>
-// Define bottom navigation constants
-const name = 'UiBottomNavigation';
+// Define navigation bar constants
+const name = 'UiNavigationBar';
 
-const UI_BOTTOM_NAVIGATION = {
+const UI_NAVIGATION_BAR = {
   FIXED_ADJUST: {
-    STANDARD: 'mdc-bottom-navigation--fixed-adjust',
-    STACKED: 'mdc-bottom-navigation--stacked-fixed-adjust'
+    STANDARD: 'mdc-navigation-bar--fixed-adjust',
+    STACKED: 'mdc-navigation-bar--stacked-fixed-adjust'
   }
 };
 
@@ -19,7 +20,7 @@ export default {
   name,
   customOptions: {
     name,
-    UI_BOTTOM_NAVIGATION
+    UI_NAVIGATION_BAR
   }
 };
 </script>
@@ -52,14 +53,14 @@ const state = reactive({
 
 const className = computed(() => {
   let result = [
-    'mdc-bottom-navigation',
+    'mdc-navigation-bar',
     {
-      'mdc-bottom-navigation--stacked': props.stacked
+      'mdc-navigation-bar--stacked': props.stacked
     }
   ];
 
   const width = Math.floor(100 / state.destinations);
-  result.push(`mdc-bottom-navigation--dest-${width}`);
+  result.push(`mdc-navigation-bar--dest-${width}`);
 
   return result;
 });
@@ -84,8 +85,8 @@ function createFixedAdjustElement() {
   const newDiv = document.createElement('div');
   newDiv.classList.add(
     props.stacked
-      ? UI_BOTTOM_NAVIGATION.FIXED_ADJUST.STACKED
-      : UI_BOTTOM_NAVIGATION.FIXED_ADJUST.STANDARD
+      ? UI_NAVIGATION_BAR.FIXED_ADJUST.STACKED
+      : UI_NAVIGATION_BAR.FIXED_ADJUST.STANDARD
   );
 
   contentEl.appendChild(newDiv);

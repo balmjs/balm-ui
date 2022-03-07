@@ -1,11 +1,11 @@
 <template>
-  <!-- Container -->
+  <!-- (M3) Container -->
   <header ref="topAppBar" :class="className">
     <div class="mdc-top-app-bar__row">
       <section
         class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
       >
-        <!-- Navigation icon (optional) / Close button (instead of a navigation icon) -->
+        <!-- Leading navigation icon -->
         <span class="mdc-top-app-bar__brand">
           <slot
             name="nav-icon"
@@ -19,7 +19,7 @@
             ></mdc-icon-button>
           </slot>
         </span>
-        <!-- Title (optional) / Contextual title -->
+        <!-- Headline -->
         <span class="mdc-top-app-bar__title">
           <slot>{{ title }}</slot>
         </span>
@@ -28,8 +28,7 @@
         class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
         role="toolbar"
       >
-        <!-- Regular: Action items (optional) & Overflow menu (optional) -->
-        <!-- Contextual action bar: Contextual actions & Overflow menu (optional) -->
+        <!-- Trailing interactive icons -->
         <slot
           name="toolbar"
           :toolbarItemClass="UI_TOP_APP_BAR.cssClasses.actionItem"

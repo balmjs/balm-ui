@@ -1,8 +1,8 @@
 <template>
-  <!-- Container -->
+  <!-- (M3) Container -->
   <div ref="chip" class="mdc-chip" role="row" @click="handleClick">
     <div class="mdc-chip__ripple"></div>
-    <!-- Thumbnail (optional) -->
+    <!-- Leading icon or image (optional) -->
     <slot name="before" :iconClass="UI_CHIP.cssClasses.icon">
       <i v-if="materialIcon" :class="thumbnailClassName">{{ materialIcon }}</i>
     </slot>
@@ -16,7 +16,7 @@
         />
       </svg>
     </span>
-    <!-- Text -->
+    <!-- Label text -->
     <span role="gridcell">
       <span :role="role" class="mdc-chip__primary-action">
         <span class="mdc-chip__text">
@@ -24,13 +24,14 @@
         </span>
       </span>
     </span>
-    <!-- Remove icon [optional] -->
+    <!-- Trailing remove icon (optional, input & filter chips only) -->
     <slot name="after" :iconClass="UI_CHIP.cssClasses.removeIcon">
-      <span v-if="$parent.inputChips || removable" role="gridcell">
+      <span v-if="$parent.inputChips || $parent.filterChips" role="gridcell">
         <i
+          v-if="deletable"
           :class="UI_GLOBAL.getMaterialIconClass(UI_CHIP.cssClasses.removeIcon)"
           tabindex="-1"
-          role="button"
+          data-mdc-deletable="true"
           @click="handleRemove"
         >
           cancel
@@ -74,7 +75,7 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  removable: {
+  deletable: {
     type: Boolean,
     default: false
   }

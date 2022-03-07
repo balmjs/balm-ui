@@ -1,4 +1,5 @@
 <template>
+  <!-- List item -->
   <li
     ref="menuitem"
     :class="nested ? null : getClass(item)"
@@ -11,7 +12,7 @@
     </ul>
     <template v-else>
       <span :class="deprecatedListClassNameMap['mdc-list-item__ripple']"></span>
-      <!-- Leading icon / Text / Command -->
+      <!-- Including label text and optional leading icon, trailing icon, and keyboard command -->
       <slot>
         <ui-menuitem-icon v-if="item.icon">
           <i

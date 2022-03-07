@@ -1,5 +1,5 @@
 <template>
-  <!-- Buttons -->
+  <!-- Actions -->
   <footer class="mdc-dialog__actions">
     <slot :buttonClass="UI_DIALOG_ACTION.cssClasses.button">
       <mdc-button

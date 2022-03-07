@@ -1,9 +1,9 @@
 <template>
-  <!-- Container -->
+  <!-- (M3) Container -->
   <button ref="fab" type="button" :class="className" @click="handleClick">
     <div class="mdc-fab__ripple"></div>
     <template v-if="isExtended">
-      <!-- Icon (optional) -->
+      <!-- Leading icon (optional) -->
       <slot name="before" :iconClass="UI_FAB.cssClasses.icon">
         <i
           v-if="materialIcon"
@@ -11,11 +11,11 @@
           v-text="materialIcon"
         ></i>
       </slot>
-      <!-- Text label -->
+      <!-- Label text -->
       <span class="mdc-fab__label">
         <slot></slot>
       </span>
-      <!-- Icon (optional) -->
+      <!-- Trailing icon (optional) -->
       <slot name="after" :iconClass="UI_FAB.cssClasses.icon"></slot>
     </template>
     <template v-else>

@@ -1,0 +1,47 @@
+@use 'sass:math';
+@use '@material/elevation/mixins' as elevation-mixins;
+@use './variables' as navigation-bar-variables;
+
+.mdc-navigation-bar--fixed-adjust {
+  padding-bottom: navigation-bar-variables.$height;
+}
+
+.mdc-navigation-bar--stacked-fixed-adjust {
+  padding-bottom: navigation-bar-variables.$stacked-height;
+}
+
+.mdc-navigation-bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  height: navigation-bar-variables.$height;
+  background-color: navigation-bar-variables.$fill-color;
+  @include elevation-mixins.elevation(4);
+
+  &.mdc-navigation-bar--stacked {
+    height: navigation-bar-variables.$stacked-height;
+  }
+
+  .mdc-tab__content,
+  .mdc-tab__text-label {
+    color: navigation-bar-variables.$color;
+  }
+
+  .mdc-tab--active {
+    color: navigation-bar-variables.$active-fill-color;
+  }
+
+  .mdc-tab-scroller__scroll-content {
+    width: 100%;
+  }
+}
+
+@each $width in navigation-bar-variables.$destinations {
+  .mdc-navigation-bar--dest-#{$width} {
+    .mdc-tab {
+      width: percentage(math.div($width, 100));
+    }
+  }
+}

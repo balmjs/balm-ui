@@ -1,4 +1,5 @@
 <template>
+  <!-- Container -->
   <div :class="className">
     <slot>
       <!-- Card contents -->

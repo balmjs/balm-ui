@@ -1,4 +1,5 @@
 <template>
+  <!-- Divider (optional) -->
   <li :class="className" role="separator"></li>
 </template>
 

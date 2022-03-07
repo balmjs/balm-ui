@@ -1,5 +1,5 @@
 <template>
-  <div class="page--bottom-navigation-container">
+  <div class="page--navigation-bar-container">
     <ui-top-app-bar content-selector=".demo-content" fixed>
       <template #nav-icon="{ navIconClass }">
         <ui-icon-button
@@ -8,22 +8,22 @@
           @click="$router.back()"
         ></ui-icon-button>
       </template>
-      <span class="catalog-title">Bottom Navigation</span>
+      <span class="catalog-title">Navigation Bar</span>
       <template #toolbar="{ toolbarItemClass }">
         <top-app-toolbar :item-class="toolbarItemClass"></top-app-toolbar>
       </template>
     </ui-top-app-bar>
 
-    <docs-page class="demo-content" name="bottom-navigation" demo-count="1">
+    <docs-page class="demo-content" name="navigation-bar" demo-count="1">
       <template #hero>
-        <h3 :class="$tt('headline3')">Bottom Navigation</h3>
+        <h3 :class="$tt('headline3')">Navigation Bar</h3>
       </template>
 
       <!-- Content -->
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </docs-page>
 
-    <ui-bottom-navigation content-selector=".demo-content" stacked>
+    <ui-navigation-bar content-selector=".demo-content" stacked>
       <ui-tabs
         v-model="active"
         type="textWithIcon"
@@ -31,7 +31,7 @@
         stacked
         @change="onChange"
       ></ui-tabs>
-    </ui-bottom-navigation>
+    </ui-navigation-bar>
   </div>
 </template>
 
@@ -41,7 +41,7 @@ import TopAppToolbar from '@/components/top-app-toolbar';
 export default {
   metaInfo() {
     return {
-      subtitle: 'Bottom Navigation'
+      subtitle: 'Navigation Bar'
     };
   },
   components: {
@@ -67,7 +67,7 @@ export default {
         },
         {
           text: 'News',
-          icon: 'fiber_new'
+          icon: 'newspaper'
         }
       ],
       active: 1

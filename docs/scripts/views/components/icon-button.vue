@@ -139,13 +139,14 @@ const faIcon = {
   off: 'fa fa-star-o'
 };
 
-const state = reactive({
+const stateData = {
   // hero
   value: false,
   // demo
   value1: false,
   value2: true
-});
+};
+const state = reactive(stateData);
 
 export default {
   metaInfo() {
@@ -154,39 +155,35 @@ export default {
     };
   },
   // Composition API
-  // setup() {
-  //   onMounted(() => {
-  //     setTimeout(() => {
-  //       state.value = true;
-  //     }, 1e3);
-  //   });
+  setup() {
+    onMounted(() => {
+      setTimeout(() => {
+        state.value = true;
+      }, 1e3);
+    });
 
-  //   return {
-  //     imageOn,
-  //     imageOff,
-  //     mdcIcon,
-  //     faIcon,
-  //     ...toRefs(state)
-  //   };
-  // },
-  // Options API
-  data() {
     return {
       imageOn,
       imageOff,
       mdcIcon,
       faIcon,
-      // hero
-      value: false,
-      // demo
-      value1: false,
-      value2: true
+      ...toRefs(state)
     };
-  },
-  mounted() {
-    setTimeout(() => {
-      this.value = true;
-    }, 1e3);
   }
+  // Options API
+  // data() {
+  //   return {
+  //     imageOn,
+  //     imageOff,
+  //     mdcIcon,
+  //     faIcon,
+  //     ...stateData
+  //   };
+  // },
+  // mounted() {
+  //   setTimeout(() => {
+  //     this.value = true;
+  //   }, 1e3);
+  // }
 };
 </script>

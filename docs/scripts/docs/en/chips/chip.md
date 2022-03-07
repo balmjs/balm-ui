@@ -4,11 +4,13 @@
 
 ### Props
 
-| Name        | Type    | Default | Description                                                                                         |
-| ----------- | ------- | ------- | --------------------------------------------------------------------------------------------------- |
-| `icon`      | string  | `''`    | Optional. Indicates an leading icon element. See [Material Icons](/icons) list.                     |
-| `selected`  | boolean | `false` | Optional. Hides the leading icon in a filter chip when the chip is selected.                        |
-| `removable` | boolean | `false` | Optional. Indicates a trailing icon which removes the chip from the DOM. Only use with input chips. |
+| Name        | Type    | Default | Description                                                                                                    |
+| ----------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------- |
+| `icon`      | string  | `''`    | Optional. Indicates an leading icon element. See [Material Icons](/icons) list.                                |
+| `selected`  | boolean | `false` | Optional. Hides the leading icon in a filter chip when the chip is selected.                                   |
+| `deletable` | boolean | `false` | Optional. Indicates a trailing icon which removes the chip from the DOM. Only use with input and filter chips. |
+
+> NOTE: The `removable` prop rename to `deletable` in 10.1.0, and add support for filter chips
 
 ### Slots
 

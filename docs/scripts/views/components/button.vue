@@ -2,7 +2,13 @@
   <docs-page name="button" :apis="['button', 'v-button']" demo-count="1">
     <template #hero>
       <div class="hero-demo">
-        <ui-button v-a11y :type="typeOption">{{ text }}</ui-button>
+        <ui-button
+          v-a11y
+          :type="typeOption"
+          :icon="buttonOptions.leadingIcon ? 'star' : ''"
+        >
+          Button
+        </ui-button>
       </div>
       <div class="hero-options">
         <ui-select
@@ -12,9 +18,13 @@
         >
           Type
         </ui-select>
-        <ui-textfield v-model="text" class="hero-option">
-          Button Text
-        </ui-textfield>
+        <ui-form-field class="hero-option">
+          <ui-checkbox
+            v-model="buttonOptions.leadingIcon"
+            input-id="button-leading-icon"
+          ></ui-checkbox>
+          <label for="button-leading-icon">Leading icon</label>
+        </ui-form-field>
       </div>
     </template>
 
@@ -31,9 +41,10 @@
       </div>
 
       <div class="demo">
-        <ui-button :disabled="disabled">Text</ui-button>
+        <ui-button :disabled="disabled">Standard</ui-button>
         <ui-button outlined :disabled="disabled">Outlined</ui-button>
         <ui-button raised :disabled="disabled">Raised</ui-button>
+        <ui-button unelevated :disabled="disabled">Unelevated</ui-button>
 
         <ui-button icon="favorite" :disabled="disabled">Icon</ui-button>
         <ui-button :disabled="disabled">
@@ -58,30 +69,29 @@ import { reactive, toRefs } from 'vue';
 
 const TypeOptions = [
   {
-    label: 'Text',
-    value: 0
+    label: 'Contained',
+    value: 2
   },
   {
     label: 'Outlined',
     value: 1
   },
   {
-    label: 'Raised',
-    value: 2
-  },
-  {
-    label: 'Unelevated',
-    value: 3
+    label: 'Text',
+    value: 0
   }
 ];
 
-const state = reactive({
+const stateData = {
   // hero
-  typeOption: 0,
-  text: 'Button',
+  typeOption: 2,
+  buttonOptions: {
+    leadingIcon: false
+  },
   // demo
   disabled: false
-});
+};
+const state = reactive(stateData);
 
 export default {
   metaInfo() {
@@ -95,5 +105,11 @@ export default {
       ...toRefs(state)
     };
   }
+  // data() {
+  //   return {
+  //     TypeOptions,
+  //     ...stateData
+  //   };
+  // }
 };
 </script>

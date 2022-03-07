@@ -213,6 +213,7 @@
 </template>
 
 <script>
+import { reactive, toRefs } from 'vue';
 import cardMedia from '@/assets/card-media.svg';
 
 const TypeOptions = [
@@ -226,50 +227,79 @@ const TypeOptions = [
   }
 ];
 
+const stateData = {
+  typeOption: 0,
+  cardOptions: {
+    media: false,
+    supportingText: false,
+    buttons: false
+  }
+};
+const state = reactive(stateData);
+
+// demo data
+const list = [
+  {
+    title: 'Copper on the rise',
+    content:
+      'Copper price soars amid global market optimism and increased demand.'
+  },
+  {
+    title: 'U.S. tech startups rebound',
+    content:
+      'Favorable business conditions have allowed startups to secure more fundraising deals compared to last year.'
+  },
+  {
+    title: `Asia's clean energy ambitions`,
+    content:
+      'China plans to invest billions of dollars for the development of over 300 clean energy projects in Southeast Asia.'
+  }
+];
+const icon1 = {
+  on: 'favorite',
+  off: 'favorite_border'
+};
+const icon2 = {
+  on: 'bookmark',
+  off: 'bookmark_border'
+};
+
 export default {
   metaInfo() {
     return {
       subtitle: 'Card'
     };
   },
-  data() {
+  // Composition API
+  setup() {
     return {
       // hero
       cardMedia,
       TypeOptions,
-      typeOption: 0,
-      cardOptions: {
-        media: false,
-        supportingText: false,
-        buttons: false
-      },
+      ...toRefs(state),
       // demo
-      list: [
-        {
-          title: 'Copper on the rise',
-          content:
-            'Copper price soars amid global market optimism and increased demand.'
-        },
-        {
-          title: 'U.S. tech startups rebound',
-          content:
-            'Favorable business conditions have allowed startups to secure more fundraising deals compared to last year.'
-        },
-        {
-          title: `Asia's clean energy ambitions`,
-          content:
-            'China plans to invest billions of dollars for the development of over 300 clean energy projects in Southeast Asia.'
-        }
-      ],
-      icon1: {
-        on: 'favorite',
-        off: 'favorite_border'
-      },
-      icon2: {
-        on: 'bookmark',
-        off: 'bookmark_border'
-      }
+      list,
+      icon1,
+      icon2
     };
   }
+  // Options API
+  // data() {
+  //   return {
+  //     // hero
+  //     cardMedia,
+  //     TypeOptions,
+  //     typeOption: 0,
+  //     cardOptions: {
+  //       media: false,
+  //       supportingText: false,
+  //       buttons: false
+  //     },
+  //     // demo
+  //     list,
+  //     icon1,
+  //     icon2
+  //   };
+  // }
 };
 </script>

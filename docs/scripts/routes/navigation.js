@@ -11,7 +11,8 @@ const ModalDrawer = () => import('@/views/drawer/modal-drawer');
 const Tabs = () => import('@/views/components/tabs');
 const Menu = () => import('@/views/components/menu');
 const Pagination = () => import('@/views/components/pagination');
-const BottomNavigation = () => import('@/views/components/bottom-navigation');
+const NavigationBar = () => import('@/views/components/navigation-bar');
+const NavigationRail = () => import('@/views/components/navigation-rail');
 
 export default [
   {
@@ -71,9 +72,15 @@ export default [
     component: Pagination
   },
   {
-    path: 'bottom-navigation',
-    name: 'navigation.bottom-navigation',
-    component: BottomNavigation,
+    path: 'navigation-bar',
+    name: 'navigation.navigation-bar',
+    component: NavigationBar,
+    meta: { noLayout: true }
+  },
+  {
+    path: 'navigation-rail',
+    name: 'navigation.navigation-rail',
+    component: NavigationRail,
     meta: { noLayout: true }
   }
 ];

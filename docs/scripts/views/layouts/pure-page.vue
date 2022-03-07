@@ -10,7 +10,6 @@
 <script>
 export default {
   name: 'PurePage',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

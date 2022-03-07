@@ -1,3 +1,3 @@
-# Dialog
+# Dialogs
 
-Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.
+Dialogs provide important prompts in a user flow. They can require an action, communicate information, or help users accomplish a task.

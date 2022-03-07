@@ -28,6 +28,7 @@
             v-for="item in list"
             :key="item.id"
             icon="face"
+            deletable
             @remove="removeOneById(item.id)"
           >
             {{ item.name }}

@@ -1,3 +1,3 @@
 # Cards
 
-Cards contain content and actions about a single subject.
+Cards contain content and actions that relate information about a subject.

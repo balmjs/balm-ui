@@ -2,7 +2,7 @@
 <div class="container">
   <!-- Content -->
 
-  <ui-bottom-navigation content-selector=".container" stacked>
+  <ui-navigation-bar content-selector=".container" stacked>
     <ui-tabs
       v-model="active"
       type="textWithIcon"
@@ -10,7 +10,7 @@
       stacked
       @change="onChange"
     ></ui-tabs>
-  </ui-bottom-navigation>
+  </ui-navigation-bar>
 </div>
 ```
 

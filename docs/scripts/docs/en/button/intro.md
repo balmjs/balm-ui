@@ -1,3 +1,3 @@
 # Buttons
 
-Buttons allow users to take actions, and make choices, with a single tap.
+Buttons help people initiate actions, from sending an email, to sharing a document, to liking a post.

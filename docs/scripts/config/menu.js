@@ -110,9 +110,14 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'video_label',
-        name: 'bottom-navigation',
+        name: 'navigation-bar',
         next: true
       }
+      // {
+      //   icon: 'view_sidebar',
+      //   name: 'navigation-rail',
+      //   next: true
+      // }
     ]
   },
   '-',

@@ -80,7 +80,6 @@
 <script>
 export default {
   name: 'DocsPage',
-  inheritAttrs: false,
   customOptions: {}
 };
 </script>

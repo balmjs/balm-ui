@@ -1,7 +1,7 @@
 ```html
-<ui-bottom-navigation>
+<ui-navigation-bar>
   <!-- <ui-tabs> or <ui-tab-bar> component -->
-</ui-bottom-navigation>
+</ui-navigation-bar>
 ```
 
 ### Props

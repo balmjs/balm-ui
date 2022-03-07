@@ -2,10 +2,10 @@
   <docs-page name="fab" demo-count="4">
     <template #hero>
       <div class="hero-demo">
-        <ui-fab :type="typeOption" :mini="!!mini">
-          <!-- :icon="type && withLeadingIcon ? 'add' : ''" -->
+        <ui-fab :type="typeOption" :mini="!!fabOptions.mini">
+          <!-- :icon="type && fabOptions.leadingIcon ? 'add' : ''" -->
           <template
-            v-if="typeOption && withLeadingIcon"
+            v-if="typeOption && fabOptions.leadingIcon"
             #before="{ iconClass }"
           >
             <ui-icon :class="iconClass">add</ui-icon>
@@ -26,7 +26,7 @@
         </ui-select>
         <ui-form-field v-if="typeOption" class="hero-option">
           <ui-checkbox
-            v-model="withLeadingIcon"
+            v-model="fabOptions.leadingIcon"
             input-id="leading-icon"
             :value="1"
           ></ui-checkbox>
@@ -34,11 +34,19 @@
         </ui-form-field>
         <div v-else class="hero-option">
           <ui-form-field>
-            <ui-radio v-model="mini" input-id="default" :value="0"></ui-radio>
+            <ui-radio
+              v-model="fabOptions.mini"
+              input-id="default"
+              :value="0"
+            ></ui-radio>
             <label for="default">Default</label>
           </ui-form-field>
           <ui-form-field>
-            <ui-radio v-model="mini" input-id="mini" :value="1"></ui-radio>
+            <ui-radio
+              v-model="fabOptions.mini"
+              input-id="mini"
+              :value="1"
+            ></ui-radio>
             <label for="mini">Mini</label>
           </ui-form-field>
         </div>
@@ -169,15 +177,6 @@
 import { reactive, toRefs } from 'vue';
 import { useEvent } from 'balm-ui';
 
-const state = reactive({
-  // hero
-  typeOption: 0,
-  mini: 0,
-  withLeadingIcon: false,
-  // demo
-  exited: false
-});
-
 const TypeOptions = [
   {
     label: 'Regular',
@@ -188,6 +187,18 @@ const TypeOptions = [
     value: 1
   }
 ];
+
+const stateData = {
+  // hero
+  typeOption: 0,
+  fabOptions: {
+    mini: 0,
+    leadingIcon: false
+  },
+  // demo
+  exited: false
+};
+const state = reactive(stateData);
 
 export default {
   metaInfo() {
@@ -208,14 +219,9 @@ export default {
   // Options API
   // data() {
   //   return {
-  //     // hero
-  //     TypeOptions,
-  //     typeOption: 0,
-  //     mini: 0,
-  //     withLeadingIcon: false,
-  //     // demo
   //     balmUI: useEvent(),
-  //     exited: false
+  //     TypeOptions,
+  //     ...stateData
   //   };
   // }
 };

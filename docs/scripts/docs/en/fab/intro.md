@@ -1,3 +1,3 @@
-# Buttons: floating action button
+# Floating action buttons (FAB)
 
-A floating action button (FAB) represents the primary action of a screen.
+The FAB represents the most important action on a screen. It puts key actions within reach.

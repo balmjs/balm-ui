@@ -36,6 +36,7 @@ function getConfig(balm) {
               {
                 languages: [
                   'markup',
+                  'ini',
                   'css',
                   'javascript',
                   'bash',

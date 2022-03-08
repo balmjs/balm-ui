@@ -2,6 +2,14 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.42.3/ 2022-03-08
+
+### Bug Fixes
+
+- `<ui-tree>`: fix event bug
+- `<ui-table>`: fix some bug for others data
+- `<ui-card-content>`: fix ripple bug
+
 ## v9.42.2 / 2022-02-21
 
 ### Chore

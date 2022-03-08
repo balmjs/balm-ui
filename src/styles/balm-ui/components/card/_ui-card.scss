@@ -1,16 +1,10 @@
 @use './variables' as card-variables;
 
 .mdc-card__text {
-  padding-left: card-variables.$text-wrapper-padding;
-  padding-right: card-variables.$text-wrapper-padding;
+  padding: card-variables.$text-wrapper-padding;
 
-  &:first-child,
   & + & {
-    padding-top: card-variables.$text-wrapper-padding;
-  }
-
-  &:last-child {
-    padding-bottom: card-variables.$text-wrapper-padding;
+    padding-top: 0;
   }
 }
 

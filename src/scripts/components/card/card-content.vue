@@ -3,6 +3,7 @@
     <slot>
       <!-- content within actionable area -->
     </slot>
+    <div class="mdc-card__ripple"></div>
   </div>
 </template>
 

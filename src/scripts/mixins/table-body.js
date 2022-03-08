@@ -100,20 +100,22 @@ function useTableBody(props) {
         }
 
         // Set others
-        for (const [key, value] of Object.entries(tbodyCellData)) {
-          if (key !== field) {
-            switch (key) {
-              case UI_TABLE.CELL.CLASS:
-                if (isString(value)) {
+        if (tbodyCellData !== field) {
+          for (const [key, value] of Object.entries(tbodyCellData)) {
+            if (key !== field) {
+              switch (key) {
+                case UI_TABLE.CELL.CLASS:
+                  if (isString(value)) {
+                    cell[key] = value;
+                  } else if (isFunction(value)) {
+                    cell[key] = value(tbodyRowData);
+                  }
+                  break;
+                case UI_TABLE.CELL.FUNCTION:
+                  break;
+                default:
                   cell[key] = value;
-                } else if (isFunction(value)) {
-                  cell[key] = value(tbodyRowData);
-                }
-                break;
-              case UI_TABLE.CELL.FUNCTION:
-                break;
-              default:
-                cell[key] = value;
+              }
             }
           }
         }

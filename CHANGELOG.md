@@ -2,11 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
-## v8.49.2 / 2022-03-08
+## v8.49.3 / 2022-03-08
 
 ### Bug Fixes
 
 - `<ui-table>`: fix some bug for others data
+- `<ui-card-content>`: fix ripple bug
 
 ## v8.49.1 / 2022-02-15
 

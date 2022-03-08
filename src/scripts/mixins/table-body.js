@@ -113,20 +113,22 @@ export default {
           }
 
           // Set others
-          for (const [key, value] of Object.entries(tbodyCellData)) {
-            if (key !== field) {
-              switch (key) {
-                case this.T_CELL.CLASS:
-                  if (this.isString(value)) {
+          if (this.isObject(tbodyCellData)) {
+            for (const [key, value] of Object.entries(tbodyCellData)) {
+              if (key !== field) {
+                switch (key) {
+                  case this.T_CELL.CLASS:
+                    if (this.isString(value)) {
+                      cell[key] = value;
+                    } else if (this.isFunction(value)) {
+                      cell[key] = value(tbodyRowData);
+                    }
+                    break;
+                  case this.T_CELL.FUNCTION:
+                    break;
+                  default:
                     cell[key] = value;
-                  } else if (this.isFunction(value)) {
-                    cell[key] = value(tbodyRowData);
-                  }
-                  break;
-                case this.T_CELL.FUNCTION:
-                  break;
-                default:
-                  cell[key] = value;
+                }
               }
             }
           }

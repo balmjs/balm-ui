@@ -86,7 +86,7 @@ export default {
       }
     }
   },
-  emits: [UI_TREE.EVENT.CHANGE],
+  emits: [UI_TREE.EVENT.CHANGE, UI_TREE.EVENT.SELECTED],
   data() {
     return {
       $tree: null,

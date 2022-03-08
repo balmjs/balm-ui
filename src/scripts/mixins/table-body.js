@@ -100,7 +100,7 @@ function useTableBody(props) {
         }
 
         // Set others
-        if (tbodyCellData !== field) {
+        if (isObject(tbodyCellData)) {
           for (const [key, value] of Object.entries(tbodyCellData)) {
             if (key !== field) {
               switch (key) {

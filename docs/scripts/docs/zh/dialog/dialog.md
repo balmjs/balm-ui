@@ -14,8 +14,6 @@
 | `maskClosable`           | boolean | `false` | 当点击对话框遮罩层时，关闭对话框。                                              |         |
 | `noScrim`                | boolean | `false` | 隐藏对话框遮罩层                                                                |         |
 | `resetScroll`            | boolean | `false` | 对话框关闭时，重置滚动条。                                                      |         |
-| `scrollable`             | boolean | `false` | 当对话框中的内容溢出时自动应用以保证内容可滚动。                                |         |
-| `stacked`                | boolean | `false` | 当对话框的动作按钮不能放在一行上并且必须堆叠在一起时，将自动应用。              |         |
 | `fullscreen`             | boolean | `false` | 全屏效果                                                                        | 9.14.0  |
 
 > 提示：全屏对话框适用于移动/小屏幕设备。

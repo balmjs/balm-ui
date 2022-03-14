@@ -2746,10 +2746,10 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-axios@^0.26.0:
-  version "0.26.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.26.0.tgz#9a318f1c69ec108f8cd5f3c3d390366635e13928"
-  integrity sha512-lKoGLMYtHvFrPVt3r+RBMp9nh34N0M8zEfCWqdWZx6phynIEhQqAdydpyBAAG211zlhX9Rgu08cOamy6XjE5Og==
+axios@^0.26.1:
+  version "0.26.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.26.1.tgz#1ede41c51fcf51bbbd6fd43669caaa4f0495aaa9"
+  integrity sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==
   dependencies:
     follow-redirects "^1.14.8"
 
@@ -2882,10 +2882,10 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-balm@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/balm/-/balm-4.3.0.tgz#61156922046be946e89f15e68234a6c9aacc8c94"
-  integrity sha512-wVF7v1TkUuUFqeO80yrVwTv0iAI2m/VOOZ8UtRQOaK68gt8IVx5Pkl09Ef7g2u/r++xq4gU+d3oJ7WLLhWgbVg==
+balm@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/balm/-/balm-4.4.0.tgz#be1d45aad98e664c2118c42d3cfd1bf15fc21917"
+  integrity sha512-RC3EH0aDKf5D+3+dxnC+UCnTmFfMHRVpPmX14u6xff6Ap9Co2SJBuo/6rsArnelXa434UjxrgE5cwI2nwgu/JQ==
   dependencies:
     "@babel/core" "^7.16"
     "@babel/plugin-transform-runtime" "^7.16"
@@ -2896,7 +2896,7 @@ balm@^4.3.0:
     gulp "^4.0.2"
     semver "^7.3.5"
     webpack-hot-middleware "^2.25.1"
-    workbox-sw "^6.4.2"
+    workbox-sw "^6.5.1"
     yargs "^17.3.1"
 
 base@^0.11.1:
@@ -8003,10 +8003,10 @@ word-wrap@^1.2.3, word-wrap@~1.2.3:
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
 
-workbox-sw@^6.4.2:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/workbox-sw/-/workbox-sw-6.5.0.tgz#19b47d72f598fd515fe32d2551d67bdb104434cb"
-  integrity sha512-uPGJ9Yost4yabnCko/IuhouquoQKrWOEqLq7L/xVYtltWe4+J8Hw8iPCVtxvXQ26hffd7MaFWUAN83j2ZWbxRg==
+workbox-sw@^6.5.1:
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/workbox-sw/-/workbox-sw-6.5.1.tgz#f9256b40f0a7e94656ccd06f127ba19a92cd23c5"
+  integrity sha512-hVrQa19yo9wzN1fQQ/h2JlkzFpkuH2qzYT2/rk7CLaWt6tLnTJVFCNHlGRRPhytZSf++LoIy7zThT714sowT/Q==
 
 wrap-ansi@^2.0.0:
   version "2.1.0"

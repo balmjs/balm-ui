@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.1.1
+
+### BREAKING CHANGES
+
+- `<ui-dialog>`: remove prop `scrollable` and `stacked`
+
 ## v10.1.0 / 2022-03-07
 
 ### Features

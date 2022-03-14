@@ -90,14 +90,6 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  scrollable: {
-    type: Boolean,
-    default: false
-  },
-  stacked: {
-    type: Boolean,
-    default: false
-  },
   fullscreen: {
     type: Boolean,
     default: false
@@ -119,8 +111,6 @@ const state = reactive({
 
 const className = computed(() => ({
   'mdc-dialog': true,
-  'mdc-dialog--scrollable': props.scrollable,
-  'mdc-dialog--stacked': props.stacked,
   'mdc-dialog--fullscreen': props.fullscreen
 }));
 

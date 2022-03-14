@@ -115,6 +115,7 @@ import {
 } from 'vue';
 import UiTextfield from '../textfield/textfield.vue';
 import { textfieldProps } from '../../mixins/textfield';
+import { useDatalist } from '../../mixins/datalist';
 import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 import {
   optionFormatDefaultValue,
@@ -183,7 +184,6 @@ const autocompleteList = ref(null);
 const state = reactive({
   autocompleteListEl: null,
   autocompleteListener: null,
-  isExpanded: false,
   inputValue: props.modelValue,
   currentSource: [], // source data
   currentSuggestion: {
@@ -207,11 +207,15 @@ let scroll = {
 };
 const { inputValue, currentSuggestion } = toRefs(state);
 
+const { open, handleBlur, removeDatalistEvent } = useDatalist(autocomplete, {
+  type: 'autocomplete',
+  offHandler: off
+});
 const { materialIcon } = useMaterialIcon(props);
 
 const className = computed(() => ({
   'mdc-autocomplete': true,
-  'mdc-autocomplete--expanded': state.isExpanded
+  'mdc-autocomplete--expanded': open.value
 }));
 const hasLeadingIcon = computed(
   () => !!(props.withLeadingIcon || slots.before)
@@ -253,12 +257,8 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  if (state.autocompleteListener) {
-    document.removeEventListener(
-      UI_AUTOCOMPLETE.EVENTS.CLICK,
-      state.autocompleteListener
-    );
-  }
+  removeDatalistEvent();
+
   state.autocompleteListEl.removeEventListener(
     UI_AUTOCOMPLETE.EVENTS.MOUSEMOVE,
     handleMousemove
@@ -344,13 +344,13 @@ function on() {
     keywords.length >= props.minlength &&
     state.currentSuggestion.data.length
   ) {
-    state.isExpanded = true;
+    open.value = true;
     nextTick(() => initClientHeight());
   }
 }
 
 function off() {
-  state.isExpanded = false;
+  open.value = false;
   state.currentSuggestion.index = -1;
   clearSelected();
 }
@@ -485,37 +485,6 @@ function handleInput(value) {
   } else {
     off();
   }
-}
-
-function handleBlur(event) {
-  if (!state.autocompleteListener) {
-    const el = autocomplete.value.textfield;
-
-    state.autocompleteListener = (e) => {
-      let inTextfield = false;
-      let parentEl = e.target;
-
-      while (parentEl && parentEl !== el) {
-        parentEl = parentEl.parentNode;
-        if (parentEl === el) {
-          inTextfield = true;
-        }
-      }
-
-      if (e !== event && state.isExpanded && !inTextfield) {
-        document.removeEventListener(
-          UI_AUTOCOMPLETE.EVENTS.CLICK,
-          state.autocompleteListener
-        );
-        off();
-      }
-    };
-  }
-
-  document.addEventListener(
-    UI_AUTOCOMPLETE.EVENTS.CLICK,
-    state.autocompleteListener
-  );
 }
 
 function handleMousemove(event) {

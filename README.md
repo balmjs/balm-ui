@@ -306,7 +306,6 @@ We officially support the last two versions of every major browser. Specifically
 - **Firefox** on Windows, macOS, and Linux
 - **Safari** on iOS and macOS
 - **Edge** on Windows
-- **IE** 11 on Windows
 
 ## Special Thanks to
 

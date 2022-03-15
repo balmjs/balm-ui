@@ -24,7 +24,6 @@
 - **Firefox** on Windows, macOS, and Linux
 - **Safari** on iOS and macOS
 - **Edge** on Windows
-- **IE** 11 on Windows
 
 ## 鸣谢
 

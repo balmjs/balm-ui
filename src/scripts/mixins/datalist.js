@@ -1,59 +1,57 @@
-import { ref } from 'vue';
-
 const DATALIST_EVENTS = {
   CLICK: 'click'
 };
 
-const open = ref(false);
-let $listener = null;
+function isElementInContainer(event, containerEl) {
+  let currentEl = event.target;
+  let inContainer = currentEl === containerEl;
 
-function removeDatalistEvent() {
-  if ($listener) {
-    document.removeEventListener(DATALIST_EVENTS.CLICK, $listener);
+  while (currentEl && !inContainer) {
+    currentEl = currentEl.parentNode;
+    if (currentEl === containerEl) {
+      inContainer = true;
+    }
+  }
+
+  return inContainer;
+}
+
+function createDatalistEventListener(el, callback) {
+  const listener = (e) => {
+    const inContainer = isElementInContainer(e, el);
+
+    if (!inContainer) {
+      callback();
+    }
+  };
+
+  return listener;
+}
+
+function addDatalistEventListener({ el, listener, callback }) {
+  if (!listener) {
+    listener = createDatalistEventListener(el, callback);
+  }
+
+  document.addEventListener(DATALIST_EVENTS.CLICK, listener, {
+    capture: true
+  });
+}
+
+function removeDatalistEventListener(listener) {
+  if (listener) {
+    document.removeEventListener(DATALIST_EVENTS.CLICK, listener, {
+      capture: true
+    });
   }
 }
 
-function useDatalist(elementRef, { type, offHandler }) {
-  function handleBlur(event) {
-    if (!$listener) {
-      let el = null;
-
-      switch (type) {
-        case 'select':
-          break;
-        case 'autocomplete':
-          el = elementRef.value?.textfield;
-          break;
-      }
-
-      $listener = (e) => {
-        let inTarget = false;
-        let parentEl = e.target;
-
-        while (parentEl && parentEl !== el) {
-          parentEl = parentEl.parentNode;
-          if (parentEl === el) {
-            inTarget = true;
-          }
-        }
-
-        console.log('blur', e, parentEl);
-
-        if (e !== event && !inTarget && open) {
-          document.removeEventListener(DATALIST_EVENTS.CLICK, $listener);
-          offHandler();
-        }
-      };
-    }
-
-    document.addEventListener(DATALIST_EVENTS.CLICK, $listener);
-  }
-
+function useDatalist() {
   return {
-    open,
-    handleBlur,
-    removeDatalistEvent
+    createDatalistEventListener,
+    addDatalistEventListener,
+    removeDatalistEventListener
   };
 }
 
-export { useDatalist };
+export { DATALIST_EVENTS, useDatalist };

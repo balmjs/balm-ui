@@ -115,7 +115,7 @@ import {
 } from 'vue';
 import UiTextfield from '../textfield/textfield.vue';
 import { textfieldProps } from '../../mixins/textfield';
-import { useDatalist } from '../../mixins/datalist';
+import { DATALIST_EVENTS, useDatalist } from '../../mixins/datalist';
 import { iconProps, useMaterialIcon } from '../../mixins/material-icon';
 import {
   optionFormatDefaultValue,
@@ -182,8 +182,9 @@ const slots = useSlots();
 const autocomplete = ref(null);
 const autocompleteList = ref(null);
 const state = reactive({
+  open: false,
   autocompleteListEl: null,
-  autocompleteListener: null,
+  $listener: null,
   inputValue: props.modelValue,
   currentSource: [], // source data
   currentSuggestion: {
@@ -207,15 +208,13 @@ let scroll = {
 };
 const { inputValue, currentSuggestion } = toRefs(state);
 
-const { open, handleBlur, removeDatalistEvent } = useDatalist(autocomplete, {
-  type: 'autocomplete',
-  offHandler: off
-});
+const { createDatalistEventListener, removeDatalistEventListener } =
+  useDatalist();
 const { materialIcon } = useMaterialIcon(props);
 
 const className = computed(() => ({
   'mdc-autocomplete': true,
-  'mdc-autocomplete--expanded': open.value
+  'mdc-autocomplete--expanded': state.open
 }));
 const hasLeadingIcon = computed(
   () => !!(props.withLeadingIcon || slots.before)
@@ -257,7 +256,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  removeDatalistEvent();
+  removeDatalistEventListener(state.$listener);
 
   state.autocompleteListEl.removeEventListener(
     UI_AUTOCOMPLETE.EVENTS.MOUSEMOVE,
@@ -344,13 +343,13 @@ function on() {
     keywords.length >= props.minlength &&
     state.currentSuggestion.data.length
   ) {
-    open.value = true;
+    state.open = true;
     nextTick(() => initClientHeight());
   }
 }
 
 function off() {
-  open.value = false;
+  state.open = false;
   state.currentSuggestion.index = -1;
   clearSelected();
 }
@@ -485,6 +484,20 @@ function handleInput(value) {
   } else {
     off();
   }
+}
+
+function handleBlur() {
+  if (!state.$listener) {
+    const el = autocomplete.value?.textfield;
+    state.$listener = createDatalistEventListener(el, () => {
+      removeDatalistEventListener(state.$listener);
+      off();
+    });
+  }
+
+  document.addEventListener(DATALIST_EVENTS.CLICK, state.$listener, {
+    capture: true
+  });
 }
 
 function handleMousemove(event) {

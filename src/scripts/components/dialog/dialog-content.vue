@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import UI_DIALOG from './constants';
+import { UI_DIALOG } from './constants';
 
 export default {
-  name: 'UiDialogContent',
+  name: UI_DIALOG.contentComponentName,
   data() {
     return {
       UI_DIALOG

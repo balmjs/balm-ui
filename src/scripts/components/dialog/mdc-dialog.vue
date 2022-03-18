@@ -35,7 +35,7 @@
 
 <script>
 import UI_GLOBAL from '../../config/constants';
-import UI_DIALOG from './constants';
+import { UI_DIALOG } from './constants';
 
 // For $alert/$confirm
 export default {

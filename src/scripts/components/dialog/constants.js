@@ -1,5 +1,6 @@
 // Define dialog constants
-export default {
+export const UI_DIALOG = {
+  contentComponentName: 'UiDialogContent',
   cssClasses: {
     content: 'mdc-dialog__content'
   },
@@ -9,3 +10,7 @@ export default {
     CONFIRM: 'confirm'
   }
 };
+
+export const isComponentInDialog = (parent) =>
+  parent.type.name === UI_DIALOG.contentComponentName ||
+  (parent?.parent ? isComponentInDialog(parent?.parent) : false);

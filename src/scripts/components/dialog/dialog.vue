@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import UI_DIALOG from './constants';
+import { UI_DIALOG } from './constants';
 
 const name = 'UiDialog';
 

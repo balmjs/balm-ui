@@ -1,52 +1,19 @@
-@use '@material/top-app-bar/variables' as top-app-bar-variables;
-@use '@material/elevation/mixins' as elevation-mixins;
-@use '@material/feature-targeting/feature-targeting';
-@use '@material/menu-surface/variables' as menu-surface-variables;
-@use '@material/menu-surface/mixins' as menu-surface-mixins;
 @use '../mixins' as ui-mixins;
 
 .mdc-select--fullwidth {
   display: flex;
 }
 
-.mdc-select__menu .mdc-deprecated-list .mdc-deprecated-list-item--selected {
-  @include ui-mixins.selected();
-}
-
 .mdc-form-field .mdc-select--fullwidth {
   width: 100%;
 }
 
-// @media (max-width: top-app-bar-variables.$mobile-breakpoint) {
-//   $query: feature-targeting.all();
+.mdc-select__menu .mdc-deprecated-list .mdc-deprecated-list-item--selected {
+  @include ui-mixins.selected;
+}
 
-//   .mdc-select__menu {
-//     &.mdc-menu-surface--is-open-below {
-//       position: fixed !important;
-//       top: menu-surface-variables.$min-distance-from-edge !important;
-//       right: menu-surface-variables.$min-distance-from-edge;
-//       bottom: menu-surface-variables.$min-distance-from-edge;
-//       left: menu-surface-variables.$min-distance-from-edge !important;
-//       display: flex;
-//       justify-content: center;
-//       align-items: center;
-//       max-height: calc(
-//         100vh - #{menu-surface-variables.$min-distance-from-edge}
-//       ) !important;
-//       background-color: transparent;
-//       box-shadow: none;
-//     }
-
-//     .mdc-deprecated-list {
-//       width: 100%;
-//       @include elevation-mixins.elevation($z-value: 8, $query: $query);
-//       @include menu-surface-mixins.fill-color(surface, $query);
-//       @include menu-surface-mixins.ink-color(on-surface, $query);
-//       @include menu-surface-mixins.shape-radius(
-//         menu-surface-variables.$shape-radius,
-//         false,
-//         $query
-//       );
-//     }
-//   }
-// }
+.mdc-select--in-dialog {
+  .mdc-select__menu {
+    @include ui-mixins.menu-in-dialog;
+  }
+}

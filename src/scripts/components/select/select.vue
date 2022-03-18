@@ -8,7 +8,6 @@
       :aria-disabled="disabled"
       :aria-controls="helperTextId"
       :aria-describedby="helperTextId"
-      :style="style"
     >
       <!-- Label -->
       <mdc-notched-outline v-if="isOutlined" :has-label="!noLabel">
@@ -59,7 +58,7 @@
       <mdc-line-ripple v-if="!isOutlined"></mdc-line-ripple>
     </div>
     <!-- Options -->
-    <div :class="menuClassName" :style="style">
+    <div :class="menuClassName" @click="off">
       <ul :class="deprecatedListClassNameMap['mdc-list']" role="listbox">
         <li
           v-for="(option, index) in currentOptions"
@@ -130,7 +129,8 @@ import {
   onBeforeMount,
   onMounted,
   nextTick,
-  useSlots
+  useSlots,
+  getCurrentInstance
 } from 'vue';
 import { MDCSelect } from '../../../material-components-web/select';
 import { strings } from '../../../material-components-web/select/constants';
@@ -145,6 +145,7 @@ import {
   optionFormatDefaultValue,
   checkOptionFormat
 } from '../../utils/option-format';
+import { isComponentInDialog } from '../dialog/constants';
 
 const props = defineProps({
   // UI variants
@@ -199,16 +200,14 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  ...helperProps,
-  fixed: {
-    type: Boolean,
-    default: false
-  }
+  ...helperProps
 });
 
 const emit = defineEmits([UI_SELECT.EVENTS.CHANGE, UI_SELECT.EVENTS.SELECTED]);
 const slots = useSlots();
 
+const instance = getCurrentInstance();
+const parent = instance.parent;
 const select = ref(null);
 const state = reactive({
   $select: null,
@@ -234,7 +233,8 @@ const className = computed(() => ({
   'mdc-select--with-leading-icon': hasLeadingIcon.value,
   'mdc-select--no-label': noLabel.value,
   'mdc-select--required': props.required,
-  'mdc-select--disabled': props.disabled
+  'mdc-select--disabled': props.disabled,
+  'mdc-select--in-dialog': isComponentInDialog(parent) // fix(@material-components): overflow inside of the dialog
 }));
 const menuClassName = computed(() => [
   'mdc-select__menu',
@@ -244,10 +244,6 @@ const menuClassName = computed(() => [
     'mdc-menu-surface--fullwidth': props.fullwidth
   }
 ]);
-const style = computed(() => {
-  const el = select.value;
-  return el && props.fixed ? { width: el.dataset.width || 'auto' } : {};
-});
 
 onBeforeMount(() => checkOptionFormat('<ui-select>', props.optionFormat));
 
@@ -275,11 +271,6 @@ onMounted(() => {
       }
     });
   });
-
-  // fix(@material-components): overflow inside of the component
-  if (props.fixed) {
-    state.$select.menu.setFixedPosition(true);
-  }
 
   init();
 
@@ -360,5 +351,11 @@ function getSelected(index) {
     value: selected[props.optionFormat.value],
     label: selected[props.optionFormat.label]
   };
+}
+
+function off() {
+  if (isComponentInDialog(parent) && state.$select.menu.open) {
+    state.$select.menu.open = false;
+  }
 }
 </script>

@@ -4,11 +4,11 @@
   <ui-dialog v-model="open">
     <ui-dialog-content>
       <ui-form type="|">
-        <!-- <template v-for="i in 6" :key="i">
+        <template v-for="i in 2" :key="i">
           <ui-form-field>
             <ui-textfield v-model="value" required>label</ui-textfield>
           </ui-form-field>
-        </template> -->
+        </template>
         <ui-form-field>
           <ui-select v-model="value2" :options="options" required>
             label
@@ -72,55 +72,55 @@ const options = [
   {
     label: 'D',
     value: 4
-  },
-  {
-    label: 'A',
-    value: 5
-  },
-  {
-    label: 'B',
-    value: 6
-  },
-  {
-    label: 'C',
-    value: 7
-  },
-  {
-    label: 'D',
-    value: 8
-  },
-  {
-    label: 'A',
-    value: 9
-  },
-  {
-    label: 'B',
-    value: 10
-  },
-  {
-    label: 'C',
-    value: 11
-  },
-  {
-    label: 'D',
-    value: 12
-  },
-  {
-    label: 'A',
-    value: 13
-  },
-  {
-    label: 'B',
-    value: 14
-  },
-  {
-    label: 'C',
-    value: 15
-  },
-  {
-    label: 'D',
-    value: 16
   }
+  // {
+  //   label: 'E',
+  //   value: 5
+  // },
+  // {
+  //   label: 'F',
+  //   value: 6
+  // },
+  // {
+  //   label: 'G',
+  //   value: 7
+  // },
+  // {
+  //   label: 'H',
+  //   value: 8
+  // },
+  // {
+  //   label: 'I',
+  //   value: 9
+  // },
+  // {
+  //   label: 'J',
+  //   value: 10
+  // },
+  // {
+  //   label: 'K',
+  //   value: 11
+  // },
+  // {
+  //   label: 'L',
+  //   value: 12
+  // },
+  // {
+  //   label: 'M',
+  //   value: 13
+  // },
+  // {
+  //   label: 'N',
+  //   value: 14
+  // },
+  // {
+  //   label: 'O',
+  //   value: 15
+  // },
+  // {
+  //   label: 'P',
+  //   value: 16
+  // }
 ];
 
 const state = reactive({

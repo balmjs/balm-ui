@@ -2,6 +2,8 @@
 @use 'balm-ui/components/core';
 @use 'balm-ui/components/textfield/textfield';
 @use 'balm-ui/components/autocomplete/autocomplete';
+@use 'balm-ui/components/menu/menu';
+@use 'balm-ui/components/list/list';
 @use 'balm-ui/components/icon/icon'; // Optional
 ```
 

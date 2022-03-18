@@ -25,7 +25,7 @@ fi
 if $canRelease; then
   echo "${tagName} releasing"
 
-  npm publish --tag next
+  npm publish
 
   git tag ${tagName}
   git push origin ${tagName}

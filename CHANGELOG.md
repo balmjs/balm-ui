@@ -2,6 +2,16 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.2.0
+
+### Chore
+
+- `<ui-select>`, `<ui-autocomplete>`: optimize components inside of the `<ui-dialog>`
+
+### BREAKING CHANGES
+
+- `<ui-select>`: remove prop `fixed`
+
 ## v10.1.1
 
 ### BREAKING CHANGES

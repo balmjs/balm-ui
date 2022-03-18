@@ -112,11 +112,6 @@
       </mdc-floating-label>
     </mdc-notched-outline>
     <mdc-line-ripple v-else></mdc-line-ripple>
-
-    <!-- Custom area (optional) -->
-    <slot v-if="plus" name="plus">
-      <!-- For autocomplete -->
-    </slot>
   </div>
 </template>
 
@@ -245,12 +240,7 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  ...helperProps,
-  // For plus
-  plus: {
-    type: Boolean,
-    default: false
-  }
+  ...helperProps
 });
 
 const emit = defineEmits([

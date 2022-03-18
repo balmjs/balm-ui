@@ -1,10 +1,10 @@
-@use '@material/theme/theme';
-@use '@material/theme/theme-color';
 @use '@material/textfield/variables' as textfield-variables;
 @use '@material/menu-surface/variables' as menu-surface-variables;
 @use '../mixins' as ui-mixins;
 
 .mdc-autocomplete {
+  position: relative;
+
   .mdc-text-field__ripple {
     &::before,
     &::after {
@@ -15,44 +15,28 @@
       border-radius: 4px 4px 0 0;
     }
   }
-
-  .mdc-autocomplete__list {
-    position: absolute;
-    top: 56px;
-    left: 0;
-    z-index: 999;
-    display: none;
-    width: 100%;
-  }
-
-  &.mdc-autocomplete--expanded {
-    overflow: visible;
-    z-index: 1;
-
-    .mdc-autocomplete__list {
-      display: block;
-    }
-  }
 }
 
-.mdc-autocomplete-list {
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
-  max-height: calc(50vh - #{menu-surface-variables.$min-distance-from-edge});
-  text-align: left;
-  border-width: 0 textfield-variables.$outlined-stroke-width
-    textfield-variables.$outlined-stroke-width;
-  border-style: solid;
-  @include theme.property(border-color, primary);
-  @include ui-mixins.background;
+.mdc-autocomplete--fullwidth {
+  display: flex;
+}
 
-  .mdc-deprecated-list,
-  .mdc-deprecated-list-item {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    list-style: none;
+.mdc-form-field .mdc-autocomplete--fullwidth {
+  width: 100%;
+}
+
+.mdc-autocomplete__menu {
+  position: absolute;
+  top: textfield-variables.$height - textfield-variables.$outlined-stroke-width;
+  left: 0;
+  max-height: calc(50vh - #{menu-surface-variables.$min-distance-from-edge});
+
+  &.mdc-menu-surface--open {
+    display: block;
+  }
+
+  .mdc-deprecated-list {
+    width: 100%;
   }
 
   .mdc-deprecated-list-item {
@@ -65,7 +49,13 @@
     }
 
     &.selected {
-      @include ui-mixins.selected();
+      @include ui-mixins.selected;
     }
+  }
+}
+
+.mdc-autocomplete--in-dialog {
+  .mdc-autocomplete__menu {
+    @include ui-mixins.menu-in-dialog;
   }
 }

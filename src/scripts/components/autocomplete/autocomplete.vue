@@ -1,65 +1,62 @@
 <template>
-  <ui-textfield
-    ref="autocomplete"
-    :model-value="inputValue"
-    :class="className"
-    :input-id="inputId"
-    :outlined="outlined"
-    :label="label"
-    :placeholder="placeholder"
-    :disabled="disabled"
-    :required="required"
-    :fullwidth="fullwidth"
-    :end-aligned="endAligned"
-    :with-leading-icon="hasLeadingIcon"
-    :with-trailing-icon="hasTrailingIcon"
-    plus
-    @focus="handleFocus"
-    @keydown="handleKeydown"
-    @update:modelValue="handleInput"
-    @blur="handleBlur"
-  >
-    <!-- Leading icon (optional) -->
-    <template #before="{ iconClass }">
-      <i
-        v-if="materialIcon"
-        :class="UI_GLOBAL.getMaterialIconClass(iconClass)"
-        v-text="materialIcon"
-      ></i>
-      <template v-else>
-        <slot name="before" :iconClass="iconClass"></slot>
+  <div :class="className">
+    <ui-textfield
+      ref="autocomplete"
+      :model-value="inputValue"
+      :input-id="inputId"
+      :outlined="outlined"
+      :label="label"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :required="required"
+      :fullwidth="fullwidth"
+      :end-aligned="endAligned"
+      :with-leading-icon="hasLeadingIcon"
+      :with-trailing-icon="hasTrailingIcon"
+      plus
+      @focus="handleFocus"
+      @keydown="handleKeydown"
+      @update:modelValue="handleInput"
+      @blur="handleBlur"
+    >
+      <!-- Leading icon (optional) -->
+      <template #before="{ iconClass }">
+        <i
+          v-if="materialIcon"
+          :class="UI_GLOBAL.getMaterialIconClass(iconClass)"
+          v-text="materialIcon"
+        ></i>
+        <template v-else>
+          <slot name="before" :iconClass="iconClass"></slot>
+        </template>
       </template>
-    </template>
-    <!-- Label text -->
-    <template #default>
-      <slot></slot>
-    </template>
-    <!-- Trailing icon (optional) -->
-    <template #after="{ iconClass }">
-      <slot name="after" :iconClass="iconClass"></slot>
-    </template>
+      <!-- Label text -->
+      <template #default>
+        <slot></slot>
+      </template>
+      <!-- Trailing icon (optional) -->
+      <template #after="{ iconClass }">
+        <slot name="after" :iconClass="iconClass"></slot>
+      </template>
+    </ui-textfield>
     <!-- Autocomplete list -->
-    <template #plus>
-      <div class="mdc-autocomplete__list">
-        <div
-          v-show="currentSuggestion.data.length"
-          ref="autocompleteList"
-          class="mdc-autocomplete-list"
-        >
-          <ul :class="deprecatedListClassNameMap['mdc-list']">
-            <li
-              v-for="(item, index) in currentSuggestion.data"
-              :key="index"
-              :data-index="index"
-              :class="getItemClassName(index)"
-              @click="handleSelected(item)"
-              v-html="item.html"
-            ></li>
-          </ul>
-        </div>
-      </div>
-    </template>
-  </ui-textfield>
+    <div
+      v-show="currentSuggestion.data.length"
+      ref="autocompleteList"
+      :class="menuClassName"
+    >
+      <ul :class="deprecatedListClassNameMap['mdc-list']">
+        <li
+          v-for="(item, index) in currentSuggestion.data"
+          :key="index"
+          :data-index="index"
+          :class="getItemClassName(index)"
+          @click="handleSelected(item)"
+          v-html="item.html"
+        ></li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -113,7 +110,8 @@ import {
   onMounted,
   onBeforeUnmount,
   nextTick,
-  useSlots
+  useSlots,
+  getCurrentInstance
 } from 'vue';
 import UiTextfield from '../textfield/textfield.vue';
 import { textfieldProps } from '../../mixins/textfield';
@@ -124,6 +122,7 @@ import {
   checkOptionFormat
 } from '../../utils/option-format';
 import getType from '../../utils/typeof';
+import { isComponentInDialog } from '../dialog/constants';
 
 const props = defineProps({
   ...textfieldProps,
@@ -181,6 +180,8 @@ const emit = defineEmits([
 ]);
 const slots = useSlots();
 
+const instance = getCurrentInstance();
+const parent = instance.parent;
 const autocomplete = ref(null);
 const autocompleteList = ref(null);
 const state = reactive({
@@ -216,8 +217,18 @@ const { materialIcon } = useMaterialIcon(props);
 
 const className = computed(() => ({
   'mdc-autocomplete': true,
-  'mdc-autocomplete--expanded': state.open
+  'mdc-autocomplete--fullwidth': props.fullwidth,
+  'mdc-autocomplete--in-dialog': isComponentInDialog(parent)
 }));
+const menuClassName = computed(() => [
+  'mdc-autocomplete__menu',
+  'mdc-menu',
+  'mdc-menu-surface',
+  {
+    'mdc-menu-surface--fullwidth': props.fullwidth,
+    'mdc-menu-surface--open': state.open
+  }
+]);
 const hasLeadingIcon = computed(
   () => !!(props.withLeadingIcon || slots.before)
 );

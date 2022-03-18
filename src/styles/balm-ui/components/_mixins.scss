@@ -1,4 +1,10 @@
 @use '@material/theme/theme';
+@use '@material/feature-targeting/feature-targeting';
+@use '@material/menu-surface/variables' as menu-surface-variables;
+@use '@material/dialog/variables' as dialog-variables;
+@use '@material/elevation/mixins' as elevation-mixins;
+@use '@material/menu-surface/mixins' as menu-surface-mixins;
+@use '@material/top-app-bar/variables' as top-app-bar-variables;
 
 @mixin background {
   @include theme.property(background-color, background);
@@ -10,5 +16,43 @@
 
   @if ($withBorder == 1) {
     @include theme.property(border-color, primary);
+  }
+}
+
+@mixin menu-in-dialog($query: feature-targeting.all()) {
+  position: fixed !important;
+  top: menu-surface-variables.$min-distance-from-edge !important;
+  right: menu-surface-variables.$min-distance-from-edge;
+  bottom: menu-surface-variables.$min-distance-from-edge !important;
+  left: menu-surface-variables.$min-distance-from-edge !important;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  max-height: calc(
+    100vh - #{menu-surface-variables.$min-distance-from-edge}
+  ) !important;
+  background-color: transparent;
+  box-shadow: none;
+
+  &.mdc-menu-surface--open {
+    display: flex;
+  }
+
+  .mdc-deprecated-list {
+    width: dialog-variables.$max-width;
+    @include elevation-mixins.elevation($z-value: 8, $query: $query);
+    @include menu-surface-mixins.fill-color(surface, $query);
+    @include menu-surface-mixins.ink-color(on-surface, $query);
+    @include menu-surface-mixins.shape-radius(
+      menu-surface-variables.$shape-radius,
+      false,
+      $query
+    );
+  }
+
+  @media (max-width: top-app-bar-variables.$mobile-breakpoint) {
+    .mdc-deprecated-list {
+      width: 100%;
+    }
   }
 }

@@ -273,7 +273,6 @@
       "disabled",
       "required",
       "fullwidth",
-      "fixed",
       "icon",
       "with-leading-icon",
       "helper-text-id"
@@ -308,7 +307,7 @@
     "description": "Chips are compact elements that represent an input, attribute, or action."
   },
   "ui-chip": {
-    "attributes": ["icon", "selected", "removable"],
+    "attributes": ["icon", "selected", "deletable"],
     "description": "A chip item."
   },
   "ui-file": {
@@ -384,14 +383,7 @@
     "description": "Lists are continuous, vertical indexes of text or images."
   },
   "ui-nav": {
-    "attributes": [
-      "type",
-      "single-selection",
-      "model-value",
-      "non-interactive",
-      "dense",
-      "avatar"
-    ],
+    "attributes": ["type", "non-interactive", "dense", "avatar"],
     "description": "A set of navigation links."
   },
   "ui-item": {
@@ -500,8 +492,6 @@
       "mask-closable",
       "no-scrim",
       "reset-scroll",
-      "scrollable",
-      "stacked",
       "fullscreen"
     ],
     "description": "Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks."

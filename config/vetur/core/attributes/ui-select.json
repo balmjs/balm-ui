@@ -44,10 +44,6 @@
     "type": "boolean",
     "description": "Styles the select as full width select."
   },
-  "fixed": {
-    "type": "boolean",
-    "description": "Styles the select as fixed select."
-  },
   "icon": {
     "type": "string",
     "description": "Indicates an icon element with a leading icon."

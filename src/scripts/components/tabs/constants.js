@@ -1,12 +1,12 @@
 // Define tab bar constants
-const UI_TAB_BAR = {
+export const UI_TAB_BAR = {
   EVENTS: {
     CHANGE: 'update:modelValue'
   }
 };
 
 // Define tab scroller constants
-const UI_TAB_SCROLLER = {
+export const UI_TAB_SCROLLER = {
   ALIGN: ['start', 'center', 'end'],
   EVENTS: {
     CHANGE: 'update:scrollX'
@@ -14,13 +14,13 @@ const UI_TAB_SCROLLER = {
 };
 
 // Define tab indicator constants
-const UI_TAB_INDICATOR = {
+export const UI_TAB_INDICATOR = {
   UNDERLINE: 'underline',
   ICON: 'icon'
 };
 
 // Define tab constants
-const UI_TAB = {
+export const UI_TAB = {
   TYPES: {
     text: 0,
     iconOnly: 1,
@@ -32,5 +32,3 @@ const UI_TAB = {
   },
   idPrefix: 'mdc-tab-'
 };
-
-export { UI_TAB_BAR, UI_TAB_SCROLLER, UI_TAB_INDICATOR, UI_TAB };

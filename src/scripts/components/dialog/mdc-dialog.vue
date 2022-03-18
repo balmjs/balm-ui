@@ -7,10 +7,10 @@
         </h2>
         <div
           v-if="options.raw"
-          class="mdc-dialog__content"
+          :class="UI_DIALOG.cssClasses.content"
           v-html="options.message"
         ></div>
-        <div v-else class="mdc-dialog__content">
+        <div v-else :class="UI_DIALOG.cssClasses.content">
           <i
             v-if="materialIcon"
             :class="
@@ -35,12 +35,14 @@
 
 <script>
 import UI_GLOBAL from '../../config/constants';
+import UI_DIALOG from './constants';
 
 // For $alert/$confirm
 export default {
   name: 'MdcDialog',
   customOptions: {
-    UI_GLOBAL
+    UI_GLOBAL,
+    UI_DIALOG
   }
 };
 </script>

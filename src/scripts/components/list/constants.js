@@ -1,17 +1,21 @@
 import { deprecatedClassNameMap } from '../../../material-components-web/list/constants';
 
-const deprecatedListClassNameMap = Object.assign({}, deprecatedClassNameMap, {
-  'mdc-list-item__graphic': 'mdc-deprecated-list-item__graphic',
-  'mdc-list-item__meta': 'mdc-deprecated-list-item__meta',
-  'mdc-list-item__secondary-text': 'mdc-deprecated-list-item__secondary-text',
-  'mdc-list-item__ripple': 'mdc-deprecated-list-item__ripple',
-  'mdc-list-group__subheader': 'mdc-deprecated-list-group__subheader',
-  'mdc-list-group': 'mdc-deprecated-list-group',
-  'mdc-list-divider': 'mdc-deprecated-list-divider'
-});
+export const deprecatedListClassNameMap = Object.assign(
+  {},
+  deprecatedClassNameMap,
+  {
+    'mdc-list-item__graphic': 'mdc-deprecated-list-item__graphic',
+    'mdc-list-item__meta': 'mdc-deprecated-list-item__meta',
+    'mdc-list-item__secondary-text': 'mdc-deprecated-list-item__secondary-text',
+    'mdc-list-item__ripple': 'mdc-deprecated-list-item__ripple',
+    'mdc-list-group__subheader': 'mdc-deprecated-list-group__subheader',
+    'mdc-list-group': 'mdc-deprecated-list-group',
+    'mdc-list-divider': 'mdc-deprecated-list-divider'
+  }
+);
 
 // Define list constants
-const UI_LIST = {
+export const UI_LIST = {
   TYPES: {
     singleLine: 1,
     twoLine: 2
@@ -22,12 +26,10 @@ const UI_LIST = {
 };
 
 // Define item constants
-const UI_ITEM = {
+export const UI_ITEM = {
   cssClasses: {
     active: deprecatedListClassNameMap['mdc-list-item--activated'],
     firstTile: deprecatedListClassNameMap['mdc-list-item__graphic'],
     lastTile: deprecatedListClassNameMap['mdc-list-item__meta']
   }
 };
-
-export { UI_LIST, UI_ITEM, deprecatedListClassNameMap };

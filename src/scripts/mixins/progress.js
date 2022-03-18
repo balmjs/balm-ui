@@ -1,5 +1,5 @@
 import { watch } from 'vue';
-import { UI_PROGRESS } from '../components/progress/constants';
+import UI_PROGRESS from '../components/progress/constants';
 
 const progressProps = {
   // States

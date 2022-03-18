@@ -1,5 +1,5 @@
 // Define fab constants
-const UI_FAB = {
+export default {
   TYPES: {
     regular: 0,
     extended: 1
@@ -9,5 +9,3 @@ const UI_FAB = {
     touch: 'mdc-fab--touch'
   }
 };
-
-export default UI_FAB;

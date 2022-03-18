@@ -1,9 +1,7 @@
 // Define progress constants
-const UI_PROGRESS = {
+export default {
   VALUE: {
     MIN: 0,
     MAX: 1
   }
 };
-
-export { UI_PROGRESS };

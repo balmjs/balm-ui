@@ -114,11 +114,9 @@
     <mdc-line-ripple v-else></mdc-line-ripple>
 
     <!-- Custom area (optional) -->
-    <div v-if="plus" class="mdc-text-field__plus">
-      <slot name="plus">
-        <!-- For autocomplete -->
-      </slot>
-    </div>
+    <slot v-if="plus" name="plus">
+      <!-- For autocomplete -->
+    </slot>
   </div>
 </template>
 

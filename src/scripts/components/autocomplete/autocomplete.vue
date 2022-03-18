@@ -40,21 +40,23 @@
     </template>
     <!-- Autocomplete list -->
     <template #plus>
-      <div
-        v-show="currentSuggestion.data.length"
-        ref="autocompleteList"
-        class="mdc-autocomplete__list"
-      >
-        <ul :class="deprecatedListClassNameMap['mdc-list']">
-          <li
-            v-for="(item, index) in currentSuggestion.data"
-            :key="index"
-            :data-index="index"
-            :class="getItemClassName(index)"
-            @click="handleSelected(item)"
-            v-html="item.html"
-          ></li>
-        </ul>
+      <div class="mdc-autocomplete__list">
+        <div
+          v-show="currentSuggestion.data.length"
+          ref="autocompleteList"
+          class="mdc-autocomplete-list"
+        >
+          <ul :class="deprecatedListClassNameMap['mdc-list']">
+            <li
+              v-for="(item, index) in currentSuggestion.data"
+              :key="index"
+              :data-index="index"
+              :class="getItemClassName(index)"
+              @click="handleSelected(item)"
+              v-html="item.html"
+            ></li>
+          </ul>
+        </div>
       </div>
     </template>
   </ui-textfield>

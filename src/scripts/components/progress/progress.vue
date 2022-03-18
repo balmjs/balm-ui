@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { UI_PROGRESS } from './constants';
+import UI_PROGRESS from './constants';
 
 const name = 'UiProgress';
 

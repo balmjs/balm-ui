@@ -16,7 +16,7 @@
     }
   }
 
-  .mdc-text-field__plus {
+  .mdc-autocomplete__list {
     position: absolute;
     top: 56px;
     left: 0;
@@ -29,13 +29,13 @@
     overflow: visible;
     z-index: 1;
 
-    .mdc-text-field__plus {
+    .mdc-autocomplete__list {
       display: block;
     }
   }
 }
 
-.mdc-autocomplete__list {
+.mdc-autocomplete-list {
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;

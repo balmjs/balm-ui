@@ -24,19 +24,9 @@
 </template>
 
 <script>
-// Define dialog constants
-const name = 'UiDialog';
+import UI_DIALOG from './constants';
 
-const UI_DIALOG = {
-  cssClasses: {
-    content: 'mdc-dialog__content'
-  },
-  EVENTS: {
-    CHANGE: 'update:modelValue',
-    CLOSE: 'close',
-    CONFIRM: 'confirm'
-  }
-};
+const name = 'UiDialog';
 
 export default {
   name,

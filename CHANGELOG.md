@@ -2,7 +2,13 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
-## v10.2.0
+## v10.2.1 / 2022-03-19
+
+### Chore
+
+- `<ui-select>`, `<ui-autocomplete>`: optimize components inside of the `<ui-table>`
+
+## v10.2.0 / 2022-03-18
 
 ### Chore
 
@@ -11,11 +17,6 @@
 ### BREAKING CHANGES
 
 - `<ui-select>`: remove prop `fixed`
-
-## v10.1.1
-
-### BREAKING CHANGES
-
 - `<ui-dialog>`: remove prop `scrollable` and `stacked`
 
 ## v10.1.0 / 2022-03-07

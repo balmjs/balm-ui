@@ -145,7 +145,7 @@ import {
   optionFormatDefaultValue,
   checkOptionFormat
 } from '../../utils/option-format';
-import { isComponentInDialog } from '../dialog/constants';
+import { isOverflowInsideComponent } from '../dialog/constants';
 
 const props = defineProps({
   // UI variants
@@ -225,6 +225,13 @@ const hasLeadingIcon = computed(
   () => !!(materialIcon.value || props.withLeadingIcon || slots.icon)
 );
 const noLabel = computed(() => !(props.label || slots.default));
+const inDialog = computed(() => {
+  // fix(@material-components): overflow inside of the dialog
+  if (state.$select) {
+    state.$select.menu.quickOpen = true;
+  }
+  return isOverflowInsideComponent(parent);
+});
 const className = computed(() => ({
   'mdc-select': true,
   'mdc-select--filled': !isOutlined.value,
@@ -234,7 +241,7 @@ const className = computed(() => ({
   'mdc-select--no-label': noLabel.value,
   'mdc-select--required': props.required,
   'mdc-select--disabled': props.disabled,
-  'mdc-select--in-dialog': isComponentInDialog(parent) // fix(@material-components): overflow inside of the dialog
+  'mdc-select--in-dialog': inDialog.value
 }));
 const menuClassName = computed(() => [
   'mdc-select__menu',
@@ -354,7 +361,7 @@ function getSelected(index) {
 }
 
 function off() {
-  if (isComponentInDialog(parent) && state.$select.menu.open) {
+  if (inDialog.value && state.$select.menu.open) {
     state.$select.menu.open = false;
   }
 }

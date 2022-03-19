@@ -11,6 +11,7 @@ export const UI_DIALOG = {
   }
 };
 
-export const isComponentInDialog = (parent) =>
+export const isOverflowInsideComponent = (parent) =>
   parent.type.name === UI_DIALOG.contentComponentName ||
-  (parent?.parent ? isComponentInDialog(parent?.parent) : false);
+  parent.type.name === 'MdcTableBody' ||
+  (parent?.parent ? isOverflowInsideComponent(parent?.parent) : false);

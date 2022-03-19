@@ -122,7 +122,7 @@ import {
   checkOptionFormat
 } from '../../utils/option-format';
 import getType from '../../utils/typeof';
-import { isComponentInDialog } from '../dialog/constants';
+import { isOverflowInsideComponent } from '../dialog/constants';
 
 const props = defineProps({
   ...textfieldProps,
@@ -218,7 +218,7 @@ const { materialIcon } = useMaterialIcon(props);
 const className = computed(() => ({
   'mdc-autocomplete': true,
   'mdc-autocomplete--fullwidth': props.fullwidth,
-  'mdc-autocomplete--in-dialog': isComponentInDialog(parent)
+  'mdc-autocomplete--in-dialog': isOverflowInsideComponent(parent)
 }));
 const menuClassName = computed(() => [
   'mdc-autocomplete__menu',

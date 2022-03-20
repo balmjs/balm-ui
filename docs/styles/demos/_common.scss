@@ -27,6 +27,10 @@ $hero-background-color: #f7f7f7;
     font-weight: 300;
   }
 
+  .mdc-menu-surface {
+    z-index: 3;
+  }
+
   .mdc-drawer--permanent {
     display: inherit;
     height: inherit;

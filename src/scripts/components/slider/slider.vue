@@ -1,6 +1,6 @@
 <template>
   <!-- <input type="range"> -->
-  <div ref="slider" :class="className" :data-step="+step">
+  <div ref="slider" :class="className">
     <template v-if="isRange">
       <mdc-slider-input
         :min="+min"

@@ -1,8 +1,8 @@
 <template>
-  <div class="mdc-banner__content" role="status" aria-live="assertive">
+  <div class="mdc-banner__content" role="alertdialog" aria-live="assertive">
     <div class="mdc-banner__graphic-text-wrapper">
       <!-- Supporting illustration (optional) -->
-      <div v-if="$parent.withImage" class="mdc-banner__graphic">
+      <div v-if="$parent.withImage" class="mdc-banner__graphic" role="img">
         <slot name="image"></slot>
       </div>
       <!-- Text -->

@@ -5,10 +5,6 @@
   width: 100%;
 }
 
-.mdc-form-field .mdc-select--fullwidth {
-  width: 100%;
-}
-
 .mdc-select__menu .mdc-deprecated-list .mdc-deprecated-list-item--selected {
   @include ui-mixins.selected;
 }

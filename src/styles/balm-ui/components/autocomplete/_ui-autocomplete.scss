@@ -3,6 +3,7 @@
 @use '../mixins' as ui-mixins;
 
 .mdc-autocomplete {
+  display: inline-flex;
   position: relative;
 
   .mdc-text-field__ripple {
@@ -19,10 +20,6 @@
 
 .mdc-autocomplete--fullwidth {
   display: flex;
-  width: 100%;
-}
-
-.mdc-form-field .mdc-autocomplete--fullwidth {
   width: 100%;
 }
 

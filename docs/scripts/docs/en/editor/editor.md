@@ -11,6 +11,7 @@
 | `toolbar`                | array, string   | null                                    | Custom or `'full'` editor toolbar.                                    |         |
 | `placeholder`            | string          | `null`                                  | Placeholder text to show when editor is empty.                        |         |
 | `readonly`               | boolean         | `false`                                 | Whether to instantiate the editor to read-only mode.                  |         |
+| `fullwidth`              | boolean         | `false`                                 | Styles the editor as a full width editor.                             | 10.3.0  |
 | `theme`                  | string          | `'snow'`                                | Name of theme to use.                                                 |         |
 | `toolbarIcons`           | object          | `{}`                                    | Custom toolbar icons.                                                 |         |
 | `toolbarTips`            | object          | `{}`                                    | Custom toolbar tooltips.                                              | 9.2.0   |

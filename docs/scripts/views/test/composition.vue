@@ -1,35 +1,180 @@
 <template>
   <div ref="root">Composition API</div>
 
-  <ui-dialog v-model="open">
-    <ui-dialog-content>
-      <ui-form type="|">
-        <template v-for="i in 2" :key="i">
-          <ui-form-field>
-            <ui-textfield v-model="value" required>label</ui-textfield>
-          </ui-form-field>
-        </template>
+  <div :style="'padding: 10px'">
+    <ui-form :type="formType" item-margin-bottom="20">
+      <template #default="{ itemClass, subitemClass, actionClass }">
         <ui-form-field>
-          <ui-select v-model="value2" :options="options" required>
-            label
-          </ui-select>
+          <label>Textfield</label>
+          <ui-textfield :fullwidth="fullwidth"></ui-textfield>
         </ui-form-field>
         <ui-form-field>
+          <label>Autocomplete</label>
           <ui-autocomplete
             v-model="keywords"
             :source="source"
-            placeholder="Try to type"
+            :fullwidth="fullwidth"
           ></ui-autocomplete>
         </ui-form-field>
-      </ui-form>
+        <ui-form-field>
+          <label>Editor</label>
+          <ui-editor :fullwidth="fullwidth"></ui-editor>
+        </ui-form-field>
+        <ui-form-field>
+          <label>Select</label>
+          <ui-select :options="options" :fullwidth="fullwidth"></ui-select>
+        </ui-form-field>
+        <ui-form-field>
+          <label>Checkbox</label>
+          <div :class="subitemClass">
+            <template v-for="i in 4" :key="i">
+              <ui-form-field>
+                <ui-checkbox :input-id="`checkbox-${i}`"></ui-checkbox>
+                <label :for="`checkbox-${i}`">Item{{ i }}</label>
+              </ui-form-field>
+            </template>
+          </div>
+        </ui-form-field>
+        <ui-form-field>
+          <label>Radio</label>
+          <div :class="subitemClass">
+            <template v-for="i in 4" :key="i">
+              <ui-form-field>
+                <ui-radio
+                  v-model="radioValue"
+                  :input-id="`radio-${i}`"
+                  :value="i"
+                ></ui-radio>
+                <label :for="`radio-${i}`">Item{{ i }}</label>
+              </ui-form-field>
+            </template>
+          </div>
+        </ui-form-field>
+        <ui-form-field>
+          <label>Segmented</label>
+          <ui-segmented-buttons :items="items"></ui-segmented-buttons>
+        </ui-form-field>
+        <ui-form-field>
+          <label>Chips</label>
+          <ui-chips type="choice" :options="options"></ui-chips>
+        </ui-form-field>
+        <ui-form-field>
+          <label>File</label>
+          <ui-file></ui-file>
+        </ui-form-field>
+        <ui-form-field>
+          <label>Datepicker</label>
+          <ui-datepicker></ui-datepicker>
+        </ui-form-field>
+        <ui-form-field>
+          <label>Rangepicker</label>
+          <ui-rangepicker></ui-rangepicker>
+        </ui-form-field>
+        <ui-form-field>
+          <label>Switch</label>
+          <ui-switch></ui-switch>
+        </ui-form-field>
+        <ui-form-field>
+          <label>Slider</label>
+          <ui-slider></ui-slider>
+        </ui-form-field>
+      </template>
+    </ui-form>
+  </div>
+
+  <!-- <ui-dialog v-model="open">
+    <ui-dialog-content>
+      <div :style="'padding: 10px'">
+        <ui-form :type="formType" item-margin-bottom="20">
+          <template #default="{ itemClass, subitemClass, actionClass }">
+            <ui-form-field>
+              <label>Textfield</label>
+              <ui-textfield :fullwidth="fullwidth"></ui-textfield>
+            </ui-form-field>
+            <ui-form-field>
+              <label>Autocomplete</label>
+              <ui-autocomplete
+                v-model="keywords"
+                :source="source"
+                :fullwidth="fullwidth"
+              ></ui-autocomplete>
+            </ui-form-field>
+            <ui-form-field>
+              <label>Editor</label>
+              <ui-editor :fullwidth="fullwidth"></ui-editor>
+            </ui-form-field>
+            <ui-form-field>
+              <label>Select</label>
+              <ui-select :options="options" :fullwidth="fullwidth"></ui-select>
+            </ui-form-field>
+            <ui-form-field>
+              <label>Checkbox</label>
+              <div :class="subitemClass">
+                <template v-for="i in 4" :key="i">
+                  <ui-form-field>
+                    <ui-checkbox :input-id="`checkbox-${i}`"></ui-checkbox>
+                    <label :for="`checkbox-${i}`">Item{{ i }}</label>
+                  </ui-form-field>
+                </template>
+              </div>
+            </ui-form-field>
+            <ui-form-field>
+              <label>Radio</label>
+              <div :class="subitemClass">
+                <template v-for="i in 4" :key="i">
+                  <ui-form-field>
+                    <ui-radio
+                      v-model="radioValue"
+                      :input-id="`radio-${i}`"
+                      :value="i"
+                    ></ui-radio>
+                    <label :for="`radio-${i}`">Item{{ i }}</label>
+                  </ui-form-field>
+                </template>
+              </div>
+            </ui-form-field>
+            <ui-form-field>
+              <label>Segmented</label>
+              <ui-segmented-buttons :items="items"></ui-segmented-buttons>
+            </ui-form-field>
+            <ui-form-field>
+              <label>Chips</label>
+              <ui-chips type="choice" :options="options"></ui-chips>
+            </ui-form-field>
+            <ui-form-field>
+              <label>File</label>
+              <ui-file></ui-file>
+            </ui-form-field>
+            <ui-form-field>
+              <label>Datepicker</label>
+              <ui-datepicker></ui-datepicker>
+            </ui-form-field>
+            <ui-form-field>
+              <label>Rangepicker</label>
+              <ui-rangepicker></ui-rangepicker>
+            </ui-form-field>
+            <ui-form-field>
+              <label>Switch</label>
+              <ui-switch></ui-switch>
+            </ui-form-field>
+            <ui-form-field>
+              <label>Slider</label>
+              <ui-slider></ui-slider>
+            </ui-form-field>
+          </template>
+        </ui-form>
+      </div>
     </ui-dialog-content>
-  </ui-dialog>
+  </ui-dialog> -->
 </template>
 
 <script setup>
 import { ref, reactive, toRefs, onMounted } from 'vue';
 
 const root = ref(null);
+
+const formType = '|';
+const fullwidth = false;
 
 const source = [
   'ActionScript',
@@ -123,13 +268,27 @@ const options = [
   // }
 ];
 
+const items = [
+  {
+    icon: 'favorite'
+  },
+  {
+    text: 'Sample Text'
+  },
+  {
+    icon: 'favorite',
+    text: 'Sample Text'
+  }
+];
+
 const state = reactive({
   value: '',
   value2: '',
   keywords: '',
-  open: false
+  open: false,
+  radioValue: 0
 });
-const { value, value2, keywords, open } = toRefs(state);
+const { value, value2, keywords, open, radioValue } = toRefs(state);
 
 onMounted(() => {
   console.log(root.value);

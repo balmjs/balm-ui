@@ -11,6 +11,7 @@
 | `toolbar`                | array, string   | null                                    | 富文本工具栏配置（自定义或 `'full'`)                                  |         |
 | `placeholder`            | string          | `null`                                  | 当编辑器为空时显示的占位符文本                                        |         |
 | `readonly`               | boolean         | `false`                                 | 只读模式                                                              |         |
+| `fullwidth`              | boolean         | `false`                                 | 全屏宽度样式                                                          | 10.3.0  |
 | `theme`                  | string          | `'snow'`                                | 主题样式                                                              |         |
 | `toolbarIcons`           | object          | `{}`                                    | 自定义工具栏图标                                                      |         |
 | `toolbarTips`            | object          | `{}`                                    | 自定义工具栏图标提示文本                                              | 9.2.0   |

@@ -1,5 +1,5 @@
 import { useEditor } from '../core/quill';
-import UI_GLOBAL from '../../../config/constants';
+import UI_GLOBAL from '../../../../config/constants';
 
 export function setToolbarIcons(customIcons = {}) {
   const { Quill } = useEditor();

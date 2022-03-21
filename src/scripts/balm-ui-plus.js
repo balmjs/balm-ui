@@ -6,7 +6,7 @@ import autoInstall from './config/auto-install';
 import UiSkeleton from './components/skeleton/skeleton.vue';
 import UiAlert from './components/alert/alert.vue';
 import UiCollapse from './components/collapse/collapse.vue';
-import UiEditor from './components/editor/editor.vue';
+import UiEditor from './components/editor/quill/editor.vue';
 import UiTree from './components/tree/tree.vue';
 import UiTreeNode from './components/tree/tree-node.vue';
 /**

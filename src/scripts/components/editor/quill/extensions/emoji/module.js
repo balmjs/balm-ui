@@ -1,7 +1,7 @@
 import { useEditor } from '../../core/quill';
 import Emotion from './emotion';
 import { emojiClassName, getCode, createEmoji } from './utils';
-import UI_GLOBAL from '../../../../config/constants';
+import UI_GLOBAL from '../../../../../config/constants';
 
 const EMOJI_TOOLBAR = {
   id: 'ql-emoji-toolbar',
@@ -212,13 +212,13 @@ function onBlurEmojiHandler(e) {
       while (
         parentEl &&
         parentEl.classList &&
-        !parentEl.classList.contains('mdc-editor-container')
+        !parentEl.classList.contains('mdc-editor-quill')
       ) {
         parentEl = parentEl.parentNode;
         if (
           parentEl &&
           parentEl.classList &&
-          parentEl.classList.contains('mdc-editor-container')
+          parentEl.classList.contains('mdc-editor-quill')
         ) {
           if (!parentEl.querySelector('#ql-emoji-toolbar')) {
             closeEmojiToolbar();

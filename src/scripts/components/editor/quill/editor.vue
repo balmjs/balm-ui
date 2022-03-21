@@ -1,13 +1,13 @@
 <template>
-  <div class="mdc-editor-container">
+  <div :class="className">
     <slot name="toolbar"></slot>
-    <div class="mdc-editor-content">
+    <div class="mdc-editor__content">
       <pre v-if="editSourceCode" class="mdc-editor-code" contenteditable>{{
         htmlContent
       }}</pre>
-      <div v-else ref="editor" class="mdc-editor"></div>
+      <div v-else ref="editor" class="mdc-editor-quill"></div>
     </div>
-    <div v-if="withCounter" ref="counter" class="mdc-editor-counter"></div>
+    <div v-if="withCounter" ref="counter" class="mdc-editor__counter"></div>
     <input
       v-if="customImageHandler"
       ref="file"
@@ -35,6 +35,7 @@ import {
   ref,
   reactive,
   toRefs,
+  computed,
   watch,
   onMounted,
   onBeforeUnmount,
@@ -42,8 +43,8 @@ import {
 } from 'vue';
 import { createEditor, Emotion } from './core';
 import { onBlurEmojiHandler } from './extensions/emoji/module';
-import handleFileChange from '../../utils/file';
-import getType from '../../utils/typeof';
+import handleFileChange from '../../../utils/file';
+import getType from '../../../utils/typeof';
 
 const props = defineProps({
   // States
@@ -65,6 +66,10 @@ const props = defineProps({
     default: null
   },
   readonly: {
+    type: Boolean,
+    default: false
+  },
+  fullwidth: {
     type: Boolean,
     default: false
   },
@@ -113,6 +118,7 @@ const emit = defineEmits([
 ]);
 
 const editor = ref(null);
+const counter = ref(null);
 const file = ref(null);
 const state = reactive({
   $editor: null,
@@ -121,6 +127,11 @@ const state = reactive({
 });
 const { htmlContent, editSourceCode } = toRefs(state);
 
+const className = computed(() => ({
+  'mdc-editor': true,
+  'mdc-editor--fullwidth': props.fullwidth
+}));
+
 onMounted(() => {
   nextTick(async () => {
     const { toolbarTips, toolbarOptions, emotions, extension } = props;
@@ -128,7 +139,7 @@ onMounted(() => {
       toolbarIcons: Object.assign(UI_EDITOR.toolbarIcons, props.toolbarIcons),
       toolbarTips,
       toolbarOptions,
-      options: getOptions(),
+      options: getOptions(counter.value),
       emotions,
       extension
     });

@@ -2,6 +2,22 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.3.0 / 2022-03-21
+
+### Features
+
+- update `mdc@14.0.0-canary.cbd9358a6.0`
+- `<ui-editor>`: add prop `fullwidth`
+
+### Chore
+
+- `<ui-textfield>`, `<ui-select>`, `<ui-autocomplete>`,`<ui-editor>`: optimize fullwidth css
+
+### Bug Fixes
+
+- `<ui-editor>`: fix counter bug
+- `<ui-slider>`: fix width css bug
+
 ## v10.2.1 / 2022-03-19
 
 ### Chore

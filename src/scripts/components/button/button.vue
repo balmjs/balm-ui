@@ -6,7 +6,8 @@
     :class="className"
     @click="handleClick"
   >
-    <div class="mdc-button__ripple"></div>
+    <span class="mdc-button__ripple"></span>
+    <span class="mdc-button__focus-ring"></span>
     <!-- Leading icon (optional) -->
     <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">
       <i

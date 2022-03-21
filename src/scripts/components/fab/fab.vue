@@ -2,6 +2,7 @@
   <!-- (M3) Container -->
   <button ref="fab" type="button" :class="className" @click="handleClick">
     <div class="mdc-fab__ripple"></div>
+    <div class="mdc-fab__focus-ring"></div>
     <template v-if="isExtended">
       <!-- Leading icon (optional) -->
       <slot name="before" :iconClass="UI_FAB.cssClasses.icon">

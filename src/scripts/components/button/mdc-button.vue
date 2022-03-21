@@ -1,6 +1,7 @@
 <template>
   <button type="button" :class="className" @click="handleClick">
-    <div class="mdc-button__ripple"></div>
+    <span class="mdc-button__ripple"></span>
+    <span class="mdc-button__focus-ring"></span>
     <slot name="icon">
       <i
         v-if="materialIcon"

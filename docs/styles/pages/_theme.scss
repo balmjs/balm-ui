@@ -391,7 +391,7 @@ $demo-color-high-luminance: theme-color.$amber-50;
   }
 }
 
-@media screen and (min-width: #{global.$MIN_WIDTH}px) {
+@media (min-width: global.$MIN_WIDTH) {
   .component-section {
     width: 40%;
     margin: 10px 5% 20px;

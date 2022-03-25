@@ -233,7 +233,7 @@ export default {
     init();
 
     onMounted(() => {
-      let clipboard = new Clipboard('.btn-copy');
+      const clipboard = new Clipboard('.btn-copy');
 
       clipboard.on('success', (e) => {
         $toast(`'${e.text}' copied!`);

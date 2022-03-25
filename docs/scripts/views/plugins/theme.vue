@@ -215,9 +215,10 @@ export default {
       const clipboard = new Clipboard('.btn-copy');
 
       clipboard.on('success', (e) => {
-        let color = e.trigger.dataset.name;
+        const color = e.trigger.dataset.name;
+
         if (color) {
-          let colorName = ['Black', 'White'].includes(color)
+          const colorName = ['Black', 'White'].includes(color)
             ? color
             : `$${color}`;
 

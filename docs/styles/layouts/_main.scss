@@ -114,7 +114,7 @@ a {
   background-size: 100%;
 }
 
-@media screen and (min-width: #{global.$MIN_WIDTH}px) {
+@media (min-width: global.$MIN_WIDTH) {
   .balmui-content {
     width: calc(100% - #{global.$nav-width});
   }

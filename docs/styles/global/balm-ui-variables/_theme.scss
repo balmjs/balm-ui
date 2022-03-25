@@ -1,8 +1,10 @@
+@use '../vars';
+
 @use '@material/theme/theme-color' with (
-  $primary: #6200ee, // baseline purple, 500 tone
+  $primary: vars.$primary, // baseline purple, 500 tone
   // $on-primary: if(contrast-tone($primary) == 'dark', #000, #fff),
 
-  $secondary: #018786, // baseline teal, 600 tone
+  $secondary: vars.$secondary, // baseline teal, 600 tone
   // $on-secondary: if(contrast-tone($secondary) == 'dark', #000, #fff),
   $background: #fff, // White
 

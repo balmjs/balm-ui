@@ -1,14 +1,6 @@
-@use '@material/theme/variables' as theme-variables;
-@use '@material/top-app-bar/variables' as top-app-bar-variables;
-@use '@material/tab/variables' as tab-variables;
-
-$MIN_WIDTH: 1240 + 1;
-$primary: theme-variables.$primary;
-$secondary: theme-variables.$secondary;
-$mobile-breakpoint: top-app-bar-variables.$mobile-breakpoint;
-$topAppBar-row-height: top-app-bar-variables.$row-height;
-$topAppBar-mobile-row-height: top-app-bar-variables.$mobile-row-height;
-$tab-height: tab-variables.$height;
+$MIN_WIDTH: 1240px + 1px;
+$primary: #6200ee; // baseline purple, 500 tone
+$secondary: #018786; // baseline teal, 600 tone
 
 $nav-width: 280px;
 

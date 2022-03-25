@@ -26,20 +26,19 @@ const DEFAULT_OPTIONS = {
 
 let globalOptions = DEFAULT_OPTIONS;
 let toastApp;
-let toastAppInstance;
 let toastTimer;
 let toastElTimer;
 
 const template = `<div :class="className">
   <div class="mdc-snackbar__surface">
-    <div class="mdc-snackbar__label" v-text="options.message"></div>
+    <div class="mdc-snackbar__label" v-text="message"></div>
   </div>
 </div>`;
 
 function createToast(options) {
   createModal(UI_TOAST.id);
 
-  toastApp = createVueApp({
+  return createVueApp({
     name: 'Toast',
     expose: ['render'],
     setup() {
@@ -65,6 +64,7 @@ function createToast(options) {
           'mdc-snackbar--open': state.opened
         }
       ]);
+      const message = computed(() => state.options.message);
 
       watch(
         () => state.open,
@@ -93,12 +93,12 @@ function createToast(options) {
         // hide toast
         toastTimer = setTimeout(() => hide(), state.options.timeoutMs);
       }
-      function render(options) {
+      function render(newOptions) {
         if (
-          options.timeoutMs <= UI_TOAST.timeoutMs.MAX &&
-          options.timeoutMs >= UI_TOAST.timeoutMs.MIN
+          newOptions.timeoutMs <= UI_TOAST.timeoutMs.MAX &&
+          newOptions.timeoutMs >= UI_TOAST.timeoutMs.MIN
         ) {
-          state.options = options;
+          state.options = newOptions;
 
           show();
         } else {
@@ -111,15 +111,13 @@ function createToast(options) {
       onMounted(() => render(options));
 
       return {
-        options,
         className,
+        message,
         render
       };
     },
     template
   });
-
-  return toastApp;
 }
 
 function toast(customOptions = {}) {
@@ -129,9 +127,9 @@ function toast(customOptions = {}) {
     clearTimeout(toastTimer);
     clearTimeout(toastElTimer);
 
-    toastAppInstance.render(options);
+    toastApp.render(options);
   } else {
-    toastAppInstance = createToast(options).mount(`#${UI_TOAST.id}`);
+    toastApp = createToast(options).mount(`#${UI_TOAST.id}`);
   }
 }
 

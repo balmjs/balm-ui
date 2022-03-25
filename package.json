@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "10.3.0",
+  "version": "10.3.1",
   "description": "A modular and customizable UI library based on Material Design and Vue 3",
   "keywords": [
     "balm",
@@ -72,8 +72,8 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.1.0",
     "@rollup/plugin-replace": "^4.0.0",
-    "@sentry/tracing": "^6.18.0",
-    "@sentry/vue": "^6.18.0",
+    "@sentry/tracing": "^6.19.0",
+    "@sentry/vue": "^6.19.0",
     "@types/jest": "^27.0.0",
     "@vue/compiler-sfc": "^3.2.0",
     "@vue/test-utils": "^2.0.0-rc.18",
@@ -100,7 +100,7 @@
     "rollup-plugin-vue": "^6.0.0",
     "sanitize.css": "^13.0.0",
     "ts-jest": "^27.0.0",
-    "typescript": "^4.6.2",
+    "typescript": "^4.6.3",
     "vue": "^3.2.0",
     "vue-i18n": "^9.1.0",
     "vue-jest": "^5.0.0-alpha.10",

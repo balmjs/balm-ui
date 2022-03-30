@@ -4,26 +4,30 @@
     thx
     <a href="//balm.js.org/">BalmJS</a>
   </p>
-  <ui-button>Test</ui-button>
+  <!-- <ui-editor v-model="content"></ui-editor> -->
+  <!-- <ui-button icon="add" @click="$alert(content)">SayHi</ui-button> -->
+  <ui-button raised>Test</ui-button>
 </template>
 
 <script>
 import { ref, defineAsyncComponent } from 'vue';
 
 // const UiButton = defineAsyncComponent(() => import('RemoteBalmUI/UiButton'));
+// const UiEditor = defineAsyncComponent(() => import('RemoteBalmUI/UiEditor'));
 
 export default {
   name: 'Hello',
   components: {
-    // UiButton
+    // UiButton,
+    // UiEditor
   },
   setup() {
-    const msg = ref('');
+    const content = ref('');
 
-    msg.value = 'Hello Vue 3 App';
+    content.value = 'Hello Vue 3 App';
 
     return {
-      msg
+      content
     };
   }
 };

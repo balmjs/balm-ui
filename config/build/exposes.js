@@ -2,7 +2,13 @@ function getComponentsPath(file) {
   return `./src/scripts/components/${file}`;
 }
 
+function getPluginsPath(file) {
+  return `./src/scripts/plugins/${file}`;
+}
+
 module.exports = {
+  // Theme
+  './UiIcon': getComponentsPath('icon/icon.vue'),
   // General
   './UiButton': getComponentsPath('button/button.vue'),
   './UiFab': getComponentsPath('fab/fab.vue'),
@@ -39,8 +45,6 @@ module.exports = {
   './UiMenuitemText': getComponentsPath('menu/menuitem-text.vue'),
   './UiMenuitemDivider': getComponentsPath('menu/menuitem-divider.vue'),
   './UiPagination': getComponentsPath('pagination/pagination.vue'),
-  // Theme
-  './UiIcon': getComponentsPath('icon/icon.vue'),
   // Data Entry
   './UiForm': getComponentsPath('form/form.vue'),
   './UiFormField': getComponentsPath('form-field/form-field.vue'),
@@ -97,5 +101,18 @@ module.exports = {
   './UiProgress': getComponentsPath('progress/progress.vue'),
   './UiSpinner': getComponentsPath('spinner/spinner.vue'),
   './UiTooltipAnchor': getComponentsPath('tooltip/tooltip-anchor.vue'),
-  './UiTooltip': getComponentsPath('tooltip/tooltip.vue')
+  './UiTooltip': getComponentsPath('tooltip/tooltip.vue'),
+  // Plugins
+  './$alert': getPluginsPath('alert.js'),
+  // Plus
+  './UiSkeleton': getComponentsPath('skeleton/skeleton.vue'),
+  './UiAlert': getComponentsPath('alert/alert.vue'),
+  './UiCollapse': getComponentsPath('collapse/collapse.vue'),
+  './UiEditor': getComponentsPath('editor/quill/editor.vue'),
+  './UiTree': getComponentsPath('tree/tree.vue'),
+  './UiTreeNode': getComponentsPath('tree/tree-node.vue'),
+  // Next
+  './UiNavigationBar': getComponentsPath('navigation-bar/navigation-bar.vue'),
+  './UiBottomSheet': getComponentsPath('bottom-sheet/bottom-sheet.vue'),
+  './UiNavigationRail': getComponentsPath('navigation-rail/navigation-rail.vue')
 };

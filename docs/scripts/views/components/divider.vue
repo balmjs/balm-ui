@@ -26,6 +26,7 @@
       <div class="demo">
         <ui-divider></ui-divider>
       </div>
+      <br />
       <div class="demo">
         <ui-divider>Text</ui-divider>
       </div>
@@ -34,6 +35,17 @@
 
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Vertical divider with text</h6>
+      <div class="demo">
+        <ui-divider type="|" class="vertical-divider-demo">
+          <template #left>
+            <div class="block red"></div>
+          </template>
+          <template #right>
+            <div class="block blue"></div>
+          </template>
+        </ui-divider>
+      </div>
+      <br />
       <div class="demo">
         <ui-divider type="|" class="vertical-divider-demo">
           <template #left>

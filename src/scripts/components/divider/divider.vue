@@ -1,22 +1,20 @@
 <template>
   <div :class="className">
-    <template v-if="hasText">
-      <template v-if="isVertical">
-        <slot name="left"></slot>
-        <span class="mdc-divider__text">
-          <span>
-            <slot></slot>
-          </span>
+    <template v-if="isVertical">
+      <slot name="left"></slot>
+      <span class="mdc-divider__text">
+        <span v-if="hasText">
+          <slot></slot>
         </span>
-        <slot name="right"></slot>
-      </template>
-      <template v-else>
-        <span class="mdc-divider__text">
-          <span>
-            <slot></slot>
-          </span>
+      </span>
+      <slot name="right"></slot>
+    </template>
+    <template v-else>
+      <span v-if="hasText" class="mdc-divider__text">
+        <span>
+          <slot></slot>
         </span>
-      </template>
+      </span>
     </template>
   </div>
 </template>

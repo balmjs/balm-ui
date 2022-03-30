@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.49.4 / 2022-03-30
+
+### Bug Fixes
+
+- `<ui-divider>`: fix vertical divider bug
+
 ## v8.49.3 / 2022-03-08
 
 ### Bug Fixes

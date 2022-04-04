@@ -1,6 +1,7 @@
 @use './variables' as divider-variables;
 
 .mdc-divider {
+  display: flex;
   justify-content: space-around;
   align-items: center;
 }
@@ -25,7 +26,6 @@
 }
 
 .mdc-divider--horizontal {
-  display: flex;
   width: 100%;
 
   &.mdc-divider--no-text {
@@ -50,7 +50,6 @@
 }
 
 .mdc-divider--vertical {
-  display: inline-flex;
   height: 100%;
 
   &.mdc-divider--no-text {

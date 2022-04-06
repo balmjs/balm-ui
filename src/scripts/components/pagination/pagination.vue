@@ -150,7 +150,8 @@ const UI_PAGINATION = {
   POSITIONS: ['left', 'center', 'right'],
   MIN_PAGE_SPAN: 3,
   EVENTS: {
-    CHANGE: 'update:modelValue'
+    CHANGE: 'update:modelValue',
+    CHANGE_PAGE_SIZE: 'update:pageSize'
   }
 };
 
@@ -224,7 +225,10 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_PAGINATION.EVENTS.CHANGE]);
+const emit = defineEmits([
+  UI_PAGINATION.EVENTS.CHANGE,
+  UI_PAGINATION.EVENTS.CHANGE_PAGE_SIZE
+]);
 
 const state = reactive({
   currentPage: props.modelValue,
@@ -341,5 +345,11 @@ function handleChange() {
     state.jumpPage = page;
     emit(UI_PAGINATION.EVENTS.CHANGE, +page);
   }
+
+  emit(UI_PAGINATION.EVENTS.CHANGE_PAGE_SIZE, {
+    page,
+    pageSize: state.currentPageSize,
+    pageCount: pageCount.value
+  });
 }
 </script>

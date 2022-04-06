@@ -134,8 +134,8 @@ function getDocs(name, key, hasRequirement = false) {
 
   switch (key) {
     case 'css':
-      let filename = `${key}/${name}`;
-      let docs = require(`@/docs/${filename}.md`).default;
+      let filename = `${key}/${name}.md`;
+      let docs = require(`@/docs/${filename}`).default;
       result = docs;
       break;
     case 'usage':
@@ -145,8 +145,8 @@ function getDocs(name, key, hasRequirement = false) {
 
       result = {};
       usageDocs.forEach((usageDoc) => {
-        let filename = `${key}/${name}/${usageDoc}`;
-        let docs = require(`@/docs/${filename}.md`).default;
+        let filename = `${key}/${name}/${usageDoc}.md`;
+        let docs = require(`@/docs/${filename}`).default;
         result[usageDoc] = docs;
       });
       break;
@@ -154,14 +154,14 @@ function getDocs(name, key, hasRequirement = false) {
       if (Array.isArray(key)) {
         // apidocs
         result = key.map((apiDocs) => {
-          let filename = `${store.lang}/${name}/${apiDocs}`;
-          let docs = require(`@/docs/${filename}.md`).default;
+          let filename = `${store.lang}/${name}/${apiDocs}.md`;
+          let docs = require(`@/docs/${filename}`).default;
           return docs;
         });
       } else {
         // intro
-        let filename = `${store.lang}/${name}/${key}`;
-        let docs = require(`@/docs/${filename}.md`).default;
+        let filename = `${store.lang}/${name}/${key}.md`;
+        let docs = require(`@/docs/${filename}`).default;
         result = docs;
       }
   }

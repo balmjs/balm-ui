@@ -7,17 +7,26 @@
 </template>
 
 <script>
+import { computed } from 'vue';
+import { useStore } from 'balm-ui';
+
 export default {
   metaInfo() {
     return {
       subtitle: 'Utilities'
     };
   },
-  computed: {
-    docs() {
-      let filename = `${this.$store.lang}/utils/intro`;
-      return require(`@/docs/${filename}.md`).default; // NOTE: just one variable in `require`
-    }
+  async setup() {
+    const store = useStore();
+
+    const docs = computed(() => {
+      const filename = `${store.lang}/utils/intro.md`;
+      return require(`@/docs/${filename}`).default;
+    });
+
+    return {
+      docs
+    };
   }
 };
 </script>

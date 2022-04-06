@@ -36,7 +36,7 @@ const props = defineProps({
 const store = useStore();
 
 const docs = computed(() => {
-  const filename = `${store.lang}/guide/${props.name}`;
-  return require(`@/docs/${filename}.md`).default; // NOTE: just one variable in `require`
+  const filename = `${store.lang}/guide/${props.name}.md`;
+  return require(`@/docs/${filename}`).default;
 });
 </script>

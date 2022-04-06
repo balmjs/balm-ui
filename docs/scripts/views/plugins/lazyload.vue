@@ -13,8 +13,8 @@
           class="masonry-image-list"
           text-protection
         >
-          <template v-for="(item, index) in list" :key="index">
-            <ui-image-item v-lazyload="require(`@/assets/photos/${item}.jpg`)">
+          <template v-for="(image, index) in images" :key="index">
+            <ui-image-item v-lazyload="image">
               <ui-image-text>Text label</ui-image-text>
             </ui-image-item>
           </template>
@@ -26,63 +26,76 @@
 </template>
 
 <script>
+import { ref, onBeforeMount } from 'vue';
+import { loadAsset } from '@/utils';
+
+const list = [
+  '3x2/16',
+  '2x3/1',
+  '3x2/1',
+  '2x3/2',
+  '2x3/3',
+  '3x2/2',
+  '2x3/4',
+  '3x2/3',
+  '2x3/5',
+  '3x2/4',
+  '2x3/6',
+  '3x2/5',
+  '2x3/7',
+  '3x2/6',
+  '3x2/7',
+  // repeat
+  '3x2/16',
+  '2x3/1',
+  '3x2/1',
+  '2x3/2',
+  '2x3/3',
+  '3x2/2',
+  '2x3/4',
+  '3x2/3',
+  '2x3/5',
+  '3x2/4',
+  '2x3/6',
+  '3x2/5',
+  '2x3/7',
+  '3x2/6',
+  '3x2/7',
+  // repeat
+  '3x2/16',
+  '2x3/1',
+  '3x2/1',
+  '2x3/2',
+  '2x3/3',
+  '3x2/2',
+  '2x3/4',
+  '3x2/3',
+  '2x3/5',
+  '3x2/4',
+  '2x3/6',
+  '3x2/5',
+  '2x3/7',
+  '3x2/6',
+  '3x2/7'
+];
+
 export default {
   metaInfo() {
     return {
       subtitle: 'Lazyload'
     };
   },
-  data() {
+  setup() {
+    const images = ref([]);
+
+    onBeforeMount(async () => {
+      for (const item of list) {
+        images.value.push(await loadAsset(`assets/photos/${item}.jpg`));
+      }
+    });
+
     return {
-      list: [
-        '3x2/16',
-        '2x3/1',
-        '3x2/1',
-        '2x3/2',
-        '2x3/3',
-        '3x2/2',
-        '2x3/4',
-        '3x2/3',
-        '2x3/5',
-        '3x2/4',
-        '2x3/6',
-        '3x2/5',
-        '2x3/7',
-        '3x2/6',
-        '3x2/7',
-        // repeat
-        '3x2/16',
-        '2x3/1',
-        '3x2/1',
-        '2x3/2',
-        '2x3/3',
-        '3x2/2',
-        '2x3/4',
-        '3x2/3',
-        '2x3/5',
-        '3x2/4',
-        '2x3/6',
-        '3x2/5',
-        '2x3/7',
-        '3x2/6',
-        '3x2/7',
-        // repeat
-        '3x2/16',
-        '2x3/1',
-        '3x2/1',
-        '2x3/2',
-        '2x3/3',
-        '3x2/2',
-        '2x3/4',
-        '3x2/3',
-        '2x3/5',
-        '3x2/4',
-        '2x3/6',
-        '3x2/5',
-        '2x3/7',
-        '3x2/6',
-        '3x2/7'
-      ]
+      images
     };
   }
 };

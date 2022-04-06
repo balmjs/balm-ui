@@ -29,9 +29,9 @@
             :text-protection="controls1.labelsType === 2"
           >
             <ui-image-item
-              v-for="i in 15"
-              :key="i"
-              :bg-image="require(`@/assets/photos/3x2/${i}.jpg`)"
+              v-for="(image, index) in images1"
+              :key="index"
+              :bg-image="image"
             >
               <ui-image-text v-if="controls1.labelsType">
                 Text label
@@ -56,9 +56,9 @@
             :text-protection="controls2.labelsType === 2"
           >
             <ui-image-item
-              v-for="(item, index) in list"
+              v-for="(image, index) in images2"
               :key="index"
-              :image="require(`@/assets/photos/${item}.jpg`)"
+              :image="image"
             >
               <ui-image-text v-if="controls2.labelsType">
                 Text label
@@ -76,7 +76,39 @@
 </template>
 
 <script>
+import { reactive, toRefs, onBeforeMount } from 'vue';
 import UiImageListControls from '@/demos/image-list/image-list-controls';
+import { loadAsset } from '@/utils';
+
+const list = [
+  '3x2/16',
+  '2x3/1',
+  '3x2/1',
+  '2x3/2',
+  '2x3/3',
+  '3x2/2',
+  '2x3/4',
+  '3x2/3',
+  '2x3/5',
+  '3x2/4',
+  '2x3/6',
+  '3x2/5',
+  '2x3/7',
+  '3x2/6',
+  '3x2/7'
+];
+
+const state = reactive({
+  radius: false,
+  controls1: {
+    labelsType: 1
+  },
+  images1: [],
+  controls2: {
+    labelsType: 1
+  },
+  images2: []
+});
 
 export default {
   metaInfo() {
@@ -87,33 +119,19 @@ export default {
   components: {
     UiImageListControls
   },
-  data() {
+  setup() {
+    onBeforeMount(async () => {
+      for (let i = 1; i <= 15; i++) {
+        state.images1.push(await loadAsset(`assets/photos/3x2/${i}.jpg`));
+      }
+
+      for (const item of list) {
+        state.images2.push(await loadAsset(`assets/photos/${item}.jpg`));
+      }
+    });
+
     return {
-      // demo
-      radius: false,
-      controls1: {
-        labelsType: 1
-      },
-      controls2: {
-        labelsType: 1
-      },
-      list: [
-        '3x2/16',
-        '2x3/1',
-        '3x2/1',
-        '2x3/2',
-        '2x3/3',
-        '3x2/2',
-        '2x3/4',
-        '3x2/3',
-        '2x3/5',
-        '3x2/4',
-        '2x3/6',
-        '3x2/5',
-        '2x3/7',
-        '3x2/6',
-        '3x2/7'
-      ]
+      ...toRefs(state)
     };
   }
 };

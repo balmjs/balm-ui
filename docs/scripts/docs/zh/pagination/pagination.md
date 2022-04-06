@@ -38,9 +38,10 @@ interface Pagination {
 
 ### Events
 
-| Name                | Type                     | Description    |
-| ------------------- | ------------------------ | -------------- |
-| `update:modelValue` | `function(page: number)` | 页码变化时触发 |
+| Name                | Type                         | Description          | Version |
+| ------------------- | ---------------------------- | -------------------- | ------- |
+| `update:modelValue` | `function(page: number)`     | 页码变化时触发       |         |
+| `update:pageSize`   | `function(pageInfo: object)` | 每页展示数变化时触发 | 10.4.0  |
 
 > 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听分页页码状态并更新 `modelValue` 属性
 

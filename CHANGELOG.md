@@ -7,6 +7,7 @@
 ### Features
 
 - `<ui-editor>`: add method `$refs.editor.useEditor()`
+- `<ui-pagination>`: add event `update:pageSize`
 
 ### Bug Fixes
 

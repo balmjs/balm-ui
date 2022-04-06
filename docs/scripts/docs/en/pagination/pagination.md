@@ -38,9 +38,10 @@ interface Pagination {
 
 ### Events
 
-| Name                | Type                     | Description                                |
-| ------------------- | ------------------------ | ------------------------------------------ |
-| `update:modelValue` | `function(page: number)` | Emits when the pagination page is changed. |
+| Name                | Type                         | Description                                     | Version |
+| ------------------- | ---------------------------- | ----------------------------------------------- | ------- |
+| `update:modelValue` | `function(page: number)`     | Emits when the pagination page is changed.      |         |
+| `update:pageSize`   | `function(pageInfo: object)` | Emits when the pagination page size is changed. | 10.4.0  |
 
 > NOTE: If you are not using `v-model`, you should listen for the pagination using `@update:modelValue` and update the `modelValue` prop.
 

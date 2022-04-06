@@ -114,9 +114,6 @@ function getConfig(balm) {
           loader: 'vue-loader'
         }
       ],
-      urlLoaderOptions: {
-        esModule: false
-      },
       babelLoaderOptions,
       includeJsResource: useDocsDev ? [resolve('src/scripts')] : [],
       alias: Object.assign({

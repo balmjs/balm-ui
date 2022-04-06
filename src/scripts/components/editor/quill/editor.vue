@@ -42,6 +42,7 @@ import {
   nextTick
 } from 'vue';
 import { createEditor, Emotion } from './core';
+import { useEditor } from './core/quill';
 import { onBlurEmojiHandler } from './extensions/emoji/module';
 import handleFileChange from '../../../utils/file';
 import getType from '../../../utils/typeof';
@@ -263,6 +264,7 @@ const encodeEmoji = (html) => Emotion.encode(html); // output: content
 const decodeEmoji = (content) => Emotion.decode(content); // output: html
 
 defineExpose({
+  useEditor,
   encodeEmoji,
   decodeEmoji
 });

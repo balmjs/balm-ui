@@ -253,5 +253,6 @@ Encode & Decode Emoji
 <ui-editor ref="editor" v-model="content"></ui-editor>
 ```
 
+- `$refs.editor.useEditor()`: 获取 Quill 模块和一个 quill 实例 (New in 10.4.0)
 - `this.$refs.editor.decodeEmoji(content)`: 获取服务端数据 → 设置客户端展示
 - `this.$refs.editor.encodeEmoji(html)`: 提交客户端数据 → 保存服务端数据

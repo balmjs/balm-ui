@@ -247,5 +247,6 @@ Encode & Decode Emoji
 <ui-editor ref="editor" v-model="content"></ui-editor>
 ```
 
+- `$refs.editor.useEditor()`: get Quill module and a quill instance (New in 10.4.0)
 - `$refs.editor.decodeEmoji(content)`: get back-end data → set front-end view
 - `$refs.editor.encodeEmoji(html)`: submit front-end data → save back-end data

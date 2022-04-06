@@ -228,11 +228,12 @@ onMounted(() => {
           emit(UI_DATEPICKER.EVENTS.CHANGE, dateStr);
         }
       };
-      // fix(ui): `clear` event
-      config.onChange = (selectedDates, dateStr, instance) => {
-        if (!dateStr) {
-          emit(UI_DATEPICKER.EVENTS.CHANGE, '');
-        }
+
+      // fix(@flatpickr): change event bug
+      const changeEvent =
+        state.mode === UI_DATEPICKER.MODE.MONTH ? 'onValueUpdate' : 'onChange';
+      config[changeEvent] = (selectedDates, dateStr, instance) => {
+        emit(UI_DATEPICKER.EVENTS.CHANGE, dateStr);
       };
     }
     // Init

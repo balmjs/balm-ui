@@ -10,7 +10,7 @@ TL;DR: Vue 3 is now the new default version as of Monday, February 7, 2022!
 
 [BalmUI](https://v8.material.balmjs.com/) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js.
 
-> :tada: NOW, [`balm-ui`](https://github.com/balmjs/balm-ui/tree/9.x) (v9.0) supports for Vue 3.0
+> :tada: NOW, [`balm-ui`](https://github.com/balmjs/balm-ui) (v9+) supports for Vue 3.0
 
 ## Features
 

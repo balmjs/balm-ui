@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.49.5 / 2022-04-07
+
+### Bug Fixes
+
+- `<ui-datepicker>`: fix change event bug in month mode
+
 ## v8.49.4 / 2022-03-30
 
 ### Bug Fixes

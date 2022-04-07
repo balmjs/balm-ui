@@ -221,12 +221,12 @@ export default {
             this.$emit(UI_DATEPICKER.EVENT.CHANGE, dateStr);
           }
         };
-        // fix(ui): `clear` event
-        config.onChange = (selectedDates, dateStr, instance) => {
-          if (!dateStr) {
-            this.$emit(UI_DATEPICKER.EVENT.CHANGE, '');
-          }
-        };
+
+        // fix(@flatpickr): change event bug
+        const changeEvent =
+          this.mode === UI_DATEPICKER.MODE.MONTH ? 'onValueUpdate' : 'onChange';
+        config[changeEvent] = (selectedDates, dateStr, instance) =>
+          this.$emit(UI_DATEPICKER.EVENT.CHANGE, dateStr);
       }
       // Init
       config.defaultDate = this.inputValue;

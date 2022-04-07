@@ -232,9 +232,8 @@ onMounted(() => {
       // fix(@flatpickr): change event bug
       const changeEvent =
         state.mode === UI_DATEPICKER.MODE.MONTH ? 'onValueUpdate' : 'onChange';
-      config[changeEvent] = (selectedDates, dateStr, instance) => {
+      config[changeEvent] = (selectedDates, dateStr, instance) =>
         emit(UI_DATEPICKER.EVENTS.CHANGE, dateStr);
-      };
     }
     // Init
     config.defaultDate = state.inputValue;

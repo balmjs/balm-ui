@@ -53,9 +53,7 @@ Install [Node.js® and npm](https://nodejs.org/en/download/) if they are not alr
 The BalmUI depends on [BalmJS](https://balm.js.org/), so we need to install the `balm-core` globally.
 
 ```sh
-yarn global add balm-core
-# OR
-npm install -g balm-core
+yarn global add balm-core@next
 ```
 
 After cloning the repo, run:

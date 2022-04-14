@@ -33,6 +33,6 @@
   ```html
   <ui-bottom-sheet
     :model-value="open"
-    @update:modelValue="balmUI.onChange('open', $event)"
+    @update:model-value="balmUI.onChange('open', $event)"
   ></ui-bottom-sheet>
   ```

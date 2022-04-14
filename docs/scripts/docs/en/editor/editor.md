@@ -235,7 +235,7 @@ interface Editor {
   ```html
   <ui-editor
     :model-value="content"
-    @update:modelValue="balmUI.onChange('content', $event)"
+    @update:model-value="balmUI.onChange('content', $event)"
   ></ui-editor>
   ```
 

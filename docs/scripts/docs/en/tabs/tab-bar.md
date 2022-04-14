@@ -35,11 +35,11 @@
   ```html
   <ui-tab-bar
     :model-value="activeIndex"
-    @update:modelValue="balmUI.onChange('activeIndex', $event)"
+    @update:model-value="balmUI.onChange('activeIndex', $event)"
   ></ui-tab-bar>
   <!-- OR -->
   <ui-tabs
     :model-value="activeIndex"
-    @update:modelValue="balmUI.onChange('activeIndex', $event)"
+    @update:model-value="balmUI.onChange('activeIndex', $event)"
   ></ui-tabs>
   ```

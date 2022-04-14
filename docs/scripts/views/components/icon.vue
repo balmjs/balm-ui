@@ -92,7 +92,7 @@
             fullwidth
             :source="tags"
             highlight
-            @update:modelValue="onSearch"
+            @update:model-value="onSearch"
             @selected="onSelected"
           ></ui-autocomplete>
           <ui-select id="icon-type" v-model="typeOption" :options="TypeOptions">

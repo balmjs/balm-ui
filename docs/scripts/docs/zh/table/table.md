@@ -216,6 +216,6 @@
   <ui-table
     :model-value="selectedRows"
     row-checkbox
-    @update:modelValue="balmUI.onChange('selectedRows', $event)"
+    @update:model-value="balmUI.onChange('selectedRows', $event)"
   ></ui-table>
   ```

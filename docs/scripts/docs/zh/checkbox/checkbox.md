@@ -35,6 +35,6 @@
   ```html
   <ui-checkbox
     :model-value="value"
-    @update:modelValue="balmUI.onChange('value', $event)"
+    @update:model-value="balmUI.onChange('value', $event)"
   ></ui-checkbox>
   ```

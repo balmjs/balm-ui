@@ -51,6 +51,6 @@
   <ui-list
     :model-value="selectedIndex"
     single-selection
-    @update:modelValue="balmUI.onChange('selectedIndex', $event)"
+    @update:model-value="balmUI.onChange('selectedIndex', $event)"
   ></ui-list>
   ```

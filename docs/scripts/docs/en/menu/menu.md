@@ -78,6 +78,6 @@
   ```html
   <ui-menu
     :model-value="open"
-    @update:modelValue="balmUI.onChange('open', $event)"
+    @update:model-value="balmUI.onChange('open', $event)"
   ></ui-menu>
   ```

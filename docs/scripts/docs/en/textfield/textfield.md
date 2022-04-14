@@ -76,6 +76,6 @@ In addition to the above, the following properties proxy to the input or textare
   ```html
   <ui-textfield
     :model-value="value"
-    @update:modelValue="balmUI.onChange('value', $event)"
+    @update:model-value="balmUI.onChange('value', $event)"
   ></ui-textfield>
   ```

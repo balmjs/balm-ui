@@ -41,14 +41,14 @@
               <ui-select
                 v-model="desktop.margin"
                 :options="gutterOptions"
-                @update:modelValue="$grid.set('margin', 'desktop', $event)"
+                @update:model-value="$grid.set('margin', 'desktop', $event)"
               ></ui-select>
 
               <br />Desktop Gutter:
               <ui-select
                 v-model="desktop.gutter"
                 :options="gutterOptions"
-                @update:modelValue="$grid.set('gutter', 'desktop', $event)"
+                @update:model-value="$grid.set('gutter', 'desktop', $event)"
               ></ui-select>
             </div>
           </ui-grid-cell>
@@ -58,14 +58,14 @@
               <ui-select
                 v-model="tablet.margin"
                 :options="gutterOptions"
-                @update:modelValue="$grid.set('margin', 'tablet', $event)"
+                @update:model-value="$grid.set('margin', 'tablet', $event)"
               ></ui-select>
 
               <br />Tablet Gutter:
               <ui-select
                 v-model="tablet.gutter"
                 :options="gutterOptions"
-                @update:modelValue="$grid.set('gutter', 'tablet', $event)"
+                @update:model-value="$grid.set('gutter', 'tablet', $event)"
               ></ui-select>
             </div>
           </ui-grid-cell>
@@ -75,14 +75,14 @@
               <ui-select
                 v-model="phone.margin"
                 :options="gutterOptions"
-                @update:modelValue="$grid.set('margin', 'phone', $event)"
+                @update:model-value="$grid.set('margin', 'phone', $event)"
               ></ui-select>
 
               <br />Phone Gutter:
               <ui-select
                 v-model="phone.gutter"
                 :options="gutterOptions"
-                @update:modelValue="$grid.set('gutter', 'phone', $event)"
+                @update:model-value="$grid.set('gutter', 'phone', $event)"
               ></ui-select>
             </div>
           </ui-grid-cell>
@@ -183,7 +183,7 @@
                 <ui-select
                   v-model="desktop.width"
                   :options="widthOptions"
-                  @update:modelValue="
+                  @update:model-value="
                     $grid.set('column-width', 'desktop', $event)
                   "
                 ></ui-select>
@@ -195,7 +195,7 @@
                 <ui-select
                   v-model="tablet.width"
                   :options="widthOptions"
-                  @update:modelValue="
+                  @update:model-value="
                     $grid.set('column-width', 'tablet', $event)
                   "
                 ></ui-select>
@@ -207,7 +207,7 @@
                 <ui-select
                   v-model="phone.width"
                   :options="widthOptions"
-                  @update:modelValue="
+                  @update:model-value="
                     $grid.set('column-width', 'phone', $event)
                   "
                 ></ui-select>

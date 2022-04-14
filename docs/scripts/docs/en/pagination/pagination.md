@@ -56,6 +56,6 @@ interface Pagination {
   ```html
   <ui-pagination
     :model-value="page"
-    @update:modelValue="balmUI.onChange('page', $event)"
+    @update:model-value="balmUI.onChange('page', $event)"
   ></ui-pagination>
   ```

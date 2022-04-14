@@ -74,7 +74,7 @@
   ```html
   <ui-tree
     :model-value="selectedNodes"
-    @update:modelValue="balmUI.onChange('selectedNodes', $event)"
+    @update:model-value="balmUI.onChange('selectedNodes', $event)"
   ></ui-tree>
   ```
 

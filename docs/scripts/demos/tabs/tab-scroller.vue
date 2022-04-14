@@ -7,7 +7,7 @@
         ref="scroller"
         v-model:scrollX="value"
         class="demo-scroller"
-        @update:scrollX="balmUI.onChange('scrollValue', $event)"
+        @update:scroll-x="balmUI.onChange('scrollValue', $event)"
       >
         <span v-for="i in 32" :key="i" class="demo-cube"></span>
       </ui-tab-scroller>

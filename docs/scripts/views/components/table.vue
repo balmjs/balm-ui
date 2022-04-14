@@ -54,7 +54,7 @@
             v-model="page"
             :total="total"
             show-total
-            @update:modelValue="onPage"
+            @update:model-value="onPage"
           ></ui-pagination>
         </ui-table>
       </div>

@@ -38,6 +38,6 @@
   ```html
   <ui-rangepicker
     :model-value="value"
-    @update:modelValue="balmUI.onChange('value', $event)"
+    @update:model-value="balmUI.onChange('value', $event)"
   ></ui-rangepicker>
   ```

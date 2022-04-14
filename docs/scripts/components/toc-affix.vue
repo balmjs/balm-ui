@@ -1,6 +1,6 @@
 <template>
   <div v-shadow.transition="[2, 8]" class="toc-affix">
-    <ui-tabs v-model="active" @update:modelValue="onChange">
+    <ui-tabs v-model="active" @update:model-value="onChange">
       <ui-tab v-anchor:href="'#ui-usage'" class="v-anchor">{{
         t('page.usage')
       }}</ui-tab>
@@ -30,6 +30,9 @@
 import { useI18n } from 'vue-i18n/index';
 import { $MIN_WIDTH } from '@/config';
 
+const DEBUG = false;
+const bodyEl = document.documentElement || document.body;
+
 export default {
   name: 'UiTocAffix',
   props: {
@@ -58,7 +61,8 @@ export default {
   data() {
     return {
       active: 0,
-      lastScrollTop: 0
+      lastScrollTop: 0,
+      lastScrollTopCache: 0 // fix(@chrome): scrollTop bug in canary version
     };
   },
   computed: {
@@ -67,7 +71,8 @@ export default {
     }
   },
   mounted() {
-    if (!(window.IE && window.IE < 12)) {
+    const isIE = window.IE && window.IE <= 11;
+    if (!isIE) {
       this.lastScrollTop = this.getScrollTop();
 
       this.$nextTick(() => {
@@ -85,42 +90,46 @@ export default {
           if (curScrollTop > this.lastScrollTop) {
             // down ↓
             for (let i = this.active + 1; i < anchorElementsCount; i++) {
-              // console.log(
-              //   'down',
-              //   i,
-              //   curScrollTopWithOffset,
-              //   anchorElements[i],
-              //   curScrollTopWithOffset >= anchorElements[i]
-              // );
+              DEBUG &&
+                console.log(
+                  'down',
+                  i,
+                  curScrollTopWithOffset,
+                  anchorElements[i],
+                  curScrollTopWithOffset >= anchorElements[i]
+                );
 
               if (curScrollTopWithOffset >= anchorElements[i]) {
                 if (this.active !== i) {
-                  // console.log('gg');
+                  DEBUG && console.log('gg');
                   this.active = i;
+                  this.lastScrollTopCache = curScrollTop;
                 }
               } else {
-                // console.log('skip');
+                DEBUG && console.log('skip');
                 break;
               }
             }
           } else if (curScrollTop < this.lastScrollTop) {
             // up ↑
             for (let i = this.active; i; i--) {
-              // console.log(
-              //   'up',
-              //   i,
-              //   curScrollTopWithOffset,
-              //   anchorElements[i],
-              //   curScrollTopWithOffset <= anchorElements[i]
-              // );
+              DEBUG &&
+                console.log(
+                  'up',
+                  i,
+                  curScrollTopWithOffset,
+                  anchorElements[i],
+                  curScrollTopWithOffset <= anchorElements[i]
+                );
 
               if (curScrollTopWithOffset <= anchorElements[i]) {
                 if (this.active) {
-                  // console.log('gg');
+                  DEBUG && console.log('gg');
                   this.active -= 1;
+                  this.lastScrollTopCache = curScrollTop;
                 }
               } else {
-                // console.log('skip');
+                DEBUG && console.log('skip');
                 break;
               }
             }
@@ -133,7 +142,7 @@ export default {
   },
   methods: {
     getScrollTop() {
-      return document.documentElement.scrollTop || document.body.scrollTop;
+      return bodyEl.scrollTop;
     },
     getElementTop(element) {
       let actualTop = element.offsetTop;
@@ -147,7 +156,12 @@ export default {
       return actualTop;
     },
     onChange() {
-      this.lastScrollTop = this.getScrollTop();
+      if (this.lastScrollTopCache) {
+        bodyEl.scrollTop = this.lastScrollTopCache;
+        this.lastScrollTopCache = 0;
+      } else {
+        this.lastScrollTop = this.getScrollTop();
+      }
     }
   }
 };

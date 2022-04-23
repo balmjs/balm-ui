@@ -17,26 +17,28 @@ function createStore(key, state) {
   return storeApp.$.setupState;
 }
 
-function install(app, options = {}) {
-  if (getType(options) === 'object') {
-    const key = (options.name || 'store').toLowerCase();
-    store = createStore(key, options);
+function install(app, options = false) {
+  if (options) {
+    if (getType(options) === 'object') {
+      const key = (options.name || 'store').toLowerCase();
+      store = createStore(key, options);
 
-    app.config.globalProperties[`$${key}`] = store;
-    app.provide(`$${key}`, store);
-  } else if (Array.isArray(options)) {
-    for (let i = 0, len = options.length; i < len; i++) {
-      const option = options[i];
-      const key = (option.name || `store${i}`).toLowerCase();
-      store[key] = createStore(key, option);
+      app.config.globalProperties[`$${key}`] = store;
+      app.provide(`$${key}`, store);
+    } else if (Array.isArray(options)) {
+      for (let i = 0, len = options.length; i < len; i++) {
+        const option = options[i];
+        const key = (option.name || `store${i}`).toLowerCase();
+        store[key] = createStore(key, option);
 
-      app.config.globalProperties[`$${key}`] = store[key];
-      app.provide(`$${key}`, store[key]);
+        app.config.globalProperties[`$${key}`] = store[key];
+        app.provide(`$${key}`, store[key]);
+      }
+    } else {
+      throw new Error(
+        `[$store]: The '$store' of BalmUI must be an object or array`
+      );
     }
-  } else {
-    throw new Error(
-      `[$store]: The '$store' of BalmUI must be an object or array`
-    );
   }
 }
 

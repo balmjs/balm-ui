@@ -2,6 +2,37 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.4.1 / 2022-04-23
+
+### Bug Fixes
+
+- `$store`: update options default value `false` for Vuex compatibility
+
+> Use BalmUI built-in `$store` with Vuex `$store`, you need config like this:
+
+- store.js
+
+  ```js
+  import useDemoStore from './modules/demo';
+
+  export default {
+    name: 'myStore', // Set new custom store name: `$myStore` (Defaults: `$store`)
+    ...useDemoStore()
+  };
+  ```
+
+- main.js
+
+  ```js
+  import BalmUI from 'balm-ui';
+  import myStore from './store';
+
+  // `app`: Vue app
+  app.use(BalmUI, {
+    $store: myStore
+  });
+  ```
+
 ## v10.4.0 / 2022-04-06
 
 ### Features

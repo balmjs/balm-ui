@@ -22,7 +22,7 @@ function getConfig(balm) {
     ? {
         modules: false,
         useBuiltIns: 'entry',
-        corejs: { version: '3.21', proposals: true }
+        corejs: { version: '3.22', proposals: true }
       }
     : {
         modules: false

@@ -75,26 +75,26 @@ function init(el) {
 
   $segmentedButton.listen(events.CHANGE, ({ detail }) => {
     const currentIndex = detail.index;
+    let currentValue = state.selectedValue;
 
-    let selectedValue = state.selectedValue;
     if (props.singleSelect) {
-      selectedValue = currentIndex;
+      currentValue = currentIndex;
     } else {
       if (detail.selected) {
-        selectedValue.push(currentIndex);
-        selectedValue = [...new Set(selectedValue)];
+        currentValue.push(currentIndex);
+        currentValue = [...new Set(currentValue)];
       } else {
-        selectedValue = selectedValue.filter((value) => value != currentIndex);
+        currentValue = currentValue.filter((value) => value != currentIndex);
       }
-      selectedValue.sort((a, b) => a - b);
+      currentValue.sort((a, b) => a - b);
     }
 
-    emit(UI_SEGMENTED_BUTTONS.EVENTS.CHANGE, selectedValue);
+    emit(UI_SEGMENTED_BUTTONS.EVENTS.CHANGE, currentValue);
     emit(UI_SEGMENTED_BUTTONS.EVENTS.SELECTED, currentIndex);
   });
 
   const selectedSegments = $segmentedButton.segments.filter((segment, index) =>
-    selectedValue.includes(index)
+    state.selectedValue.includes(index)
   );
   if (selectedSegments.length) {
     selectedSegments.forEach((segment) => segment.setSelected());

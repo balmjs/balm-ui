@@ -14,9 +14,7 @@ const BottomSheet = () => import('@/views/components/bottom-sheet');
 export default [
   {
     path: '',
-    redirect: () => {
-      return { name: 'feedback.alert' };
-    }
+    redirect: () => ({ name: 'feedback.alert' })
   },
   {
     path: 'alert',

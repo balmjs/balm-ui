@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import router from '@/routes';
-import { createMetaManager, plugin as metaPlugin } from 'vue-meta';
+// import { createMetaManager, plugin as metaPlugin } from 'vue-meta';
 import i18n from '@/lang';
 import $http from '@/plugins/http';
 import App from '@/views/layouts/app';

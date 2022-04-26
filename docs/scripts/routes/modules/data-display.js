@@ -10,9 +10,7 @@ const Tree = () => import('@/views/components/tree');
 export default [
   {
     path: '',
-    redirect: () => {
-      return { name: 'data-display.list' };
-    }
+    redirect: () => ({ name: 'data-display.list' })
   },
   {
     path: 'list',

@@ -1,3 +1,3 @@
 <template>
-  <div class="page--navigation-rail-container">TODO</div>
+  <div>TODO</div>
 </template>

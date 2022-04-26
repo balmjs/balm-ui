@@ -15,9 +15,7 @@ const Validator = () => import('@/views/plugins/validator');
 export default [
   {
     path: '',
-    redirect: () => {
-      return { name: 'data-input.textfield' };
-    }
+    redirect: () => ({ name: 'data-input.textfield' })
   },
   {
     path: 'textfield',

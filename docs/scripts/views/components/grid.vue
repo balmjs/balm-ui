@@ -1,5 +1,5 @@
 <template>
-  <div class="page--grid-container">
+  <div>
     <ui-top-app-bar content-selector=".demo-content" fixed>
       <template #nav-icon="{ navIconClass }">
         <ui-icon-button

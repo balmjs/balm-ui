@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-anchor.offset="bottomAffix ? 64 : 128"
-    :class="[$tt('body1'), `page--${name}`]"
-  >
+  <div v-anchor.offset="bottomAffix ? 64 : 128" :class="$tt('body1')">
     <header :class="[$theme.getTextClassOnLight('primary'), 'hero', type]">
       <slot name="hero"></slot>
     </header>

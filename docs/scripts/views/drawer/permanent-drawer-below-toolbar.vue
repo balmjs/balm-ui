@@ -1,5 +1,5 @@
 <template>
-  <div class="demo-container page--drawer page--permanent-drawer-below-toolbar">
+  <div class="demo-container">
     <!-- App bar -->
     <ui-top-app-bar content-selector=".demo-content">
       <template #nav-icon="{ navIconClass }">

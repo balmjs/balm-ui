@@ -1,8 +1,9 @@
 import { reactive, toRefs } from 'vue';
 
 const state = reactive({
-  serviceWorker: null,
-  isFirstLoad: true
+  noLayout: false,
+  isFirstLoad: true,
+  serviceWorker: null
 });
 
 const usePageStore = () => {

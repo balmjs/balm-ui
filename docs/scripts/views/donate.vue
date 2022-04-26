@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$tt('body1'), 'page--donate']">
+  <div :class="$tt('body1')">
     <header v-ripple.unbounded class="hero">
       <h1 :class="$tt('headline1')">Support BalmUI</h1>
     </header>
@@ -55,6 +55,6 @@
 
 <script>
 export default {
-  name: 'Donate'
+  name: 'PageDonate'
 };
 </script>

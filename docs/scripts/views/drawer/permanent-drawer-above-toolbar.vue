@@ -1,5 +1,5 @@
 <template>
-  <div class="demo-container page--drawer page--permanent-drawer-above-toolbar">
+  <div class="demo-container">
     <!-- Drawer -->
     <ui-drawer type="permanent" viewport-height>
       <ui-drawer-header>

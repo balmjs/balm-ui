@@ -6,9 +6,7 @@ const SegmentedButton = () => import('@/views/components/segmented-button');
 export default [
   {
     path: '',
-    redirect: () => {
-      return { name: 'general.button' };
-    }
+    redirect: () => ({ name: 'general.button' })
   },
   {
     path: 'button',

@@ -9,9 +9,7 @@ const Longpress = () => import('@/views/directives/longpress');
 export default [
   {
     path: '',
-    redirect: () => {
-      return { name: 'misc.event' };
-    }
+    redirect: () => ({ name: 'misc.event' })
   },
   {
     path: 'event',

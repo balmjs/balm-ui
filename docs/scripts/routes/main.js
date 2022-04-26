@@ -2,16 +2,16 @@ import Home from '@/views/home';
 // Layout
 import BlankLayout from '@/views/layouts/blank';
 // Routes
-import guideRoutes from './guide';
-import generalRoutes from './general';
-import layoutRoutes from './layout';
-import navigationRoutes from './navigation';
-import themeRoutes from './theme';
-import dataInputRoutes from './data-input';
-import dataDisplayRoutes from './data-display';
-import feedbackRoutes from './feedback';
-import miscRoutes from './misc';
-import testRoutes from './test';
+import guideRoutes from './modules/guide';
+import generalRoutes from './modules/general';
+import layoutRoutes from './modules/layout';
+import navigationRoutes from './modules/navigation';
+import themeRoutes from './modules/theme';
+import dataInputRoutes from './modules/data-input';
+import dataDisplayRoutes from './modules/data-display';
+import feedbackRoutes from './modules/feedback';
+import miscRoutes from './modules/misc';
+import testRoutes from './modules/test';
 // Pages
 const Store = () => import('@/views/plugins/store');
 const Utils = () => import('@/views/utils');

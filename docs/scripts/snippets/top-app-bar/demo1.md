@@ -1,5 +1,5 @@
 ```html
-<div class="page--top-app-bar">
+<div class="page-top-app-bar">
   <ui-top-app-bar
     content-selector="#content-main"
     :type="type"

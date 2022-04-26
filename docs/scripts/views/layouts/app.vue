@@ -10,8 +10,8 @@
       class="top-loading"
       :progress="pageLoad.progress"
     ></ui-progress>
-    <template v-if="noLayout">
-      <router-view></router-view>
+    <template v-if="$store.noLayout">
+      <router-view :class="pageClassName"></router-view>
     </template>
     <template v-else>
       <!-- App bar -->
@@ -178,7 +178,7 @@
           ></ui-spinner>
           <router-view v-slot="{ Component }">
             <transition name="loading">
-              <component :is="Component" />
+              <component :is="Component" :class="pageClassName" />
             </transition>
           </router-view>
         </div>
@@ -194,7 +194,7 @@ import menu from '@/config/menu';
 const title = 'BalmUI';
 
 export default {
-  name: 'BalmUIApp',
+  name: 'AppLayout',
   inheritAttrs: false,
   customOptions: {
     title,
@@ -225,6 +225,7 @@ import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n/index';
 import { useBus, useStore, useAlert } from 'balm-ui';
 import TopAppToolbar from '@/components/top-app-toolbar';
+import {getPageClassName} from '@/utils';
 
 const bodyEl = document.documentElement || document.body;
 const state = reactive({
@@ -276,11 +277,7 @@ function loading() {
   }
 }
 
-const noLayout = computed(() => {
-  return route.name ? route.meta && route.meta.noLayout : true;
-});
-
-store.isFirstLoad = computed(() => route.name == null);
+const pageClassName = computed(() => getPageClassName('page', route.name));
 
 function hideBanner() {
   state.showBanner = false;

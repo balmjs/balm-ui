@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="
-      demo-container
-      page--drawer page--dismissible-drawer-full-height-drawer
-    "
-  >
+  <div class="demo-container">
     <!-- Drawer -->
     <ui-drawer type="dismissible" viewport-height nav-id="demo-menu">
       <ui-drawer-header>

@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$tt('body1'), 'page--home']">
+  <div :class="$tt('body1')">
     <header v-ripple.unbounded class="hero">
       <h1 :class="$tt('headline1')">BalmUI for Vue3</h1>
     </header>
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: 'PageHome',
   metaInfo() {
     return {
       subtitle: 'Home'

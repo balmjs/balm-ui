@@ -1,5 +1,5 @@
 <template>
-  <div class="page--top-app-bar">
+  <div>
     <ui-top-app-bar
       content-selector="#content-main"
       :type="typeOption"

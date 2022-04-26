@@ -2,7 +2,7 @@ import BlankLayout from '@/views/layouts/blank';
 const CompositionTest = () => import('@/views/test/composition');
 const OptionsTest = () => import('@/views/test/options');
 
-const testRoutes = [
+export default [
   {
     path: '/test',
     name: 'test',
@@ -10,9 +10,7 @@ const testRoutes = [
     children: [
       {
         path: '',
-        redirect: () => {
-          return { name: 'test.composition' };
-        }
+        redirect: () => ({ name: 'test.composition' })
       },
       {
         path: 'composition/:id?',
@@ -29,5 +27,3 @@ const testRoutes = [
     ]
   }
 ];
-
-export default testRoutes;

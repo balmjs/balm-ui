@@ -1,13 +1,17 @@
 import { useBus, useStore } from 'balm-ui';
+import { getPageClassName } from '@/utils';
 import { statistics } from '@/config/analytics';
 
-const CLASS_NAMESPACE = 'balmui';
+const ROOT_CLASS_NAMESPACE = 'balmui';
 
 export function initRouter(router) {
   const bus = useBus();
 
   router.beforeEach((to, from, next) => {
     const store = useStore();
+
+    store.noLayout = to.matched.some((route) => route.meta.noLayout);
+    store.isFirstLoad = !from.name;
 
     if (store && !store.isFirstLoad) {
       bus.emit('page-loading');
@@ -19,31 +23,32 @@ export function initRouter(router) {
   router.afterEach((to, from) => {
     const store = useStore();
 
-    let pageClassList = document.querySelector('html').classList;
-    let routeName = to.name;
-    let isNoLayout = routeName
-      ? routeName.indexOf('-drawer') > -1 ||
-        routeName.indexOf('-toolbar') > -1 ||
-        ['layouts.grid', 'layouts.top-app-bar', 'test'].includes(routeName)
+    const pageClassList = document.querySelector('html').classList;
+    const fromRouteName = from.name;
+    const toRouteName = to.name;
+    const isNoLayout = toRouteName
+      ? toRouteName.indexOf('-drawer') > -1 ||
+        toRouteName.indexOf('-toolbar') > -1 ||
+        ['layouts.grid', 'layouts.top-app-bar', 'test'].includes(toRouteName)
       : true;
 
     if (isNoLayout) {
-      pageClassList.add(`${CLASS_NAMESPACE}-no-layout`);
+      pageClassList.add(`${ROOT_CLASS_NAMESPACE}-no-layout`);
     } else {
-      pageClassList.remove(`${CLASS_NAMESPACE}-no-layout`);
+      pageClassList.remove(`${ROOT_CLASS_NAMESPACE}-no-layout`);
     }
 
-    if (from.name) {
-      let fromName = from.name.replace('.', '_');
-      pageClassList.remove(`${CLASS_NAMESPACE}-${fromName}`);
+    if (fromRouteName) {
+      const className = getPageClassName(ROOT_CLASS_NAMESPACE, fromRouteName);
+      pageClassList.remove(...className);
     }
 
-    if (to.name) {
-      let toName = to.name.replace('.', '_');
-      pageClassList.add(`${CLASS_NAMESPACE}-${toName}`);
+    if (toRouteName) {
+      const className = getPageClassName(ROOT_CLASS_NAMESPACE, toRouteName);
+      pageClassList.add(...className);
     }
 
-    if (to.name !== from.name) {
+    if (toRouteName !== fromRouteName) {
       statistics(to.fullPath);
     }
 

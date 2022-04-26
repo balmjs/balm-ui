@@ -6,9 +6,7 @@ const Icon = () => import('@/views/components/icon');
 export default [
   {
     path: '',
-    redirect: () => {
-      return { name: 'theme.color' };
-    }
+    redirect: () => ({ name: 'theme.color' })
   },
   {
     path: 'color',

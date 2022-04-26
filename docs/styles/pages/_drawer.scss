@@ -7,7 +7,7 @@
   }
 }
 
-.page--drawer {
+.page-navigation_drawer {
   .hero-demo {
     h3 {
       text-align: left;
@@ -22,7 +22,7 @@
   }
 }
 
-.page--permanent-drawer-above-toolbar {
+.page-navigation_permanent-drawer-above-toolbar {
   .demo-content {
     position: relative;
   }
@@ -32,21 +32,21 @@
   }
 }
 
-.page--permanent-drawer-above-toolbar,
-.page--dismissible-drawer-full-height-drawer {
+.page-navigation_permanent-drawer-above-toolbar,
+.page-navigation_dismissible-drawer-full-height-drawer {
   .demo-content {
     width: 100%;
   }
 }
 
-.page--permanent-drawer-below-toolbar,
-.page--dismissible-drawer-below-top-app-bar {
+.page-navigation_permanent-drawer-below-toolbar,
+.page-navigation_dismissible-drawer-below-top-app-bar {
   .demo-app-content {
     width: 100%;
   }
 }
 
-.page--dismissible-drawer-below-top-app-bar {
+.page-navigation_dismissible-drawer-below-top-app-bar {
   .demo-app-bar {
     z-index: 7;
   }

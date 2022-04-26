@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$tt('body1'), 'page--not-found']">
+  <div :class="[$tt('body1'), 'page-not-found']">
     <header class="hero">
       <h2 :class="$tt('headline2')">404 Not Found</h2>
     </header>
@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  name: 'NotFound',
   metaInfo() {
     return {
       subtitle: 'Not Found'

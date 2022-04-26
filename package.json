@@ -78,7 +78,7 @@
     "@vue/compiler-sfc": "^3.2.0",
     "@vue/test-utils": "^2.0.0-rc.21",
     "@vue/vue3-jest": "^27.0.0",
-    "axios": "0.26.1",
+    "axios": "^0.27.1",
     "babel-jest": "^28.0.0",
     "babel-plugin-prismjs": "^2.1.0",
     "balm": "^4.5.0",

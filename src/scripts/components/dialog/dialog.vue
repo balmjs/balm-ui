@@ -8,6 +8,13 @@
         role="alertdialog"
         aria-modal="true"
       >
+        <mdc-icon-button
+          v-if="sheet"
+          class="mdc-dialog__close"
+          data-mdc-dialog-action="close"
+        >
+          close
+        </mdc-icon-button>
         <slot></slot>
       </div>
     </div>
@@ -52,6 +59,7 @@ import {
   strings,
   cssClasses
 } from '../../../material-components-web/dialog/constants';
+import MdcIconButton from '../icon-button/mdc-icon-button.vue';
 
 const props = defineProps({
   // States
@@ -83,6 +91,14 @@ const props = defineProps({
   fullscreen: {
     type: Boolean,
     default: false
+  },
+  sheet: {
+    type: Boolean,
+    default: false
+  },
+  noContentPadding: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -101,7 +117,9 @@ const state = reactive({
 
 const className = computed(() => ({
   'mdc-dialog': true,
-  'mdc-dialog--fullscreen': props.fullscreen
+  'mdc-dialog--fullscreen': props.fullscreen,
+  'mdc-dialog--sheet': props.sheet,
+  'mdc-dialog--no-content-padding': props.noContentPadding
 }));
 
 onMounted(() => {

@@ -2,6 +2,18 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.5.0 / 2022-04-26
+
+### Features
+
+- update `mdc@14.0.0-canary.3ab956515.0`
+- `<ui-dialog>`: add prop `sheet`, `noContentPadding`
+
+### Bug Fixes
+
+- `<segmented-buttons>`: fix init model value bug
+- `<ui-list>`, `<ui-item>`: fix role attr bug
+
 ## v10.4.1 / 2022-04-23
 
 ### Bug Fixes
@@ -16,7 +28,7 @@
   import useDemoStore from './modules/demo';
 
   export default {
-    name: 'myStore', // Set new custom store name: `$myStore` (Defaults: `$store`)
+    name: 'myStore', // Set new custom store name (all lowercase): `$mystore` (Defaults: `$store`)
     ...useDemoStore()
   };
   ```

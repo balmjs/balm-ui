@@ -16,11 +16,17 @@
   $shape-radius: medium,
   $title-bottom-padding: 9px,
   $actions-padding: 8px,
-  $header-side-padding: 24px, // New in 9.12.0
+  // New in 9.12.0
+  $header-side-padding: 24px,
 
-  $close-icon-padding: 12px, // New in 9.14.0
-  $title-side-padding: 16px, // New in 9.14.0
-  $fullscreen-header-side-padding: 16px, // New in 9.14.0
+  // New in 9.14.0
+  $close-icon-padding: 12px,
+  $title-side-padding: 16px,
+  $fullscreen-header-side-padding: 16px,
+
+  // New in 10.5.0
+  $sheet-close-icon-right: 12px,
+  $sheet-close-icon-top: 9px,
 
   $z-index: 7
 );

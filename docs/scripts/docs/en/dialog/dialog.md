@@ -15,6 +15,8 @@
 | `noScrim`                | boolean | `false` | Hides the dialog scrim.                                                                                                  |         |
 | `resetScroll`            | boolean | `false` | Reset scroll bar, when the dialog is closed.                                                                             |         |
 | `fullscreen`             | boolean | `false` | Styles a full-screen dialog.                                                                                             | 9.14.0  |
+| `sheet`                  | boolean | `false` | Styles a floating sheet dialog.                                                                                          | 10.5.0  |
+| `noContentPadding`       | boolean | `false` | Styles a no default padding dialog content.                                                                              | 10.5.0  |
 
 > NOTE: The `noBackdrop` prop rename to `noScrim` in 9.25.0
 

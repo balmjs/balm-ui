@@ -131,14 +131,14 @@
         <template v-for="(item, index) in items3" :key="index">
           <ui-item-divider v-if="item === '-'"></ui-item-divider>
           <ui-item v-else>
-            <ui-item-text-content>{{ item.text }}</ui-item-text-content>
-            <ui-item-last-content>
+            <ui-item-first-content>
               <ui-checkbox
                 v-model="checkedValues"
                 :value="item.value"
                 @click.stop
               ></ui-checkbox>
-            </ui-item-last-content>
+            </ui-item-first-content>
+            <ui-item-text-content>{{ item.text }}</ui-item-text-content>
           </ui-item>
         </template>
       </ui-list>
@@ -152,14 +152,14 @@
         <template v-for="(item, index) in items3" :key="index">
           <ui-item-divider v-if="item === '-'"></ui-item-divider>
           <ui-item v-else>
-            <ui-item-text-content>{{ item.text }}</ui-item-text-content>
-            <ui-item-last-content>
+            <ui-item-first-content>
               <ui-radio
                 v-model="checkedValue"
                 :value="item.value"
                 @click.stop
               ></ui-radio>
-            </ui-item-last-content>
+            </ui-item-first-content>
+            <ui-item-text-content>{{ item.text }}</ui-item-text-content>
           </ui-item>
         </template>
       </ui-list>

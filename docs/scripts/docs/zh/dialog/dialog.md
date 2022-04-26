@@ -15,6 +15,8 @@
 | `noScrim`                | boolean | `false` | 隐藏对话框遮罩层                                                                |         |
 | `resetScroll`            | boolean | `false` | 对话框关闭时，重置滚动条。                                                      |         |
 | `fullscreen`             | boolean | `false` | 全屏效果                                                                        | 9.14.0  |
+| `sheet`                  | boolean | `false` | 默认启用关闭按钮                                                                | 10.5.0  |
+| `noContentPadding`       | boolean | `false` | 取消对话框内容的默认 padding                                                    | 10.5.0  |
 
 > 提示：全屏对话框适用于移动/小屏幕设备。
 

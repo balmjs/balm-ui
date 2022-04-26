@@ -162,6 +162,15 @@
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
 
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-button raised @click="balmUI.onShow('open4')">
+          Show floating sheet dialog
+        </ui-button>
+      </div>
+      <ui-snippet :code="$store.demos[4]"></ui-snippet>
+    </section>
+
     <ui-dialog v-model="open" @confirm="onConfirm">
       <ui-dialog-title>Use Google's location service?</ui-dialog-title>
       <ui-dialog-content>
@@ -200,6 +209,18 @@
       <ui-dialog-actions>
         <ui-button @click="balmUI.onHide('open3')">OK</ui-button>
       </ui-dialog-actions>
+    </ui-dialog>
+
+    <ui-dialog v-model="open4" sheet no-content-padding>
+      <ui-dialog-content>
+        <div class="test-sheet__content">
+          <h3>Sheets</h3>
+          <p>
+            There are no action buttons. Any HTML content can go here. Title is
+            also defined through content.
+          </p>
+        </div>
+      </ui-dialog-content>
     </ui-dialog>
   </docs-page>
 </template>
@@ -272,7 +293,8 @@ export default {
         'Marimba',
         'Schwifty'
       ],
-      open3: false
+      open3: false,
+      open4: false
     };
   },
   methods: {

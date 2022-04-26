@@ -16,7 +16,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, reactive, toRefs } from 'vue';
+import { ref, computed } from 'vue';
 import { strings } from '../../../material-components-web/list/constants';
 import { listProps, useList } from '../../mixins/list';
 import { useRipple } from '../../mixins/ripple';
@@ -35,13 +35,9 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_LIST.EVENTS.ACTION]);
+const emit = defineEmits([UI_LIST.EVENTS.ACTION, UI_LIST.EVENTS.SELECTED]);
 
 const list = ref(null);
-const state = reactive({
-  role: null
-});
-const { role } = toRefs(state);
 
 function init($list) {
   $list.listen(strings.ACTION_EVENT, ({ detail }) => {
@@ -49,11 +45,6 @@ function init($list) {
   });
 
   update($list);
-
-  // Making lists accessible
-  state.role =
-    list.value.getAttribute('role') ||
-    (props.singleSelection ? 'listbox' : 'list');
 }
 
 function update($list) {
@@ -77,6 +68,13 @@ function update($list) {
 }
 
 const { className } = useList(list, props, { init, update });
+
+const role = computed(
+  () =>
+    list.value &&
+    (list.value.getAttribute('role') ||
+      (props.singleSelection ? 'listbox' : 'list'))
+);
 
 defineExpose({
   role

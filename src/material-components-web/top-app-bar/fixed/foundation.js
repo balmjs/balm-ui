@@ -35,7 +35,6 @@ var MDCFixedTopAppBarFoundation = /** @class */ (function (_super) {
     }
     /**
      * Scroll handler for applying/removing the modifier class on the fixed top app bar.
-     * @override
      */
     MDCFixedTopAppBarFoundation.prototype.handleTargetScroll = function () {
         var currentScroll = this.adapter.getViewportScrollY();

@@ -311,14 +311,6 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         if (!isEnter && !isSpace && !arrowUp && !arrowDown) {
             return;
         }
-        // Increment/decrement index as necessary and open menu.
-        if (arrowUp && this.getSelectedIndex() > 0) {
-            this.setSelectedIndex(this.getSelectedIndex() - 1);
-        }
-        else if (arrowDown &&
-            this.getSelectedIndex() < this.adapter.getMenuItemCount() - 1) {
-            this.setSelectedIndex(this.getSelectedIndex() + 1);
-        }
         this.openMenu();
         event.preventDefault();
     };

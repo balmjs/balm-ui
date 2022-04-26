@@ -62,7 +62,12 @@ function announce(ariaEl, labelEl) {
     //       - IE 11
     //   * ChromeVox 53
     labelEl.textContent = '';
-    labelEl.innerHTML = '<span style="display: inline-block; width: 0; height: 1px;">&nbsp;</span>';
+    // For the second case, assigning a string directly to innerHTML results in a
+    // Trusted Types violation. Work around that by using document.createElement.
+    var span = document.createElement('span');
+    span.setAttribute('style', 'display: inline-block; width: 0; height: 1px;');
+    span.textContent = '\u00a0'; // Equivalent to &nbsp;
+    labelEl.appendChild(span);
     // Prevent visual jank by temporarily displaying the label text in the ::before pseudo-element.
     // CSS generated content is normally announced by screen readers
     // (except in IE 11; see https://tink.uk/accessibility-support-for-css-generated-content/);

@@ -82,6 +82,7 @@ var MDCSlider = /** @class */ (function (_super) {
             isInputFocused: function (thumb) {
                 return _this.getInput(thumb) === document.activeElement;
             },
+            shouldHideFocusStylesForPointerEvents: function () { return false; },
             getThumbKnobWidth: function (thumb) {
                 return _this.getThumbEl(thumb)
                     .querySelector("." + cssClasses.THUMB_KNOB)
@@ -92,6 +93,12 @@ var MDCSlider = /** @class */ (function (_super) {
                 return _this.getThumbEl(thumb).getBoundingClientRect();
             },
             getBoundingClientRect: function () { return _this.root.getBoundingClientRect(); },
+            getValueIndicatorContainerWidth: function (thumb) {
+                return _this.getThumbEl(thumb)
+                    .querySelector("." + cssClasses.VALUE_INDICATOR_CONTAINER)
+                    .getBoundingClientRect()
+                    .width;
+            },
             isRTL: function () { return getComputedStyle(_this.root).direction === 'rtl'; },
             setThumbStyleProperty: function (propertyName, value, thumb) {
                 _this.getThumbEl(thumb).style.setProperty(propertyName, value);

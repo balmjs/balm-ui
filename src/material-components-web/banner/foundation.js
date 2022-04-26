@@ -50,6 +50,7 @@ var MDCBannerFoundation = /** @class */ (function (_super) {
                 notifyClosing: function () { return undefined; },
                 notifyOpened: function () { return undefined; },
                 notifyOpening: function () { return undefined; },
+                notifyActionClicked: function () { return undefined; },
                 releaseFocus: function () { return undefined; },
                 removeClass: function () { return undefined; },
                 setStyleProperty: function () { return undefined; },
@@ -114,11 +115,23 @@ var MDCBannerFoundation = /** @class */ (function (_super) {
     MDCBannerFoundation.prototype.isOpen = function () {
         return this.isOpened;
     };
-    MDCBannerFoundation.prototype.handlePrimaryActionClick = function () {
-        this.close(CloseReason.PRIMARY);
+    MDCBannerFoundation.prototype.handlePrimaryActionClick = function (disableAutoClose) {
+        if (disableAutoClose === void 0) { disableAutoClose = false; }
+        if (disableAutoClose) {
+            this.adapter.notifyActionClicked(0 /* PRIMARY */);
+        }
+        else {
+            this.close(CloseReason.PRIMARY);
+        }
     };
-    MDCBannerFoundation.prototype.handleSecondaryActionClick = function () {
-        this.close(CloseReason.SECONDARY);
+    MDCBannerFoundation.prototype.handleSecondaryActionClick = function (disableAutoClose) {
+        if (disableAutoClose === void 0) { disableAutoClose = false; }
+        if (disableAutoClose) {
+            this.adapter.notifyActionClicked(1 /* SECONDARY */);
+        }
+        else {
+            this.close(CloseReason.SECONDARY);
+        }
     };
     MDCBannerFoundation.prototype.layout = function () {
         var contentHeight = this.adapter.getContentHeight();

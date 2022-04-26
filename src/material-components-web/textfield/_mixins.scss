@@ -1286,7 +1286,8 @@
         $value: calc(#{$value} + #{notched-outline-variables.$padding});
       }
 
-      @supports (top: max(0%)) {
+      // Interpolation is a workaround for sass/sass#3259.
+      @supports (top: max(#{0%})) {
         // A max() function makes this runtime dynamic. The padding will be
         // whichever is greater: the default horizontal padding, or the calculated
         // custom property plus extra padding.
@@ -1314,6 +1315,36 @@
       $timing-function,
       $query: $query
     );
+  }
+}
+
+///
+/// Sets custom font size of the input.
+///
+/// @param {number} $font-size - Overrides the font size.
+///
+@mixin input-font-size($font-size, $query: feature-targeting.all()) {
+  $feat-typography: feature-targeting.create-target($query, typography);
+
+  .mdc-text-field__input {
+    @include feature-targeting.targets($feat-typography) {
+      font-size: $font-size;
+    }
+  }
+}
+
+///
+/// Sets custom font family of the input.
+///
+/// @param {String} $font-family - Selected font family.
+///
+@mixin input-font-family($font-family, $query: feature-targeting.all()) {
+  $feat-typography: feature-targeting.create-target($query, typography);
+
+  .mdc-text-field__input {
+    @include feature-targeting.targets($feat-typography) {
+      font-family: $font-family;
+    }
   }
 }
 

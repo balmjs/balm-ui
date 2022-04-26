@@ -20,8 +20,8 @@
 // THE SOFTWARE.
 //
 
+// stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
 
 @use 'sass:color';
 @use 'sass:map';
@@ -155,13 +155,7 @@ $_ripple-theme: (
     #{$ripple-target}::before,
     #{$ripple-target}::after {
       @include feature-targeting.targets($feat-color) {
-        @if color.alpha(theme-color.prop-value($color)) > 0 {
-          @include theme.property(background-color, $color);
-        } @else {
-          // If a color with 0 alpha is specified, don't render the ripple pseudo-elements at all.
-          // This avoids unnecessary transitions and overflow.
-          content: none;
-        }
+        @include theme.property(background-color, $color);
       }
     }
   }
@@ -220,7 +214,7 @@ $_ripple-theme: (
   // Background wash styles, for both CSS-only and upgraded stateful surfaces
   &:hover,
   &.mdc-ripple-surface--hover {
-    #{$ripple-target}::before {
+    @include states-background-selector($ripple-target) {
       // Opacity falls under color because the chosen opacity is color-dependent in typical usage
       @include feature-targeting.targets($feat-color) {
         @include theme.property(opacity, $opacity);
@@ -247,7 +241,7 @@ $_ripple-theme: (
     // CSS-only selectors.
     &:not(.mdc-ripple-upgraded):focus,
     &:not(.mdc-ripple-upgraded):focus-within {
-      #{$ripple-target}::before {
+      @include states-background-selector($ripple-target) {
         @include states-focus-opacity-properties_(
           $opacity: $opacity,
           $query: $query
@@ -259,7 +253,7 @@ $_ripple-theme: (
     &.mdc-ripple-upgraded--background-focused,
     // CSS-only selectors.
     &:not(.mdc-ripple-upgraded):focus {
-      #{$ripple-target}::before {
+      @include states-background-selector($ripple-target) {
         @include states-focus-opacity-properties_(
           $opacity: $opacity,
           $query: $query
@@ -373,8 +367,7 @@ $_ripple-theme: (
 
   &--activated {
     // Stylelint seems to think that '&' qualifies as a type selector here?
-    // stylelint-disable-next-line selector-max-type
-    #{$ripple-target}::before {
+    @include states-background-selector($ripple-target) {
       // Opacity falls under color because the chosen opacity is color-dependent.
       @include feature-targeting.targets($feat-color) {
         @include theme.property(
@@ -409,8 +402,7 @@ $_ripple-theme: (
   $selected-opacity: states-opacity($color, selected);
 
   &--selected {
-    // stylelint-disable-next-line selector-max-type
-    #{$ripple-target}::before {
+    @include states-background-selector($ripple-target) {
       // Opacity falls under color because the chosen opacity is color-dependent.
       @include feature-targeting.targets($feat-color) {
         @include theme.property(
@@ -550,4 +542,10 @@ $_ripple-theme: (
   }
 
   @return map.get($opacity-map, $state);
+}
+
+@mixin states-background-selector($ripple-target) {
+  #{$ripple-target}::before {
+    @content;
+  }
 }

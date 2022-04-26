@@ -49,6 +49,7 @@ var deprecatedClassNameMap = (_b = {},
     _b);
 var strings = {
     ACTION_EVENT: 'MDCList:action',
+    SELECTION_CHANGE_EVENT: 'MDCList:selectionChange',
     ARIA_CHECKED: 'aria-checked',
     ARIA_CHECKED_CHECKBOX_SELECTOR: '[role="checkbox"][aria-checked="true"]',
     ARIA_CHECKED_RADIO_SELECTOR: '[role="radio"][aria-checked="true"]',

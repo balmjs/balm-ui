@@ -64,7 +64,6 @@ var MDCTopAppBarFoundation = /** @class */ (function (_super) {
     };
     /**
      * Scroll handler for the default scroll behavior of the top app bar.
-     * @override
      */
     MDCTopAppBarFoundation.prototype.handleTargetScroll = function () {
         var currentScrollPosition = Math.max(this.adapter.getViewportScrollY(), 0);
@@ -86,7 +85,6 @@ var MDCTopAppBarFoundation = /** @class */ (function (_super) {
     };
     /**
      * Top app bar resize handler that throttle/debounce functions that execute updates.
-     * @override
      */
     MDCTopAppBarFoundation.prototype.handleWindowResize = function () {
         var _this = this;

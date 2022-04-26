@@ -24,7 +24,7 @@ import { __assign, __extends } from "tslib";
 import { AnimationFrame } from '../animation/animationframe';
 import { getCorrectPropertyName } from '../animation/util';
 import { MDCFoundation } from '../base/foundation';
-import { attributes, cssClasses, numbers } from './constants';
+import { attributes, cssClasses, numbers, strings } from './constants';
 import { Thumb, TickMark } from './types';
 var AnimationKeys;
 (function (AnimationKeys) {
@@ -48,6 +48,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         _this.isDisabled = false;
         _this.isDiscrete = false;
         _this.step = numbers.STEP_SIZE;
+        _this.minRange = numbers.MIN_RANGE;
         _this.hasTickMarks = false;
         // The following properties are only set for range sliders.
         _this.isRange = false;
@@ -83,7 +84,9 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
                 removeInputAttribute: function () { return null; },
                 focusInput: function () { return undefined; },
                 isInputFocused: function () { return false; },
+                shouldHideFocusStylesForPointerEvents: function () { return false; },
                 getThumbKnobWidth: function () { return 0; },
+                getValueIndicatorContainerWidth: function () { return 0; },
                 getThumbBoundingClientRect: function () {
                     return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 });
                 },
@@ -135,12 +138,17 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         var step = stepAttr ?
             this.convertAttributeValueToNumber(stepAttr, attributes.INPUT_STEP) :
             this.step;
-        this.validateProperties({ min: min, max: max, value: value, valueStart: valueStart, step: step });
+        var minRangeAttr = this.adapter.getAttribute(attributes.DATA_MIN_RANGE);
+        var minRange = minRangeAttr ?
+            this.convertAttributeValueToNumber(minRangeAttr, attributes.DATA_MIN_RANGE) :
+            this.minRange;
+        this.validateProperties({ min: min, max: max, value: value, valueStart: valueStart, step: step, minRange: minRange });
         this.min = min;
         this.max = max;
         this.value = value;
         this.valueStart = valueStart;
         this.step = step;
+        this.minRange = minRange;
         this.numDecimalPlaces = getNumDecimalPlaces(this.step);
         this.valueBeforeDownEvent = value;
         this.valueStartBeforeDownEvent = valueStart;
@@ -204,9 +212,9 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
      * - For range (two-thumb) sliders, sets the end thumb's value.
      */
     MDCSliderFoundation.prototype.setValue = function (value) {
-        if (this.isRange && value < this.valueStart) {
+        if (this.isRange && value < this.valueStart + this.minRange) {
             throw new Error("end thumb value (" + value + ") must be >= start thumb " +
-                ("value (" + this.valueStart + ")"));
+                ("value (" + this.valueStart + ") + min range (" + this.minRange + ")"));
         }
         this.updateValue(value, Thumb.END);
     };
@@ -227,9 +235,9 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         if (!this.isRange) {
             throw new Error('`valueStart` is only applicable for range sliders.');
         }
-        if (this.isRange && valueStart > this.value) {
+        if (this.isRange && valueStart > this.value - this.minRange) {
             throw new Error("start thumb value (" + valueStart + ") must be <= end thumb " +
-                ("value (" + this.value + ")"));
+                ("value (" + this.value + ") - min range (" + this.minRange + ")"));
         }
         this.updateValue(valueStart, Thumb.START);
     };
@@ -238,6 +246,24 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         this.numDecimalPlaces = getNumDecimalPlaces(value);
         this.updateUI();
     };
+    /**
+     * Only applicable for range sliders. Sets the minimum difference between the
+     * start and end values.
+     */
+    MDCSliderFoundation.prototype.setMinRange = function (value) {
+        if (!this.isRange) {
+            throw new Error('`minRange` is only applicable for range sliders.');
+        }
+        if (value < 0) {
+            throw new Error('`minRange` must be non-negative. ' +
+                ("Current value: " + value));
+        }
+        if (this.value - this.valueStart < value) {
+            throw new Error("start thumb value (" + this.valueStart + ") and end thumb value " +
+                ("(" + this.value + ") must differ by at least " + value + "."));
+        }
+        this.minRange = value;
+    };
     MDCSliderFoundation.prototype.setIsDiscrete = function (value) {
         this.isDiscrete = value;
         this.updateValueIndicatorUI();
@@ -245,6 +271,12 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     };
     MDCSliderFoundation.prototype.getStep = function () {
         return this.step;
+    };
+    MDCSliderFoundation.prototype.getMinRange = function () {
+        if (!this.isRange) {
+            throw new Error('`minRange` is only applicable for range sliders.');
+        }
+        return this.minRange;
     };
     MDCSliderFoundation.prototype.setHasTickMarks = function (value) {
         this.hasTickMarks = value;
@@ -341,8 +373,14 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
      * Handles pointer up events on the slider root element.
      */
     MDCSliderFoundation.prototype.handleUp = function () {
+        var _a, _b;
         if (this.isDisabled || this.thumb === null)
             return;
+        // Remove the focused state and hide the value indicator(s) (if present)
+        // if focus state is meant to be hidden.
+        if ((_b = (_a = this.adapter).shouldHideFocusStylesForPointerEvents) === null || _b === void 0 ? void 0 : _b.call(_a)) {
+            this.handleInputBlur(this.thumb);
+        }
         var oldValue = this.thumb === Thumb.START ?
             this.valueStartBeforeDownEvent :
             this.valueBeforeDownEvent;
@@ -366,11 +404,15 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
      * For range, discrete slider, hides the value indicator on both thumbs.
      */
     MDCSliderFoundation.prototype.handleThumbMouseleave = function () {
+        var _a, _b;
         if (!this.isDiscrete || !this.isRange)
             return;
-        if (this.adapter.isInputFocused(Thumb.START) ||
-            this.adapter.isInputFocused(Thumb.END)) {
-            // Leave value indicator shown if either input is focused.
+        if ((!((_b = (_a = this.adapter).shouldHideFocusStylesForPointerEvents) === null || _b === void 0 ? void 0 : _b.call(_a)) &&
+            (this.adapter.isInputFocused(Thumb.START) ||
+                this.adapter.isInputFocused(Thumb.END))) ||
+            this.thumb) {
+            // Leave value indicator shown if either input is focused or the thumb is
+            // being dragged.
             return;
         }
         this.adapter.removeThumbClass(cssClasses.THUMB_WITH_INDICATOR, Thumb.START);
@@ -397,7 +439,12 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         this.handleDown(event);
     };
     MDCSliderFoundation.prototype.handlePointerdown = function (event) {
-        this.adapter.setPointerCapture(event.pointerId);
+        var isPrimaryButton = event.button === 0;
+        if (!isPrimaryButton)
+            return;
+        if (event.pointerId != null) {
+            this.adapter.setPointerCapture(event.pointerId);
+        }
         this.adapter.registerEventHandler('pointermove', this.moveListener);
         this.handleDown(event);
     };
@@ -442,8 +489,17 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
      * Emits custom dragStart event, along with focusing the underlying input.
      */
     MDCSliderFoundation.prototype.handleDragStart = function (event, value, thumb) {
+        var _a, _b;
         this.adapter.emitDragStartEvent(value, thumb);
         this.adapter.focusInput(thumb);
+        // Restore focused state and show the value indicator(s) (if present)
+        // in case they were previously hidden on dragEnd.
+        // This is needed if the input is already focused, in which case
+        // #focusInput above wouldn't actually trigger #handleInputFocus,
+        // which is why we need to invoke it manually here.
+        if ((_b = (_a = this.adapter).shouldHideFocusStylesForPointerEvents) === null || _b === void 0 ? void 0 : _b.call(_a)) {
+            this.handleInputFocus(thumb);
+        }
         // Prevent the input (that we just focused) from losing focus.
         event.preventDefault();
     };
@@ -512,7 +568,13 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
      *     updated for both thumbs based on current internal state.
      */
     MDCSliderFoundation.prototype.updateUI = function (thumb) {
-        this.updateThumbAndInputAttributes(thumb);
+        if (thumb) {
+            this.updateThumbAndInputAttributes(thumb);
+        }
+        else {
+            this.updateThumbAndInputAttributes(Thumb.START);
+            this.updateThumbAndInputAttributes(Thumb.END);
+        }
         this.updateThumbAndTrackUI(thumb);
         this.updateValueIndicatorUI(thumb);
         this.updateTickMarksUI();
@@ -528,10 +590,10 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         var valueStr = String(value);
         this.adapter.setInputAttribute(attributes.INPUT_VALUE, valueStr, thumb);
         if (this.isRange && thumb === Thumb.START) {
-            this.adapter.setInputAttribute(attributes.INPUT_MIN, valueStr, Thumb.END);
+            this.adapter.setInputAttribute(attributes.INPUT_MIN, String(value + this.minRange), Thumb.END);
         }
         else if (this.isRange && thumb === Thumb.END) {
-            this.adapter.setInputAttribute(attributes.INPUT_MAX, valueStr, Thumb.START);
+            this.adapter.setInputAttribute(attributes.INPUT_MAX, String(value - this.minRange), Thumb.START);
         }
         // Sync attribute with property.
         if (this.adapter.getInputValue(thumb) !== valueStr) {
@@ -539,7 +601,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         }
         var valueToAriaValueTextFn = this.adapter.getValueToAriaValueTextFn();
         if (valueToAriaValueTextFn) {
-            this.adapter.setInputAttribute(attributes.ARIA_VALUETEXT, valueToAriaValueTextFn(value), thumb);
+            this.adapter.setInputAttribute(attributes.ARIA_VALUETEXT, valueToAriaValueTextFn(value, thumb), thumb);
         }
     };
     /**
@@ -620,19 +682,21 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     /**
      * Clamps the given value for the given thumb based on slider properties:
      * - Restricts value within [min, max].
-     * - If range slider, clamp start value <= end value, and
-     *   end value >= start value.
+     * - If range slider, clamp start value <= end value - min range, and
+     *   end value >= start value + min range.
      */
     MDCSliderFoundation.prototype.clampValue = function (value, thumb) {
         // Clamp value to [min, max] range.
         value = Math.min(Math.max(value, this.min), this.max);
-        var thumbStartMovedPastThumbEnd = this.isRange && thumb === Thumb.START && value > this.value;
+        var thumbStartMovedPastThumbEnd = this.isRange && thumb === Thumb.START &&
+            value > this.value - this.minRange;
         if (thumbStartMovedPastThumbEnd) {
-            return this.value;
+            return this.value - this.minRange;
         }
-        var thumbEndMovedPastThumbStart = this.isRange && thumb === Thumb.END && value < this.valueStart;
+        var thumbEndMovedPastThumbStart = this.isRange && thumb === Thumb.END &&
+            value < this.valueStart + this.minRange;
         if (thumbEndMovedPastThumbStart) {
-            return this.valueStart;
+            return this.valueStart + this.minRange;
         }
         return value;
     };
@@ -659,12 +723,12 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
                     (isRtl && thumb !== Thumb.START);
                 if (trackAnimatesFromRight) {
                     _this.adapter.setTrackActiveStyleProperty('transform-origin', 'right');
-                    _this.adapter.setTrackActiveStyleProperty('left', 'unset');
+                    _this.adapter.setTrackActiveStyleProperty('left', 'auto');
                     _this.adapter.setTrackActiveStyleProperty('right', _this.rect.width - thumbRightPos_1 + "px");
                 }
                 else {
                     _this.adapter.setTrackActiveStyleProperty('transform-origin', 'left');
-                    _this.adapter.setTrackActiveStyleProperty('right', 'unset');
+                    _this.adapter.setTrackActiveStyleProperty('right', 'auto');
                     _this.adapter.setTrackActiveStyleProperty('left', thumbLeftPos_1 + "px");
                 }
                 _this.adapter.setTrackActiveStyleProperty(transformProp, "scaleX(" + pctComplete + ")");
@@ -673,9 +737,11 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
                 var thumbEndPos = _this.adapter.isRTL() ? thumbLeftPos_1 : thumbRightPos_1;
                 if (thumb === Thumb.START || !thumb || !_this.initialStylesRemoved) {
                     _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbStartPos + "px)", Thumb.START);
+                    _this.alignValueIndicator(Thumb.START, thumbStartPos);
                 }
                 if (thumb === Thumb.END || !thumb || !_this.initialStylesRemoved) {
                     _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbEndPos + "px)", Thumb.END);
+                    _this.alignValueIndicator(Thumb.END, thumbEndPos);
                 }
                 _this.removeInitialStyles(isRtl);
                 _this.updateOverlappingThumbsUI(thumbStartPos, thumbEndPos, thumb);
@@ -685,9 +751,45 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
             this.animFrame.request(AnimationKeys.SLIDER_UPDATE, function () {
                 var thumbStartPos = isRtl ? _this.rect.width - rangePx : rangePx;
                 _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbStartPos + "px)", Thumb.END);
+                _this.alignValueIndicator(Thumb.END, thumbStartPos);
                 _this.adapter.setTrackActiveStyleProperty(transformProp, "scaleX(" + pctComplete + ")");
                 _this.removeInitialStyles(isRtl);
             });
+        }
+    };
+    /**
+     * Shifts the value indicator to either side if it would otherwise stick
+     * beyond the slider's length while keeping the caret above the knob.
+     */
+    MDCSliderFoundation.prototype.alignValueIndicator = function (thumb, thumbPos) {
+        if (!this.isDiscrete)
+            return;
+        var thumbHalfWidth = this.adapter.getThumbBoundingClientRect(thumb).width / 2;
+        var containerWidth = this.adapter.getValueIndicatorContainerWidth(thumb);
+        var sliderWidth = this.adapter.getBoundingClientRect().width;
+        if (containerWidth / 2 > thumbPos + thumbHalfWidth) {
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_LEFT, thumbHalfWidth + "px", thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_RIGHT, 'auto', thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_TRANSFORM, 'translateX(-50%)', thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_LEFT, '0', thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_RIGHT, 'auto', thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_TRANSFORM, 'none', thumb);
+        }
+        else if (containerWidth / 2 > sliderWidth - thumbPos + thumbHalfWidth) {
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_LEFT, 'auto', thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_RIGHT, thumbHalfWidth + "px", thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_TRANSFORM, 'translateX(50%)', thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_LEFT, 'auto', thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_RIGHT, '0', thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_TRANSFORM, 'none', thumb);
+        }
+        else {
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_LEFT, '50%', thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_RIGHT, 'auto', thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CARET_TRANSFORM, 'translateX(-50%)', thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_LEFT, '50%', thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_RIGHT, 'auto', thumb);
+            this.adapter.setThumbStyleProperty(strings.VAR_VALUE_INDICATOR_CONTAINER_TRANSFORM, 'translateX(-50%)', thumb);
         }
     };
     /**
@@ -725,7 +827,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         var transitionProp = HAS_WINDOW ?
             getCorrectPropertyName(window, 'transition') :
             'transition';
-        var transitionDefault = 'all 0s ease 0s';
+        var transitionDefault = 'none 0s ease 0s';
         this.adapter.setThumbStyleProperty(transitionProp, transitionDefault, Thumb.END);
         if (this.isRange) {
             this.adapter.setThumbStyleProperty(transitionProp, transitionDefault, Thumb.START);
@@ -778,53 +880,63 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
      */
     MDCSliderFoundation.prototype.convertAttributeValueToNumber = function (attributeValue, attributeName) {
         if (attributeValue === null) {
-            throw new Error("MDCSliderFoundation: `" + attributeName + "` must be non-null.");
+            throw new Error('MDCSliderFoundation: `' + attributeName + '` must be non-null.');
         }
         var value = Number(attributeValue);
         if (isNaN(value)) {
-            throw new Error("MDCSliderFoundation: `" + attributeName + "` value is " +
-                ("`" + attributeValue + "`, but must be a number."));
+            throw new Error('MDCSliderFoundation: `' + attributeName + '` value is `' +
+                attributeValue + '`, but must be a number.');
         }
         return value;
     };
     /** Checks that the given properties are valid slider values. */
     MDCSliderFoundation.prototype.validateProperties = function (_a) {
-        var min = _a.min, max = _a.max, value = _a.value, valueStart = _a.valueStart, step = _a.step;
+        var min = _a.min, max = _a.max, value = _a.value, valueStart = _a.valueStart, step = _a.step, minRange = _a.minRange;
         if (min >= max) {
             throw new Error("MDCSliderFoundation: min must be strictly less than max. " +
                 ("Current: [min: " + min + ", max: " + max + "]"));
         }
         if (step <= 0) {
             throw new Error("MDCSliderFoundation: step must be a positive number. " +
-                ("Current step: " + this.step));
+                ("Current step: " + step));
         }
         if (this.isRange) {
             if (value < min || value > max || valueStart < min || valueStart > max) {
                 throw new Error("MDCSliderFoundation: values must be in [min, max] range. " +
-                    ("Current values: [start value: " + valueStart + ", end value: " + value + "]"));
+                    ("Current values: [start value: " + valueStart + ", end value: ") +
+                    (value + ", min: " + min + ", max: " + max + "]"));
             }
             if (valueStart > value) {
                 throw new Error("MDCSliderFoundation: start value must be <= end value. " +
                     ("Current values: [start value: " + valueStart + ", end value: " + value + "]"));
             }
+            if (minRange < 0) {
+                throw new Error("MDCSliderFoundation: minimum range must be non-negative. " +
+                    ("Current min range: " + minRange));
+            }
+            if (value - valueStart < minRange) {
+                throw new Error("MDCSliderFoundation: start value and end value must differ by at least " +
+                    (minRange + ". Current values: [start value: " + valueStart + ", ") +
+                    ("end value: " + value + "]"));
+            }
             var numStepsValueStartFromMin = (valueStart - min) / step;
             var numStepsValueFromMin = (value - min) / step;
-            if ((numStepsValueStartFromMin % 1) !== 0 ||
-                (numStepsValueFromMin % 1) !== 0) {
+            if (!Number.isInteger(parseFloat(numStepsValueStartFromMin.toFixed(6))) ||
+                !Number.isInteger(parseFloat(numStepsValueFromMin.toFixed(6)))) {
                 throw new Error("MDCSliderFoundation: Slider values must be valid based on the " +
-                    ("step value. Current values: [start value: " + valueStart + ", ") +
-                    ("end value: " + value + "]"));
+                    ("step value (" + step + "). Current values: [start value: ") +
+                    (valueStart + ", end value: " + value + ", min: " + min + "]"));
             }
         }
         else { // Single point slider.
             if (value < min || value > max) {
                 throw new Error("MDCSliderFoundation: value must be in [min, max] range. " +
-                    ("Current value: " + value));
+                    ("Current values: [value: " + value + ", min: " + min + ", max: " + max + "]"));
             }
             var numStepsValueFromMin = (value - min) / step;
-            if ((numStepsValueFromMin % 1) !== 0) {
+            if (!Number.isInteger(parseFloat(numStepsValueFromMin.toFixed(6)))) {
                 throw new Error("MDCSliderFoundation: Slider value must be valid based on the " +
-                    ("step value. Current value: " + value));
+                    ("step value (" + step + "). Current value: " + value));
             }
         }
     };

@@ -24,8 +24,11 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use '../animation/animation';
+@use '../dom/dom';
 @use '../elevation/elevation';
+@use '../ripple/ripple-theme';
 @use '../ripple/ripple';
+@use '../focus-ring/focus-ring';
 @use '../rtl/rtl';
 @use '../theme/gss';
 
@@ -41,6 +44,24 @@ $ripple-target: '.mdc-switch__ripple';
     @include ripple.common; // COPYBARA_COMMENT_THIS_LINE
     @include ripple.surface($ripple-target: $ripple-target);
     @include ripple.radius-unbounded($ripple-target: $ripple-target);
+
+    .mdc-switch__focus-ring-wrapper {
+      width: 100%;
+      position: absolute;
+      // IE11 hacks
+      top: 50%;
+      @include rtl.ignore-next-line();
+      left: 50%;
+      @include rtl.ignore-next-line();
+      transform: translate(-50%, -50%);
+      // end IE11 hacks
+    }
+
+    @include ripple-theme.focus {
+      .mdc-switch__focus-ring {
+        @include focus-ring.focus-ring();
+      }
+    }
   }
 }
 
@@ -143,6 +164,12 @@ $ripple-target: '.mdc-switch__ripple';
     left: 0;
     position: absolute;
     width: 100%;
+
+    // Added for Firefox 94 which broke transparent borders in Windows HCM.
+    // See https://bugzilla.mozilla.org/show_bug.cgi?id=1740924.
+    @include dom.forced-colors-mode($exclude-ie11: true) {
+      border-color: currentColor;
+    }
   }
 }
 
@@ -229,6 +256,12 @@ $ripple-target: '.mdc-switch__ripple';
     // z-index, which would require moving all other content on top of the
     // overlay with an even greater z-index.
     z-index: -1;
+
+    // Added for Firefox 94 which broke transparent borders in Windows HCM.
+    // See https://bugzilla.mozilla.org/show_bug.cgi?id=1740924.
+    @include dom.forced-colors-mode($exclude-ie11: true) {
+      border-color: currentColor;
+    }
   }
 }
 

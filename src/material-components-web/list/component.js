@@ -79,6 +79,13 @@ var MDCList = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(MDCList.prototype, "disabledItemsFocusable", {
+        set: function (areDisabledItemsFocusable) {
+            this.foundation.setDisabledItemsFocusable(areDisabledItemsFocusable);
+        },
+        enumerable: false,
+        configurable: true
+    });
     Object.defineProperty(MDCList.prototype, "selectedIndex", {
         get: function () {
             return this.foundation.getSelectedIndex();
@@ -265,6 +272,9 @@ var MDCList = /** @class */ (function (_super) {
             notifyAction: function (index) {
                 _this.emit(strings.ACTION_EVENT, { index: index }, /** shouldBubble */ true);
             },
+            notifySelectionChange: function (changedIndices) {
+                _this.emit(strings.SELECTION_CHANGE_EVENT, { changedIndices: changedIndices }, /** shouldBubble */ true);
+            },
             removeClassForElementIndex: function (index, className) {
                 var element = _this.listElements[index];
                 if (element) {
@@ -371,7 +381,7 @@ var MDCList = /** @class */ (function (_super) {
         // Toggle the checkbox only if it's not the target of the event, or the
         // checkbox will have 2 change events.
         var toggleCheckbox = !matches(target, strings.CHECKBOX_RADIO_SELECTOR);
-        this.foundation.handleClick(index, toggleCheckbox);
+        this.foundation.handleClick(index, toggleCheckbox, evt);
     };
     return MDCList;
 }(MDCComponent));

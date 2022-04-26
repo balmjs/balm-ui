@@ -66,7 +66,7 @@ $light-theme: (
   action-pressed-state-layer-opacity: 0.1,
   action-pressed-label-text-color: null,
   container-color: theme-color.$surface,
-  container-elevation: 0,
+  container-elevation: null,
   container-shadow-color: null,
   container-shape: 0,
   divider-color: $divider-color,
@@ -82,8 +82,7 @@ $light-theme: (
 );
 
 @mixin theme($theme, $resolvers: resolvers.$material) {
-  @include theme.validate-theme($light-theme, $theme);
-
+  @include theme.validate-theme-keys($light-theme, $theme);
   $theme: _resolve-theme($theme, $resolvers);
   @include keys.declare-custom-properties($theme, banner);
 }
@@ -124,8 +123,7 @@ $light-theme: (
   $resolver: resolvers.$material,
   $query: feature-targeting.all()
 ) {
-  @include theme.validate-theme($light-theme, $theme);
-
+  @include theme.validate-theme-keys($light-theme, $theme);
   @include text-color(map.get($theme, supporting-text-color), $query: $query);
   @include _supporting-text-typography(
     (

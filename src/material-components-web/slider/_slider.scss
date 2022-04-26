@@ -20,8 +20,8 @@
 // THE SOFTWARE.
 //
 
+// stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
 
 @use 'sass:math';
 @use '../animation/animation';
@@ -31,6 +31,7 @@
 @use '../ripple/ripple';
 @use '../ripple/ripple-theme';
 @use '../rtl/rtl';
+@use '../theme/css';
 @use '../theme/theme-color';
 @use '../typography/typography';
 @use './slider-theme';
@@ -71,10 +72,6 @@ $_track-inactive-height: 4px;
       touch-action: pan-y;
     }
 
-    &.mdc-slider--disabled {
-      @include _disabled($query: $query);
-    }
-
     &--discrete {
       .mdc-slider__thumb,
       .mdc-slider__track--active_fill {
@@ -92,6 +89,10 @@ $_track-inactive-height: 4px;
         }
       }
     }
+  }
+
+  .mdc-slider--disabled {
+    @include _disabled($query: $query);
   }
 
   .mdc-slider__input {
@@ -325,11 +326,24 @@ $_track-inactive-height: 4px;
     @include feature-targeting.targets($feat-structure) {
       bottom: math.div($_thumb-ripple-size, 2) + math.div($_thumb-size, 2) +
         $_value-indicator-caret-width + 4px;
-      @include rtl.ignore-next-line();
-      left: 50%;
+      @include css.declaration(
+        left,
+        var(--slider-value-indicator-container-left, 50%),
+        50%,
+        $gss: (noflip: true)
+      );
       pointer-events: none;
       position: absolute;
-      transform: translateX(-50%);
+      @include css.declaration(
+        right,
+        var(--slider-value-indicator-container-right),
+        $gss: (noflip: true)
+      );
+      @include css.declaration(
+        transform,
+        var(--slider-value-indicator-container-transform, translateX(-50%)),
+        translateX(-50%)
+      );
     }
   }
 
@@ -357,10 +371,23 @@ $_track-inactive-height: 4px;
         bottom: -$_value-indicator-caret-width + 1;
         content: '';
         height: 0;
-        @include rtl.ignore-next-line();
-        left: 50%;
+        @include css.declaration(
+          left,
+          var(--slider-value-indicator-caret-left, 50%),
+          50%,
+          $gss: (noflip: true)
+        );
         position: absolute;
-        transform: translateX(-50%);
+        @include css.declaration(
+          right,
+          var(--slider-value-indicator-caret-right),
+          $gss: (noflip: true)
+        );
+        @include css.declaration(
+          transform,
+          var(--slider-value-indicator-caret-transform, translateX(-50%)),
+          translateX(-50%)
+        );
         width: 0;
       }
     }

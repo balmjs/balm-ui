@@ -63,6 +63,11 @@
     @return $color;
   }
 
+  @if meta.type-of($color) != 'color' {
+    @warn '#{$color} is not a color. Falling back to "dark" tone.';
+    @return 'dark';
+  }
+
   $minimumContrast: 3.1;
 
   $lightContrast: contrast($color, white);
@@ -95,11 +100,20 @@
   @if custom-properties.is-custom-prop($color) {
     $color-value: custom-properties.get-fallback($color);
 
-    @if ($color-value) {
-      @return _get-hex-string($color-value);
-    } @else {
-      @return custom-properties.get-varname($color);
+    @if (custom-properties.is-custom-prop-string($color-value)) {
+      $varEndIndex: if(
+        string.index($color-value, ', '),
+        string.index($color-value, ', ') - 1,
+        -2
+      );
+      @return string.slice($color-value, 5, $varEndIndex);
     }
+
+    @if (meta.type-of($color-value) == 'color') {
+      @return _get-hex-string($color-value);
+    }
+
+    @return custom-properties.get-varname($color);
   }
 
   @if meta.type-of($color) == 'string' {
@@ -320,7 +334,10 @@ $_property-values-copy: $property-values;
 ///   => #fff
 ///
 @function get-custom-property($color) {
+  $is-tokens-custom-prop: meta.type-of($color) == 'string' and
+    string.index($color, '--') != null;
   @if custom-properties.is-custom-prop($color) or
+    $is-tokens-custom-prop or
     is-valid-theme-prop-value_($color)
   {
     @return $color;
@@ -339,6 +356,6 @@ $_property-values-copy: $property-values;
 
     @return $custom-prop;
   } @else {
-    @error "Invalid theme property: '#{$style}'. Choose one of: #{get-theme-keys()}";
+    @error "Invalid theme property: '#{$color}'. Choose one of: #{get-theme-keys()}";
   }
 }

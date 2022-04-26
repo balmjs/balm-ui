@@ -20,8 +20,8 @@
 // THE SOFTWARE.
 //
 
+// stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
 
 @use 'sass:math';
 @use '../../animation/functions';
@@ -31,6 +31,7 @@
 @use '../../elevation/mixins' as elevation-mixins;
 @use '../../density/functions' as density-functions;
 @use '../../feature-targeting/feature-targeting';
+@use '../../focus-ring/focus-ring';
 @use '../../ripple/ripple';
 @use '../../ripple/ripple-theme';
 @use '../../rtl/rtl';
@@ -241,13 +242,9 @@ $ripple-target: '.mdc-chip__ripple';
         }
 
         .mdc-chip__checkmark-svg {
-          // stylelint-disable max-nesting-depth
-
           @include feature-targeting.targets($feat-animation) {
             transition: width 0ms;
           }
-
-          // stylelint-enable max-nesting-depth
         }
       }
     }
@@ -727,6 +724,21 @@ $ripple-target: '.mdc-chip__ripple';
   .mdc-chip__touch {
     @include feature-targeting.targets($feat-structure) {
       display: none;
+    }
+  }
+}
+
+@mixin high-contrast-focus {
+  // High contrast mode focus for chips.
+  .mdc-chip__focus-ring {
+    display: none;
+  }
+
+  @include ripple-theme.focus() {
+    .mdc-chip__focus-ring {
+      z-index: 1;
+      display: block;
+      @include focus-ring.focus-ring();
     }
   }
 }

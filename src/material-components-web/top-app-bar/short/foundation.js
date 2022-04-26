@@ -68,7 +68,6 @@ var MDCShortTopAppBarFoundation = /** @class */ (function (_super) {
     };
     /**
      * Scroll handler for applying/removing the collapsed modifier class on the short top app bar.
-     * @override
      */
     MDCShortTopAppBarFoundation.prototype.handleTargetScroll = function () {
         this.maybeCollapseBar();

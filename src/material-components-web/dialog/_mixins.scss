@@ -24,6 +24,7 @@
 // stylelint-disable selector-class-pattern --
 // Internal styling for Dialog MDC component.
 
+@use 'sass:map';
 @use 'sass:math';
 @use '../animation/functions' as animation-functions;
 @use '../button/button-theme';
@@ -181,7 +182,6 @@
     }
   }
 
-  // stylelint-disable-next-line plugin/selector-bem-pattern
   .mdc-dialog--scrollable .mdc-dialog__title {
     @include feature-targeting.targets($feat-structure) {
       margin-bottom: 1px;
@@ -201,6 +201,10 @@
         padding: 0 variables.$header-side-padding
           variables.$title-bottom-padding;
         z-index: 1;
+
+        @include dom.forced-colors-mode($exclude-ie11: true) {
+          border-bottom-color: CanvasText;
+        }
 
         @include _modal-header(
           $close-icon-padding: variables.$close-icon-padding
@@ -238,6 +242,9 @@
       // border-top should be visible.
       @include feature-targeting.targets($feat-structure) {
         border-top: 1px solid transparent;
+        @include dom.forced-colors-mode($exclude-ie11: true) {
+          border-top-color: CanvasText;
+        }
       }
     }
   }
@@ -248,7 +255,6 @@
       box-sizing: border-box;
       margin: 0;
       overflow: auto;
-      -webkit-overflow-scrolling: touch;
     }
 
     // The content element already has top/bottom padding, so we need to suppress margins on its first/last children.
@@ -266,7 +272,6 @@
     }
   }
 
-  // stylelint-disable-next-line plugin/selector-bem-pattern
   .mdc-dialog__title + .mdc-dialog__content,
   .mdc-dialog__header + .mdc-dialog__content {
     @include feature-targeting.targets($feat-structure) {
@@ -276,7 +281,6 @@
     }
   }
 
-  // stylelint-disable-next-line plugin/selector-bem-pattern
   .mdc-dialog--scrollable .mdc-dialog__title + .mdc-dialog__content {
     @include feature-targeting.targets($feat-structure) {
       // Reduce and equalize vertical paddings when scrollable dividers are present
@@ -286,7 +290,6 @@
     }
   }
 
-  // stylelint-disable-next-line plugin/selector-bem-pattern
   .mdc-dialog__content .mdc-deprecated-list:first-child:last-child {
     @include feature-targeting.targets($feat-structure) {
       // Override default .mdc-deprecated-list padding for content consisting exclusively of a MDC List
@@ -294,7 +297,6 @@
     }
   }
 
-  // stylelint-disable-next-line plugin/selector-bem-pattern, selector-max-specificity
   .mdc-dialog--scrollable
     .mdc-dialog__content
     .mdc-deprecated-list:first-child:last-child {
@@ -317,6 +319,9 @@
       margin: 0;
       padding: variables.$actions-padding;
       border-top: 1px solid transparent;
+      @include dom.forced-colors-mode($exclude-ie11: true) {
+        border-top-color: CanvasText;
+      }
     }
 
     .mdc-dialog--stacked & {
@@ -459,6 +464,29 @@
   .mdc-dialog-scroll-lock {
     @include feature-targeting.targets($feat-structure) {
       overflow: hidden;
+    }
+  }
+
+  .mdc-dialog--no-content-padding {
+    .mdc-dialog__content {
+      @include feature-targeting.targets($feat-structure) {
+        padding: 0;
+      }
+    }
+  }
+
+  .mdc-dialog--sheet {
+    .mdc-dialog__close {
+      @include feature-targeting.targets($feat-structure) {
+        right: variables.$sheet-close-icon-right;
+        top: variables.$sheet-close-icon-top;
+        position: absolute;
+        // Customers can create their stacking context in dialog content using
+        // any way of createing stacking context. For example with
+        //   position: relative;
+        //   z-index: 0;
+        z-index: 1;
+      }
     }
   }
 }
@@ -727,6 +755,96 @@
       .mdc-button__touch {
         top: -$touch-target-margin; // IE 11
         transform: none; // IE 11
+      }
+    }
+  }
+}
+
+/// Defines dialog position on the screen.
+/// Dialog position can be customised across both vertical and horizontal axis.
+/// If only one axis is specified dialog is centered across the second one.
+/// Only one value can be specified for each axis at the time. For example
+/// dialog can not have both $top and $bottom specified because it will conflict
+/// with size related mixins. Use `min-width`, `max-width` and `max-height`
+/// to control the dialog size.
+/// @param {Map} $position-map - Dialog position specified as map with keys
+///     {top, bottom, left, right}
+@mixin position($position-map, $query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+  $top: map.get($position-map, top);
+  $right: map.get($position-map, right);
+  $bottom: map.get($position-map, bottom);
+  $left: map.get($position-map, left);
+
+  @if ($top != null and $bottom != null) {
+    @error "Top and Botton properties can not be used simultaneously. Use " +
+           "`min-width`, `max-width` and `max-height` to control dialog size.";
+  }
+  @if ($right != null and $left != null) {
+    @error "Right and Left properties can not be used simultaneously. Use " +
+           "`min-width`, `max-width` and `max-height` to control dialog size.";
+  }
+
+  @include feature-targeting.targets($feat-structure) {
+    @if ($top != null) {
+      .mdc-dialog__container {
+        align-items: flex-start;
+        padding-top: $top;
+      }
+    }
+    @if ($bottom != null) {
+      .mdc-dialog__container {
+        align-items: flex-end;
+        padding-bottom: $bottom;
+      }
+    }
+    @if ($right != null) {
+      &.mdc-dialog {
+        justify-content: flex-end;
+        padding-right: $right;
+      }
+    }
+    @if ($left != null) {
+      &.mdc-dialog {
+        justify-content: flex-start;
+        padding-left: $left;
+      }
+    }
+  }
+}
+
+/// Defines dialog base z-index.
+/// This mixin can be used to specify dialog base z-index to make it compatible
+/// with other frameworks used on the same page.
+/// @param {Number} $z-index - Dialog z-index value.
+@mixin z-index($z-index, $query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  @include feature-targeting.targets($feat-structure) {
+    &.mdc-dialog {
+      z-index: $z-index;
+    }
+  }
+}
+
+/// This mixin can be used to hide the fullscreen dialog header when the dialog
+/// is a standard modal and not yet fullscreen in X-small sizes.
+@mixin fullscreen-dialog-hide-modal-header($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  // Non-fullscreen-dialog sizes
+  @media (min-width: 600px) {
+    &.mdc-dialog--fullscreen {
+      .mdc-dialog__header {
+        @include feature-targeting.targets($feat-structure) {
+          display: none;
+        }
+      }
+
+      .mdc-dialog__content {
+        @include feature-targeting.targets($feat-structure) {
+          padding-top: 24px;
+        }
       }
     }
   }

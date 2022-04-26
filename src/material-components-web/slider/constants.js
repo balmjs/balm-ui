@@ -40,12 +40,15 @@ export var cssClasses = {
     TRACK: 'mdc-slider__track',
     // The active track fill element that will be scaled as the value changes.
     TRACK_ACTIVE: 'mdc-slider__track--active_fill',
+    VALUE_INDICATOR_CONTAINER: 'mdc-slider__value-indicator-container',
     VALUE_INDICATOR_TEXT: 'mdc-slider__value-indicator-text',
 };
 /** Slider numbers. */
 export var numbers = {
     // Default step size.
     STEP_SIZE: 1,
+    // Default minimum difference between the start and end values.
+    MIN_RANGE: 0,
     // Minimum absolute difference between clientX of move event / down event
     // for which to update thumb, in the case of overlapping thumbs.
     // This is needed to reduce chances of choosing the thumb based on
@@ -60,10 +63,20 @@ export var attributes = {
     INPUT_MAX: 'max',
     INPUT_VALUE: 'value',
     INPUT_STEP: 'step',
+    DATA_MIN_RANGE: 'data-min-range',
 };
 /** Slider events. */
 export var events = {
     CHANGE: 'MDCSlider:change',
     INPUT: 'MDCSlider:input',
+};
+/** Slider strings. */
+export var strings = {
+    VAR_VALUE_INDICATOR_CARET_LEFT: '--slider-value-indicator-caret-left',
+    VAR_VALUE_INDICATOR_CARET_RIGHT: '--slider-value-indicator-caret-right',
+    VAR_VALUE_INDICATOR_CARET_TRANSFORM: '--slider-value-indicator-caret-transform',
+    VAR_VALUE_INDICATOR_CONTAINER_LEFT: '--slider-value-indicator-container-left',
+    VAR_VALUE_INDICATOR_CONTAINER_RIGHT: '--slider-value-indicator-container-right',
+    VAR_VALUE_INDICATOR_CONTAINER_TRANSFORM: '--slider-value-indicator-container-transform',
 };
 //# sourceMappingURL=constants.js.map

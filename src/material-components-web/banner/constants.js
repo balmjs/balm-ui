@@ -37,6 +37,7 @@ export var events = {
     CLOSING: 'MDCBanner:closing',
     OPENED: 'MDCBanner:opened',
     OPENING: 'MDCBanner:opening',
+    ACTION_CLICKED: 'MDCBanner:actionClicked',
 };
 /** Banner selectors. */
 export var selectors = {
@@ -56,4 +57,13 @@ export var CloseReason;
     // programmatic closing of the banner.
     CloseReason[CloseReason["UNSPECIFIED"] = 2] = "UNSPECIFIED";
 })(CloseReason || (CloseReason = {}));
+/**
+ * Payload of actionClicked events to signify which action emitted the event.
+ */
+export var Action;
+(function (Action) {
+    Action[Action["PRIMARY"] = 0] = "PRIMARY";
+    Action[Action["SECONDARY"] = 1] = "SECONDARY";
+    Action[Action["UNKNOWN"] = 2] = "UNKNOWN";
+})(Action || (Action = {}));
 //# sourceMappingURL=constants.js.map

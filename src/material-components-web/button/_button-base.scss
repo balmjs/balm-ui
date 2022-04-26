@@ -26,8 +26,11 @@
 @use '../elevation/elevation';
 @use '../elevation/elevation-theme';
 @use '../feature-targeting/feature-targeting';
+@use '../ripple/ripple-theme';
 @use '../rtl/rtl';
+@use '../dom/dom';
 @use '../touch-target/touch-target';
+@use '../focus-ring/focus-ring';
 @use '../typography/typography';
 @use './button-shared-theme';
 
@@ -62,6 +65,24 @@
         // (since ripple is a positioned element, non-positioned elements
         // appear under it).
         position: relative;
+      }
+    }
+
+    .mdc-button__focus-ring {
+      @include feature-targeting.targets($feat-structure) {
+        display: none;
+      }
+    }
+
+    @include ripple-theme.focus {
+      .mdc-button__focus-ring {
+        @include dom.forced-colors-mode($exclude-ie11: true) {
+          @include focus-ring.focus-ring($query: $query);
+
+          @include feature-targeting.targets($feat-structure) {
+            display: block;
+          }
+        }
       }
     }
 

@@ -20,8 +20,8 @@
 // THE SOFTWARE.
 //
 
+// stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
 
 @use '../feature-targeting/feature-targeting';
 @use '../ripple/ripple';
@@ -51,6 +51,7 @@
       text-decoration: none;
       cursor: pointer;
       user-select: none;
+      z-index: 0; // Added to render above the container in IE11 tests.
       overflow: visible; // Added to fix IE11 touch target tests.
     }
 
@@ -82,19 +83,11 @@
       display: inline-block;
     }
 
-    // stylelint-disable-next-line plugin/selector-bem-pattern
     &.mdc-icon-button__icon--on {
       @include feature-targeting.targets($feat-structure) {
         display: none;
       }
     }
-  }
-
-  .mdc-icon-button--touch {
-    @include touch-target-mixins.margin(
-      $component-height: icon-button-theme.$size,
-      $query: $query
-    );
   }
 
   .mdc-icon-button--on {
@@ -103,7 +96,6 @@
         display: none;
       }
 
-      // stylelint-disable-next-line plugin/selector-bem-pattern
       &.mdc-icon-button__icon--on {
         @include feature-targeting.targets($feat-structure) {
           display: inline-block;
@@ -112,6 +104,17 @@
     }
   }
   // postcss-bem-linter: end
+
+  .mdc-icon-button__link {
+    @include feature-targeting.targets($feat-structure) {
+      height: 100%;
+      left: 0;
+      outline: none;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
 }
 
 @mixin without-ripple($query: feature-targeting.all()) {
@@ -161,8 +164,13 @@
     .mdc-icon-button__ripple {
       $feat-structure: feature-targeting.create-target($query, structure);
       @include feature-targeting.targets($feat-structure) {
+        height: 100%;
+        left: 0px;
         pointer-events: none;
-        z-index: 1;
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        z-index: -1;
       }
     }
   }

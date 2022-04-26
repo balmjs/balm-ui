@@ -111,6 +111,9 @@ var MDCBanner = /** @class */ (function (_super) {
             notifyOpening: function () {
                 _this.emit(events.OPENING, {});
             },
+            notifyActionClicked: function (action) {
+                _this.emit(events.ACTION_CLICKED, { action: action });
+            },
             releaseFocus: function () {
                 _this.focusTrap.releaseFocus();
             },

@@ -20,8 +20,8 @@
 // THE SOFTWARE.
 //
 
+// stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
 
 @use 'sass:map';
 @use 'sass:math';
@@ -30,6 +30,7 @@
 @use '../density/functions' as density-functions;
 @use '../dom/dom';
 @use '../feature-targeting/feature-targeting';
+@use '../focus-ring/focus-ring';
 @use '../ripple/ripple';
 @use '../ripple/ripple-theme';
 @use '../touch-target/mixins' as touch-target-mixins;
@@ -76,18 +77,27 @@
     @include feature-targeting.targets($feat-structure) {
       @include base_;
     }
+
+    @include ripple-theme.focus {
+      .mdc-checkbox__focus-ring {
+        @include focus-ring.focus-ring(
+          $query: $query,
+          $container-outer-padding-vertical: 0,
+          $container-outer-padding-horizontal: 0
+        );
+      }
+    }
+
+    // Turn off focus ring for IE when HCM is turn off. For some reason this
+    // adds space to the bottom on the focused checkbox inside a dialog.
+    @media all and (-ms-high-contrast: none) {
+      .mdc-checkbox__focus-ring {
+        display: none;
+      }
+    }
   }
 
   @include dom.forced-colors-mode {
-    @include checkbox-theme.disabled-container-colors(
-      $unmarked-stroke-color: GrayText,
-      $unmarked-fill-color: transparent,
-      $marked-stroke-color: GrayText,
-      $marked-fill-color: transparent,
-      $query: $query
-    );
-    @include checkbox-theme.disabled-ink-color(GrayText, $query: $query);
-
     .mdc-checkbox__mixedmark {
       @include feature-targeting.targets($feat-structure) {
         margin: 0 1px; // Extra horizontal space around mixedmark symbol.
@@ -270,7 +280,7 @@
 @mixin anim_ {
   $mdc-checkbox-indeterminate-change-duration_: 500ms;
 
-  // stylelint-disable selector-max-type
+  // stylelint-disable no-unknown-animations -- allow unknown animations
 
   &-unchecked-checked,
   &-unchecked-indeterminate,
@@ -339,14 +349,13 @@
 
   &-indeterminate-unchecked {
     .mdc-checkbox__mixedmark {
-      // stylelint-disable-next-line declaration-colon-space-after
       animation: mdc-checkbox-indeterminate-unchecked-mixedmark
         $mdc-checkbox-indeterminate-change-duration_ * 0.6 linear 0s;
       transition: none;
     }
   }
 
-  // stylelint-enable selector-max-type
+  // stylelint-enable no-unknown-animations
 }
 
 @mixin background_($query: feature-targeting.all()) {

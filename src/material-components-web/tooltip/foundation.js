@@ -435,7 +435,11 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         // will have the HIDE class (before calling the adapter removeClass method).
         // If tooltip is now hidden, send a notification that the animation has
         // completed and the tooltip is no longer visible.
-        if (isHidingTooltip) {
+        // We don't send a notification of the animation completing if a showTimeout
+        // value is set -- this happens when a user triggers a tooltip to be shown
+        // while that tooltip is fading. Once this hide transition is completed,
+        // that same tooltip will be re-shown.
+        if (isHidingTooltip && this.showTimeout === null) {
             this.adapter.notifyHidden();
         }
     };
@@ -752,7 +756,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         // animation, we divide by this value to retrieve the actual caret
         // dimensions.
         var caretWidth = caretSize.width / numbers.ANIMATION_SCALE;
-        // Since we hide half of caret, we divide the returned ClientRect height
+        // Since we hide half of caret, we divide the returned DOMRect height
         // by 2.
         var caretHeight = (caretSize.height / numbers.ANIMATION_SCALE) / 2;
         var tooltipSize = this.adapter.getTooltipSize();
@@ -873,6 +877,9 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             ],
         ]);
         try {
+            // TODO(b/227383292): Handle instances where one direction can fit in
+            // in the viewport (whether honoring the threshold or not), and the
+            // other direction does not.
             for (var _d = __values(validMappings.keys()), _e = _d.next(); !_e.done; _e = _d.next()) {
                 var y = _e.value;
                 var yDistance = yOptions.get(y);
@@ -895,7 +902,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                         finally { if (e_5) throw e_5.error; }
                     }
                 }
-                else if (this.yPositionDoesntCollideWithViewport(yDistance)) {
+                if (this.yPositionDoesntCollideWithViewport(yDistance)) {
                     try {
                         for (var _h = (e_6 = void 0, __values(validMappings.get(y))), _j = _h.next(); !_j.done; _j = _h.next()) {
                             var x = _j.value;

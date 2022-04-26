@@ -33,6 +33,7 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         _this.isFixedPosition = false;
         _this.isHorizontallyCenteredOnViewport = false;
         _this.maxHeight = 0;
+        _this.openBottomBias = 0;
         _this.openAnimationEndTimerId = 0;
         _this.closeAnimationEndTimerId = 0;
         _this.animationRequestId = 0;
@@ -189,6 +190,15 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
      */
     MDCMenuSurfaceFoundation.prototype.setMaxHeight = function (maxHeight) {
         this.maxHeight = maxHeight;
+    };
+    /**
+     * Set to a positive integer to influence the menu to preferentially open
+     * below the anchor instead of above.
+     * @param bias A value of `x` simulates an extra `x` pixels of available space
+     *     below the menu during positioning calculations.
+     */
+    MDCMenuSurfaceFoundation.prototype.setOpenBottomBias = function (bias) {
+        this.openBottomBias = bias;
     };
     MDCMenuSurfaceFoundation.prototype.isOpen = function () {
         return this.isSurfaceOpen;
@@ -372,7 +382,8 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
                 anchorSize.height - this.anchorMargin.top;
         }
         var isAvailableBottom = availableBottom - surfaceSize.height > 0;
-        if (!isAvailableBottom && availableTop > availableBottom) {
+        if (!isAvailableBottom &&
+            availableTop > availableBottom + this.openBottomBias) {
             // Attach bottom side of surface to the anchor.
             corner = this.setBit(corner, CornerBit.BOTTOM);
         }
@@ -553,8 +564,11 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
     MDCMenuSurfaceFoundation.prototype.maybeRestoreFocus = function () {
         var _this = this;
         var isRootFocused = this.adapter.isFocused();
-        var childHasFocus = document.activeElement &&
-            this.adapter.isElementInContainer(document.activeElement);
+        var ownerDocument = this.adapter.getOwnerDocument ?
+            this.adapter.getOwnerDocument() :
+            document;
+        var childHasFocus = ownerDocument.activeElement &&
+            this.adapter.isElementInContainer(ownerDocument.activeElement);
         if (isRootFocused || childHasFocus) {
             // Wait before restoring focus when closing the menu surface. This is
             // important because if a touch event triggered the menu close, and the

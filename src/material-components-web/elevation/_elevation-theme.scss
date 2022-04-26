@@ -20,8 +20,8 @@
 // THE SOFTWARE.
 //
 
+// stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
 
 @use 'sass:map';
 @use 'sass:math';
@@ -288,10 +288,10 @@ $transition-timing-function: animation-variables.$standard-curve-timing-function
         $fallback: null;
       }
 
-      @include css.declaration(box-shadow, $value, $fallback-value: $fallback);
       @include custom-properties.declaration(
         custom-properties.create(elevation-box-shadow-for-gss, $fallback)
       );
+      @include css.declaration(box-shadow, $value, $fallback-value: $fallback);
     } @else {
       /* @alternate */
       box-shadow: $box-shadow;
@@ -363,7 +363,7 @@ $transition-timing-function: animation-variables.$standard-curve-timing-function
 /// Applies the given color to the container of the overlay.
 /// @param {color} $color - the color of the overlay container
 ///
-@mixin _overlay-container-color($color, $query: feature-targeting.all()) {
+@mixin overlay-container-color($color, $query: feature-targeting.all()) {
   .mdc-elevation-overlay {
     @include overlay-fill-color($color, $query: $query);
   }
@@ -443,7 +443,7 @@ $_theme-values: (
 @mixin _theme($theme: (), $query: feature-targeting.all()) {
   @include shadow(map.get($theme, shadow), $query: $query);
   @include overlay-opacity(map.get($theme, overlay-opacity), $query: $query);
-  @include _overlay-container-color(
+  @include overlay-container-color(
     map.get($theme, overlay-color),
     $query: $query
   );

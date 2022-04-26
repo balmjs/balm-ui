@@ -26,6 +26,7 @@
 
 @use 'sass:math';
 @use '../elevation/mixins' as elevation-mixins;
+@use '../dom/dom';
 @use '../feature-targeting/feature-targeting';
 @use '../rtl/rtl' as rtl;
 @use '../dom/mixins' as dom-mixins;
@@ -194,13 +195,20 @@ $_caret-size: 24px;
     .mdc-tooltip__content {
       @include typography.typography($_content-type-scale, $query: $query);
       @include feature-targeting.targets($feat-structure) {
-        max-width: calc(100% - 2 * #{$_content-margin});
+        max-width: calc(#{$_max-width} - (2 * #{$_content-margin}));
         margin: $_content-margin;
         @include rtl.ignore-next-line();
         text-align: left;
         @include rtl.rtl {
           @include rtl.ignore-next-line();
           text-align: right;
+        }
+      }
+
+      .mdc-tooltip--rich & {
+        @include feature-targeting.targets($feat-structure) {
+          max-width: calc(#{$_rich_max-width} - (2 * #{$_content-margin}));
+          align-self: stretch;
         }
       }
     }
@@ -212,7 +220,9 @@ $_caret-size: 24px;
     }
   }
 
-  .mdc-tooltip--rich-actions {
+  .mdc-tooltip--rich-actions,
+  .mdc-tooltip__content,
+  .mdc-tooltip__title {
     @include feature-targeting.targets($feat-structure) {
       z-index: 1;
     }
@@ -258,6 +268,11 @@ $_caret-size: 24px;
     @include feature-targeting.targets($feat-structure) {
       outline: 1px solid transparent;
       z-index: -1;
+
+      // Added for b/206440838.
+      @include dom.forced-colors-mode($exclude-ie11: true) {
+        outline-color: CanvasText;
+      }
     }
   }
 }

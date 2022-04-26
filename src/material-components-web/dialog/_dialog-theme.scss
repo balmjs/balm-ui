@@ -69,12 +69,19 @@ $light-theme: (
   action-pressed-state-layer-color: null,
   action-pressed-state-layer-opacity: null,
   action-pressed-label-text-color: null,
+  // TODO(b/229523517): add headline token support to dialog
+  headline-color: null,
+  headline-font: null,
+  headline-line-height: null,
+  headline-size: null,
+  headline-tracking: null,
+  headline-weight: null,
 );
 
 $custom-property-prefix: 'dialog';
 
 @mixin theme($theme, $resolvers: resolvers.$material) {
-  @include theme.validate-theme($light-theme, $theme);
+  @include theme.validate-theme-keys($light-theme, $theme);
   $theme: _resolve-elevation($theme, map.get($resolvers, elevation));
   @include keys.declare-custom-properties(
     $theme,
@@ -83,7 +90,7 @@ $custom-property-prefix: 'dialog';
 }
 
 @mixin theme-styles($theme, $resolvers: resolvers.$material) {
-  @include theme.validate-theme($light-theme, $theme);
+  @include theme.validate-theme-keys($light-theme, $theme);
   $theme: keys.create-theme-properties(
     $theme,
     $prefix: $custom-property-prefix
@@ -95,12 +102,12 @@ $custom-property-prefix: 'dialog';
     map.get($theme, container-elevation),
     map.get($theme, container-shadow-color)
   );
-  @include _container-shape(map.get($theme, container-shape));
+  @include container-shape(map.get($theme, container-shape));
   @include _divider-color(map.get($theme, with-divider-divider-color));
   @include _divider-height(map.get($theme, with-divider-divider-height));
   @include _icon-size(map.get($theme, with-icon-icon-size));
   @include _icon-color(map.get($theme, with-icon-icon-color));
-  @include _subhead-typography(
+  @include subhead-typography(
     (
       font: map.get($theme, subhead-font),
       line-height: map.get($theme, subhead-line-height),
@@ -164,7 +171,7 @@ $custom-property-prefix: 'dialog';
   }
 }
 
-@mixin _container-shape($radius) {
+@mixin container-shape($radius) {
   .mdc-dialog__surface {
     @include shape.radius($radius);
   }
@@ -207,7 +214,7 @@ $custom-property-prefix: 'dialog';
   }
 }
 
-@mixin _subhead-typography($typography) {
+@mixin subhead-typography($typography) {
   .mdc-dialog__title {
     @include theme.property(font-family, map.get($typography, font));
     @include theme.property(line-height, map.get($typography, line-height));

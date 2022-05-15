@@ -34,6 +34,7 @@ var strings = {
     CLOSED_EVENT: 'MDCMenuSurface:closed',
     CLOSING_EVENT: 'MDCMenuSurface:closing',
     OPENED_EVENT: 'MDCMenuSurface:opened',
+    OPENING_EVENT: 'MDCMenuSurface:opening',
     FOCUSABLE_ELEMENTS: [
         'button:not(:disabled)',
         '[href]:not([aria-disabled="true"])',

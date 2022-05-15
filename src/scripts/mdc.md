@@ -17,7 +17,7 @@
     if (_this.rowCheckboxList) return _this.rowCheckboxList[rowIndex].checked;
     ```
 
-  - component.js line 274, 278
+  - component.js line 273, 276
 
     ```js
     // _this.headerRowCheckbox.checked = checked;
@@ -26,6 +26,5 @@
 
     ```js
     // _this.headerRowCheckbox.indeterminate = indeterminate;
-    if (_this.headerRowCheckbox)
-      _this.headerRowCheckbox.indeterminate = indeterminate;
+    if (_this.headerRowCheckbox) _this.headerRowCheckbox.indeterminate = indeterminate;
     ```

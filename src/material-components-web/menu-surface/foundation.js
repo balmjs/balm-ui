@@ -110,8 +110,9 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
                 saveFocus: function () { return undefined; },
                 restoreFocus: function () { return undefined; },
                 notifyClose: function () { return undefined; },
-                notifyOpen: function () { return undefined; },
                 notifyClosing: function () { return undefined; },
+                notifyOpen: function () { return undefined; },
+                notifyOpening: function () { return undefined; },
             };
             // tslint:enable:object-literal-sort-keys
         },
@@ -211,6 +212,7 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         if (this.isSurfaceOpen) {
             return;
         }
+        this.adapter.notifyOpening();
         this.adapter.saveFocus();
         if (this.isQuickOpen) {
             this.isSurfaceOpen = true;

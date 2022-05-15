@@ -219,8 +219,7 @@ var MDCDataTable = /** @class */ (function (_super) {
                 return _this.root.querySelectorAll(selectors.ROW_SELECTED).length;
             },
             isCheckboxAtRowIndexChecked: function (rowIndex) {
-              if (_this.rowCheckboxList)
-                return _this.rowCheckboxList[rowIndex].checked;
+              if (_this.rowCheckboxList) return _this.rowCheckboxList[rowIndex].checked;
             },
             isHeaderRowCheckboxChecked: function () { return _this.headerRowCheckbox.checked; },
             isRowsSelectable: function () {
@@ -271,12 +270,10 @@ var MDCDataTable = /** @class */ (function (_super) {
                 _this.getRows()[rowIndex].setAttribute(attr, value);
             },
             setHeaderRowCheckboxChecked: function (checked) {
-              if (_this.headerRowCheckbox)
-                _this.headerRowCheckbox.checked = checked;
+              if (_this.headerRowCheckbox) _this.headerRowCheckbox.checked = checked;
             },
             setHeaderRowCheckboxIndeterminate: function (indeterminate) {
-              if (_this.headerRowCheckbox)
-                _this.headerRowCheckbox.indeterminate = indeterminate;
+              if (_this.headerRowCheckbox) _this.headerRowCheckbox.indeterminate = indeterminate;
             },
             setRowCheckboxCheckedAtIndex: function (rowIndex, checked) {
                 _this.rowCheckboxList[rowIndex].checked = checked;

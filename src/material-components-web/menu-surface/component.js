@@ -132,6 +132,9 @@ var MDCMenuSurface = /** @class */ (function (_super) {
             notifyOpen: function () {
                 return _this.emit(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {});
             },
+            notifyOpening: function () {
+                return _this.emit(MDCMenuSurfaceFoundation.strings.OPENING_EVENT, {});
+            },
             isElementInContainer: function (el) { return _this.root.contains(el); },
             isRtl: function () {
                 return getComputedStyle(_this.root).getPropertyValue('direction') === 'rtl';

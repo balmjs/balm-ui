@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.6.0 / 2022-05-15
+
+### Features
+
+- update [mdc@14.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1400-2022-04-27)
+
 ## v10.5.0 / 2022-04-26
 
 ### Features

@@ -23,25 +23,19 @@
   &.mdc-navigation-bar--stacked {
     height: navigation-bar-variables.$stacked-height;
   }
+}
 
-  .mdc-tab__content,
-  .mdc-tab__text-label {
-    color: navigation-bar-variables.$color;
-  }
-
-  .mdc-tab--active {
-    color: navigation-bar-variables.$active-fill-color;
-  }
-
+.mdc-navigation-bar__destinations {
   .mdc-tab-scroller__scroll-content {
     width: 100%;
   }
 }
 
-@each $width in navigation-bar-variables.$destinations {
-  .mdc-navigation-bar--dest-#{$width} {
+@each $destination in navigation-bar-variables.$destinations {
+  .mdc-navigation-bar--dest-#{$destination} {
     .mdc-tab {
-      width: percentage(math.div($width, 100));
+      width: percentage(math.div($destination, 100));
+      overflow: hidden;
     }
   }
 }

@@ -1,7 +1,10 @@
 <template>
   <!-- (M3) Container -->
   <div :class="className">
-    <slot></slot>
+    <!-- Primary destinations (3 to 5) -->
+    <div class="mdc-navigation-bar__destinations">
+      <slot></slot>
+    </div>
   </div>
 </template>
 

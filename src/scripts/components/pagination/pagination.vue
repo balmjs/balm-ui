@@ -1,5 +1,5 @@
 <template>
-  <div v-if="total" :class="className">
+  <div v-if="mini || total" :class="className">
     <div class="mdc-data-table__pagination-trailing">
       <!-- Page size -->
       <div
@@ -12,7 +12,7 @@
         <div class="mdc-data-table__pagination-rows-per-page-select">
           <select v-model="currentPageSize" @change="handleChange">
             <template v-for="size in pageSize">
-              <option :key="`pageSize-${size}`">{{ size }}</option>
+              <option :key="`page-size-${size}`">{{ size }}</option>
             </template>
           </select>
         </div>
@@ -22,7 +22,8 @@
         <!-- Total -->
         <div v-if="showTotal" class="mdc-data-table__pagination-total">
           <slot :currentMinRow="currentMinRow" :currentMaxRow="currentMaxRow">
-            {{ currentMinRow }}‑{{ currentMaxRow }} {{ ofText }} {{ total }}
+            {{ currentMinRow }} ‑ {{ currentMaxRow }}
+            <template v-if="!isInfinity">{{ ofText }} {{ total }}</template>
           </slot>
         </div>
         <!-- Navigation buttons -->
@@ -245,14 +246,22 @@ export default {
       return result;
     },
     pageCount() {
-      return Math.ceil(this.total / this.currentPageSize);
+      return this.isInfinity
+        ? this.page + 1
+        : Math.ceil(this.total / this.currentPageSize);
     },
     currentMinRow() {
-      return this.currentPageSize * (this.currentPage - 1) + 1;
+      return this.isInfinity
+        ? this.currentPage
+        : this.currentPageSize * (this.currentPage - 1) + 1;
     },
     currentMaxRow() {
       const max = this.currentPageSize * this.currentPage;
-      return max > this.total ? this.total : max;
+      const maxRow = max > this.total ? this.total : max;
+      return this.mini && !this.total ? '∞' : maxRow;
+    },
+    isInfinity() {
+      return this.currentMaxRow === '∞';
     },
     hasPageSpan() {
       return (

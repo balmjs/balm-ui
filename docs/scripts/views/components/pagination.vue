@@ -58,12 +58,13 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.4 Mini Mode</h6>
       <div class="demo">
-        <ui-pagination
+        <!-- <ui-pagination
           v-model="page4"
           :total="total4"
           show-total
           mini
-        ></ui-pagination>
+        ></ui-pagination> -->
+        <ui-pagination v-model="page4" show-total mini></ui-pagination>
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>

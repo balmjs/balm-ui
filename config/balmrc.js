@@ -10,9 +10,10 @@ function resolve(dir) {
 }
 
 function getConfig(balm) {
-  const useDocsProd = balm.config.env.isProd && env.buildDocs;
-  const useDocsDev = !balm.config.env.isProd || env.buildDocs;
-  const useBuild = balm.config.env.isProd && !env.buildDocs;
+  const { isProd } = balm.config.env;
+  const useDocsProd = isProd && env.buildDocs;
+  const useDocsDev = !isProd || env.buildDocs;
+  const useBuild = isProd && !env.buildDocs;
 
   let envOptions = useDocsProd
     ? {

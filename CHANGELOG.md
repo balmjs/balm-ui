@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.49.6 / 2022-05-19
+
+### Features
+
+- `<ui-pagination>`: update mini mode for infinity
+
 ## v8.49.5 / 2022-04-07
 
 ### Bug Fixes

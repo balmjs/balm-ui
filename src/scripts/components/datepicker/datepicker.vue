@@ -222,10 +222,7 @@ export default {
           }
         };
 
-        // fix(@flatpickr): change event bug
-        const changeEvent =
-          this.mode === UI_DATEPICKER.MODE.MONTH ? 'onValueUpdate' : 'onChange';
-        config[changeEvent] = (selectedDates, dateStr, instance) =>
+        config.onChange = (selectedDates, dateStr, instance) =>
           this.$emit(UI_DATEPICKER.EVENT.CHANGE, dateStr);
       }
       // Init

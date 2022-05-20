@@ -6,4 +6,4 @@ function setBalmCore(useSource = false) {
   process.env.BALM_CORE = useSource ? BALM_CORE_SOURCE : BALM_CORE;
 }
 
-setBalmCore();
+// setBalmCore();

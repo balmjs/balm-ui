@@ -174,7 +174,10 @@ function initData(chips) {
 
     if (state.currentOptions.length) {
       state.currentOptions.forEach((option, index) => {
-        if (state.selectedValue.includes(option[props.optionFormat.value])) {
+        if (
+          Array.isArray(state.selectedValue) &&
+          state.selectedValue.includes(option[props.optionFormat.value])
+        ) {
           selectedIndexes.push(index);
         }
       });

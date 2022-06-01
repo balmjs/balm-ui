@@ -229,8 +229,9 @@ onMounted(() => {
         }
       };
 
+      // fix(ui): just for `clear` event
       config.onChange = (selectedDates, dateStr, instance) =>
-        emit(UI_DATEPICKER.EVENTS.CHANGE, dateStr);
+        !dateStr && emit(UI_DATEPICKER.EVENTS.CHANGE, dateStr);
     }
     // Init
     config.defaultDate = state.inputValue;

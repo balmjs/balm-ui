@@ -2,6 +2,13 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.49.7 / 2022-06-01
+
+### Bug Fixes
+
+- `<ui-chips>`: fix filter chips values bug
+- `<ui-datepicker>`: fix clear event bug
+
 ## v8.49.6 / 2022-05-19
 
 ### Features

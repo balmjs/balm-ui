@@ -2,6 +2,13 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.6.1 / 2022-06-01
+
+### Bug Fixes
+
+- `<ui-chips>`: fix filter chips values bug
+- `<ui-datepicker>`: fix clear event bug
+
 ## v10.6.0 / 2022-05-15
 
 ### Features

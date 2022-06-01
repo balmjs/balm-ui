@@ -156,7 +156,10 @@ export default {
 
         if (this.currentOptions.length) {
           this.currentOptions.forEach((option, index) => {
-            if (this.selectedValue.includes(option[this.optionFormat.value])) {
+            if (
+              Array.isArray(this.selectedValue) &&
+              this.selectedValue.includes(option[this.optionFormat.value])
+            ) {
               selectedIndexes.push(index);
             }
           });

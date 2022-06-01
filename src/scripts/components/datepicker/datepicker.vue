@@ -222,8 +222,9 @@ export default {
           }
         };
 
+        // fix(ui): just for `clear` event
         config.onChange = (selectedDates, dateStr, instance) =>
-          this.$emit(UI_DATEPICKER.EVENT.CHANGE, dateStr);
+          !dateStr && this.$emit(UI_DATEPICKER.EVENT.CHANGE, dateStr);
       }
       // Init
       config.defaultDate = this.inputValue;

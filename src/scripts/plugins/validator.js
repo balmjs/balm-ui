@@ -11,8 +11,6 @@ const defaultRules = {
 };
 
 // Define validator constants
-const FIELD_LABEL = 'label';
-const FIELD_VALIDATOR = 'validator';
 const LABEL_PLACEHOLDER = '%s';
 
 let globalValidationRules = {};
@@ -28,8 +26,8 @@ class UiValidator {
   constructor() {
     const currentInstance = getCurrentInstance();
     this.instance = currentInstance;
-    this.validations = {};
-    this.customValidations = {};
+    this.validations = [];
+    this.customValidations = [];
   }
 
   validate(formData = {}, customFieldset = []) {
@@ -44,70 +42,73 @@ class UiValidator {
       validMsg: {}
     };
 
-    this.validations = Object.keys(this.customValidations).length
+    this.validations = this.customValidations.length
       ? this.customValidations
       : setupState.validations || data.validations || {};
 
-    let validationFields = Object.keys(this.validations);
-    if (customFieldset.length) {
-      validationFields = validationFields.filter((field) =>
-        customFieldset.includes(field)
-      );
+    if (!Array.isArray(this.validations)) {
+      throw new Error('[$validator]: validations must be an array in 10.7.0');
     }
 
-    for (let i = 0, fieldCount = validationFields.length; i < fieldCount; i++) {
-      let fieldName = validationFields[i]; // Field name
-      let fieldOption = this.validations[fieldName]; // The validation option of current field
-      let fieldLabel = fieldOption[FIELD_LABEL] || fieldName; // Field alias name
-      let fieldRules = fieldOption[FIELD_VALIDATOR].split(',').map(
-        (validator) => validator.trim()
-      ); // All validation methods of current field
-      let isAllValidOfField = true;
+    for (let i = 0, fieldCount = this.validations.length; i < fieldCount; i++) {
+      const fieldOption = this.validations[i]; // The validation option of current field
+      const { key, label, validator } = fieldOption;
+      const fieldName = key; // Field name
+      const needValidator =
+        !customFieldset.length || customFieldset.includes(fieldName);
 
-      for (let j = 0, rulesCount = fieldRules.length; j < rulesCount; j++) {
-        let ruleName = fieldRules[j];
-        let localValidationRule = fieldOption[ruleName];
-        let rule = localValidationRule || globalValidationRules[ruleName]; // Current validation method
+      if (needValidator) {
+        const fieldLabel = label || fieldName; // Field alias name
+        const fieldRules = validator
+          .split(',')
+          .map((validator) => validator.trim()); // All validation methods of current field
+        let isAllValidOfField = true;
 
-        if (rule && getType(rule.validate) === 'function') {
-          let fieldValue = formData[fieldName];
-          let fieldArgs = [fieldValue, formData];
-          if (!rule.validate.apply(this.instance.$data, fieldArgs)) {
-            isAllValidOfField = false;
-            let message = '';
+        for (let j = 0, rulesCount = fieldRules.length; j < rulesCount; j++) {
+          let ruleName = fieldRules[j];
+          let localValidationRule = fieldOption[ruleName];
+          let rule = localValidationRule || globalValidationRules[ruleName]; // Current validation method
 
-            switch (getType(rule.message)) {
-              case 'string':
-                message = rule.message.replace(LABEL_PLACEHOLDER, fieldLabel);
-                break;
-              case 'function':
-                message = rule.message.apply(this.instance.$data, fieldArgs);
-                break;
-              default:
-                console.warn(
-                  '[$validator]',
-                  `'${fieldName}.message' must be a string or function`
-                );
-                break;
+          if (rule && getType(rule.validate) === 'function') {
+            let fieldValue = formData[fieldName];
+            let fieldArgs = [fieldValue, formData];
+            if (!rule.validate.apply(this.instance.$data, fieldArgs)) {
+              isAllValidOfField = false;
+              let message = '';
+
+              switch (getType(rule.message)) {
+                case 'string':
+                  message = rule.message.replace(LABEL_PLACEHOLDER, fieldLabel);
+                  break;
+                case 'function':
+                  message = rule.message.apply(this.instance.$data, fieldArgs);
+                  break;
+                default:
+                  console.warn(
+                    '[$validator]',
+                    `'${fieldName}.message' must be a string or function`
+                  );
+                  break;
+              }
+
+              if (message) {
+                result.messages.push(message);
+              }
+              break;
             }
-
-            if (message) {
-              result.messages.push(message);
-            }
-            break;
+          } else {
+            console.warn(
+              '[$validator]',
+              `The field '${fieldName}' is missing a validation rule: '${ruleName}'`
+            );
           }
-        } else {
-          console.warn(
-            '[$validator]',
-            `The field '${fieldName}' is missing a validation rule: '${ruleName}'`
-          );
         }
-      }
 
-      if (isAllValidOfField) {
-        result.validFields.push(fieldName);
-      } else {
-        result.invalidFields.push(fieldName);
+        if (isAllValidOfField) {
+          result.validFields.push(fieldName);
+        } else {
+          result.invalidFields.push(fieldName);
+        }
       }
     }
 
@@ -136,20 +137,29 @@ class UiValidator {
   }
 
   clear() {
-    this.customValidations = {};
+    this.customValidations = [];
   }
 
   get(fieldName = '') {
     return fieldName
-      ? this.customValidations[fieldName]
+      ? this.customValidations.find(({ key }) => key === fieldName)
       : this.customValidations;
   }
 
   set(fieldName, validationRule = {}) {
-    if (getType(fieldName) === 'object') {
-      this.customValidations = Object.assign({}, fieldName);
+    if (Array.isArray(fieldName)) {
+      this.customValidations = fieldName;
     } else {
-      this.customValidations[fieldName] = validationRule;
+      const index = this.customValidations.findIndex(
+        ({ key }) => key === fieldName
+      );
+      if (~index) {
+        this.customValidations[index] = Object.assign({}, validationRule);
+      } else {
+        this.customValidations = [
+          Object.assign({ key: fieldName }, validationRule)
+        ];
+      }
     }
   }
 }

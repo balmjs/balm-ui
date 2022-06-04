@@ -55,7 +55,7 @@ const validator = useValidator();
     validator: string; // 'customRule1, customRule2, ...'
     ...customRule?: {
       validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
-      message: string | (fieldValue: any, formData: { [fieldName: string]: any }): string;
+      message: string | (fieldValue: any, formData: { [fieldName: string]: any }) => string;
     };
   }
   ```

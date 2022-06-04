@@ -2,6 +2,49 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.7.0 / 2022-06-04
+
+### Features
+
+- `$validator`: optimize validations
+
+### BREAKING CHANGES
+
+- `$validator`: update validations
+
+  - Old
+
+    ```ts
+    interface BalmUIValidationRule {
+      label?: string;
+      validator: string; // 'customRule1, customRule2, ...'
+      ...customRule?: {
+        validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
+        message: string | (fieldValue: any, formData: { [fieldName: string]: any }): string;
+      };
+    }
+
+    type BalmUIValidations = {
+      [key: string]: BalmUIValidationRule;
+    }
+    ```
+
+  - New
+
+    ```ts
+    interface BalmUIValidationRule {
+      key: string; // field name
+      label?: string;
+      validator: string; // 'customRule1, customRule2, ...'
+      ...customRule?: {
+        validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
+        message: string | (fieldValue: any, formData: { [fieldName: string]: any }): string;
+      };
+    }
+
+    type BalmUIValidations = BalmUIValidationRule[]
+    ```
+
 ## v10.6.1 / 2022-06-01
 
 ### Bug Fixes

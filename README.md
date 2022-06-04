@@ -2,9 +2,6 @@
 
 > Next Generation Material UI for Vue.js
 
-- [`next-material.balmjs.com`](https://next-material.balmjs.com/) -> [`material.balmjs.com`](https://material.balmjs.com/)
-- (old) [`material.balmjs.com`](https://material.balmjs.com/) -> [`v8.material.balmjs.com`](https://v8.material.balmjs.com/)
-
 ## Introduction
 
 [BalmUI](https://material.balmjs.com/) is a modular and customizable [Material Design](https://material.io/) UI library for Vue 3.

@@ -59,12 +59,14 @@
 ```js
 import { useValidator } from 'balm-ui';
 
-const validations = {
-  mobile: {
+const validations = [
+  {
+    key: 'mobile',
     label: 'Mobile',
     validator: 'required, mobile'
   },
-  password: {
+  {
+    key: 'password',
     label: 'Password',
     validator: 'required, password, minRule, maxRule',
     minRule: {
@@ -80,7 +82,8 @@ const validations = {
       message: '%s maxLength <= 8'
     }
   },
-  repassword: {
+  {
+    key: 'repassword',
     label: 'Repeat Password',
     validator: 'required, password, repasswordRule',
     repasswordRule: {
@@ -90,11 +93,12 @@ const validations = {
       message: 'repassword !== password'
     }
   },
-  gender: {
+  {
+    key: 'gender',
     label: 'Gender',
     validator: 'required'
   }
-};
+];
 
 const genderOptions = [
   {

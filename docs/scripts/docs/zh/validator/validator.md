@@ -50,17 +50,14 @@ const validator = useValidator();
 
   ```ts
   interface BalmUIValidationRule {
+    key: string; // field name
     label?: string;
     validator: string; // 'customRule1, customRule2, ...'
     ...customRule?: {
       validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
-      message: string;
+      message: string | (fieldValue: any, formData: { [fieldName: string]: any }): string;
     };
   }
-
-  type BalmUIValidations = {
-    [fieldName: string]: BalmUIValidationRule;
-  };
   ```
 
 ## 2.1 默认验证
@@ -69,8 +66,9 @@ const validator = useValidator();
 
 ```js
 // 自定义局部验证规则
-const validations = {
-  fieldName1: {
+const validations = [
+  {
+    key: 'fieldName1',
     label: 'Field Label',
     validator: 'required, customRule1',
     customRule1: {
@@ -84,8 +82,11 @@ const validations = {
     // customRule2: { ... }
   }
   // 更多表单字段
-  // fieldName2: {}
-};
+  // {
+  //   key: 'fieldName2',
+  //   validator: 'required'
+  // }
+];
 ```
 
 - Composition API
@@ -94,7 +95,7 @@ const validations = {
   import { reactive, toRefs } from 'vue';
   import { useValidator } from 'balm-ui';
 
-  // const validations = ...
+  // const validations = [...]
 
   const state = reactive({
     formData: {
@@ -132,7 +133,7 @@ const validations = {
   ```js
   import { useValidator } from 'balm-ui';
 
-  // const validations = ...
+  // const validations = [...]
 
   export default {
     data() {
@@ -166,9 +167,9 @@ const validations = {
 // New in 9.15.0
 interface BalmUIValidator {
   clear(): void;
-  get(fieldName?: string): BalmUIValidations | BalmUIValidationRule; // 显示当前已设置的验证规则
+  get(fieldName?: string): BalmUIValidationRule[] | BalmUIValidationRule; // 显示当前已设置的验证规则
   set(fieldName: string, validationRule: BalmUIValidationRule): void;
-  set(validations: BalmUIValidations): void;
+  set(validations: BalmUIValidationRule[]): void;
 }
 ```
 
@@ -176,7 +177,7 @@ interface BalmUIValidator {
 | ------------- | ------ | ------- | ---------------------------------------------------- |
 | `fieldName`   | string | `''`    | `formData` 的一个字段名称（BalmUI 验证器规则的 key） |
 | `validation`  | object | `{}`    | 一个验证规则（BalmUI 验证器规则的 value）            |
-| `validations` | object | `{}`    | 详见上方 BalmUI 验证器规则                           |
+| `validations` | object | `[]`    | 详见上方 BalmUI 验证器规则                           |
 
 - 1. 使用 `computed`
 
@@ -197,18 +198,20 @@ interface BalmUIValidator {
     computed: {
       validations() {
         return this.step === 1
-          ? {
-              username: {
+          ? [
+              {
+                key: 'username',
                 label: 'Username',
                 validator: 'required'
               }
-            }
-          : {
-              password: {
+            ]
+          : [
+              {
+                key: 'password',
                 label: 'Password',
                 validator: 'required'
               }
-            };
+            ];
       }
     },
     methods: {
@@ -225,16 +228,18 @@ interface BalmUIValidator {
   ```js
   import { useValidator } from 'balm-ui';
 
-  const validations = {
-    username: {
+  const validations = [
+    {
+      key: 'username',
       label: 'Username',
       validator: 'required'
     },
-    password: {
+    {
+      key: 'password',
       label: 'Password',
       validator: 'required'
     }
-  };
+  ];
 
   export default {
     data() {
@@ -278,18 +283,20 @@ interface BalmUIValidator {
       onSubmit() {
         let customValidations =
           this.step === 1
-            ? {
-                username: {
+            ? [
+                {
+                  key: 'username',
                   label: 'Username',
                   validator: 'required'
                 }
-              }
-            : {
-                password: {
+              ]
+            : [
+                {
+                  key: 'password',
                   label: 'Password',
                   validator: 'required'
                 }
-              };
+              ];
         this.validator.set(customValidations);
 
         let result = this.validator.validate(this.formData);

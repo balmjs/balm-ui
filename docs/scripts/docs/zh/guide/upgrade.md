@@ -1,11 +1,53 @@
 # 升级向导
 
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10_7">从 10.x 升级到 10.7.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10">从 9.x 升级到 10.0</a>
-- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9_27">从 9.x 升级到 9.27.0+</a>
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9_27">从 9.x 升级到 9.27.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9">从 8.x 升级到 9.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">从 7.x 升级到 8.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">从 6.x 升级到 7.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">从 5.x 升级到 6.0</a>
+
+<div id="up-to-10_7"></div>
+
+## 从 10.x 升级到 10.7.0
+
+### BREAKING CHANGES
+
+- `$validator`: 更新验证规则格式
+
+  - Old
+
+    ```ts
+    interface BalmUIValidationRule {
+      label?: string;
+      validator: string; // 'customRule1, customRule2, ...'
+      ...customRule?: {
+        validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
+        message: string | (fieldValue: any, formData: { [fieldName: string]: any }): string;
+      };
+    }
+
+    type BalmUIValidations = {
+      [key: string]: BalmUIValidationRule;
+    }
+    ```
+
+  - New
+
+    ```ts
+    interface BalmUIValidationRule {
+      key: string; // field name
+      label?: string;
+      validator: string; // 'customRule1, customRule2, ...'
+      ...customRule?: {
+        validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
+        message: string | (fieldValue: any, formData: { [fieldName: string]: any }): string;
+      };
+    }
+
+    type BalmUIValidations = BalmUIValidationRule[]
+    ```
 
 <div id="up-to-10"></div>
 
@@ -20,7 +62,7 @@
 
 <div id="up-to-9_27"></div>
 
-## 从 9.x 升级到 9.27.0+
+## 从 9.x 升级到 9.27.0
 
 ### BREAKING CHANGES
 

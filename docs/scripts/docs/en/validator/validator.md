@@ -50,17 +50,14 @@ const validator = useValidator();
 
   ```ts
   interface BalmUIValidationRule {
+    key: string; // field name
     label?: string;
     validator: string; // 'customRule1, customRule2, ...'
     ...customRule?: {
       validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
-      message: string;
+      message: string | (fieldValue: any, formData: { [fieldName: string]: any }): string;
     };
   }
-
-  type BalmUIValidations = {
-    [fieldName: string]: BalmUIValidationRule;
-  };
   ```
 
 ## 2.1 Default Validation
@@ -69,8 +66,9 @@ const validator = useValidator();
 
 ```js
 // Custom local validation rules
-const validations = {
-  fieldName1: {
+const validations = [
+  {
+    key: 'fieldName1',
     label: 'Field Label',
     validator: 'required, customRule1',
     customRule1: {
@@ -84,8 +82,11 @@ const validations = {
     // customRule2: { ... }
   }
   // More form fields
-  // fieldName2: {}
-};
+  // {
+  //   key: 'fieldName2',
+  //   validator: 'required'
+  // }
+];
 ```
 
 - Composition API
@@ -94,7 +95,7 @@ const validations = {
   import { reactive, toRefs } from 'vue';
   import { useValidator } from 'balm-ui';
 
-  // const validations = ...
+  // const validations = [...]
 
   const state = reactive({
     formData: {
@@ -132,7 +133,7 @@ const validations = {
   ```js
   import { useValidator } from 'balm-ui';
 
-  // const validations = ...
+  // const validations = [...]
 
   export default {
     data() {
@@ -166,9 +167,9 @@ const validations = {
 // New in 9.15.0
 interface BalmUIValidator {
   clear(): void;
-  get(fieldName?: string): BalmUIValidations | BalmUIValidationRule; // show current validation rule(s)
+  get(fieldName?: string): BalmUIValidationRule[] | BalmUIValidationRule; // show current validation rule(s)
   set(fieldName: string, validationRule: BalmUIValidationRule): void;
-  set(validations: BalmUIValidations): void;
+  set(validations: BalmUIValidationRule[]): void;
 }
 ```
 
@@ -176,7 +177,7 @@ interface BalmUIValidator {
 | ------------- | ------ | ------- | --------------------------------------------------------- |
 | `fieldName`   | string | `''`    | A field name of the formdata. (BalmUI validator rule key) |
 | `validation`  | object | `{}`    | A validation. (BalmUI validator rule value)               |
-| `validations` | object | `{}`    | (See) BalmUI validator rules.                             |
+| `validations` | object | `[]`    | (See) BalmUI validator rules.                             |
 
 - 1. using `computed`
 
@@ -197,18 +198,20 @@ interface BalmUIValidator {
     computed: {
       validations() {
         return this.step === 1
-          ? {
-              username: {
+          ? [
+              {
+                key: 'username',
                 label: 'Username',
                 validator: 'required'
               }
-            }
-          : {
-              password: {
+            ]
+          : [
+              {
+                key: 'password',
                 label: 'Password',
                 validator: 'required'
               }
-            };
+            ];
       }
     },
     methods: {
@@ -225,16 +228,18 @@ interface BalmUIValidator {
   ```js
   import { useValidator } from 'balm-ui';
 
-  const validations = {
-    username: {
+  const validations = [
+    {
+      key: 'username',
       label: 'Username',
       validator: 'required'
     },
-    password: {
+    {
+      key: 'password',
       label: 'Password',
       validator: 'required'
     }
-  };
+  ];
 
   export default {
     data() {
@@ -278,18 +283,20 @@ interface BalmUIValidator {
       onSubmit() {
         let customValidations =
           this.step === 1
-            ? {
-                username: {
+            ? [
+                {
+                  key: 'username',
                   label: 'Username',
                   validator: 'required'
                 }
-              }
-            : {
-                password: {
+              ]
+            : [
+                {
+                  key: 'password',
                   label: 'Password',
                   validator: 'required'
                 }
-              };
+              ];
         this.validator.set(customValidations);
 
         let result = this.validator.validate(this.formData);

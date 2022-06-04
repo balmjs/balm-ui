@@ -1,11 +1,53 @@
 # Upgrade Guide
 
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10_7">Upgrading To 10.7.0 From 10.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10">Upgrading To 10.0 From 9.x</a>
-- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9_27">Upgrading To 9.27.0+ From 9.x</a>
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9_27">Upgrading To 9.27.0 From 9.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9">Upgrading To 9.0 From 8.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">Upgrading To 8.0 From 7.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">Upgrading To 7.0 From 6.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">Upgrading To 6.0 From 5.x</a>
+
+<div id="up-to-10_7"></div>
+
+## Upgrading To 10.7.0 From 10.x
+
+### BREAKING CHANGES
+
+- `$validator`: update validations
+
+  - Old
+
+    ```ts
+    interface BalmUIValidationRule {
+      label?: string;
+      validator: string; // 'customRule1, customRule2, ...'
+      ...customRule?: {
+        validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
+        message: string | (fieldValue: any, formData: { [fieldName: string]: any }): string;
+      };
+    }
+
+    type BalmUIValidations = {
+      [key: string]: BalmUIValidationRule;
+    }
+    ```
+
+  - New
+
+    ```ts
+    interface BalmUIValidationRule {
+      key: string; // field name
+      label?: string;
+      validator: string; // 'customRule1, customRule2, ...'
+      ...customRule?: {
+        validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
+        message: string | (fieldValue: any, formData: { [fieldName: string]: any }): string;
+      };
+    }
+
+    type BalmUIValidations = BalmUIValidationRule[]
+    ```
 
 <div id="up-to-10"></div>
 
@@ -20,7 +62,7 @@
 
 <div id="up-to-9_27"></div>
 
-## Upgrading To 9.27.0+ From 9.x
+## Upgrading To 9.27.0 From 9.x
 
 ### BREAKING CHANGES
 

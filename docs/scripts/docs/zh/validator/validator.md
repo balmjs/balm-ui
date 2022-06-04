@@ -42,25 +42,23 @@
 
   ```ts
   interface BalmUIValidationRule {
+    key: string; // field name
     label?: string;
     validator: string; // 'customRule1, customRule2, ...'
     ...customRule?: {
       validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
-      message: string;
+      message: string | (fieldValue: any, formData: { [fieldName: string]: any }) => string;
     };
   }
-
-  type BalmUICustomValidations = {
-    [fieldName: string]: BalmUIValidationRule;
-  };
   ```
 
 ## 2.1 默认验证
 
 ```js
 // 自定义局部验证规则
-const validations = {
-  fieldName1: {
+const validations = [
+  {
+    key: 'fieldName1',
     label: 'Field Label',
     validator: 'required, customRule1',
     customRule1: {
@@ -74,8 +72,11 @@ const validations = {
     // customRule2: { ... }
   }
   // 更多表单字段
-  // fieldName2: {}
-};
+  // {
+  //   key: 'fieldName2',
+  //   validator: 'required'
+  // }
+];
 
 export default {
   validations,
@@ -89,14 +90,8 @@ export default {
   },
   methods: {
     onSubmit() {
-      let {
-        valid,
-        validFields,
-        invalidFields,
-        message,
-        messages,
-        validMsg
-      } = this.$validate(this.formData);
+      let { valid, validFields, invalidFields, message, messages, validMsg } =
+        this.$validate(this.formData);
     }
   }
 };
@@ -108,9 +103,9 @@ export default {
 // New in 8.23.0
 interface BalmUIValidations {
   clear(): void;
-  get(fieldName?: string): BalmUICustomValidations | BalmUIValidationRule; // 显示当前已设置的验证规则
+  get(fieldName?: string): BalmUIValidationRule[] | BalmUIValidationRule; // 显示当前已设置的验证规则
   set(fieldName: string, validationRule: BalmUIValidationRule): void;
-  set(validations: BalmUICustomValidations): void;
+  set(validations: BalmUIValidationRule[]): void;
 }
 
 interface VueInstance {
@@ -143,18 +138,20 @@ interface VueInstance {
     computed: {
       validations() {
         return this.step === 1
-          ? {
-              username: {
+          ? [
+              {
+                key: 'username',
                 label: 'Username',
                 validator: 'required'
               }
-            }
-          : {
-              password: {
+            ]
+          : [
+              {
+                key: 'password',
                 label: 'Password',
                 validator: 'required'
               }
-            };
+            ];
       }
     },
     methods: {
@@ -170,16 +167,18 @@ interface VueInstance {
 
   ```js
   export default {
-    validations: {
-      username: {
+    validations: [
+      {
+        key: 'username',
         label: 'Username',
         validator: 'required'
       },
-      password: {
+      {
+        key: 'password',
         label: 'Password',
         validator: 'required'
       }
-    },
+    ],
     data() {
       return {
         step: 1,
@@ -219,18 +218,20 @@ interface VueInstance {
       onSubmit() {
         let customValidations =
           this.step === 1
-            ? {
-                username: {
+            ? [
+                {
+                  key: 'username',
                   label: 'Username',
                   validator: 'required'
                 }
-              }
-            : {
-                password: {
+              ]
+            : [
+                {
+                  key: 'password',
                   label: 'Password',
                   validator: 'required'
                 }
-              };
+              ];
         this.$validations.set(customValidations);
 
         let result = this.$validate(this.formData);

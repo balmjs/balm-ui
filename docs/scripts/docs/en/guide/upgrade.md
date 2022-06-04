@@ -2,14 +2,56 @@
 
 > 🎉 `balm-ui`(v9) for Vue 3, see [material.balmjs.com](https://material.balmjs.com/)
 
-- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_37">Upgrading To 8.37.0+ From 8.x</a>
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_50">Upgrading To 8.50.0 From 8.x</a>
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_37">Upgrading To 8.37.0 From 8.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">Upgrading To 8.0 From 7.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">Upgrading To 7.0 From 6.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">Upgrading To 6.0 From 5.x</a>
 
+<div id="up-to-8_50"></div>
+
+## Upgrading To 8.50.0 From 8.x
+
+### BREAKING CHANGES
+
+- `$validator`: update validations
+
+  - Old
+
+    ```ts
+    interface BalmUIValidationRule {
+      label?: string;
+      validator: string; // 'customRule1, customRule2, ...'
+      ...customRule?: {
+        validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
+        message: string | (fieldValue: any, formData: { [fieldName: string]: any }) => string;
+      };
+    }
+
+    type BalmUIValidations = {
+      [key: string]: BalmUIValidationRule;
+    }
+    ```
+
+  - New
+
+    ```ts
+    interface BalmUIValidationRule {
+      key: string; // field name
+      label?: string;
+      validator: string; // 'customRule1, customRule2, ...'
+      ...customRule?: {
+        validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
+        message: string | (fieldValue: any, formData: { [fieldName: string]: any }) => string;
+      };
+    }
+
+    type BalmUIValidations = BalmUIValidationRule[]
+    ```
+
 <div id="up-to-8_37"></div>
 
-## Upgrading To 8.37.0+ From 8.x
+## Upgrading To 8.37.0 From 8.x
 
 ### BREAKING CHANGES
 

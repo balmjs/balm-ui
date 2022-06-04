@@ -44,7 +44,7 @@ class UiValidator {
 
     this.validations = this.customValidations.length
       ? this.customValidations
-      : setupState.validations || data.validations || {};
+      : setupState.validations || data.validations || [];
 
     if (!Array.isArray(this.validations)) {
       throw new Error('[$validator]: validations must be an array in 10.7.0');

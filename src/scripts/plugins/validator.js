@@ -11,26 +11,31 @@ const defaultRules = {
 };
 
 // Define validator constants
-const FIELD_LABEL = 'label';
-const FIELD_VALIDATOR = 'validator';
 const LABEL_PLACEHOLDER = '%s';
 
-let customValidations = {};
+let customValidations = [];
 
 class Validations {
   clear() {
-    customValidations = {};
+    customValidations = [];
   }
 
   get(fieldName = '') {
-    return fieldName ? customValidations[fieldName] : customValidations;
+    return fieldName
+      ? customValidations.find(({ key }) => key === fieldName)
+      : customValidations;
   }
 
   set(fieldName, validationRule = {}) {
-    if (getType(fieldName) === 'object') {
-      customValidations = Object.assign({}, fieldName);
+    if (Array.isArray(fieldName)) {
+      customValidations = fieldName;
     } else {
-      customValidations[fieldName] = validationRule;
+      const index = customValidations.findIndex(({ key }) => key === fieldName);
+      if (~index) {
+        customValidations[index] = Object.assign({}, validationRule);
+      } else {
+        customValidations = [Object.assign({ key: fieldName }, validationRule)];
+      }
     }
   }
 }
@@ -57,74 +62,76 @@ const $validator = {
       };
 
       // 获取待验证字段
-      let validations = Object.keys(customValidations).length
+      let validations = customValidations.length
         ? customValidations
-        : this.validations || this.$options.validations || {};
-      let validationFields = Object.keys(validations);
+        : this.validations || this.$options.validations || [];
 
-      if (customFieldset.length) {
-        validationFields = validationFields.filter((field) =>
-          customFieldset.includes(field)
-        );
+      if (!Array.isArray(validations)) {
+        throw new Error('[$validator]: validations must be an array in 8.50.0');
       }
 
-      for (
-        let i = 0, fieldCount = validationFields.length;
-        i < fieldCount;
-        i++
-      ) {
-        let fieldName = validationFields[i]; // 字段名
-        let fieldOption = validations[fieldName]; // 对应验证配置
-        let fieldLabel = fieldOption[FIELD_LABEL] || fieldName; // 字段别名
-        let fieldRules = fieldOption[FIELD_VALIDATOR].split(
-          ','
-        ).map((validator) => validator.trim()); // 当前字段需要的所有验证方法
-        let isAllValidOfField = true; // 当前字段通过全部验证规则
+      for (let i = 0, fieldCount = validations.length; i < fieldCount; i++) {
+        const fieldOption = validations[i]; // 对应验证配置
+        const { key, label, validator } = fieldOption;
+        const fieldName = key; // 字段名
+        const needValidator =
+          !customFieldset.length || customFieldset.includes(fieldName);
 
-        for (let j = 0, rulesCount = fieldRules.length; j < rulesCount; j++) {
-          let ruleName = fieldRules[j];
-          let localValidationRule = fieldOption[ruleName];
-          let rule = localValidationRule || globalValidationRules[ruleName]; // 当前验证方法
+        if (needValidator) {
+          const fieldLabel = label || fieldName; // 字段别名
+          const fieldRules = validator
+            .split(',')
+            .map((validator) => validator.trim()); // 当前字段需要的所有验证方法
+          let isAllValidOfField = true; // 当前字段通过全部验证规则
 
-          if (rule && getType(rule.validate) === 'function') {
-            let fieldValue = formData[fieldName];
-            let fieldArgs = [fieldValue, formData];
-            if (!rule.validate.apply(this, fieldArgs)) {
-              isAllValidOfField = false;
-              let message = '';
+          for (let j = 0, rulesCount = fieldRules.length; j < rulesCount; j++) {
+            let ruleName = fieldRules[j];
+            let localValidationRule = fieldOption[ruleName];
+            let rule = localValidationRule || globalValidationRules[ruleName]; // 当前验证方法
 
-              switch (getType(rule.message)) {
-                case 'string':
-                  message = rule.message.replace(LABEL_PLACEHOLDER, fieldLabel);
-                  break;
-                case 'function':
-                  message = rule.message.apply(this, fieldArgs);
-                  break;
-                default:
-                  console.warn(
-                    '[$validator]',
-                    `'${fieldName}.message' must be a string or function`
-                  );
-                  break;
+            if (rule && getType(rule.validate) === 'function') {
+              let fieldValue = formData[fieldName];
+              let fieldArgs = [fieldValue, formData];
+              if (!rule.validate.apply(this, fieldArgs)) {
+                isAllValidOfField = false;
+                let message = '';
+
+                switch (getType(rule.message)) {
+                  case 'string':
+                    message = rule.message.replace(
+                      LABEL_PLACEHOLDER,
+                      fieldLabel
+                    );
+                    break;
+                  case 'function':
+                    message = rule.message.apply(this, fieldArgs);
+                    break;
+                  default:
+                    console.warn(
+                      '[$validator]',
+                      `'${fieldName}.message' must be a string or function`
+                    );
+                    break;
+                }
+
+                if (message) {
+                  result.messages.push(message);
+                }
+                break;
               }
-
-              if (message) {
-                result.messages.push(message);
-              }
-              break;
+            } else {
+              console.warn(
+                '[$validator]',
+                `The field '${fieldName}' is missing a validation rule: '${ruleName}'`
+              );
             }
-          } else {
-            console.warn(
-              '[$validator]',
-              `The field '${fieldName}' is missing a validation rule: '${ruleName}'`
-            );
           }
-        }
 
-        if (isAllValidOfField) {
-          result.validFields.push(fieldName);
-        } else {
-          result.invalidFields.push(fieldName);
+          if (isAllValidOfField) {
+            result.validFields.push(fieldName);
+          } else {
+            result.invalidFields.push(fieldName);
+          }
         }
       }
 

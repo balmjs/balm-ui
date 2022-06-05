@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.8.0 / 2022-06-05
+
+### Features
+
+- `validator`: add `globalProperties.$validator` and provide `validator`
+
 ## v10.7.0 / 2022-06-04
 
 ### Features

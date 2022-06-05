@@ -31,8 +31,6 @@ class UiValidator {
   }
 
   validate(formData = {}, customFieldset = []) {
-    const { setupState, data } = this.instance;
-
     let result = {
       valid: true,
       validFields: [], // Valid field names
@@ -42,9 +40,15 @@ class UiValidator {
       validMsg: {}
     };
 
+    let currentValidations = [];
+    if (this.instance) {
+      const { setupState, data } = this.instance;
+      currentValidations = setupState.validations || data.validations || [];
+    }
+
     this.validations = this.customValidations.length
       ? this.customValidations
-      : setupState.validations || data.validations || [];
+      : currentValidations;
 
     if (!Array.isArray(this.validations)) {
       throw new Error('[$validator]: validations must be an array in 10.7.0');
@@ -72,7 +76,7 @@ class UiValidator {
           if (rule && getType(rule.validate) === 'function') {
             let fieldValue = formData[fieldName];
             let fieldArgs = [fieldValue, formData];
-            if (!rule.validate.apply(this.instance.$data, fieldArgs)) {
+            if (!rule.validate(...fieldArgs)) {
               isAllValidOfField = false;
               let message = '';
 
@@ -81,7 +85,7 @@ class UiValidator {
                   message = rule.message.replace(LABEL_PLACEHOLDER, fieldLabel);
                   break;
                 case 'function':
-                  message = rule.message.apply(this.instance.$data, fieldArgs);
+                  message = rule.message(...fieldArgs);
                   break;
                 default:
                   console.warn(
@@ -166,6 +170,10 @@ class UiValidator {
 
 function install(app, customRules = {}) {
   globalValidationRules = Object.assign({}, defaultRules, customRules);
+
+  const validator = new UiValidator();
+  app.config.globalProperties.$validator = validator;
+  app.provide('validator', validator);
 }
 
 const $validator = {

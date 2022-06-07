@@ -87,7 +87,10 @@ const $validator = {
           for (let j = 0, rulesCount = fieldRules.length; j < rulesCount; j++) {
             let ruleName = fieldRules[j];
             let localValidationRule = fieldOption[ruleName];
-            let rule = localValidationRule || globalValidationRules[ruleName]; // 当前验证方法
+            let rule =
+              getType(localValidationRule) === 'object'
+                ? localValidationRule
+                : globalValidationRules[ruleName]; // 当前验证方法
 
             if (rule && getType(rule.validate) === 'function') {
               let fieldValue = formData[fieldName];

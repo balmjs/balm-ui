@@ -2,6 +2,55 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.50.1 / 2022-06-07
+
+### Bug Fixes
+
+- `$validator`: fix local validation rule bug
+
+## v8.50.0 / 2022-06-04
+
+### Features
+
+- `$validator`: optimize validations
+
+### BREAKING CHANGES
+
+- `$validator`: update validations
+
+  - Old
+
+    ```ts
+    interface BalmUIValidationRule {
+      label?: string;
+      validator: string; // 'customRule1, customRule2, ...'
+      ...customRule?: {
+        validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
+        message: string | (fieldValue: any, formData: { [fieldName: string]: any }) => string;
+      };
+    }
+
+    type BalmUIValidations = {
+      [key: string]: BalmUIValidationRule;
+    }
+    ```
+
+  - New
+
+    ```ts
+    interface BalmUIValidationRule {
+      key: string; // field name
+      label?: string;
+      validator: string; // 'customRule1, customRule2, ...'
+      ...customRule?: {
+        validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
+        message: string | (fieldValue: any, formData: { [fieldName: string]: any }) => string;
+      };
+    }
+
+    type BalmUIValidations = BalmUIValidationRule[]
+    ```
+
 ## v8.49.7 / 2022-06-01
 
 ### Bug Fixes

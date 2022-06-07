@@ -71,7 +71,10 @@ class UiValidator {
         for (let j = 0, rulesCount = fieldRules.length; j < rulesCount; j++) {
           let ruleName = fieldRules[j];
           let localValidationRule = fieldOption[ruleName];
-          let rule = localValidationRule || globalValidationRules[ruleName]; // Current validation method
+          let rule =
+            getType(localValidationRule) === 'object'
+              ? localValidationRule
+              : globalValidationRules[ruleName]; // Current validation method
 
           if (rule && getType(rule.validate) === 'function') {
             let fieldValue = formData[fieldName];

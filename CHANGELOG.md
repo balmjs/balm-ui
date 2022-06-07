@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.8.1 / 2022-06-07
+
+### Bug Fixes
+
+- `validator`: fix local validation rule bug
+
 ## v10.8.0 / 2022-06-05
 
 ### Features

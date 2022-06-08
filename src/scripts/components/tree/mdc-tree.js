@@ -246,8 +246,6 @@ class MdcTree {
       item.checked = checked;
       this.setMultipleSelectedValue(treeData, nodeKey, checked);
 
-      console.log('gg');
-
       treeData.selectedEvent = {
         checked,
         checkedNodes: [nodeKey],

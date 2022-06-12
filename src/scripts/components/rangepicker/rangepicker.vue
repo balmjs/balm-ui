@@ -184,15 +184,17 @@ export default {
             : ''
         );
 
-        if (
-          this.startInputValue !== selectedDates[0] ||
-          this.endInputValue !== selectedDates[1]
-        ) {
-          this.startInputValue = selectedDates[0];
-          this.endInputValue = selectedDates[1];
-        }
+        const startDate = selectedDates[0];
+        const endDate = selectedDates[1];
+        const noUpdates =
+          this.startInputValue === startDate && this.endInputValue === endDate;
 
-        canEmit = this.startInputValue && this.endInputValue;
+        if (!noUpdates) {
+          this.startInputValue = startDate;
+          this.endInputValue = endDate;
+
+          canEmit = startDate && endDate;
+        }
       }
 
       return canEmit;

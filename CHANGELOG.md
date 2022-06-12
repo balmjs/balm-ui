@@ -2,6 +2,13 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.50.2 / 2022-06-12
+
+### Bug Fixes
+
+- `<ui-chips>`: fix choice and filter chips event bug
+- `<ui-rangepicker>`: fix focus bug, fix start input value bug
+
 ## v8.50.1 / 2022-06-07
 
 ### Bug Fixes

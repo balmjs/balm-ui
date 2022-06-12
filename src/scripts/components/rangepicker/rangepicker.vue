@@ -119,7 +119,8 @@ export default {
     }
   },
   mounted() {
-    const startInputEl = this.$refs.startInput.$el.querySelector('input');
+    const startInput = this.$refs.startInput;
+    const startInputEl = startInput.$el.querySelector('input');
     const endInputEl = this.$refs.endInput.$el.querySelector('input');
 
     if (!this.flatpickr) {
@@ -133,23 +134,29 @@ export default {
       });
       // custom event
       config.onChange = (selectedDates, dateStr, instance) => {
-        this.updateInputs(selectedDates);
-        this.$emit(UI_RANGEPICKER.EVENT.CHANGE, [
-          this.startInputValue,
-          this.endInputValue
-        ]);
+        const canEmit = this.updateInputs(selectedDates);
+        canEmit &&
+          this.$emit(UI_RANGEPICKER.EVENT.CHANGE, [
+            this.startInputValue,
+            this.endInputValue
+          ]);
       };
       config.onClose = () => {
-        startInputEl.blur();
-        endInputEl.blur();
+        setTimeout(() => {
+          startInput.$textField.foundation.deactivateFocus();
+          startInputEl.blur();
+        }, 1);
       };
       // set default value
       config.onReady = (selectedDates, dateStr, instance) => {
-        this.updateInputs(this.model);
-        this.updateInitialValue(instance);
-
-        const dateValue = [this.startInputValue, this.endInputValue];
-        this.$emit(UI_RANGEPICKER.EVENT.CHANGE, dateValue);
+        const canEmit = this.updateInputs(this.model);
+        if (canEmit) {
+          this.updateInitialValue(instance);
+          this.$emit(UI_RANGEPICKER.EVENT.CHANGE, [
+            this.startInputValue,
+            this.endInputValue
+          ]);
+        }
       };
       // fix(@flatpickr): second input onChange bug for rangePlugin (temporary solution)
       config.onValueUpdate = () => {
@@ -165,6 +172,8 @@ export default {
   },
   methods: {
     updateInputs(dates) {
+      let canEmit = false;
+
       if (dates.length === 2) {
         const selectedDates = dates.map((value) =>
           value
@@ -182,7 +191,11 @@ export default {
           this.startInputValue = selectedDates[0];
           this.endInputValue = selectedDates[1];
         }
+
+        canEmit = this.startInputValue && this.endInputValue;
       }
+
+      return canEmit;
     },
     updateInitialValue(instance = this.flatpickr) {
       const dateValue =
@@ -203,11 +216,15 @@ export default {
       if (this.config.enableTime) {
         const endInputValue = this.$refs.endInput.$textField.value;
         if (endInputValue !== this.endInputValue) {
-          this.updateInputs([this.startInputValue, endInputValue]);
-          this.$emit(UI_RANGEPICKER.EVENT.CHANGE, [
+          const canEmit = this.updateInputs([
             this.startInputValue,
-            this.endInputValue
+            endInputValue
           ]);
+          canEmit &&
+            this.$emit(UI_RANGEPICKER.EVENT.CHANGE, [
+              this.startInputValue,
+              this.endInputValue
+            ]);
         }
       }
     }

@@ -515,7 +515,7 @@ function initSelectedRows() {
           : selectedRow;
         return `${props.rowIdPrefix}${rowIndex}`;
       })
-      .filter((row) => row > -1);
+      .filter((row) => ~row);
 
     state.$table.setSelectedRowIds(rowIds);
   }

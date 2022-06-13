@@ -49,7 +49,7 @@ function init($list) {
 
 function update($list) {
   if ($list) {
-    if (props.singleSelection && props.modelValue > -1) {
+    if (props.singleSelection && ~props.modelValue) {
       $list.singleSelection = true;
       $list.selectedIndex = props.modelValue;
     }

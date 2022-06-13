@@ -51,7 +51,7 @@ const state = reactive({
 
 function activateTab(active = props.modelValue) {
   const activeTabIndex =
-    active > -1 && active < state.$tabBar.tabList.length ? active : 0;
+    ~active && active < state.$tabBar.tabList.length ? active : 0;
 
   state.$tabBar.activateTab(activeTabIndex);
 }

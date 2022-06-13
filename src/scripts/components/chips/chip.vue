@@ -111,15 +111,7 @@ const role = computed(() => {
 });
 
 function handleClick(event) {
-  nextTick(() => {
-    // fix(ui): twice trigger
-    const choiceChips = parent?.exposed?.choiceChips.value;
-    if (choiceChips) {
-      parent.exposed.choiceChipId.value = chip.value.id;
-    }
-
-    emit(UI_GLOBAL.EVENTS.CLICK, event);
-  });
+  emit(UI_GLOBAL.EVENTS.CLICK, event);
 }
 
 function handleRemove(event) {

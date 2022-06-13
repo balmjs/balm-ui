@@ -125,6 +125,7 @@ onMounted(() => {
 
           if (state.$chipSet) {
             state.$chipSet.destroy();
+            state.$chipSet = null;
             init();
           }
         });
@@ -157,10 +158,9 @@ onUpdated(() => {
 function init() {
   state.$chipSet = new MDCChipSet(chips.value);
 
-  const currentChips = state.$chipSet.chips;
-  if (currentChips.length) {
-    initData(currentChips);
-    initEvent(currentChips);
+  if (state.$chipSet.chips.length) {
+    initData();
+    initEvent();
   } else {
     if (!inputChips.value) {
       state.$chipSet = null;
@@ -168,7 +168,7 @@ function init() {
   }
 }
 
-function initData(chips) {
+function initData(chips = state.$chipSet.chips) {
   if (filterChips.value) {
     let selectedIndexes = [];
 
@@ -201,50 +201,71 @@ function initData(chips) {
       selectedIndex = state.selectedValue;
     }
 
-    if (selectedIndex > -1 && chips[selectedIndex]) {
+    if (~selectedIndex && chips[selectedIndex]) {
       chips[selectedIndex].selected = true;
     }
   }
 }
 
-function initEvent(chips) {
-  const adapter = state.$chipSet.foundation.adapter;
+function setChoiceChips(chipId) {
+  if (chipId === state.choiceChipId) {
+    state.choiceChipId = null;
+
+    if (state.currentOptions.length) {
+      const adapter = state.$chipSet.foundation.adapter;
+      const selectedIndex = adapter.getIndexOfChipById(chipId);
+
+      const currentSelectedValue = ~selectedIndex
+        ? state.currentOptions[selectedIndex][props.optionFormat.value]
+        : '';
+
+      emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
+    } else {
+      emit(UI_CHIPS.EVENTS.CHANGE, -1);
+    }
+  }
+}
+
+function setFilterChips() {
+  let selectedIndexes = [];
+  state.$chipSet.chips.forEach((chip, index) => {
+    if (chip.selected) {
+      selectedIndexes.push(index);
+    }
+  });
+
+  if (state.currentOptions.length) {
+    const currentSelectedValue = state.currentOptions
+      .filter((option, index) => selectedIndexes.includes(index))
+      .map((option) => option[props.optionFormat.value]);
+
+    const oldValue = state.selectedValue;
+    const newValue = currentSelectedValue;
+    const canEmit = !(
+      oldValue.length === newValue.length &&
+      oldValue.every((a) => newValue.some((b) => a === b)) &&
+      newValue.every((b) => oldValue.some((a) => b === a))
+    );
+
+    if (canEmit) {
+      state.selectedValue = currentSelectedValue;
+      emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
+    }
+  } else {
+    emit(UI_CHIPS.EVENTS.CHANGE, selectedIndexes);
+  }
+}
+
+function initEvent() {
+  state.$chipSet.listen(strings.INTERACTION_EVENT, ({ detail }) => {
+    state.choiceChipId = detail.chipId;
+  });
 
   state.$chipSet.listen(strings.SELECTION_EVENT, ({ detail }) => {
     if (choiceChips.value) {
-      if (detail.chipId === state.choiceChipId) {
-        const selectedIndex = detail.selected
-          ? adapter.getIndexOfChipById(detail.chipId)
-          : -1;
-
-        if (state.currentOptions.length) {
-          const currentSelectedValue =
-            selectedIndex > -1
-              ? state.currentOptions[selectedIndex][props.optionFormat.value]
-              : '';
-
-          emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
-        } else {
-          emit(UI_CHIPS.EVENTS.CHANGE, selectedIndex);
-        }
-      }
+      setChoiceChips(detail.chipId);
     } else if (filterChips.value) {
-      let selectedIndexes = [];
-      chips.forEach((chip, index) => {
-        if (chip.selected) {
-          selectedIndexes.push(index);
-        }
-      });
-
-      if (state.currentOptions.length) {
-        const currentSelectedValue = state.currentOptions
-          .filter((option, index) => selectedIndexes.includes(index))
-          .map((option) => option[props.optionFormat.value]);
-
-        emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
-      } else {
-        emit(UI_CHIPS.EVENTS.CHANGE, selectedIndexes);
-      }
+      setFilterChips();
     }
   });
 }
@@ -306,7 +327,6 @@ function clearSelected(newSelectedValue, oldSelectedValue) {
 defineExpose({
   inputChips,
   choiceChips,
-  filterChips,
-  choiceChipId
+  filterChips
 });
 </script>

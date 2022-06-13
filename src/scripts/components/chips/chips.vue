@@ -90,7 +90,7 @@ const state = reactive({
   chipsCount: props.items.length,
   choiceChipId: null // fix(ui): twice trigger
 });
-const { currentOptions } = toRefs(state);
+const { currentOptions, choiceChipId } = toRefs(state);
 
 const inputChips = computed(() => checkType(props, UI_CHIPS.TYPES, 'input'));
 const choiceChips = computed(() => checkType(props, UI_CHIPS.TYPES, 'choice'));
@@ -209,15 +209,15 @@ function initData(chips = state.$chipSet.chips) {
 }
 
 function setChoiceChips({ chipId, selected }) {
-  if (state.choiceChipId === chipId) {
+  if (chipId === state.choiceChipId) {
     state.choiceChipId = null;
 
     if (selected) {
       const adapter = state.$chipSet.foundation.adapter;
       const selectedIndex = adapter.getIndexOfChipById(chipId);
-      const currentSelectedValue =
-        state.currentOptions[selectedIndex][props.optionFormat.value];
-
+      const currentSelectedValue = ~selectedIndex
+        ? state.currentOptions[selectedIndex][props.optionFormat.value]
+        : '';
       emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
     } else {
       emit(UI_CHIPS.EVENTS.CHANGE, -1);
@@ -234,36 +234,34 @@ function setFilterChips() {
     }
   });
 
-  const currentSelectedValue = state.currentOptions
-    .filter((option, index) => selectedIndexes.includes(index))
-    .map((option) => option[props.optionFormat.value]);
+  if (state.currentOptions.length) {
+    const currentSelectedValue = state.currentOptions
+      .filter((option, index) => selectedIndexes.includes(index))
+      .map((option) => option[props.optionFormat.value]);
 
-  const oldValue = state.selectedValue;
-  const newValue = currentSelectedValue;
-  const canEmit = !(
-    oldValue.length === newValue.length &&
-    oldValue.every((a) => newValue.some((b) => a === b)) &&
-    newValue.every((b) => oldValue.some((a) => b === a))
-  );
+    const oldValue = state.selectedValue;
+    const newValue = currentSelectedValue;
+    const canEmit = !(
+      oldValue.length === newValue.length &&
+      oldValue.every((a) => newValue.some((b) => a === b)) &&
+      newValue.every((b) => oldValue.some((a) => b === a))
+    );
 
-  if (canEmit) {
-    state.selectedValue = currentSelectedValue;
-    emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
+    if (canEmit) {
+      state.selectedValue = currentSelectedValue;
+      emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
+    }
+  } else {
+    emit(UI_CHIPS.EVENTS.CHANGE, selectedIndexes);
   }
 }
 
 function initEvent() {
-  state.$chipSet.listen(strings.INTERACTION_EVENT, ({ detail }) => {
-    state.choiceChipId = detail.chipId;
-  });
-
   state.$chipSet.listen(strings.SELECTION_EVENT, ({ detail }) => {
-    if (state.currentOptions.length) {
-      if (choiceChips.value) {
-        setChoiceChips(detail);
-      } else if (filterChips.value) {
-        setFilterChips();
-      }
+    if (choiceChips.value) {
+      setChoiceChips(detail);
+    } else if (filterChips.value) {
+      setFilterChips();
     }
   });
 }
@@ -325,6 +323,7 @@ function clearSelected(newSelectedValue, oldSelectedValue) {
 defineExpose({
   inputChips,
   choiceChips,
-  filterChips
+  filterChips,
+  choiceChipId
 });
 </script>

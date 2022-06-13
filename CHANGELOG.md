@@ -2,7 +2,7 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
-## v10.8.2 / 2022-06-13
+## v10.8.3 / 2022-06-13
 
 ### Bug Fixes
 

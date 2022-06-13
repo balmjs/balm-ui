@@ -90,7 +90,7 @@ const state = reactive({
   chipsCount: props.items.length,
   choiceChipId: null // fix(ui): twice trigger
 });
-const { currentOptions, choiceChipId } = toRefs(state);
+const { currentOptions } = toRefs(state);
 
 const inputChips = computed(() => checkType(props, UI_CHIPS.TYPES, 'input'));
 const choiceChips = computed(() => checkType(props, UI_CHIPS.TYPES, 'choice'));
@@ -203,21 +203,20 @@ function initData(chips = state.$chipSet.chips) {
 
     if (~selectedIndex && chips[selectedIndex]) {
       chips[selectedIndex].selected = true;
+      state.choiceChipId = chips[selectedIndex].id;
     }
   }
 }
 
-function setChoiceChips(chipId) {
-  if (chipId === state.choiceChipId) {
+function setChoiceChips({ chipId, selected }) {
+  if (state.choiceChipId === chipId) {
     state.choiceChipId = null;
 
-    if (state.currentOptions.length) {
+    if (selected) {
       const adapter = state.$chipSet.foundation.adapter;
       const selectedIndex = adapter.getIndexOfChipById(chipId);
-
-      const currentSelectedValue = ~selectedIndex
-        ? state.currentOptions[selectedIndex][props.optionFormat.value]
-        : '';
+      const currentSelectedValue =
+        state.currentOptions[selectedIndex][props.optionFormat.value];
 
       emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
     } else {
@@ -228,31 +227,28 @@ function setChoiceChips(chipId) {
 
 function setFilterChips() {
   let selectedIndexes = [];
+
   state.$chipSet.chips.forEach((chip, index) => {
     if (chip.selected) {
       selectedIndexes.push(index);
     }
   });
 
-  if (state.currentOptions.length) {
-    const currentSelectedValue = state.currentOptions
-      .filter((option, index) => selectedIndexes.includes(index))
-      .map((option) => option[props.optionFormat.value]);
+  const currentSelectedValue = state.currentOptions
+    .filter((option, index) => selectedIndexes.includes(index))
+    .map((option) => option[props.optionFormat.value]);
 
-    const oldValue = state.selectedValue;
-    const newValue = currentSelectedValue;
-    const canEmit = !(
-      oldValue.length === newValue.length &&
-      oldValue.every((a) => newValue.some((b) => a === b)) &&
-      newValue.every((b) => oldValue.some((a) => b === a))
-    );
+  const oldValue = state.selectedValue;
+  const newValue = currentSelectedValue;
+  const canEmit = !(
+    oldValue.length === newValue.length &&
+    oldValue.every((a) => newValue.some((b) => a === b)) &&
+    newValue.every((b) => oldValue.some((a) => b === a))
+  );
 
-    if (canEmit) {
-      state.selectedValue = currentSelectedValue;
-      emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
-    }
-  } else {
-    emit(UI_CHIPS.EVENTS.CHANGE, selectedIndexes);
+  if (canEmit) {
+    state.selectedValue = currentSelectedValue;
+    emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
   }
 }
 
@@ -262,10 +258,12 @@ function initEvent() {
   });
 
   state.$chipSet.listen(strings.SELECTION_EVENT, ({ detail }) => {
-    if (choiceChips.value) {
-      setChoiceChips(detail.chipId);
-    } else if (filterChips.value) {
-      setFilterChips();
+    if (state.currentOptions.length) {
+      if (choiceChips.value) {
+        setChoiceChips(detail);
+      } else if (filterChips.value) {
+        setFilterChips();
+      }
     }
   });
 }

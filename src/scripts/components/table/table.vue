@@ -516,7 +516,7 @@ export default {
               : selectedRow;
             return `${this.rowIdPrefix}${rowIndex}`;
           })
-          .filter((row) => row > -1);
+          .filter((row) => ~row);
 
         this.$table.setSelectedRowIds(rowIds);
       }

@@ -78,7 +78,7 @@ export default {
       this.$emit(UI_LIST.EVENT.ACTION, detail.index);
     });
 
-    if (this.singleSelection && this.selectedIndex > -1) {
+    if (this.singleSelection && ~this.selectedIndex) {
       this.$list.singleSelection = true;
       this.$list.selectedIndex = this.selectedIndex;
     }
@@ -93,7 +93,7 @@ export default {
   },
   updated() {
     if (this.$list) {
-      if (this.singleSelection && this.selectedIndex > -1) {
+      if (this.singleSelection && ~this.selectedIndex) {
         this.$list.selectedIndex = this.selectedIndex;
       }
 

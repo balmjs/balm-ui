@@ -51,7 +51,7 @@ export default {
   methods: {
     _activateTab(active = this.active) {
       const activeTabIndex =
-        active > -1 && active < this.tabList.length ? active : 0;
+        ~active && active < this.tabList.length ? active : 0;
       this.$tabBar.activateTab(activeTabIndex);
     },
     init() {

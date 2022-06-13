@@ -323,7 +323,7 @@ onMounted(() => {
         try {
           // fix(@material-components): sync counter bug
           props.maxlength &&
-            state.$textField.characterCounter_.foundation.setCounterValue(
+            state.$textField.characterCounter.foundation.setCounterValue(
               0,
               props.maxlength
             );

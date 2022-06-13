@@ -34,10 +34,6 @@
   background-color: transparent;
   box-shadow: none;
 
-  &.mdc-menu-surface--open {
-    display: flex;
-  }
-
   .mdc-deprecated-list {
     width: dialog-variables.$max-width;
     @include elevation-mixins.elevation($z-value: 8, $query: $query);
@@ -48,6 +44,15 @@
       false,
       $query
     );
+  }
+
+  &.mdc-menu-surface--open {
+    display: flex;
+
+    .mdc-deprecated-list {
+      height: 100%;
+      overflow-y: scroll;
+    }
   }
 
   @media (max-width: top-app-bar-variables.$mobile-breakpoint) {

@@ -2,6 +2,15 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.8.2 / 2022-06-13
+
+### Bug Fixes
+
+- `<ui-chips>`: fix choice and filter chips event bug
+- `<ui-rangepicker>`: fix focus bug, fix start input value bug
+- `<ui-textfield>`: reset counter bug
+- `<ui-select>`: fix select css in dialog
+
 ## v10.8.1 / 2022-06-07
 
 ### Bug Fixes

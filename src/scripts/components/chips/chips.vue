@@ -185,30 +185,29 @@ export default {
 
         if (~selectedIndex && chips[selectedIndex]) {
           chips[selectedIndex].selected = true;
+          this.choiceChipId = chips[selectedIndex].id;
         }
       }
     },
-    setChoiceChips(chipId) {
+    setChoiceChips({ chipId, selected }) {
       if (chipId === this.choiceChipId) {
         this.choiceChipId = null;
 
-        if (this.currentOptions.length) {
+        if (selected) {
           const adapter = this.$chipSet.foundation.adapter;
           const selectedIndex = adapter.getIndexOfChipById(chipId);
-
-          const selectedValue = ~selectedIndex
+          let selectedValue = ~selectedIndex
             ? this.currentOptions[selectedIndex][this.optionFormat.value]
             : '';
-
           this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
         } else {
           this.$emit(UI_CHIPS.EVENT.CHANGE, -1);
         }
       }
     },
-    setFilterChips(chips = this.$chipSet.chips) {
+    setFilterChips() {
       let selectedIndexes = [];
-      chips.forEach((chip, index) => {
+      this.$chipSet.chips.forEach((chip, index) => {
         if (chip.selected) {
           selectedIndexes.push(index);
         }
@@ -235,14 +234,10 @@ export default {
         this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndexes);
       }
     },
-    initEvent(chips = this.$chipSet.chips) {
-      this.$chipSet.listen(strings.INTERACTION_EVENT, ({ detail }) => {
-        this.choiceChipId = detail.chipId;
-      });
-
+    initEvent() {
       this.$chipSet.listen(strings.SELECTION_EVENT, ({ detail }) => {
         if (this.choiceChips) {
-          this.setChoiceChips(detail.chipId);
+          this.setChoiceChips(detail);
         } else if (this.filterChips) {
           this.setFilterChips();
         }

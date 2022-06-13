@@ -297,7 +297,7 @@ export default {
           try {
             // fix(@material-components): sync counter bug
             this.maxlength &&
-              this.$textField.characterCounter_.foundation.setCounterValue(
+              this.$textField.characterCounter.foundation.setCounterValue(
                 0,
                 this.maxlength
               );

@@ -72,12 +72,16 @@
 
 > New in 8.2.1
 
-- `$bus.on(eventName, callback)`
+- `$bus.on(event, callback)`
+- `$bus.once(event, callback)` (New in 8.51.0)
+- `$bus.off(event, callback)`
 - `$bus.emit(eventName, ...args)`
 
   ```ts
   interface BalmUIEventBus {
-    on(eventName: string | string[], callback: Function); // Listen for a custom event on the current vm.
+    on(event: string | string[], callback: Function); // Listen for a custom event on the current vm.
+    once(event: string, callback: Function); // Listen for a custom event, but only once.
+    off(event: string | string[], callback?: Function); // Remove custom event listener(s).
     emit(eventName: string, ...args); // Trigger an event on the current instance.
   }
 

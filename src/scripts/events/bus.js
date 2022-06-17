@@ -2,12 +2,16 @@ import Vue from 'vue';
 
 const busApp = new Vue();
 
-function on(eventName, callback) {
-  busApp.$on(eventName, callback);
+function on(event, callback) {
+  busApp.$on(event, callback);
 }
 
-function off(eventName, callback = false) {
-  callback ? busApp.$off(eventName, callback) : busApp.$off(eventName);
+function once(event, callback) {
+  busApp.$once(event, callback);
+}
+
+function off(event, callback = false) {
+  callback ? busApp.$off(event, callback) : busApp.$off(event);
 }
 
 function emit(eventName, ...args) {
@@ -16,6 +20,7 @@ function emit(eventName, ...args) {
 
 const bus = {
   on,
+  once,
   off,
   emit
 };

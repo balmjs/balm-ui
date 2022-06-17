@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.51.0 / 2022-06-17
+
+### Features
+
+- `$bus`: add `.once` function
+
 ## v8.50.4 / 2022-06-13
 
 ### Bug Fixes

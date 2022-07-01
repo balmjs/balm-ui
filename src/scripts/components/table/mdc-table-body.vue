@@ -33,6 +33,11 @@
               }
             ]"
             :checked="tbodyCellData[T_CELL.SELECTED]"
+            :disabled="
+              isFunction(rowCheckboxDisabled)
+                ? rowCheckboxDisabled(currentData[tbodyRowIndex])
+                : false
+            "
           ></mdc-checkbox>
           <!-- Data / Actions -->
           <template v-else>

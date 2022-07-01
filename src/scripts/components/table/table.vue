@@ -35,6 +35,7 @@
           :selected-rows="selectedRows"
           :tbody="tbody"
           :row-checkbox="rowCheckbox"
+          :row-checkbox-disabled="rowCheckboxDisabled"
           :selected-key="selectedKey"
           :row-id-prefix="rowIdPrefix"
           :cell-style="cellStyle"
@@ -82,6 +83,7 @@
         :selected-rows="selectedRows"
         :tbody="tbody"
         :row-checkbox="rowCheckbox"
+        :row-checkbox-disabled="rowCheckboxDisabled"
         :selected-key="selectedKey"
         :row-id-prefix="rowIdPrefix"
       >
@@ -172,6 +174,10 @@ export default {
     },
     rowCheckbox: {
       type: Boolean,
+      default: false
+    },
+    rowCheckboxDisabled: {
+      type: [Function, Boolean],
       default: false
     },
     selectedKey: {
@@ -392,15 +398,36 @@ export default {
     this.$table.listen(events.SELECTED_ALL, () => {
       let oldSelectedRows = this.selectedRows; // NOTE: cache selected rows for pagination
 
+      let disabledSelectedRows = [];
       let newSelectedRows = this.currentData.map(
         (tbodyRowData, tbodyRowIndex) => {
-          return this.selectedKey
+          const currentRowData = this.selectedKey
             ? tbodyRowData[this.selectedKey]
             : tbodyRowIndex;
+
+          const disabledRowData =
+            this.selectedKey &&
+            getType(this.rowCheckboxDisabled) === 'function' &&
+            this.rowCheckboxDisabled({
+              [this.selectedKey]: currentRowData
+            });
+
+          if (disabledRowData) {
+            disabledSelectedRows.push(currentRowData);
+          }
+
+          return currentRowData;
         }
       );
 
-      let selectedRows = [...new Set(oldSelectedRows.concat(newSelectedRows))]; // merge + unique
+      const unionSelectedRows = Array.from(
+        new Set([...oldSelectedRows, ...newSelectedRows])
+      );
+      const disabledSelectedRowsSet = new Set(disabledSelectedRows);
+
+      const selectedRows = unionSelectedRows.filter(
+        (selectedRow) => !disabledSelectedRowsSet.has(selectedRow)
+      );
 
       this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
     });

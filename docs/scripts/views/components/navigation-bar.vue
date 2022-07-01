@@ -29,7 +29,7 @@
         type="textWithIcon"
         :items="items"
         stacked
-        @change="onChange"
+        @update:model-value="onChange"
       ></ui-tabs>
     </ui-navigation-bar>
   </div>

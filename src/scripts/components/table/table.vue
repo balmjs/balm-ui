@@ -34,6 +34,7 @@
           :selected-rows="modelValue"
           :tbody="tbody"
           :row-checkbox="rowCheckbox"
+          :row-checkbox-disabled="rowCheckboxDisabled"
           :selected-key="selectedKey"
           :row-id-prefix="rowIdPrefix"
           :cell-style="cellStyle"
@@ -78,6 +79,7 @@
         :selected-rows="modelValue"
         :tbody="tbody"
         :row-checkbox="rowCheckbox"
+        :row-checkbox-disabled="rowCheckboxDisabled"
         :selected-key="selectedKey"
         :row-id-prefix="rowIdPrefix"
       >
@@ -166,6 +168,10 @@ const props = defineProps({
   },
   rowCheckbox: {
     type: Boolean,
+    default: false
+  },
+  rowCheckboxDisabled: {
+    type: [Function, Boolean],
     default: false
   },
   selectedKey: {
@@ -361,15 +367,36 @@ onMounted(() => {
   state.$table.listen(events.SELECTED_ALL, () => {
     let oldSelectedRows = props.modelValue; // NOTE: cache selected rows for pagination
 
+    let disabledSelectedRows = [];
     let newSelectedRows = state.currentData.map(
       (tbodyRowData, tbodyRowIndex) => {
-        return props.selectedKey
+        const currentRowData = props.selectedKey
           ? tbodyRowData[props.selectedKey]
           : tbodyRowIndex;
+
+        const disabledRowData =
+          props.selectedKey &&
+          getType(props.rowCheckboxDisabled) === 'function' &&
+          props.rowCheckboxDisabled({
+            [props.selectedKey]: currentRowData
+          });
+
+        if (disabledRowData) {
+          disabledSelectedRows.push(currentRowData);
+        }
+
+        return currentRowData;
       }
     );
 
-    let selectedRows = [...new Set(oldSelectedRows.concat(newSelectedRows))]; // merge + unique
+    const unionSelectedRows = Array.from(
+      new Set([...oldSelectedRows, ...newSelectedRows])
+    );
+    const disabledSelectedRowsSet = new Set(disabledSelectedRows);
+
+    const selectedRows = unionSelectedRows.filter(
+      (selectedRow) => !disabledSelectedRowsSet.has(selectedRow)
+    );
 
     emit(UI_TABLE.EVENTS.CHANGE, selectedRows);
   });

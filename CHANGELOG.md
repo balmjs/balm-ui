@@ -2,6 +2,17 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.9.0 / 2022-07-08
+
+### Features
+
+- `$event`: add `once` bus event
+- `<ui-table>`: add `rowCheckboxDisabled` prop
+
+### Bug Fixes
+
+- `<ui-select>`: prevent small menu-in-dialogs h100% (thanks @hiddehs)
+
 ## v10.8.3 / 2022-06-13
 
 ### Bug Fixes

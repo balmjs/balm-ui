@@ -34,6 +34,11 @@
             }
           ]"
           :checked="tbodyCellData[UI_TABLE.CELL.SELECTED]"
+          :disabled="
+            getType(rowCheckboxDisabled) === 'function'
+              ? rowCheckboxDisabled(currentData[tbodyRowIndex])
+              : false
+          "
         ></mdc-checkbox>
         <!-- Data / Actions -->
         <template v-else>
@@ -64,6 +69,7 @@ export default {
 import MdcCheckbox from '../checkbox/mdc-checkbox.vue';
 import { tableCommonProps } from '../../mixins/table';
 import { tableBodyProps, useTableBody } from '../../mixins/table-body';
+import getType from '../../utils/typeof';
 
 const props = defineProps({
   ...tableCommonProps,

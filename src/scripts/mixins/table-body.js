@@ -29,6 +29,10 @@ const tableBodyProps = {
     type: Boolean,
     default: false
   },
+  rowCheckboxDisabled: {
+    type: [Function, Boolean],
+    default: false
+  },
   selectedKey: {
     type: [Boolean, String],
     default: false

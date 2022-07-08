@@ -99,12 +99,16 @@ const balmUI = useEvent();
 
 ## 3. Global Communication
 
-- `$bus.on(eventName, callback)`
+- `$bus.on(event, callback)`
+- `$bus.once(event, callback)` (New in 10.9.0)
+- `$bus.off(event, callback)`
 - `$bus.emit(eventName, ...args)`
 
   ```ts
   interface BalmUIEventBus {
-    on(eventName: string | string[], callback: Function); // Listen for a custom event on the current vm.
+    on(event: string | string[], callback: Function); // Listen for a custom event on the current vm.
+    once(event: string, callback: Function); // Listen for a custom event, but only once.
+    off(event: string | string[], callback?: Function); // Remove custom event listener(s).
     emit(eventName: string, ...args); // Trigger an event on the current instance.
   }
 
@@ -115,11 +119,11 @@ const balmUI = useEvent();
 
 ### Props
 
-| Name        | Type     | Default | Description                                     |
-| ----------- | -------- | ------- | ----------------------------------------------- |
-| `eventName` | string   |         | Custom event name for the global communication. |
-| `args`      | any      |         | The arguments of custom event function.         |
-| `callback`  | function |         | Custom event function.                          |
+| Name                 | Type     | Default | Description                                     |
+| -------------------- | -------- | ------- | ----------------------------------------------- |
+| `event`, `eventName` | string   |         | Custom event name for the global communication. |
+| `args`               | any      |         | The arguments of custom event function.         |
+| `callback`           | function |         | Custom event function.                          |
 
 ### 3.1 Use `$bus` with `.vue` component
 

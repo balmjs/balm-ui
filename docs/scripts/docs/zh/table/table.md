@@ -4,22 +4,23 @@
 
 ### Props
 
-| Name                     | Type            | Default                  | Description                                        | Version |
-| ------------------------ | --------------- | ------------------------ | -------------------------------------------------- | ------- |
-| `data`                   | array           | `[]`                     | 数据源                                             |         |
-| `thead`                  | array           | `[]`                     | 数据表头部渲染格式                                 |         |
-| `tbody`                  | array           | `[]`                     | 数据表内容渲染格式                                 |         |
-| `tfoot`                  | array           | `[]`                     | 数据表底部渲染格式                                 |         |
-| `fullwidth`              | boolean         | `false`                  | 全屏宽度样式                                       |         |
-| `rowCheckbox`            | boolean         | `false`                  | 带有行选择的数据表                                 |         |
-| `modelValue` (`v-model`) | array           | `[]`                     | 选择行的索引或 IDs（必须设置 `rowCheckbox: true`） |         |
-| `selectedKey`            | boolean, string | `false`                  | `selectedRows` 使用自定义键字段，默认使用行索引。  |         |
-| `rowIdPrefix`            | string          | `''`                     | 在行元素 `<tr>` 上的 `data-row-id` 属性值的前缀    |         |
-| `sortIconAlignEnd`       | boolean         | `false`                  | 设置排序图标位于标签之后                           |         |
-| `showProgress`           | boolean         | `false`                  | 启用数据表进度指示器表示加载数据中                 | 9.7.0   |
-| `fixedHeader`            | boolean         | `false`                  | 数据表头部固定模式                                 | 9.7.0   |
-| `defaultColWidth`        | number          | `0`                      | 设置固定模式数据表每列的默认宽度                   | 9.7.0   |
-| `scroll`                 | object          | `{ x: false, y: false }` | 设置固定模式数据表容器的大小                       | 9.7.0   |
+| Name                     | Type              | Default                  | Description                                        | Version |
+| ------------------------ | ----------------- | ------------------------ | -------------------------------------------------- | ------- |
+| `data`                   | array             | `[]`                     | 数据源                                             |         |
+| `thead`                  | array             | `[]`                     | 数据表头部渲染格式                                 |         |
+| `tbody`                  | array             | `[]`                     | 数据表内容渲染格式                                 |         |
+| `tfoot`                  | array             | `[]`                     | 数据表底部渲染格式                                 |         |
+| `fullwidth`              | boolean           | `false`                  | 全屏宽度样式                                       |         |
+| `rowCheckbox`            | boolean           | `false`                  | 带有行选择的数据表                                 |         |
+| `rowCheckboxDisabled`    | function, boolean | `false`                  | 排除选中行的数据                                   | 10.9.0  |
+| `modelValue` (`v-model`) | array             | `[]`                     | 选择行的索引或 IDs（必须设置 `rowCheckbox: true`） |         |
+| `selectedKey`            | boolean, string   | `false`                  | `selectedRows` 使用自定义键字段，默认使用行索引。  |         |
+| `rowIdPrefix`            | string            | `''`                     | 在行元素 `<tr>` 上的 `data-row-id` 属性值的前缀    |         |
+| `sortIconAlignEnd`       | boolean           | `false`                  | 设置排序图标位于标签之后                           |         |
+| `showProgress`           | boolean           | `false`                  | 启用数据表进度指示器表示加载数据中                 | 9.7.0   |
+| `fixedHeader`            | boolean           | `false`                  | 数据表头部固定模式                                 | 9.7.0   |
+| `defaultColWidth`        | number            | `0`                      | 设置固定模式数据表每列的默认宽度                   | 9.7.0   |
+| `scroll`                 | object            | `{ x: false, y: false }` | 设置固定模式数据表容器的大小                       | 9.7.0   |
 
 - `thead` & `tbody` & `tfoot` 属性通用格式
 

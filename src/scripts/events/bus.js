@@ -1,7 +1,12 @@
-let eventBus = new Map();
+const eventBus = new Map();
+const onceEventBus = new Map();
 
 function on(eventName, callback) {
   eventBus.set(eventName, callback);
+}
+
+function once(eventName, callback) {
+  onceEventBus.set(eventName, callback);
 }
 
 function removeEvent(eventName) {
@@ -23,15 +28,21 @@ function off(eventName = false) {
 }
 
 function emit(eventName, ...args) {
-  if (eventBus.has(eventName)) {
-    eventBus.get(eventName)(...args);
+  if (onceEventBus.has(eventName)) {
+    onceEventBus.get(eventName)(...args);
+    onceEventBus.delete(eventName);
   } else {
-    console.warn('[$bus]', `The '${eventName}' event is not defined`);
+    if (eventBus.has(eventName)) {
+      eventBus.get(eventName)(...args);
+    } else {
+      console.warn('[$bus]', `The '${eventName}' event is not defined`);
+    }
   }
 }
 
 const bus = {
   on,
+  once,
   off,
   emit
 };

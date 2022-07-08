@@ -99,13 +99,17 @@ const balmUI = useEvent();
 
 ## 3. 全局通信
 
-- `$bus.on(eventName, callback)`
+- `$bus.on(event, callback)`
+- `$bus.once(event, callback)` (New in 10.9.0)
+- `$bus.off(event, callback)`
 - `$bus.emit(eventName, ...args)`
 
   ```ts
   interface BalmUIEventBus {
-    on(eventName: string | string[], callback: Function); // 监听当前 Vue 实例的自定义事件
-    emit(eventName: string, ...args); // 触发当前 Vue 实例的自定义事件
+    on(event: string | string[], callback: Function); // 监听当前实例上的自定义事件。
+    once(event: string, callback: Function); // 监听一个自定义事件，但是只触发一次。
+    off(event: string | string[], callback?: Function); // 移除自定义事件监听器。
+    emit(eventName: string, ...args); // 触发当前实例上的事件。附加参数都会传给监听器回调。
   }
 
   interface VueInstance {
@@ -115,11 +119,11 @@ const balmUI = useEvent();
 
 ### Props
 
-| Name        | Type     | Default | Description                      |
-| ----------- | -------- | ------- | -------------------------------- |
-| `eventName` | string   |         | 全局通信的自定义事件的名称       |
-| `args`      | any      |         | 全局通信的自定义事件的方法的参数 |
-| `callback`  | function |         | 全局通信的自定义事件的方法       |
+| Name                 | Type     | Default | Description                      |
+| -------------------- | -------- | ------- | -------------------------------- |
+| `event`, `eventName` | string   |         | 全局通信的自定义事件的名称       |
+| `args`               | any      |         | 全局通信的自定义事件的方法的参数 |
+| `callback`           | function |         | 全局通信的自定义事件的方法       |
 
 ### 3.1 在 `.vue` 组件中使用 `$bus`
 

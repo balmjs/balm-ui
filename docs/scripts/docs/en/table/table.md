@@ -4,22 +4,23 @@
 
 ### Props
 
-| Name                     | Type            | Default                  | Description                                                      | Version |
-| ------------------------ | --------------- | ------------------------ | ---------------------------------------------------------------- | ------- |
-| `data`                   | array           | `[]`                     | Data source.                                                     |         |
-| `thead`                  | array           | `[]`                     | Table header renderer.                                           |         |
-| `tbody`                  | array           | `[]`                     | Table content renderer.                                          |         |
-| `tfoot`                  | array           | `[]`                     | Table footer renderer.                                           |         |
-| `fullwidth`              | boolean         | `false`                  | Styles the table as a full width table.                          |         |
-| `rowCheckbox`            | boolean         | `false`                  | Data table with row selection.                                   |         |
-| `modelValue` (`v-model`) | array           | `[]`                     | Selected row indexes/ids. (Required: `rowCheckbox: true`)        |         |
-| `selectedKey`            | boolean, string | `false`                  | `modelValue` use custom key field, default use row index.        |         |
-| `rowIdPrefix`            | string          | `''`                     | The prefix of `data-row-id` attribute value on row element `tr`. |         |
-| `sortIconAlignEnd`       | boolean         | `false`                  | The sort icon will be positioned after the label.                |         |
-| `showProgress`           | boolean         | `false`                  | Styles the table with progress indicator for data loading.       | 9.7.0   |
-| `fixedHeader`            | boolean         | `false`                  | Styles the table as a fixed header.                              | 9.7.0   |
-| `defaultColWidth`        | number          | `0`                      | Set the default column width for the fixed table.                | 9.7.0   |
-| `scroll`                 | object          | `{ x: false, y: false }` | Set the table container size for the fixed table.                | 9.7.0   |
+| Name                     | Type              | Default                  | Description                                                      | Version |
+| ------------------------ | ----------------- | ------------------------ | ---------------------------------------------------------------- | ------- |
+| `data`                   | array             | `[]`                     | Data source.                                                     |         |
+| `thead`                  | array             | `[]`                     | Table header renderer.                                           |         |
+| `tbody`                  | array             | `[]`                     | Table content renderer.                                          |         |
+| `tfoot`                  | array             | `[]`                     | Table footer renderer.                                           |         |
+| `fullwidth`              | boolean           | `false`                  | Styles the table as a full width table.                          |         |
+| `rowCheckbox`            | boolean           | `false`                  | Data table with row selection.                                   |         |
+| `rowCheckboxDisabled`    | function, boolean | `false`                  | Exclude row selections.                                          | 10.9.0  |
+| `modelValue` (`v-model`) | array             | `[]`                     | Selected row indexes/ids. (Required: `rowCheckbox: true`)        |         |
+| `selectedKey`            | boolean, string   | `false`                  | `modelValue` use custom key field, default use row index.        |         |
+| `rowIdPrefix`            | string            | `''`                     | The prefix of `data-row-id` attribute value on row element `tr`. |         |
+| `sortIconAlignEnd`       | boolean           | `false`                  | The sort icon will be positioned after the label.                |         |
+| `showProgress`           | boolean           | `false`                  | Styles the table with progress indicator for data loading.       | 9.7.0   |
+| `fixedHeader`            | boolean           | `false`                  | Styles the table as a fixed header.                              | 9.7.0   |
+| `defaultColWidth`        | number            | `0`                      | Set the default column width for the fixed table.                | 9.7.0   |
+| `scroll`                 | object            | `{ x: false, y: false }` | Set the table container size for the fixed table.                | 9.7.0   |
 
 - `thead` & `tbody` & `tfoot` props common format
 

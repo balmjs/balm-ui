@@ -2,6 +2,13 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.9.1 / 2022-07-09
+
+### Chore
+
+- `v-longpress`: optimize config and fix missing event bug
+- `types`: update `isFunction` for async function
+
 ## v10.9.0 / 2022-07-08
 
 ### Features

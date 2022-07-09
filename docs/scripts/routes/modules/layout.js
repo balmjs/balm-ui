@@ -5,10 +5,6 @@ const Divider = () => import('@/views/components/divider');
 
 export default [
   {
-    path: '',
-    redirect: () => ({ name: 'layout.top-app-bar' })
-  },
-  {
     path: 'top-app-bar',
     name: 'layout.top-app-bar',
     component: TopAppBar,

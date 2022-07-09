@@ -16,10 +16,6 @@ const NavigationRail = () => import('@/views/components/navigation-rail');
 
 export default [
   {
-    path: '',
-    redirect: () => ({ name: 'navigation.drawer' })
-  },
-  {
     path: 'drawer',
     name: 'navigation.drawer',
     component: Drawer

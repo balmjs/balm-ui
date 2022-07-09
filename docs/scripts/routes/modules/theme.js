@@ -5,10 +5,6 @@ const Icon = () => import('@/views/components/icon');
 
 export default [
   {
-    path: '',
-    redirect: () => ({ name: 'theme.color' })
-  },
-  {
     path: 'color',
     name: 'theme.color',
     component: Color

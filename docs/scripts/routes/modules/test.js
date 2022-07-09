@@ -6,12 +6,9 @@ export default [
   {
     path: '/test',
     name: 'test',
+    redirect: { name: 'test.composition' },
     component: BlankLayout,
     children: [
-      {
-        path: '',
-        redirect: () => ({ name: 'test.composition' })
-      },
       {
         path: 'composition/:id?',
         name: 'test.composition',

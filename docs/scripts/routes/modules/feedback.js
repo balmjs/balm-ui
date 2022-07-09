@@ -13,10 +13,6 @@ const BottomSheet = () => import('@/views/components/bottom-sheet');
 
 export default [
   {
-    path: '',
-    redirect: () => ({ name: 'feedback.alert' })
-  },
-  {
     path: 'alert',
     name: 'feedback.alert',
     component: Alert

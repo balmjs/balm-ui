@@ -22,7 +22,11 @@ const isArray = (obj) => Array.isArray(obj);
 
 const isFunction = (fn) => {
   let type = getType(fn);
-  return type === 'function' || type === 'generatorfunction';
+  return (
+    type === 'function' ||
+    type === 'generatorfunction' ||
+    type === 'asyncfunction'
+  );
 };
 
 const types = {

@@ -7,7 +7,7 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <div class="demos">
-        <ui-button v-longpress="config" outlined>Click...</ui-button>
+        <ui-button v-longpress="callback" outlined>Click...</ui-button>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
@@ -24,11 +24,16 @@ export default {
   data() {
     return {
       config: {
-        callback: () => {
-          this.$alert('done');
-        }
+        callback: this.callback,
+        delay: 3e3
       }
     };
+  },
+  methods: {
+    callback(e) {
+      console.log(e.target);
+      this.$alert('done');
+    }
   }
 };
 </script>

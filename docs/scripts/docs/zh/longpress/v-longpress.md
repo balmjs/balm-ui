@@ -3,8 +3,10 @@
 ```
 
 ```ts
-interface Longpress {
-  callback: Function;
-  delay?: number;
-}
+type LongpressConfig =
+  | Function // New in 10.9.1
+  | {
+      callback: Function;
+      delay?: number;
+    };
 ```

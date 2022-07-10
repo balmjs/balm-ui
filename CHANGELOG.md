@@ -2,6 +2,13 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.9.2 / 2022-07-10
+
+### Bug Fixes
+
+- `<ui-table>`: fix css for the inner data input components of the fixed table
+- `v-longpress`: fix error message for new api type
+
 ## v10.9.1 / 2022-07-09
 
 ### Chore

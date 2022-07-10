@@ -1,70 +1,87 @@
 <template>
-  <ui-textfield
-    v-model="inputValue"
-    :class="className"
-    :input-id="inputId"
-    :outlined="outlined"
-    :label="label"
-    :placeholder="placeholder"
-    :disabled="disabled"
-    :required="required"
-    :fullwidth="fullwidth"
-    :end-aligned="endAligned"
-    :icon="icon"
-    :with-leading-icon="withLeadingIcon"
-    :with-trailing-icon="withTrailingIcon"
-    plus
-    @focus="handleFocus"
-    @keydown="handleKeydown"
-    @input="handleInput"
-    @blur="handleBlur"
-  >
-    <!-- Leading icon (optional) -->
-    <template #before="{ iconClass }">
-      <i
-        v-if="materialIcon"
-        :class="
-          getIconClassName([
-            UI_TEXTFIELD_ICON.cssClasses.icon,
-            UI_TEXTFIELD_ICON.cssClasses.leadingIcon
-          ])
-        "
-        v-text="materialIcon"
-      ></i>
-      <template v-else>
-        <slot name="before" :iconClass="iconClass"></slot>
+  <div :class="className">
+    <ui-textfield
+      v-model="inputValue"
+      :input-id="inputId"
+      :outlined="outlined"
+      :label="label"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :required="required"
+      :fullwidth="fullwidth"
+      :end-aligned="endAligned"
+      :icon="icon"
+      :with-leading-icon="hasLeadingIcon"
+      :with-trailing-icon="hasTrailingIcon"
+      @focus="handleFocus"
+      @keydown="handleKeydown"
+      @input="handleInput"
+      @blur="handleBlur"
+    >
+      <!-- Leading icon (optional) -->
+      <template #before="{ iconClass }">
+        <i
+          v-if="materialIcon"
+          :class="
+            getIconClassName([
+              UI_TEXTFIELD_ICON.cssClasses.icon,
+              UI_TEXTFIELD_ICON.cssClasses.leadingIcon
+            ])
+          "
+          v-text="materialIcon"
+        ></i>
+        <template v-else>
+          <slot name="before" :iconClass="iconClass"></slot>
+        </template>
       </template>
-    </template>
 
-    <!-- Label text -->
-    <template #default>
-      <slot></slot>
-    </template>
+      <!-- Label text -->
+      <template #default>
+        <slot></slot>
+      </template>
 
-    <!-- Trailing icon (optional) -->
-    <template #after="{ iconClass }">
-      <slot name="after" :iconClass="iconClass"></slot>
-    </template>
+      <!-- Trailing icon (optional) -->
+      <template #after="{ iconClass }">
+        <slot name="after" :iconClass="iconClass"></slot>
+      </template>
 
-    <template #plus>
-      <div
-        v-show="currentSuggestion.data.length"
-        ref="autocomplete"
-        class="mdc-autocomplete__list"
-      >
-        <ul :class="deprecatedListClassNameMap['mdc-list']">
-          <li
-            v-for="(item, index) in currentSuggestion.data"
-            :key="index"
-            :data-index="index"
-            :class="getItemClassName(index)"
-            @click="handleSelected(item)"
-            v-html="item.html"
-          ></li>
-        </ul>
-      </div>
-    </template>
-  </ui-textfield>
+      <!-- <template #plus>
+        <div
+          v-show="currentSuggestion.data.length"
+          ref="autocomplete"
+          class="mdc-autocomplete__list"
+        >
+          <ul :class="deprecatedListClassNameMap['mdc-list']">
+            <li
+              v-for="(item, index) in currentSuggestion.data"
+              :key="index"
+              :data-index="index"
+              :class="getItemClassName(index)"
+              @click="handleSelected(item)"
+              v-html="item.html"
+            ></li>
+          </ul>
+        </div>
+      </template> -->
+    </ui-textfield>
+    <!-- Autocomplete list -->
+    <div
+      v-show="currentSuggestion.data.length"
+      ref="autocompleteList"
+      :class="menuClassName"
+    >
+      <ul :class="deprecatedListClassNameMap['mdc-list']">
+        <li
+          v-for="(item, index) in currentSuggestion.data"
+          :key="index"
+          :data-index="index"
+          :class="getItemClassName(index)"
+          @click="handleSelected(item)"
+          v-html="item.html"
+        ></li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -77,6 +94,7 @@ import {
   optionFormatDefaultValue,
   checkOptionFormat
 } from '../../utils/option-format';
+import { isOverflowInsideComponent } from '../dialog/constants';
 
 // Define autocomplete constants
 const UI_AUTOCOMPLETE = {
@@ -163,9 +181,9 @@ export default {
     return {
       UI_AUTOCOMPLETE,
       UI_TEXTFIELD_ICON,
-      $autocomplete: null,
+      open: false,
+      autocompleteList: null,
       $listener: null,
-      isExpanded: false,
       inputValue: this.model,
       currentSource: [], // source data
       currentSuggestion: {
@@ -192,8 +210,26 @@ export default {
     className() {
       return {
         'mdc-autocomplete': true,
-        'mdc-autocomplete--expanded': this.isExpanded
+        'mdc-autocomplete--fullwidth': this.fullwidth,
+        'mdc-autocomplete--in-dialog': isOverflowInsideComponent(this.$parent)
       };
+    },
+    menuClassName() {
+      return [
+        'mdc-autocomplete__menu',
+        'mdc-menu',
+        'mdc-menu-surface',
+        {
+          'mdc-menu-surface--fullwidth': this.fullwidth,
+          'mdc-menu-surface--open': this.open
+        }
+      ];
+    },
+    hasLeadingIcon() {
+      return !!(this.withLeadingIcon || this.$slots.before);
+    },
+    hasTrailingIcon() {
+      return !!(this.withTrailingIcon || this.$slots.after);
     }
   },
   watch: {
@@ -211,12 +247,12 @@ export default {
     checkOptionFormat('<ui-autocomplete>', this.sourceFormat);
   },
   mounted() {
-    this.$autocomplete = this.$refs.autocomplete;
-    this.$autocomplete.addEventListener(
+    this.autocompleteListEl = this.$refs.autocompleteList;
+    this.autocompleteListEl.addEventListener(
       UI_AUTOCOMPLETE.EVENT.MOUSEMOVE,
       this.handleMousemove
     );
-    this.$autocomplete.addEventListener(
+    this.autocompleteListEl.addEventListener(
       UI_AUTOCOMPLETE.EVENT.MOUSELEAVE,
       this.handleMouseleave
     );
@@ -227,20 +263,20 @@ export default {
     if (this.$listener) {
       document.removeEventListener(UI_AUTOCOMPLETE.EVENT.CLICK, this.$listener);
     }
-    this.$autocomplete.removeEventListener(
+    this.autocompleteListEl.removeEventListener(
       UI_AUTOCOMPLETE.EVENT.MOUSEMOVE,
       this.handleMousemove
     );
-    this.$autocomplete.removeEventListener(
+    this.autocompleteListEl.removeEventListener(
       UI_AUTOCOMPLETE.EVENT.MOUSELEAVE,
       this.handleMouseleave
     );
   },
   methods: {
     initClientHeight() {
-      let view = this.$autocomplete;
-      let list = view.querySelector('ul');
-      let item = view.querySelector('li');
+      const view = this.autocompleteListEl;
+      const list = view.querySelector('ul');
+      const item = view.querySelector('li');
 
       if (!this.scroll.$view) {
         this.scroll.$view = view;
@@ -298,7 +334,7 @@ export default {
         });
     },
     show() {
-      let keywords = this.inputValue;
+      const keywords = this.inputValue;
 
       if (getType(keywords) === 'string') {
         this.formatResult(keywords.trim().toLowerCase());
@@ -312,20 +348,18 @@ export default {
         keywords.length >= this.minlength &&
         this.currentSuggestion.data.length
       ) {
-        this.isExpanded = true;
-        this.$nextTick(() => {
-          this.initClientHeight();
-        });
+        this.open = true;
+        this.$nextTick(() => this.initClientHeight());
       }
     },
     hide() {
-      this.isExpanded = false;
+      this.open = false;
       this.currentSuggestion.index = -1;
       this.clearSelected();
     },
     search(keywords) {
       if (this.remote) {
-        // Remote datasource
+        // Remote data source
         if (this.timer) {
           clearTimeout(this.timer);
         }
@@ -390,7 +424,7 @@ export default {
               }
             }
 
-            this.$autocomplete.blur(); // Hide mouse
+            this.autocompleteListEl.blur(); // Hide mouse
             event.preventDefault();
             break;
           case KEYCODE.UP:
@@ -423,15 +457,19 @@ export default {
               }
             }
 
-            this.$autocomplete.blur(); // Hide mouse
+            this.autocompleteListEl.blur(); // Hide mouse
             event.preventDefault();
             break;
           case KEYCODE.ENTER:
             // Only autocomplete when text is inputted
-            if(this.inputValue.length > 0) {
+            if (this.inputValue.length > 0) {
               // If no option is selected, use first option
               let selectedItem =
-                this.currentSuggestion.data[this.currentSuggestion.index < MIN ? MIN : this.currentSuggestion.index];
+                this.currentSuggestion.data[
+                  this.currentSuggestion.index < MIN
+                    ? MIN
+                    : this.currentSuggestion.index
+                ];
               this.handleSelected(selectedItem);
             }
             event.preventDefault();
@@ -463,7 +501,7 @@ export default {
             }
           }
 
-          if (e !== event && this.isExpanded && !inTextfield) {
+          if (e !== event && !inTextfield) {
             document.removeEventListener(
               UI_AUTOCOMPLETE.EVENT.CLICK,
               this.$listener
@@ -472,10 +510,13 @@ export default {
           }
         };
       }
-      document.addEventListener(UI_AUTOCOMPLETE.EVENT.CLICK, this.$listener);
+
+      document.addEventListener(UI_AUTOCOMPLETE.EVENT.CLICK, this.$listener, {
+        capture: true
+      });
     },
     handleMousemove(event) {
-      let el = event.target;
+      const el = event.target;
       if (
         el.tagName === 'LI' &&
         !el.classList.contains(UI_AUTOCOMPLETE.cssClasses.selected)
@@ -507,7 +548,7 @@ export default {
       this.$emit(UI_AUTOCOMPLETE.EVENT.SELECTED, selectedItem); // selectedItem: any
     },
     clearSelected() {
-      let selectedItem = this.$autocomplete.querySelector(
+      let selectedItem = this.autocompleteListEl.querySelector(
         `li.${UI_AUTOCOMPLETE.cssClasses.selected}`
       );
       if (selectedItem) {

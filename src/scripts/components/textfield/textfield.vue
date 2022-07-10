@@ -109,13 +109,6 @@
       </mdc-floating-label>
     </mdc-notched-outline>
     <mdc-line-ripple v-else></mdc-line-ripple>
-
-    <!-- Custom area (optional) -->
-    <div v-if="plus" class="mdc-text-field__plus">
-      <slot name="plus">
-        <!-- For autocomplete -->
-      </slot>
-    </div>
   </div>
 </template>
 
@@ -231,11 +224,6 @@ export default {
     helperTextId: {
       type: [String, null],
       default: null
-    },
-    // For plus
-    plus: {
-      type: Boolean,
-      default: false
     }
   },
   data() {
@@ -253,11 +241,24 @@ export default {
     isTextarea() {
       return this.inputType === 'textarea';
     },
+    isTextfieldPlus() {
+      return /(UiAutocomplete|UiDatepicker)$/.test(this.$parent.$vnode.tag);
+    },
+    hasBeforeSlot() {
+      return this.isTextfieldPlus
+        ? this.$parent?.hasLeadingIcon
+        : this.$slots.before;
+    },
+    hasAfterSlot() {
+      return this.isTextfieldPlus
+        ? this.$parent?.hasTrailingIcon
+        : this.$slots.after;
+    },
     hasLeadingIcon() {
-      return this.materialIcon || this.withLeadingIcon || this.$slots.before;
+      return this.materialIcon || this.withLeadingIcon || this.hasBeforeSlot;
     },
     hasTrailingIcon() {
-      return this.withTrailingIcon || this.$slots.after;
+      return this.withTrailingIcon || this.hasAfterSlot;
     },
     noLabel() {
       const hasLabel = this.label || this.$slots.default;

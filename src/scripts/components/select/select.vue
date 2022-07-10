@@ -8,7 +8,6 @@
       :aria-disabled="disabled"
       :aria-controls="helperTextId"
       :aria-describedby="helperTextId"
-      :style="style"
     >
       <!-- Label -->
       <mdc-notched-outline v-if="isOutlined" :has-label="!noLabel">
@@ -59,7 +58,7 @@
       <mdc-line-ripple v-if="!isOutlined"></mdc-line-ripple>
     </div>
     <!-- Options -->
-    <div :class="menuClassName" :style="style">
+    <div :class="menuClassName">
       <ul :class="deprecatedListClassNameMap['mdc-list']" role="listbox">
         <li
           v-for="(option, index) in currentOptions"
@@ -103,6 +102,7 @@ import {
   optionFormatDefaultValue,
   checkOptionFormat
 } from '../../utils/option-format';
+import { isOverflowInsideComponent } from '../dialog/constants';
 
 // Define select constants
 const UI_SELECT = {
@@ -188,10 +188,6 @@ export default {
       type: Boolean,
       default: false
     },
-    fixed: {
-      type: Boolean,
-      default: false
-    },
     // For helper text
     helperTextId: {
       type: [String, null],
@@ -216,6 +212,13 @@ export default {
     noLabel() {
       return !(this.label || this.$slots.default);
     },
+    inDialog() {
+      // fix(@material-components): overflow inside of the dialog
+      if (this.$select) {
+        this.$select.menu.quickOpen = true;
+      }
+      return isOverflowInsideComponent(this.$parent);
+    },
     className() {
       return {
         'mdc-select': true,
@@ -225,7 +228,8 @@ export default {
         'mdc-select--with-leading-icon': this.hasLeadingIcon,
         'mdc-select--no-label': this.noLabel,
         'mdc-select--required': this.required,
-        'mdc-select--disabled': this.disabled
+        'mdc-select--disabled': this.disabled,
+        'mdc-select--in-dialog': this.inDialog
       };
     },
     menuClassName() {
@@ -237,11 +241,6 @@ export default {
           'mdc-menu-surface--fullwidth': this.fullwidth
         }
       ];
-    },
-    style() {
-      return this.$attrs && this.fixed
-        ? { width: this.$attrs['data-width'] || 'auto' }
-        : {};
     }
   },
   watch: {
@@ -282,11 +281,6 @@ export default {
         }
       });
     });
-
-    // fix(@material-components): overflow inside of the component
-    if (this.fixed) {
-      this.$select.menu.setFixedPosition(true);
-    }
 
     this.init();
   },

@@ -12,8 +12,8 @@
     :fullwidth="fullwidth"
     :end-aligned="endAligned"
     :icon="icon"
-    :with-leading-icon="withLeadingIcon"
-    :with-trailing-icon="withTrailingIcon || toggle || clear"
+    :with-leading-icon="hasLeadingIcon"
+    :with-trailing-icon="hasTrailingIcon"
     @change="handleChange"
   >
     <!-- Leading icon (optional) -->
@@ -151,6 +151,19 @@ export default {
       mode: this.config.mode || UI_DATEPICKER.MODE.SINGLE,
       rangeSeparator: ''
     };
+  },
+  computed: {
+    hasLeadingIcon() {
+      return this.withLeadingIcon || this.$slots.before;
+    },
+    hasTrailingIcon() {
+      return !!(
+        this.withTrailingIcon ||
+        this.$slots.after ||
+        this.toggle ||
+        this.clear
+      );
+    }
   },
   watch: {
     model(val) {

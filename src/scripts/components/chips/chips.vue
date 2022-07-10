@@ -255,13 +255,15 @@ export default {
     },
     updateSelected(selectedValue) {
       if (this.filterChips) {
-        let selectedIndexes = [];
+        let selectedIndexes = this.currentOptions.length ? [] : selectedValue;
 
-        this.currentOptions.forEach((option, index) => {
-          if (selectedValue.includes(option[this.optionFormat.value])) {
-            selectedIndexes.push(index);
-          }
-        });
+        if (this.currentOptions.length) {
+          this.currentOptions.forEach((option, index) => {
+            if (selectedValue.includes(option[this.optionFormat.value])) {
+              selectedIndexes.push(index);
+            }
+          });
+        }
 
         this.$chipSet.chips.forEach((chip, index) => {
           const selected = selectedIndexes.includes(index);

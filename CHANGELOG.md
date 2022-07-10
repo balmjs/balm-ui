@@ -2,6 +2,22 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.52.0 / 2022-07-10
+
+### Features
+
+- `<ui-table>`: add `rowCheckboxDisabled` prop
+- `<ui-autocomplete>`, `<ui-select>`: update for overflow inside component
+
+### Chore
+
+- `v-longpress`: optimize config and fix missing event bug
+- `types`: update `isFunction` for async function
+
+### BREAKING CHANGES
+
+- `<ui-select>`: remove `fixed` prop
+
 ## v8.51.0 / 2022-06-17
 
 ### Features

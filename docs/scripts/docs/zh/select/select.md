@@ -24,12 +24,12 @@
 | `fullwidth`         | boolean        | `false`                              | 全屏宽度样式                                         |         |
 | `icon`              | string         | `''`                                 | 设置首图标。详见 [Material Icons](/#/icons) 图标集。 |         |
 | `withLeadingIcon`   | boolean        | `false`                              | 启用首图标样式                                       |         |
-| `fixed`             | boolean        | `false`                              | 固定模式                                             | 8.12.0  |
+| <del>`fixed`</del>  | boolean        | `false`                              | 固定模式                                             | 8.12.0  |
 | `helperTextId`      | string         | `null`                               | 匹配 `<ui-select-helper>` 的 _id_ 属性               |         |
 
 > 提示：`withLeadingIcon` 和 `withTrailingIcon` 仅用于 (**非 `<ui-select-icon>`**) 自定义首/尾图标，通常无需配置
 
-> ⚠️ 提示：固定模式仅用于某些组件内部的溢出。可通过 `data-width` 属性或自定义样式设置显式宽度。通常情况下，请不要使用固定模式
+> ⚠️ <del>提示：`fixed` 仅用于某些组件内部的溢出。可通过 `data-width` 属性或自定义样式设置显式宽度。通常情况下，请不要使用固定模式</del> (8.52.0 已弃用)
 
 > ⚠️ `8.42.0` 中 `optionLabel` 和 `optionValue` 属性已弃用，请使用 `optionFormat` 代替。
 

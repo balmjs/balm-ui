@@ -24,12 +24,12 @@
 | `fullwidth`         | boolean        | `false`                              | Optional. Styles the select as full width select.                                             |         |
 | `icon`              | string         | `''`                                 | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list. |         |
 | `withLeadingIcon`   | boolean        | `false`                              | Styles the select as a select with a leading icon.                                            |         |
-| `fixed`             | boolean        | `false`                              | Optional. Styles the select as fixed select.                                                  | 8.12.0  |
+| <del>`fixed`</del>  | boolean        | `false`                              | Optional. Styles the select as fixed select.                                                  | 8.12.0  |
 | `helperTextId`      | string         | `null`                               | Required for the _id_ attribute of the `<ui-select-helper>`.                                  |         |
 
 > NOTE: `withLeadingIcon` is only used for (**non `<ui-select-icon>`**) custom leading icon, and generally do not need to be configured.
 
-> ⚠️ NOTE: `fixed` is only used for overflow inside of some component. Set an explicit width by `data-width` attribute or custom styles. In general, please don't use the `fixed`.
+> ⚠️ <del>NOTE: `fixed` is only used for overflow inside of some component. Set an explicit width by `data-width` attribute or custom styles. In general, please don't use the `fixed`.</del> (Deprecated in 8.52.0)
 
 > ⚠️ The prop `optionLabel` and `optionValue` is deprecated, use `optionFormat` instead in `8.42.0`.
 

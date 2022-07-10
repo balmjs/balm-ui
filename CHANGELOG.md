@@ -2,6 +2,13 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.9.3 / 2022-07-10
+
+### Bug Fixes
+
+- `<ui-chips>`: fix filter chips bug in watching
+- `<ui-dialog>`: fix ui-dialog-actions won't emit events bug (thanks @lnkkerst)
+
 ## v10.9.2 / 2022-07-10
 
 ### Bug Fixes

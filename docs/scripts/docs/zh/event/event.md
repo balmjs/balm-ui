@@ -92,11 +92,11 @@
 
 ### Props
 
-| Name        | Type     | Default | Description                      |
-| ----------- | -------- | ------- | -------------------------------- |
-| `eventName` | string   |         | 全局通信的自定义事件的名称       |
-| `args`      | any      |         | 全局通信的自定义事件的方法的参数 |
-| `callback`  | function |         | 全局通信的自定义事件的方法       |
+| Name                 | Type     | Default | Description                      |
+| -------------------- | -------- | ------- | -------------------------------- |
+| `event`, `eventName` | string   |         | 全局通信的自定义事件的名称       |
+| `args`               | any      |         | 全局通信的自定义事件的方法的参数 |
+| `callback`           | function |         | 全局通信的自定义事件的方法       |
 
 ```js
 // `/path/to/awesome.vue`

@@ -92,11 +92,11 @@
 
 ### Props
 
-| Name        | Type     | Default | Description                                     |
-| ----------- | -------- | ------- | ----------------------------------------------- |
-| `eventName` | string   |         | Custom event name for the global communication. |
-| `args`      | any      |         | The arguments of custom event function.         |
-| `callback`  | function |         | Custom event function.                          |
+| Name                 | Type     | Default | Description                                     |
+| -------------------- | -------- | ------- | ----------------------------------------------- |
+| `event`, `eventName` | string   |         | Custom event name for the global communication. |
+| `args`               | any      |         | The arguments of custom event function.         |
+| `callback`           | function |         | Custom event function.                          |
 
 ```js
 // `/path/to/awesome.vue`

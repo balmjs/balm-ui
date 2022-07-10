@@ -1,51 +1,59 @@
 import autoInit from '../config/auto-init';
 import getType from '../utils/typeof';
 
+function handlePress(el, { callback, delay }) {
+  // 定义变量
+  let pressTimer = null;
+
+  // 创建计时器（ 2秒后执行函数 ）
+  function start(e) {
+    if (e.type === 'click' && e.button !== 0) {
+      return;
+    }
+    if (pressTimer === null) {
+      pressTimer = setTimeout(() => {
+        handler(e);
+      }, delay || 2e3);
+    }
+  }
+  // 取消计时器
+  function cancel(e) {
+    if (pressTimer !== null) {
+      clearTimeout(pressTimer);
+      pressTimer = null;
+    }
+  }
+  // 运行函数
+  function handler(e) {
+    callback(e);
+  }
+
+  // 添加事件监听器
+  el.addEventListener('mousedown', start);
+  el.addEventListener('touchstart', start);
+  // 取消计时器
+  el.addEventListener('click', cancel);
+  el.addEventListener('mouseout', cancel);
+  el.addEventListener('touchend', cancel);
+  el.addEventListener('touchcancel', cancel);
+}
+
 const vLongpress = {
   name: 'longpress',
   bind(el, { value }) {
-    if (getType(value) === 'object') {
-      const { callback, delay } = value;
-
-      if (getType(callback) !== 'function') {
+    if (getType(value) === 'function') {
+      handlePress(el, {
+        callback: value
+      });
+    } else if (getType(value) === 'object') {
+      if (getType(value.callback) !== 'function') {
         console.warn(`[v-longpress]: The 'callback' must be a function`);
       }
 
-      // 定义变量
-      let pressTimer = null;
-      // 创建计时器（ 2秒后执行函数 ）
-      let start = (e) => {
-        if (e.type === 'click' && e.button !== 0) {
-          return;
-        }
-        if (pressTimer === null) {
-          pressTimer = setTimeout(() => {
-            handler();
-          }, delay || 2e3);
-        }
-      };
-      // 取消计时器
-      let cancel = (e) => {
-        if (pressTimer !== null) {
-          clearTimeout(pressTimer);
-          pressTimer = null;
-        }
-      };
-      // 运行函数
-      const handler = (e) => {
-        callback(e);
-      };
-      // 添加事件监听器
-      el.addEventListener('mousedown', start);
-      el.addEventListener('touchstart', start);
-      // 取消计时器
-      el.addEventListener('click', cancel);
-      el.addEventListener('mouseout', cancel);
-      el.addEventListener('touchend', cancel);
-      el.addEventListener('touchcancel', cancel);
+      handlePress(el, value);
     } else {
       throw new Error(
-        `[v-longpress]: The 'value' must be an object ({ callback: Function, delay?: number })`
+        `[v-longpress]: The 'value' must be a function or object ({ callback: Function, delay?: number })`
       );
     }
   },

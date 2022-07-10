@@ -53,6 +53,7 @@
 
   .mdc-data-table__cell {
     background-color: white;
+    z-index: 1; // FIX: for inner data input components
   }
 }
 

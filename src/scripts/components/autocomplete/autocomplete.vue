@@ -13,7 +13,6 @@
       :end-aligned="endAligned"
       :with-leading-icon="hasLeadingIcon"
       :with-trailing-icon="hasTrailingIcon"
-      plus
       @focus="handleFocus"
       @keydown="handleKeydown"
       @update:modelValue="handleInput"

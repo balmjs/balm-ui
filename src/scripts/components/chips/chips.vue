@@ -110,8 +110,11 @@ onMounted(() => {
   watch(
     () => props.modelValue,
     (val, oldVal) => {
-      clearSelected(val, oldVal);
-      state.selectedValue = val;
+      console.log('watch', val, oldVal);
+      if (JSON.stringify(val) !== JSON.stringify(oldVal)) {
+        updateSelected(val);
+        state.selectedValue = val;
+      }
     }
   );
   watch(
@@ -292,30 +295,31 @@ function addChip() {
   }
 }
 
-function clearSelected(newSelectedValue, oldSelectedValue) {
-  const canClear = !newSelectedValue.length && oldSelectedValue.length;
+function updateSelected(selectedValue) {
+  if (filterChips.value) {
+    let selectedIndexes = state.currentOptions.length ? [] : selectedValue;
 
-  if (canClear) {
-    if (filterChips.value) {
-      let selectedIndexes = [];
-
+    if (state.currentOptions.length) {
       state.currentOptions.forEach((option, index) => {
-        if (oldSelectedValue.includes(option[props.optionFormat.value])) {
+        if (selectedValue.includes(option[props.optionFormat.value])) {
           selectedIndexes.push(index);
         }
       });
+    }
 
-      state.$chipSet.chips.forEach((chip, index) => {
-        if (selectedIndexes.includes(index)) {
-          chip.selected = false;
-        }
-      });
-    } else if (choiceChips.value) {
-      let selectedIndex = state.currentOptions.findIndex((option) =>
-        oldSelectedValue.includes(option[props.optionFormat.value])
-      );
+    state.$chipSet.chips.forEach((chip, index) => {
+      const selected = selectedIndexes.includes(index);
+      if (chip.selected !== selected) {
+        chip.selected = selected;
+      }
+    });
+  } else if (choiceChips.value) {
+    const selectedIndex = state.currentOptions.findIndex(
+      (option) => option[props.optionFormat.value] === selectedValue
+    );
 
-      state.$chipSet.chips[selectedIndex].selected = false;
+    if (~selectedIndex) {
+      state.$chipSet.chips[selectedIndex].selected = true;
     }
   }
 }

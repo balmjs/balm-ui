@@ -192,4 +192,9 @@ function handleCancel() {
   emit(UI_DIALOG.EVENTS.CONFIRM, false);
   handleClose();
 }
+
+defineExpose({
+  handleAccept,
+  handleCancel
+});
 </script>

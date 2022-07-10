@@ -102,8 +102,10 @@ export default {
   },
   watch: {
     model(val, oldVal) {
-      this.clearSelected(val, oldVal);
-      this.selectedValue = val;
+      if (JSON.stringify(val) !== JSON.stringify(oldVal)) {
+        this.updateSelected(val);
+        this.selectedValue = val;
+      }
     },
     options(val) {
       if (this.choiceChips || this.filterChips) {
@@ -251,30 +253,29 @@ export default {
         this.chipsCount++;
       });
     },
-    clearSelected(newSelectedValue, oldSelectedValue) {
-      const canClear = !newSelectedValue.length && oldSelectedValue.length;
+    updateSelected(selectedValue) {
+      if (this.filterChips) {
+        let selectedIndexes = [];
 
-      if (canClear) {
-        if (this.filterChips) {
-          let selectedIndexes = [];
+        this.currentOptions.forEach((option, index) => {
+          if (selectedValue.includes(option[this.optionFormat.value])) {
+            selectedIndexes.push(index);
+          }
+        });
 
-          this.currentOptions.forEach((option, index) => {
-            if (oldSelectedValue.includes(option[this.optionFormat.value])) {
-              selectedIndexes.push(index);
-            }
-          });
+        this.$chipSet.chips.forEach((chip, index) => {
+          const selected = selectedIndexes.includes(index);
+          if (chip.selected !== selected) {
+            chip.selected = selected;
+          }
+        });
+      } else if (this.choiceChips) {
+        const selectedIndex = this.currentOptions.findIndex(
+          (option) => option[this.optionFormat.value] === selectedValue
+        );
 
-          this.$chipSet.chips.forEach((chip, index) => {
-            if (selectedIndexes.includes(index)) {
-              chip.selected = false;
-            }
-          });
-        } else if (this.choiceChips) {
-          let selectedIndex = this.currentOptions.findIndex((option) =>
-            oldSelectedValue.includes(option[this.optionFormat.value])
-          );
-
-          this.$chipSet.chips[selectedIndex].selected = false;
+        if (~selectedIndex) {
+          this.$chipSet.chips[selectedIndex].selected = true;
         }
       }
     }

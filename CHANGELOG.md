@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.52.1 / 2022-07-10
+
+### Bug Fixes
+
+- `<ui-chips>`: fix filter chips bug in watching
+
 ## v8.52.0 / 2022-07-10
 
 ### Features

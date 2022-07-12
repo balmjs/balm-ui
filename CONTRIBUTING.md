@@ -23,7 +23,7 @@ Even better: propose a fix with a pull request and link it to the issue!
 
 - The `main` branch is just a snapshot of the latest stable release. All development should be done in dedicated branches. **Do not submit PRs against the `main` branch.**
 
-- Checkout a topic branch from a base branch, e.g. `9.x-dev`, and merge back against that branch.
+- Checkout a topic branch from a base branch, e.g. `10.x-dev`, and merge back against that branch.
 
 - If adding a new feature:
 

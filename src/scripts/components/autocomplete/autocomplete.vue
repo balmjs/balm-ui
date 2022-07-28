@@ -44,6 +44,7 @@
       ref="autocompleteList"
       :class="menuClassName"
     >
+      <div class="mdc-drawer-scrim"></div>
       <ul :class="deprecatedListClassNameMap['mdc-list']">
         <li
           v-for="(item, index) in currentSuggestion.data"
@@ -121,7 +122,6 @@ import {
   checkOptionFormat
 } from '../../utils/option-format';
 import getType from '../../utils/typeof';
-import { isOverflowInsideComponent } from '../dialog/constants';
 
 const props = defineProps({
   ...textfieldProps,
@@ -167,6 +167,10 @@ const props = defineProps({
     default: false
   },
   highlight: {
+    type: Boolean,
+    default: false
+  },
+  inside: {
     type: Boolean,
     default: false
   }
@@ -217,7 +221,7 @@ const { materialIcon } = useMaterialIcon(props);
 const className = computed(() => ({
   'mdc-autocomplete': true,
   'mdc-autocomplete--fullwidth': props.fullwidth,
-  'mdc-autocomplete--in-dialog': isOverflowInsideComponent(parent)
+  'mdc-autocomplete--in-dialog': props.inside
 }));
 const menuClassName = computed(() => [
   'mdc-autocomplete__menu',

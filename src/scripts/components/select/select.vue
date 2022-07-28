@@ -58,7 +58,8 @@
       <mdc-line-ripple v-if="!isOutlined"></mdc-line-ripple>
     </div>
     <!-- Options -->
-    <div :class="menuClassName" @click="off">
+    <div :class="menuClassName">
+      <div class="mdc-drawer-scrim" @click="off"></div>
       <ul :class="deprecatedListClassNameMap['mdc-list']" role="listbox">
         <li
           v-for="(option, index) in currentOptions"
@@ -145,7 +146,6 @@ import {
   optionFormatDefaultValue,
   checkOptionFormat
 } from '../../utils/option-format';
-import { isOverflowInsideComponent } from '../dialog/constants';
 
 const props = defineProps({
   // UI variants
@@ -200,7 +200,11 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  ...helperProps
+  ...helperProps,
+  inside: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const emit = defineEmits([UI_SELECT.EVENTS.CHANGE, UI_SELECT.EVENTS.SELECTED]);
@@ -225,13 +229,6 @@ const hasLeadingIcon = computed(
   () => !!(materialIcon.value || props.withLeadingIcon || slots.icon)
 );
 const noLabel = computed(() => !(props.label || slots.default));
-const inDialog = computed(() => {
-  // fix(@material-components): overflow inside of the dialog
-  if (state.$select) {
-    state.$select.menu.quickOpen = true;
-  }
-  return isOverflowInsideComponent(parent);
-});
 const className = computed(() => ({
   'mdc-select': true,
   'mdc-select--filled': !isOutlined.value,
@@ -241,7 +238,7 @@ const className = computed(() => ({
   'mdc-select--no-label': noLabel.value,
   'mdc-select--required': props.required,
   'mdc-select--disabled': props.disabled,
-  'mdc-select--in-dialog': inDialog.value
+  'mdc-select--in-dialog': props.inside
 }));
 const menuClassName = computed(() => [
   'mdc-select__menu',
@@ -278,6 +275,10 @@ onMounted(() => {
       }
     });
   });
+
+  if (props.inside) {
+    state.$select.menu.quickOpen = true;
+  }
 
   init();
 
@@ -361,7 +362,7 @@ function getSelected(index) {
 }
 
 function off() {
-  if (inDialog.value && state.$select.menu.open) {
+  if (props.inside && state.$select.menu.open) {
     state.$select.menu.open = false;
   }
 }

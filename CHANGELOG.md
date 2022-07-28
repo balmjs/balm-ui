@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.10.0 / 2022-07-28
+
+### Features
+
+- `<ui-autocomplete>`, `<ui-select>`: add `inside` prop for overflow inside component
+
 ## v10.9.3 / 2022-07-10
 
 ### Bug Fixes

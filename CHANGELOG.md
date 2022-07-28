@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.53.0 / 2022-07-28
+
+### Features
+
+- `<ui-autocomplete>`, `<ui-select>`: add `inside` prop for overflow inside component
+
 ## v8.52.2 / 2022-07-10
 
 ### Bug Fixes

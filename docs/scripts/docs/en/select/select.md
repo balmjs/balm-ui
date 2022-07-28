@@ -25,6 +25,7 @@
 | `icon`                   | string         | `''`                                 | Optional. Indicates an icon element with a leading icon. See [Material Icons](/icons) list. |         |
 | `withLeadingIcon`        | boolean        | `false`                              | Styles the select as a select with a leading icon.                                          |         |
 | `helperTextId`           | string         | `null`                               | Required for the _id_ attribute of the `<ui-select-helper>`.                                |         |
+| `inside`                 | boolean        | `false`                              | Styles for the overflow inside component (e.g. in `<ui-dialog>`)                            | 10.10.0 |
 
 > NOTE: `withLeadingIcon` is only used for (**non `<ui-select-icon>`**) custom leading icon, and generally do not need to be configured.
 

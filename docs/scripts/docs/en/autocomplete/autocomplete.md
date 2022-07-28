@@ -25,6 +25,7 @@
 | `icon`                   | string          | `''`                                 | Optional. Indicates an icon element with a leading icon. See [Material Icons](/icons) list. (No need to configure `withLeadingIcon`)                                                                                                    |         |
 | `withLeadingIcon`        | boolean, string | `false`                              | Styles the autocomplete as a text field with a leading icon. (Use with `before` slot)                                                                                                                                                   |         |
 | `withTrailingIcon`       | boolean, string | `false`                              | Styles the autocomplete as a text field with a trailing icon. (Use with `after` slot)                                                                                                                                                   |         |
+| `inside`                 | boolean         | `false`                              | Styles for the overflow inside component (e.g. in `<ui-dialog>`)                                                                                                                                                                        | 10.10.0 |
 
 - **`source`** prop. There are two supported formats:
   - String array: `[ 'Choice1', 'Choice2' ]`

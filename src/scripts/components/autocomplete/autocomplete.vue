@@ -70,6 +70,7 @@
       ref="autocompleteList"
       :class="menuClassName"
     >
+      <div class="mdc-drawer-scrim"></div>
       <ul :class="deprecatedListClassNameMap['mdc-list']">
         <li
           v-for="(item, index) in currentSuggestion.data"
@@ -94,7 +95,6 @@ import {
   optionFormatDefaultValue,
   checkOptionFormat
 } from '../../utils/option-format';
-import { isOverflowInsideComponent } from '../dialog/constants';
 
 // Define autocomplete constants
 const UI_AUTOCOMPLETE = {
@@ -175,6 +175,10 @@ export default {
     highlight: {
       type: Boolean,
       default: false
+    },
+    inside: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -211,7 +215,7 @@ export default {
       return {
         'mdc-autocomplete': true,
         'mdc-autocomplete--fullwidth': this.fullwidth,
-        'mdc-autocomplete--in-dialog': isOverflowInsideComponent(this.$parent)
+        'mdc-autocomplete--in-dialog': this.inside
       };
     },
     menuClassName() {

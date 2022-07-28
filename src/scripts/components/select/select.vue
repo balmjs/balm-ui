@@ -59,6 +59,7 @@
     </div>
     <!-- Options -->
     <div :class="menuClassName">
+      <div class="mdc-drawer-scrim"></div>
       <ul :class="deprecatedListClassNameMap['mdc-list']" role="listbox">
         <li
           v-for="(option, index) in currentOptions"
@@ -102,7 +103,6 @@ import {
   optionFormatDefaultValue,
   checkOptionFormat
 } from '../../utils/option-format';
-import { isOverflowInsideComponent } from '../dialog/constants';
 
 // Define select constants
 const UI_SELECT = {
@@ -192,6 +192,10 @@ export default {
     helperTextId: {
       type: [String, null],
       default: null
+    },
+    inside: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -212,13 +216,6 @@ export default {
     noLabel() {
       return !(this.label || this.$slots.default);
     },
-    inDialog() {
-      // fix(@material-components): overflow inside of the dialog
-      if (this.$select) {
-        this.$select.menu.quickOpen = true;
-      }
-      return isOverflowInsideComponent(this.$parent);
-    },
     className() {
       return {
         'mdc-select': true,
@@ -229,7 +226,7 @@ export default {
         'mdc-select--no-label': this.noLabel,
         'mdc-select--required': this.required,
         'mdc-select--disabled': this.disabled,
-        'mdc-select--in-dialog': this.inDialog
+        'mdc-select--in-dialog': this.inside
       };
     },
     menuClassName() {
@@ -281,6 +278,10 @@ export default {
         }
       });
     });
+
+    if (this.inside) {
+      this.$select.menu.quickOpen = true;
+    }
 
     this.init();
   },

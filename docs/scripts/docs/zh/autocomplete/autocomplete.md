@@ -25,6 +25,7 @@
 | `icon`              | string         | `''`                                 | 设置首图标。详见 [Material Icons](/#/icons) 图标集。                                                                                         |         |
 | `withLeadingIcon`   | boolean        | `false`                              | 启用首图标样（需使用 `before` 插槽）                                                                                                         |         |
 | `withTrailingIcon`  | boolean        | `false`                              | 启用尾图标样式（需使用 `after` 插槽）                                                                                                        |         |
+| `inside`            | boolean        | `false`                              | 适配样式，可用于某些组件内部的溢出 (如：用在 `<ui-dialog>` 中)                                                                               | 8.53.0  |
 
 - **`source`** 属性。支持两种格式化：
   - 字符串数组：`[ 'Choice1', 'Choice2' ]`

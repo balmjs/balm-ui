@@ -59,7 +59,7 @@
     </div>
     <!-- Options -->
     <div :class="menuClassName">
-      <div class="mdc-drawer-scrim"></div>
+      <div class="mdc-drawer-scrim" @click="off"></div>
       <ul :class="deprecatedListClassNameMap['mdc-list']" role="listbox">
         <li
           v-for="(option, index) in currentOptions"
@@ -338,6 +338,11 @@ export default {
         value: selected[this.optionFormat.value],
         label: selected[this.optionFormat.label]
       };
+    },
+    off() {
+      if (this.inside && this.$select.menu.open) {
+        this.$select.menu.open = false;
+      }
     }
   }
 };

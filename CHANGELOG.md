@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.53.1 / 2022-07-28
+
+### Chore
+
+- `<ui-select>`: interactive optimization for scrim
+
 ## v8.53.0 / 2022-07-28
 
 ### Features

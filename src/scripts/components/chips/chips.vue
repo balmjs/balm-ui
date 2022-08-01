@@ -102,7 +102,7 @@ export default {
   },
   watch: {
     model(val, oldVal) {
-      if (JSON.stringify(val) !== JSON.stringify(oldVal)) {
+      if (this.$chipSet && JSON.stringify(val) !== JSON.stringify(oldVal)) {
         this.updateSelected(val);
         this.selectedValue = val;
       }

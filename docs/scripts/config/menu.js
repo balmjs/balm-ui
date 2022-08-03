@@ -218,8 +218,7 @@ const MATERIAL_COMPONENTS = [
     children: [
       {
         icon: 'feedback',
-        name: 'alert',
-        plus: true
+        name: 'alert'
       },
       {
         icon: 'event_note',

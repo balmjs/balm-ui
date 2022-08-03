@@ -2,11 +2,20 @@
 
 > 🎉 `balm-ui`(v9) for Vue 3, see [material.balmjs.com](https://material.balmjs.com/)
 
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_54">Upgrading To 8.54.0 From 8.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_50">Upgrading To 8.50.0 From 8.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_37">Upgrading To 8.37.0 From 8.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">Upgrading To 8.0 From 7.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">Upgrading To 7.0 From 6.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">Upgrading To 6.0 From 5.x</a>
+
+<div id="up-to-8_54"></div>
+
+## Upgrading To 8.54.0 From 8.x
+
+### BREAKING CHANGES
+
+- move components: `UiAlert` from `balm-ui-plus.js` to `balm-ui.js` library
 
 <div id="up-to-8_50"></div>
 

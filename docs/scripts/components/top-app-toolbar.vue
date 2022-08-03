@@ -1,5 +1,15 @@
 <template>
   <div class="top-app-toolbar">
+    <a
+      class="pro"
+      href="https://legacy.pro.balmjs.com/"
+      target="_blank"
+      rel="noopener"
+      v-tooltip="'BalmUI Pro is coming up'"
+      aria-describedby="balm-ui-pro"
+    >
+      PRO
+    </a>
     <ui-menu-anchor>
       <ui-icon-button
         icon="language"

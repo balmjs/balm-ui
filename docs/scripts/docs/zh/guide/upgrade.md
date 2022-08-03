@@ -2,11 +2,20 @@
 
 > 🎉 `balm-ui`(v9) for Vue 3, see [material.balmjs.com](https://material.balmjs.com/)
 
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_50">从 8.x 升级到 8.54.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_50">从 8.x 升级到 8.50.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_37">从 8.x 升级到 8.37.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">从 7.x 升级到 8.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">从 6.x 升级到 7.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">从 5.x 升级到 6.0</a>
+
+<div id="up-to-8_54"></div>
+
+## 从 8.x 升级到 8.54.0
+
+### BREAKING CHANGES
+
+- 组件平移: 移动 `UiAlert` 从 `balm-ui-plus.js` 到 `balm-ui.js` 库
 
 <div id="up-to-8_50"></div>
 

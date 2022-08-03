@@ -5,7 +5,6 @@ import autoInit from './config/auto-init';
  * Components
  */
 import UiSkeleton from './components/skeleton/skeleton';
-import UiAlert from './components/alert/alert';
 import UiCollapse from './components/collapse/collapse';
 import UiEditor from './components/editor/editor';
 import UiTree from './components/tree/tree';
@@ -19,7 +18,6 @@ import vLongpress from './directives/longpress';
 import vDebounce from './directives/debounce';
 
 const Components = {
-  UiAlert,
   UiCollapse,
   UiEditor,
   UiSkeleton,
@@ -52,5 +50,5 @@ autoInit(BalmUIPlus);
 
 export default BalmUIPlus;
 export { version, install };
-export { UiAlert, UiCollapse, UiEditor, UiSkeleton, UiTree, UiTreeNode };
+export { UiCollapse, UiEditor, UiSkeleton, UiTree, UiTreeNode };
 export { vAnchor, vCopy, vDebounce, vLongpress };

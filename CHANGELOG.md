@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
 
+## v8.54.0 / 2022-08-03
+
+### BREAKING CHANGES
+
+- move components: `UiAlert` from `balm-ui-plus.js` to `balm-ui.js` library
+
 ## v8.53.1 / 2022-07-28
 
 ### Chore

@@ -84,6 +84,7 @@ import UiCardIcons from './components/card/card-icons';
 import UiTable from './components/table/table';
 import UiBadge from './components/badge/badge'; // Custom
 // Feedback
+import UiAlert from './components/alert/alert';
 import UiDialog from './components/dialog/dialog';
 import UiDialogTitle from './components/dialog/dialog-title';
 import UiDialogContent from './components/dialog/dialog-content';
@@ -124,6 +125,7 @@ import helpers from './utils/helpers';
 import detectIE from './utils/ie';
 
 const Components = {
+  UiAlert,
   UiAutocomplete,
   UiBadge,
   UiBanner,
@@ -248,6 +250,7 @@ autoInit(BalmUI);
 export default BalmUI;
 export { version, install };
 export {
+  UiAlert,
   UiAutocomplete,
   UiBadge,
   UiBanner,

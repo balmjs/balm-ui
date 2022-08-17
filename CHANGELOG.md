@@ -1,6 +1,12 @@
 # [BalmUI](https://v8.material.balmjs.com) ChangeLog
 
-> :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9) supports for Vue 3
+> :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
+
+## v8.54.1 / 2022-08-17
+
+### Bug Fixes
+
+- `<ui-form>`: fix center css bug for action area
 
 ## v8.54.0 / 2022-08-03
 

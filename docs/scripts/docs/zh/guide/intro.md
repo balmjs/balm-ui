@@ -1,8 +1,8 @@
 # 介绍
 
-[BalmUI](https://github.com/balmjs/balm-ui) 是为 Vue.js 量身订制的模块化且高可定制化的 [Material Design](https://material.io/) UI 库。
+[BalmUI](https://github.com/balmjs/balm-ui/tree/8.x) 是为 Vue.js 量身订制的模块化且高可定制化的 [Material Design](https://material.io/) UI 库。
 
-> 🎉 `balm-ui`(v9) for Vue 3, see [material.balmjs.com](https://material.balmjs.com/)
+> 🎉 `balm-ui`(v9+) for Vue 3, see [material.balmjs.com](https://material.balmjs.com/)
 
 ## 特色
 
@@ -14,7 +14,7 @@
 
 ## 贡献
 
-我们希望您能做出贡献，并使 BalmUI 变得更好！提出拉取请求之前，请务必先阅读[贡献指南](https://github.com/balmjs/balm-ui/blob/master/CONTRIBUTING.md)。您可以将任何想法作为[Pull 请求](https://github.com/balmjs/balm-ui/pulls)或 [GitHub 问题](https://github.com/balmjs/balm-ui/issues)提交上来。
+我们希望您能做出贡献，并使 BalmUI 变得更好！提出拉取请求之前，请务必先阅读[贡献指南](https://github.com/balmjs/balm-ui/blob/8.x/CONTRIBUTING.md)。您可以将任何想法作为[Pull 请求](https://github.com/balmjs/balm-ui/pulls)或 [GitHub 问题](https://github.com/balmjs/balm-ui/issues)提交上来。
 
 ## 浏览器兼容
 

@@ -5,7 +5,7 @@
       href="https://legacy.pro.balmjs.com/"
       target="_blank"
       rel="noopener"
-      v-tooltip="'BalmUI Pro is coming up'"
+      v-tooltip="'BalmUI Pro is now released'"
       aria-describedby="balm-ui-pro"
     >
       PRO
@@ -31,7 +31,11 @@
       aria-describedby="donate"
       @click="$router.push({ name: 'donate' }).catch(() => {})"
     ></ui-icon-button>
-    <a href="https://github.com/balmjs/balm-ui" target="_blank" rel="noopener">
+    <a
+      href="https://github.com/balmjs/balm-ui/tree/8.x"
+      target="_blank"
+      rel="noopener"
+    >
       <ui-icon-button :class="[itemClass, 'github']" aria-describedby="github">
         <svg-github></svg-github>
       </ui-icon-button>

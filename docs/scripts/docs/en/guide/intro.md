@@ -1,8 +1,8 @@
 # Introduction
 
-[BalmUI](https://github.com/balmjs/balm-ui) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js.
+[BalmUI](https://github.com/balmjs/balm-ui/tree/8.x) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js.
 
-> 🎉 `balm-ui`(v9) for Vue 3, see [material.balmjs.com](https://material.balmjs.com/)
+> 🎉 `balm-ui`(v9+) for Vue 3, see [material.balmjs.com](https://material.balmjs.com/)
 
 ## Features
 
@@ -14,7 +14,7 @@
 
 ## Contributing
 
-We'd love for you to contribute and make BalmUI even better than it is today! Please make sure to read the [Contributing Guide](https://github.com/balmjs/balm-ui/blob/master/CONTRIBUTING.md) before making a pull request. You can submit any ideas as [pull requests](https://github.com/balmjs/balm-ui/pulls) or as [GitHub issues](https://github.com/balmjs/balm-ui/issues).
+We'd love for you to contribute and make BalmUI even better than it is today! Please make sure to read the [Contributing Guide](https://github.com/balmjs/balm-ui/blob/8.x/CONTRIBUTING.md) before making a pull request. You can submit any ideas as [pull requests](https://github.com/balmjs/balm-ui/pulls) or as [GitHub issues](https://github.com/balmjs/balm-ui/issues).
 
 ## Browser support
 

@@ -21,7 +21,7 @@
       <div class="mdc-data-table__pagination-navigation">
         <!-- Total -->
         <div v-if="showTotal" class="mdc-data-table__pagination-total">
-          <slot :currentMinRow="currentMinRow" :currentMaxRow="currentMaxRow">
+          <slot :current-min-row="currentMinRow" :current-max-row="currentMaxRow">
             {{ currentMinRow }}‑{{ currentMaxRow }} {{ ofText }} {{ total }}
           </slot>
         </div>
@@ -341,8 +341,8 @@ function handleClick(page) {
 }
 function handleChange() {
   let page = getPage(state.currentPage);
+  state.jumpPage = page;
   if (state.currentPage !== page) {
-    state.jumpPage = page;
     emit(UI_PAGINATION.EVENTS.CHANGE, +page);
   }
 

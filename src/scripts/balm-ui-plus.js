@@ -4,7 +4,6 @@ import autoInstall from './config/auto-install';
  * Components
  */
 import UiSkeleton from './components/skeleton/skeleton.vue';
-import UiAlert from './components/alert/alert.vue';
 import UiCollapse from './components/collapse/collapse.vue';
 import UiEditor from './components/editor/quill/editor.vue';
 import UiTree from './components/tree/tree.vue';
@@ -18,7 +17,6 @@ import vLongpress from './directives/longpress';
 import vDebounce from './directives/debounce';
 
 const Components = {
-  UiAlert,
   UiCollapse,
   UiEditor,
   UiSkeleton,
@@ -48,5 +46,5 @@ const BalmUIPlus = {
 
 export default BalmUIPlus;
 export { version, install };
-export { UiAlert, UiCollapse, UiEditor, UiSkeleton, UiTree, UiTreeNode };
+export { UiCollapse, UiEditor, UiSkeleton, UiTree, UiTreeNode };
 export { vAnchor, vCopy, vLongpress, vDebounce };

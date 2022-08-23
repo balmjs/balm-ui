@@ -84,6 +84,7 @@ import UiCardIcons from './components/card/card-icons.vue';
 import UiTable from './components/table/table.vue';
 import UiBadge from './components/badge/badge.vue'; // Custom
 // Feedback
+import UiAlert from './components/alert/alert.vue';
 import UiDialog from './components/dialog/dialog.vue';
 import UiDialogTitle from './components/dialog/dialog-title.vue';
 import UiDialogContent from './components/dialog/dialog-content.vue';
@@ -124,6 +125,7 @@ import helpers from './utils/helpers';
 import detectIE from './utils/ie';
 
 const Components = {
+  UiAlert,
   UiAutocomplete,
   UiBadge,
   UiBanner,
@@ -246,6 +248,7 @@ const BalmUI = {
 export default BalmUI;
 export { version, install };
 export {
+  UiAlert,
   UiAutocomplete,
   UiBadge,
   UiBanner,

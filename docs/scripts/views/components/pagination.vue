@@ -1,5 +1,5 @@
 <template>
-  <docs-page name="pagination" demo-count="4">
+  <docs-page name="pagination" demo-count="5">
     <template #hero>
       <ui-pagination
         v-model="page"
@@ -67,6 +67,24 @@
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>
+
+    <section class="demo-wrapper">
+      <h6 :class="$tt('headline6')">1.5 Pagination with page size and jumper</h6>
+      <div class="demo">
+        <ui-pagination
+          v-model="page5"
+          :total="total5"
+          show-total
+          :page-size="[10, 25, 100]"
+          show-jumper
+        >
+          <template #default="{ currentMinRow, currentMaxRow }">
+            {{ currentMinRow }} - {{ currentMaxRow }} / {{ total5 }}
+          </template>
+        </ui-pagination>
+      </div>
+      <ui-snippet :code="$store.demos[5]"></ui-snippet>
+    </section>
   </docs-page>
 </template>
 
@@ -90,7 +108,9 @@ export default {
       page3: 1,
       total3: 100,
       page4: 1,
-      total4: 100
+      total4: 100,
+      page5: 1,
+      total5: 500
     };
   }
 };

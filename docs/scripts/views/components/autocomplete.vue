@@ -7,6 +7,7 @@
         :source="source"
         :source-format="{ label: 'name', value: 'url' }"
         highlight
+        filter-keywords
         @selected="onSelected"
       ></ui-autocomplete>
       <p v-if="website">
@@ -22,6 +23,7 @@
           v-model="keywords1"
           :source="source1"
           placeholder="Try to type"
+          filter-keywords
         ></ui-autocomplete>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>

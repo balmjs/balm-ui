@@ -170,6 +170,10 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
+  filterKeywords: {
+    type: Boolean,
+    default: false
+  },
   inside: {
     type: Boolean,
     default: false
@@ -328,22 +332,23 @@ function formatResult(keywords) {
   const regExp = new RegExp(pattern, 'gi');
 
   // Local data source
-  state.currentSuggestion.data = state.currentSource
-    .filter(
-      (word) =>
-        word[props.sourceFormat.label].toLowerCase().indexOf(keywords) !== -1
-    )
-    .map((word) => {
-      const suggestionLabel = word[props.sourceFormat.label];
+  const filterSource = props.filterKeywords
+    ? state.currentSource.filter((word) =>
+        new RegExp(keywords, 'i').test(word[props.sourceFormat.label])
+      )
+    : state.currentSource;
 
-      word.html = props.highlight
-        ? sanitize(
-            suggestionLabel.replace(regExp, '<strong>$1</strong>')
-          ).replace(/&lt;(\/?strong)&gt;/g, '<$1>')
-        : sanitize(suggestionLabel);
+  state.currentSuggestion.data = filterSource.map((word) => {
+    const suggestionLabel = word[props.sourceFormat.label];
 
-      return word;
-    });
+    word.html = props.highlight
+      ? sanitize(
+          suggestionLabel.replace(regExp, '<strong>$1</strong>')
+        ).replace(/&lt;(\/?strong)&gt;/g, '<$1>')
+      : sanitize(suggestionLabel);
+
+    return word;
+  });
 }
 
 function on() {

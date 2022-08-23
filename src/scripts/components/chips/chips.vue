@@ -110,8 +110,7 @@ onMounted(() => {
   watch(
     () => props.modelValue,
     (val, oldVal) => {
-      console.log('watch', val, oldVal);
-      if (JSON.stringify(val) !== JSON.stringify(oldVal)) {
+      if (state.$chipSet && JSON.stringify(val) !== JSON.stringify(oldVal)) {
         updateSelected(val);
         state.selectedValue = val;
       }

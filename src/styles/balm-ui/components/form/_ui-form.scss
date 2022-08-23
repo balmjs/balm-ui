@@ -116,6 +116,7 @@
 .mdc-form--actions-center {
   .mdc-form__actions {
     justify-content: center;
+    padding-left: 0; // FIX: padding left bug for center
   }
 }
 

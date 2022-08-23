@@ -2,6 +2,22 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.11.0 / 2022-08-23
+
+### Features
+
+- `<ui-pagination>`: add `unitText` prop
+- `<ui-autocomplete>`: add `filterKeywords` prop
+
+### Bug Fixes
+
+- `<ui-form>`: fix center css bug for action area
+- `<ui-pagination>`: update `jumpPage` value when the `currentPage` is changed (thanks @guxuerui)
+
+### BREAKING CHANGES
+
+- move components: `UiAlert` from `balm-ui-plus.js` to `balm-ui.js` library
+
 ## v10.10.0 / 2022-07-28
 
 ### Features

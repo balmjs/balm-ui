@@ -21,8 +21,12 @@
       <div class="mdc-data-table__pagination-navigation">
         <!-- Total -->
         <div v-if="showTotal" class="mdc-data-table__pagination-total">
-          <slot :current-min-row="currentMinRow" :current-max-row="currentMaxRow">
+          <slot
+            :current-min-row="currentMinRow"
+            :current-max-row="currentMaxRow"
+          >
             {{ currentMinRow }}‑{{ currentMaxRow }} {{ ofText }} {{ total }}
+            {{ unitText }}
           </slot>
         </div>
         <!-- Navigation buttons -->
@@ -199,6 +203,10 @@ const props = defineProps({
     type: String,
     default: 'of'
   },
+  unitText: {
+    type: String,
+    default: ''
+  },
   showJumper: {
     type: Boolean,
     default: false
@@ -340,8 +348,9 @@ function handleClick(page) {
   }
 }
 function handleChange() {
-  let page = getPage(state.currentPage);
+  const page = getPage(state.currentPage);
   state.jumpPage = page;
+
   if (state.currentPage !== page) {
     emit(UI_PAGINATION.EVENTS.CHANGE, +page);
   }

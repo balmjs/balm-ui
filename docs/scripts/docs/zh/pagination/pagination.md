@@ -13,6 +13,7 @@
 | `pageSize`               | number, array   | `10`              | 每页展示的数据量                     |         |
 | `pageSizeText`           | string, array   | `'Rows per page'` | 每页数据量信息展示的前/后文字        |         |
 | `ofText`                 | string          | `'of'`            | 数据量信息区域中的 of 文字           | 9.39.0  |
+| `unitText`               | string          | `''`              | 数据量信息区域中的 unit 文字         | 10.11.0 |
 | `showJumper`             | boolean         | `false`           | 显示跳转区域                         |         |
 | `jumperText`             | string, array   | `'Goto'`          | 跳转区域展示的前/后文字              |         |
 | `jumperButtonOutlined`   | boolean         | `false`           | 跳转按钮启用轮廓按钮样式             | 9.11.0  |

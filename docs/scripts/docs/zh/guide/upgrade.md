@@ -1,5 +1,6 @@
 # 升级向导
 
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10_11">从 10.x 升级到 10.11.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10_7">从 10.x 升级到 10.7.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10">从 9.x 升级到 10.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9_27">从 9.x 升级到 9.27.0</a>
@@ -7,6 +8,14 @@
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">从 7.x 升级到 8.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">从 6.x 升级到 7.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">从 5.x 升级到 6.0</a>
+
+<div id="up-to-10_11"></div>
+
+## 从 10.x 升级到 10.11.0
+
+### BREAKING CHANGES
+
+- 组件平移: 移动 `UiAlert` 从 `balm-ui-plus.js` 到 `balm-ui.js` 库
 
 <div id="up-to-10_7"></div>
 

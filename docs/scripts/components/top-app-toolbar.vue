@@ -6,6 +6,16 @@
       :icon="$store.theme === 'dark' ? 'bedtime' : 'wb_sunny'"
       @click="$store.switchTheme"
     ></ui-icon-button> -->
+    <a
+      v-tooltip="'BalmUI Pro is now released'"
+      class="pro"
+      href="https://pro.balmjs.com/"
+      target="_blank"
+      rel="noopener"
+      aria-describedby="balm-ui-pro"
+    >
+      PRO
+    </a>
     <ui-menu-anchor>
       <ui-icon-button
         icon="language"

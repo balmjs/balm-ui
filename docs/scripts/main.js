@@ -13,7 +13,6 @@ import BalmUINext from 'balm-ui-next';
 import myStore from '@/store';
 import validatorRules from '@/config/validator-rules';
 import { toolbarTips, toolbarOptions, emotions } from '@/config/editor';
-// import dotImage from '../images/placeholder/handtinyblack.gif';
 // Error monitoring
 // import errorMonitoring from '@/error-monitoring';
 // PWA

@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { useI18n } from 'vue-i18n/index';
+import { useI18n } from 'vue-i18n';
 import { $MIN_WIDTH } from '@/config';
 
 const DEBUG = false;

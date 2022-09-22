@@ -222,10 +222,10 @@ import {
   nextTick
 } from 'vue';
 import { useRoute } from 'vue-router';
-import { useI18n } from 'vue-i18n/index';
+import { useI18n } from 'vue-i18n';
 import { useBus, useStore, useAlert } from 'balm-ui';
 import TopAppToolbar from '@/components/top-app-toolbar';
-import {getPageClassName} from '@/utils';
+import { getPageClassName } from '@/utils';
 
 const bodyEl = document.documentElement || document.body;
 const state = reactive({

@@ -2,6 +2,21 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.55.0 / 2022-09-23
+
+### Chore
+
+- update vetur
+
+### BREAKING CHANGES
+
+- `balm-ui-next.js` is deprecated
+- move components:
+  - `UiCollapse` from `balm-ui-plus.js` to `balm-ui.js` library
+  - `UiBottomNavigation` from `balm-ui-next.js` to `balm-ui-plus.js` library
+  - `UiBottomSheet` from `balm-ui-next.js` to `balm-ui-plus.js` library
+- move directives: `vDebounce` from `balm-ui-plus.js` to `balm-ui.js` library
+
 ## v8.54.1 / 2022-08-17
 
 ### Bug Fixes

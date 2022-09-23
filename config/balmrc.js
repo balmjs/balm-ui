@@ -110,7 +110,8 @@ function getConfig(balm) {
       includeJsResource: useDocsDev ? [resolve('src/scripts')] : [],
       alias: {
         '@': resolve('docs/scripts'),
-        'balm-ui': resolve('src/scripts'),
+        'balm-ui': resolve('src/scripts/index.js'),
+        'balm-ui-plus': resolve('src/scripts/plus.js'),
         vue$: 'vue/dist/vue.esm.js',
         pickerLangZh: 'flatpickr/dist/l10n/zh.js'
       },

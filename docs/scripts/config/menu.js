@@ -108,7 +108,7 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'video_label',
         name: 'bottom-navigation',
-        next: true
+        plus: true
       }
     ]
   },
@@ -186,7 +186,7 @@ const MATERIAL_COMPONENTS = [
       // {
       //   icon: 'image',
       //   name: 'lazyload',
-      //   next: true
+      //   plus: true
       // },
       {
         icon: 'category',
@@ -198,8 +198,7 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'swap_vert',
-        name: 'collapse',
-        plus: true
+        name: 'collapse'
       },
       {
         icon: 'category',
@@ -264,7 +263,7 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'video_label',
         name: 'bottom-sheet',
-        next: true
+        plus: true
       }
     ]
   },
@@ -278,8 +277,7 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'mouse',
-        name: 'debounce',
-        plus: true
+        name: 'debounce'
       },
       {
         icon: 'texture',
@@ -345,8 +343,7 @@ for (let component of MATERIAL_COMPONENTS) {
           icon: subComponent.icon,
           name: subComponent.name,
           url,
-          plus: subComponent.plus || false,
-          next: subComponent.next || false
+          plus: subComponent.plus || false
         });
       }
     }

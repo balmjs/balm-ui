@@ -2,12 +2,26 @@
 
 > 🎉 `balm-ui`(v9+) for Vue 3, see [material.balmjs.com](https://material.balmjs.com/)
 
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_55">从 8.x 升级到 8.55.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_50">从 8.x 升级到 8.54.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_50">从 8.x 升级到 8.50.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8_37">从 8.x 升级到 8.37.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">从 7.x 升级到 8.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">从 6.x 升级到 7.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">从 5.x 升级到 6.0</a>
+
+<div id="up-to-8_55"></div>
+
+## 从 8.x 升级到 8.55.0
+
+### BREAKING CHANGES
+
+- `balm-ui-next.js` 已弃用
+- 组件平移:
+  - 移动 `UiCollapse` 从 `balm-ui-plus.js` 到 `balm-ui.js` 库
+  - 移动 `UiBottomNavigation` 从 `balm-ui-next.js` 到 `balm-ui-plus.js` 库
+  - 移动 `UiBottomSheet` 从 `balm-ui-next.js` 到 `balm-ui-plus.js` 库
+- 指令平移: 移动 `vDebounce` 从 `balm-ui-plus.js` 到 `balm-ui.js` 库
 
 <div id="up-to-8_54"></div>
 

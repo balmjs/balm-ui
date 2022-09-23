@@ -94,8 +94,7 @@ project
 │ ├── scripts        // BalmUI core scripts (DEV)
 │ │ ├── ...
 │ │ ├── index.js     // Official Google Material Components entry.
-│ │ ├── plus.js      // BalmJS Team Material Components entry.
-│ │ └── next.js      // Experimental Material Components entry.
+│ │ └── plus.js      // BalmJS Team Material Components entry.
 │ └── styles         // BalmUI core styles (DEV)
 │   ├── ...
 │   └── balm-ui.scss // BalmUI style entry.

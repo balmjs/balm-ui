@@ -8,18 +8,22 @@ const input = {
 
 const components = [
   // MDC
-  'badge', // Custom
+  'alert',
+  'autocomplete',
+  'badge',
   'banner',
   'button',
   'card',
   'checkbox',
   'chips',
+  'collapse',
+  'datepicker',
   'dialog',
-  'divider', // Custom
+  'divider',
   'drawer',
   'fab',
-  'file', // Custom
-  'form', // Custom
+  'file',
+  'form',
   'form-field',
   'grid',
   'icon',
@@ -27,9 +31,10 @@ const components = [
   'image-list',
   'list',
   'menu',
-  'pagination', // Custom
+  'pagination',
   'progress',
   'radio',
+  'rangepicker',
   'segmented-button',
   'select',
   'slider',
@@ -42,15 +47,9 @@ const components = [
   'tooltip',
   'top-app-bar',
   // Plus
-  'alert',
-  'autocomplete',
-  'collapse',
-  'datepicker',
   'editor',
-  'rangepicker',
   'skeleton',
   'tree',
-  // Next
   'bottom-navigation',
   'bottom-sheet'
 ];
@@ -62,11 +61,11 @@ const plugins = [
   'theme',
   'typography',
   'validator',
-  // Plus
   'alert',
   'confirm',
-  'lazyload',
-  'toast'
+  'toast',
+  // Plus
+  'lazyload'
 ];
 const directives = [
   // MDC
@@ -77,10 +76,10 @@ const directives = [
   'ripple',
   'shape',
   'tooltip',
+  'debounce',
   // Plus
   'anchor',
   'copy',
-  'debounce',
   'longpress'
 ];
 const utils = ['ie', 'types', 'helpers'];

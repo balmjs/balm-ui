@@ -5,32 +5,38 @@ import autoInit from './config/auto-init';
  * Components
  */
 import UiSkeleton from './components/skeleton/skeleton';
-import UiCollapse from './components/collapse/collapse';
 import UiEditor from './components/editor/editor';
 import UiTree from './components/tree/tree';
 import UiTreeNode from './components/tree/tree-node';
+import UiBottomNavigation from './components/bottom-navigation/bottom-navigation';
+import UiBottomSheet from './components/bottom-sheet/bottom-sheet';
+/**
+ * Plugins
+ */
+import $lazyload from './plugins/lazyload';
 /**
  * Directives
  */
 import vAnchor from './directives/anchor';
 import vCopy from './directives/copy';
 import vLongpress from './directives/longpress';
-import vDebounce from './directives/debounce';
 
 const Components = {
-  UiCollapse,
+  UiBottomNavigation,
+  UiBottomSheet,
   UiEditor,
   UiSkeleton,
   UiTree,
   UiTreeNode
 };
 
-const Plugins = {};
+const Plugins = {
+  $lazyload
+};
 
 const Directives = {
   vAnchor,
   vCopy,
-  vDebounce,
   vLongpress
 };
 
@@ -50,5 +56,13 @@ autoInit(BalmUIPlus);
 
 export default BalmUIPlus;
 export { version, install };
-export { UiCollapse, UiEditor, UiSkeleton, UiTree, UiTreeNode };
-export { vAnchor, vCopy, vDebounce, vLongpress };
+export {
+  UiBottomNavigation,
+  UiBottomSheet,
+  UiEditor,
+  UiSkeleton,
+  UiTree,
+  UiTreeNode
+};
+export { $lazyload };
+export { vAnchor, vCopy, vLongpress };

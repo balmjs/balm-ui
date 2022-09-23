@@ -1,7 +1,6 @@
 const fs = require('fs');
 const individual = require('./individual');
 
-const NAMESPACE = 'BalmUI';
 const individualBuild = ['components', 'plugins', 'directives', 'utils'];
 
 function getComponentName(item) {
@@ -36,7 +35,7 @@ function getLibrary(buildName, item) {
 function buildIndividual(mix) {
   console.log('Individual libraries:');
 
-  // Build plus & next
+  // Build plus
   mix.webpack(
     {
       'balm-ui-plus': './src/scripts/plus.js'
@@ -44,18 +43,7 @@ function buildIndividual(mix) {
     individual.output.dist,
     {
       output: {
-        library: `${NAMESPACE}Plus`
-      }
-    }
-  );
-  mix.webpack(
-    {
-      'balm-ui-next': './src/scripts/next.js'
-    },
-    individual.output.dist,
-    {
-      output: {
-        library: `${NAMESPACE}Next`
+        library: 'BalmUIPlus'
       }
     }
   );

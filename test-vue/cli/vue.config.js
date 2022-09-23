@@ -7,8 +7,7 @@ module.exports = {
         'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.js',
         'balm-ui-css': 'balm-ui/dist/balm-ui.css',
         'balm-ui-source': 'balm-ui/src/scripts',
-        'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
-        'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+        'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js'
       }
     }
   }
@@ -17,7 +16,6 @@ module.exports = {
   //     .set('balm-ui-plus', 'balm-ui/dist/balm-ui-plus.js')
   //     .set('balm-ui-css', 'balm-ui/dist/balm-ui.css')
   //     .set('balm-ui-source', 'balm-ui/src/scripts')
-  //     .set('balm-ui-plus-source', 'balm-ui/src/scripts/plus.js')
-  //     .set('balm-ui-next-source', 'balm-ui/src/scripts/next.js');
+  //     .set('balm-ui-plus-source', 'balm-ui/src/scripts/plus.js');
   // }
 };

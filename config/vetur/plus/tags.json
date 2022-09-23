@@ -18,10 +18,6 @@
     ],
     "description": "A modern WYSIWYG editor (based on Quill with built-in extension features)."
   },
-  "ui-collapse": {
-    "attributes": ["model-value", "with-icon", "icon-end-aligned", "ripple"],
-    "description": "A content area which can be collapsed and expanded."
-  },
   "ui-tree": {
     "attributes": [
       "model-value",
@@ -36,12 +32,16 @@
     ],
     "description": "A tree."
   },
-  "ui-alert": {
-    "attributes": ["state", "state-outlined", "closable"],
-    "description": "Alerts provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages."
-  },
   "ui-skeleton": {
     "attributes": ["loading", "active", "avatar", "title", "paragraph"],
     "description": "Skeleton provide a placeholder while you wait for content to load, or to visualise content that doesn't exist yet."
+  },
+  "ui-bottom-navigation": {
+    "attributes": ["content-selector", "stacked", "min", "max"],
+    "description": "Bottom navigation bars allow movement between primary destinations in an app."
+  },
+  "ui-bottom-sheet": {
+    "attributes": ["model-value"],
+    "description": "A bottom sheet."
   }
 }

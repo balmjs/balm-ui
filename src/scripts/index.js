@@ -83,6 +83,7 @@ import UiCardButtons from './components/card/card-buttons';
 import UiCardIcons from './components/card/card-icons';
 import UiTable from './components/table/table';
 import UiBadge from './components/badge/badge'; // Custom
+import UiCollapse from './components/collapse/collapse'; // Custom
 // Feedback
 import UiAlert from './components/alert/alert';
 import UiDialog from './components/dialog/dialog';
@@ -117,6 +118,7 @@ import vShadow from './directives/elevation';
 import vAccessibility from './directives/a11y';
 import vBadge from './directives/badge'; // Custom
 import vTooltip from './directives/tooltip';
+import vDebounce from './directives/debounce'; // Custom
 /**
  * Utilities
  */
@@ -141,6 +143,7 @@ const Components = {
   UiCheckbox,
   UiChip,
   UiChips,
+  UiCollapse,
   UiDatepicker,
   UiDialog,
   UiDialogActions,
@@ -227,6 +230,7 @@ const Directives = {
   vAccessibility,
   vBadge,
   vButton,
+  vDebounce,
   vRipple,
   vShadow,
   vShape,
@@ -266,6 +270,7 @@ export {
   UiCheckbox,
   UiChip,
   UiChips,
+  UiCollapse,
   UiDatepicker,
   UiDialog,
   UiDialogActions,
@@ -356,5 +361,14 @@ export {
   useToast,
   useTypography
 };
-export { vAccessibility, vBadge, vButton, vRipple, vShadow, vShape, vTooltip };
+export {
+  vAccessibility,
+  vBadge,
+  vButton,
+  vDebounce,
+  vRipple,
+  vShadow,
+  vShape,
+  vTooltip
+};
 export { types, helpers, detectIE };

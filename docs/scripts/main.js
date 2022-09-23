@@ -9,8 +9,7 @@ import validatorRules from '@/config/validator-rules';
 import { toolbarOptions, emotions } from '@/config/editor';
 // BalmUI
 import BalmUI from 'balm-ui';
-import BalmUIPlus from 'balm-ui/plus';
-import BalmUINext from 'balm-ui/next';
+import BalmUIPlus from 'balm-ui-plus';
 // Custom components
 import PurePage from '@/views/layouts/pure-page';
 import DocsPage from '@/views/layouts/docs-page';
@@ -37,9 +36,7 @@ function createApp() {
     UiEditor: {
       toolbarOptions,
       emotions
-    }
-  });
-  Vue.use(BalmUINext, {
+    },
     // $lazyload: {
     //   src: dotImage
     // }

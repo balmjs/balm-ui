@@ -29,7 +29,6 @@
     scripts: {
       alias: {
         'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.js',
-        'balm-ui-next': 'balm-ui/dist/balm-ui-next.js',
         'balm-ui-css': 'balm-ui/dist/balm-ui.css'
       }
     }
@@ -114,14 +113,12 @@
   // Import BalmUI scripts
   import BalmUI from 'balm-ui'; // Official Google Material Components
   import BalmUIPlus from 'balm-ui-plus'; // BalmJS Team Material Components
-  import BalmUINext from 'balm-ui-next'; // Experimental Material Components
 
   // Import BalmUI styles (Not recommend usage, and see above "SASS/CSS Management" for recommended usage)
   import 'balm-ui-css';
 
   Vue.use(BalmUI); // Mandatory
   Vue.use(BalmUIPlus); // Optional
-  Vue.use(BalmUINext); // Experimental
 
   new Vue({
     el: '#app',
@@ -153,7 +150,6 @@
       <script src="/node_modules/vue/dist/vue.js"></script>
       <script src="/node_modules/balm-ui/dist/balm-ui.js"></script>
       <script src="/node_modules/balm-ui/dist/balm-ui-plus.js"></script>
-      <script src="/node_modules/balm-ui/dist/balm-ui-next.js"></script>
       <!-- endbuild -->
       <script>
         var app = new Vue({
@@ -296,8 +292,7 @@
       // Reassign the entry file
       alias: {
         'balm-ui-source': 'balm-ui/src/scripts',
-        'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
-        'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+        'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js'
       }
     },
     ...
@@ -316,16 +311,14 @@
       resolve: {
         alias: {
           'balm-ui-source': 'balm-ui/src/scripts',
-          'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
-          'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+          'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js'
         }
       }
     }
     // chainWebpack: (config) => {
     //   config.resolve.alias
     //     .set('balm-ui-source', resolve('node_modules/balm-ui/src/scripts'))
-    //     .set('balm-ui-plus-source', resolve('node_modules/balm-ui/src/scripts/plus.js'))
-    //     .set('balm-ui-next-source', resolve('node_modules/balm-ui/src/scripts/next.js'));
+    //     .set('balm-ui-plus-source', resolve('node_modules/balm-ui/src/scripts/plus.js'));
     // }
   };
   ```

@@ -2,6 +2,21 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.12.0 / 2022-09-26
+
+### Chore
+
+- update vetur
+
+### BREAKING CHANGES
+
+- `balm-ui-next.js` is deprecated
+- move components:
+  - `UiCollapse` from `balm-ui-plus.js` to `balm-ui.js` library
+  - `UiBottomNavigation` from `balm-ui-next.js` to `balm-ui-plus.js` library
+  - `UiBottomSheet` from `balm-ui-next.js` to `balm-ui-plus.js` library
+- move directives: `vDebounce` from `balm-ui-plus.js` to `balm-ui.js` library
+
 ## v10.11.0 / 2022-08-23
 
 ### Features

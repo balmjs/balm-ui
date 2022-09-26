@@ -9,7 +9,6 @@
   ```js
   {
     'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.js',
-    'balm-ui-next': 'balm-ui/dist/balm-ui-next.js'
   }
   ```
 
@@ -20,8 +19,7 @@
     "compilerOptions": {
       "baseUrl": ".",
       "paths": {
-        "balm-ui-plus": ["node_modules/balm-ui/dist/balm-ui-plus.d.ts"],
-        "balm-ui-next": ["node_modules/balm-ui/dist/balm-ui-next.d.ts"]
+        "balm-ui-plus": ["node_modules/balm-ui/dist/balm-ui-plus.d.ts"]
       }
     }
   }

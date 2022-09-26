@@ -1,5 +1,6 @@
 # 升级向导
 
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10_12">从 10.x 升级到 10.12.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10_11">从 10.x 升级到 10.11.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10_7">从 10.x 升级到 10.7.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10">从 9.x 升级到 10.0</a>
@@ -8,6 +9,17 @@
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">从 7.x 升级到 8.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">从 6.x 升级到 7.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">从 5.x 升级到 6.0</a>
+
+<div id="up-to-10_12"></div>
+
+### BREAKING CHANGES
+
+- `balm-ui-next.js` 已弃用
+- 组件平移:
+  - 移动 `UiCollapse` 从 `balm-ui-plus.js` 到 `balm-ui.js` 库
+  - 移动 `UiBottomNavigation` 从 `balm-ui-next.js` 到 `balm-ui-plus.js` 库
+  - 移动 `UiBottomSheet` 从 `balm-ui-next.js` 到 `balm-ui-plus.js` 库
+- 指令平移: 移动 `vDebounce` 从 `balm-ui-plus.js` 到 `balm-ui.js` 库
 
 <div id="up-to-10_11"></div>
 

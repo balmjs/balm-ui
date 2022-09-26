@@ -1,0 +1,18 @@
+{
+  "content-selector": {
+    "type": "string",
+    "description": "Selector used to style the content above the bottom navigation, to prevent the bottom navigation from covering it."
+  },
+  "stacked": {
+    "type": "boolean",
+    "description": "Indicates that the tab icon and label should flow vertically instead of horizontally."
+  },
+  "min": {
+    "type": "boolean",
+    "description": "Show 3 navigation items."
+  },
+  "max": {
+    "type": "boolean",
+    "description": "Show 5 navigation items."
+  }
+}

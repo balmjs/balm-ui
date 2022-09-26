@@ -29,7 +29,6 @@
     scripts: {
       alias: {
         'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.js',
-        'balm-ui-next': 'balm-ui/dist/balm-ui-next.js',
         'balm-ui-css': 'balm-ui/dist/balm-ui.css'
       }
     }
@@ -114,7 +113,6 @@
   // Import BalmUI scripts
   import BalmUI from 'balm-ui'; // Official Google Material Components
   import BalmUIPlus from 'balm-ui-plus'; // BalmJS Team Material Components
-  import BalmUINext from 'balm-ui-next'; // Experimental Material Components
 
   // Import BalmUI styles (Not recommend usage, and see above "SASS/CSS Management" for recommended usage)
   import 'balm-ui-css';
@@ -123,7 +121,6 @@
 
   app.use(BalmUI); // Mandatory
   app.use(BalmUIPlus); // Optional
-  app.use(BalmUINext); // Experimental
 
   app.mount('#app');
   ```
@@ -151,7 +148,6 @@
       <script src="/node_modules/vue/dist/vue.js"></script>
       <script src="/node_modules/balm-ui/dist/balm-ui.js"></script>
       <script src="/node_modules/balm-ui/dist/balm-ui-plus.js"></script>
-      <script src="/node_modules/balm-ui/dist/balm-ui-next.js"></script>
       <!-- endbuild -->
       <script>
         var app = Vue.createApp({
@@ -166,7 +162,6 @@
 
         app.use(BalmUI);
         app.use(BalmUIPlus);
-        app.use(BalmUINext);
 
         app.mount('#app');
       </script>
@@ -293,8 +288,7 @@
 ```js
 {
   'balm-ui-source': 'balm-ui/src/scripts/index.js',
-  'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
-  'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+  'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js'
 }
 ```
 
@@ -319,8 +313,7 @@
       // Reassign the entry file
       alias: {
         'balm-ui-source': 'balm-ui/src/scripts/balm-ui.js',
-        'balm-ui-plus-source': 'balm-ui/src/scripts/balm-ui-plus.js',
-        'balm-ui-next-source': 'balm-ui/src/scripts/balm-ui-next.js'
+        'balm-ui-plus-source': 'balm-ui/src/scripts/balm-ui-plus.js'
       }
     },
     ...
@@ -341,16 +334,14 @@
       resolve: {
         alias: {
           'balm-ui-source': 'balm-ui/src/scripts/balm-ui.js',
-          'balm-ui-plus-source': 'balm-ui/src/scripts/balm-ui-plus.js',
-          'balm-ui-next-source': 'balm-ui/src/scripts/balm-ui-next.js'
+          'balm-ui-plus-source': 'balm-ui/src/scripts/balm-ui-plus.js'
         }
       }
     }
     // chainWebpack: (config) => {
     //   config.resolve.alias
     //     .set('balm-ui-source', 'balm-ui/src/scripts/balm-ui.js')
-    //     .set('balm-ui-plus-source', 'balm-ui/src/scripts/balm-ui-plus.js')
-    //     .set('balm-ui-next-source', 'balm-ui/src/scripts/balm-ui-next.js');
+    //     .set('balm-ui-plus-source', 'balm-ui/src/scripts/balm-ui-plus.js');
     // }
   };
   ```
@@ -368,8 +359,7 @@
       alias: {
         vue: 'vue/dist/vue.esm-bundler.js',
         'balm-ui-source': 'balm-ui/src/scripts/balm-ui.js',
-        'balm-ui-plus-source': 'balm-ui/src/scripts/balm-ui-plus.js',
-        'balm-ui-next-source': 'balm-ui/src/scripts/balm-ui-next.js'
+        'balm-ui-plus-source': 'balm-ui/src/scripts/balm-ui-plus.js'
       }
     }
   });

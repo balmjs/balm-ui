@@ -1,0 +1,6 @@
+{
+  "model-value": {
+    "type": "boolean",
+    "description": "Sets the bottom sheet state."
+  }
+}

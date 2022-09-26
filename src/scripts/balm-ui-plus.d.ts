@@ -8,20 +8,31 @@ declare module './balm-ui-plus' {
   const version: string;
   const install: typeof BalmUIPlus.install;
 
-  const UiAlert: component;
-  const UiCollapse: component;
   const UiEditor: component;
   const UiSkeleton: component;
   const UiTree: component;
   const UiTreeNode: component;
+  const UiBottomSheet: component;
+  const UiNavigationBar: component;
+  const UiNavigationRail: component;
+
+  const $lazyload: Plugin;
 
   const vAnchor: Directive;
   const vCopy: Directive;
   const vLongpress: Directive;
-  const vDebounce: Directive;
 
   export default BalmUIPlus;
   export { version, install };
-  export { UiAlert, UiCollapse, UiEditor, UiSkeleton, UiTree, UiTreeNode };
-  export { vAnchor, vCopy, vLongpress, vDebounce };
+  export {
+    UiEditor,
+    UiSkeleton,
+    UiTree,
+    UiTreeNode,
+    UiBottomSheet,
+    UiNavigationBar,
+    UiNavigationRail
+  };
+  export { $lazyload };
+  export { vAnchor, vCopy, vLongpress };
 }

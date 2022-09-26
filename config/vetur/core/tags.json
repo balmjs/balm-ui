@@ -480,9 +480,17 @@
     ],
     "description": "Data tables display sets of data across rows and columns."
   },
+  "ui-collapse": {
+    "attributes": ["model-value", "with-icon", "icon-end-aligned", "ripple"],
+    "description": "A content area which can be collapsed and expanded."
+  },
   "ui-badge": {
     "attributes": ["count", "overlap", "max-count", "dot", "state"],
     "description": "Small status descriptors for UI components."
+  },
+  "ui-alert": {
+    "attributes": ["state", "state-outlined", "closable"],
+    "description": "Alerts provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages."
   },
   "ui-dialog": {
     "attributes": [

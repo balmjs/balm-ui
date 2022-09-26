@@ -83,6 +83,7 @@ import UiCardButtons from './components/card/card-buttons.vue';
 import UiCardIcons from './components/card/card-icons.vue';
 import UiTable from './components/table/table.vue';
 import UiBadge from './components/badge/badge.vue'; // Custom
+import UiCollapse from './components/collapse/collapse.vue'; // Custom
 // Feedback
 import UiAlert from './components/alert/alert.vue';
 import UiDialog from './components/dialog/dialog.vue';
@@ -117,6 +118,7 @@ import vShadow from './directives/elevation';
 import vAccessibility from './directives/a11y';
 import vBadge from './directives/badge'; // Custom
 import vTooltip from './directives/tooltip';
+import vDebounce from './directives/debounce'; // Custom
 /**
  * Utilities
  */
@@ -141,6 +143,7 @@ const Components = {
   UiCheckbox,
   UiChip,
   UiChips,
+  UiCollapse,
   UiDatepicker,
   UiDialog,
   UiDialogActions,
@@ -228,14 +231,15 @@ const Directives = {
   vAccessibility,
   vBadge,
   vButton,
+  vDebounce,
   vRipple,
   vShadow,
   vShape,
   vTooltip
 };
 
-const install = (Vue, options = {}) =>
-  autoInstall(Vue, options, {
+const install = (app, options = {}) =>
+  autoInstall(app, options, {
     Components,
     Plugins,
     Directives
@@ -264,6 +268,7 @@ export {
   UiCheckbox,
   UiChip,
   UiChips,
+  UiCollapse,
   UiDatepicker,
   UiDialog,
   UiDialogActions,
@@ -357,5 +362,14 @@ export {
   useTypography,
   useValidator
 };
-export { vAccessibility, vBadge, vButton, vRipple, vShadow, vShape, vTooltip };
+export {
+  vAccessibility,
+  vBadge,
+  vButton,
+  vDebounce,
+  vRipple,
+  vShadow,
+  vShape,
+  vTooltip
+};
 export { types, helpers, detectIE };

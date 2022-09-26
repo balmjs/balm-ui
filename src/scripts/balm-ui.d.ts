@@ -44,6 +44,7 @@ import {
   UiSwitchProperties,
   UiSliderProperties,
   UiFileProperties,
+  UiAlertProperties,
   UiDialogProperties,
   UiDialogTitleProperties,
   UiDialogActionsProperties,
@@ -54,20 +55,25 @@ import {
 } from './typings/components';
 
 export type BalmUIOptions = {
+  // Theme
   UiIcon?: UiIconProperties;
+  // General
   UiButton?: UiButtonProperties;
   UiFab?: UiFabProperties;
   UiIconButton?: UiIconButtonProperties;
   UiSegmentedButtons?: UiSegmentedButtonsProperties;
+  // Layouts
   UiTopAppBar?: UiTopAppBarProperties;
   UiGrid?: UiGridProperties;
   UiGridCell?: UiGridCellProperties;
   UiDivider?: UiDividerProperties;
+  // Navigation
   UiDrawer?: UiDrawerProperties;
   UiTabIndicator?: UiTabIndicatorProperties;
   UiMenuAnchor?: UiMenuAnchorProperties;
   UiMenu?: UiMenuProperties;
   UiPagination?: UiPaginationProperties;
+  // Data Entry
   UiForm?: UiFormProperties;
   UiFormField?: UiFormFieldProperties;
   UiTextfield?: UiTextfieldProperties;
@@ -80,6 +86,8 @@ export type BalmUIOptions = {
   UiSwitch?: UiSwitchProperties;
   UiSlider?: UiSliderProperties;
   UiFile?: UiFileProperties;
+  // Feedback
+  UiAlert?: UiAlertProperties;
   UiDialog?: UiDialogProperties;
   UiDialogTitle?: UiDialogTitleProperties;
   UiDialogActions?: UiDialogActionsProperties;
@@ -87,6 +95,7 @@ export type BalmUIOptions = {
   UiBanner?: UiBannerProperties;
   UiSpinner?: UiSpinnerProperties;
   UiTooltip?: UiTooltipProperties;
+  // Plugins
   $store?: any;
   $theme?: ThemeColor;
   $typography?: string[];
@@ -104,6 +113,7 @@ declare module 'balm-ui' {
   const version: string;
   const install: typeof BalmUI.install;
 
+  const UiAlert: component;
   const UiAutocomplete: component;
   const UiBadge: component;
   const UiBanner: component;
@@ -119,6 +129,7 @@ declare module 'balm-ui' {
   const UiCheckbox: component;
   const UiChip: component;
   const UiChips: component;
+  const UiCollapse: component;
   const UiDatepicker: component;
   const UiDialog: component;
   const UiDialogActions: component;
@@ -213,6 +224,7 @@ declare module 'balm-ui' {
   const vAccessibility: Directive;
   const vBadge: Directive;
   const vButton: Directive;
+  const vDebounce: Directive;
   const vRipple: Directive;
   const vShadow: Directive;
   const vShape: Directive;
@@ -224,6 +236,7 @@ declare module 'balm-ui' {
   export default BalmUI;
   export { version, install };
   export {
+    UiAlert,
     UiAutocomplete,
     UiBadge,
     UiBanner,
@@ -239,6 +252,7 @@ declare module 'balm-ui' {
     UiCheckbox,
     UiChip,
     UiChips,
+    UiCollapse,
     UiDatepicker,
     UiDialog,
     UiDialogActions,
@@ -336,6 +350,7 @@ declare module 'balm-ui' {
     vAccessibility,
     vBadge,
     vButton,
+    vDebounce,
     vRipple,
     vShadow,
     vShape,

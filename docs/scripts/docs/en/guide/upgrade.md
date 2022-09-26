@@ -1,5 +1,6 @@
 # Upgrade Guide
 
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10_12">Upgrading To 10.12.0 From 10.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10_11">Upgrading To 10.11.0 From 10.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10_7">Upgrading To 10.7.0 From 10.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-10">Upgrading To 10.0 From 9.x</a>
@@ -8,6 +9,19 @@
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">Upgrading To 8.0 From 7.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">Upgrading To 7.0 From 6.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">Upgrading To 6.0 From 5.x</a>
+
+<div id="up-to-10_12"></div>
+
+## Upgrading To 10.12.0 From 10.x
+
+### BREAKING CHANGES
+
+- `balm-ui-next.js` is deprecated
+- move components:
+  - `UiCollapse` from `balm-ui-plus.js` to `balm-ui.js` library
+  - `UiBottomNavigation` from `balm-ui-next.js` to `balm-ui-plus.js` library
+  - `UiBottomSheet` from `balm-ui-next.js` to `balm-ui-plus.js` library
+- move directives: `vDebounce` from `balm-ui-plus.js` to `balm-ui.js` library
 
 <div id="up-to-10_11"></div>
 

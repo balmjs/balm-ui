@@ -4,7 +4,7 @@
 
 ```js
 import Vue from 'vue';
-import BalmUINext from 'balm-ui/dist/balm-ui-next';
+import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
 
-Vue.use(BalmUINext);
+Vue.use(BalmUIPlus);
 ```

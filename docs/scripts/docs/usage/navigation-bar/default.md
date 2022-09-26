@@ -4,11 +4,11 @@
 
 ```js
 import BalmUI from 'balm-ui';
-import BalmUINext from 'balm-ui/dist/balm-ui-next';
+import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
 
 // `app`: Vue app
 app.use(BalmUI);
-app.use(BalmUINext, {
+app.use(BalmUIPlus, {
   // Optional. Overwrite `<ui-navigation-bar>` props with default value.
   UiNavigationBar: {
     // some props

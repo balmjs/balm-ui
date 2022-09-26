@@ -10,8 +10,7 @@
     "paths": {
       "@/*": ["docs/scripts/*"],
       "balm-ui": ["src/scripts/balm-ui.d.ts"],
-      "balm-ui-plus": ["src/scripts/balm-ui-plus.d.ts"],
-      "balm-ui-next": ["src/scripts/balm-ui-next.d.ts"]
+      "balm-ui-plus": ["src/scripts/balm-ui-plus.d.ts"]
     }
   }
 }

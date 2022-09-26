@@ -301,6 +301,12 @@ export declare interface UiFileProperties {
  * Feedback
  */
 
+export declare interface UiAlertProperties {
+  state?: string;
+  stateOutlined?: boolean;
+  closable?: boolean;
+}
+
 export declare interface UiDialogProperties {
   escapeKey?: boolean;
   closable?: boolean;

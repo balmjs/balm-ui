@@ -1,7 +1,6 @@
 const fs = require('fs');
 const config = require('./config');
 
-const NAMESPACE = 'BalmUI';
 const individualBuild = ['components', 'plugins', 'directives', 'utils'];
 
 function getComponentName(item) {
@@ -45,22 +44,7 @@ function buildIndividual(mix) {
     {
       output: {
         library: {
-          name: `${NAMESPACE}Plus`,
-          type: 'umd',
-          umdNamedDefine: true
-        }
-      }
-    }
-  );
-  mix.webpack(
-    {
-      'balm-ui-next': './src/scripts/balm-ui-next.js'
-    },
-    config.output.dist,
-    {
-      output: {
-        library: {
-          name: `${NAMESPACE}Next`,
+          name: 'BalmUIPlus',
           type: 'umd',
           umdNamedDefine: true
         }

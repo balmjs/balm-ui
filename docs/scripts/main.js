@@ -9,7 +9,6 @@ import setGlobalProperties from '@/config/properties';
 // BalmUI
 import BalmUI from 'balm-ui';
 import BalmUIPlus from 'balm-ui-plus';
-import BalmUINext from 'balm-ui-next';
 import myStore from '@/store';
 import validatorRules from '@/config/validator-rules';
 import { toolbarTips, toolbarOptions, emotions } from '@/config/editor';
@@ -34,9 +33,7 @@ function createBalmUIApp() {
       toolbarTips,
       toolbarOptions,
       emotions
-    }
-  });
-  app.use(BalmUINext, {
+    },
     // $lazyload: {
     //   src: dotImage
     // }

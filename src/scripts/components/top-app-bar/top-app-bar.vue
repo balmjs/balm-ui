@@ -20,7 +20,7 @@
           </slot>
         </span>
         <!-- Title (optional) / Contextual title -->
-        <span class="mdc-top-app-bar__title">
+        <span v-if="hasTitle" class="mdc-top-app-bar__title">
           <slot>{{ title }}</slot>
         </span>
       </section>
@@ -171,6 +171,9 @@ export default {
     },
     defaultNavIcon() {
       return this.isNonRegular ? UI_TOP_APP_BAR.EVENT.CLOSE : this.navIcon;
+    },
+    hasTitle() {
+      return !!(this.title || this.$slots.default);
     }
   },
   watch: {
@@ -192,9 +195,10 @@ export default {
         if (firstElInContent.classList.contains('mdc-drawer')) {
           el = contentEl;
         } else {
-          let existingFixedAdjust = /^mdc-top-app-bar--([a-z]+-)*fixed-adjust$/.test(
-            firstElInContent.className
-          );
+          let existingFixedAdjust =
+            /^mdc-top-app-bar--([a-z]+-)*fixed-adjust$/.test(
+              firstElInContent.className
+            );
 
           if (existingFixedAdjust) {
             el = firstElInContent;

@@ -176,6 +176,10 @@ export default {
       type: Boolean,
       default: false
     },
+    filterKeywords: {
+      type: Boolean,
+      default: false
+    },
     inside: {
       type: Boolean,
       default: false
@@ -319,23 +323,24 @@ export default {
       const pattern = '(' + this.escapeRegExChars(keywords) + ')';
       const regExp = new RegExp(pattern, 'gi');
 
-      // Local datasource
-      this.currentSuggestion.data = this.currentSource
-        .filter(
-          (word) =>
-            word[this.sourceFormat.label].toLowerCase().indexOf(keywords) !== -1
-        )
-        .map((word) => {
-          const suggestionLabel = word[this.sourceFormat.label];
+      // Local data source
+      const filterSource = this.filterKeywords
+        ? this.currentSource.filter((word) =>
+            new RegExp(keywords, 'i').test(word[this.sourceFormat.label])
+          )
+        : this.currentSource;
 
-          word.html = this.highlight
-            ? this.sanitize(
-                suggestionLabel.replace(regExp, '<strong>$1</strong>')
-              ).replace(/&lt;(\/?strong)&gt;/g, '<$1>')
-            : this.sanitize(suggestionLabel);
+      this.currentSuggestion.data = filterSource.map((word) => {
+        const suggestionLabel = word[this.sourceFormat.label];
 
-          return word;
-        });
+        word.html = this.highlight
+          ? this.sanitize(
+              suggestionLabel.replace(regExp, '<strong>$1</strong>')
+            ).replace(/&lt;(\/?strong)&gt;/g, '<$1>')
+          : this.sanitize(suggestionLabel);
+
+        return word;
+      });
     },
     show() {
       const keywords = this.inputValue;

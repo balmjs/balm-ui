@@ -24,6 +24,7 @@
           <slot :currentMinRow="currentMinRow" :currentMaxRow="currentMaxRow">
             {{ currentMinRow }} ‑ {{ currentMaxRow }}
             <template v-if="!isInfinity">{{ ofText }} {{ total }}</template>
+            {{ unitText }}
           </slot>
         </div>
         <!-- Navigation buttons -->
@@ -196,6 +197,10 @@ export default {
     ofText: {
       type: String,
       default: 'of'
+    },
+    unitText: {
+      type: String,
+      default: ''
     },
     showJumper: {
       type: Boolean,

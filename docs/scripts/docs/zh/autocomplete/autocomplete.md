@@ -20,6 +20,7 @@
 | `minlength`         | number         | `1`                                  | 模糊搜索的最少字符数。零对于仅包含少量项目的本地数据很有用，但是当单个字符搜索可以匹配数千个项目时，应使用更高的值。                         |         |
 | `remote`            | boolean        | `false`                              | 启用远程获取数据。默认用法为本地数据。                                                                                                       |         |
 | `highlight`         | boolean        | `false`                              | 将自动完成文本框建议值设置为加粗                                                                                                             | 8.12.0  |
+| `filterKeywords`    | boolean        | `false`                              | 启用过滤关键字                                                                                                                               | 8.56.0  |
 | `fullwidth`         | boolean        | `false`                              | 全屏宽度样式                                                                                                                                 |         |
 | `endAligned`        | boolean        | `false`                              | 输入文本右对齐                                                                                                                               |         |
 | `icon`              | string         | `''`                                 | 设置首图标。详见 [Material Icons](/#/icons) 图标集。                                                                                         |         |

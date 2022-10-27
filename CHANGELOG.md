@@ -2,6 +2,13 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.56.0 / 2022-10-27
+
+### Features
+
+- `<ui-pagination>`: add `unitText` prop
+- `<ui-autocomplete>`: add `filterKeywords` prop
+
 ## v8.55.0 / 2022-09-23
 
 ### Chore

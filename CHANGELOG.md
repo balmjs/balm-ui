@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.56.1 / 2022-10-31
+
+### Bug Fixes
+
+- `<ui-select>`: fix init selected value bug
+
 ## v8.56.0 / 2022-10-27
 
 ### Features

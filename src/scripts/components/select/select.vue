@@ -270,11 +270,8 @@ export default {
 
         if (hasOptions) {
           const selected = this.getSelected(detail.index);
-          // fix(ui): twice trigger
-          if (this.selectedValue !== selected.value) {
-            this.$emit(UI_SELECT.EVENT.CHANGE, selected.value);
-            this.$emit(UI_SELECT.EVENT.SELECTED, selected);
-          }
+          this.$emit(UI_SELECT.EVENT.CHANGE, selected.value);
+          this.$emit(UI_SELECT.EVENT.SELECTED, selected);
         }
       });
     });

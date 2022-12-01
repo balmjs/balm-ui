@@ -3,13 +3,13 @@ import Home from '@/views/home';
 import BlankLayout from '@/views/layouts/blank';
 // Routes
 import guideRoutes from './modules/guide';
-import generalRoutes from './modules/general';
-import layoutRoutes from './modules/layout';
+import stylesRoutes from './modules/styles';
+import actionsRoutes from './modules/actions';
+import communicationRoutes from './modules/communication';
+import containmentRoutes from './modules/containment';
 import navigationRoutes from './modules/navigation';
-import themeRoutes from './modules/theme';
-import dataInputRoutes from './modules/data-input';
-import dataDisplayRoutes from './modules/data-display';
-import feedbackRoutes from './modules/feedback';
+import selectionRoutes from './modules/selection';
+import textInputsRoutes from './modules/text-inputs';
 import miscRoutes from './modules/misc';
 import testRoutes from './modules/test';
 // Pages
@@ -27,23 +27,37 @@ const routes = [
   {
     path: '/guide',
     name: 'guide',
-    redirect: { name: 'guide.intro' },
+    redirect: { name: 'guide.introduction' },
     component: BlankLayout,
     children: guideRoutes
   },
   {
-    path: '/general',
-    name: 'general',
-    redirect: { name: 'general.button' },
+    path: '/styles',
+    name: 'styles',
+    redirect: { name: 'styles.color' },
     component: BlankLayout,
-    children: generalRoutes
+    children: stylesRoutes
   },
   {
-    path: '/layout',
-    name: 'layout',
-    redirect: { name: 'layout.top-app-bar' },
+    path: '/actions',
+    name: 'actions',
+    redirect: { name: 'actions.button' },
     component: BlankLayout,
-    children: layoutRoutes
+    children: actionsRoutes
+  },
+  {
+    path: '/communication',
+    name: 'communication',
+    redirect: { name: 'communication.alert' },
+    component: BlankLayout,
+    children: communicationRoutes
+  },
+  {
+    path: '/containment',
+    name: 'containment',
+    redirect: { name: 'containment.grid' },
+    component: BlankLayout,
+    children: containmentRoutes
   },
   {
     path: '/navigation',
@@ -53,32 +67,18 @@ const routes = [
     children: navigationRoutes
   },
   {
-    path: '/theme',
-    name: 'theme',
-    redirect: { name: 'theme.color' },
+    path: '/selection',
+    name: 'selection',
+    redirect: { name: 'selection.chips' },
     component: BlankLayout,
-    children: themeRoutes
+    children: selectionRoutes
   },
   {
-    path: '/data-input',
-    name: 'data-input',
-    redirect: { name: 'data-input.textfield' },
+    path: '/text-inputs',
+    name: 'text-inputs',
+    redirect: { name: 'text-inputs.textfield' },
     component: BlankLayout,
-    children: dataInputRoutes
-  },
-  {
-    path: '/data-display',
-    name: 'data-display',
-    redirect: { name: 'data-display.list' },
-    component: BlankLayout,
-    children: dataDisplayRoutes
-  },
-  {
-    path: '/feedback',
-    name: 'feedback',
-    redirect: { name: 'feedback.alert' },
-    component: BlankLayout,
-    children: feedbackRoutes
+    children: textInputsRoutes
   },
   {
     path: '/misc',

@@ -1,8 +1,7 @@
 <template>
   <pure-page
-    name="quickstart"
-    :prev="{ name: t('menu.intro'), url: 'guide.intro' }"
-    :next="{ name: t('menu.advanced'), url: 'guide.advanced' }"
+    name="introduction"
+    :next="{ name: t('menu.quick-start'), url: 'guide.quick-start' }"
   ></pure-page>
 </template>
 
@@ -12,7 +11,7 @@ import useTranslation from '@/utils/t';
 export default {
   metaInfo() {
     return {
-      subtitle: 'Quick Start'
+      subtitle: 'Introduction'
     };
   },
   setup() {

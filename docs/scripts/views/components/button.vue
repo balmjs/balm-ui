@@ -40,25 +40,51 @@
         </ui-form-field>
       </div>
 
-      <div class="demo">
-        <ui-button :disabled="disabled">Standard</ui-button>
-        <ui-button outlined :disabled="disabled">Outlined</ui-button>
-        <ui-button raised :disabled="disabled">Raised</ui-button>
-        <ui-button unelevated :disabled="disabled">Unelevated</ui-button>
+      <section class="demo-wrapper">
+        <h6 :class="$tt('headline6')">1.1 Text button</h6>
+        <div class="demo">
+          <ui-button :disabled="disabled">Text</ui-button>
+        </div>
+      </section>
 
-        <ui-button icon="favorite" :disabled="disabled">Icon</ui-button>
-        <ui-button :disabled="disabled">
-          Trailing Icon
-          <template #after="{ iconClass }">
-            <svg-logo :class="iconClass"></svg-logo>
-          </template>
-        </ui-button>
+      <section class="demo-wrapper">
+        <h6 :class="$tt('headline6')">1.2 Outlined button</h6>
+        <div class="demo">
+          <ui-button outlined :disabled="disabled">Outlined</ui-button>
+        </div>
+      </section>
 
-        <a v-button href="javascript:void(0)">Link</a>
-        <router-link v-button :to="{ name: 'general.button' }">
-          Router Link
-        </router-link>
-      </div>
+      <section class="demo-wrapper">
+        <h6 :class="$tt('headline6')">1.3 Contained button</h6>
+        <div class="demo">
+          <ui-button raised :disabled="disabled">Raised</ui-button>
+          <ui-button unelevated :disabled="disabled">Unelevated</ui-button>
+        </div>
+      </section>
+
+      <section class="demo-wrapper">
+        <h6 :class="$tt('headline6')">1.4 Icon button</h6>
+        <div class="demo">
+          <ui-button icon="favorite" :disabled="disabled">Icon</ui-button>
+          <ui-button :disabled="disabled">
+            Trailing Icon
+            <template #after="{ iconClass }">
+              <svg-logo :class="iconClass"></svg-logo>
+            </template>
+          </ui-button>
+        </div>
+      </section>
+
+      <section class="demo-wrapper">
+        <h6 :class="$tt('headline6')">1.5 Button link</h6>
+        <div class="demo">
+          <a v-button href="javascript:void(0)">Link</a>
+          <router-link v-button :to="{ name: 'actions.button' }">
+            Router Link
+          </router-link>
+        </div>
+      </section>
+
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
   </docs-page>

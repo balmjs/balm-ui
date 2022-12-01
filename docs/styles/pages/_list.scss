@@ -1,7 +1,7 @@
 @use '@material/elevation/mixins' as elevation-mixins;
 @use '@material/theme' as color;
 
-.page-data-display_list {
+.page-containment_list {
   .mdc-deprecated-list,
   .mdc-deprecated-list-group {
     max-width: 600px;

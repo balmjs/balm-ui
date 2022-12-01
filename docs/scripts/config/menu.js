@@ -3,10 +3,10 @@ const MATERIAL_COMPONENTS = [
     name: 'guide',
     children: [
       {
-        name: 'intro'
+        name: 'introduction'
       },
       {
-        name: 'quickstart'
+        name: 'quick-start'
       },
       {
         name: 'advanced'
@@ -24,15 +24,15 @@ const MATERIAL_COMPONENTS = [
   },
   '-',
   {
-    name: 'theme',
+    name: 'styles',
     children: [
       {
         icon: 'palette',
         name: 'color'
       },
       {
-        icon: 'text_fields',
-        name: 'typography'
+        icon: 'layers',
+        name: 'elevation'
       },
       {
         icon: 'emoji_symbols',
@@ -41,12 +41,16 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'category',
         name: 'shape'
+      },
+      {
+        icon: 'text_fields',
+        name: 'typography'
       }
     ]
   },
   '-',
   {
-    name: 'general',
+    name: 'actions',
     children: [
       {
         icon: 'add_box',
@@ -68,177 +72,23 @@ const MATERIAL_COMPONENTS = [
   },
   '-',
   {
-    name: 'layout',
-    children: [
-      {
-        icon: 'web',
-        name: 'top-app-bar'
-      },
-      {
-        icon: 'grid_on',
-        name: 'grid'
-      },
-      {
-        icon: 'view_list',
-        name: 'form'
-      },
-      {
-        icon: 'horizontal_rule',
-        name: 'divider'
-      }
-    ]
-  },
-  '-',
-  {
-    name: 'navigation',
-    children: [
-      {
-        icon: 'vertical_split',
-        name: 'drawer'
-      },
-      {
-        icon: 'tab',
-        name: 'tabs'
-      },
-      {
-        icon: 'menu',
-        name: 'menu'
-      },
-      {
-        icon: 'pages',
-        name: 'pagination'
-      },
-      {
-        icon: 'video_label',
-        name: 'navigation-bar',
-        next: true
-      }
-      // {
-      //   icon: 'view_sidebar',
-      //   name: 'navigation-rail',
-      //   next: true
-      // }
-    ]
-  },
-  '-',
-  {
-    name: 'data-input',
-    children: [
-      {
-        icon: 'text_format',
-        name: 'textfield'
-      },
-      {
-        icon: 'text_format',
-        name: 'autocomplete'
-      },
-      {
-        icon: 'wysiwyg',
-        name: 'editor',
-        plus: true
-      },
-      {
-        icon: 'menu',
-        name: 'select'
-      },
-      {
-        icon: 'check_box',
-        name: 'checkbox'
-      },
-      {
-        icon: 'radio_button_checked',
-        name: 'radio'
-      },
-      {
-        icon: 'indeterminate_check_box',
-        name: 'chips'
-      },
-      {
-        icon: 'file_upload',
-        name: 'file'
-      },
-      {
-        icon: 'today',
-        name: 'datepicker'
-      },
-      {
-        icon: 'date_range',
-        name: 'rangepicker'
-      },
-      {
-        icon: 'toggle_off',
-        name: 'switch'
-      },
-      {
-        icon: 'linear_scale',
-        name: 'slider'
-      },
-      {
-        icon: 'api',
-        name: 'validator'
-      }
-    ]
-  },
-  '-',
-  {
-    name: 'data-display',
-    children: [
-      {
-        icon: 'list',
-        name: 'list'
-      },
-      {
-        icon: 'view_comfy',
-        name: 'image-list'
-      },
-      // {
-      //   icon: 'image',
-      //   name: 'lazyload',
-      //   next: true
-      // },
-      {
-        icon: 'category',
-        name: 'card'
-      },
-      {
-        icon: 'table_view',
-        name: 'table'
-      },
-      {
-        icon: 'swap_vert',
-        name: 'collapse',
-        plus: true
-      },
-      {
-        icon: 'category',
-        name: 'badge'
-      },
-      {
-        icon: 'account_tree',
-        name: 'tree',
-        plus: true
-      }
-    ]
-  },
-  '-',
-  {
-    name: 'feedback',
+    name: 'communication',
     children: [
       {
         icon: 'feedback',
         name: 'alert'
       },
       {
-        icon: 'event_note',
-        name: 'dialog'
+        icon: 'category',
+        name: 'badge'
       },
       {
-        icon: 'event_note',
-        name: 'alert-dialog'
+        icon: 'trip_origin',
+        name: 'progress'
       },
       {
-        icon: 'event_note',
-        name: 'confirm-dialog'
+        icon: 'pending',
+        name: 'spinner'
       },
       {
         icon: 'call_to_action',
@@ -253,26 +103,170 @@ const MATERIAL_COMPONENTS = [
         name: 'banner'
       },
       {
-        icon: 'trip_origin',
-        name: 'progress'
-      },
-      {
-        icon: 'pending',
-        name: 'spinner'
+        icon: 'feedback',
+        name: 'tooltip'
       },
       {
         icon: 'notes',
         name: 'skeleton',
         plus: true
-      },
+      }
+    ]
+  },
+  '-',
+  {
+    name: 'containment',
+    children: [
       {
-        icon: 'feedback',
-        name: 'tooltip'
+        icon: 'grid_on',
+        name: 'grid'
       },
       {
         icon: 'video_label',
         name: 'bottom-sheet',
-        next: true
+        plus: true
+      },
+      {
+        icon: 'category',
+        name: 'card'
+      },
+      {
+        icon: 'event_note',
+        name: 'dialog'
+      },
+      {
+        icon: 'event_note',
+        name: 'alert-dialog'
+      },
+      {
+        icon: 'event_note',
+        name: 'confirm-dialog'
+      },
+      {
+        icon: 'horizontal_rule',
+        name: 'divider'
+      },
+      {
+        icon: 'list',
+        name: 'list'
+      },
+      {
+        icon: 'view_comfy',
+        name: 'image-list'
+      },
+      {
+        icon: 'view_list',
+        name: 'form'
+      },
+      {
+        icon: 'table_view',
+        name: 'table'
+      },
+      {
+        icon: 'account_tree',
+        name: 'tree',
+        plus: true
+      },
+      {
+        icon: 'swap_vert',
+        name: 'collapse'
+      }
+    ]
+  },
+  '-',
+  {
+    name: 'navigation',
+    children: [
+      {
+        icon: 'video_label',
+        name: 'navigation-bar',
+        plus: true
+      },
+      {
+        icon: 'vertical_split',
+        name: 'drawer'
+      },
+      // {
+      //   icon: 'view_sidebar',
+      //   name: 'navigation-rail',
+      //   plus: true
+      // },
+      {
+        icon: 'tab',
+        name: 'tabs'
+      },
+      {
+        icon: 'web',
+        name: 'top-app-bar'
+      },
+      {
+        icon: 'pages',
+        name: 'pagination'
+      }
+    ]
+  },
+  '-',
+  {
+    name: 'selection',
+    children: [
+      {
+        icon: 'indeterminate_check_box',
+        name: 'chips'
+      },
+      {
+        icon: 'menu',
+        name: 'menu'
+      },
+      {
+        icon: 'menu',
+        name: 'select'
+      },
+      {
+        icon: 'check_box',
+        name: 'checkbox'
+      },
+      {
+        icon: 'radio_button_checked',
+        name: 'radio'
+      },
+      {
+        icon: 'linear_scale',
+        name: 'slider'
+      },
+      {
+        icon: 'toggle_off',
+        name: 'switch'
+      },
+      {
+        icon: 'today',
+        name: 'datepicker'
+      },
+      {
+        icon: 'date_range',
+        name: 'rangepicker'
+      },
+      {
+        icon: 'file_upload',
+        name: 'file'
+      }
+    ]
+  },
+  '-',
+  {
+    name: 'text-inputs',
+    children: [
+      {
+        icon: 'text_format',
+        name: 'textfield'
+      },
+      {
+        icon: 'text_format',
+        name: 'autocomplete'
+      },
+      {
+        icon: 'wysiwyg',
+        name: 'editor',
+        plus: true
       }
     ]
   },
@@ -285,17 +279,16 @@ const MATERIAL_COMPONENTS = [
         name: 'event'
       },
       {
+        icon: 'api',
+        name: 'validator'
+      },
+      {
         icon: 'mouse',
-        name: 'debounce',
-        plus: true
+        name: 'debounce'
       },
       {
         icon: 'texture',
         name: 'ripple'
-      },
-      {
-        icon: 'layers',
-        name: 'elevation'
       },
       {
         icon: 'anchor',
@@ -353,8 +346,7 @@ for (let component of MATERIAL_COMPONENTS) {
           icon: subComponent.icon,
           name: subComponent.name,
           url,
-          plus: subComponent.plus || false,
-          next: subComponent.next || false
+          plus: subComponent.plus || false
         });
       }
     }

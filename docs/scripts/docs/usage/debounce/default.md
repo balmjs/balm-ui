@@ -1,6 +1,6 @@
 ```js
 import Vue from 'vue';
-import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
+import BalmUI from 'balm-ui';
 
-Vue.use(BalmUIPlus);
+Vue.use(BalmUI);
 ```

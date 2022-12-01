@@ -7,7 +7,7 @@
     <div :class="[$tt('body2'), 'pure-docs']">
       <p :class="$tt('subtitle1')">{{ $t('home.slogan') }}</p>
       <p :class="$tt('subtitle2')">{{ $t('home.title') }}</p>
-      <ui-button raised @click="$router.push({ name: 'guide.intro' })">
+      <ui-button raised @click="$router.push({ name: 'guide.introduction' })">
         {{ $t('home.get-started') }}
       </ui-button>
     </div>

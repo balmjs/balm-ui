@@ -1,6 +1,6 @@
 @use '@material/image-list/mixins' as image-list-mixins;
 
-.page-data-display_image-list {
+.page-containment_image-list {
   .hero-image-list {
     @include image-list-mixins.standard-columns(5);
     width: 300px;

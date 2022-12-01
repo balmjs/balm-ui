@@ -1,6 +1,6 @@
 import { isProd } from '@/config';
 
-const GA_MEASUREMENT_ID = 'UA-180329604-1';
+const GA_MEASUREMENT_ID = 'G-KL224V1QB5';
 
 let myGtag = null;
 

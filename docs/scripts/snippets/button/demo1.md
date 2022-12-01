@@ -1,6 +1,7 @@
 ```html
-<ui-button>Standard</ui-button>
+<ui-button>Text</ui-button>
 <ui-button outlined>Outlined</ui-button>
+
 <ui-button raised>Raised</ui-button>
 <ui-button unelevated>Unelevated</ui-button>
 

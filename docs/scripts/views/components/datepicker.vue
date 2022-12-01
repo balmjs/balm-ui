@@ -55,7 +55,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">
         4. Simple range calendar (Customized rangepicker:
-        <router-link :to="{ name: 'data-input.rangepicker' }"
+        <router-link :to="{ name: 'selection.rangepicker' }"
           >&lt;ui-rangepicker&gt;</router-link
         >)
       </h6>

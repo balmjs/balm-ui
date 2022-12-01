@@ -1,5 +1,5 @@
 <template>
-  <switch-theme v-if="$route.name === 'theme.color'"></switch-theme>
+  <switch-theme v-if="$route.name === 'styles.color'"></switch-theme>
   <div class="top-app-toolbar">
     <!-- For dark theme test -->
     <!-- <ui-icon-button

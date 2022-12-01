@@ -6,22 +6,22 @@ const SegmentedButton = () => import('@/views/components/segmented-button');
 export default [
   {
     path: 'button',
-    name: 'general.button',
+    name: 'actions.button',
     component: Button
   },
   {
     path: 'fab',
-    name: 'general.fab',
+    name: 'actions.fab',
     component: Fab
   },
   {
     path: 'icon-button',
-    name: 'general.icon-button',
+    name: 'actions.icon-button',
     component: IconButton
   },
   {
     path: 'segmented-button',
-    name: 'general.segmented-button',
+    name: 'actions.segmented-button',
     component: SegmentedButton
   }
 ];

@@ -1,4 +1,5 @@
-const Drawer = () => import('@/views/drawer/index');
+const NavigationBar = () => import('@/views/components/navigation-bar');
+const NavigationDrawer = () => import('@/views/drawer/index');
 const PermanentDrawerAboveToolbar = () =>
   import('@/views/drawer/permanent-drawer-above-toolbar');
 const PermanentDrawerBelowToolbar = () =>
@@ -8,17 +9,22 @@ const DismissibleDrawerFullHeightDrawer = () =>
 const DismissibleDrawerBelowTopAppBar = () =>
   import('@/views/drawer/dismissible-drawer-below-top-app-bar');
 const ModalDrawer = () => import('@/views/drawer/modal-drawer');
-const Tabs = () => import('@/views/components/tabs');
-const Menu = () => import('@/views/components/menu');
-const Pagination = () => import('@/views/components/pagination');
-const NavigationBar = () => import('@/views/components/navigation-bar');
 const NavigationRail = () => import('@/views/components/navigation-rail');
+const Tabs = () => import('@/views/components/tabs');
+const TopAppBar = () => import('@/views/components/top-app-bar');
+const Pagination = () => import('@/views/components/pagination');
 
 export default [
   {
+    path: 'navigation-bar',
+    name: 'navigation.navigation-bar',
+    component: NavigationBar,
+    meta: { noLayout: true }
+  },
+  {
     path: 'drawer',
     name: 'navigation.drawer',
-    component: Drawer
+    component: NavigationDrawer
   },
   {
     path: 'permanent-drawer-above-toolbar',
@@ -51,30 +57,25 @@ export default [
     meta: { noLayout: true }
   },
   {
+    path: 'navigation-rail',
+    name: 'navigation.navigation-rail',
+    component: NavigationRail,
+    meta: { noLayout: true }
+  },
+  {
     path: 'tabs',
     name: 'navigation.tabs',
     component: Tabs
   },
   {
-    path: 'menu',
-    name: 'navigation.menu',
-    component: Menu
+    path: 'top-app-bar',
+    name: 'navigation.top-app-bar',
+    component: TopAppBar,
+    meta: { noLayout: true }
   },
   {
     path: 'pagination',
     name: 'navigation.pagination',
     component: Pagination
-  },
-  {
-    path: 'navigation-bar',
-    name: 'navigation.navigation-bar',
-    component: NavigationBar,
-    meta: { noLayout: true }
-  },
-  {
-    path: 'navigation-rail',
-    name: 'navigation.navigation-rail',
-    component: NavigationRail,
-    meta: { noLayout: true }
   }
 ];

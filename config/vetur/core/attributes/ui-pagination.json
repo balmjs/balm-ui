@@ -27,6 +27,10 @@
     "type": "string",
     "description": "The page total of text."
   },
+  "unit-text": {
+    "type": "string",
+    "description": "The page total unit text."
+  },
   "show-jumper": {
     "type": "boolean",
     "description": "Determine whether you can jump to pages directly."

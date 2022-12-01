@@ -22,7 +22,7 @@ function getConfig(balm) {
     ? {
         modules: false,
         useBuiltIns: 'entry',
-        corejs: { version: '3.24', proposals: true }
+        corejs: { version: '3.26', proposals: true }
       }
     : {
         modules: false
@@ -105,6 +105,13 @@ function getConfig(balm) {
             umdNamedDefine: true
           },
       loaders: [
+        // NOTE: https://github.com/webpack/webpack/issues/11467#issuecomment-691873586
+        {
+          test: /\.m?js/,
+          resolve: {
+            fullySpecified: false
+          }
+        },
         {
           test: /\.md$/,
           use: ['html-loader', 'markdown-loader']

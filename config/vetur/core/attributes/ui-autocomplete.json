@@ -55,6 +55,10 @@
     "type": "boolean",
     "description": "Styles the autocomplete suggestion value as a strong text."
   },
+  "filter-keywords": {
+    "type": "boolean",
+    "description": "Enables the filter keywords suggestion."
+  },
   "fullwidth": {
     "type": "boolean",
     "description": "Styles the autocomplete as a full width text field."
@@ -74,5 +78,9 @@
   "with-trailing-icon": {
     "type": "boolean",
     "description": "Styles the autocomplete as a text field with a trailing icon."
+  },
+  "inside": {
+    "type": "boolean",
+    "description": "Styles for the overflow inside component (e.g. in `<ui-dialog>`)"
   }
 }

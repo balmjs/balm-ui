@@ -237,10 +237,14 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
      * Handles data table row click event.
      */
     MDCDataTableFoundation.prototype.handleRowClick = function (_a) {
-        var rowId = _a.rowId, row = _a.row;
+        var rowId = _a.rowId, row = _a.row, altKey = _a.altKey, ctrlKey = _a.ctrlKey, metaKey = _a.metaKey, shiftKey = _a.shiftKey;
         this.adapter.notifyRowClick({
             rowId: rowId,
             row: row,
+            altKey: altKey,
+            ctrlKey: ctrlKey,
+            metaKey: metaKey,
+            shiftKey: shiftKey,
         });
     };
     /**

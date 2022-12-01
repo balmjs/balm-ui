@@ -49,6 +49,7 @@ var MDCTextFieldCharacterCounterFoundation = /** @class */ (function (_super) {
         get: function () {
             return {
                 setContent: function () { return undefined; },
+                setCounterValue: function () { return undefined; },
             };
         },
         enumerable: false,
@@ -57,6 +58,7 @@ var MDCTextFieldCharacterCounterFoundation = /** @class */ (function (_super) {
     MDCTextFieldCharacterCounterFoundation.prototype.setCounterValue = function (currentLength, maxLength) {
         currentLength = Math.min(currentLength, maxLength);
         this.adapter.setContent(currentLength + " / " + maxLength);
+        this.adapter.setCounterValue(currentLength, maxLength);
     };
     return MDCTextFieldCharacterCounterFoundation;
 }(MDCFoundation));

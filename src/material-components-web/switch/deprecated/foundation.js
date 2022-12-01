@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 import { __assign, __extends } from "tslib";
-import { MDCFoundation } from '@material/base/foundation';
+import { MDCFoundation } from '../../base/foundation';
 import { cssClasses, strings } from './constants';
 var MDCSwitchFoundation = /** @class */ (function (_super) {
     __extends(MDCSwitchFoundation, _super);

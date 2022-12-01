@@ -24,16 +24,16 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use 'sass:math';
-@use '@material/density/functions' as density-functions;
-@use '@material/elevation/mixins' as elevation-mixins;
-@use '@material/feature-targeting/feature-targeting';
-@use '@material/ripple/ripple';
-@use '@material/ripple/ripple-theme';
-@use '@material/rtl/rtl';
-@use '@material/theme/theme';
+@use '../../density/functions' as density-functions;
+@use '../../elevation/mixins' as elevation-mixins;
+@use '../../feature-targeting/feature-targeting';
+@use '../../ripple/ripple';
+@use '../../ripple/ripple-theme';
+@use '../../rtl/rtl';
+@use '../../theme/theme';
 @use './functions';
 @use './variables';
-@use '@material/dom/mixins' as dom-mixins;
+@use '../../dom/mixins' as dom-mixins;
 
 // Temporary suffix to add to shared selectors between versions for migration
 $deprecated-suffix: '-deprecated' !default;

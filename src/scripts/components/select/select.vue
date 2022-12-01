@@ -267,11 +267,8 @@ onMounted(() => {
 
       if (hasOptions) {
         const selected = getSelected(detail.index);
-        // fix(ui): twice trigger
-        if (state.selectedValue !== selected.value) {
-          emit(UI_SELECT.EVENTS.CHANGE, selected.value);
-          emit(UI_SELECT.EVENTS.SELECTED, selected);
-        }
+        emit(UI_SELECT.EVENTS.CHANGE, selected.value);
+        emit(UI_SELECT.EVENTS.SELECTED, selected);
       }
     });
   });

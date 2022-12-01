@@ -43,6 +43,8 @@ $primary-light-theme: (
   container-elevation: elevation-theme.get-elevation(0),
   container-height: 48px,
   container-shape: 0,
+  divider-color: null,
+  divider-height: null,
   inactive-focus-state-layer-color: theme-color.$on-surface,
   inactive-focus-state-layer-opacity: 0.12,
   inactive-hover-state-layer-color: theme-color.$on-surface,
@@ -67,8 +69,8 @@ $primary-light-theme: (
   with-label-text-inactive-hover-label-text-color: theme-color.$on-surface,
   with-label-text-inactive-label-text-color: theme-color.$on-surface,
   with-label-text-inactive-pressed-label-text-color: theme-color.$on-surface,
-  with-label-text-label-text-font-family: typography.get-font(subhead2),
-  with-label-text-label-text-font-size: typography.get-size(subhead2),
+  with-label-text-label-text-font: typography.get-font(subhead2),
+  with-label-text-label-text-size: typography.get-size(subhead2),
   with-label-text-label-text-letter-spacing: typography.get-tracking(subhead2),
   with-label-text-label-text-line-height: typography.get-line-height(subhead2),
   with-label-text-label-text-weight: typography.get-weight(subhead2),
@@ -81,6 +83,8 @@ $secondary-light-theme: (
   container-height: null,
   container-shadow-color: null,
   container-shape: null,
+  divider-color: null,
+  divider-height: null,
   focus-label-text-color: null,
   focus-state-layer-color: null,
   focus-state-layer-opacity: null,
@@ -88,14 +92,19 @@ $secondary-light-theme: (
   hover-state-layer-color: null,
   hover-state-layer-opacity: null,
   inactive-label-text-color: null,
-  label-text-font-family: null,
-  label-text-font-size: null,
+  label-text-font: null,
+  label-text-size: null,
   label-text-letter-spacing: null,
   label-text-line-height: null,
   label-text-weight: null,
   pressed-label-text-color: null,
   pressed-state-layer-color: null,
   pressed-state-layer-opacity: null,
+  with-icon-active-icon-color: null,
+  with-icon-focus-icon-color: null,
+  with-icon-hover-icon-color: null,
+  with-icon-inactive-icon-color: null,
+  with-icon-pressed-icon-color: null,
 );
 
 $_ripple-target: '.mdc-tab__ripple';
@@ -148,6 +157,9 @@ $custom-property-prefix: 'tab';
   @include _container-height(map.get($theme, container-height));
   @include _container-shape(map.get($theme, container-shape));
 
+  @include _divider-color(map.get($theme, divider-color));
+  @include _divider-height(map.get($theme, divider-height));
+
   @include _with-icon-and-label-text-container-height(
     map.get($theme, with-icon-and-label-text-container-height)
   );
@@ -191,10 +203,10 @@ $custom-property-prefix: 'tab';
   );
 
   @include _label-text-font-family(
-    map.get($theme, with-label-text-label-text-font-family)
+    map.get($theme, with-label-text-label-text-font)
   );
   @include _label-text-font-size(
-    map.get($theme, with-label-text-label-text-font-size)
+    map.get($theme, with-label-text-label-text-size)
   );
   @include _label-text-letter-spacing(
     map.get($theme, with-label-text-label-text-letter-spacing)
@@ -222,10 +234,45 @@ $custom-property-prefix: 'tab';
     )
   );
 
+  // TODO(b/191298796): Use independent state layer color mixins when available.
+  @include _inactive-state-layer-color(
+    map.get($theme, hover-state-layer-color) or
+      map.get($theme, focus-state-layer-color) or
+      map.get($theme, pressed-state-layer-color)
+  );
+  @include _inactive-state-layer-opacity(
+    (
+      hover: map.get($theme, hover-state-layer-opacity),
+      focus: map.get($theme, focus-state-layer-opacity),
+      pressed: map.get($theme, pressed-state-layer-opacity),
+    )
+  );
+
   @include _container-color(map.get($theme, container-color));
   @include _container-elevation(map.get($theme, container-elevation));
   @include _container-height(map.get($theme, container-height));
   @include _container-shape(map.get($theme, container-shape));
+
+  @include _divider-color(map.get($theme, divider-color));
+  @include _divider-height(map.get($theme, divider-height));
+
+  @include _active-icon-color(
+    (
+      default: map.get($theme, with-icon-active-icon-color),
+      hover: map.get($theme, with-icon-hover-icon-color),
+      focus: map.get($theme, with-icon-focus-icon-color),
+      pressed: map.get($theme, with-icon-pressed-icon-color),
+    )
+  );
+
+  @include _inactive-icon-color(
+    (
+      default: map.get($theme, with-icon-inactive-icon-color),
+      hover: map.get($theme, with-icon-hover-icon-color),
+      focus: map.get($theme, with-icon-focus-icon-color),
+      pressed: map.get($theme, with-icon-pressed-icon-color),
+    )
+  );
 
   @include _active-label-text-color(
     (
@@ -237,11 +284,16 @@ $custom-property-prefix: 'tab';
   );
 
   @include _inactive-label-text-color(
-    map.get($theme, inactive-label-text-color)
+    (
+      default: map.get($theme, inactive-label-text-color),
+      hover: map.get($theme, hover-label-text-color),
+      focus: map.get($theme, focus-label-text-color),
+      pressed: map.get($theme, pressed-label-text-color),
+    )
   );
 
-  @include _label-text-font-family(map.get($theme, label-text-font-family));
-  @include _label-text-font-size(map.get($theme, label-text-font-size));
+  @include _label-text-font-family(map.get($theme, label-text-font));
+  @include _label-text-font-size(map.get($theme, label-text-size));
   @include _label-text-letter-spacing(
     map.get($theme, label-text-letter-spacing)
   );
@@ -444,6 +496,7 @@ $custom-property-prefix: 'tab';
   );
 }
 
+// TODO(b/191298796): support focused & pressed key colors.
 @mixin _state-layer-color($color) {
   @include ripple-theme.states-base-color(
     $color,
@@ -480,6 +533,14 @@ $custom-property-prefix: 'tab';
 
 @mixin _container-shape($shape-radius) {
   @include theme.property(border-radius, $shape-radius);
+}
+
+@mixin _divider-color($color) {
+  @include theme.property('border-bottom-color', $color);
+}
+
+@mixin _divider-height($height) {
+  @include theme.property('border-bottom-width', $height);
 }
 
 @mixin _icon-size($size) {

@@ -63,6 +63,10 @@ var MDCDataTable = /** @class */ (function (_super) {
             _this.foundation.handleRowClick({
                 rowId: _this.getRowIdByRowElement(dataRowEl),
                 row: dataRowEl,
+                altKey: event.altKey,
+                ctrlKey: event.ctrlKey,
+                metaKey: event.metaKey,
+                shiftKey: event.shiftKey,
             });
         };
         this.content.addEventListener('click', this.handleContentClick);

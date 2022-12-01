@@ -47,6 +47,7 @@ var MDCTextFieldCharacterCounter = /** @class */ (function (_super) {
             setContent: function (content) {
                 _this.root.textContent = content;
             },
+            setCounterValue: function () { return undefined; },
         };
         return new MDCTextFieldCharacterCounterFoundation(adapter);
     };

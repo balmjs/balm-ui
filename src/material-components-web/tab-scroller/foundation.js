@@ -184,7 +184,7 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
             return 0;
         }
         var matrixParams = match[1];
-        // tslint:disable-next-line:ban-ts-ignore "Unused vars" should be a linter warning, not a compiler error.
+        // tslint:disable-next-line:ban-ts-suppressions "Unused vars" should be a linter warning, not a compiler error.
         // @ts-ignore These unused variables should retain their semantic names for clarity.
         var _a = __read(matrixParams.split(','), 6), a = _a[0], b = _a[1], c = _a[2], d = _a[3], tx = _a[4], ty = _a[5];
         return parseFloat(tx); // tslint:disable-line:ban

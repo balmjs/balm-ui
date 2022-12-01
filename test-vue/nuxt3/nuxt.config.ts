@@ -1,11 +1,15 @@
-import { defineNuxtConfig } from 'nuxt3';
-
-// https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   alias: {
-    vue: 'vue/dist/vue.esm-bundler.js',
     'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.esm.js'
   },
   css: ['balm-ui/dist/balm-ui.css'],
+  hooks: {
+    'vite:extendConfig': (config, { isClient }) => {
+      if (isClient) {
+        config.resolve.alias.vue = 'vue/dist/vue.esm-bundler.js';
+      }
+    }
+  },
   ssr: false // TODO
 });

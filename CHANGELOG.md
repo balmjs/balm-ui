@@ -2,6 +2,13 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+
+## v10.13.0 / 2022-12-01
+
+### Features
+
+- update `mdc@15.0.0-canary.3a1f46c66.0`
+
 ## v10.12.0 / 2022-09-26
 
 ### Chore

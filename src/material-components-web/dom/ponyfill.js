@@ -37,7 +37,6 @@ export function closest(element, selector) {
     }
     return null;
 }
-/** Element.matches with support for webkit and IE. */
 export function matches(element, selector) {
     var nativeMatches = element.matches
         || element.webkitMatchesSelector

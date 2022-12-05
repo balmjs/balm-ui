@@ -255,9 +255,6 @@
 
 @mixin base_ {
   display: inline-block;
-  &[hidden] {
-    display: none;
-  }
   position: relative;
   flex: 0 0 checkbox-theme.$icon-size;
   box-sizing: content-box;

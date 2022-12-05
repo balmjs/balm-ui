@@ -47,7 +47,6 @@
       }
 
       @include height(1px);
-      @include active-height(2px);
 
       &::before {
         z-index: 1;
@@ -55,6 +54,7 @@
 
       &::after {
         transform: scaleX(0);
+        border-bottom-width: 2px;
         opacity: 0;
         z-index: 2;
       }
@@ -84,13 +84,7 @@
 
 @mixin height($height) {
   &::before {
-    @include theme.property(border-bottom-width, $height);
-  }
-}
-
-@mixin active-height($height) {
-  &::after {
-    @include theme.property(border-bottom-width, $height);
+    border-bottom-width: $height;
   }
 }
 

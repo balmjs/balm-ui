@@ -2,6 +2,11 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.13.1 / 2022-12-05
+
+### Reverts
+
+- revert deps `mdc@14.0.0`
 
 ## v10.13.0 / 2022-12-01
 

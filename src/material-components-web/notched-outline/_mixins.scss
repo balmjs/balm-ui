@@ -24,7 +24,6 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use 'sass:list';
-@use 'sass:meta';
 @use '../theme/custom-properties';
 @use '../theme/theme';
 @use '../shape/functions' as shape-functions;
@@ -143,7 +142,7 @@
   .mdc-notched-outline__notch,
   .mdc-notched-outline__trailing {
     @include feature-targeting.targets($feat-structure) {
-      @include theme.property(border-width, $width);
+      border-width: $width;
     }
   }
 }
@@ -313,16 +312,11 @@
   $query: feature-targeting.all()
 ) {
   $feat-structure: feature-targeting.create-target($query, structure);
-  $float-positionY: if(
-    meta.type-of($positionY) == 'calculation',
-    calc($positionY + variables.$label-adjust-absolute),
-    $positionY + variables.$label-adjust-absolute
-  );
 
   @include floating-label-mixins.float-position(
-    $float-positionY,
+    $positionY + variables.$label-adjust-absolute,
     $positionX,
-    $scale: 1,
+    1,
     $query: $query
   );
 

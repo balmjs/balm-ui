@@ -81,8 +81,7 @@ $light-theme: (
 $custom-property-prefix: 'dialog';
 
 @mixin theme($theme, $resolvers: resolvers.$material) {
-  // TODO(b/251881053): Replace with `validate-theme`.
-  @include theme.validate-theme-styles($light-theme, $theme);
+  @include theme.validate-theme-keys($light-theme, $theme);
   $theme: _resolve-elevation($theme, map.get($resolvers, elevation));
   @include keys.declare-custom-properties(
     $theme,
@@ -91,7 +90,7 @@ $custom-property-prefix: 'dialog';
 }
 
 @mixin theme-styles($theme, $resolvers: resolvers.$material) {
-  @include theme.validate-theme-styles($light-theme, $theme);
+  @include theme.validate-theme-keys($light-theme, $theme);
   $theme: keys.create-theme-properties(
     $theme,
     $prefix: $custom-property-prefix

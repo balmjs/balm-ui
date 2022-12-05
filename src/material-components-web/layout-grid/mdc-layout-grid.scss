@@ -18,9 +18,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// stylelint-disable selector-class-pattern --
-// Selector '.mdc-*' should only be used in this project.
-
 @use 'sass:list';
 @use 'sass:map';
 @use './variables';
@@ -77,10 +74,12 @@
 
       @for $span from 1 through map.get(variables.$columns, $upper-breakpoint) {
         // Span classes.
+        // stylelint-disable max-nesting-depth
         @at-root .mdc-layout-grid__cell--span-#{$span},
           .mdc-layout-grid__cell--span-#{$span}-#{$size} {
           @include mixins.cell-span_($size, $span, $gutter);
         }
+        // stylelint-enable max-nesting-depth
       }
     }
   }

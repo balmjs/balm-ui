@@ -25,7 +25,6 @@
 @use '../density/variables' as density-variables;
 @use '../floating-label/variables' as floating-label-variables;
 @use '../notched-outline/variables' as notched-outline-variables;
-@use '../theme/custom-properties';
 @use '../theme/theme-color';
 
 ///
@@ -35,23 +34,8 @@
 ///     wrap label in a child element to apply `transitionY(-50%)` to automatically offset based on box height.
 ///
 @function get-outlined-label-position-y($text-field-height) {
-  $offset: math.div(notched-outline-variables.$label-box-height, 2);
-
-  // If $text-field-height is not a primitive value, but a custom property or a custom property map,
-  // we cannot compute the label Y position at compilation time.
-  // We will have to defer it to the browser, using calc().
-  @if custom-properties.is-custom-prop($text-field-height) {
-    $text-field-height: custom-properties.get-declaration-value(
-      $text-field-height
-    );
-    @return calc($offset + $text-field-height / 2); // Evaluated in the browser.
-  }
-
-  @if custom-properties.is-custom-prop-string($text-field-height) {
-    @return calc($offset + $text-field-height / 2); // Evaluated in the browser.
-  }
-
-  @return $offset + math.div($text-field-height, 2); // Evaluated statically.
+  @return math.div($text-field-height, 2) +
+    math.div(notched-outline-variables.$label-box-height, 2);
 }
 
 $error: error !default;
@@ -112,7 +96,7 @@ $textarea-disabled-background: rgba(249, 249, 249, 1) !default;
 $ripple-target: '.mdc-text-field__ripple';
 $outlined-stroke-width: 2px !default;
 $height: 56px !default;
-$minimum-height: 36px !default;
+$minimum-height: 40px !default;
 $minimum-height-for-filled-label: 52px !default;
 $maximum-height: $height !default;
 $padding-horizontal: 16px !default;

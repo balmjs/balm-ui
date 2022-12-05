@@ -3,6 +3,8 @@
 
 @forward "../../density/variables" as mdc-density-*;
 @forward "../../base/mixins" as mdc-base-*;
+@forward "../../feature-targeting/variables" as mdc-feature-*;
+@forward "../../feature-targeting/mixins" as mdc-feature-*;
 @forward "../../theme/variables" as mdc-theme-*;
 @forward "../../animation/variables" as mdc-animation-*;
 @forward "../../elevation/variables" as mdc-elevation-*;

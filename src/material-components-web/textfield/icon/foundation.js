@@ -122,8 +122,7 @@ var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
     };
     MDCTextFieldIconFoundation.prototype.handleInteraction = function (evt) {
         var isEnterKey = evt.key === 'Enter' || evt.keyCode === 13;
-        var isSpaceKey = evt.key === ' ';
-        if (evt.type === 'click' || isEnterKey || isSpaceKey) {
+        if (evt.type === 'click' || isEnterKey) {
             evt.preventDefault(); // stop click from causing host label to focus
             // input
             this.adapter.notifyIconAction();

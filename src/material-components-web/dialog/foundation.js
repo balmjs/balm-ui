@@ -145,9 +145,7 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
         // animation
         this.runNextAnimationFrame(function () {
             _this.adapter.addClass(cssClasses.OPEN);
-            if (!dialogOptions || !dialogOptions.isScrimless) {
-                _this.adapter.addBodyClass(cssClasses.SCROLL_LOCK);
-            }
+            _this.adapter.addBodyClass(cssClasses.SCROLL_LOCK);
             _this.layout();
             _this.animationTimer = setTimeout(function () {
                 _this.handleAnimationTimerEnd();

@@ -20,14 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __assign, __extends, __makeTemplateObject, __read, __spreadArray } from "tslib";
+import { __assign, __extends, __read, __spreadArray } from "tslib";
 import { MDCComponent } from '../../base/component';
 import { applyPassive } from '../../dom/events';
 import { matches } from '../../dom/ponyfill';
 import { MDCRipple } from '../../ripple/component';
 import { MDCRippleFoundation } from '../../ripple/foundation';
-import { safeAttrPrefix } from 'safevalues';
-import { safeElement } from 'safevalues/dom';
 import { MDCSwitchFoundation } from './foundation';
 var MDCSwitch = /** @class */ (function (_super) {
     __extends(MDCSwitch, _super);
@@ -72,7 +70,7 @@ var MDCSwitch = /** @class */ (function (_super) {
             setNativeControlDisabled: function (disabled) { return _this.nativeControl.disabled =
                 disabled; },
             setNativeControlAttr: function (attr, value) {
-                safeElement.setPrefixedAttribute([safeAttrPrefix(templateObject_1 || (templateObject_1 = __makeTemplateObject(["aria-"], ["aria-"])))], _this.nativeControl, attr, value);
+                _this.nativeControl.setAttribute(attr, value);
             },
         };
         return new MDCSwitchFoundation(adapter);
@@ -132,5 +130,4 @@ var MDCSwitch = /** @class */ (function (_super) {
     return MDCSwitch;
 }(MDCComponent));
 export { MDCSwitch };
-var templateObject_1;
 //# sourceMappingURL=component.js.map

@@ -1,3 +1,5 @@
+@forward "../feature-targeting/variables" as mdc-feature-*;
+@forward "../feature-targeting/mixins" as mdc-feature-*;
 @forward "constants" as mdc-theme-*;
 @forward "variables" as mdc-theme-*;
 @forward "mixins" as mdc-theme-*;

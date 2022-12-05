@@ -25,7 +25,7 @@ const DMC_COMPONENTS = [
   'fab',
   'feature-targeting', // New in mdc@0.44.0
   'floating-label',
-  'focus', // New in mdc@15.0.0
+  // 'focus', // New in mdc@15.0.0
   'focus-ring', // New in mdc@14.0.0
   'form-field',
   'icon-button', // New in mdc@0.36.0
@@ -53,7 +53,7 @@ const DMC_COMPONENTS = [
   'tab-scroller', // New in mdc@0.38.0
   'textfield',
   'theme',
-  'tokens',
+  // 'tokens',
   'tooltip', // New in mdc@8.0.0
   'top-app-bar', // New in mdc@0.32.0
   'touch-target', // New in mdc@4.0.0

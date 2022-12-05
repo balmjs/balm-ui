@@ -20,15 +20,14 @@
 // THE SOFTWARE.
 //
 
-// stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
+// stylelint-disable selector-class-pattern --
+// TODO: document why this disable is neccessary
 
 @use 'sass:math';
 @use 'sass:list';
 @use 'sass:meta';
-@use 'sass:map';
 @use '../animation/animation';
-@use '../theme/css';
 @use '../density/functions' as density-functions;
 @use '../dom/dom';
 @use '../floating-label/mixins' as floating-label-mixins;
@@ -50,13 +49,6 @@
 @use 'icon/variables' as icon-variables;
 @use './variables';
 @use '../rtl/rtl';
-
-$_density-config: map.merge(
-  variables.$density-config,
-  (
-    minimum: math.min(variables.$minimum-height, 36px),
-  )
-);
 
 @mixin core-styles($query: feature-targeting.all()) {
   @include ripple($query);
@@ -245,6 +237,8 @@ $_density-config: map.merge(
   }
 
   // postcss-bem-linter: define text-field-helper-text
+  // stylelint-disable plugin/selector-bem-pattern --
+  // TODO: document why this disable is neccessary
   .mdc-text-field-helper-line {
     @include feature-targeting.targets($feat-structure) {
       display: flex;
@@ -259,6 +253,7 @@ $_density-config: map.merge(
       }
     }
   }
+  // stylelint-enable plugin/selector-bem-pattern
   // postcss-bem-linter: end
 
   // mdc-form-field tweaks to align text field label correctly
@@ -348,7 +343,7 @@ $_density-config: map.merge(
   $query: feature-targeting.all()
 ) {
   $height: density-functions.prop-value(
-    $density-config: $_density-config,
+    $density-config: variables.$density-config,
     $density-scale: $density-scale,
     $property-name: height,
   );
@@ -372,7 +367,7 @@ $_density-config: map.merge(
 ///
 @mixin outlined-density($density-scale, $query: feature-targeting.all()) {
   $height: density-functions.prop-value(
-    $density-config: $_density-config,
+    $density-config: variables.$density-config,
     $density-scale: $density-scale,
     $property-name: height,
   );
@@ -395,7 +390,7 @@ $_density-config: map.merge(
   $query: feature-targeting.all()
 ) {
   $height: density-functions.prop-value(
-    $density-config: $_density-config,
+    $density-config: variables.$density-config,
     $density-scale: $density-scale,
     $property-name: height,
   );
@@ -419,7 +414,7 @@ $_density-config: map.merge(
 ) {
   $feat-structure: feature-targeting.create-target($query, structure);
   $textfield-height: density-functions.prop-value(
-    $density-config: $_density-config,
+    $density-config: variables.$density-config,
     $density-scale: $density-scale,
     $property-name: height,
   );
@@ -547,7 +542,7 @@ $_density-config: map.merge(
     $property-name: top,
   );
   $textfield-height: density-functions.prop-value(
-    $density-config: $_density-config,
+    $density-config: variables.$density-config,
     $density-scale: $density-scale,
     $property-name: height,
   );
@@ -656,16 +651,11 @@ $_density-config: map.merge(
 ) {
   $feat-structure: feature-targeting.create-target($query, structure);
   @include feature-targeting.targets($feat-structure) {
-    @include theme.property(height, $height);
+    height: $height;
   }
 
-  // We can only hide the label (when there's not enough vertical space for it)
-  // if we know the container height at compilation time.
-  // That's not the case when $height is a custom property.
-  @if not custom-properties.is-custom-prop($height) {
-    @if $height < $minimum-height-for-filled-label {
-      @include _filled-no-label($query: $query);
-    }
+  @if $height < $minimum-height-for-filled-label {
+    @include _filled-no-label($query: $query);
   }
 }
 
@@ -803,56 +793,17 @@ $_density-config: map.merge(
   $rtl-reflexive: false,
   $query: feature-targeting.all()
 ) {
-  @if (meta.type-of($radius) == 'list') and
-    (list.length($radius) > 2) and
-    (list.nth($radius, 3) != 0 or list.nth($radius, 4) != 0)
-  {
+  @if meta.type-of($radius) == 'list' and list.length($radius) > 2 {
     @error "mdc-textfield: Invalid radius #{$radius}. Only top-left and top-right corners may be customized.";
   }
 
   $height: density-functions.prop-value(
-    $density-config: $_density-config,
+    $density-config: variables.$density-config,
     $density-scale: $density-scale,
     $property-name: height,
   );
 
   $masked-radius: shape-functions.mask-radius($radius, 1 1 0 0);
-
-  $fallback: if(
-    custom-properties.is-custom-prop($radius),
-    custom-properties.get-fallback($radius),
-    null
-  );
-
-  @if meta.type-of($fallback) == 'list' {
-    $fallback: css.unpack-value($fallback);
-    $first: list.nth($masked-radius, 1);
-    $second: list.nth($masked-radius, 2);
-    $third: list.nth($masked-radius, 3);
-    $fourth: list.nth($masked-radius, 4);
-    $masked-radius: (
-      if(
-        custom-properties.is-custom-prop($first),
-        custom-properties.set-fallback($first, list.nth($fallback, 1)),
-        $first
-      ),
-      if(
-        custom-properties.is-custom-prop($second),
-        custom-properties.set-fallback($second, list.nth($fallback, 2)),
-        $second
-      ),
-      if(
-        custom-properties.is-custom-prop($third),
-        custom-properties.set-fallback($third, list.nth($fallback, 3)),
-        $third
-      ),
-      if(
-        custom-properties.is-custom-prop($fourth),
-        custom-properties.set-fallback($fourth, list.nth($fallback, 4)),
-        $fourth
-      )
-    );
-  }
 
   @include shape-mixins.radius(
     $masked-radius,
@@ -1104,7 +1055,7 @@ $_density-config: map.merge(
 ) {
   $feat-structure: feature-targeting.create-target($query, structure);
   $height: density-functions.prop-value(
-    $density-config: $_density-config,
+    $density-config: variables.$density-config,
     $density-scale: $density-scale,
     $property-name: height,
   );
@@ -1638,9 +1589,7 @@ $_density-config: map.merge(
     @include feature-targeting.targets($feat-structure) {
       // TODO(b/154349735): Investigate the neccessity of these styles
       display: flex;
-      // stylelint-disable-next-line declaration-no-important --
-      // FF adds unwanted border in HC mode on windows.
-      border: none !important;
+      border: none !important; // FF adds unwanted border in HC mode on windows.
       background-color: transparent;
     }
   }
@@ -2012,6 +1961,9 @@ $_density-config: map.merge(
     max-height: 100%;
     max-width: 100%;
     min-height: variables.$height;
+    // stylelint-disable declaration-block-no-duplicate-properties --
+    // TODO: document why this disable is neccessary
+
     // 'stretch' is the preferred rule here. It will allow the textarea to grow
     // to the min/max width of the container, but if an explicit width is set,
     // it cannot be resized horizontally.
@@ -2025,6 +1977,7 @@ $_density-config: map.merge(
     min-width: -moz-available;
     /* @alternate */
     min-width: -webkit-fill-available;
+    // stylelint-enable declaration-block-no-duplicate-properties
     overflow: hidden;
     resize: both;
   }

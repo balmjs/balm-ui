@@ -407,8 +407,8 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         var availableRight;
         if (isAnchoredToRight) {
             availableLeft =
-                viewportDistance.left + anchorSize.width + this.anchorMargin.left;
-            availableRight = viewportDistance.right - this.anchorMargin.left;
+                viewportDistance.left + anchorSize.width + this.anchorMargin.right;
+            availableRight = viewportDistance.right - this.anchorMargin.right;
         }
         else {
             availableLeft = viewportDistance.left + this.anchorMargin.left;

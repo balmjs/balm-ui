@@ -327,14 +327,6 @@ var MDCSelect = /** @class */ (function (_super) {
             },
             setSelectedText: function (text) {
                 _this.selectedText.textContent = text;
-                var index = _this.menu.selectedIndex;
-                if (index === -1)
-                    return;
-                index = index instanceof Array ? index[0] : index;
-                var selectedItem = _this.menu.items[index];
-                if (!selectedItem)
-                    return;
-                _this.selectedText.setAttribute('aria-label', selectedItem.getAttribute('aria-label') || '');
             },
             isSelectAnchorFocused: function () { return document.activeElement === _this.selectAnchor; },
             getSelectAnchorAttr: function (attr) {

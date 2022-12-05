@@ -1,4 +1,6 @@
 @forward "../../rtl/variables" as mdc-rtl-*;
+@forward "../../feature-targeting/variables" as mdc-feature-*;
+@forward "../../feature-targeting/mixins" as mdc-feature-*;
 @forward "../../theme/variables" as mdc-theme-*;
 @forward "variables" as mdc-select-*;
 @forward "../../rtl/mixins" as mdc-* hide mdc-property-, mdc-reflexive, mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;

@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.13.2 / 2022-12-09
+
+### Bug Fixes
+
+- `<ui-tree>`: fix createNode bug
+
 ## v10.13.1 / 2022-12-05
 
 ### Reverts

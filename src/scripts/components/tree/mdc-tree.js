@@ -341,7 +341,7 @@ class MdcTree {
     const parentItem = nodeMap.get(parentKey);
     const nodeKey = originNodeData[value];
 
-    let item = getNode(nodeMap, dataFormat, originNodeData, {
+    let item = getNode(treeData, originNodeData, {
       level: parentItem.level + 1,
       parentKey,
       checked: false

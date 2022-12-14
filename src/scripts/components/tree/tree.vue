@@ -173,8 +173,8 @@ export default {
           MdcTree.resetSelected(this.treeData, oldVal);
         }
 
-        this.treeData.selectedValue = val;
         MdcTree.setSelected(this.treeData, val);
+        this.treeData.selectedValue = val;
       });
     },
     updateNode(type, parentKey, nodeData) {

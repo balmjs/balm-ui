@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.56.3 / 2022-12-14
+
+### Bug Fixes
+
+- `<ui-tree>`: fix: tree single select bug for manual mode
+
 ## v8.56.2 / 2022-12-09
 
 ### Bug Fixes

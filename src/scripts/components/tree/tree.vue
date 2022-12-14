@@ -178,8 +178,8 @@ function updateSelectedValue(val, oldVal = []) {
       MdcTree.resetSelected(state.treeData, oldVal);
     }
 
-    state.treeData.selectedValue = val;
     MdcTree.setSelected(state.treeData, val);
+    state.treeData.selectedValue = val;
   });
 }
 

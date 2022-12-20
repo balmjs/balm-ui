@@ -1,5 +1,5 @@
 <template>
-  <docs-page name="tree" demo-count="3">
+  <docs-page name="tree" demo-count="4">
     <template #hero>
       <h1 :class="$tt('headline1')">Tree</h1>
     </template>
@@ -54,6 +54,26 @@
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
+
+    <section class="demo-wrapper">
+      <h6 :class="$tt('headline6')">1.4 Use defaultExpandedKeys</h6>
+      <div class="demo">
+        <ui-tree
+          v-model="selectedValue4"
+          :data="treeData4"
+          :data-format="dataFormat"
+          :max-level="3"
+          auto-expand-parent
+          :default-expanded-keys="defaultKeys"
+        >
+          <p>selectedValue: {{ selectedValue4 }}</p>
+          <template #title="{ data }">
+            {{ data.title }}
+          </template>
+        </ui-tree>
+      </div>
+      <ui-snippet :code="$store.demos[4]"></ui-snippet>
+    </section>
   </docs-page>
 </template>
 
@@ -95,7 +115,41 @@ export default {
       selectedValue2: [],
       treeData3: [], // dig('0', -1),
       selectedValue3: ['0-0'],
-      keywords: ''
+      keywords: '',
+      defaultKeys: ['1', '1-1', '2', '2-1'],
+      selectedValue4: 'org2',
+      treeData4: [{
+        title: 'node1',
+        key: '1',
+        children: [
+          {
+            title: 'node1-1',
+            key: '1-1',
+            children: [
+              {
+                title: '2',
+                key: '2',
+                children: [
+                  {
+                    title: 'node2-1',
+                    key: '2-1',
+                  },
+                ],
+              },
+            ]
+          },
+          {
+            title: 'node1-2',
+            key: '1-2',
+            children: [
+              {
+                title: 'node1-2-1',
+                key: '1-2-1'
+              }
+            ]
+          }
+        ],
+      },]
     };
   },
   mounted() {

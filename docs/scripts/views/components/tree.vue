@@ -127,7 +127,7 @@ export default {
             key: '1-1',
             children: [
               {
-                title: '2',
+                title: 'node2',
                 key: '2',
                 children: [
                   {

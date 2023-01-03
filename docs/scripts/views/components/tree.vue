@@ -118,38 +118,40 @@ export default {
       keywords: '',
       defaultKeys: ['1', '1-1', '2', '2-1'],
       selectedValue4: 'org2',
-      treeData4: [{
-        title: 'node1',
-        key: '1',
-        children: [
-          {
-            title: 'node1-1',
-            key: '1-1',
-            children: [
-              {
-                title: 'node2',
-                key: '2',
-                children: [
-                  {
-                    title: 'node2-1',
-                    key: '2-1',
-                  },
-                ],
-              },
-            ]
-          },
-          {
-            title: 'node1-2',
-            key: '1-2',
-            children: [
-              {
-                title: 'node1-2-1',
-                key: '1-2-1'
-              }
-            ]
-          }
-        ],
-      },]
+      treeData4: [
+        {
+          title: 'node1',
+          key: '1',
+          children: [
+            {
+              title: 'node1-1',
+              key: '1-1',
+              children: [
+                {
+                  title: 'node2',
+                  key: '2',
+                  children: [
+                    {
+                      title: 'node2-1',
+                      key: '2-1'
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              title: 'node1-2',
+              key: '1-2',
+              children: [
+                {
+                  title: 'node1-2-1',
+                  key: '1-2-1'
+                }
+              ]
+            }
+          ]
+        }
+      ]
     };
   },
   mounted() {

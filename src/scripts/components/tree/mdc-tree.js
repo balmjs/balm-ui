@@ -289,7 +289,7 @@ class MdcTree {
 
       defaultExpandedKeys.includes(nodeKey) && this.onExpand(treeData, item);
       if (node.children && node.children.length) {
-        this.handleExpandKeys(treeData, node.children, defaultExpandedKeys)
+        this.handleExpandKeys(treeData, node.children, defaultExpandedKeys);
       }
     }
   }
@@ -304,7 +304,7 @@ class MdcTree {
 
     if (autoExpandParent) {
       if (defaultExpandedKeys.length) {
-        this.handleExpandKeys(treeData, nodeList, defaultExpandedKeys)
+        this.handleExpandKeys(treeData, nodeList, defaultExpandedKeys);
       } else {
         for await (let node of nodeList) {
           const nodeKey = node[dataFormat.value];

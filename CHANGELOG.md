@@ -2,6 +2,13 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.13.4 / 2023-01-03
+
+### Bug Fixes
+
+- `<ui-tree>`: fix expand all keys with props `defaultExpandedKeys` (thanks @guxuerui)
+- `vCopy`: fix textarea `readOnly` for boolean value (thanks @JiatLn)
+
 ## v10.13.3 / 2022-12-14
 
 ### Bug Fixes

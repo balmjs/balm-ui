@@ -280,6 +280,20 @@ class MdcTree {
     }
   }
 
+  static async handleExpandKeys(treeData, nodes, defaultExpandedKeys) {
+    const { dataFormat, nodeMap } = treeData;
+
+    for await (let node of nodes) {
+      const nodeKey = node[dataFormat.value];
+      const item = nodeMap.get(nodeKey);
+
+      defaultExpandedKeys.includes(nodeKey) && this.onExpand(treeData, item);
+      if (node.children && node.children.length) {
+        this.handleExpandKeys(treeData, node.children, defaultExpandedKeys);
+      }
+    }
+  }
+
   /** For init tree **/
   static async setExpanded(
     treeData,
@@ -289,17 +303,15 @@ class MdcTree {
     const { dataFormat, nodeMap } = treeData;
 
     if (autoExpandParent) {
-      const nodes = defaultExpandedKeys.length
-        ? nodeList.filter((node) =>
-            defaultExpandedKeys.includes(node[dataFormat.value])
-          )
-        : nodeList;
+      if (defaultExpandedKeys.length) {
+        this.handleExpandKeys(treeData, nodeList, defaultExpandedKeys);
+      } else {
+        for await (let node of nodeList) {
+          const nodeKey = node[dataFormat.value];
+          const item = nodeMap.get(nodeKey);
 
-      for await (let node of nodes) {
-        const nodeKey = node[dataFormat.value];
-        const item = nodeMap.get(nodeKey);
-
-        this.onExpand(treeData, item);
+          this.onExpand(treeData, item);
+        }
       }
     }
   }

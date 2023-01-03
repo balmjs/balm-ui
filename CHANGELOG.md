@@ -2,6 +2,13 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.56.4 / 2023-01-03
+
+### Bug Fixes
+
+- `<ui-tree>`: fix expand all keys with props `defaultExpandedKeys`
+- `vCopy`: fix textarea `readOnly` for boolean value
+
 ## v8.56.3 / 2022-12-14
 
 ### Bug Fixes

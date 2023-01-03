@@ -49,7 +49,7 @@ export default {
         ],
       },]
       selectedValue: '1',
-      defaultKeys: ['1', '1-1', '2', '2-1'],
+      defaultKeys: ['1', '1-1', '1-2', '2'],
     };
   }
 };

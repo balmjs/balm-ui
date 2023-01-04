@@ -116,8 +116,8 @@ export default {
       treeData3: [], // dig('0', -1),
       selectedValue3: ['0-0'],
       keywords: '',
-      defaultKeys: ['1', '1-1', '2', '2-1'],
-      selectedValue4: 'org2',
+      defaultKeys: ['1', '1-1', '1-2', '2'],
+      selectedValue4: '1',
       treeData4: [
         {
           title: 'node1',

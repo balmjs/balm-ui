@@ -3,6 +3,26 @@ const individual = require('./individual');
 
 const individualBuild = ['components', 'plugins', 'directives', 'utils'];
 
+function getWebpackOptions(library, libraryExport = undefined) {
+  return {
+    output: {
+      library,
+      libraryTarget: 'umd',
+      libraryExport,
+      umdNamedDefine: true,
+      globalObject: "typeof self !== 'undefined' ? self : this"
+    },
+    externals: {
+      vue: {
+        root: 'Vue',
+        commonjs: 'vue',
+        commonjs2: 'vue',
+        amd: 'vue'
+      }
+    }
+  };
+}
+
 function getComponentName(item) {
   return item
     .split('-')
@@ -41,11 +61,7 @@ function buildIndividual(mix) {
       'balm-ui-plus': './src/scripts/plus.js'
     },
     individual.output.dist,
-    {
-      output: {
-        library: 'BalmUIPlus'
-      }
-    }
+    getWebpackOptions('BalmUIPlus')
   );
 
   // Clear individual
@@ -81,17 +97,13 @@ function buildIndividual(mix) {
           ? `${uiOutput}/${buildName}`
           : `${uiOutput}/${buildName}/${item}`;
 
-      mix.webpack(jsInput, jsOutput, {
-        output:
-          buildName === 'plugins' || (buildName === 'utils' && item !== 'ie')
-            ? {
-                library
-              }
-            : {
-                library,
-                libraryExport: 'default'
-              }
-      });
+      const useDefault =
+        buildName === 'plugins' || (buildName === 'utils' && item !== 'ie');
+      mix.webpack(
+        jsInput,
+        jsOutput,
+        getWebpackOptions(library, useDefault ? undefined : 'default')
+      );
 
       let sassFolder = `${individual.input.sass}/balm-ui/${buildName}`;
       if (fs.existsSync(sassFolder)) {

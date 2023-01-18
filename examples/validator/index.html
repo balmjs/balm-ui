@@ -59,7 +59,7 @@
         </p>
       </fieldset>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@legacy"></script>
     <script src="/components/textfield/index.js"></script>
     <script src="/components/form/index.js"></script>
     <script src="/components/button/index.js"></script>
@@ -70,40 +70,45 @@
       // $validator.default.install(Vue, validatorRules);
     </script>
     <script>
-      new Vue({
-        el: '#app',
-        validations: {
-          mobile: {
-            label: 'Mobile',
-            validator: 'required, mobile'
-          },
-          password: {
-            label: 'Password',
-            validator: 'required, password, minRule, maxRule',
-            minRule: {
-              validate(value) {
-                return value.trim().length >= 6;
-              },
-              message: '%s minLength >= 6'
+      const validations = [
+        {
+          label: 'Mobile',
+          key: 'mobile',
+          validator: 'required, mobile'
+        },
+        {
+          label: 'Password',
+          key: 'password',
+          validator: 'required, password, minRule, maxRule',
+          minRule: {
+            validate(value) {
+              return value.trim().length >= 6;
             },
-            maxRule: {
-              validate(value) {
-                return value.trim().length <= 8;
-              },
-              message: '%s maxLength <= 8'
-            }
+            message: '%s minLength >= 6'
           },
-          repassword: {
-            label: 'Repeat Password',
-            validator: 'required, password, repasswordRule',
-            repasswordRule: {
-              validate(value, data) {
-                return value === data.password;
-              },
-              message: 'repassword !== password'
-            }
+          maxRule: {
+            validate(value) {
+              return value.trim().length <= 8;
+            },
+            message: '%s maxLength <= 8'
           }
         },
+        {
+          label: 'Repeat Password',
+          key: 'repassword',
+          validator: 'required, password, repasswordRule',
+          repasswordRule: {
+            validate(value, data) {
+              return value === data.password;
+            },
+            message: 'repassword !== password'
+          }
+        }
+      ];
+
+      new Vue({
+        el: '#app',
+        validations,
         data: {
           formData: {
             mobile: '',

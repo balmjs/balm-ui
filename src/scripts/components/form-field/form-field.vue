@@ -85,7 +85,7 @@ export default {
     getFrom(self = this) {
       const parent = self.$parent;
 
-      return /UiForm$/.test(parent.$vnode.tag)
+      return /UiForm$/.test(parent.$vnode?.tag)
         ? parent
         : this.isCustomFormItem
         ? this.getFrom(parent)

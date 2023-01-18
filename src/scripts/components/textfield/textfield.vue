@@ -242,7 +242,7 @@ export default {
       return this.inputType === 'textarea';
     },
     isTextfieldPlus() {
-      return /(UiAutocomplete|UiDatepicker)$/.test(this.$parent.$vnode.tag);
+      return /(UiAutocomplete|UiDatepicker)$/.test(this.$parent.$vnode?.tag);
     },
     hasBeforeSlot() {
       return this.isTextfieldPlus

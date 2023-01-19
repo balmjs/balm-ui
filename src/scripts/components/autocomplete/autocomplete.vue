@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import UiTextfield from '../textfield/textfield';
+import UiTextfield from '../textfield/textfield.vue';
 import textfieldMixin from '../../mixins/textfield';
 import deprecatedListMixin from '../../mixins/deprecated-list';
 import getType from '../../utils/typeof';

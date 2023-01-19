@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import MdcButton from '../button/mdc-button';
+import MdcButton from '../button/mdc-button.vue';
 import inputMixin from '../../mixins/input';
 import handleFileChange from '../../utils/file';
 

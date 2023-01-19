@@ -12,7 +12,7 @@
 
 <script>
 import { MdcTree } from './mdc-tree';
-import UiTreeNode from './tree-node';
+import UiTreeNode from './tree-node.vue';
 
 const UI_TREE = {
   dataFormat: {

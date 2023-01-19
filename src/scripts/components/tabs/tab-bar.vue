@@ -12,7 +12,7 @@
 <script>
 import { MDCTabBar } from '../../../material-components-web/tab-bar';
 import { strings } from '../../../material-components-web/tab-bar/constants';
-import UiTabScroller from './tab-scroller';
+import UiTabScroller from './tab-scroller.vue';
 import tabBarMixin from '../../mixins/tab-bar';
 import tabScrollerMixin from '../../mixins/tab-scroller';
 

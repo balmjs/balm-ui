@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import MdcCheckbox from '../checkbox/mdc-checkbox';
+import MdcCheckbox from '../checkbox/mdc-checkbox.vue';
 import tableBodyMixin from '../../mixins/table-body';
 
 export default {

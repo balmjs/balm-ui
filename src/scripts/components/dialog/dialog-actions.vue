@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import MdcButton from '../button/mdc-button';
+import MdcButton from '../button/mdc-button.vue';
 
 // Define dialog action constants
 const UI_DIALOG_ACTION = {

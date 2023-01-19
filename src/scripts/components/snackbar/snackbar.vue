@@ -26,8 +26,8 @@
 <script>
 import { MDCSnackbar } from '../../../material-components-web/snackbar';
 import { strings } from '../../../material-components-web/snackbar/constants';
-import MdcButton from '../button/mdc-button';
-import MdcIconButton from '../icon-button/mdc-icon-button';
+import MdcButton from '../button/mdc-button.vue';
+import MdcIconButton from '../icon-button/mdc-icon-button.vue';
 
 // Define snackbar constants
 const UI_SNACKBAR = {

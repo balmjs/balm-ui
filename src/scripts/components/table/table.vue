@@ -114,11 +114,11 @@
 <script>
 import { MDCDataTable } from '../../../material-components-web/data-table';
 import { events } from '../../../material-components-web/data-table/constants';
-import MdcTableFrame from './mdc-table-frame';
-import MdcTableHeader from './mdc-table-header';
-import MdcTableBody from './mdc-table-body';
-import MdcTableFooter from './mdc-table-footer';
-import MdcTableProgress from './mdc-table-progress';
+import MdcTableFrame from './mdc-table-frame.vue';
+import MdcTableHeader from './mdc-table-header.vue';
+import MdcTableBody from './mdc-table-body.vue';
+import MdcTableFooter from './mdc-table-footer.vue';
+import MdcTableProgress from './mdc-table-progress.vue';
 import UI_TABLE from './constants';
 import getType from '../../utils/typeof';
 

@@ -27,7 +27,7 @@
 <script>
 import flatpickr from 'flatpickr';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
-import UiTextfield from '../textfield/textfield';
+import UiTextfield from '../textfield/textfield.vue';
 
 // Define rangepicker constants
 const UI_RANGEPICKER = {

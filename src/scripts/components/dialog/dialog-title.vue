@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import MdcIconButton from '../icon-button/mdc-icon-button';
+import MdcIconButton from '../icon-button/mdc-icon-button.vue';
 
 export default {
   name: 'UiDialogTitle',

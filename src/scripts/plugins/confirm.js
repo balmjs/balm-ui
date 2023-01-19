@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import autoInit from '../config/auto-init';
-import MdcDialog from '../components/dialog/mdc-dialog';
+import MdcDialog from '../components/dialog/mdc-dialog.vue';
 import { getOptions, createModal, removeModel } from '../utils/modal';
 
 const DEFAULT_OPTIONS = {

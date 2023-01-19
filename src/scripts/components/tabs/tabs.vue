@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import UiTabBar from './tab-bar';
-import UiTab from './tab';
+import UiTabBar from './tab-bar.vue';
+import UiTab from './tab.vue';
 import tabBarMixin from '../../mixins/tab-bar';
 import tabScrollerMixin from '../../mixins/tab-scroller';
 import tabMixin from '../../mixins/tab';

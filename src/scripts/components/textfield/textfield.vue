@@ -114,10 +114,10 @@
 
 <script>
 import { MDCTextField } from '../../../material-components-web/textfield';
-import MdcFloatingLabel from '../floating-label/mdc-floating-label';
-import MdcLineRipple from '../floating-label/mdc-line-ripple';
-import MdcNotchedOutline from '../floating-label/mdc-notched-outline';
-import MdcTextfieldCounter from './mdc-textfield-counter';
+import MdcFloatingLabel from '../floating-label/mdc-floating-label.vue';
+import MdcLineRipple from '../floating-label/mdc-line-ripple.vue';
+import MdcNotchedOutline from '../floating-label/mdc-notched-outline.vue';
+import MdcTextfieldCounter from './mdc-textfield-counter.vue';
 import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';
 import inputMixin from '../../mixins/input';

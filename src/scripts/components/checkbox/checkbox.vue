@@ -16,7 +16,7 @@
 
 <script>
 import { MDCCheckbox } from '../../../material-components-web/checkbox';
-import MdcCheckbox from './mdc-checkbox';
+import MdcCheckbox from './mdc-checkbox.vue';
 import inputMixin from '../../mixins/input';
 
 // Define checkbox constants

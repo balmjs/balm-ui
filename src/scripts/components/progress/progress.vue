@@ -10,7 +10,7 @@
 
 <script>
 import { MDCLinearProgress } from '../../../material-components-web/linear-progress';
-import MdcLinearProgress from './mdc-linear-progress';
+import MdcLinearProgress from './mdc-linear-progress.vue';
 import progressMixin from '../../mixins/progress';
 import { UI_PROGRESS } from './constants';
 

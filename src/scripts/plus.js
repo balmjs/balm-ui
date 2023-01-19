@@ -4,12 +4,12 @@ import autoInit from './config/auto-init';
 /**
  * Components
  */
-import UiSkeleton from './components/skeleton/skeleton';
-import UiEditor from './components/editor/editor';
-import UiTree from './components/tree/tree';
-import UiTreeNode from './components/tree/tree-node';
-import UiBottomNavigation from './components/bottom-navigation/bottom-navigation';
-import UiBottomSheet from './components/bottom-sheet/bottom-sheet';
+import UiSkeleton from './components/skeleton/skeleton.vue';
+import UiEditor from './components/editor/editor.vue';
+import UiTree from './components/tree/tree.vue';
+import UiTreeNode from './components/tree/tree-node.vue';
+import UiBottomNavigation from './components/bottom-navigation/bottom-navigation.vue';
+import UiBottomSheet from './components/bottom-sheet/bottom-sheet.vue';
 /**
  * Plugins
  */

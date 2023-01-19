@@ -77,7 +77,7 @@
 <script>
 import flatpickr from 'flatpickr';
 import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect';
-import UiTextfield from '../textfield/textfield';
+import UiTextfield from '../textfield/textfield.vue';
 import textfieldMixin from '../../mixins/textfield';
 import { UI_TEXTFIELD_ICON } from '../textfield/constants';
 

@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import UiTabIndicator from './tab-indicator';
+import UiTabIndicator from './tab-indicator.vue';
 import tabMixin from '../../mixins/tab';
 import materialIconMixin from '../../mixins/material-icon';
 import { UI_TAB } from './constants';

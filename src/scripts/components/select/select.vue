@@ -93,9 +93,9 @@
 <script>
 import { MDCSelect } from '../../../material-components-web/select';
 import { strings } from '../../../material-components-web/select/constants';
-import MdcFloatingLabel from '../floating-label/mdc-floating-label';
-import MdcLineRipple from '../floating-label/mdc-line-ripple';
-import MdcNotchedOutline from '../floating-label/mdc-notched-outline';
+import MdcFloatingLabel from '../floating-label/mdc-floating-label.vue';
+import MdcLineRipple from '../floating-label/mdc-line-ripple.vue';
+import MdcNotchedOutline from '../floating-label/mdc-notched-outline.vue';
 import typeMixin from '../../mixins/type';
 import materialIconMixin from '../../mixins/material-icon';
 import deprecatedListMixin from '../../mixins/deprecated-list';

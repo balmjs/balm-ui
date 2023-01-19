@@ -28,7 +28,7 @@
 <script>
 import { MDCBanner } from '../../../material-components-web/banner';
 import { events } from '../../../material-components-web/banner/constants';
-import MdcBannerContent from './mdc-banner-content';
+import MdcBannerContent from './mdc-banner-content.vue';
 
 // Define banner constants
 const UI_BANNER = {

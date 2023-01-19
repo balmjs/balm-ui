@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import MdcButton from '../button/mdc-button';
+import MdcButton from '../button/mdc-button.vue';
 
 export default {
   name: 'MdcBannerContent',

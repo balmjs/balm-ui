@@ -16,7 +16,7 @@
 <script>
 import { MDCSegmentedButton } from '../../../material-components-web/segmented-button';
 import { events } from '../../../material-components-web/segmented-button/segmented-button/constants';
-import UiSegmentedButton from './segmented-button';
+import UiSegmentedButton from './segmented-button.vue';
 
 // Define segmented buttons constants
 const UI_SEGMENTED_BUTTONS = {

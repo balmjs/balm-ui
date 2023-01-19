@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import UiMenuitemIcon from './menuitem-icon';
-import UiMenuitemText from './menuitem-text';
+import UiMenuitemIcon from './menuitem-icon.vue';
+import UiMenuitemText from './menuitem-text.vue';
 import rippleMixin from '../../mixins/ripple';
 import deprecatedListMixin from '../../mixins/deprecated-list';
 import UI_GLOBAL from '../icon/constants';

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import MdcTextfieldCounter from './mdc-textfield-counter';
+import MdcTextfieldCounter from './mdc-textfield-counter.vue';
 import helperTextMixin from '../../mixins/helper-text';
 
 export default {

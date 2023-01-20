@@ -2,6 +2,14 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.14.0 / 2023-01-20
+
+> Happy Chinese New Year
+
+### Chore
+
+- optimize build
+
 ## v10.13.4 / 2023-01-03
 
 ### Bug Fixes

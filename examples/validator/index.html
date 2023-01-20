@@ -66,13 +66,15 @@
     <script src="/utils/types.js"></script>
     <script src="./validator-rules.js"></script>
     <script>
-      const validations = {
-        mobile: {
+      const validations = [
+        {
           label: 'Mobile',
+          key: 'mobile',
           validator: 'required, mobile'
         },
-        password: {
+        {
           label: 'Password',
+          key: 'password',
           validator: 'required, password, minRule, maxRule',
           minRule: {
             validate(value) {
@@ -87,8 +89,9 @@
             message: '%s maxLength <= 8'
           }
         },
-        repassword: {
+        {
           label: 'Repeat Password',
+          key: 'repassword',
           validator: 'required, password, repasswordRule',
           repasswordRule: {
             validate(value, data) {
@@ -97,7 +100,7 @@
             message: 'repassword !== password'
           }
         }
-      };
+      ];
 
       const app = Vue.createApp({
         data() {

@@ -3,6 +3,23 @@ const config = require('./config');
 
 const individualBuild = ['components', 'plugins', 'directives', 'utils'];
 
+function getWebpackOptions(library) {
+  return {
+    output: {
+      library,
+      globalObject: "typeof self !== 'undefined' ? self : this"
+    },
+    externals: {
+      vue: {
+        root: 'Vue',
+        commonjs: 'vue',
+        commonjs2: 'vue',
+        amd: 'vue'
+      }
+    }
+  };
+}
+
 function getComponentName(item) {
   return item
     .split('-')
@@ -41,15 +58,11 @@ function buildIndividual(mix) {
       'balm-ui-plus': './src/scripts/balm-ui-plus.js'
     },
     config.output.dist,
-    {
-      output: {
-        library: {
-          name: 'BalmUIPlus',
-          type: 'umd',
-          umdNamedDefine: true
-        }
-      }
-    }
+    getWebpackOptions({
+      name: 'BalmUIPlus',
+      type: 'umd',
+      umdNamedDefine: true
+    })
   );
 
   // Clear individual
@@ -85,25 +98,18 @@ function buildIndividual(mix) {
           ? `${uiOutput}/${buildName}`
           : `${uiOutput}/${buildName}/${item}`;
 
-      mix.webpack(jsInput, jsOutput, {
-        output:
-          buildName === 'plugins' || (buildName === 'utils' && item !== 'ie')
-            ? {
-                library: {
-                  name: libraryName,
-                  type: 'umd',
-                  umdNamedDefine: true
-                }
-              }
-            : {
-                library: {
-                  name: libraryName,
-                  type: 'umd',
-                  export: 'default',
-                  umdNamedDefine: true
-                }
-              }
-      });
+      const useDefault =
+        buildName === 'plugins' || (buildName === 'utils' && item !== 'ie');
+      mix.webpack(
+        jsInput,
+        jsOutput,
+        getWebpackOptions({
+          name: libraryName,
+          type: 'umd',
+          export: useDefault ? undefined : 'default',
+          umdNamedDefine: true
+        })
+      );
 
       let sassFolder = `${config.input.sass}/balm-ui/${buildName}`;
       if (fs.existsSync(sassFolder)) {

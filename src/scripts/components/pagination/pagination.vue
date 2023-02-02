@@ -292,6 +292,7 @@ watch(
   () => props.modelValue,
   (val) => {
     state.currentPage = val;
+    state.jumpPage = val
   }
 );
 

@@ -1,4 +1,6 @@
 ```html
+<ui-button outlined @click="resetPageNumber">reset page number</ui-button>
+
 <ui-pagination
   v-model="page"
   :total="total"
@@ -19,6 +21,11 @@ export default {
       page: 1,
       total: 500
     };
+  },
+  methods: {
+    resetPageNumber: function () {
+      this.page = 1
+    }
   }
 };
 ```

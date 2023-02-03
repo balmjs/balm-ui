@@ -294,6 +294,7 @@ export default {
   watch: {
     page(val) {
       this.currentPage = val;
+      this.jumpPage = val;
     },
     pageSize(val) {
       if (!Array.isArray(val)) {

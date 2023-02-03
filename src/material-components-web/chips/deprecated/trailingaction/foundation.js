@@ -24,6 +24,7 @@ import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../../../base/foundation';
 import { isNavigationEvent, KEY, normalizeKey } from '../../../dom/keyboard';
 import { InteractionTrigger, strings } from './constants';
+/** MDC Chip Trailing Action Foundation */
 var MDCChipTrailingActionFoundation = /** @class */ (function (_super) {
     __extends(MDCChipTrailingActionFoundation, _super);
     function MDCChipTrailingActionFoundation(adapter) {

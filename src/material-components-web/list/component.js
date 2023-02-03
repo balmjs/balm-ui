@@ -25,6 +25,7 @@ import { MDCComponent } from '../base/component';
 import { closest, matches } from '../dom/ponyfill';
 import { cssClasses, deprecatedClassNameMap, evolutionAttribute, evolutionClassNameMap, numbers, strings } from './constants';
 import { MDCListFoundation } from './foundation';
+/** MDC List */
 var MDCList = /** @class */ (function (_super) {
     __extends(MDCList, _super);
     function MDCList() {
@@ -100,8 +101,7 @@ var MDCList = /** @class */ (function (_super) {
         return new MDCList(root);
     };
     MDCList.prototype.initialSyncWithDOM = function () {
-        this.isEvolutionEnabled =
-            evolutionAttribute in this.root.dataset;
+        this.isEvolutionEnabled = evolutionAttribute in this.root.dataset;
         if (this.isEvolutionEnabled) {
             this.classNameMap = evolutionClassNameMap;
         }
@@ -233,10 +233,8 @@ var MDCList = /** @class */ (function (_super) {
                 }
             },
             focusItemAtIndex: function (index) {
-                var element = _this.listElements[index];
-                if (element) {
-                    element.focus();
-                }
+                var _a;
+                (_a = _this.listElements[index]) === null || _a === void 0 ? void 0 : _a.focus();
             },
             getAttributeForElementIndex: function (index, attr) {
                 return _this.listElements[index].getAttribute(attr);
@@ -273,7 +271,8 @@ var MDCList = /** @class */ (function (_super) {
                 _this.emit(strings.ACTION_EVENT, { index: index }, /** shouldBubble */ true);
             },
             notifySelectionChange: function (changedIndices) {
-                _this.emit(strings.SELECTION_CHANGE_EVENT, { changedIndices: changedIndices }, /** shouldBubble */ true);
+                _this.emit(strings.SELECTION_CHANGE_EVENT, { changedIndices: changedIndices }, 
+                /** shouldBubble */ true);
             },
             removeClassForElementIndex: function (index, className) {
                 var element = _this.listElements[index];
@@ -284,7 +283,7 @@ var MDCList = /** @class */ (function (_super) {
             setAttributeForElementIndex: function (index, attr, value) {
                 var element = _this.listElements[index];
                 if (element) {
-                    element.setAttribute(attr, value);
+                    _this.safeSetAttribute(element, attr, value);
                 }
             },
             setCheckedCheckboxOrRadioAtIndex: function (index, isChecked) {
@@ -299,7 +298,7 @@ var MDCList = /** @class */ (function (_super) {
                 var element = _this.listElements[listItemIndex];
                 var selector = strings.CHILD_ELEMENTS_TO_TOGGLE_TABINDEX;
                 Array.prototype.forEach.call(element.querySelectorAll(selector), function (el) {
-                    el.setAttribute('tabindex', tabIndexValue);
+                    el.tabIndex = Number(tabIndexValue);
                 });
             },
         };
@@ -334,7 +333,7 @@ var MDCList = /** @class */ (function (_super) {
         return this.getListItemIndex(el);
     };
     /**
-     * Used to figure out which list item this event is targetting. Or returns -1
+     * Used to figure out which list item this event is targeting. Or returns -1
      * if there is no list item
      */
     MDCList.prototype.getListItemIndex = function (el) {

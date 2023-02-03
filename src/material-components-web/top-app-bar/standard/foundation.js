@@ -24,13 +24,15 @@ import { __extends } from "tslib";
 import { numbers } from '../constants';
 import { MDCTopAppBarBaseFoundation } from '../foundation';
 var INITIAL_VALUE = 0;
+/** MDC Top App Bar Foundation */
 var MDCTopAppBarFoundation = /** @class */ (function (_super) {
     __extends(MDCTopAppBarFoundation, _super);
     /* istanbul ignore next: optional argument is not a branch statement */
     function MDCTopAppBarFoundation(adapter) {
         var _this = _super.call(this, adapter) || this;
         /**
-         * Indicates if the top app bar was docked in the previous scroll handler iteration.
+         * Indicates if the top app bar was docked in the previous scroll handler
+         * iteration.
          */
         _this.wasDocked = true;
         /**
@@ -42,7 +44,8 @@ var MDCTopAppBarFoundation = /** @class */ (function (_super) {
          */
         _this.currentAppBarOffsetTop = 0;
         /**
-         * Used to prevent the top app bar from being scrolled out of view during resize events
+         * Used to prevent the top app bar from being scrolled out of view during
+         * resize events
          */
         _this.isCurrentlyBeingResized = false;
         /**
@@ -84,7 +87,8 @@ var MDCTopAppBarFoundation = /** @class */ (function (_super) {
         }
     };
     /**
-     * Top app bar resize handler that throttle/debounce functions that execute updates.
+     * Top app bar resize handler that throttle/debounce functions that execute
+     * updates.
      */
     MDCTopAppBarFoundation.prototype.handleWindowResize = function () {
         var _this = this;
@@ -135,8 +139,9 @@ var MDCTopAppBarFoundation = /** @class */ (function (_super) {
      */
     MDCTopAppBarFoundation.prototype.moveTopAppBar = function () {
         if (this.checkForUpdate()) {
-            // Once the top app bar is fully hidden we use the max potential top app bar height as our offset
-            // so the top app bar doesn't show if the window resizes and the new height > the old height.
+            // Once the top app bar is fully hidden we use the max potential top app
+            // bar height as our offset so the top app bar doesn't show if the window
+            // resizes and the new height > the old height.
             var offset = this.currentAppBarOffsetTop;
             if (Math.abs(offset) >= this.topAppBarHeight) {
                 offset = -numbers.MAX_TOP_APP_BAR_HEIGHT;
@@ -152,9 +157,10 @@ var MDCTopAppBarFoundation = /** @class */ (function (_super) {
         var currentHeight = this.adapter.getTopAppBarHeight();
         if (this.topAppBarHeight !== currentHeight) {
             this.wasDocked = false;
-            // Since the top app bar has a different height depending on the screen width, this
-            // will ensure that the top app bar remains in the correct location if
-            // completely hidden and a resize makes the top app bar a different height.
+            // Since the top app bar has a different height depending on the screen
+            // width, this will ensure that the top app bar remains in the correct
+            // location if completely hidden and a resize makes the top app bar a
+            // different height.
             this.currentAppBarOffsetTop -= this.topAppBarHeight - currentHeight;
             this.topAppBarHeight = currentHeight;
         }

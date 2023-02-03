@@ -22,7 +22,7 @@
  */
 import { __assign, __awaiter, __extends, __generator } from "tslib";
 import { MDCFoundation } from '../base/foundation';
-import { cssClasses, SortValue, strings } from './constants';
+import { cssClasses, SortValue, attributes } from './constants';
 /**
  * The Foundation of data table component containing pure business logic, any
  * logic requiring DOM manipulation are delegated to adapter methods.
@@ -201,28 +201,28 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
             }
             this.adapter.removeClassNameByHeaderCellIndex(index, cssClasses.HEADER_CELL_SORTED);
             this.adapter.removeClassNameByHeaderCellIndex(index, cssClasses.HEADER_CELL_SORTED_DESCENDING);
-            this.adapter.setAttributeByHeaderCellIndex(index, strings.ARIA_SORT, SortValue.NONE);
+            this.adapter.setAttributeByHeaderCellIndex(index, attributes.ARIA_SORT, SortValue.NONE);
             this.adapter.setSortStatusLabelByHeaderCellIndex(index, SortValue.NONE);
         }
         // Set appropriate sort attributes / classes on target header cell.
         this.adapter.setClassNameByHeaderCellIndex(columnIndex, cssClasses.HEADER_CELL_SORTED);
-        var currentSortValue = this.adapter.getAttributeByHeaderCellIndex(columnIndex, strings.ARIA_SORT);
+        var currentSortValue = this.adapter.getAttributeByHeaderCellIndex(columnIndex, attributes.ARIA_SORT);
         var sortValue = SortValue.NONE;
         // Set to descending if sorted on ascending order.
         if (currentSortValue === SortValue.ASCENDING) {
             this.adapter.setClassNameByHeaderCellIndex(columnIndex, cssClasses.HEADER_CELL_SORTED_DESCENDING);
-            this.adapter.setAttributeByHeaderCellIndex(columnIndex, strings.ARIA_SORT, SortValue.DESCENDING);
+            this.adapter.setAttributeByHeaderCellIndex(columnIndex, attributes.ARIA_SORT, SortValue.DESCENDING);
             sortValue = SortValue.DESCENDING;
             // Set to ascending if sorted on descending order.
         }
         else if (currentSortValue === SortValue.DESCENDING) {
             this.adapter.removeClassNameByHeaderCellIndex(columnIndex, cssClasses.HEADER_CELL_SORTED_DESCENDING);
-            this.adapter.setAttributeByHeaderCellIndex(columnIndex, strings.ARIA_SORT, SortValue.ASCENDING);
+            this.adapter.setAttributeByHeaderCellIndex(columnIndex, attributes.ARIA_SORT, SortValue.ASCENDING);
             sortValue = SortValue.ASCENDING;
         }
         else {
             // Set to ascending by default when not sorted.
-            this.adapter.setAttributeByHeaderCellIndex(columnIndex, strings.ARIA_SORT, SortValue.ASCENDING);
+            this.adapter.setAttributeByHeaderCellIndex(columnIndex, attributes.ARIA_SORT, SortValue.ASCENDING);
             sortValue = SortValue.ASCENDING;
         }
         this.adapter.setSortStatusLabelByHeaderCellIndex(columnIndex, sortValue);
@@ -237,10 +237,14 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
      * Handles data table row click event.
      */
     MDCDataTableFoundation.prototype.handleRowClick = function (_a) {
-        var rowId = _a.rowId, row = _a.row;
+        var rowId = _a.rowId, row = _a.row, altKey = _a.altKey, ctrlKey = _a.ctrlKey, metaKey = _a.metaKey, shiftKey = _a.shiftKey;
         this.adapter.notifyRowClick({
             rowId: rowId,
             row: row,
+            altKey: altKey,
+            ctrlKey: ctrlKey,
+            metaKey: metaKey,
+            shiftKey: shiftKey,
         });
     };
     /**
@@ -288,11 +292,11 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
     MDCDataTableFoundation.prototype.selectRowAtIndex = function (rowIndex, selected) {
         if (selected) {
             this.adapter.addClassAtRowIndex(rowIndex, cssClasses.ROW_SELECTED);
-            this.adapter.setAttributeAtRowIndex(rowIndex, strings.ARIA_SELECTED, 'true');
+            this.adapter.setAttributeAtRowIndex(rowIndex, attributes.ARIA_SELECTED, 'true');
         }
         else {
             this.adapter.removeClassAtRowIndex(rowIndex, cssClasses.ROW_SELECTED);
-            this.adapter.setAttributeAtRowIndex(rowIndex, strings.ARIA_SELECTED, 'false');
+            this.adapter.setAttributeAtRowIndex(rowIndex, attributes.ARIA_SELECTED, 'false');
         }
     };
     return MDCDataTableFoundation;

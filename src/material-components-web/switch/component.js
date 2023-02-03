@@ -76,7 +76,7 @@ var MDCSwitch = /** @class */ (function (_super) {
                 _this.root.classList.remove(className);
             },
             setAriaChecked: function (ariaChecked) {
-                return _this.root.setAttribute('aria-checked', ariaChecked);
+                _this.root.setAttribute('aria-checked', ariaChecked);
             },
             setDisabled: function (disabled) {
                 _this.root.disabled = disabled;

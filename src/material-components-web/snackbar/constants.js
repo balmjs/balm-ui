@@ -27,9 +27,9 @@ var cssClasses = {
 };
 var strings = {
     ACTION_SELECTOR: '.mdc-snackbar__action',
-    ARIA_LIVE_LABEL_TEXT_ATTR: 'data-mdc-snackbar-label-text',
     CLOSED_EVENT: 'MDCSnackbar:closed',
     CLOSING_EVENT: 'MDCSnackbar:closing',
+    DATA_LIVE_LABEL_TEXT: 'mdcSnackbarLabelText',
     DISMISS_SELECTOR: '.mdc-snackbar__dismiss',
     LABEL_SELECTOR: '.mdc-snackbar__label',
     OPENED_EVENT: 'MDCSnackbar:opened',

@@ -86,19 +86,6 @@ export var messages = {
     SORTED_IN_ASCENDING: 'Sorted in ascending order',
 };
 /**
- * Attributes and selectors used in component.
- * @deprecated Use `attributes`, `dataAttributes` and `selectors` instead.
- */
-export var strings = {
-    ARIA_SELECTED: attributes.ARIA_SELECTED,
-    ARIA_SORT: attributes.ARIA_SORT,
-    DATA_ROW_ID_ATTR: dataAttributes.ROW_ID,
-    HEADER_ROW_CHECKBOX_SELECTOR: selectors.HEADER_ROW_CHECKBOX,
-    ROW_CHECKBOX_SELECTOR: selectors.ROW_CHECKBOX,
-    ROW_SELECTED_SELECTOR: selectors.ROW_SELECTED,
-    ROW_SELECTOR: selectors.ROW,
-};
-/**
  * Sort values defined by ARIA.
  * See https://www.w3.org/WAI/PF/aria/states_and_properties#aria-sort
  */

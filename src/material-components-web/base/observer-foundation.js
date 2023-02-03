@@ -23,6 +23,8 @@
 import { __extends, __read, __spreadArray, __values } from "tslib";
 import { MDCFoundation } from './foundation';
 import { observeProperty, setObserversEnabled } from './observer';
+// @ts-ignore(go/ts48upgrade) Fix code and remove this comment. Error:
+// TS2344: Type 'Adapter' does not satisfy the constraint '{}'.
 var MDCObserverFoundation = /** @class */ (function (_super) {
     __extends(MDCObserverFoundation, _super);
     function MDCObserverFoundation(adapter) {

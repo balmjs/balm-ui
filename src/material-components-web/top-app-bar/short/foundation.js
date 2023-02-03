@@ -23,6 +23,7 @@
 import { __extends } from "tslib";
 import { cssClasses } from '../constants';
 import { MDCTopAppBarBaseFoundation } from '../foundation';
+/** MDC Short Top App Bar Foundation */
 var MDCShortTopAppBarFoundation = /** @class */ (function (_super) {
     __extends(MDCShortTopAppBarFoundation, _super);
     /* istanbul ignore next: optional argument is not a branch statement */
@@ -45,13 +46,15 @@ var MDCShortTopAppBarFoundation = /** @class */ (function (_super) {
         if (this.adapter.getTotalActionItems() > 0) {
             this.adapter.addClass(cssClasses.SHORT_HAS_ACTION_ITEM_CLASS);
         }
-        // If initialized with SHORT_COLLAPSED_CLASS, the bar should always be collapsed
+        // If initialized with SHORT_COLLAPSED_CLASS, the bar should always be
+        // collapsed
         this.setAlwaysCollapsed(this.adapter.hasClass(cssClasses.SHORT_COLLAPSED_CLASS));
     };
     /**
      * Set if the short top app bar should always be collapsed.
      *
-     * @param value When `true`, bar will always be collapsed. When `false`, bar may collapse or expand based on scroll.
+     * @param value When `true`, bar will always be collapsed. When `false`, bar
+     *     may collapse or expand based on scroll.
      */
     MDCShortTopAppBarFoundation.prototype.setAlwaysCollapsed = function (value) {
         this.isAlwaysCollapsed = !!value;
@@ -67,7 +70,8 @@ var MDCShortTopAppBarFoundation = /** @class */ (function (_super) {
         return this.isAlwaysCollapsed;
     };
     /**
-     * Scroll handler for applying/removing the collapsed modifier class on the short top app bar.
+     * Scroll handler for applying/removing the collapsed modifier class on the
+     * short top app bar.
      */
     MDCShortTopAppBarFoundation.prototype.handleTargetScroll = function () {
         this.maybeCollapseBar();

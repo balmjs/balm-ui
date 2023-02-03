@@ -72,7 +72,8 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
             this.removeAfterAnimation(index, chipID);
             return;
         }
-        if (animation === MDCChipAnimation.ENTER && isComplete && addedAnnouncement) {
+        if (animation === MDCChipAnimation.ENTER && isComplete &&
+            addedAnnouncement) {
             this.adapter.announceMessage(addedAnnouncement);
             return;
         }

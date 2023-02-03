@@ -28,6 +28,7 @@ import { MDCChipTrailingAction } from '../trailingaction/component';
 import { strings as trailingActionStrings } from '../trailingaction/constants';
 import { strings } from './constants';
 import { MDCChipFoundation } from './foundation';
+/** MDC Chip */
 var MDCChip = /** @class */ (function (_super) {
     __extends(MDCChip, _super);
     function MDCChip() {
@@ -51,7 +52,8 @@ var MDCChip = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCChip.prototype, "shouldRemoveOnTrailingIconClick", {
         /**
-         * @return Whether a trailing icon click should trigger exit/removal of the chip.
+         * @return Whether a trailing icon click should trigger exit/removal of the
+         *     chip.
          */
         get: function () {
             return this.foundation.getShouldRemoveOnTrailingIconClick();
@@ -96,16 +98,19 @@ var MDCChip = /** @class */ (function (_super) {
         var _this = this;
         if (rippleFactory === void 0) { rippleFactory = function (el, foundation) { return new MDCRipple(el, foundation); }; }
         if (trailingActionFactory === void 0) { trailingActionFactory = function (el) { return new MDCChipTrailingAction(el); }; }
-        this.leadingIcon = this.root.querySelector(strings.LEADING_ICON_SELECTOR);
-        this.checkmark = this.root.querySelector(strings.CHECKMARK_SELECTOR);
+        this.leadingIcon =
+            this.root.querySelector(strings.LEADING_ICON_SELECTOR);
+        this.checkmark =
+            this.root.querySelector(strings.CHECKMARK_SELECTOR);
         this.primaryAction =
             this.root.querySelector(strings.PRIMARY_ACTION_SELECTOR);
         var trailingActionEl = this.root.querySelector(strings.TRAILING_ACTION_SELECTOR);
         if (trailingActionEl) {
             this.trailingAction = trailingActionFactory(trailingActionEl);
         }
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take
+        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+        // methods, we need a separate, strongly typed adapter variable.
         var rippleAdapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { computeBoundingRect: function () { return _this.foundation.getDimensions(); } });
         this.rippleSurface =
             rippleFactory(this.root, new MDCRippleFoundation(rippleAdapter));
@@ -167,10 +172,13 @@ var MDCChip = /** @class */ (function (_super) {
     };
     MDCChip.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take
+        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+        // methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addClass: function (className) { return _this.root.classList.add(className); },
+            addClass: function (className) {
+                _this.root.classList.add(className);
+            },
             addClassToLeadingIcon: function (className) {
                 if (_this.leadingIcon) {
                     _this.leadingIcon.classList.add(className);
@@ -206,22 +214,26 @@ var MDCChip = /** @class */ (function (_super) {
                 }
                 return false;
             },
-            notifyInteraction: function () { return _this.emit(strings.INTERACTION_EVENT, { chipId: _this.id }, true /* shouldBubble */); },
+            notifyInteraction: function () {
+                _this.emit(strings.INTERACTION_EVENT, { chipId: _this.id }, true /* shouldBubble */);
+            },
             notifyNavigation: function (key, source) {
-                return _this.emit(strings.NAVIGATION_EVENT, { chipId: _this.id, key: key, source: source }, true /* shouldBubble */);
+                _this.emit(strings.NAVIGATION_EVENT, { chipId: _this.id, key: key, source: source }, true /* shouldBubble */);
             },
             notifyRemoval: function (removedAnnouncement) {
                 _this.emit(strings.REMOVAL_EVENT, { chipId: _this.id, removedAnnouncement: removedAnnouncement }, true /* shouldBubble */);
             },
             notifySelection: function (selected, shouldIgnore) {
-                return _this.emit(strings.SELECTION_EVENT, { chipId: _this.id, selected: selected, shouldIgnore: shouldIgnore }, true /* shouldBubble */);
+                _this.emit(strings.SELECTION_EVENT, { chipId: _this.id, selected: selected, shouldIgnore: shouldIgnore }, true /* shouldBubble */);
             },
             notifyTrailingIconInteraction: function () {
-                return _this.emit(strings.TRAILING_ICON_INTERACTION_EVENT, { chipId: _this.id }, true /* shouldBubble */);
+                _this.emit(strings.TRAILING_ICON_INTERACTION_EVENT, { chipId: _this.id }, true /* shouldBubble */);
             },
             notifyEditStart: function () { },
             notifyEditFinish: function () { },
-            removeClass: function (className) { return _this.root.classList.remove(className); },
+            removeClass: function (className) {
+                _this.root.classList.remove(className);
+            },
             removeClassFromLeadingIcon: function (className) {
                 if (_this.leadingIcon) {
                     _this.leadingIcon.classList.remove(className);
@@ -234,11 +246,11 @@ var MDCChip = /** @class */ (function (_super) {
             },
             setPrimaryActionAttr: function (attr, value) {
                 if (_this.primaryAction) {
-                    _this.primaryAction.setAttribute(attr, value);
+                    _this.safeSetAttribute(_this.primaryAction, attr, value);
                 }
             },
             setStyleProperty: function (propertyName, value) {
-                return _this.root.style.setProperty(propertyName, value);
+                _this.root.style.setProperty(propertyName, value);
             },
         };
         return new MDCChipFoundation(adapter);

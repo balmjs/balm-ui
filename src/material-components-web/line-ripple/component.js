@@ -23,6 +23,7 @@
 import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCLineRippleFoundation } from './foundation';
+/** MDC Line Ripple */
 var MDCLineRipple = /** @class */ (function (_super) {
     __extends(MDCLineRipple, _super);
     function MDCLineRipple() {
@@ -52,16 +53,27 @@ var MDCLineRipple = /** @class */ (function (_super) {
     };
     MDCLineRipple.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take
+        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+        // methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            addClass: function (className) { return _this.root.classList.add(className); },
-            removeClass: function (className) { return _this.root.classList.remove(className); },
+            addClass: function (className) {
+                _this.root.classList.add(className);
+            },
+            removeClass: function (className) {
+                _this.root.classList.remove(className);
+            },
             hasClass: function (className) { return _this.root.classList.contains(className); },
-            setStyle: function (propertyName, value) { return _this.root.style.setProperty(propertyName, value); },
-            registerEventHandler: function (evtType, handler) { return _this.listen(evtType, handler); },
-            deregisterEventHandler: function (evtType, handler) { return _this.unlisten(evtType, handler); },
+            setStyle: function (propertyName, value) {
+                _this.root.style.setProperty(propertyName, value);
+            },
+            registerEventHandler: function (evtType, handler) {
+                _this.listen(evtType, handler);
+            },
+            deregisterEventHandler: function (evtType, handler) {
+                _this.unlisten(evtType, handler);
+            },
         };
         // tslint:enable:object-literal-sort-keys
         return new MDCLineRippleFoundation(adapter);

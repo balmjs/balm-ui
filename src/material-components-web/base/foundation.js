@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+/** MDC Foundation */
 var MDCFoundation = /** @class */ (function () {
     function MDCFoundation(adapter) {
         if (adapter === void 0) { adapter = {}; }
@@ -27,8 +28,9 @@ var MDCFoundation = /** @class */ (function () {
     }
     Object.defineProperty(MDCFoundation, "cssClasses", {
         get: function () {
-            // Classes extending MDCFoundation should implement this method to return an object which exports every
-            // CSS class the foundation class needs as a property. e.g. {ACTIVE: 'mdc-component--active'}
+            // Classes extending MDCFoundation should implement this method to return an
+            // object which exports every CSS class the foundation class needs as a
+            // property. e.g. {ACTIVE: 'mdc-component--active'}
             return {};
         },
         enumerable: false,
@@ -36,8 +38,9 @@ var MDCFoundation = /** @class */ (function () {
     });
     Object.defineProperty(MDCFoundation, "strings", {
         get: function () {
-            // Classes extending MDCFoundation should implement this method to return an object which exports all
-            // semantic strings as constants. e.g. {ARIA_ROLE: 'tablist'}
+            // Classes extending MDCFoundation should implement this method to return an
+            // object which exports all semantic strings as constants. e.g. {ARIA_ROLE:
+            // 'tablist'}
             return {};
         },
         enumerable: false,
@@ -45,8 +48,9 @@ var MDCFoundation = /** @class */ (function () {
     });
     Object.defineProperty(MDCFoundation, "numbers", {
         get: function () {
-            // Classes extending MDCFoundation should implement this method to return an object which exports all
-            // of its semantic numbers as constants. e.g. {ANIMATION_DELAY_MS: 350}
+            // Classes extending MDCFoundation should implement this method to return an
+            // object which exports all of its semantic numbers as constants.
+            // e.g. {ANIMATION_DELAY_MS: 350}
             return {};
         },
         enumerable: false,
@@ -54,19 +58,21 @@ var MDCFoundation = /** @class */ (function () {
     });
     Object.defineProperty(MDCFoundation, "defaultAdapter", {
         get: function () {
-            // Classes extending MDCFoundation may choose to implement this getter in order to provide a convenient
-            // way of viewing the necessary methods of an adapter. In the future, this could also be used for adapter
-            // validation.
+            // Classes extending MDCFoundation may choose to implement this getter in
+            // order to provide a convenient way of viewing the necessary methods of an
+            // adapter. In the future, this could also be used for adapter validation.
             return {};
         },
         enumerable: false,
         configurable: true
     });
     MDCFoundation.prototype.init = function () {
-        // Subclasses should override this method to perform initialization routines (registering events, etc.)
+        // Subclasses should override this method to perform initialization routines
+        // (registering events, etc.)
     };
     MDCFoundation.prototype.destroy = function () {
-        // Subclasses should override this method to perform de-initialization routines (de-registering events, etc.)
+        // Subclasses should override this method to perform de-initialization
+        // routines (de-registering events, etc.)
     };
     return MDCFoundation;
 }());

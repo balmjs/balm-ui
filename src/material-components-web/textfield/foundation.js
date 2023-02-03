@@ -25,6 +25,7 @@ import { MDCFoundation } from '../base/foundation';
 import { ALWAYS_FLOAT_TYPES, cssClasses, numbers, strings, VALIDATION_ATTR_WHITELIST } from './constants';
 var POINTERDOWN_EVENTS = ['mousedown', 'touchstart'];
 var INTERACTION_EVENTS = ['click', 'keydown'];
+/** MDC Text Field Foundation */
 var MDCTextFieldFoundation = /** @class */ (function (_super) {
     __extends(MDCTextFieldFoundation, _super);
     /**
@@ -36,13 +37,14 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         var _this = _super.call(this, __assign(__assign({}, MDCTextFieldFoundation.defaultAdapter), adapter)) || this;
         _this.isFocused = false;
         _this.receivedUserInput = false;
-        _this.valid = true;
         _this.useNativeValidation = true;
         _this.validateOnValueChange = true;
         _this.helperText = foundationMap.helperText;
         _this.characterCounter = foundationMap.characterCounter;
         _this.leadingIcon = foundationMap.leadingIcon;
         _this.trailingIcon = foundationMap.trailingIcon;
+        _this.valid =
+            !_this.adapter.hasClass(MDCTextFieldFoundation.cssClasses.INVALID);
         _this.inputFocusHandler = function () {
             _this.activateFocus();
         };

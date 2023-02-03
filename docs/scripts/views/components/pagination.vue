@@ -70,6 +70,7 @@
 
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.5 Pagination with page size and jumper</h6>
+      <ui-button outlined @click="resetPageNumber">reset page number</ui-button>
       <div class="demo">
         <ui-pagination
           v-model="page5"
@@ -112,6 +113,11 @@ export default {
       page5: 1,
       total5: 500
     };
+  },
+  methods: {
+    resetPageNumber: function () {
+      this.page5 = 1
+    }
   }
 };
 </script>

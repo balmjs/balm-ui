@@ -48,20 +48,22 @@ Even better: propose a fix with a pull request and link it to the issue!
 
 Install [Node.js® and npm](https://nodejs.org/en/download/) if they are not already on your machine.
 
-> **Verify that you are running at least node `10.13.0` and npm `5.2.0`** by running `node -v` and `npm -v` in a terminal/console window. Older versions maybe produce errors, but newer versions are fine.
+> **Verify that you are running at least node `18`** by running `node -v` in a terminal/console window. Older versions maybe produce errors, but newer versions are fine.
 
 The BalmUI depends on [BalmJS](https://balm.js.org/), so we need to install the `balm-core` globally.
 
 ```sh
-yarn global add balm-core@next
+npm install -g balm-core
+# OR
+yarn global add balm-core
 ```
 
 After cloning the repo, run:
 
 ```sh
-yarn
-# OR
 npm install
+# OR
+yarn
 ```
 
 Checkout your branch, enjoy:

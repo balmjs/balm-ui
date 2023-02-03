@@ -3,7 +3,7 @@
 ## TOC
 
 0. <a href="javascript:void(0)" class="v-anchor" data-href="#for-env">设置开发环境</a>
-1. <a href="javascript:void(0)" class="v-anchor" data-href="#for-balm-cli">Balm CLI</a> (推荐)
+1. <a href="javascript:void(0)" class="v-anchor" data-href="#for-balm-cli">Balm CLI</a>
 2. <a href="javascript:void(0)" class="v-anchor" data-href="#for-vue-cli-or-vite">Vue CLI 或 Vite</a>
 3. <a href="javascript:void(0)" class="v-anchor" data-href="#for-script">&lt;script&gt; 引用</a>
 
@@ -26,9 +26,9 @@
 - 使用 Balm CLI 前首先需要全局安装 [Balm Core](https://github.com/balmjs/balm) 和 [Balm CLI](https://github.com/balmjs/balm-cli)。
 
   ```bash
-  yarn global add balm-core balm-cli
-  # OR
   npm install -g balm-core balm-cli
+  # OR
+  yarn global add balm-core balm-cli
   ```
 
 > ⚠️ 提示：如果你使用 pnpm，请为 BalmUI 配置 `.npmrc` 文件
@@ -51,7 +51,7 @@
 
 <div id="for-balm-cli"></div>
 
-## 1. Balm CLI (推荐)
+## 1. Balm CLI
 
 ### 1.0 创建一个新项目
 

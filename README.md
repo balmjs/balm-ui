@@ -27,9 +27,9 @@
 ### Requirements
 
 - Vue.js@3.0+
-- :rocket: **[Balm CLI](https://github.com/balmjs/balm-cli)**(Recommended) or [Vue CLI](https://github.com/vuejs/vue-cli)/[Vite](https://github.com/vitejs/vite) or other toolchains
+- :rocket: **[Balm CLI](https://github.com/balmjs/balm-cli)** or [Vue CLI](https://github.com/vuejs/vue-cli)/[Vite](https://github.com/vitejs/vite) or other toolchains
 
-### 1. For Balm CLI (Recommended)
+### 1. For Balm CLI
 
 #### 1.0 Create a project
 
@@ -312,5 +312,5 @@ We officially support the last two versions of every major browser. Specifically
 
 [balm-ui-image]: https://img.shields.io/npm/v/balm-ui
 [balm-ui-url]: https://www.npmjs.com/package/balm-ui
-[mdc-web-image]: https://img.shields.io/badge/mdc--web-14.0.0-blue.svg
+[mdc-web-image]: https://img.shields.io/badge/mdc--web-15.0.0-blue.svg
 [mdc-web-url]: https://www.npmjs.com/package/material-components-web

@@ -3,7 +3,7 @@
 ## TOC
 
 0. <a href="javascript:void(0)" class="v-anchor" data-href="#for-env">Set up the Development Environment</a>
-1. <a href="javascript:void(0)" class="v-anchor" data-href="#for-balm-cli">For Balm CLI</a> (Recommended)
+1. <a href="javascript:void(0)" class="v-anchor" data-href="#for-balm-cli">For Balm CLI</a>
 2. <a href="javascript:void(0)" class="v-anchor" data-href="#for-vue-cli-or-vite">For Vue CLI or Vite</a>
 3. <a href="javascript:void(0)" class="v-anchor" data-href="#for-script">For &lt;script&gt;</a>
 
@@ -26,9 +26,9 @@ The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface t
 - First install the [Balm Core](https://github.com/balmjs/balm) and [Balm CLI](https://github.com/balmjs/balm-cli) globally for Balm CLI.
 
   ```bash
-  yarn global add balm-core balm-cli
-  # OR
   npm install -g balm-core balm-cli
+  # OR
+  yarn global add balm-core balm-cli
   ```
 
 > ⚠️ NOTE: If you are using pnpm, please configure the `.npmrc` file for BalmUI
@@ -51,7 +51,7 @@ The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface t
 
 <div id="for-balm-cli"></div>
 
-## 1. For Balm CLI (Recommended)
+## 1. For Balm CLI
 
 ### 1.0 Create a new project
 

@@ -23,6 +23,7 @@
 import { __extends } from "tslib";
 import { cssClasses } from '../constants';
 import { MDCTopAppBarFoundation } from '../standard/foundation';
+/** MDC Fixed Top App Bar Foundation */
 var MDCFixedTopAppBarFoundation = /** @class */ (function (_super) {
     __extends(MDCFixedTopAppBarFoundation, _super);
     function MDCFixedTopAppBarFoundation() {
@@ -34,7 +35,8 @@ var MDCFixedTopAppBarFoundation = /** @class */ (function (_super) {
         return _this;
     }
     /**
-     * Scroll handler for applying/removing the modifier class on the fixed top app bar.
+     * Scroll handler for applying/removing the modifier class on the fixed top
+     * app bar.
      */
     MDCFixedTopAppBarFoundation.prototype.handleTargetScroll = function () {
         var currentScroll = this.adapter.getViewportScrollY();

@@ -26,6 +26,7 @@ import { applyPassive } from '../dom/events';
 import { matches } from '../dom/ponyfill';
 import { MDCTabScrollerFoundation } from './foundation';
 import * as util from './util';
+/** MDC Tab Scroller */
 var MDCTabScroller = /** @class */ (function (_super) {
     __extends(MDCTabScroller, _super);
     function MDCTabScroller() {
@@ -65,8 +66,9 @@ var MDCTabScroller = /** @class */ (function (_super) {
     };
     MDCTabScroller.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take
+        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+        // methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
             eventTargetMatchesSelector: function (evtTarget, selector) {
@@ -119,7 +121,8 @@ var MDCTabScroller = /** @class */ (function (_super) {
     };
     /**
      * Increments the scroll value by the given amount
-     * @param scrollXIncrement The pixel value by which to increment the scroll value
+     * @param scrollXIncrement The pixel value by which to increment the scroll
+     *     value
      */
     MDCTabScroller.prototype.incrementScroll = function (scrollXIncrement) {
         this.foundation.incrementScroll(scrollXIncrement);

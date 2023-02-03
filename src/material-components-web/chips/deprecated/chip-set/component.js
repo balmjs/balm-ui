@@ -29,6 +29,7 @@ import { MDCChipSetFoundation } from './foundation';
 var _a = MDCChipFoundation.strings, INTERACTION_EVENT = _a.INTERACTION_EVENT, SELECTION_EVENT = _a.SELECTION_EVENT, REMOVAL_EVENT = _a.REMOVAL_EVENT, NAVIGATION_EVENT = _a.NAVIGATION_EVENT;
 var CHIP_SELECTOR = MDCChipSetFoundation.strings.CHIP_SELECTOR;
 var idCounter = 0;
+/** MDC Chip Set */
 var MDCChipSet = /** @class */ (function (_super) {
     __extends(MDCChipSet, _super);
     function MDCChipSet() {
@@ -81,16 +82,16 @@ var MDCChipSet = /** @class */ (function (_super) {
             finally { if (e_1) throw e_1.error; }
         }
         this.handleChipInteraction = function (evt) {
-            return _this.foundation.handleChipInteraction(evt.detail);
+            _this.foundation.handleChipInteraction(evt.detail);
         };
         this.handleChipSelection = function (evt) {
-            return _this.foundation.handleChipSelection(evt.detail);
+            _this.foundation.handleChipSelection(evt.detail);
         };
         this.handleChipRemoval = function (evt) {
-            return _this.foundation.handleChipRemoval(evt.detail);
+            _this.foundation.handleChipRemoval(evt.detail);
         };
         this.handleChipNavigation = function (evt) {
-            return _this.foundation.handleChipNavigation(evt.detail);
+            _this.foundation.handleChipNavigation(evt.detail);
         };
         this.listen(INTERACTION_EVENT, this.handleChipInteraction);
         this.listen(SELECTION_EVENT, this.handleChipSelection);
@@ -127,8 +128,9 @@ var MDCChipSet = /** @class */ (function (_super) {
     };
     MDCChipSet.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take
+        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+        // methods, we need a separate, strongly typed adapter variable.
         var adapter = {
             announceMessage: function (message) {
                 announce(message);
@@ -167,14 +169,15 @@ var MDCChipSet = /** @class */ (function (_super) {
      * Instantiates chip components on all of the chip set's child chip elements.
      */
     MDCChipSet.prototype.instantiateChips = function (chipFactory) {
-        var chipElements = [].slice.call(this.root.querySelectorAll(CHIP_SELECTOR));
+        var chipElements = Array.from(this.root.querySelectorAll(CHIP_SELECTOR));
         return chipElements.map(function (el) {
             el.id = el.id || "mdc-chip-" + ++idCounter;
             return chipFactory(el);
         });
     };
     /**
-     * Returns the index of the chip with the given id, or -1 if the chip does not exist.
+     * Returns the index of the chip with the given id, or -1 if the chip does not
+     * exist.
      */
     MDCChipSet.prototype.findChipIndex = function (chipId) {
         for (var i = 0; i < this.chips.length; i++) {

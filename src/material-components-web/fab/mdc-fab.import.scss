@@ -1,7 +1,5 @@
 @forward "../animation/variables" as mdc-animation-*;
 @forward "../base/mixins" as mdc-base-*;
-@forward "../feature-targeting/variables" as mdc-feature-*;
-@forward "../feature-targeting/mixins" as mdc-feature-*;
 @forward "../theme/variables" as mdc-theme-*;
 @forward "../elevation/variables" as mdc-elevation-*;
 @forward "../ripple/variables" as mdc-* hide $mdc-dark-ink-opacities, $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities, $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity, $mdc-translate-duration;

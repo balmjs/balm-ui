@@ -23,6 +23,7 @@
 import { __assign, __extends, __values } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { Corner, CornerBit, cssClasses, numbers, strings } from './constants';
+/** MDC Menu Surface Foundation */
 var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
     __extends(MDCMenuSurfaceFoundation, _super);
     function MDCMenuSurfaceFoundation(adapter) {
@@ -101,7 +102,7 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
                 isRtl: function () { return false; },
                 getInnerDimensions: function () { return ({ height: 0, width: 0 }); },
                 getAnchorDimensions: function () { return null; },
-                getWindowDimensions: function () { return ({ height: 0, width: 0 }); },
+                getViewportDimensions: function () { return ({ height: 0, width: 0 }); },
                 getBodyDimensions: function () { return ({ height: 0, width: 0 }); },
                 getWindowScroll: function () { return ({ x: 0, y: 0 }); },
                 setPosition: function () { return undefined; },
@@ -327,7 +328,7 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
     MDCMenuSurfaceFoundation.prototype.getAutoLayoutmeasurements = function () {
         var anchorRect = this.adapter.getAnchorDimensions();
         var bodySize = this.adapter.getBodyDimensions();
-        var viewportSize = this.adapter.getWindowDimensions();
+        var viewportSize = this.adapter.getViewportDimensions();
         var windowScroll = this.adapter.getWindowScroll();
         if (!anchorRect) {
             // tslint:disable:object-literal-sort-keys Positional properties are more readable when they're grouped together
@@ -407,8 +408,8 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         var availableRight;
         if (isAnchoredToRight) {
             availableLeft =
-                viewportDistance.left + anchorSize.width + this.anchorMargin.right;
-            availableRight = viewportDistance.right - this.anchorMargin.right;
+                viewportDistance.left + anchorSize.width + this.anchorMargin.left;
+            availableRight = viewportDistance.right - this.anchorMargin.left;
         }
         else {
             availableLeft = viewportDistance.left + this.anchorMargin.left;

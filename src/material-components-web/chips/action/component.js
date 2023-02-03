@@ -20,15 +20,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __assign, __extends } from "tslib";
+import { __assign, __extends, __makeTemplateObject } from "tslib";
 import { MDCComponent } from '../../base/component';
 import { closest } from '../../dom/ponyfill';
 import { MDCRipple } from '../../ripple/component';
 import { MDCRippleFoundation } from '../../ripple/foundation';
+import { safeAttrPrefix } from 'safevalues';
+import { safeElement } from 'safevalues/dom';
 import { computePrimaryActionRippleClientRect, GRAPHIC_SELECTED_WIDTH_STYLE_PROP } from './component-ripple';
 import { MDCChipActionCssClasses } from './constants';
 import { MDCChipPrimaryActionFoundation } from './primary-foundation';
 import { MDCChipTrailingActionFoundation } from './trailing-foundation';
+var ALLOWED_ATTR_PREFIXES = [
+    safeAttrPrefix(templateObject_1 || (templateObject_1 = __makeTemplateObject(["aria-"], ["aria-"]))),
+    safeAttrPrefix(templateObject_2 || (templateObject_2 = __makeTemplateObject(["data-"], ["data-"]))),
+    safeAttrPrefix(templateObject_3 || (templateObject_3 = __makeTemplateObject(["disabled"], ["disabled"]))),
+    safeAttrPrefix(templateObject_4 || (templateObject_4 = __makeTemplateObject(["role"], ["role"]))),
+    safeAttrPrefix(templateObject_5 || (templateObject_5 = __makeTemplateObject(["tabindex"], ["tabindex"]))),
+];
 /**
  * MDCChipAction provides component encapsulation of the different foundation
  * implementations.
@@ -94,7 +103,7 @@ var MDCChipAction = /** @class */ (function (_super) {
                 _this.root.removeAttribute(name);
             },
             setAttribute: function (name, value) {
-                _this.root.setAttribute(name, value);
+                safeElement.setPrefixedAttribute(ALLOWED_ATTR_PREFIXES, _this.root, name, value);
             },
         };
         if (this.root.classList.contains(MDCChipActionCssClasses.TRAILING_ACTION)) {
@@ -141,4 +150,5 @@ var MDCChipAction = /** @class */ (function (_super) {
     return MDCChipAction;
 }(MDCComponent));
 export { MDCChipAction };
+var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5;
 //# sourceMappingURL=component.js.map

@@ -24,6 +24,7 @@ import { __assign, __extends, __values } from "tslib";
 import { MDCFoundation } from '../../base/foundation';
 import { cssClasses, strings } from './constants';
 var INTERACTION_EVENTS = ['click', 'keydown'];
+/** MDC Text Field Icon Foundation */
 var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
     __extends(MDCTextFieldIconFoundation, _super);
     function MDCTextFieldIconFoundation(adapter) {
@@ -50,7 +51,8 @@ var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCTextFieldIconFoundation, "defaultAdapter", {
         /**
-         * See {@link MDCTextFieldIconAdapter} for typing information on parameters and return types.
+         * See {@link MDCTextFieldIconAdapter} for typing information on parameters
+         * and return types.
          */
         get: function () {
             // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
@@ -121,8 +123,10 @@ var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
         this.adapter.setContent(content);
     };
     MDCTextFieldIconFoundation.prototype.handleInteraction = function (evt) {
-        var isEnterKey = evt.key === 'Enter' || evt.keyCode === 13;
-        if (evt.type === 'click' || isEnterKey) {
+        var isEnterKey = evt.key === 'Enter' ||
+            evt.keyCode === 13;
+        var isSpaceKey = evt.key === ' ';
+        if (evt.type === 'click' || isEnterKey || isSpaceKey) {
             evt.preventDefault(); // stop click from causing host label to focus
             // input
             this.adapter.notifyIconAction();

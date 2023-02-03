@@ -88,10 +88,11 @@ var MDCDrawer = /** @class */ (function (_super) {
             .querySelector(SCRIM_SELECTOR);
         if (this.scrim && this.root.classList.contains(MODAL)) {
             this.handleScrimClick = function () {
-                return _this.foundation.handleScrimClick();
+                _this.foundation.handleScrimClick();
             };
             this.scrim.addEventListener('click', this.handleScrimClick);
-            this.focusTrap = util.createFocusTrapInstance(this.root, this.focusTrapFactory);
+            this.focusTrap =
+                util.createFocusTrapInstance(this.root, this.focusTrapFactory);
         }
         this.handleKeydown = function (evt) {
             _this.foundation.handleKeydown(evt);

@@ -24,6 +24,7 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use 'sass:math';
+@use '../dom/dom';
 @use '../elevation/mixins' as elevation-mixins;
 @use '../feature-targeting/feature-targeting';
 @use '../ripple/ripple-theme';
@@ -56,6 +57,7 @@
     );
     @include min-width(variables.$min-width, $query: $query);
     @include open-item-opacity(variables.$open-item-opacity, $query: $query);
+
     // Include mdc-deprecated-list selector to ensure list-inside-menu overrides default list styles
     .mdc-deprecated-list {
       @include list-mixins.deprecated-item-primary-text-ink-color(
@@ -68,6 +70,10 @@
     .mdc-list {
       @include elevation-mixins.overlay-surface-position($query: $query);
       @include elevation-mixins.overlay-dimensions(100%, $query: $query);
+
+      &::before {
+        @include dom.transparent-border($query: $query);
+      }
     }
 
     .mdc-deprecated-list-divider {
@@ -88,14 +94,12 @@
       }
     }
 
-    //stylelint-disable selector-no-qualifying-type
     a.mdc-deprecated-list-item .mdc-deprecated-list-item__text,
     a.mdc-deprecated-list-item .mdc-deprecated-list-item__graphic {
       @include feature-targeting.targets($feat-structure) {
         pointer-events: none;
       }
     }
-    // stylelint-enable selector-no-qualifying-type
   }
 
   // postcss-bem-linter: define menu
@@ -130,7 +134,6 @@
   }
   // postcss-bem-linter: end
 
-  // stylelint-disable-next-line plugin/selector-bem-pattern
   .mdc-menu-item--selected .mdc-menu__selection-group-icon {
     @include feature-targeting.targets($feat-structure) {
       display: inline;

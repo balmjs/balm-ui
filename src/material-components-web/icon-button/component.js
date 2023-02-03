@@ -25,6 +25,7 @@ import { MDCComponent } from '../base/component';
 import { MDCRipple } from '../ripple/component';
 import { MDCIconButtonToggleFoundation } from './foundation';
 var strings = MDCIconButtonToggleFoundation.strings;
+/** MDC Icon Button Toggle */
 var MDCIconButtonToggle = /** @class */ (function (_super) {
     __extends(MDCIconButtonToggle, _super);
     function MDCIconButtonToggle() {
@@ -49,18 +50,23 @@ var MDCIconButtonToggle = /** @class */ (function (_super) {
     };
     MDCIconButtonToggle.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take
+        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+        // methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addClass: function (className) { return _this.root.classList.add(className); },
+            addClass: function (className) {
+                _this.root.classList.add(className);
+            },
             hasClass: function (className) { return _this.root.classList.contains(className); },
             notifyChange: function (evtData) {
                 _this.emit(strings.CHANGE_EVENT, evtData);
             },
-            removeClass: function (className) { return _this.root.classList.remove(className); },
+            removeClass: function (className) {
+                _this.root.classList.remove(className);
+            },
             getAttr: function (attrName) { return _this.root.getAttribute(attrName); },
             setAttr: function (attrName, attrValue) {
-                return _this.root.setAttribute(attrName, attrValue);
+                _this.safeSetAttribute(_this.root, attrName, attrValue);
             },
         };
         return new MDCIconButtonToggleFoundation(adapter);

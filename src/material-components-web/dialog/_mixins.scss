@@ -20,8 +20,8 @@
 // THE SOFTWARE.
 //
 
-// Selector '.mdc-*' should only be used in this project.
 // stylelint-disable selector-class-pattern --
+// Selector '.mdc-*' should only be used in this project.
 // Internal styling for Dialog MDC component.
 
 @use 'sass:map';
@@ -249,6 +249,21 @@
     }
   }
 
+  // Needed so that close affordance is aligned as if there was a title.
+  .mdc-dialog--fullscreen--titleless {
+    .mdc-dialog__close {
+      @include feature-targeting.targets($feat-structure) {
+        margin-top: 4px;
+      }
+    }
+
+    &.mdc-dialog--scrollable .mdc-dialog__close {
+      @include feature-targeting.targets($feat-structure) {
+        margin-top: 0;
+      }
+    }
+  }
+
   .mdc-dialog__content {
     @include feature-targeting.targets($feat-structure) {
       flex-grow: 1;
@@ -418,7 +433,6 @@
       .mdc-dialog__surface-scrim {
         @include feature-targeting.targets($feat-structure) {
           opacity: 1;
-          z-index: 1;
         }
       }
     }
@@ -447,6 +461,7 @@
       position: absolute;
       width: 100%;
       height: 100%;
+      z-index: 1;
     }
 
     .mdc-dialog__surface-scrim--shown &,
@@ -486,6 +501,19 @@
         //   position: relative;
         //   z-index: 0;
         z-index: 1;
+      }
+    }
+  }
+
+  .mdc-dialog__scrim--removed {
+    @include feature-targeting.targets($feat-structure) {
+      pointer-events: none;
+    }
+
+    .mdc-dialog__scrim,
+    .mdc-dialog__surface-scrim {
+      @include feature-targeting.targets($feat-structure) {
+        display: none;
       }
     }
   }
@@ -533,7 +561,7 @@
 
   .mdc-dialog__surface {
     @include feature-targeting.targets($feat-color) {
-      @include theme.prop(background-color, $color);
+      @include theme.property(background-color, $color);
     }
   }
 }
@@ -587,6 +615,23 @@
 
   .mdc-dialog__close {
     @include icon-button-theme.ink_color($color: $color, $query: $query);
+  }
+}
+
+/// Defines the `display` property of the content element using a given query.
+/// This is useful if the content of the dialog needs to use a custom layout,
+/// for example one that consists of a fixed header and a fixed footer, with a
+/// scrollable list area in-between, which is sized to fill available space
+/// (see b/231813016).
+/// @param {string} $display - The `display` type to set.
+/// @param {string} $query Query.
+@mixin content-display($display, $query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  .mdc-dialog__content {
+    @include feature-targeting.targets($feat-structure) {
+      display: $display;
+    }
   }
 }
 
@@ -657,26 +702,53 @@
   }
 }
 
-@mixin max-width($max-width, $margin, $query: feature-targeting.all()) {
+@mixin min-height($min-height, $query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
-  $max-size-calc-expr: calc(100vw - #{$margin * 2});
 
   .mdc-dialog__surface {
     @include feature-targeting.targets($feat-structure) {
-      @if $max-width {
-        $max-width-breakpoint: $max-width + ($margin * 2);
+      min-height: $min-height;
+    }
+  }
+}
 
-        // Fit snugly within the viewport at smaller screen sizes.
-        @media (max-width: $max-width-breakpoint) {
-          max-width: $max-size-calc-expr;
-        }
+@mixin max-width-with-breakpoint(
+  $above-breakpoint-max-width,
+  $below-breakpoint-max-width,
+  $max-width-breakpoint,
+  $query: feature-targeting.all()
+) {
+  $feat-structure: feature-targeting.create-target($query, structure);
 
-        // Once the screen gets big enough, apply a fixed maximum width.
-        @media (min-width: $max-width-breakpoint) {
-          max-width: $max-width;
-        }
-      } @else {
-        max-width: $max-size-calc-expr;
+  .mdc-dialog__surface {
+    @include feature-targeting.targets($feat-structure) {
+      @media (max-width: $max-width-breakpoint) {
+        max-width: $below-breakpoint-max-width;
+      }
+      @media (min-width: $max-width-breakpoint) {
+        max-width: $above-breakpoint-max-width;
+      }
+    }
+  }
+}
+
+@mixin max-width($max-width, $margin, $query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+  $max-width-breakpoint: $max-width + ($margin * 2);
+  // Fit snugly within the viewport at smaller screen sizes.
+  $below-breakpoint-max-width: calc(100vw - #{$margin * 2});
+
+  @if $max-width {
+    @include max-width-with-breakpoint(
+      $max-width,
+      $below-breakpoint-max-width,
+      $max-width-breakpoint,
+      $query
+    );
+  } @else {
+    .mdc-dialog__surface {
+      @include feature-targeting.targets($feat-structure) {
+        max-width: $below-breakpoint-max-width;
       }
     }
   }
@@ -713,9 +785,6 @@
     // is fixed.
     .mdc-dialog__container {
       @include feature-targeting.targets($feat-structure) {
-        /* stylelint-disable */
-        // Disable stylelint here, as nesting depth > 3 is required to
-        // work around IE 11.
         @if $max-height {
           $max-height-breakpoint: $max-height + ($margin * 2);
 
@@ -724,7 +793,6 @@
             height: auto;
           }
         }
-        /* stylelint-enable*/
       }
     }
   }
@@ -889,25 +957,10 @@
       }
     }
 
-    // X-Small Screens (horizontal)
-    @media (max-width: 720px) and (max-height: 400px) {
-      @include feature-targeting.targets($feat-structure) {
-        // Use 100% instead of vw/vh so the url bar is taken into account on
-        // mobile.
-        height: 100%;
-        max-height: 100vh;
-        max-width: 100vw;
-        width: 100vw;
-        @include _fullscreen-header(
-          $close-icon-padding: variables.$close-icon-padding,
-          $title-side-padding: variables.$title-side-padding
-        );
-      }
-      @include shape-mixins.radius(0, $query: $query);
-    }
-
     // X-Small Screens
-    @media (max-width: 600px) {
+    @media (max-width: 720px) and (max-height: 400px),
+      (max-width: 600px),
+      (min-width: 720px) and (max-height: 400px) {
       @include feature-targeting.targets($feat-structure) {
         // Use 100% instead of vw/vh so the url bar is taken into account on
         // mobile.

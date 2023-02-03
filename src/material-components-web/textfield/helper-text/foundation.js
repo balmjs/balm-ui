@@ -23,6 +23,7 @@
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../../base/foundation';
 import { cssClasses, strings } from './constants';
+/** MDC Text Field Helper Text Foundation */
 var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
     __extends(MDCTextFieldHelperTextFoundation, _super);
     function MDCTextFieldHelperTextFoundation(adapter) {
@@ -44,7 +45,8 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCTextFieldHelperTextFoundation, "defaultAdapter", {
         /**
-         * See {@link MDCTextFieldHelperTextAdapter} for typing information on parameters and return types.
+         * See {@link MDCTextFieldHelperTextAdapter} for typing information on
+         * parameters and return types.
          */
         get: function () {
             // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
@@ -95,7 +97,8 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
         return this.adapter.hasClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
     };
     /**
-     * @param isValidation True to make the helper text act as an error validation message.
+     * @param isValidation True to make the helper text act as an error validation
+     *     message.
      */
     MDCTextFieldHelperTextFoundation.prototype.setValidation = function (isValidation) {
         if (isValidation) {

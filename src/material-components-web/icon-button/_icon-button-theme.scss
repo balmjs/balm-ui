@@ -85,7 +85,7 @@ $light-theme: (
 }
 
 @mixin theme-styles($theme) {
-  @include theme.validate-theme($light-theme, $theme);
+  @include theme.validate-theme-styles($light-theme, $theme);
 
   $theme: keys.create-theme-properties(
     $theme,
@@ -147,30 +147,13 @@ $light-theme: (
   @include feature-targeting.targets($feat-structure) {
     width: $size;
     height: $size;
-    padding: math.div($size - $icon-size, 2);
+    padding: calc(($size - $icon-size) / 2);
   }
 
   .mdc-icon-button__focus-ring {
     @include feature-targeting.targets($feat-structure) {
-      display: none;
-    }
-  }
-
-  @include ripple-theme.focus {
-    .mdc-icon-button__focus-ring {
-      @include dom.forced-colors-mode($exclude-ie11: true) {
-        @include focus-ring.focus-ring(
-          $query: $query,
-          $container-outer-padding-vertical: 0,
-          $container-outer-padding-horizontal: 0
-        );
-      }
-
-      @include feature-targeting.targets($feat-structure) {
-        display: block;
-        max-height: $size;
-        max-width: $size;
-      }
+      max-height: $size;
+      max-width: $size;
     }
   }
 
@@ -179,7 +162,7 @@ $light-theme: (
     // Icon button ripple size is capped at 40px for icon buttons with
     // densities -1 and 0 (icon buttons with sizes 44x44 and 48x48px).
     // See http://b/192353968 for more info.
-    @if $size >= 40px and $size <= 48px {
+    @if math.unit($size) == 'px' and ($size >= 40px and $size <= 48px) {
       $component-size: 40px;
     }
 
@@ -198,12 +181,10 @@ $light-theme: (
       );
     }
 
-    @include ripple-theme.focus {
-      .mdc-icon-button__focus-ring {
-        @include feature-targeting.targets($feat-structure) {
-          max-height: $component-size;
-          max-width: $component-size;
-        }
+    .mdc-icon-button__focus-ring {
+      @include feature-targeting.targets($feat-structure) {
+        max-height: $component-size;
+        max-width: $component-size;
       }
     }
   }
@@ -261,12 +242,14 @@ $light-theme: (
 /// @param {Color} $color - The desired font and ripple color.
 ///
 @mixin ink-color($color, $query: feature-targeting.all()) {
-  @include ink-color_($color, $query: $query);
-  @include ripple-theme.states(
-    $color,
-    $query: $query,
-    $ripple-target: $ripple-target
-  );
+  @if $color {
+    @include ink-color_($color, $query: $query);
+    @include ripple-theme.states(
+      $color,
+      $query: $query,
+      $ripple-target: $ripple-target
+    );
+  }
 }
 
 ///
@@ -331,8 +314,9 @@ $light-theme: (
 }
 
 @mixin _icon-size($size) {
-  @include theme.property(font-size, $size);
-
+  .mdc-button__icon {
+    @include theme.property(font-size, $size);
+  }
   svg,
   img {
     @include theme.property(width, $size);

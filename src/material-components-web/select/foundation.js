@@ -25,6 +25,7 @@ import { MDCFoundation } from '../base/foundation';
 import { KEY, normalizeKey } from '../dom/keyboard';
 import { Corner } from '../menu-surface/constants';
 import { cssClasses, numbers, strings } from './constants';
+/** MDC Select Foundation */
 var MDCSelectFoundation = /** @class */ (function (_super) {
     __extends(MDCSelectFoundation, _super);
     /* istanbul ignore next: optional argument is not a branch statement */
@@ -75,7 +76,8 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCSelectFoundation, "defaultAdapter", {
         /**
-         * See {@link MDCSelectAdapter} for typing information on parameters and return types.
+         * See {@link MDCSelectAdapter} for typing information on parameters and
+         * return types.
          */
         get: function () {
             // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
@@ -131,13 +133,13 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         if (index >= this.adapter.getMenuItemCount()) {
             return;
         }
+        this.adapter.setSelectedIndex(index);
         if (index === numbers.UNSET_INDEX) {
             this.adapter.setSelectedText('');
         }
         else {
             this.adapter.setSelectedText(this.adapter.getMenuItemTextAtIndex(index).trim());
         }
-        this.adapter.setSelectedIndex(index);
         if (closeMenu) {
             this.adapter.closeMenu();
         }
@@ -224,7 +226,8 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         if (this.adapter.getMenuItemValues().length === 0) {
             return;
         }
-        // Menu should open to the last selected element, should open to first menu item otherwise.
+        // Menu should open to the last selected element, should open to first menu
+        // item otherwise.
         var selectedIndex = this.getSelectedIndex();
         var focusItemIndex = selectedIndex >= 0 ? selectedIndex : 0;
         this.adapter.focusMenuItemAtIndex(focusItemIndex);
@@ -372,8 +375,10 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         if (this.useDefaultValidation &&
             this.adapter.hasClass(cssClasses.REQUIRED) &&
             !this.adapter.hasClass(cssClasses.DISABLED)) {
-            // See notes for required attribute under https://www.w3.org/TR/html52/sec-forms.html#the-select-element
-            // TL;DR: Invalid if no index is selected, or if the first index is selected and has an empty value.
+            // See notes for required attribute under
+            // https://www.w3.org/TR/html52/sec-forms.html#the-select-element TL;DR:
+            // Invalid if no index is selected, or if the first index is selected and
+            // has an empty value.
             return this.getSelectedIndex() !== numbers.UNSET_INDEX &&
                 (this.getSelectedIndex() !== 0 || Boolean(this.getValue()));
         }

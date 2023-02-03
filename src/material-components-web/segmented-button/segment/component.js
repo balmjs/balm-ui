@@ -79,7 +79,7 @@ var MDCSegmentedButtonSegment = /** @class */ (function (_super) {
                 return _this.root.getAttribute(attrName);
             },
             setAttr: function (attrName, value) {
-                _this.root.setAttribute(attrName, value);
+                _this.safeSetAttribute(_this.root, attrName, value);
             },
             addClass: function (className) {
                 _this.root.classList.add(className);
@@ -91,11 +91,7 @@ var MDCSegmentedButtonSegment = /** @class */ (function (_super) {
                 return _this.root.classList.contains(className);
             },
             notifySelectedChange: function (selected) {
-                _this.emit(events.SELECTED, {
-                    index: _this.index,
-                    selected: selected,
-                    segmentId: _this.getSegmentId()
-                }, true /* shouldBubble */);
+                _this.emit(events.SELECTED, { index: _this.index, selected: selected, segmentId: _this.getSegmentId() }, true /* shouldBubble */);
             },
             getRootBoundingClientRect: function () {
                 return _this.root.getBoundingClientRect();

@@ -27,6 +27,7 @@ import { cssClasses, strings } from './constants';
 import { MDCFixedTopAppBarFoundation } from './fixed/foundation';
 import { MDCShortTopAppBarFoundation } from './short/foundation';
 import { MDCTopAppBarFoundation } from './standard/foundation';
+/** MDC Top App Bar */
 var MDCTopAppBar = /** @class */ (function (_super) {
     __extends(MDCTopAppBar, _super);
     function MDCTopAppBar() {
@@ -37,9 +38,10 @@ var MDCTopAppBar = /** @class */ (function (_super) {
     };
     MDCTopAppBar.prototype.initialize = function (rippleFactory) {
         if (rippleFactory === void 0) { rippleFactory = function (el) { return MDCRipple.attachTo(el); }; }
-        this.navIcon = this.root.querySelector(strings.NAVIGATION_ICON_SELECTOR);
+        this.navIcon =
+            this.root.querySelector(strings.NAVIGATION_ICON_SELECTOR);
         // Get all icons in the toolbar and instantiate the ripples
-        var icons = [].slice.call(this.root.querySelectorAll(strings.ACTION_ITEM_SELECTOR));
+        var icons = Array.from(this.root.querySelectorAll(strings.ACTION_ITEM_SELECTOR));
         if (this.navIcon) {
             icons.push(this.navIcon);
         }
@@ -104,19 +106,24 @@ var MDCTopAppBar = /** @class */ (function (_super) {
     };
     MDCTopAppBar.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take
+        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+        // methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
             hasClass: function (className) { return _this.root.classList.contains(className); },
-            addClass: function (className) { return _this.root.classList.add(className); },
-            removeClass: function (className) { return _this.root.classList.remove(className); },
+            addClass: function (className) {
+                _this.root.classList.add(className);
+            },
+            removeClass: function (className) {
+                _this.root.classList.remove(className);
+            },
             setStyle: function (property, value) {
-                return _this.root.style.setProperty(property, value);
+                _this.root.style.setProperty(property, value);
             },
             getTopAppBarHeight: function () { return _this.root.clientHeight; },
             notifyNavigationIconClicked: function () {
-                return _this.emit(strings.NAVIGATION_EVENT, {});
+                _this.emit(strings.NAVIGATION_EVENT, {});
             },
             getViewportScrollY: function () {
                 var win = _this.scrollTarget;
@@ -124,7 +131,8 @@ var MDCTopAppBar = /** @class */ (function (_super) {
                 return win.pageYOffset !== undefined ? win.pageYOffset : el.scrollTop;
             },
             getTotalActionItems: function () {
-                return _this.root.querySelectorAll(strings.ACTION_ITEM_SELECTOR).length;
+                return _this.root.querySelectorAll(strings.ACTION_ITEM_SELECTOR)
+                    .length;
             },
         };
         // tslint:enable:object-literal-sort-keys

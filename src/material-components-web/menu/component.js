@@ -30,6 +30,7 @@ import { MDCMenuSurface } from '../menu-surface/component';
 import { MDCMenuSurfaceFoundation } from '../menu-surface/foundation';
 import { cssClasses, strings } from './constants';
 import { MDCMenuFoundation } from './foundation';
+/** MDC Menu */
 var MDCMenu = /** @class */ (function (_super) {
     __extends(MDCMenu, _super);
     function MDCMenu() {
@@ -158,9 +159,9 @@ var MDCMenu = /** @class */ (function (_super) {
     };
     Object.defineProperty(MDCMenu.prototype, "items", {
         /**
-         * Return the items within the menu. Note that this only contains the set of elements within
-         * the items container that are proper list items, and not supplemental / presentational DOM
-         * elements.
+         * Return the items within the menu. Note that this only contains the set of
+         * elements within the items container that are proper list items, and not
+         * supplemental / presentational DOM elements.
          */
         get: function () {
             return this.list ? this.list.listElements : [];
@@ -285,8 +286,9 @@ var MDCMenu = /** @class */ (function (_super) {
     };
     MDCMenu.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take
+        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+        // methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
             addClassToElementAtIndex: function (index, className) {
@@ -299,7 +301,7 @@ var MDCMenu = /** @class */ (function (_super) {
             },
             addAttributeToElementAtIndex: function (index, attr, value) {
                 var list = _this.items;
-                list[index].setAttribute(attr, value);
+                _this.safeSetAttribute(list[index], attr, value);
             },
             removeAttributeFromElementAtIndex: function (index, attr) {
                 var list = _this.items;

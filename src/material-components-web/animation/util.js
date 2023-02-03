@@ -57,7 +57,8 @@ var jsEventTypeMap = {
     },
 };
 function isWindow(windowObj) {
-    return Boolean(windowObj.document) && typeof windowObj.document.createElement === 'function';
+    return Boolean(windowObj.document) &&
+        typeof windowObj.document.createElement === 'function';
 }
 export function getCorrectPropertyName(windowObj, cssProperty) {
     if (isWindow(windowObj) && cssProperty in cssPropertyNameMap) {

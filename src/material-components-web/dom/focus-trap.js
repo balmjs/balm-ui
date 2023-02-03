@@ -58,7 +58,8 @@ var FocusTrap = /** @class */ (function () {
      * element.
      */
     FocusTrap.prototype.releaseFocus = function () {
-        [].slice.call(this.root.querySelectorAll("." + FOCUS_SENTINEL_CLASS))
+        Array
+            .from(this.root.querySelectorAll("." + FOCUS_SENTINEL_CLASS))
             .forEach(function (sentinelEl) {
             sentinelEl.parentElement.removeChild(sentinelEl);
         });
@@ -104,7 +105,7 @@ var FocusTrap = /** @class */ (function () {
         focusableEls[focusIndex].focus();
     };
     FocusTrap.prototype.getFocusableElements = function (root) {
-        var focusableEls = [].slice.call(root.querySelectorAll('[autofocus], [tabindex], a, input, textarea, select, button'));
+        var focusableEls = Array.from(root.querySelectorAll('[autofocus], [tabindex], a, input, textarea, select, button'));
         return focusableEls.filter(function (el) {
             var isDisabledOrHidden = el.getAttribute('aria-disabled') === 'true' ||
                 el.getAttribute('disabled') != null ||

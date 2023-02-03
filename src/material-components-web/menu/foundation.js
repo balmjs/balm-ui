@@ -25,6 +25,7 @@ import { MDCFoundation } from '../base/foundation';
 import { cssClasses as listCssClasses } from '../list/constants';
 import { MDCMenuSurfaceFoundation } from '../menu-surface/foundation';
 import { cssClasses, DefaultFocusState, numbers, strings } from './constants';
+/** MDC Menu Foundation */
 var MDCMenuFoundation = /** @class */ (function (_super) {
     __extends(MDCMenuFoundation, _super);
     function MDCMenuFoundation(adapter) {
@@ -104,7 +105,8 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
         this.adapter.notifySelected({ index: index });
         var skipRestoreFocus = this.adapter.getAttributeFromElementAtIndex(index, strings.SKIP_RESTORE_FOCUS) === 'true';
         this.adapter.closeSurface(skipRestoreFocus);
-        // Wait for the menu to close before adding/removing classes that affect styles.
+        // Wait for the menu to close before adding/removing classes that affect
+        // styles.
         this.closeAnimationEndTimerId = setTimeout(function () {
             // Recompute the index in case the menu contents have changed.
             var recomputedIndex = _this.adapter.getElementIndex(listItem);

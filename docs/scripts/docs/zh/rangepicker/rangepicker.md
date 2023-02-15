@@ -4,14 +4,15 @@
 
 ### Props
 
-| Name                | Type    | Default | Description                                                       |
-| ------------------- | ------- | ------- | ----------------------------------------------------------------- |
-| `outlined`          | boolean | `false` | 轮廓文本框（必须配置 `label` 或 `placeholder`）                   |
-| `model` (`v-model`) | array   | `''`    | 日期范围选择器值                                                  |
-| `disabled`          | boolean | `false` | 禁用状态                                                          |
-| `labels`            | array   | `[]`    | 文本框的文本标题或说明，可使用文本框的 `placeholder` 属性代替     |
-| `placeholders`      | array   | `[]`    | 原生 `<input>` 的 _placeholder_ 属性                              |
-| `config`            | object  | `{}`    | 详见 [Flatpickr configuration](https://flatpickr.js.org/options/) |
+| Name                 | Type    | Default | Description                                                       | Version |
+| -------------------- | ------- | ------- | ----------------------------------------------------------------- | ------- |
+| `outlined`           | boolean | `false` | 轮廓文本框（必须配置 `label` 或 `placeholder`）                   |         |
+| `model` (`v-model`)  | array   | `''`    | 日期范围选择器值                                                  |         |
+| `disabled`           | boolean | `false` | 禁用状态                                                          |         |
+| `labels`             | array   | `[]`    | 文本框的文本标题或说明，可使用文本框的 `placeholder` 属性代替     |         |
+| `placeholders`       | array   | `[]`    | 原生 `<input>` 的 _placeholder_ 属性                              |         |
+| `config`             | object  | `{}`    | 详见 [Flatpickr configuration](https://flatpickr.js.org/options/) |         |
+| `disableRangePlugin` | boolean | `false` | 禁用 flatpickr rangePlugin，使用两个 `<ui-datepicker>` 代替       | 8.58.0  |
 
 ### Slots
 

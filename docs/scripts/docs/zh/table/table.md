@@ -201,9 +201,10 @@
 
 ### Events
 
-| Name       | Type                            | Description      |
-| ---------- | ------------------------------- | ---------------- |
-| `selected` | `function(selectedRows: array)` | 选择行变化时触发 |
+| Name       | Type                            | Description          | Version |
+| ---------- | ------------------------------- | -------------------- | ------- |
+| `selected` | `function(selectedRows: array)` | 选择行变化时触发     |         |
+| `sorted`   | `function(detail: object)`      | 点击可排序表头时触发 | 8.58.0  |
 
 > 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@selected` 监听数据表选择行并更新 `selectedRows` 属性
 

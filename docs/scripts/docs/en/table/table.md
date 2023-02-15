@@ -201,9 +201,10 @@
 
 ### Events
 
-| Name       | Type                            | Description                         |
-| ---------- | ------------------------------- | ----------------------------------- |
-| `selected` | `function(selectedRows: array)` | Emits when row checkbox is changed. |
+| Name       | Type                            | Description                                 | Version |
+| ---------- | ------------------------------- | ------------------------------------------- | ------- |
+| `selected` | `function(selectedRows: array)` | Emits when row checkbox is changed.         |         |
+| `sorted`   | `function(detail: object)`      | Emits when clicked on sortable header cell. | 8.58.0  |
 
 > NOTE: If you are not using `v-model`, you should listen for the table using `@selected` and update the `selectedRows` prop.
 

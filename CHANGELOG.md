@@ -2,6 +2,13 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.58.0 / 2023-02-15
+
+### Features
+
+- `<ui-table>`: add event `sorted`
+- `<ui-rangepicker>`: add prop `disableRangePlugin`
+
 ## v8.57.0 / 2023-01-20
 
 > Happy Chinese New Year

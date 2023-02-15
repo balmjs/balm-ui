@@ -54,9 +54,7 @@ export default {
     // States
     model: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     // <ui-textfield> attributes
     disabled: {
@@ -66,22 +64,20 @@ export default {
     // UI attributes
     placeholders: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     labels: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     // For flatpickr
     config: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
+    },
+    disableRangePlugin: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -124,17 +120,35 @@ export default {
     const endInputEl = this.$refs.endInput.$el.querySelector('input');
 
     if (!this.flatpickr) {
+      const config = this.setPickerConfig(startInput, startInputEl, endInputEl);
+
+      this.flatpickr = this.disableRangePlugin
+        ? [flatpickr(startInputEl, config), flatpickr(endInputEl, config)]
+        : flatpickr(startInputEl, config);
+    }
+  },
+  beforeDestroy() {
+    this.destroyPicker();
+  },
+  methods: {
+    setPickerConfig(startInput, startInputEl, endInputEl) {
       let config = Object.assign({}, this.config, {
         disableMobile: true, // Mobile Support
-        plugins: [
-          new rangePlugin({
-            input: endInputEl
-          })
-        ]
+        plugins: this.disableRangePlugin
+          ? []
+          : [
+              new rangePlugin({
+                input: endInputEl
+              })
+            ]
       });
+
       // custom event
       config.onChange = (selectedDates, dateStr, instance) => {
-        const canEmit = this.updateInputs(selectedDates);
+        const canEmit = this.updateInputs([
+          startInputEl.value,
+          endInputEl.value
+        ]);
         canEmit &&
           this.$emit(UI_RANGEPICKER.EVENT.CHANGE, [
             this.startInputValue,
@@ -158,19 +172,23 @@ export default {
           ]);
         }
       };
-      // fix(@flatpickr): second input onChange bug for rangePlugin (temporary solution)
-      config.onValueUpdate = () => {
-        this.onEndInputChange();
-      };
+      if (!this.disableRangePlugin) {
+        // fix(@flatpickr): second input onChange bug for rangePlugin (temporary solution)
+        config.onValueUpdate = () => {
+          this.onEndInputChange();
+        };
+      }
 
-      this.flatpickr = flatpickr(startInputEl, config);
-    }
-  },
-  beforeDestroy() {
-    this.flatpickr.destroy();
-    this.flatpickr = null;
-  },
-  methods: {
+      return config;
+    },
+    destroyPicker() {
+      if (this.disableRangePlugin) {
+        this.flatpickr.forEach((item) => item.destroy());
+      } else {
+        this.flatpickr.destroy();
+      }
+      this.flatpickr = null;
+    },
     updateInputs(dates) {
       let canEmit = false;
 
@@ -204,10 +222,19 @@ export default {
         this.startInputValue && this.endInputValue
           ? [this.startInputValue, this.endInputValue]
           : [];
-      instance.setDate(dateValue, true); // Redrawing
 
-      // fix(ui): focus bug for init (temporary solution)
-      this.$refs.startInput.$textField.foundation.deactivateFocus();
+      if (this.disableRangePlugin) {
+        if (this.flatpickr && this.flatpickr.length === 2) {
+          this.flatpickr.forEach((item, index) =>
+            item.setDate(this.model[index])
+          );
+        }
+      } else {
+        instance.setDate(dateValue, true); // Redrawing
+
+        // fix(ui): focus bug for init (temporary solution)
+        this.$refs.startInput.$textField.foundation.deactivateFocus();
+      }
     },
     clear() {
       this.startInputValue = '';

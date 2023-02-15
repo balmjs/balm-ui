@@ -40,7 +40,8 @@ export default {
     MIN: 'min'
   },
   EVENT: {
-    SELECTED: 'selected'
+    SELECTED: 'selected',
+    SORTED: 'sorted'
   },
   CHECKBOX_COL_WIDTH: 50 // px
 };

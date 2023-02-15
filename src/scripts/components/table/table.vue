@@ -454,6 +454,8 @@ export default {
     this.$table.listen(events.SORTED, ({ detail }) => {
       // TODO: multi-row header is unsupported
       this.handleSort(detail);
+
+      this.$emit(UI_TABLE.EVENT.SORTED, detail);
     });
 
     if (this.selectedRows.length) {

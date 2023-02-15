@@ -11,45 +11,8 @@ function resolve(dir) {
 
 function getConfig(balm) {
   const { isProd } = balm.config.env;
-  const useDocsProd = isProd && env.buildDocs;
   const useDocsDev = !isProd || env.buildDocs;
   const useBuild = isProd && !env.buildDocs;
-
-  let envOptions = useDocsProd
-    ? {
-        modules: false,
-        useBuiltIns: 'entry',
-        corejs: { version: '3.27' }
-      }
-    : {
-        modules: false
-      };
-  let runtimeOptions = useDocsProd ? { corejs: 3 } : {};
-
-  let babelLoaderOptions =
-    useDocsProd || useDocsDev
-      ? {
-          presets: [['@babel/preset-env', envOptions]],
-          plugins: [
-            ['@babel/plugin-transform-runtime', runtimeOptions],
-            [
-              'prismjs',
-              {
-                languages: [
-                  'markup',
-                  'ini',
-                  'css',
-                  'javascript',
-                  'bash',
-                  'scss',
-                  'typescript'
-                ],
-                plugins: ['highlight-keywords', 'toolbar', 'copy-to-clipboard']
-              }
-            ]
-          ]
-        }
-      : {};
 
   return {
     roots: {
@@ -106,7 +69,6 @@ function getConfig(balm) {
       urlLoaderOptions: {
         esModule: false
       },
-      babelLoaderOptions,
       includeJsResource: useDocsDev ? [resolve('src/scripts')] : [],
       alias: {
         '@': resolve('docs/scripts'),

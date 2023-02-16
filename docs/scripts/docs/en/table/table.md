@@ -199,9 +199,10 @@
 
 ### Events
 
-| Name                | Type                            | Description                         |
-| ------------------- | ------------------------------- | ----------------------------------- |
-| `update:modelValue` | `function(selectedRows: array)` | Emits when row checkbox is changed. |
+| Name                | Type                            | Description                                 | Version |
+| ------------------- | ------------------------------- | ------------------------------------------- | ------- |
+| `update:modelValue` | `function(selectedRows: array)` | Emits when row checkbox is changed.         |         |
+| `sorted`            | `function(detail: object)`      | Emits when clicked on sortable header cell. | 10.16.0 |
 
 > NOTE: If you are not using `v-model`, you should listen for the table using `@update:modelValue` and update the `modelValue` prop.
 

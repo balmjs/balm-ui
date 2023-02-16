@@ -423,6 +423,8 @@ onMounted(() => {
   state.$table.listen(events.SORTED, ({ detail }) => {
     // TODO: multi-row header is unsupported
     handleSort(detail);
+
+    emit(UI_TABLE.EVENTS.SORTED, detail);
   });
 
   if (props.modelValue.length) {

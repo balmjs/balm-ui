@@ -40,7 +40,8 @@ export default {
     MIN: 'min'
   },
   EVENTS: {
-    CHANGE: 'update:modelValue'
+    CHANGE: 'update:modelValue',
+    SORTED: 'sorted'
   },
   CHECKBOX_COL_WIDTH: 50 // px
 };

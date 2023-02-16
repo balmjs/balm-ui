@@ -83,6 +83,10 @@ const props = defineProps({
   config: {
     type: Object,
     default: () => ({})
+  },
+  disableRangePlugin: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -108,46 +112,11 @@ onMounted(() => {
   const endInputEl = endDatepicker.value.textfield.querySelector('input');
 
   if (!state.picker) {
-    let config = Object.assign({}, props.config, {
-      disableMobile: true, // Mobile Support
-      plugins: [
-        new rangePlugin({
-          input: endInputEl
-        })
-      ]
-    });
-    // custom event
-    config.onChange = (selectedDates, dateStr, instance) => {
-      const canEmit = updateInputs(selectedDates);
-      canEmit &&
-        emit(UI_RANGEPICKER.EVENTS.CHANGE, [
-          state.startInputValue,
-          state.endInputValue
-        ]);
-    };
-    config.onClose = () => {
-      setTimeout(() => {
-        startInput.$textField.foundation.deactivateFocus();
-        startInputEl.blur();
-      }, 1);
-    };
-    // set default value
-    config.onReady = (selectedDates, dateStr, instance) => {
-      const canEmit = updateInputs(props.modelValue);
-      if (canEmit) {
-        updateInitialValue(instance);
-        emit(UI_RANGEPICKER.EVENTS.CHANGE, [
-          state.startInputValue,
-          state.endInputValue
-        ]);
-      }
-    };
-    // fix(@flatpickr): second input onChange bug for rangePlugin (temporary solution)
-    config.onValueUpdate = () => {
-      onEndInputChange();
-    };
+    const config = setPickerConfig(startInput, startInputEl, endInputEl);
 
-    state.picker = flatpickr(startInputEl, config);
+    state.picker = props.disableRangePlugin
+      ? [flatpickr(startInputEl, config), flatpickr(endInputEl, config)]
+      : flatpickr(startInputEl, config);
   }
 
   watch(
@@ -166,12 +135,66 @@ onMounted(() => {
   );
 });
 
-onBeforeUnmount(() => {
+onBeforeUnmount(destroyPicker);
+
+function setPickerConfig(startInput, startInputEl, endInputEl) {
+  let config = Object.assign({}, props.config, {
+    disableMobile: true, // Mobile Support
+    plugins: props.disableRangePlugin
+      ? []
+      : [
+          new rangePlugin({
+            input: endInputEl
+          })
+        ]
+  });
+
+  // custom event
+  config.onChange = (selectedDates, dateStr, instance) => {
+    const canEmit = updateInputs([startInputEl.value, endInputEl.value]);
+    canEmit &&
+      emit(UI_RANGEPICKER.EVENTS.CHANGE, [
+        state.startInputValue,
+        state.endInputValue
+      ]);
+  };
+  config.onClose = () => {
+    setTimeout(() => {
+      startInput.$textField.foundation.deactivateFocus();
+      startInputEl.blur();
+    }, 1);
+  };
+  // set default value
+  config.onReady = (selectedDates, dateStr, instance) => {
+    const canEmit = updateInputs(props.modelValue);
+    if (canEmit) {
+      updateInitialValue(instance);
+      emit(UI_RANGEPICKER.EVENTS.CHANGE, [
+        state.startInputValue,
+        state.endInputValue
+      ]);
+    }
+  };
+  if (!props.disableRangePlugin) {
+    // fix(@flatpickr): second input onChange bug for rangePlugin (temporary solution)
+    config.onValueUpdate = () => {
+      onEndInputChange();
+    };
+  }
+
+  return config;
+}
+
+function destroyPicker() {
   if (state.picker) {
-    state.picker.destroy();
+    if (props.disableRangePlugin) {
+      state.picker.forEach((item) => item.destroy());
+    } else {
+      state.picker.destroy();
+    }
     state.picker = null;
   }
-});
+}
 
 function updateInputs(dates) {
   let canEmit = false;
@@ -207,11 +230,20 @@ function updateInitialValue(instance = state.picker) {
     state.startInputValue && state.endInputValue
       ? [state.startInputValue, state.endInputValue]
       : [];
-  instance.setDate(dateValue, true); // Redrawing
 
-  // fix(ui): focus bug for init (temporary solution)
-  const startInput = startDatepicker.value;
-  startInput.$textField.foundation.deactivateFocus();
+  if (props.disableRangePlugin) {
+    if (state.picker && state.picker.length === 2) {
+      state.picker.forEach((item, index) =>
+        item.setDate(props.modelValue[index])
+      );
+    }
+  } else {
+    instance.setDate(dateValue, true); // Redrawing
+
+    // fix(ui): focus bug for init (temporary solution)
+    const startInput = startDatepicker.value;
+    startInput.$textField.foundation.deactivateFocus();
+  }
 }
 
 function clear() {

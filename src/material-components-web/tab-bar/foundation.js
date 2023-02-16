@@ -128,24 +128,19 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
         if (!this.isActivationKey(key)) {
             evt.preventDefault();
         }
-        if (this.useAutomaticActivation) {
-            if (this.isActivationKey(key)) {
-                return;
-            }
-            var index = this.determineTargetFromKey(this.adapter.getPreviousActiveTabIndex(), key);
-            this.adapter.setActiveTab(index);
-            this.scrollIntoView(index);
+        if (this.useAutomaticActivation && this.isActivationKey(key)) {
+            return;
         }
-        else {
-            var focusedTabIndex = this.adapter.getFocusedTabIndex();
-            if (this.isActivationKey(key)) {
-                this.adapter.setActiveTab(focusedTabIndex);
-            }
-            else {
-                var index = this.determineTargetFromKey(focusedTabIndex, key);
-                this.adapter.focusTabAtIndex(index);
-                this.scrollIntoView(index);
-            }
+        var focusedTabIndex = this.adapter.getFocusedTabIndex();
+        if (this.isActivationKey(key)) {
+            this.adapter.setActiveTab(focusedTabIndex);
+            return;
+        }
+        var index = this.determineTargetFromKey(focusedTabIndex, key);
+        this.adapter.focusTabAtIndex(index);
+        this.scrollIntoView(index);
+        if (this.useAutomaticActivation) {
+            this.adapter.setActiveTab(index);
         }
     };
     /**

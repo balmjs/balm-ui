@@ -90,6 +90,7 @@ var MDCTab = /** @class */ (function (_super) {
             focus: function () {
                 _this.root.focus();
             },
+            isFocused: function () { return _this.root === document.activeElement; },
         };
         // tslint:enable:object-literal-sort-keys
         return new MDCTabFoundation(adapter);

@@ -15,44 +15,7 @@ function resolve(dir) {
 function getConfig(balm) {
   const useDocsProd = balm.config.env.isProd && env.buildDocs;
   const useDocsDev = !balm.config.env.isProd || env.buildDocs;
-  const useDocs = useDocsProd || useDocsDev;
   const useBuild = balm.config.env.isProd && !env.buildDocs;
-
-  let envOptions = useDocsProd
-    ? {
-        modules: false,
-        useBuiltIns: 'entry',
-        corejs: { version: '3.27', proposals: true }
-      }
-    : {
-        modules: false
-      };
-  let runtimeOptions = useDocsProd ? { corejs: 3 } : {};
-
-  let babelLoaderOptions = useDocs
-    ? {
-        presets: [['@babel/preset-env', envOptions]],
-        plugins: [
-          '@babel/plugin-proposal-optional-chaining',
-          ['@babel/plugin-transform-runtime', runtimeOptions],
-          [
-            'prismjs',
-            {
-              languages: [
-                'markup',
-                'ini',
-                'css',
-                'javascript',
-                'bash',
-                'scss',
-                'typescript'
-              ],
-              plugins: ['highlight-keywords', 'toolbar', 'copy-to-clipboard']
-            }
-          ]
-        ]
-      }
-    : {};
 
   return {
     server: {
@@ -122,7 +85,6 @@ function getConfig(balm) {
           loader: 'vue-loader'
         }
       ],
-      babelLoaderOptions,
       includeJsResource: useDocsDev ? [resolve('src/scripts')] : [],
       alias: Object.assign({
         '@': resolve('docs/scripts'),

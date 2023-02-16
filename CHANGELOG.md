@@ -2,6 +2,14 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.16.0 / 2023-02-16
+
+### Features
+
+- update `mdc@15.0.0-canary.066d9439b.0`
+- `<ui-table>`: add event `sorted`
+- `<ui-rangepicker>`: add prop `disableRangePlugin`
+
 ## v10.15.0 / 2023-02-03
 
 ### Features

@@ -1,0 +1,7 @@
+@use './vars';
+
+@use '@material/theme/variables' with ($primary: vars.$primaryColor);
+
+@use 'balm-ui/components/icon' with ($font-path: vars.$fontPath);
+
+@use 'balm-ui/dist/balm-ui';

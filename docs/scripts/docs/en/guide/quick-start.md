@@ -42,10 +42,11 @@ The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface t
 - Or, hoisting only packages that match a pattern:
 
   ```ini
+  public-hoist-pattern[]="*balm*"
   public-hoist-pattern[]="*deepmerge*"
   public-hoist-pattern[]="*flatpickr*"
   public-hoist-pattern[]="*material-components-web*"
-  public-hoist-pattern[]="@material/*"
+  public-hoist-pattern[]="@material*"
   public-hoist-pattern[]="*quill*"
   ```
 

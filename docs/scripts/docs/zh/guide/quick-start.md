@@ -42,10 +42,11 @@
 - 或者只提升匹配的依赖包：
 
   ```ini
+  public-hoist-pattern[]="*balm*"
   public-hoist-pattern[]="*deepmerge*"
   public-hoist-pattern[]="*flatpickr*"
   public-hoist-pattern[]="*material-components-web*"
-  public-hoist-pattern[]="@material/*"
+  public-hoist-pattern[]="@material*"
   public-hoist-pattern[]="*quill*"
   ```
 

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[267],{30267:function(t,l,e){e.r(l);l.default='<pre><code class="language-html">&lt;ui-collapse&gt;\n  &lt;template #toggle&gt;\n    &lt;ui-button&gt;Button&lt;/ui-button&gt;\n  &lt;/template&gt;\n  Show Content\n&lt;/ui-collapse&gt;\n</code></pre> '}}]);

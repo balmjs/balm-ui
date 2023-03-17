@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[1767],{82865:function(t,l,e){e.r(l);l.default='<pre><code class="language-html">&lt;div v-shape.cut.small class=&quot;demo&quot;&gt;4dp&lt;/div&gt;\n&lt;div v-shape.cut class=&quot;demo&quot;&gt;8dp&lt;/div&gt;\n&lt;div v-shape.cut.large class=&quot;demo&quot;&gt;12dp&lt;/div&gt;\n</code></pre> '}}]);

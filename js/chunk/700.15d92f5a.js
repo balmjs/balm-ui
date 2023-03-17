@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[700],{700:function(t,u,e){e.r(u);u.default='<pre><code class="language-html">&lt;ui-button raised @click=&quot;$toast(&#39;hello&#39;)&quot;&gt;Show Toast&lt;/ui-button&gt;\n</code></pre> '}}]);

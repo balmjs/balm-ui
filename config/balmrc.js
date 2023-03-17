@@ -110,7 +110,7 @@ function getConfig(balm) {
     pwa: {
       enabled: env.buildDocs,
       mode: 'injectManifest',
-      version: `v${pkg.version.replace(/\./g, '')}-0317`
+      version: `v${pkg.version.replace(/\./g, '')}`
     },
     useDefaults: env.useDefaults,
     logs: {

@@ -51,17 +51,17 @@ export default {
       type: [String, Array],
       default: ''
     },
+    selectedNodesWithParent: {
+      type: Boolean,
+      default: false
+    },
     data: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     dataFormat: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     },
     // UI attributes
     maxLevel: {
@@ -86,9 +86,7 @@ export default {
     },
     defaultExpandedKeys: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     }
   },
   data() {
@@ -100,6 +98,7 @@ export default {
         maxLevel: this.maxLevel,
         nodeMap: new Map(),
         selectedValue: this.selectedNodes,
+        selectedNodesWithParent: this.selectedNodesWithParent,
         multiple: this.multiple,
         singleChecked: this.singleChecked,
         loadData: this.loadData,

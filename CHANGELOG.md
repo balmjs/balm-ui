@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.59.0 / 2023-04-04
+
+### Features
+
+- `<ui-tree>`: add prop `selectedNodesWithParent`
+
 ## v8.58.0 / 2023-02-15
 
 ### Features

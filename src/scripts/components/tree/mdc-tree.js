@@ -151,11 +151,17 @@ class MdcTree {
   /** For multiple tree **/
 
   static setMultipleSelectedValue(treeData, currentNodeKey, checked) {
-    const { indeterminate } = treeData.nodeMap.get(currentNodeKey);
+    const { dataFormat, nodeMap, selectedNodesWithParent } = treeData;
+    const { isLeaf } = dataFormat;
+    const item = nodeMap.get(currentNodeKey);
 
-    if (checked && !indeterminate) {
+    if (checked && !item.indeterminate) {
       if (!treeData.selectedValue.includes(currentNodeKey)) {
-        treeData.selectedValue.push(currentNodeKey);
+        if (selectedNodesWithParent) {
+          treeData.selectedValue.push(currentNodeKey);
+        } else {
+          item[isLeaf] && treeData.selectedValue.push(currentNodeKey);
+        }
       }
     } else {
       treeData.selectedValue = treeData.selectedValue.filter(

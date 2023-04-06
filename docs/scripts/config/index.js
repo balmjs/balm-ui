@@ -2,8 +2,8 @@ import pkg from '../../../package.json';
 
 export const VERSION = pkg.version;
 export const MDI_INFO = {
-  version: '125',
-  updated: '2022.03.01'
+  version: '140',
+  updated: '2023.04.06'
 };
 export const isDev = process.env.NODE_ENV === 'development';
 export const isProd = process.env.NODE_ENV === 'production';

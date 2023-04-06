@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __assign, __extends } from "tslib";
+import { __assign, __extends, __read, __spreadArray } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { KEY, normalizeKey } from '../dom/keyboard';
 import { Corner } from '../menu-surface/constants';
@@ -35,6 +35,7 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
      */
     function MDCSelectFoundation(adapter, foundationMap) {
         if (foundationMap === void 0) { foundationMap = {}; }
+        var _a, _b;
         var _this = _super.call(this, __assign(__assign({}, MDCSelectFoundation.defaultAdapter), adapter)) || this;
         // Disabled state
         _this.disabled = false;
@@ -51,6 +52,9 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         _this.recentlyClicked = false;
         _this.leadingIcon = foundationMap.leadingIcon;
         _this.helperText = foundationMap.helperText;
+        _this.ariaDescribedbyIds =
+            ((_b = (_a = _this.adapter.getSelectAnchorAttr(strings.ARIA_DESCRIBEDBY)) === null || _a === void 0 ? void 0 : _a.split(' ')) === null || _b === void 0 ? void 0 : _b.filter(function (id) { var _a; return id !== ((_a = _this.helperText) === null || _a === void 0 ? void 0 : _a.getId()) && id !== ''; })) ||
+                [];
         return _this;
     }
     Object.defineProperty(MDCSelectFoundation, "cssClasses", {
@@ -429,12 +433,18 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         var helperTextVisible = this.helperText.isVisible();
         var helperTextId = this.helperText.getId();
         if (helperTextVisible && helperTextId) {
-            this.adapter.setSelectAnchorAttr(strings.ARIA_DESCRIBEDBY, helperTextId);
+            this.adapter.setSelectAnchorAttr(strings.ARIA_DESCRIBEDBY, __spreadArray(__spreadArray([], __read(this.ariaDescribedbyIds)), [helperTextId]).join(' '));
         }
         else {
-            // Needed because screenreaders will read labels pointed to by
-            // `aria-describedby` even if they are `aria-hidden`.
-            this.adapter.removeSelectAnchorAttr(strings.ARIA_DESCRIBEDBY);
+            // Remove helptext from list of describedby ids. Needed because
+            // screenreaders will read labels pointed to by `aria-describedby` even if
+            // they are `aria-hidden`.
+            if (this.ariaDescribedbyIds.length > 0) {
+                this.adapter.setSelectAnchorAttr(strings.ARIA_DESCRIBEDBY, this.ariaDescribedbyIds.join(' '));
+            }
+            else { // helper text is the only describedby element
+                this.adapter.removeSelectAnchorAttr(strings.ARIA_DESCRIBEDBY);
+            }
         }
     };
     MDCSelectFoundation.prototype.setClickDebounceTimeout = function () {

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[1714],{83744:function(c,n){n.Z=(c,n)=>{const t=c.__vccOpts||c;for(const[u,s]of n)t[u]=s;return t}},52086:function(c,n,t){t.r(n);const u=t(87709).Z;n.default=u}}]);

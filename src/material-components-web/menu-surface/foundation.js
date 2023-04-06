@@ -114,6 +114,8 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
                 notifyClosing: function () { return undefined; },
                 notifyOpen: function () { return undefined; },
                 notifyOpening: function () { return undefined; },
+                registerWindowEventHandler: function () { return undefined; },
+                deregisterWindowEventHandler: function () { return undefined; },
             };
             // tslint:enable:object-literal-sort-keys
         },
@@ -128,12 +130,15 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         if (this.adapter.hasClass(OPEN)) {
             this.isSurfaceOpen = true;
         }
+        this.resizeListener = this.handleResize.bind(this);
+        this.adapter.registerWindowEventHandler('resize', this.resizeListener);
     };
     MDCMenuSurfaceFoundation.prototype.destroy = function () {
         clearTimeout(this.openAnimationEndTimerId);
         clearTimeout(this.closeAnimationEndTimerId);
         // Cancel any currently running animations.
         cancelAnimationFrame(this.animationRequestId);
+        this.adapter.deregisterWindowEventHandler('resize', this.resizeListener);
     };
     /**
      * @param corner Default anchor corner alignment of top-left menu surface
@@ -236,6 +241,7 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
             });
             this.isSurfaceOpen = true;
         }
+        this.adapter.registerWindowEventHandler('resize', this.resizeListener);
     };
     /**
      * Closes the menu surface.
@@ -247,6 +253,7 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
             return;
         }
         this.adapter.notifyClosing();
+        this.adapter.deregisterWindowEventHandler('resize', this.resizeListener);
         if (this.isQuickOpen) {
             this.isSurfaceOpen = false;
             if (!skipRestoreFocus) {
@@ -287,6 +294,11 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         if (isEscape) {
             this.close();
         }
+    };
+    /** Handles resize events on the window. */
+    MDCMenuSurfaceFoundation.prototype.handleResize = function () {
+        this.dimensions = this.adapter.getInnerDimensions();
+        this.autoposition();
     };
     MDCMenuSurfaceFoundation.prototype.autoposition = function () {
         var _a;

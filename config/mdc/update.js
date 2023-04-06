@@ -3,13 +3,14 @@ const https = require('https');
 const { src, dest, task, series } = require('gulp');
 const $replace = require('gulp-replace');
 
-// updated: 2022.03.01
+// https://fonts.google.com/icons?icon.set=Material+Icons
+// updated: 2023.04.06
 const LATEST_VERSIONS = {
-  filled: 125,
-  outlined: 100,
-  round: 99,
-  twoTone: 103,
-  sharp: 100
+  filled: 140,
+  outlined: 109,
+  round: 108,
+  twoTone: 112,
+  sharp: 109
 };
 
 // Update Material Components Web for BalmUI

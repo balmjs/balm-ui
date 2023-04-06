@@ -317,14 +317,9 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.hide();
     };
     MDCTooltipFoundation.prototype.handleWindowScrollEvent = function () {
-        if (this.persistentTooltip) {
-            // Persistent tooltips remain visible on user scroll, call appropriate
-            // handler to ensure the tooltip remains pinned to the anchor on page
-            // scroll.
-            this.handleWindowChangeEvent();
-            return;
+        if (!this.persistentTooltip) {
+            this.hide();
         }
-        this.hide();
     };
     /**
      * On window resize or scroll, check the anchor position and size and

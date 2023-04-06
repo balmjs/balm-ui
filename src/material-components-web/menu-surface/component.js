@@ -198,6 +198,12 @@ var MDCMenuSurface = /** @class */ (function (_super) {
             setMaxHeight: function (height) {
                 _this.root.style.maxHeight = height;
             },
+            registerWindowEventHandler: function (evtType, handler) {
+                window.addEventListener(evtType, handler);
+            },
+            deregisterWindowEventHandler: function (evtType, handler) {
+                window.removeEventListener(evtType, handler);
+            },
         };
         // tslint:enable:object-literal-sort-keys
         return new MDCMenuSurfaceFoundation(adapter);

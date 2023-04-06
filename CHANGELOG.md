@@ -2,10 +2,11 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
-## v10.17.0 / 2023-04-04
+## v10.17.0 / 2023-04-06
 
 ### Features
 
+- update `mdc@15.0.0-canary.55093ee1e.0`
 - `<ui-tree>`: add prop `selectedNodesWithParent`
 
 ## v10.16.0 / 2023-02-16

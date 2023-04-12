@@ -152,17 +152,12 @@ class MdcTree {
 
   static setMultipleSelectedValue(treeData, currentNodeKey, checked) {
     const { dataFormat, nodeMap, filterParentNode } = treeData;
-    const { isLeaf } = dataFormat;
     const item = nodeMap.get(currentNodeKey);
 
     if (checked && !item.indeterminate) {
       if (!treeData.selectedValue.includes(currentNodeKey)) {
         if (filterParentNode) {
-          if (item[isLeaf]) {
-            treeData.selectedValue.push(currentNodeKey);
-          } else {
-            console.warn('[UiTree]', 'Tree node is missing `isLeaf`');
-          }
+          item.isLeaf && treeData.selectedValue.push(currentNodeKey);
         } else {
           treeData.selectedValue.push(currentNodeKey);
         }
@@ -176,7 +171,7 @@ class MdcTree {
 
   static setChildrenCheckedValue(treeData, nodes, checked) {
     const { dataFormat, nodeMap } = treeData;
-    const { value, children, isLeaf } = dataFormat;
+    const { value, children } = dataFormat;
 
     for (let i = 0, len = nodes.length; i < len; i++) {
       let item = Object.assign({}, nodes[i]);
@@ -197,7 +192,7 @@ class MdcTree {
         this.setMultipleSelectedValue(treeData, nodeKey, checked);
       }
 
-      if (!item[isLeaf] && nodeChildren.length) {
+      if (!item.isLeaf && nodeChildren.length) {
         this.setChildrenCheckedValue(treeData, nodeChildren, checked);
       }
     }
@@ -248,7 +243,7 @@ class MdcTree {
     }
 
     const { dataFormat, nodeMap, singleChecked } = treeData;
-    const { value, children, isLeaf } = dataFormat;
+    const { value, children } = dataFormat;
     const nodeKey = item[value];
     const nodeChildren = item[children];
 
@@ -264,7 +259,7 @@ class MdcTree {
     } else {
       selectedNodes = [nodeKey];
 
-      if (item[isLeaf]) {
+      if (item.isLeaf) {
         item.checked = checked;
         this.setMultipleSelectedValue(treeData, nodeKey, checked);
       } else {
@@ -358,7 +353,7 @@ class MdcTree {
   /** For tree operation **/
   static async createNode(treeData, parentKey, originNodeData) {
     const { dataFormat, nodeMap } = treeData;
-    const { value, children, hasChildren, isLeaf } = dataFormat;
+    const { value, children, hasChildren } = dataFormat;
 
     const parentItem = nodeMap.get(parentKey);
     const nodeKey = originNodeData[value];
@@ -369,12 +364,12 @@ class MdcTree {
       checked: false
     });
 
-    if (parentItem[isLeaf]) {
+    if (parentItem.isLeaf) {
       parentItem[children].unshift(item);
       if (!parentItem[hasChildren]) {
         parentItem[hasChildren] = true;
       }
-      parentItem[isLeaf] = false;
+      parentItem.isLeaf = false;
     } else {
       if (parentItem[hasChildren]) {
         if (parentItem[children].length) {

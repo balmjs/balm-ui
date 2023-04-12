@@ -7,7 +7,7 @@
 | Name                        | Type          | Default | Description                                          | Version |
 | --------------------------- | ------------- | ------- | ---------------------------------------------------- | ------- |
 | `selectedNodes` (`v-model`) | string, array | `''`    | 选中的树节点键值                                     |         |
-| `selectedNodesWithParent`   | boolean       | `false` | 选中节点包含所有父节点                               | 8.59.0  |
+| `filterParentNode`          | boolean       | `false` | 选中的树节点键值排除所有父节点                       | 8.60.0  |
 | `data`                      | array         | `[]`    | 源数据                                               |         |
 | `dataFormat`                | object        | `{}`    | 定义源数据的格式                                     |         |
 | `maxLevel`                  | number        | `0`     | 设置加载树节点的最大层级                             |         |

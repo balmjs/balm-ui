@@ -7,7 +7,7 @@
 | Name                        | Type          | Default | Description                                                  | Version |
 | --------------------------- | ------------- | ------- | ------------------------------------------------------------ | ------- |
 | `selectedNodes` (`v-model`) | string, array | `''`    | Selected node keys.                                          |         |
-| `selectedNodesWithParent`   | boolean       | `false` | The selected node contains all parent nodes                  | 8.59.0  |
+| `filterParentNode`          | boolean       | `false` | Selected node keys excludes all parent nodes.                | 8.60.0  |
 | `data`                      | array         | `[]`    | The tree data source.                                        |         |
 | `dataFormat`                | object        | `{}`    | Defines the tree data source format.                         |         |
 | `maxLevel`                  | number        | `0`     | Set max level for tree nodes.                                |         |

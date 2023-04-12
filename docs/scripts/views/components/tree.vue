@@ -104,7 +104,7 @@ export default {
       this.treeData2 = dig('1', 2);
       this.treeData3 = dig('0', -1);
 
-      this.selectedValue2 = ['1-1-0'];
+      this.selectedValue2 = ['1-1-0', '1-1-0-0', '1-1-0-1', '1-1-0-2'];
     }, 1);
   },
   methods: {

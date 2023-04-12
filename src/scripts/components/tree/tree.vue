@@ -51,7 +51,7 @@ export default {
       type: [String, Array],
       default: ''
     },
-    selectedNodesWithParent: {
+    filterParentNode: {
       type: Boolean,
       default: false
     },
@@ -98,7 +98,7 @@ export default {
         maxLevel: this.maxLevel,
         nodeMap: new Map(),
         selectedValue: this.selectedNodes,
-        selectedNodesWithParent: this.selectedNodesWithParent,
+        filterParentNode: this.filterParentNode,
         multiple: this.multiple,
         singleChecked: this.singleChecked,
         loadData: this.loadData,

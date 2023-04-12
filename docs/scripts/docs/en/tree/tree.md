@@ -4,18 +4,18 @@
 
 ### Props
 
-| Name                      | Type          | Default | Description                                                  | Version |
-| ------------------------- | ------------- | ------- | ------------------------------------------------------------ | ------- |
-| `modelValue` (`v-model`)  | string, array | `''`    | Selected node keys.                                          |         |
-| `selectedNodesWithParent` | boolean       | `false` | The selected node contains all parent nodes                  | 10.17.0 |
-| `data`                    | array         | `[]`    | The tree data source.                                        |         |
-| `dataFormat`              | object        | `{}`    | Defines the tree data source format.                         |         |
-| `maxLevel`                | number        | `0`     | Set max level for tree nodes.                                |         |
-| `multiple`                | boolean       | `false` | Whether to support selected multiple tree nodes.             |         |
-| `singleChecked`           | boolean       | `false` | Set single checked. Applicable only for the `multiple` tree. | 9.34.0  |
-| `loadData`                | function      | `null`  | Load data asynchronously.                                    |         |
-| `autoExpandParent`        | boolean       | `false` | Whether to automatically expand root parent(s) treeNode.     | 9.17.0  |
-| `defaultExpandedKeys`     | array         | `[]`    | Specify the node keys of the default expanded treeNodes.     | 9.17.0  |
+| Name                     | Type          | Default | Description                                                  | Version |
+| ------------------------ | ------------- | ------- | ------------------------------------------------------------ | ------- |
+| `modelValue` (`v-model`) | string, array | `''`    | Selected node keys.                                          |         |
+| `filterParentNode`       | boolean       | `false` | Selected node keys excludes all parent nodes.                | 10.18.0 |
+| `data`                   | array         | `[]`    | The tree data source.                                        |         |
+| `dataFormat`             | object        | `{}`    | Defines the tree data source format.                         |         |
+| `maxLevel`               | number        | `0`     | Set max level for tree nodes.                                |         |
+| `multiple`               | boolean       | `false` | Whether to support selected multiple tree nodes.             |         |
+| `singleChecked`          | boolean       | `false` | Set single checked. Applicable only for the `multiple` tree. | 9.34.0  |
+| `loadData`               | function      | `null`  | Load data asynchronously.                                    |         |
+| `autoExpandParent`       | boolean       | `false` | Whether to automatically expand root parent(s) treeNode.     | 9.17.0  |
+| `defaultExpandedKeys`    | array         | `[]`    | Specify the node keys of the default expanded treeNodes.     | 9.17.0  |
 
 - Default data format
 

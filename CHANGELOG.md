@@ -2,6 +2,16 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.18.0 / 2023-04-12
+
+### Features
+
+- `<ui-tree>`: add prop `filterParentNode`
+
+### BREAKING CHANGES
+
+- `<ui-tree>`: remove prop `selectedNodesWithParent`
+
 ## v10.17.0 / 2023-04-06
 
 ### Features

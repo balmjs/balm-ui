@@ -52,7 +52,7 @@ const props = defineProps({
     type: [String, Array],
     default: ''
   },
-  selectedNodesWithParent: {
+  filterParentNode: {
     type: Boolean,
     default: false
   },
@@ -101,7 +101,7 @@ const state = reactive({
     maxLevel: props.maxLevel,
     nodeMap: new Map(),
     selectedValue: props.modelValue,
-    selectedNodesWithParent: props.selectedNodesWithParent,
+    filterParentNode: props.filterParentNode,
     multiple: props.multiple,
     singleChecked: props.singleChecked,
     loadData: props.loadData,

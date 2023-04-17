@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.60.2 / 2023-04-17
+
+### Bug Fixes
+
+- `<ui-tree>`: fix prevent click for custom label
+
 ## v8.60.0 / 2023-04-12
 
 ### Features

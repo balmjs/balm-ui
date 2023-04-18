@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.18.2 / 2023-04-18
+
+### Bug Fixes
+
+- `<ui-tree>`: fix prevent click for custom label
+
 ## v10.18.0 / 2023-04-12
 
 ### Features

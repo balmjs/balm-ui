@@ -10,6 +10,7 @@ import UiTree from './components/tree/tree.vue';
 import UiTreeNode from './components/tree/tree-node.vue';
 import UiBottomNavigation from './components/bottom-navigation/bottom-navigation.vue';
 import UiBottomSheet from './components/bottom-sheet/bottom-sheet.vue';
+import UiSideSheet from './components/side-sheet/side-sheet.vue';
 /**
  * Plugins
  */
@@ -25,6 +26,7 @@ const Components = {
   UiBottomNavigation,
   UiBottomSheet,
   UiEditor,
+  UiSideSheet,
   UiSkeleton,
   UiTree,
   UiTreeNode
@@ -60,6 +62,7 @@ export {
   UiBottomNavigation,
   UiBottomSheet,
   UiEditor,
+  UiSideSheet,
   UiSkeleton,
   UiTree,
   UiTreeNode

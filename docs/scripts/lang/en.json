@@ -68,6 +68,7 @@
     "skeleton": "Skeleton",
     "tooltip": "Tooltip",
     "bottom-sheet": "Bottom Sheet",
+    "side-sheet": "Side Sheet",
     "misc": "Misc",
     "event": "Event",
     "debounce": "Debounce",

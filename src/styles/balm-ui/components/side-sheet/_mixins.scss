@@ -1,0 +1,36 @@
+$duration: 0.3s;
+
+@keyframes slideInRight {
+  0% {
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@mixin mdc-side-sheet-animate() {
+  animation-duration: $duration;
+  animation-fill-mode: both;
+}
+
+@mixin mdc-side-sheet-slide-in-right() {
+  animation-name: slideInRight;
+}
+
+@mixin mdc-side-sheet-slide-out-right() {
+  animation-name: slideOutRight;
+}

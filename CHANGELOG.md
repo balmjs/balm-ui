@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.61.0 / 2023-04-20
+
+### Features
+
+- new component for plus: `<ui-side-sheet>`
+
 ## v8.60.2 / 2023-04-17
 
 ### Bug Fixes

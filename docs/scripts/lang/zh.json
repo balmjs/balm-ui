@@ -68,6 +68,7 @@
     "skeleton": "骨架屏",
     "tooltip": "文字提示",
     "bottom-sheet": "底部动作表",
+    "side-sheet": "侧边动作表",
     "misc": "其他",
     "event": "UI 全局事件",
     "debounce": "防抖",

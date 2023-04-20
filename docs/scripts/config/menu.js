@@ -264,6 +264,11 @@ const MATERIAL_COMPONENTS = [
         icon: 'video_label',
         name: 'bottom-sheet',
         plus: true
+      },
+      {
+        icon: 'video_label',
+        name: 'side-sheet',
+        plus: true
       }
     ]
   },

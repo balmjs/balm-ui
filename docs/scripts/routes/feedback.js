@@ -10,6 +10,7 @@ const Spinner = () => import('@/views/components/spinner');
 const Skeleton = () => import('@/views/components/skeleton');
 const Tooltip = () => import('@/views/components/tooltip');
 const BottomSheet = () => import('@/views/components/bottom-sheet');
+const SideSheet = () => import('@/views/components/side-sheet');
 
 export default [
   {
@@ -71,5 +72,10 @@ export default [
     path: 'bottom-sheet',
     name: 'feedback.bottom-sheet',
     component: BottomSheet
+  },
+  {
+    path: 'side-sheet',
+    name: 'feedback.side-sheet',
+    component: SideSheet
   }
 ];

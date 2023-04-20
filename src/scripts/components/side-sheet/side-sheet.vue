@@ -73,7 +73,7 @@ export default {
       };
     },
     hasHeader() {
-      return this.$slots.title || closable;
+      return this.$slots.title || this.closable;
     },
     hasActions() {
       return this.$slots.actions;

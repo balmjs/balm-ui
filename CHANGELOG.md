@@ -2,6 +2,16 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.19.0 / 2023-04-23
+
+### Features
+
+- new component for plus: `<ui-side-sheet>`
+
+### Chore
+
+- update vetur
+
 ## v10.18.2 / 2023-04-18
 
 ### Bug Fixes

@@ -1,5 +1,6 @@
 const Grid = () => import('@/views/components/grid');
 const BottomSheet = () => import('@/views/components/bottom-sheet');
+const SideSheet = () => import('@/views/components/side-sheet');
 const Card = () => import('@/views/components/card');
 const Dialog = () => import('@/views/components/dialog');
 const AlertDialog = () => import('@/views/plugins/alert-dialog');
@@ -24,6 +25,11 @@ export default [
     path: 'bottom-sheet',
     name: 'containment.bottom-sheet',
     component: BottomSheet
+  },
+  {
+    path: 'side-sheet',
+    name: 'containment.side-sheet',
+    component: SideSheet
   },
   {
     path: 'card',

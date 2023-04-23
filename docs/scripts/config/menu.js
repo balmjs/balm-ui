@@ -127,6 +127,11 @@ const MATERIAL_COMPONENTS = [
         plus: true
       },
       {
+        icon: 'video_label',
+        name: 'side-sheet',
+        plus: true
+      },
+      {
         icon: 'category',
         name: 'card'
       },

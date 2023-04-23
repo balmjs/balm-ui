@@ -40,6 +40,7 @@
     "containment": "容器布局",
     "grid": "栅格",
     "bottom-sheet": "底部动作表",
+    "side-sheet": "侧边动作表",
     "card": "卡片",
     "dialog": "对话框",
     "alert-dialog": "警告框",

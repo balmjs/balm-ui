@@ -26,5 +26,13 @@
   "fullscreen": {
     "type": "boolean",
     "description": "Styles a full-screen dialog for mobile/small-screen devices."
+  },
+  "sheet": {
+    "type": "boolean",
+    "description": "Styles a floating sheet dialog."
+  },
+  "no-content-padding": {
+    "type": "boolean",
+    "description": "Styles a no default padding dialog content."
   }
 }

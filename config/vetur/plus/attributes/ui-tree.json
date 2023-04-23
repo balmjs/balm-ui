@@ -3,6 +3,10 @@
     "type": "string | array",
     "description": "Selected node keys."
   },
+  "filter-parent-node": {
+    "type": "boolean",
+    "description": "Selected node keys excludes all parent nodes."
+  },
   "data": {
     "type": "array",
     "description": "The tree data source."

@@ -22,5 +22,9 @@
   "config": {
     "type": "object",
     "description": "Flatpickr configuration."
+  },
+  "disable-range-plugin": {
+    "type": "boolean",
+    "description": "Disables the flatpickr rangePlugin and use two `<ui-datepicker>` instead."
   }
 }

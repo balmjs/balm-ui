@@ -187,6 +187,7 @@
       "page-size",
       "page-size-text",
       "of-text",
+      "unit-text",
       "show-jumper",
       "jumper-text",
       "jumper-button-outlined",
@@ -252,11 +253,13 @@
       "minlength",
       "remote",
       "highlight",
+      "filter-keywords",
       "fullwidth",
       "end-aligned",
       "icon",
       "with-leading-icon",
-      "with-trailing-icon"
+      "with-trailing-icon",
+      "inside"
     ],
     "description": "An autocomplete textfield."
   },
@@ -275,7 +278,8 @@
       "fullwidth",
       "icon",
       "with-leading-icon",
-      "helper-text-id"
+      "helper-text-id",
+      "inside"
     ],
     "description": "A select."
   },
@@ -350,7 +354,8 @@
       "labels",
       "placeholders",
       "disabled",
-      "config"
+      "config",
+      "disable-range-plugin"
     ],
     "description": "A range date picker."
   },
@@ -470,6 +475,7 @@
       "tfoot",
       "fullwidth",
       "row-checkbox",
+      "row-checkbox-disabled",
       "selected-key",
       "row-id-prefix",
       "sort-icon-align-end",
@@ -500,7 +506,9 @@
       "mask-closable",
       "no-scrim",
       "reset-scroll",
-      "fullscreen"
+      "fullscreen",
+      "sheet",
+      "no-content-padding"
     ],
     "description": "Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks."
   },

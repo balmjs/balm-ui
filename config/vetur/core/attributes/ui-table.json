@@ -27,6 +27,10 @@
     "type": "boolean",
     "description": "Data table with row selection."
   },
+  "row-checkbox-disabled": {
+    "type": "boolean",
+    "description": "Data table with row selection."
+  },
   "selected-key": {
     "type": "string | false",
     "description": "The `model-value` use custom key field, default use row index."

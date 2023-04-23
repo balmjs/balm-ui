@@ -1,0 +1,10 @@
+{
+  "model-value": {
+    "type": "boolean",
+    "description": "Sets the side sheet state."
+  },
+  "closable": {
+    "type": "boolean",
+    "description": "Displays close icon button."
+  }
+}

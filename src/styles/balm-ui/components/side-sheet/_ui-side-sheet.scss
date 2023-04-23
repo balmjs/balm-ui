@@ -1,0 +1,98 @@
+@use '@material/theme/theme-color';
+@use '@material/elevation/mixins' as elevation-mixins;
+@use '@material/top-app-bar/variables' as top-app-bar-variables;
+@use '@material/list/variables' as list-variables;
+@use './variables' as side-sheet-variables;
+@use './mixins' as side-sheet-mixins;
+
+.mdc-side-sheet,
+.mdc-side-sheet__scrim {
+  position: fixed;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.mdc-side-sheet {
+  display: none;
+  z-index: 7;
+
+  &.mdc-side-sheet--open {
+    display: block;
+  }
+}
+
+.mdc-side-sheet__scrim {
+  opacity: 0;
+  z-index: -1;
+  background-color: rgba(
+    theme-color.prop-value(side-sheet-variables.$scrim-color),
+    side-sheet-variables.$scrim-opacity
+  );
+}
+
+.mdc-side-sheet__container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  width: side-sheet-variables.$width;
+  height: 100%;
+
+  background-color: side-sheet-variables.$background;
+  border-top-left-radius: side-sheet-variables.$border-left-radius;
+  border-bottom-left-radius: side-sheet-variables.$border-left-radius;
+  overflow: hidden;
+
+  @include side-sheet-mixins.mdc-side-sheet-animate;
+  @include elevation-mixins.elevation(4);
+}
+
+.mdc-side-sheet--open {
+  .mdc-side-sheet__scrim {
+    opacity: 1;
+  }
+
+  .mdc-side-sheet__container {
+    @include side-sheet-mixins.mdc-side-sheet-slide-in-right;
+  }
+}
+
+.mdc-side-sheet--closing .mdc-side-sheet__container {
+  @include side-sheet-mixins.mdc-side-sheet-slide-out-right;
+}
+
+@media (max-width: top-app-bar-variables.$mobile-breakpoint) {
+  .mdc-side-sheet__container {
+    width: side-sheet-variables.$mobile-width;
+  }
+}
+
+.mdc-side-sheet__wrapper {
+  flex: 1;
+  padding: 24px 24px 0 16px;
+}
+
+.mdc-side-sheet__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mdc-side-sheet__title {
+  margin: 0;
+}
+
+.mdc-side-sheet__actions {
+  border-top: 1px solid
+    if(
+      theme-color.tone(theme-color.$background) == 'dark',
+      list-variables.$deprecated-divider-color-on-dark-bg,
+      list-variables.$deprecated-divider-color-on-light-bg
+    );
+  padding: 12px 24px;
+}

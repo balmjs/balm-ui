@@ -22,6 +22,7 @@
   "ui-tree": {
     "attributes": [
       "model-value",
+      "filter-parent-node",
       "data",
       "data-format",
       "max-level",
@@ -44,5 +45,9 @@
   "ui-bottom-sheet": {
     "attributes": ["model-value"],
     "description": "A bottom sheet."
+  },
+  "ui-side-sheet": {
+    "attributes": ["model-value", "closable"],
+    "description": "A side sheet."
   }
 }

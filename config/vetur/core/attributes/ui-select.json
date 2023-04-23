@@ -55,5 +55,9 @@
   "helper-text-id": {
     "type": "string",
     "description": "Required for the id attribute of the <ui-select-helper>."
+  },
+  "inside": {
+    "type": "function",
+    "description": "Exclude row selections."
   }
 }

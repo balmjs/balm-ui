@@ -10,6 +10,7 @@ import UiTreeNode from './components/tree/tree-node.vue';
 import UiNavigationBar from './components/navigation-bar/navigation-bar.vue';
 import UiBottomSheet from './components/bottom-sheet/bottom-sheet.vue';
 import UiNavigationRail from './components/navigation-rail/navigation-rail.vue';
+import UiSideSheet from './components/side-sheet/side-sheet.vue';
 /**
  * Plugins
  */
@@ -23,6 +24,7 @@ import vLongpress from './directives/longpress';
 
 const Components = {
   UiEditor,
+  UiSideSheet,
   UiSkeleton,
   UiTree,
   UiTreeNode,
@@ -56,6 +58,7 @@ export default BalmUIPlus;
 export { version, install };
 export {
   UiEditor,
+  UiSideSheet,
   UiSkeleton,
   UiTree,
   UiTreeNode,

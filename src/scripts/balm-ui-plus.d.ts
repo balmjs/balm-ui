@@ -9,6 +9,7 @@ declare module './balm-ui-plus' {
   const install: typeof BalmUIPlus.install;
 
   const UiEditor: component;
+  const UiSideSheet: component;
   const UiSkeleton: component;
   const UiTree: component;
   const UiTreeNode: component;
@@ -26,6 +27,7 @@ declare module './balm-ui-plus' {
   export { version, install };
   export {
     UiEditor,
+    UiSideSheet,
     UiSkeleton,
     UiTree,
     UiTreeNode,

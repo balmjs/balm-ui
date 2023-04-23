@@ -46,7 +46,7 @@
     "attributes": ["model-value"],
     "description": "A bottom sheet."
   },
-  "side-sheet": {
+  "ui-side-sheet": {
     "attributes": ["model-value", "closable"],
     "description": "A side sheet."
   }

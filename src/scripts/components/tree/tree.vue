@@ -88,7 +88,15 @@ const props = defineProps({
   defaultExpandedKeys: {
     type: Array,
     default: () => []
-  }
+  },
+  autoExpandSelected: {
+    type: Boolean,
+    default: false,
+  },
+  autoExpandAll: {
+    type: Boolean,
+    default: false
+  },
 });
 
 const emit = defineEmits([UI_TREE.EVENTS.CHANGE, UI_TREE.EVENTS.SELECTED]);
@@ -170,7 +178,9 @@ function init(originData = props.data) {
   if (state.nodeList.length) {
     MdcTree.setExpanded(state.treeData, state.nodeList, {
       autoExpandParent: props.autoExpandParent,
-      defaultExpandedKeys: props.defaultExpandedKeys
+      defaultExpandedKeys: props.defaultExpandedKeys,
+      autoExpandSelected: props.autoExpandSelected,
+      autoExpandAll: props.autoExpandAll
     });
 
     MdcTree.setSelected(state.treeData, state.treeData.selectedValue);

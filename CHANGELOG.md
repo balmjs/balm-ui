@@ -2,6 +2,16 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.20.0 / 2023-06-01
+
+### Features
+
+- update `mdc@15.0.0-canary.446734f27.0`
+
+### Bug Fixes
+
+- `<ui-editor>`: fix emoji module bug for bubble theme
+
 ## v10.19.0 / 2023-04-23
 
 ### Features

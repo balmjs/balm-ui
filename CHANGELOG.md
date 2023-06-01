@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.61.2 / 2023-06-01
+
+### Bug Fixes
+
+- `<ui-editor>`: fix emoji module bug for bubble theme
+
 ## v8.61.0 / 2023-04-20
 
 ### Features

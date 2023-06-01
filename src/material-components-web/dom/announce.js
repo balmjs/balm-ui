@@ -74,8 +74,7 @@ var Announcer = /** @class */ (function () {
             this.liveRegions.set(ownerDocument, documentLiveRegions);
         }
         var existingLiveRegion = documentLiveRegions.get(priority);
-        if (existingLiveRegion &&
-            ownerDocument.body.contains(existingLiveRegion)) {
+        if (existingLiveRegion && ownerDocument.body.contains(existingLiveRegion)) {
             return existingLiveRegion;
         }
         var liveRegion = this.createLiveRegion(priority, ownerDocument);

@@ -6,7 +6,11 @@
   >
     <template #hero>
       <ui-image-list class="hero-image-list">
-        <ui-image-item v-for="i in 15" :key="i"></ui-image-item>
+        <ui-image-item
+          v-for="i in 15"
+          :key="i"
+          :bg-image="`https://picsum.photos/128?random=${i}`"
+        ></ui-image-item>
       </ui-image-list>
     </template>
 

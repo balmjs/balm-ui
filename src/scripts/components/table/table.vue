@@ -207,7 +207,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits([UI_TABLE.EVENTS.CHANGE]);
+const emit = defineEmits([UI_TABLE.EVENTS.CHANGE, UI_TABLE.EVENTS.SORTED]);
 
 const table = ref(null);
 const tableContent = ref(null);

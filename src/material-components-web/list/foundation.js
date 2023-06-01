@@ -384,7 +384,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
                 [] :
                 this.selectedIndex, true);
         }
-        else if ((isEnter || isSpace) && eventHasModifiers([])) {
+        else if ((isEnter || isSpace) &&
+            (eventHasModifiers([]) || eventHasModifiers(['Alt']))) {
             if (isRootListItem) {
                 // Return early if enter key is pressed on anchor element which triggers
                 // synthetic MouseEvent event.

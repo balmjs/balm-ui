@@ -29,6 +29,8 @@ function createEditor(
 
   if (options.theme === 'snow') {
     useEmoji(emotions);
+  } else {
+    delete options.modules.emoji;
   }
 
   if (extension) {

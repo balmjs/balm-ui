@@ -377,10 +377,7 @@ var MDCList = /** @class */ (function (_super) {
     MDCList.prototype.handleClickEvent = function (evt) {
         var index = this.getListItemIndex(evt.target);
         var target = evt.target;
-        // Toggle the checkbox only if it's not the target of the event, or the
-        // checkbox will have 2 change events.
-        var toggleCheckbox = !matches(target, strings.CHECKBOX_RADIO_SELECTOR);
-        this.foundation.handleClick(index, toggleCheckbox, evt);
+        this.foundation.handleClick(index, matches(target, strings.CHECKBOX_RADIO_SELECTOR), evt);
     };
     return MDCList;
 }(MDCComponent));

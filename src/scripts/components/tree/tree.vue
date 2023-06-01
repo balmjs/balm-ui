@@ -183,17 +183,19 @@ function init(originData = props.data) {
       autoExpandAll: props.autoExpandAll
     });
 
-    MdcTree.setSelected(state.treeData, state.treeData.selectedValue);
+    MdcTree.setSelected(state.treeData, state.treeData.selectedValue, state.nodeList, { autoExpandSelected: props.autoExpandSelected });
   }
 }
 
 function updateSelectedValue(val, oldVal = []) {
   nextTick(() => {
     if (oldVal.length) {
-      MdcTree.resetSelected(state.treeData, oldVal);
+      MdcTree.resetSelected(state.treeData, oldVal, state.nodeList, {
+        autoExpandSelected: props.autoExpandSelected
+      });
     }
 
-    MdcTree.setSelected(state.treeData, val);
+    MdcTree.setSelected(state.treeData, val, state.nodeList, { autoExpandSelected: props.autoExpandSelected });
     state.treeData.selectedValue = val;
   });
 }

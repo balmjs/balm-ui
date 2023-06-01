@@ -77,6 +77,8 @@
 
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.5 Autoexpand SelectedValue Node</h6>
+      <ui-button raised @click="selectedValue5 = '1-1-1'">Select node 1-1-1</ui-button>
+      <ui-button style="margin: 0 8px;" raised @click="selectedValue5 = '1-2-1'">Select node 1-2-1</ui-button>
       <div class="demo">
         <ui-tree
           v-model="selectedValue5"
@@ -156,7 +158,7 @@ export default {
       keywords: '',
       defaultKeys: ['1', '1-2', '1-2-1'],
       selectedValue4: '1',
-      selectedValue5: '1-1',
+      selectedValue5: '1-1-1',
       treeData4: [
         {
           title: 'node1',

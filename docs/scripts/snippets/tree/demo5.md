@@ -15,39 +15,41 @@ export default {
   data() {
     return {
       dataFormat: { label: 'title', value: 'key' },
-      treeData: [{
-        title: 'node1',
-        key: '1',
-        children: [
-          {
-            title: 'node1-1',
-            key: '1-1',
-            children: [
-              {
-                title: 'node2',
-                key: '2',
-                children: [
-                  {
-                    title: 'node2-1',
-                    key: '2-1',
-                  },
-                ],
-              },
-            ]
-          },
-          {
-            title: 'node1-2',
-            key: '1-2',
-            children: [
-              {
-                title: 'node1-2-1',
-                key: '1-2-1'
-              }
-            ]
-          }
-        ],
-      },]
-      selectedValue: '2',
+      treeData: [
+        {
+          title: 'node1',
+          key: '1',
+          children: [
+            {
+              title: 'node1-1',
+              key: '1-1',
+              children: [
+                {
+                  title: 'node1-1-1',
+                  key: '1-1-1',
+                  children: [
+                    {
+                      title: 'node1-1-1-1',
+                      key: '1-1-1-1'
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              title: 'node1-2',
+              key: '1-2',
+              children: [
+                {
+                  title: 'node1-2-1',
+                  key: '1-2-1'
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      selectedValue: '1-1-1',
     };
   }
 };

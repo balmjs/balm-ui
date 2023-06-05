@@ -16,7 +16,7 @@
 | `loadData`               | function      | `null`  | Load data asynchronously.                                                   |         |
 | `autoExpandParent`       | boolean       | `false` | Whether to automatically expand root parent(s) treeNode.                    | 9.17.0  |
 | `autoExpandSelected`     | boolean       | `false` | Whether to automatically expand selected treeNode and it's parent treeNode. | 10.21.0 |
-| `autoExpandAll`          | boolean       | `false` | Whether to automatically expand all treeNode.                               | 10.21.0 |
+| `autoExpandAll`          | boolean       | `false` | Whether to automatically expand all treeNodes.                              | 10.21.0 |
 | `defaultExpandedKeys`    | array         | `[]`    | Specify the node keys of the default expanded treeNodes.                    | 9.17.0  |
 
 - Default data format

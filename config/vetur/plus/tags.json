@@ -30,6 +30,8 @@
       "single-checked",
       "load-data",
       "auto-expand-parent",
+      "auto-expand-selected",
+      "auto-expand-all",
       "default-expanded-keys"
     ],
     "description": "A tree."

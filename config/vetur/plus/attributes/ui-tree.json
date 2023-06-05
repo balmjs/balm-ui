@@ -35,6 +35,14 @@
     "type": "boolean",
     "description": "Whether to automatically expand root parent(s) treeNode."
   },
+  "auto-expand-selected": {
+    "type": "boolean",
+    "description": "Whether to automatically expand selected treeNode and it's parent treeNode."
+  },
+  "auto-expand-all": {
+    "type": "boolean",
+    "description": "Whether to automatically expand all treeNodes."
+  },
   "default-expanded-keys": {
     "type": "array",
     "description": "Specify the node keys of the default expanded treeNodes."

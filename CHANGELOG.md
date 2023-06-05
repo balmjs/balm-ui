@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.21.0 / 2023-06-05
+
+### Features
+
+- `<ui-tree>`: add prop `autoExpandSelected` and `autoExpandAll` (thanks @guxuerui)
+
 ## v10.20.0 / 2023-06-01
 
 ### Features

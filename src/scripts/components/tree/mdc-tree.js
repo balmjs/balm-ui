@@ -120,7 +120,7 @@ class MdcTree {
     }
   }
 
-  static async collopseAllNode(treeData, nodes) {
+  static async collapseAllNode(treeData, nodes) {
     const { dataFormat, nodeMap } = treeData;
 
     for await (let node of nodes) {
@@ -129,10 +129,10 @@ class MdcTree {
 
       item.expanded = false;
       if (item.children && item.children.length) {
-        this.collopseAllNode(treeData, item.children);
+        this.collapseAllNode(treeData, item.children);
       }
     }
-    return true
+    return true;
   }
 
   /** For single tree **/
@@ -301,6 +301,8 @@ class MdcTree {
     }
   }
 
+  /** For expanding **/
+
   static async handleExpandKeys(treeData, nodes, defaultExpandedKeys) {
     const { dataFormat, nodeMap } = treeData;
 
@@ -330,17 +332,15 @@ class MdcTree {
   }
 
   static async findTreeNode(tree, key, value) {
-    if (tree[key] === value)
-      return tree
+    if (tree[key] === value) return tree;
 
     if (tree.children && tree.children.length) {
       for (let i = 0; i < tree.children.length; i++) {
-        const node = await this.findTreeNode(tree.children[i], key, value)
-        if (node !== null)
-          return node
+        const node = await this.findTreeNode(tree.children[i], key, value);
+        if (node !== null) return node;
       }
     }
-    return null
+    return null;
   }
 
   static toReverseArray(arr) {
@@ -348,26 +348,37 @@ class MdcTree {
     for (let i = arr.length - 1; i >= 0; i--) {
       newArr.push(arr[i]);
     }
-    return newArr
+    return newArr;
   }
 
-  static async handleAutoExpandSelected(nodeList, key, selectedValue, treeData) {
-    const allNodeCollopsed = await this.collopseAllNode(treeData, nodeList)
-    if (allNodeCollopsed) {
-      const result = await this.findTreeNode(nodeList[0], key, selectedValue)
-      parentKeys.push(result[key])
+  static async handleAutoExpandSelected(
+    nodeList,
+    key,
+    selectedValue,
+    treeData
+  ) {
+    const allNodeCollapsed = await this.collapseAllNode(treeData, nodeList);
+    if (allNodeCollapsed) {
+      const result = await this.findTreeNode(nodeList[0], key, selectedValue);
+      parentKeys.push(result[key]);
       if (result.parentKey) {
-        this.handleAutoExpandSelected(nodeList, key, result.parentKey, treeData)
+        this.handleAutoExpandSelected(
+          nodeList,
+          key,
+          result.parentKey,
+          treeData
+        );
       }
 
       if (!result.parentKey) {
-        const reversedArr = this.toReverseArray(parentKeys)
+        const reversedArr = this.toReverseArray(parentKeys);
         treeData && this.handleExpandKeys(treeData, nodeList, reversedArr);
       }
     }
   }
 
   /** For init tree **/
+
   static async setExpanded(
     treeData,
     nodeList,
@@ -376,7 +387,7 @@ class MdcTree {
     const { dataFormat, nodeMap } = treeData;
 
     if (autoExpandAll) {
-      this.handleExpandAll(treeData, nodeList)
+      this.handleExpandAll(treeData, nodeList);
     }
 
     if (autoExpandParent) {
@@ -405,7 +416,11 @@ class MdcTree {
     }
   }
 
-  static setSelected(treeData, newSelectedKeys, nodeList, { autoExpandSelected }) {
+  static setSelected(
+    treeData,
+    newSelectedKeys,
+    { nodeList, autoExpandSelected }
+  ) {
     const { nodeMap, multiple } = treeData;
 
     const selectedKeys = Array.isArray(newSelectedKeys)
@@ -422,8 +437,8 @@ class MdcTree {
     }
 
     if (autoExpandSelected && !Array.isArray(newSelectedKeys)) {
-      parentKeys = []
-      this.handleAutoExpandSelected(nodeList, 'key', newSelectedKeys, treeData)
+      parentKeys = [];
+      this.handleAutoExpandSelected(nodeList, 'key', newSelectedKeys, treeData);
     }
   }
 

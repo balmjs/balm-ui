@@ -91,12 +91,12 @@ const props = defineProps({
   },
   autoExpandSelected: {
     type: Boolean,
-    default: false,
+    default: false
   },
   autoExpandAll: {
     type: Boolean,
     default: false
-  },
+  }
 });
 
 const emit = defineEmits([UI_TREE.EVENTS.CHANGE, UI_TREE.EVENTS.SELECTED]);
@@ -179,23 +179,26 @@ function init(originData = props.data) {
     MdcTree.setExpanded(state.treeData, state.nodeList, {
       autoExpandParent: props.autoExpandParent,
       defaultExpandedKeys: props.defaultExpandedKeys,
-      autoExpandSelected: props.autoExpandSelected,
       autoExpandAll: props.autoExpandAll
     });
 
-    MdcTree.setSelected(state.treeData, state.treeData.selectedValue, state.nodeList, { autoExpandSelected: props.autoExpandSelected });
+    MdcTree.setSelected(state.treeData, state.treeData.selectedValue, {
+      nodeList: state.nodeList,
+      autoExpandSelected: props.autoExpandSelected
+    });
   }
 }
 
 function updateSelectedValue(val, oldVal = []) {
   nextTick(() => {
     if (oldVal.length) {
-      MdcTree.resetSelected(state.treeData, oldVal, state.nodeList, {
-        autoExpandSelected: props.autoExpandSelected
-      });
+      MdcTree.resetSelected(state.treeData, oldVal);
     }
 
-    MdcTree.setSelected(state.treeData, val, state.nodeList, { autoExpandSelected: props.autoExpandSelected });
+    MdcTree.setSelected(state.treeData, val, {
+      nodeList: state.nodeList,
+      autoExpandSelected: props.autoExpandSelected
+    });
     state.treeData.selectedValue = val;
   });
 }

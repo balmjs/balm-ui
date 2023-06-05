@@ -15,6 +15,8 @@
 | `singleChecked`          | boolean       | `false` | 启用树节点单节点选择。仅针对 `multiple` 树节点有效。 | 9.34.0  |
 | `loadData`               | function      | `null`  | 启用异步加载数据                                     |         |
 | `autoExpandParent`       | boolean       | `false` | 是否自动展开根父级树节点                             | 9.17.0  |
+| `autoExpandSelected`     | boolean       | `false` | 是否自动展开手动赋值选择的树节点和它的父级树节点           |         |
+| `autoExpandAll`          | boolean       | `false` | 是否自动展开所有树节点                |         |
 | `defaultExpandedKeys`    | array         | `[]`    | 指定默认展开的树节点的节点值                         | 9.17.0  |
 
 - 默认数据格式

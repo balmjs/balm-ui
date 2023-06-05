@@ -15,6 +15,8 @@
 | `singleChecked`          | boolean       | `false` | Set single checked. Applicable only for the `multiple` tree. | 9.34.0  |
 | `loadData`               | function      | `null`  | Load data asynchronously.                                    |         |
 | `autoExpandParent`       | boolean       | `false` | Whether to automatically expand root parent(s) treeNode.     | 9.17.0  |
+| `autoExpandSelected`     | boolean       | `false` | Whether to automatically expand selected treeNode and it's parent treeNode.           |         |
+| `autoExpandAll`          | boolean       | `false` | Whether to automatically expand all treeNode.                |         |
 | `defaultExpandedKeys`    | array         | `[]`    | Specify the node keys of the default expanded treeNodes.     | 9.17.0  |
 
 - Default data format

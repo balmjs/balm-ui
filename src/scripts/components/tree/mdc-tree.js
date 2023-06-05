@@ -438,7 +438,12 @@ class MdcTree {
 
     if (autoExpandSelected && !Array.isArray(newSelectedKeys)) {
       parentKeys = [];
-      this.handleAutoExpandSelected(nodeList, dataFormat.value, newSelectedKeys, treeData);
+      this.handleAutoExpandSelected(
+        nodeList,
+        dataFormat.value,
+        newSelectedKeys,
+        treeData
+      );
     }
   }
 

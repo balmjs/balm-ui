@@ -421,7 +421,7 @@ class MdcTree {
     newSelectedKeys,
     { nodeList, autoExpandSelected }
   ) {
-    const { nodeMap, multiple } = treeData;
+    const { dataFormat, nodeMap, multiple } = treeData;
 
     const selectedKeys = Array.isArray(newSelectedKeys)
       ? newSelectedKeys
@@ -438,7 +438,7 @@ class MdcTree {
 
     if (autoExpandSelected && !Array.isArray(newSelectedKeys)) {
       parentKeys = [];
-      this.handleAutoExpandSelected(nodeList, 'key', newSelectedKeys, treeData);
+      this.handleAutoExpandSelected(nodeList, dataFormat.value, newSelectedKeys, treeData);
     }
   }
 

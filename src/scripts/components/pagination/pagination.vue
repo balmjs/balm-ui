@@ -283,6 +283,15 @@ watch(
 );
 
 watch(
+  () => props.total,
+  () => {
+    if (currentMinRow.value > currentMaxRow.value) {
+      handleChange();
+    }
+  }
+);
+
+watch(
   () => props.pageSize,
   (val) => {
     if (!Array.isArray(val)) {

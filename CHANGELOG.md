@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.21.2 / 2023-06-06
+
+### Bug Fixes
+
+- `<ui-pagination>`: fix `total` watcher bug
+
 ## v10.21.0 / 2023-06-05
 
 ### Features

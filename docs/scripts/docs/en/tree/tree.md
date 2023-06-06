@@ -62,7 +62,7 @@
 | `update:modelValue` | `function(selectedNodes: string \| array, selectedEvent: object)` | Emits when tree node is changed.  |         |
 | `selected`          | `function(selectedNodesData: string \| array)`                    | Emits when tree node is selected. | 9.34.0  |
 
-> The `selectedEvent` parameter of `@change` event is new in 9.35.0
+> <del>The `selectedEvent` parameter of `@change` event is new in 9.35.0</del>
 
 > NOTE: If you are not using `v-model`, you should listen for the tree using `@update:modelValue` and update the `modelValue` prop.
 

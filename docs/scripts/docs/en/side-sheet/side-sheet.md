@@ -19,11 +19,11 @@
 
 ### Events
 
-| Name     | Type                      | Description                          |
-| -------- | ------------------------- | ------------------------------------ |
-| `change` | `function(open: boolean)` | Emits when the side sheet is hidden. |
+| Name                | Type                      | Description                          |
+| ------------------- | ------------------------- | ------------------------------------ |
+| `update:modelValue` | `function(open: boolean)` | Emits when the side sheet is hidden. |
 
-> NOTE: If you are not using `v-model`, you should listen for the side sheet using `@change` and update the `modelValue` prop.
+> NOTE: If you are not using `v-model`, you should listen for the side sheet using `@update:modelValue` and update the `modelValue` prop.
 
 - Automatic
 

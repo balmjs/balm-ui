@@ -19,11 +19,11 @@
 
 ### Events
 
-| Name     | Type                      | Description          |
-| -------- | ------------------------- | -------------------- |
-| `change` | `function(open: boolean)` | 侧边动作表隐藏时触发 |
+| Name                | Type                      | Description          |
+| ------------------- | ------------------------- | -------------------- |
+| `update:modelValue` | `function(open: boolean)` | 侧边动作表隐藏时触发 |
 
-> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@change` 监听侧边动作表显示状态并更新 `modelValue` 属性
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听侧边动作表显示状态并更新 `modelValue` 属性
 
 - 自动
 

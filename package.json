@@ -80,9 +80,9 @@
     "axios": "^1.4.0",
     "babel-jest": "^29.0.0",
     "babel-plugin-prismjs": "^2.1.0",
-    "balm": "^4.20.0",
+    "balm": "^4.21.0",
     "clipboard": "^2.0.11",
-    "core-js": "^3.30.0",
+    "core-js": "^3.31.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^8.0.0",
@@ -106,7 +106,7 @@
     "vue-loader": "^17.0.0",
     "vue-meta": "^3.0.0-alpha.10",
     "vue-router": "^4.0.0",
-    "webpack": "^5.85.0"
+    "webpack": "^5.86.0"
   },
   "peerDependencies": {
     "vue": ">=3"

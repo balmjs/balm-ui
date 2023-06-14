@@ -9,8 +9,8 @@ const getNode = (
 
   const { value, children, hasChildren, isLeaf, disabled } = dataFormat;
   const nodeKey = item[value];
-  const nodeChildren = item[children];
-  const nodeHasChildren = item[hasChildren] || nodeChildren;
+  const nodeChildren = Array.isArray(item[children]) ? item[children] : [];
+  const nodeHasChildren = item[hasChildren] || nodeChildren.length;
   const nodeIsLeaf = checkLeaf(item, isLeaf, nodeHasChildren);
 
   item.level = level;
@@ -23,7 +23,7 @@ const getNode = (
   item.parentKey = parentKey;
   item.disabled = item[disabled];
 
-  if (!nodeChildren) {
+  if (!nodeChildren.length) {
     item[children] = [];
   }
 
@@ -57,8 +57,8 @@ class MdcTree {
         parentKey
       });
 
-      const nodeChildren = item[children];
-      const nodeHasChildren = item[hasChildren] || nodeChildren;
+      const nodeChildren = Array.isArray(item[children]) ? item[children] : [];
+      const nodeHasChildren = item[hasChildren] || nodeChildren.length;
 
       if (level < maxLevel && nodeHasChildren) {
         item[children] = this.getData(nodeChildren, level + 1, item[value]);

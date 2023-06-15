@@ -23,7 +23,6 @@
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../../base/foundation';
 import { cssClasses, strings } from './constants';
-/** MDC Select Helper Text Foundation */
 var MDCSelectHelperTextFoundation = /** @class */ (function (_super) {
     __extends(MDCSelectHelperTextFoundation, _super);
     function MDCSelectHelperTextFoundation(adapter) {
@@ -45,8 +44,7 @@ var MDCSelectHelperTextFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCSelectHelperTextFoundation, "defaultAdapter", {
         /**
-         * See {@link MDCSelectHelperTextAdapter} for typing information on parameters
-         * and return types.
+         * See {@link MDCSelectHelperTextAdapter} for typing information on parameters and return types.
          */
         get: function () {
             // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.

@@ -25,7 +25,6 @@ import { MDCComponent } from '../base/component';
 import { MDCFloatingLabelFoundation } from '../floating-label/foundation';
 import { cssClasses, strings } from './constants';
 import { MDCNotchedOutlineFoundation } from './foundation';
-/** MDC Notched Outline */
 var MDCNotchedOutline = /** @class */ (function (_super) {
     __extends(MDCNotchedOutline, _super);
     function MDCNotchedOutline() {
@@ -64,17 +63,12 @@ var MDCNotchedOutline = /** @class */ (function (_super) {
     };
     MDCNotchedOutline.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            addClass: function (className) {
-                _this.root.classList.add(className);
-            },
-            removeClass: function (className) {
-                _this.root.classList.remove(className);
-            },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
             setNotchWidthProperty: function (width) {
                 _this.notchElement.style.setProperty('width', width + 'px');
             },

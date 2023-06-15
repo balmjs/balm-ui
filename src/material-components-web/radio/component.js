@@ -26,7 +26,6 @@ import { applyPassive } from '../dom/events';
 import { MDCRipple } from '../ripple/component';
 import { MDCRippleFoundation } from '../ripple/foundation';
 import { MDCRadioFoundation } from './foundation';
-/** MDC Radio */
 var MDCRadio = /** @class */ (function (_super) {
     __extends(MDCRadio, _super);
     function MDCRadio() {
@@ -80,16 +79,11 @@ var MDCRadio = /** @class */ (function (_super) {
     };
     MDCRadio.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addClass: function (className) {
-                _this.root.classList.add(className);
-            },
-            removeClass: function (className) {
-                _this.root.classList.remove(className);
-            },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
             setNativeControlDisabled: function (disabled) { return _this.nativeControl.disabled =
                 disabled; },
         };
@@ -97,9 +91,8 @@ var MDCRadio = /** @class */ (function (_super) {
     };
     MDCRadio.prototype.createRipple = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { registerInteractionHandler: function (evtType, handler) {
                 _this.nativeControl.addEventListener(evtType, handler, applyPassive());

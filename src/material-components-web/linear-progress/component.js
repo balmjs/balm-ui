@@ -23,7 +23,6 @@
 import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCLinearProgressFoundation } from './foundation';
-/** MDC Linear Progress */
 var MDCLinearProgress = /** @class */ (function (_super) {
     __extends(MDCLinearProgress, _super);
     function MDCLinearProgress() {
@@ -97,7 +96,7 @@ var MDCLinearProgress = /** @class */ (function (_super) {
                 _this.root.classList.remove(className);
             },
             setAttribute: function (attributeName, value) {
-                _this.safeSetAttribute(_this.root, attributeName, value);
+                _this.root.setAttribute(attributeName, value);
             },
             setStyle: function (name, value) {
                 _this.root.style.setProperty(name, value);

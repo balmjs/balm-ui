@@ -28,7 +28,6 @@ import { MDCTabFoundation } from '../tab/foundation';
 import { MDCTabBarFoundation } from './foundation';
 var strings = MDCTabBarFoundation.strings;
 var tabIdCounter = 0;
-/** MDC Tab Bar */
 var MDCTabBar = /** @class */ (function (_super) {
     __extends(MDCTabBar, _super);
     function MDCTabBar() {
@@ -111,9 +110,8 @@ var MDCTabBar = /** @class */ (function (_super) {
     };
     MDCTabBar.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
             scrollTo: function (scrollX) {
@@ -166,9 +164,7 @@ var MDCTabBar = /** @class */ (function (_super) {
                 return -1;
             },
             getTabListLength: function () { return _this.tabList.length; },
-            notifyTabActivated: function (index) {
-                _this.emit(strings.TAB_ACTIVATED_EVENT, { index: index }, true);
-            },
+            notifyTabActivated: function (index) { return _this.emit(strings.TAB_ACTIVATED_EVENT, { index: index }, true); },
         };
         // tslint:enable:object-literal-sort-keys
         return new MDCTabBarFoundation(adapter);
@@ -191,7 +187,7 @@ var MDCTabBar = /** @class */ (function (_super) {
      * Returns all the tab elements in a nice clean array
      */
     MDCTabBar.prototype.getTabElements = function () {
-        return Array.from(this.root.querySelectorAll(strings.TAB_SELECTOR));
+        return [].slice.call(this.root.querySelectorAll(strings.TAB_SELECTOR));
     };
     /**
      * Instantiates tab components on all child tab elements

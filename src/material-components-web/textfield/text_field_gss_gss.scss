@@ -1,5 +1,5 @@
 //
-// Copyright 2022 Google Inc.
+// Copyright 2021 Google Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,9 +19,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
+@use './mixins';
+@provide 'mdc.textfield';
+@require '../floatinglabel/gss_gss';
+@require '../lineripple/line_ripple_gss_gss';
+@require '../notchedoutline/gss_gss';
+@require '../ripple/styles_gss_gss';
 
-@use './linear-progress';
-@use './linear-progress-theme';
-
-@include linear-progress.static-styles();
-@include linear-progress-theme.theme-styles(linear-progress-theme.$light-theme);
+@use '../floating-label/mdc-floating-label'; // COPYBARA_COMMENT_THIS_LINE
+@use '../line-ripple/mdc-line-ripple'; // COPYBARA_COMMENT_THIS_LINE
+@use '../notched-outline/mdc-notched-outline'; // COPYBARA_COMMENT_THIS_LINE
+@include mixins.core-styles;

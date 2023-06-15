@@ -23,7 +23,6 @@
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses } from './constants';
-/** MDC Line Ripple Foundation */
 var MDCLineRippleFoundation = /** @class */ (function (_super) {
     __extends(MDCLineRippleFoundation, _super);
     function MDCLineRippleFoundation(adapter) {
@@ -42,8 +41,7 @@ var MDCLineRippleFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCLineRippleFoundation, "defaultAdapter", {
         /**
-         * See {@link MDCLineRippleAdapter} for typing information on parameters and
-         * return types.
+         * See {@link MDCLineRippleAdapter} for typing information on parameters and return types.
          */
         get: function () {
             // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.

@@ -2,6 +2,22 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.22.0 / 2023-06-15
+
+### Bug Fixes
+
+- `<ui-editor>`: fix `readonly` bug
+
+### Reverts
+
+- revert deps `mdc@14.0.0` for SSR
+
+## v10.21.3 / 2023-06-14
+
+### Chore
+
+- `<ui-tree>`: optimize tree node data for children
+
 ## v10.21.2 / 2023-06-06
 
 ### Bug Fixes

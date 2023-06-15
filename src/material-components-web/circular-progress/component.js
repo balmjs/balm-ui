@@ -23,7 +23,6 @@
 import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCCircularProgressFoundation } from './foundation';
-/** MDC Circular Progress */
 var MDCCircularProgress = /** @class */ (function (_super) {
     __extends(MDCCircularProgress, _super);
     function MDCCircularProgress() {
@@ -38,7 +37,7 @@ var MDCCircularProgress = /** @class */ (function (_super) {
     Object.defineProperty(MDCCircularProgress.prototype, "determinate", {
         /**
          * Sets whether the progress indicator is in determinate mode.
-         * @param value Whether the indicator should be determinate.
+         * @param isDeterminate Whether the indicator should be determinate.
          */
         set: function (value) {
             this.foundation.setDeterminate(value);
@@ -101,7 +100,7 @@ var MDCCircularProgress = /** @class */ (function (_super) {
                 _this.root.removeAttribute(attributeName);
             },
             setAttribute: function (attributeName, value) {
-                _this.safeSetAttribute(_this.root, attributeName, value);
+                _this.root.setAttribute(attributeName, value);
             },
             setDeterminateCircleAttribute: function (attributeName, value) {
                 _this.determinateCircle.setAttribute(attributeName, value);

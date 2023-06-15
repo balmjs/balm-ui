@@ -23,7 +23,6 @@
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, strings } from './constants';
-/** MDC Icon Button Toggle Foundation */
 var MDCIconButtonToggleFoundation = /** @class */ (function (_super) {
     __extends(MDCIconButtonToggleFoundation, _super);
     function MDCIconButtonToggleFoundation(adapter) {

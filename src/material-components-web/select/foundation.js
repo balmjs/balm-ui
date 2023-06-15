@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __assign, __extends, __read, __spreadArray } from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { KEY, normalizeKey } from '../dom/keyboard';
 import { Corner } from '../menu-surface/constants';
 import { cssClasses, numbers, strings } from './constants';
-/** MDC Select Foundation */
 var MDCSelectFoundation = /** @class */ (function (_super) {
     __extends(MDCSelectFoundation, _super);
     /* istanbul ignore next: optional argument is not a branch statement */
@@ -35,7 +34,6 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
      */
     function MDCSelectFoundation(adapter, foundationMap) {
         if (foundationMap === void 0) { foundationMap = {}; }
-        var _a, _b;
         var _this = _super.call(this, __assign(__assign({}, MDCSelectFoundation.defaultAdapter), adapter)) || this;
         // Disabled state
         _this.disabled = false;
@@ -52,9 +50,6 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         _this.recentlyClicked = false;
         _this.leadingIcon = foundationMap.leadingIcon;
         _this.helperText = foundationMap.helperText;
-        _this.ariaDescribedbyIds =
-            ((_b = (_a = _this.adapter.getSelectAnchorAttr(strings.ARIA_DESCRIBEDBY)) === null || _a === void 0 ? void 0 : _a.split(' ')) === null || _b === void 0 ? void 0 : _b.filter(function (id) { var _a; return id !== ((_a = _this.helperText) === null || _a === void 0 ? void 0 : _a.getId()) && id !== ''; })) ||
-                [];
         return _this;
     }
     Object.defineProperty(MDCSelectFoundation, "cssClasses", {
@@ -80,8 +75,7 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCSelectFoundation, "defaultAdapter", {
         /**
-         * See {@link MDCSelectAdapter} for typing information on parameters and
-         * return types.
+         * See {@link MDCSelectAdapter} for typing information on parameters and return types.
          */
         get: function () {
             // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
@@ -137,13 +131,13 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         if (index >= this.adapter.getMenuItemCount()) {
             return;
         }
-        this.adapter.setSelectedIndex(index);
         if (index === numbers.UNSET_INDEX) {
             this.adapter.setSelectedText('');
         }
         else {
             this.adapter.setSelectedText(this.adapter.getMenuItemTextAtIndex(index).trim());
         }
+        this.adapter.setSelectedIndex(index);
         if (closeMenu) {
             this.adapter.closeMenu();
         }
@@ -230,8 +224,7 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         if (this.adapter.getMenuItemValues().length === 0) {
             return;
         }
-        // Menu should open to the last selected element, should open to first menu
-        // item otherwise.
+        // Menu should open to the last selected element, should open to first menu item otherwise.
         var selectedIndex = this.getSelectedIndex();
         var focusItemIndex = selectedIndex >= 0 ? selectedIndex : 0;
         this.adapter.focusMenuItemAtIndex(focusItemIndex);
@@ -379,10 +372,8 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         if (this.useDefaultValidation &&
             this.adapter.hasClass(cssClasses.REQUIRED) &&
             !this.adapter.hasClass(cssClasses.DISABLED)) {
-            // See notes for required attribute under
-            // https://www.w3.org/TR/html52/sec-forms.html#the-select-element TL;DR:
-            // Invalid if no index is selected, or if the first index is selected and
-            // has an empty value.
+            // See notes for required attribute under https://www.w3.org/TR/html52/sec-forms.html#the-select-element
+            // TL;DR: Invalid if no index is selected, or if the first index is selected and has an empty value.
             return this.getSelectedIndex() !== numbers.UNSET_INDEX &&
                 (this.getSelectedIndex() !== 0 || Boolean(this.getValue()));
         }
@@ -433,18 +424,12 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         var helperTextVisible = this.helperText.isVisible();
         var helperTextId = this.helperText.getId();
         if (helperTextVisible && helperTextId) {
-            this.adapter.setSelectAnchorAttr(strings.ARIA_DESCRIBEDBY, __spreadArray(__spreadArray([], __read(this.ariaDescribedbyIds)), [helperTextId]).join(' '));
+            this.adapter.setSelectAnchorAttr(strings.ARIA_DESCRIBEDBY, helperTextId);
         }
         else {
-            // Remove helptext from list of describedby ids. Needed because
-            // screenreaders will read labels pointed to by `aria-describedby` even if
-            // they are `aria-hidden`.
-            if (this.ariaDescribedbyIds.length > 0) {
-                this.adapter.setSelectAnchorAttr(strings.ARIA_DESCRIBEDBY, this.ariaDescribedbyIds.join(' '));
-            }
-            else { // helper text is the only describedby element
-                this.adapter.removeSelectAnchorAttr(strings.ARIA_DESCRIBEDBY);
-            }
+            // Needed because screenreaders will read labels pointed to by
+            // `aria-describedby` even if they are `aria-hidden`.
+            this.adapter.removeSelectAnchorAttr(strings.ARIA_DESCRIBEDBY);
         }
     };
     MDCSelectFoundation.prototype.setClickDebounceTimeout = function () {

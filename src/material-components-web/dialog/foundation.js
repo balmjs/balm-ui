@@ -29,7 +29,6 @@ var AnimationKeys;
     AnimationKeys["POLL_SCROLL_POS"] = "poll_scroll_position";
     AnimationKeys["POLL_LAYOUT_CHANGE"] = "poll_layout_change";
 })(AnimationKeys || (AnimationKeys = {}));
-/** MDC Dialog Foundation */
 var MDCDialogFoundation = /** @class */ (function (_super) {
     __extends(MDCDialogFoundation, _super);
     function MDCDialogFoundation(adapter) {
@@ -146,9 +145,7 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
         // animation
         this.runNextAnimationFrame(function () {
             _this.adapter.addClass(cssClasses.OPEN);
-            if (!dialogOptions || !dialogOptions.isScrimless) {
-                _this.adapter.addBodyClass(cssClasses.SCROLL_LOCK);
-            }
+            _this.adapter.addBodyClass(cssClasses.SCROLL_LOCK);
             _this.layout();
             _this.animationTimer = setTimeout(function () {
                 _this.handleAnimationTimerEnd();

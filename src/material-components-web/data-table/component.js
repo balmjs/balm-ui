@@ -27,7 +27,9 @@ import { closest } from '../dom/ponyfill';
 import { MDCLinearProgress } from '../linear-progress/component';
 import { cssClasses, dataAttributes, events, messages, selectors, SortValue } from './constants';
 import { MDCDataTableFoundation } from './foundation';
-/** MDC Data Table */
+/**
+ * Implementation of `MDCDataTableFoundation`
+ */
 var MDCDataTable = /** @class */ (function (_super) {
     __extends(MDCDataTable, _super);
     function MDCDataTable() {
@@ -61,10 +63,6 @@ var MDCDataTable = /** @class */ (function (_super) {
             _this.foundation.handleRowClick({
                 rowId: _this.getRowIdByRowElement(dataRowEl),
                 row: dataRowEl,
-                altKey: event.altKey,
-                ctrlKey: event.ctrlKey,
-                metaKey: event.metaKey,
-                shiftKey: event.shiftKey,
             });
         };
         this.content.addEventListener('click', this.handleContentClick);
@@ -85,7 +83,7 @@ var MDCDataTable = /** @class */ (function (_super) {
      * @return Returns array of header row cell elements.
      */
     MDCDataTable.prototype.getHeaderCells = function () {
-        return Array.from(this.root.querySelectorAll(selectors.HEADER_CELL));
+        return [].slice.call(this.root.querySelectorAll(selectors.HEADER_CELL));
     };
     /**
      * @return Returns array of row elements.
@@ -172,7 +170,7 @@ var MDCDataTable = /** @class */ (function (_super) {
                 return _this.getHeaderCells()[index].getAttribute(attribute);
             },
             setAttributeByHeaderCellIndex: function (index, attribute, value) {
-                _this.safeSetAttribute(_this.getHeaderCells()[index], attribute, value);
+                _this.getHeaderCells()[index].setAttribute(attribute, value);
             },
             setClassNameByHeaderCellIndex: function (index, className) {
                 _this.getHeaderCells()[index].classList.add(className);
@@ -209,9 +207,7 @@ var MDCDataTable = /** @class */ (function (_super) {
                 _this.getRows()[rowIndex].classList.add(className);
             },
             getRowCount: function () { return _this.getRows().length; },
-            getRowElements: function () {
-                return Array.from(_this.root.querySelectorAll(selectors.ROW));
-            },
+            getRowElements: function () { return [].slice.call(_this.root.querySelectorAll(selectors.ROW)); },
             getRowIdAtIndex: function (rowIndex) {
                 return _this.getRows()[rowIndex].getAttribute(dataAttributes.ROW_ID);
             },
@@ -219,8 +215,7 @@ var MDCDataTable = /** @class */ (function (_super) {
                 return _this.getRows().indexOf(closest(el, selectors.ROW));
             },
             getSelectedRowCount: function () {
-                return _this.root.querySelectorAll(selectors.ROW_SELECTED)
-                    .length;
+                return _this.root.querySelectorAll(selectors.ROW_SELECTED).length;
             },
             isCheckboxAtRowIndexChecked: function (rowIndex) {
                 return _this.rowCheckboxList[rowIndex].checked;
@@ -271,7 +266,7 @@ var MDCDataTable = /** @class */ (function (_super) {
                 _this.getRows()[rowIndex].classList.remove(className);
             },
             setAttributeAtRowIndex: function (rowIndex, attr, value) {
-                _this.safeSetAttribute(_this.getRows()[rowIndex], attr, value);
+                _this.getRows()[rowIndex].setAttribute(attr, value);
             },
             setHeaderRowCheckboxChecked: function (checked) {
                 _this.headerRowCheckbox.checked = checked;

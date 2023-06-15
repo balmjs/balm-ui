@@ -23,9 +23,7 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
-@use '../dom/dom';
 @use '../feature-targeting/feature-targeting';
-@use '../focus-ring/focus-ring';
 @use '../ripple/ripple';
 @use '../ripple/ripple-theme';
 @use '../touch-target/mixins' as touch-target-mixins;
@@ -64,26 +62,10 @@
       );
     }
 
-    @include ripple-theme.focus {
-      .mdc-icon-button__focus-ring {
-        @include dom.forced-colors-mode($exclude-ie11: true) {
-          @include feature-targeting.targets($feat-structure) {
-            display: block;
-          }
-        }
-      }
-    }
-
     @include if-disabled_ {
       @include feature-targeting.targets($feat-structure) {
         cursor: default;
         pointer-events: none;
-      }
-    }
-
-    &[hidden] {
-      @include feature-targeting.targets($feat-structure) {
-        display: none;
       }
     }
   }
@@ -93,18 +75,6 @@
       align-items: center;
       display: inline-flex;
       justify-content: center;
-    }
-  }
-
-  .mdc-icon-button__focus-ring {
-    @include focus-ring.focus-ring(
-      $query: $query,
-      $container-outer-padding-vertical: 0,
-      $container-outer-padding-horizontal: 0
-    );
-
-    @include feature-targeting.targets($feat-structure) {
-      display: none;
     }
   }
 
@@ -190,18 +160,6 @@
       $query: $query,
       $ripple-target: icon-button-theme.$ripple-target
     );
-
-    &:disabled {
-      @include ripple-theme.states-opacities(
-        (
-          hover: 0,
-          focus: 0,
-          press: 0,
-        ),
-        $ripple-target: icon-button-theme.$ripple-target,
-        $query: $query
-      );
-    }
 
     .mdc-icon-button__ripple {
       $feat-structure: feature-targeting.create-target($query, structure);

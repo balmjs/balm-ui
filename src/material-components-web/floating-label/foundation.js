@@ -23,7 +23,6 @@
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses } from './constants';
-/** MDC Floating Label Foundation */
 var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
     __extends(MDCFloatingLabelFoundation, _super);
     function MDCFloatingLabelFoundation(adapter) {
@@ -42,15 +41,13 @@ var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCFloatingLabelFoundation, "defaultAdapter", {
         /**
-         * See {@link MDCFloatingLabelAdapter} for typing information on parameters
-         * and return types.
+         * See {@link MDCFloatingLabelAdapter} for typing information on parameters and return types.
          */
         get: function () {
             // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
             return {
                 addClass: function () { return undefined; },
                 removeClass: function () { return undefined; },
-                hasClass: function () { return false; },
                 getWidth: function () { return 0; },
                 registerInteractionHandler: function () { return undefined; },
                 deregisterInteractionHandler: function () { return undefined; },
@@ -74,8 +71,7 @@ var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
     };
     /**
      * Styles the label to produce a shake animation to indicate an error.
-     * @param shouldShake If true, adds the shake CSS class; otherwise, removes
-     *     shake class.
+     * @param shouldShake If true, adds the shake CSS class; otherwise, removes shake class.
      */
     MDCFloatingLabelFoundation.prototype.shake = function (shouldShake) {
         var LABEL_SHAKE = MDCFloatingLabelFoundation.cssClasses.LABEL_SHAKE;
@@ -88,8 +84,7 @@ var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
     };
     /**
      * Styles the label to float or dock.
-     * @param shouldFloat If true, adds the float CSS class; otherwise, removes
-     *     float and shake classes to dock the label.
+     * @param shouldFloat If true, adds the float CSS class; otherwise, removes float and shake classes to dock the label.
      */
     MDCFloatingLabelFoundation.prototype.float = function (shouldFloat) {
         var _a = MDCFloatingLabelFoundation.cssClasses, LABEL_FLOAT_ABOVE = _a.LABEL_FLOAT_ABOVE, LABEL_SHAKE = _a.LABEL_SHAKE;
@@ -103,8 +98,7 @@ var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
     };
     /**
      * Styles the label as required.
-     * @param isRequired If true, adds an asterisk to the label, indicating that
-     *     it is required.
+     * @param isRequired If true, adds an asterisk to the label, indicating that it is required.
      */
     MDCFloatingLabelFoundation.prototype.setRequired = function (isRequired) {
         var LABEL_REQUIRED = MDCFloatingLabelFoundation.cssClasses.LABEL_REQUIRED;
@@ -114,19 +108,6 @@ var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
         else {
             this.adapter.removeClass(LABEL_REQUIRED);
         }
-    };
-    MDCFloatingLabelFoundation.prototype.setHideRequiredMarker = function (hideRequiredMarker) {
-        var LABEL_HIDE_REQUIRED_MARKER = MDCFloatingLabelFoundation.cssClasses.LABEL_HIDE_REQUIRED_MARKER;
-        if (hideRequiredMarker) {
-            this.adapter.addClass(LABEL_HIDE_REQUIRED_MARKER);
-        }
-        else {
-            this.adapter.removeClass(LABEL_HIDE_REQUIRED_MARKER);
-        }
-    };
-    MDCFloatingLabelFoundation.prototype.getHideRequiredMarker = function () {
-        var LABEL_HIDE_REQUIRED_MARKER = MDCFloatingLabelFoundation.cssClasses.LABEL_HIDE_REQUIRED_MARKER;
-        return this.adapter.hasClass(LABEL_HIDE_REQUIRED_MARKER);
     };
     MDCFloatingLabelFoundation.prototype.handleShakeAnimationEnd = function () {
         var LABEL_SHAKE = MDCFloatingLabelFoundation.cssClasses.LABEL_SHAKE;

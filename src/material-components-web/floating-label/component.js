@@ -24,7 +24,6 @@ import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { estimateScrollWidth } from '../dom/ponyfill';
 import { MDCFloatingLabelFoundation } from './foundation';
-/** MDC Floating Label */
 var MDCFloatingLabel = /** @class */ (function (_super) {
     __extends(MDCFloatingLabel, _super);
     function MDCFloatingLabel() {
@@ -35,24 +34,21 @@ var MDCFloatingLabel = /** @class */ (function (_super) {
     };
     /**
      * Styles the label to produce the label shake for errors.
-     * @param shouldShake If true, shakes the label by adding a CSS class;
-     *     otherwise, stops shaking by removing the class.
+     * @param shouldShake If true, shakes the label by adding a CSS class; otherwise, stops shaking by removing the class.
      */
     MDCFloatingLabel.prototype.shake = function (shouldShake) {
         this.foundation.shake(shouldShake);
     };
     /**
      * Styles the label to float/dock.
-     * @param shouldFloat If true, floats the label by adding a CSS class;
-     *     otherwise, docks it by removing the class.
+     * @param shouldFloat If true, floats the label by adding a CSS class; otherwise, docks it by removing the class.
      */
     MDCFloatingLabel.prototype.float = function (shouldFloat) {
         this.foundation.float(shouldFloat);
     };
     /**
      * Styles the label as required.
-     * @param isRequired If true, adds an asterisk to the label, indicating that
-     *     it is required.
+     * @param isRequired If true, adds an asterisk to the label, indicating that it is required.
      */
     MDCFloatingLabel.prototype.setRequired = function (isRequired) {
         this.foundation.setRequired(isRequired);
@@ -62,24 +58,18 @@ var MDCFloatingLabel = /** @class */ (function (_super) {
     };
     MDCFloatingLabel.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            addClass: function (className) {
-                _this.root.classList.add(className);
-            },
-            removeClass: function (className) {
-                _this.root.classList.remove(className);
-            },
-            hasClass: function (className) { return _this.root.classList.contains(className); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
             getWidth: function () { return estimateScrollWidth(_this.root); },
             registerInteractionHandler: function (evtType, handler) {
-                _this.listen(evtType, handler);
+                return _this.listen(evtType, handler);
             },
             deregisterInteractionHandler: function (evtType, handler) {
-                _this.unlisten(evtType, handler);
+                return _this.unlisten(evtType, handler);
             },
         };
         // tslint:enable:object-literal-sort-keys

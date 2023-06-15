@@ -25,7 +25,6 @@ import { MDCComponent } from '../base/component';
 import { MDCFadingTabIndicatorFoundation } from './fading-foundation';
 import { MDCTabIndicatorFoundation } from './foundation';
 import { MDCSlidingTabIndicatorFoundation } from './sliding-foundation';
-/** MDC Tab Indicator */
 var MDCTabIndicator = /** @class */ (function (_super) {
     __extends(MDCTabIndicator, _super);
     function MDCTabIndicator() {
@@ -42,17 +41,12 @@ var MDCTabIndicator = /** @class */ (function (_super) {
     };
     MDCTabIndicator.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            addClass: function (className) {
-                _this.root.classList.add(className);
-            },
-            removeClass: function (className) {
-                _this.root.classList.remove(className);
-            },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
             computeContentClientRect: function () { return _this.content.getBoundingClientRect(); },
             setContentStyleProperty: function (prop, value) {
                 _this.content.style.setProperty(prop, value);

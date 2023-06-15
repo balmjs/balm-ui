@@ -23,7 +23,6 @@
 import { __extends } from "tslib";
 import { MDCComponent } from '../../base/component';
 import { MDCTextFieldCharacterCounterFoundation } from './foundation';
-/** MDC Text Field Character Counter */
 var MDCTextFieldCharacterCounter = /** @class */ (function (_super) {
     __extends(MDCTextFieldCharacterCounter, _super);
     function MDCTextFieldCharacterCounter() {
@@ -42,14 +41,12 @@ var MDCTextFieldCharacterCounter = /** @class */ (function (_super) {
     });
     MDCTextFieldCharacterCounter.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
             setContent: function (content) {
                 _this.root.textContent = content;
             },
-            setCounterValue: function () { return undefined; },
         };
         return new MDCTextFieldCharacterCounterFoundation(adapter);
     };

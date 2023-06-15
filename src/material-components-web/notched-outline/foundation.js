@@ -23,7 +23,6 @@
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
-/** MDC Notched Outline Foundation */
 var MDCNotchedOutlineFoundation = /** @class */ (function (_super) {
     __extends(MDCNotchedOutlineFoundation, _super);
     function MDCNotchedOutlineFoundation(adapter) {
@@ -52,8 +51,7 @@ var MDCNotchedOutlineFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCNotchedOutlineFoundation, "defaultAdapter", {
         /**
-         * See {@link MDCNotchedOutlineAdapter} for typing information on parameters
-         * and return types.
+         * See {@link MDCNotchedOutlineAdapter} for typing information on parameters and return types.
          */
         get: function () {
             // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
@@ -69,14 +67,12 @@ var MDCNotchedOutlineFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     /**
-     * Adds the outline notched selector and updates the notch width calculated
-     * based off of notchWidth.
+     * Adds the outline notched selector and updates the notch width calculated based off of notchWidth.
      */
     MDCNotchedOutlineFoundation.prototype.notch = function (notchWidth) {
         var OUTLINE_NOTCHED = MDCNotchedOutlineFoundation.cssClasses.OUTLINE_NOTCHED;
         if (notchWidth > 0) {
-            notchWidth +=
-                numbers.NOTCH_ELEMENT_PADDING; // Add padding from left/right.
+            notchWidth += numbers.NOTCH_ELEMENT_PADDING; // Add padding from left/right.
         }
         this.adapter.setNotchWidthProperty(notchWidth);
         this.adapter.addClass(OUTLINE_NOTCHED);

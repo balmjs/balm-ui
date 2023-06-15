@@ -26,7 +26,6 @@ import { applyPassive } from '../dom/events';
 import { matches } from '../dom/ponyfill';
 import { MDCRippleFoundation } from './foundation';
 import * as util from './util';
-/** MDC Ripple */
 var MDCRipple = /** @class */ (function (_super) {
     __extends(MDCRipple, _super);
     function MDCRipple() {
@@ -47,20 +46,19 @@ var MDCRipple = /** @class */ (function (_super) {
     };
     MDCRipple.createAdapter = function (instance) {
         return {
-            addClass: function (className) {
-                instance.root.classList.add(className);
-            },
+            addClass: function (className) { return instance.root.classList.add(className); },
             browserSupportsCssVars: function () { return util.supportsCssVariables(window); },
             computeBoundingRect: function () { return instance.root.getBoundingClientRect(); },
             containsEventTarget: function (target) { return instance.root.contains(target); },
             deregisterDocumentInteractionHandler: function (evtType, handler) {
-                document.documentElement.removeEventListener(evtType, handler, applyPassive());
+                return document.documentElement.removeEventListener(evtType, handler, applyPassive());
             },
             deregisterInteractionHandler: function (evtType, handler) {
-                instance.root.removeEventListener(evtType, handler, applyPassive());
+                return instance.root
+                    .removeEventListener(evtType, handler, applyPassive());
             },
             deregisterResizeHandler: function (handler) {
-                window.removeEventListener('resize', handler);
+                return window.removeEventListener('resize', handler);
             },
             getWindowPageOffset: function () {
                 return ({ x: window.pageXOffset, y: window.pageYOffset });
@@ -69,19 +67,18 @@ var MDCRipple = /** @class */ (function (_super) {
             isSurfaceDisabled: function () { return Boolean(instance.disabled); },
             isUnbounded: function () { return Boolean(instance.unbounded); },
             registerDocumentInteractionHandler: function (evtType, handler) {
-                document.documentElement.addEventListener(evtType, handler, applyPassive());
+                return document.documentElement.addEventListener(evtType, handler, applyPassive());
             },
             registerInteractionHandler: function (evtType, handler) {
-                instance.root.addEventListener(evtType, handler, applyPassive());
+                return instance.root
+                    .addEventListener(evtType, handler, applyPassive());
             },
             registerResizeHandler: function (handler) {
-                window.addEventListener('resize', handler);
+                return window.addEventListener('resize', handler);
             },
-            removeClass: function (className) {
-                instance.root.classList.remove(className);
-            },
+            removeClass: function (className) { return instance.root.classList.remove(className); },
             updateCssVariable: function (varName, value) {
-                instance.root.style.setProperty(varName, value);
+                return instance.root.style.setProperty(varName, value);
             },
         };
     };

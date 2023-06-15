@@ -30,7 +30,6 @@ import { MDCRippleFoundation } from '../ripple/foundation';
 import { strings } from './constants';
 import { MDCCheckboxFoundation } from './foundation';
 var CB_PROTO_PROPS = ['checked', 'indeterminate'];
-/** MDC Checkbox */
 var MDCCheckbox = /** @class */ (function (_super) {
     __extends(MDCCheckbox, _super);
     function MDCCheckbox() {
@@ -116,13 +115,10 @@ var MDCCheckbox = /** @class */ (function (_super) {
     };
     MDCCheckbox.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addClass: function (className) {
-                _this.root.classList.add(className);
-            },
+            addClass: function (className) { return _this.root.classList.add(className); },
             forceLayout: function () { return _this.root.offsetWidth; },
             hasNativeControl: function () { return !!_this.getNativeControl(); },
             isAttachedToDOM: function () { return Boolean(_this.root.parentNode); },
@@ -135,7 +131,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
                 _this.getNativeControl().removeAttribute(attr);
             },
             setNativeControlAttr: function (attr, value) {
-                _this.safeSetAttribute(_this.getNativeControl(), attr, value);
+                _this.getNativeControl().setAttribute(attr, value);
             },
             setNativeControlDisabled: function (disabled) {
                 _this.getNativeControl().disabled = disabled;
@@ -145,9 +141,8 @@ var MDCCheckbox = /** @class */ (function (_super) {
     };
     MDCCheckbox.prototype.createRipple = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { deregisterInteractionHandler: function (evtType, handler) {
                 _this.getNativeControl().removeEventListener(evtType, handler, applyPassive());
             }, isSurfaceActive: function () { return matches(_this.getNativeControl(), ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
@@ -162,12 +157,12 @@ var MDCCheckbox = /** @class */ (function (_super) {
         var cbProto = Object.getPrototypeOf(nativeCb);
         var _loop_1 = function (controlState) {
             var desc = Object.getOwnPropertyDescriptor(cbProto, controlState);
-            // We have to check for this descriptor, since some browsers (Safari)
-            // don't support its return. See:
-            // https://bugs.webkit.org/show_bug.cgi?id=49739
+            // We have to check for this descriptor, since some browsers (Safari) don't support its return.
+            // See: https://bugs.webkit.org/show_bug.cgi?id=49739
             if (!validDescriptor(desc)) {
                 return { value: void 0 };
             }
+            // Type cast is needed for compatibility with Closure Compiler.
             var nativeGetter = desc.get;
             var nativeCbDesc = {
                 configurable: desc.configurable,

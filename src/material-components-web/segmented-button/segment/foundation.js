@@ -31,7 +31,6 @@ var emptyClientRect = {
     top: 0,
     width: 0,
 };
-/** MDC Segmented Button Segment Foundation */
 var MDCSegmentedButtonSegmentFoundation = /** @class */ (function (_super) {
     __extends(MDCSegmentedButtonSegmentFoundation, _super);
     function MDCSegmentedButtonSegmentFoundation(adapter) {

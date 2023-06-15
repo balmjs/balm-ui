@@ -17,7 +17,8 @@ export function supportsCssVariables(windowObj, forceRefresh) {
     var explicitlySupportsCssVars = CSS.supports('--css-vars', 'yes');
     // See: https://bugs.webkit.org/show_bug.cgi?id=154669
     // See: README section on Safari
-    var weAreFeatureDetectingSafari10plus = (CSS.supports('(--css-vars: yes)') && CSS.supports('color', '#00000000'));
+    var weAreFeatureDetectingSafari10plus = (CSS.supports('(--css-vars: yes)') &&
+        CSS.supports('color', '#00000000'));
     supportsCssVars =
         explicitlySupportsCssVars || weAreFeatureDetectingSafari10plus;
     if (!forceRefresh) {

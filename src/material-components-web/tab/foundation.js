@@ -23,7 +23,6 @@
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, strings } from './constants';
-/** MDC Tab Foundation */
 var MDCTabFoundation = /** @class */ (function (_super) {
     __extends(MDCTabFoundation, _super);
     function MDCTabFoundation(adapter) {
@@ -61,7 +60,6 @@ var MDCTabFoundation = /** @class */ (function (_super) {
                 getContentOffsetLeft: function () { return 0; },
                 getContentOffsetWidth: function () { return 0; },
                 focus: function () { return undefined; },
-                isFocused: function () { return false; },
             };
             // tslint:enable:object-literal-sort-keys
         },
@@ -90,7 +88,7 @@ var MDCTabFoundation = /** @class */ (function (_super) {
         this.adapter.setAttr(strings.ARIA_SELECTED, 'true');
         this.adapter.setAttr(strings.TABINDEX, '0');
         this.adapter.activateIndicator(previousIndicatorClientRect);
-        if (this.focusOnActivate && !this.adapter.isFocused()) {
+        if (this.focusOnActivate) {
             this.adapter.focus();
         }
     };

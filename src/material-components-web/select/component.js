@@ -34,7 +34,6 @@ import { cssClasses, strings } from './constants';
 import { MDCSelectFoundation } from './foundation';
 import { MDCSelectHelperText } from './helper-text/component';
 import { MDCSelectIcon } from './icon/component';
-/** MDC Select */
 var MDCSelect = /** @class */ (function (_super) {
     __extends(MDCSelect, _super);
     function MDCSelect() {
@@ -290,9 +289,8 @@ var MDCSelect = /** @class */ (function (_super) {
         }
     };
     MDCSelect.prototype.getDefaultFoundation = function () {
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = __assign(__assign(__assign(__assign({}, this.getSelectAdapterMethods()), this.getCommonAdapterMethods()), this.getOutlineAdapterMethods()), this.getLabelAdapterMethods());
         return new MDCSelectFoundation(adapter, this.getFoundationMap());
     };
@@ -300,8 +298,7 @@ var MDCSelect = /** @class */ (function (_super) {
      * Handles setup for the menu.
      */
     MDCSelect.prototype.menuSetup = function (menuFactory) {
-        this.menuElement =
-            this.root.querySelector(strings.MENU_SELECTOR);
+        this.menuElement = this.root.querySelector(strings.MENU_SELECTOR);
         this.menu = menuFactory(this.menuElement);
         this.menu.hasTypeahead = true;
         this.menu.singleSelection = true;
@@ -310,9 +307,8 @@ var MDCSelect = /** @class */ (function (_super) {
     };
     MDCSelect.prototype.createRipple = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = __assign(__assign({}, MDCRipple.createAdapter({ root: this.selectAnchor })), { registerInteractionHandler: function (evtType, handler) {
                 _this.selectAnchor.addEventListener(evtType, handler);
@@ -331,21 +327,13 @@ var MDCSelect = /** @class */ (function (_super) {
             },
             setSelectedText: function (text) {
                 _this.selectedText.textContent = text;
-                var index = _this.menu.selectedIndex;
-                if (index === -1)
-                    return;
-                index = index instanceof Array ? index[0] : index;
-                var selectedItem = _this.menu.items[index];
-                if (!selectedItem)
-                    return;
-                _this.selectedText.setAttribute('aria-label', selectedItem.getAttribute('aria-label') || '');
             },
             isSelectAnchorFocused: function () { return document.activeElement === _this.selectAnchor; },
             getSelectAnchorAttr: function (attr) {
                 return _this.selectAnchor.getAttribute(attr);
             },
             setSelectAnchorAttr: function (attr, value) {
-                _this.safeSetAttribute(_this.selectAnchor, attr, value);
+                _this.selectAnchor.setAttribute(attr, value);
             },
             removeSelectAnchorAttr: function (attr) {
                 _this.selectAnchor.removeAttribute(attr);
@@ -382,8 +370,7 @@ var MDCSelect = /** @class */ (function (_super) {
                 _this.menu.selectedIndex = index;
             },
             focusMenuItemAtIndex: function (index) {
-                var _a;
-                (_a = _this.menu.items[index]) === null || _a === void 0 ? void 0 : _a.focus();
+                _this.menu.items[index].focus();
             },
             getMenuItemCount: function () { return _this.menu.items.length; },
             // Cache menu item values. layoutOptions() updates this cache.
@@ -458,8 +445,7 @@ var MDCSelect = /** @class */ (function (_super) {
         // tslint:enable:object-literal-sort-keys
     };
     /**
-     * Calculates where the line ripple should start based on the x coordinate
-     * within the component.
+     * Calculates where the line ripple should start based on the x coordinate within the component.
      */
     MDCSelect.prototype.getNormalizedXCoordinate = function (evt) {
         var targetClientRect = evt.target.getBoundingClientRect();

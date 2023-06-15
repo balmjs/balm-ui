@@ -25,7 +25,6 @@ import { MDCComponent } from '../../base/component';
 import { MDCSegmentedButtonSegment } from '../segment/component';
 import { events, selectors } from './constants';
 import { MDCSegmentedButtonFoundation } from './foundation';
-/** MDC Segmented Button */
 var MDCSegmentedButton = /** @class */ (function (_super) {
     __extends(MDCSegmentedButton, _super);
     function MDCSegmentedButton() {
@@ -54,7 +53,7 @@ var MDCSegmentedButton = /** @class */ (function (_super) {
      * @return Returns list of child segments found in DOM
      */
     MDCSegmentedButton.prototype.instantiateSegments = function (segmentFactory) {
-        var segmentElements = Array.from(this.root.querySelectorAll(selectors.SEGMENT));
+        var segmentElements = [].slice.call(this.root.querySelectorAll(selectors.SEGMENT));
         return segmentElements.map(function (el) { return segmentFactory(el); });
     };
     MDCSegmentedButton.prototype.initialSyncWithDOM = function () {

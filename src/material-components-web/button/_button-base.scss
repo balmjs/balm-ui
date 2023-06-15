@@ -59,19 +59,6 @@
       }
     }
 
-    .mdc-button__progress-indicator {
-      @include feature-targeting.targets($feat-structure) {
-        font-size: 0;
-        position: absolute;
-        @include rtl.ignore-next-line();
-        transform: translate(-50%, -50%);
-        top: 50%;
-        @include rtl.ignore-next-line();
-        left: 50%;
-        line-height: initial;
-      }
-    }
-
     .mdc-button__label {
       @include feature-targeting.targets($feat-structure) {
         // Necessary such that label is stacked on top of ripple
@@ -82,7 +69,6 @@
     }
 
     .mdc-button__focus-ring {
-      @include focus-ring.focus-ring($query: $query);
       @include feature-targeting.targets($feat-structure) {
         display: none;
       }
@@ -91,6 +77,8 @@
     @include ripple-theme.focus {
       .mdc-button__focus-ring {
         @include dom.forced-colors-mode($exclude-ie11: true) {
+          @include focus-ring.focus-ring($query: $query);
+
           @include feature-targeting.targets($feat-structure) {
             display: block;
           }
@@ -216,12 +204,6 @@
     @include feature-targeting.targets($feat-structure) {
       cursor: default;
       pointer-events: none;
-    }
-  }
-
-  &[hidden] {
-    @include feature-targeting.targets($feat-structure) {
-      display: none;
     }
   }
 }

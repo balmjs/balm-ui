@@ -117,7 +117,7 @@ $_ripple-theme: (
 }
 
 @mixin internal-theme-styles($theme, $ripple-target: '&') {
-  @include theme.validate-theme-styles($_ripple-theme, $theme);
+  @include theme.validate-theme-keys($_ripple-theme, $theme);
 
   @include states-base-color(
     map.get($theme, hover-state-layer-color),
@@ -237,9 +237,10 @@ $_ripple-theme: (
   @if $has-nested-focusable-element {
     // JS-enabled selectors.
     &.mdc-ripple-upgraded--background-focused,
+    &.mdc-ripple-upgraded:focus-within,
     // CSS-only selectors.
     &:not(.mdc-ripple-upgraded):focus,
-    &:focus-within {
+    &:not(.mdc-ripple-upgraded):focus-within {
       @include states-background-selector($ripple-target) {
         @include states-focus-opacity-properties_(
           $opacity: $opacity,

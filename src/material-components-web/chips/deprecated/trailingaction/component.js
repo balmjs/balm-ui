@@ -26,7 +26,6 @@ import { MDCRipple } from '../../../ripple/component';
 import { MDCRippleFoundation } from '../../../ripple/foundation';
 import { strings } from './constants';
 import { MDCChipTrailingActionFoundation } from './foundation';
-/** MDC Chip Trailing Action */
 var MDCChipTrailingAction = /** @class */ (function (_super) {
     __extends(MDCChipTrailingAction, _super);
     function MDCChipTrailingAction() {
@@ -77,17 +76,18 @@ var MDCChipTrailingAction = /** @class */ (function (_super) {
         // methods, we need a separate, strongly typed adapter variable.
         var adapter = {
             focus: function () {
+                // TODO(b/157231863): Migate MDCComponent#root to HTMLElement
                 _this.root.focus();
             },
             getAttribute: function (attr) { return _this.root.getAttribute(attr); },
             notifyInteraction: function (trigger) {
-                _this.emit(strings.INTERACTION_EVENT, { trigger: trigger }, true /* shouldBubble */);
+                return _this.emit(strings.INTERACTION_EVENT, { trigger: trigger }, true /* shouldBubble */);
             },
             notifyNavigation: function (key) {
                 _this.emit(strings.NAVIGATION_EVENT, { key: key }, true /* shouldBubble */);
             },
             setAttribute: function (attr, value) {
-                _this.safeSetAttribute(_this.root, attr, value);
+                _this.root.setAttribute(attr, value);
             },
         };
         return new MDCChipTrailingActionFoundation(adapter);

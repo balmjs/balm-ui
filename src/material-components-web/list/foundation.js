@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __assign, __extends, __read, __spreadArray } from "tslib";
+import { __assign, __extends, __read, __spreadArray, __values } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { normalizeKey } from '../dom/keyboard';
 import { cssClasses, numbers, strings } from './constants';
@@ -39,6 +39,7 @@ function createModifierChecker(event) {
             modifiers.length === eventModifiers.size;
     };
 }
+/** MDC List Foundation */
 var MDCListFoundation = /** @class */ (function (_super) {
     __extends(MDCListFoundation, _super);
     function MDCListFoundation(adapter) {
@@ -46,7 +47,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
         _this.wrapFocus = false;
         _this.isVertical = true;
         _this.isSingleSelectionList = false;
-        _this.areDisabledItemsFocusable = true;
+        _this.areDisabledItemsFocusable = false;
         _this.selectedIndex = numbers.UNSET_INDEX;
         _this.focusedItemIndex = numbers.UNSET_INDEX;
         _this.useActivatedClass = false;
@@ -115,6 +116,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
         // TODO(b/172274142): consider all items when determining the list's type.
         if (this.adapter.hasCheckboxAtIndex(0)) {
             this.isCheckboxList = true;
+            this.selectedIndex = [];
         }
         else if (this.adapter.hasRadioAtIndex(0)) {
             this.isRadioList = true;
@@ -382,7 +384,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
                 [] :
                 this.selectedIndex, true);
         }
-        else if ((isEnter || isSpace) && eventHasModifiers([])) {
+        else if ((isEnter || isSpace) &&
+            (eventHasModifiers([]) || eventHasModifiers(['Alt']))) {
             if (isRootListItem) {
                 // Return early if enter key is pressed on anchor element which triggers
                 // synthetic MouseEvent event.
@@ -483,7 +486,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
                 return -1;
             }
             firstChecked = firstChecked !== null && firstChecked !== void 0 ? firstChecked : nextIndex;
-        } while (!this.areDisabledItemsFocusable && this.isIndexDisabled(nextIndex));
+        } while (!this.areDisabledItemsFocusable &&
+            this.isIndexDisabled(nextIndex));
         this.focusItemAtIndex(nextIndex);
         return nextIndex;
     };
@@ -509,7 +513,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
                 return -1;
             }
             firstChecked = firstChecked !== null && firstChecked !== void 0 ? firstChecked : prevIndex;
-        } while (!this.areDisabledItemsFocusable && this.isIndexDisabled(prevIndex));
+        } while (!this.areDisabledItemsFocusable &&
+            this.isIndexDisabled(prevIndex));
         this.focusItemAtIndex(prevIndex);
         return prevIndex;
     };
@@ -525,7 +530,9 @@ var MDCListFoundation = /** @class */ (function (_super) {
     };
     MDCListFoundation.prototype.focusInitialElement = function () {
         var initialIndex = this.getFirstSelectedOrFocusedItemIndex();
-        this.focusItemAtIndex(initialIndex);
+        if (initialIndex !== numbers.UNSET_INDEX) {
+            this.focusItemAtIndex(initialIndex);
+        }
         return initialIndex;
     };
     /**
@@ -575,7 +582,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
     MDCListFoundation.prototype.setAriaForSingleSelectionAtIndex = function (index) {
         // Detect the presence of aria-current and get the value only during list
         // initialization when it is in unset state.
-        if (this.selectedIndex === numbers.UNSET_INDEX) {
+        if (this.selectedIndex === numbers.UNSET_INDEX &&
+            index !== numbers.UNSET_INDEX) {
             this.ariaCurrentAttrValue =
                 this.adapter.getAttributeForElementIndex(index, strings.ARIA_CURRENT);
         }
@@ -617,7 +625,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
             this.adapter.notifySelectionChange([index]);
         }
     };
-    MDCListFoundation.prototype.setCheckboxAtIndex = function (index, options) {
+    MDCListFoundation.prototype.setCheckboxAtIndex = function (indices, options) {
         if (options === void 0) { options = {}; }
         var currentIndex = this.selectedIndex;
         // If this update is not triggered by a user interaction, we do not
@@ -630,8 +638,11 @@ var MDCListFoundation = /** @class */ (function (_super) {
         var selectionAttribute = this.getSelectionAttribute();
         var changedIndices = [];
         for (var i = 0; i < this.adapter.getListItemCount(); i++) {
+            if (options.omitDisabledItems && this.isIndexDisabled(i)) {
+                continue;
+            }
             var previousIsChecked = currentlySelected === null || currentlySelected === void 0 ? void 0 : currentlySelected.has(i);
-            var newIsChecked = index.indexOf(i) >= 0;
+            var newIsChecked = indices.indexOf(i) >= 0;
             // If the selection has changed for this item, we keep track of it
             // so that we can notify the adapter.
             if (newIsChecked !== previousIsChecked) {
@@ -640,7 +651,9 @@ var MDCListFoundation = /** @class */ (function (_super) {
             this.adapter.setCheckedCheckboxOrRadioAtIndex(i, newIsChecked);
             this.adapter.setAttributeForElementIndex(i, selectionAttribute, newIsChecked ? 'true' : 'false');
         }
-        this.selectedIndex = index;
+        this.selectedIndex = options.omitDisabledItems ?
+            this.resolveSelectedIndices(indices) :
+            indices;
         // If the selected value has changed through user interaction,
         // we want to notify the selection change to the adapter.
         if (options.isUserInteraction && changedIndices.length) {
@@ -648,11 +661,28 @@ var MDCListFoundation = /** @class */ (function (_super) {
         }
     };
     /**
-     * Toggles the state of all checkboxes in the given range (inclusive) based on
-     * the state of the checkbox at the `toggleIndex`. To determine whether to set
-     * the given range to checked or unchecked, read the value of the checkbox at
-     * the `toggleIndex` and negate it. Then apply that new checked state to all
-     * checkboxes in the range.
+     * Helper method for ensuring that the list of selected indices remains
+     * accurate when calling setCheckboxAtIndex with omitDisabledItems set to
+     * true.
+     */
+    MDCListFoundation.prototype.resolveSelectedIndices = function (setCheckedItems) {
+        var _this = this;
+        var currentlySelectedItems = this.selectedIndex === numbers.UNSET_INDEX ?
+            [] :
+            this.selectedIndex;
+        var currentlySelectedDisabledItems = currentlySelectedItems.filter(function (i) { return _this.isIndexDisabled(i); });
+        var enabledSetCheckedItems = setCheckedItems.filter(function (i) { return !_this.isIndexDisabled(i); });
+        // Updated selectedIndex should be the enabled setCheckedItems + any missing
+        // selected disabled items.
+        var updatedSelectedItems = __spreadArray([], __read(new Set(__spreadArray(__spreadArray([], __read(enabledSetCheckedItems)), __read(currentlySelectedDisabledItems)))));
+        return updatedSelectedItems.sort(function (a, b) { return a - b; });
+    };
+    /**
+     * Toggles the state of all checkboxes in the given range (inclusive) based
+     * on the state of the checkbox at the `toggleIndex`. To determine whether
+     * to set the given range to checked or unchecked, read the value of the
+     * checkbox at the `toggleIndex` and negate it. Then apply that new checked
+     * state to all checkboxes in the range.
      * @param fromIndex The start of the range of checkboxes to toggle
      * @param toIndex The end of the range of checkboxes to toggle
      * @param toggleIndex The index that will be used to determine the new state
@@ -686,18 +716,19 @@ var MDCListFoundation = /** @class */ (function (_super) {
                 }
             }
         }
-        // If the selected value has changed, update and notify the selection change
-        // to the adapter.
+        // If the selected value has changed, update and notify the selection
+        // change to the adapter.
         if (changedIndices.length) {
             this.selectedIndex = __spreadArray([], __read(currentlySelected));
             this.adapter.notifySelectionChange(changedIndices);
         }
     };
     MDCListFoundation.prototype.setTabindexAtIndex = function (index) {
-        if (this.focusedItemIndex === numbers.UNSET_INDEX && index !== 0) {
+        if (this.focusedItemIndex === numbers.UNSET_INDEX && index !== 0 &&
+            index !== numbers.UNSET_INDEX) {
             // If some list item was selected set first list item's tabindex to -1.
-            // Generally, tabindex is set to 0 on first list item of list that has no
-            // preselected items.
+            // Generally, tabindex is set to 0 on first list item of list that has
+            // no preselected items.
             this.adapter.setAttributeForElementIndex(0, 'tabindex', '-1');
         }
         else if (this.focusedItemIndex >= 0 && this.focusedItemIndex !== index) {
@@ -705,9 +736,11 @@ var MDCListFoundation = /** @class */ (function (_super) {
         }
         // Set the previous selection's tabindex to -1. We need this because
         // in selection menus that are not visible, programmatically setting an
-        // option will not change focus but will change where tabindex should be 0.
+        // option will not change focus but will change where tabindex should be
+        // 0.
         if (!(this.selectedIndex instanceof Array) &&
-            this.selectedIndex !== index) {
+            this.selectedIndex !== index &&
+            this.focusedItemIndex !== numbers.UNSET_INDEX) {
             this.adapter.setAttributeForElementIndex(this.selectedIndex, 'tabindex', '-1');
         }
         if (index !== numbers.UNSET_INDEX) {
@@ -727,21 +760,58 @@ var MDCListFoundation = /** @class */ (function (_super) {
         this.setTabindexAtIndex(targetIndex);
     };
     MDCListFoundation.prototype.getFirstSelectedOrFocusedItemIndex = function () {
+        var e_1, _a;
+        var firstFocusableListItem = this.getFirstEnabledItem();
+        if (this.adapter.getListItemCount() === 0) {
+            return numbers.UNSET_INDEX;
+        }
         // Action lists retain focus on the most recently focused item.
         if (!this.isSelectableList()) {
-            return Math.max(this.focusedItemIndex, 0);
+            return Math.max(this.focusedItemIndex, firstFocusableListItem);
         }
         // Single-selection lists focus the selected item.
         if (typeof this.selectedIndex === 'number' &&
             this.selectedIndex !== numbers.UNSET_INDEX) {
-            return this.selectedIndex;
+            return this.areDisabledItemsFocusable &&
+                this.isIndexDisabled(this.selectedIndex) ?
+                firstFocusableListItem :
+                this.selectedIndex;
         }
-        // Multiple-selection lists focus the first selected item.
+        // Multiple-selection lists focus the first enabled selected item.
         if (isNumberArray(this.selectedIndex) && this.selectedIndex.length > 0) {
-            return this.selectedIndex.reduce(function (minIndex, currentIndex) { return Math.min(minIndex, currentIndex); });
+            var sorted = __spreadArray([], __read(this.selectedIndex)).sort(function (a, b) { return a - b; });
+            try {
+                for (var sorted_1 = __values(sorted), sorted_1_1 = sorted_1.next(); !sorted_1_1.done; sorted_1_1 = sorted_1.next()) {
+                    var index = sorted_1_1.value;
+                    if (this.isIndexDisabled(index) && !this.areDisabledItemsFocusable) {
+                        continue;
+                    }
+                    else {
+                        return index;
+                    }
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (sorted_1_1 && !sorted_1_1.done && (_a = sorted_1.return)) _a.call(sorted_1);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
         }
         // Selection lists without a selection focus the first item.
-        return 0;
+        return firstFocusableListItem;
+    };
+    MDCListFoundation.prototype.getFirstEnabledItem = function () {
+        var listSize = this.adapter.getListItemCount();
+        var i = 0;
+        while (i < listSize) {
+            if (!this.isIndexDisabled(i)) {
+                break;
+            }
+            i++;
+        }
+        return i === listSize ? numbers.UNSET_INDEX : i;
     };
     MDCListFoundation.prototype.isIndexValid = function (index, validateListType) {
         var _this = this;
@@ -825,22 +895,42 @@ var MDCListFoundation = /** @class */ (function (_super) {
         this.adapter.focusItemAtIndex(index);
         this.focusedItemIndex = index;
     };
-    MDCListFoundation.prototype.checkboxListToggleAll = function (currentlySelectedIndexes, isUserInteraction) {
-        var count = this.adapter.getListItemCount();
+    MDCListFoundation.prototype.getEnabledListItemCount = function () {
+        var listSize = this.adapter.getListItemCount();
+        var adjustedCount = 0;
+        for (var i = 0; i < listSize; i++) {
+            if (!this.isIndexDisabled(i)) {
+                adjustedCount++;
+            }
+        }
+        return adjustedCount;
+    };
+    MDCListFoundation.prototype.checkboxListToggleAll = function (currentlySelectedIndices, isUserInteraction) {
+        var _this = this;
+        var enabledListItemCount = this.getEnabledListItemCount();
+        var totalListItemCount = this.adapter.getListItemCount();
+        var currentlyEnabledSelectedIndices = currentlySelectedIndices.filter(function (i) { return !_this.isIndexDisabled(i); });
         // If all items are selected, deselect everything.
-        if (currentlySelectedIndexes.length === count) {
-            this.setCheckboxAtIndex([], { isUserInteraction: isUserInteraction });
+        // We check >= rather than === to `enabledListItemCount` since a disabled
+        // item could be selected, and we don't take that into consideration when
+        // toggling the other checkbox values.
+        if (currentlyEnabledSelectedIndices.length >= enabledListItemCount) {
+            // Use omitDisabledItems option to ensure disabled selected items are not
+            // de-selected.
+            this.setCheckboxAtIndex([], { isUserInteraction: isUserInteraction, omitDisabledItems: true });
         }
         else {
             // Otherwise select all enabled options.
             var allIndexes = [];
-            for (var i = 0; i < count; i++) {
+            for (var i = 0; i < totalListItemCount; i++) {
                 if (!this.isIndexDisabled(i) ||
-                    currentlySelectedIndexes.indexOf(i) > -1) {
+                    currentlySelectedIndices.indexOf(i) > -1) {
                     allIndexes.push(i);
                 }
             }
-            this.setCheckboxAtIndex(allIndexes, { isUserInteraction: isUserInteraction });
+            // Use omitDisabledItems option to ensure disabled selected items are not
+            // de-selected.
+            this.setCheckboxAtIndex(allIndexes, { isUserInteraction: isUserInteraction, omitDisabledItems: true });
         }
     };
     /**
@@ -849,11 +939,11 @@ var MDCListFoundation = /** @class */ (function (_super) {
      * around if at the end of options.
      *
      * @param nextChar The next character to add to the prefix buffer.
-     * @param startingIndex The index from which to start matching. Only relevant
-     *     when starting a new match sequence. To start a new match sequence,
-     *     clear the buffer using `clearTypeaheadBuffer`, or wait for the buffer
-     *     to clear after a set interval defined in list foundation. Defaults to
-     *     the currently focused index.
+     * @param startingIndex The index from which to start matching. Only
+     *     relevant when starting a new match sequence. To start a new match
+     *     sequence, clear the buffer using `clearTypeaheadBuffer`, or wait for
+     *     the buffer to clear after a set interval defined in list foundation.
+     *     Defaults to the currently focused index.
      * @return The index of the matched item, or -1 if no match.
      */
     MDCListFoundation.prototype.typeaheadMatchItem = function (nextChar, startingIndex, skipFocus) {
@@ -872,10 +962,11 @@ var MDCListFoundation = /** @class */ (function (_super) {
         return typeahead.matchItem(opts, this.typeaheadState);
     };
     /**
-     * Initializes the MDCListTextAndIndex data structure by indexing the current
-     * list items by primary text.
+     * Initializes the MDCListTextAndIndex data structure by indexing the
+     * current list items by primary text.
      *
-     * @return The primary texts of all the list items sorted by first character.
+     * @return The primary texts of all the list items sorted by first
+     *     character.
      */
     MDCListFoundation.prototype.typeaheadInitSortedIndex = function () {
         return typeahead.initSortedIndex(this.adapter.getListItemCount(), this.adapter.getPrimaryTextAtIndex);

@@ -24,7 +24,8 @@ import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
 var OPENING = cssClasses.OPENING, OPEN = cssClasses.OPEN, CLOSING = cssClasses.CLOSING;
-var REASON_ACTION = strings.REASON_ACTION, REASON_DISMISS = strings.REASON_DISMISS;
+var REASON_ACTION = strings.REASON_ACTION, REASON_DISMISS = strings.REASON_DISMISS, REASON_SECONDARY_ACTION = strings.REASON_SECONDARY_ACTION;
+/** MDC Snackbar Foundation */
 var MDCSnackbarFoundation = /** @class */ (function (_super) {
     __extends(MDCSnackbarFoundation, _super);
     function MDCSnackbarFoundation(adapter) {
@@ -91,7 +92,8 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
         this.adapter.removeClass(CLOSING);
         this.adapter.addClass(OPENING);
         this.adapter.announce();
-        // Wait a frame once display is no longer "none", to establish basis for animation
+        // Wait a frame once display is no longer "none", to establish basis for
+        // animation
         this.runNextAnimationFrame(function () {
             _this.adapter.addClass(OPEN);
             _this.animationTimer = setTimeout(function () {
@@ -107,15 +109,17 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
         });
     };
     /**
-     * @param reason Why the snackbar was closed. Value will be passed to CLOSING_EVENT and CLOSED_EVENT via the
-     *     `event.detail.reason` property. Standard values are REASON_ACTION and REASON_DISMISS, but custom
+     * @param reason Why the snackbar was closed. Value will be passed to
+     *     CLOSING_EVENT and CLOSED_EVENT via the `event.detail.reason` property.
+     *     Standard values are REASON_ACTION and REASON_DISMISS, but custom
      *     client-specific values may also be used if desired.
      */
     MDCSnackbarFoundation.prototype.close = function (reason) {
         var _this = this;
         if (reason === void 0) { reason = ''; }
         if (!this.opened) {
-            // Avoid redundant close calls (and events), e.g. repeated interactions as the snackbar is animating closed
+            // Avoid redundant close calls (and events), e.g. repeated interactions as
+            // the snackbar is animating closed
             return;
         }
         cancelAnimationFrame(this.animationFrame);
@@ -143,7 +147,8 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
         var minValue = numbers.MIN_AUTO_DISMISS_TIMEOUT_MS;
         var maxValue = numbers.MAX_AUTO_DISMISS_TIMEOUT_MS;
         var indeterminateValue = numbers.INDETERMINATE;
-        if (timeoutMs === numbers.INDETERMINATE || (timeoutMs <= maxValue && timeoutMs >= minValue)) {
+        if (timeoutMs === numbers.INDETERMINATE ||
+            (timeoutMs <= maxValue && timeoutMs >= minValue)) {
             this.autoDismissTimeoutMs = timeoutMs;
         }
         else {
@@ -168,6 +173,9 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
     MDCSnackbarFoundation.prototype.handleActionIconClick = function (_evt) {
         this.close(REASON_DISMISS);
     };
+    MDCSnackbarFoundation.prototype.handleSecondaryActionButtonClick = function (_evt) {
+        this.close(REASON_SECONDARY_ACTION);
+    };
     MDCSnackbarFoundation.prototype.clearAutoDismissTimer = function () {
         clearTimeout(this.autoDismissTimer);
         this.autoDismissTimer = 0;
@@ -178,7 +186,8 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
         this.adapter.removeClass(cssClasses.CLOSING);
     };
     /**
-     * Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
+     * Runs the given logic on the next animation frame, using setTimeout to
+     * factor in Firefox reflow behavior.
      */
     MDCSnackbarFoundation.prototype.runNextAnimationFrame = function (callback) {
         var _this = this;

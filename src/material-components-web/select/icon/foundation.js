@@ -24,6 +24,7 @@ import { __assign, __extends, __values } from "tslib";
 import { MDCFoundation } from '../../base/foundation';
 import { strings } from './constants';
 var INTERACTION_EVENTS = ['click', 'keydown'];
+/** MDC Select Icon Foundation */
 var MDCSelectIconFoundation = /** @class */ (function (_super) {
     __extends(MDCSelectIconFoundation, _super);
     function MDCSelectIconFoundation(adapter) {
@@ -43,7 +44,8 @@ var MDCSelectIconFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCSelectIconFoundation, "defaultAdapter", {
         /**
-         * See {@link MDCSelectIconAdapter} for typing information on parameters and return types.
+         * See {@link MDCSelectIconAdapter} for typing information on parameters and
+         * return types.
          */
         get: function () {
             // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
@@ -114,7 +116,8 @@ var MDCSelectIconFoundation = /** @class */ (function (_super) {
         this.adapter.setContent(content);
     };
     MDCSelectIconFoundation.prototype.handleInteraction = function (evt) {
-        var isEnterKey = evt.key === 'Enter' || evt.keyCode === 13;
+        var isEnterKey = evt.key === 'Enter' ||
+            evt.keyCode === 13;
         if (evt.type === 'click' || isEnterKey) {
             this.adapter.notifyIconAction();
         }

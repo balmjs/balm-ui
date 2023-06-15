@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+/** MDC Tab Scroller RTL */
 var MDCTabScrollerRTL = /** @class */ (function () {
     function MDCTabScrollerRTL(adapter) {
         this.adapter = adapter;

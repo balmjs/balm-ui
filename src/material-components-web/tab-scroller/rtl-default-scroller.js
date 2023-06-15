@@ -22,6 +22,7 @@
  */
 import { __extends } from "tslib";
 import { MDCTabScrollerRTL } from './rtl-scroller';
+/** MDC Tab Scroller RTL Default */
 var MDCTabScrollerRTLDefault = /** @class */ (function (_super) {
     __extends(MDCTabScrollerRTLDefault, _super);
     function MDCTabScrollerRTLDefault() {

@@ -23,6 +23,7 @@
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
+/** MDC Top App Bar Base Foundation */
 var MDCTopAppBarBaseFoundation = /** @class */ (function (_super) {
     __extends(MDCTopAppBarBaseFoundation, _super);
     /* istanbul ignore next: optional argument is not a branch statement */
@@ -52,7 +53,8 @@ var MDCTopAppBarBaseFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCTopAppBarBaseFoundation, "defaultAdapter", {
         /**
-         * See {@link MDCTopAppBarAdapter} for typing information on parameters and return types.
+         * See {@link MDCTopAppBarAdapter} for typing information on parameters and
+         * return types.
          */
         get: function () {
             // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.

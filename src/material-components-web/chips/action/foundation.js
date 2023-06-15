@@ -71,6 +71,8 @@ var MDCChipActionFoundation = /** @class */ (function (_super) {
             this.emitNavigation(key);
             return;
         }
+        // signal to propagate the event since this Key isn't handled by chip
+        return true;
     };
     MDCChipActionFoundation.prototype.setDisabled = function (isDisabled) {
         // Use `aria-disabled` for the selectable (listbox) disabled state

@@ -31,9 +31,7 @@ import { MDCChipFoundation } from './foundation';
 var MDCChip = /** @class */ (function (_super) {
     __extends(MDCChip, _super);
     function MDCChip() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.rootHTML = _this.root;
-        return _this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     MDCChip.attachTo = function (root) {
         return new MDCChip(root);
@@ -94,9 +92,9 @@ var MDCChip = /** @class */ (function (_super) {
                 return actions;
             },
             getAttribute: function (attrName) { return _this.root.getAttribute(attrName); },
-            getElementID: function () { return _this.rootHTML.id; },
+            getElementID: function () { return _this.root.id; },
             getOffsetWidth: function () {
-                return _this.rootHTML.offsetWidth;
+                return _this.root.offsetWidth;
             },
             hasClass: function (className) { return _this.root.classList.contains(className); },
             isActionSelectable: function (actionType) {
@@ -150,7 +148,7 @@ var MDCChip = /** @class */ (function (_super) {
                 }
             },
             setStyleProperty: function (prop, value) {
-                _this.rootHTML.style.setProperty(prop, value);
+                _this.root.style.setProperty(prop, value);
             },
         };
         // Default to the primary foundation

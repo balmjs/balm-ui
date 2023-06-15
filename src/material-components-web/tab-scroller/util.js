@@ -22,12 +22,14 @@
  */
 import { cssClasses } from './constants';
 /**
- * Stores result from computeHorizontalScrollbarHeight to avoid redundant processing.
+ * Stores result from computeHorizontalScrollbarHeight to avoid redundant
+ * processing.
  */
 var horizontalScrollbarHeight_;
 /**
- * Computes the height of browser-rendered horizontal scrollbars using a self-created test element.
- * May return 0 (e.g. on OS X browsers under default configuration).
+ * Computes the height of browser-rendered horizontal scrollbars using a
+ * self-created test element. May return 0 (e.g. on OS X browsers under default
+ * configuration).
  */
 export function computeHorizontalScrollbarHeight(documentObj, shouldCacheResult) {
     if (shouldCacheResult === void 0) { shouldCacheResult = true; }

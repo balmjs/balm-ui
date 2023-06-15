@@ -26,12 +26,14 @@ import { cssClasses, strings } from './constants';
 import { MDCTabScrollerRTLDefault } from './rtl-default-scroller';
 import { MDCTabScrollerRTLNegative } from './rtl-negative-scroller';
 import { MDCTabScrollerRTLReverse } from './rtl-reverse-scroller';
+/** MDC Tab Scroller Foundation */
 var MDCTabScrollerFoundation = /** @class */ (function (_super) {
     __extends(MDCTabScrollerFoundation, _super);
     function MDCTabScrollerFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCTabScrollerFoundation.defaultAdapter), adapter)) || this;
         /**
-         * Controls whether we should handle the transitionend and interaction events during the animation.
+         * Controls whether we should handle the transitionend and interaction events
+         * during the animation.
          */
         _this.isAnimating = false;
         return _this;
@@ -79,8 +81,9 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     MDCTabScrollerFoundation.prototype.init = function () {
-        // Compute horizontal scrollbar height on scroller with overflow initially hidden, then update overflow to scroll
-        // and immediately adjust bottom margin to avoid the scrollbar initially appearing before JS runs.
+        // Compute horizontal scrollbar height on scroller with overflow initially
+        // hidden, then update overflow to scroll and immediately adjust bottom
+        // margin to avoid the scrollbar initially appearing before JS runs.
         var horizontalScrollbarHeight = this.adapter.computeHorizontalScrollbarHeight();
         this.adapter.setScrollAreaStyleProperty('margin-bottom', -horizontalScrollbarHeight + 'px');
         this.adapter.addScrollAreaClass(MDCTabScrollerFoundation.cssClasses.SCROLL_AREA_SCROLL);
@@ -111,7 +114,8 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
      * Handles the transitionend event
      */
     MDCTabScrollerFoundation.prototype.handleTransitionEnd = function (evt) {
-        // Early exit if we aren't animating or the event was triggered by a different element.
+        // Early exit if we aren't animating or the event was triggered by a
+        // different element.
         var evtTarget = evt.target;
         if (!this.isAnimating ||
             !this.adapter.eventTargetMatchesSelector(evtTarget, MDCTabScrollerFoundation.strings.CONTENT_SELECTOR)) {
@@ -184,8 +188,9 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
             return 0;
         }
         var matrixParams = match[1];
-        // tslint:disable-next-line:ban-ts-ignore "Unused vars" should be a linter warning, not a compiler error.
-        // @ts-ignore These unused variables should retain their semantic names for clarity.
+        // tslint:disable-next-line:ban-ts-suppressions "Unused vars" should be a linter warning, not a compiler error.
+        // @ts-ignore These unused variables should retain their semantic names for
+        // clarity.
         var _a = __read(matrixParams.split(','), 6), a = _a[0], b = _a[1], c = _a[2], d = _a[3], tx = _a[4], ty = _a[5];
         return parseFloat(tx); // tslint:disable-line:ban
     };
@@ -233,7 +238,8 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
     /**
      * Internal method to compute the increment scroll operation values.
      * @param scrollX The desired scroll position increment
-     * @return MDCTabScrollerAnimation with the sanitized values for performing the scroll operation.
+     * @return MDCTabScrollerAnimation with the sanitized values for performing
+     *     the scroll operation.
      */
     MDCTabScrollerFoundation.prototype.getIncrementScrollOperation = function (scrollX) {
         if (this.isRTL()) {
@@ -254,7 +260,8 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
      */
     MDCTabScrollerFoundation.prototype.animate = function (animation) {
         var _this = this;
-        // Early exit if translateX is 0, which means there's no animation to perform
+        // Early exit if translateX is 0, which means there's no animation to
+        // perform
         if (animation.scrollDelta === 0) {
             return;
         }

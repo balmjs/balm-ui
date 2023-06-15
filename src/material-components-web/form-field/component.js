@@ -23,6 +23,7 @@
 import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCFormFieldFoundation } from './foundation';
+/** MDC Form Field */
 var MDCFormField = /** @class */ (function (_super) {
     __extends(MDCFormField, _super);
     function MDCFormField() {
@@ -37,8 +38,9 @@ var MDCFormField = /** @class */ (function (_super) {
     };
     MDCFormField.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take
+        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+        // methods, we need a separate, strongly typed adapter variable.
         var adapter = {
             activateInputRipple: function () {
                 if (_this.input && _this.input.ripple) {
@@ -51,16 +53,12 @@ var MDCFormField = /** @class */ (function (_super) {
                 }
             },
             deregisterInteractionHandler: function (evtType, handler) {
-                var labelEl = _this.labelEl();
-                if (labelEl) {
-                    labelEl.removeEventListener(evtType, handler);
-                }
+                var _a;
+                (_a = _this.labelEl()) === null || _a === void 0 ? void 0 : _a.removeEventListener(evtType, handler);
             },
             registerInteractionHandler: function (evtType, handler) {
-                var labelEl = _this.labelEl();
-                if (labelEl) {
-                    labelEl.addEventListener(evtType, handler);
-                }
+                var _a;
+                (_a = _this.labelEl()) === null || _a === void 0 ? void 0 : _a.addEventListener(evtType, handler);
             },
         };
         return new MDCFormFieldFoundation(adapter);

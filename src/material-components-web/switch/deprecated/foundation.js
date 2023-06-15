@@ -23,6 +23,7 @@
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../../base/foundation';
 import { cssClasses, strings } from './constants';
+/** MDC Switch Foundation */
 var MDCSwitchFoundation = /** @class */ (function (_super) {
     __extends(MDCSwitchFoundation, _super);
     function MDCSwitchFoundation(adapter) {

@@ -41,6 +41,7 @@ var numbers = {
     HIDE_DELAY_MS: 600,
     SHOW_DELAY_MS: 500,
     // LINT.IfChange(tooltip-dimensions)
+    MIN_WIDTH: 40,
     MIN_HEIGHT: 24,
     MAX_WIDTH: 200,
     // LINT.ThenChange(_tooltip.scss:tooltip-dimensions)
@@ -48,6 +49,9 @@ var numbers = {
     // LINT.IfChange(tooltip-anim-scale)
     ANIMATION_SCALE: 0.8,
     // LINT.ThenChange(_tooltip.scss:tooltip-anim-scale)
+    // LINT.IfChange(rich-tooltip-dimensions)
+    RICH_MAX_WIDTH: 320,
+    // LINT.ThenChange(_tooltip.scss:rich-tooltip-dimensions)
 };
 var attributes = {
     ARIA_EXPANDED: 'aria-expanded',
@@ -58,6 +62,7 @@ var attributes = {
 };
 var events = {
     HIDDEN: 'MDCTooltip:hidden',
+    SHOWN: 'MDCTooltip:shown',
 };
 /** Enum for possible tooltip positioning relative to its anchor element. */
 var XPosition;
@@ -67,12 +72,18 @@ var XPosition;
     // Note: CENTER is not valid for rich tooltips.
     XPosition[XPosition["CENTER"] = 2] = "CENTER";
     XPosition[XPosition["END"] = 3] = "END";
+    // SIDE_XXX positioning is only valid for plain tooltips.
+    XPosition[XPosition["SIDE_START"] = 4] = "SIDE_START";
+    XPosition[XPosition["SIDE_END"] = 5] = "SIDE_END";
 })(XPosition || (XPosition = {}));
 var YPosition;
 (function (YPosition) {
     YPosition[YPosition["DETECTED"] = 0] = "DETECTED";
     YPosition[YPosition["ABOVE"] = 1] = "ABOVE";
     YPosition[YPosition["BELOW"] = 2] = "BELOW";
+    // SIDE positioning is only valid for plain tooltips with either SIDE_START or
+    // SIDE_END x positioning.
+    YPosition[YPosition["SIDE"] = 3] = "SIDE";
 })(YPosition || (YPosition = {}));
 /**
  * Enum for possible anchor boundary types. This determines the gap between the

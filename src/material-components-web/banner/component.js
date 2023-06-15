@@ -26,7 +26,7 @@ import { FocusTrap } from '../dom/focus-trap';
 import { closest } from '../dom/ponyfill';
 import { events, selectors } from './constants';
 import { MDCBannerFoundation } from './foundation';
-/** Vanilla JS implementation of banner component. */
+/** Vanilla implementation of banner component. */
 var MDCBanner = /** @class */ (function (_super) {
     __extends(MDCBanner, _super);
     function MDCBanner() {

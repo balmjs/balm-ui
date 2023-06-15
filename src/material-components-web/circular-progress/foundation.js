@@ -23,6 +23,7 @@
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, strings } from './constants';
+/** MDC Circular Progress Foundation */
 var MDCCircularProgressFoundation = /** @class */ (function (_super) {
     __extends(MDCCircularProgressFoundation, _super);
     function MDCCircularProgressFoundation(adapter) {

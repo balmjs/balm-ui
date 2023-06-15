@@ -211,11 +211,11 @@ function getToolbar() {
 }
 
 function getOptions(counterEl) {
-  const { placeholder, readOnly, theme } = props;
+  const { placeholder, readonly, theme } = props;
   const defaultOptions = {
     modules: {},
     placeholder,
-    readOnly,
+    readOnly: readonly,
     theme
   };
   let options = Object.assign(defaultOptions, props.options);

@@ -36,7 +36,6 @@ import { MDCTextFieldFoundation } from './foundation';
 import { MDCTextFieldHelperText } from './helper-text/component';
 import { MDCTextFieldHelperTextFoundation } from './helper-text/foundation';
 import { MDCTextFieldIcon } from './icon/component';
-/** MDC Text Field */
 var MDCTextField = /** @class */ (function (_super) {
     __extends(MDCTextField, _super);
     function MDCTextField() {
@@ -69,16 +68,13 @@ var MDCTextField = /** @class */ (function (_super) {
         // Helper text
         var helperTextStrings = MDCTextFieldHelperTextFoundation.strings;
         var nextElementSibling = this.root.nextElementSibling;
-        var hasHelperLine = (nextElementSibling &&
-            nextElementSibling.classList.contains(cssClasses.HELPER_LINE));
-        var helperTextEl = hasHelperLine && nextElementSibling &&
-            nextElementSibling.querySelector(helperTextStrings.ROOT_SELECTOR);
+        var hasHelperLine = (nextElementSibling && nextElementSibling.classList.contains(cssClasses.HELPER_LINE));
+        var helperTextEl = hasHelperLine && nextElementSibling && nextElementSibling.querySelector(helperTextStrings.ROOT_SELECTOR);
         this.helperText = helperTextEl ? helperTextFactory(helperTextEl) : null;
         // Character counter
         var characterCounterStrings = MDCTextFieldCharacterCounterFoundation.strings;
         var characterCounterEl = this.root.querySelector(characterCounterStrings.ROOT_SELECTOR);
-        // If character counter is not found in root element search in sibling
-        // element.
+        // If character counter is not found in root element search in sibling element.
         if (!characterCounterEl && hasHelperLine && nextElementSibling) {
             characterCounterEl = nextElementSibling.querySelector(characterCounterStrings.ROOT_SELECTOR);
         }
@@ -317,10 +313,8 @@ var MDCTextField = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCTextField.prototype, "useNativeValidation", {
         /**
-         * Enables or disables the use of native validation. Use this for custom
-         * validation.
-         * @param useNativeValidation Set this to false to ignore native input
-         *     validation.
+         * Enables or disables the use of native validation. Use this for custom validation.
+         * @param useNativeValidation Set this to false to ignore native input validation.
          */
         set: function (useNativeValidation) {
             this.foundation.setUseNativeValidation(useNativeValidation);
@@ -378,9 +372,8 @@ var MDCTextField = /** @class */ (function (_super) {
         this.foundation.notchOutline(openNotch);
     };
     MDCTextField.prototype.getDefaultFoundation = function () {
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = __assign(__assign(__assign(__assign(__assign({}, this.getRootAdapterMethods()), this.getInputAdapterMethods()), this.getLabelAdapterMethods()), this.getLineRippleAdapterMethods()), this.getOutlineAdapterMethods());
         // tslint:enable:object-literal-sort-keys
@@ -390,12 +383,8 @@ var MDCTextField = /** @class */ (function (_super) {
         var _this = this;
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         return {
-            addClass: function (className) {
-                _this.root.classList.add(className);
-            },
-            removeClass: function (className) {
-                _this.root.classList.remove(className);
-            },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
             hasClass: function (className) { return _this.root.classList.contains(className); },
             registerTextFieldInteractionHandler: function (evtType, handler) {
                 _this.listen(evtType, handler);
@@ -405,12 +394,11 @@ var MDCTextField = /** @class */ (function (_super) {
             },
             registerValidationAttributeChangeHandler: function (handler) {
                 var getAttributesList = function (mutationsList) {
-                    return mutationsList.map(function (mutation) { return mutation.attributeName; })
+                    return mutationsList
+                        .map(function (mutation) { return mutation.attributeName; })
                         .filter(function (attributeName) { return attributeName; });
                 };
-                var observer = new MutationObserver(function (mutationsList) {
-                    handler(getAttributesList(mutationsList));
-                });
+                var observer = new MutationObserver(function (mutationsList) { return handler(getAttributesList(mutationsList)); });
                 var config = { attributes: true };
                 observer.observe(_this.input, config);
                 return observer;
@@ -427,7 +415,7 @@ var MDCTextField = /** @class */ (function (_super) {
         return {
             getNativeInput: function () { return _this.input; },
             setInputAttr: function (attr, value) {
-                _this.safeSetAttribute(_this.input, attr, value);
+                _this.input.setAttribute(attr, value);
             },
             removeInputAttr: function (attr) {
                 _this.input.removeAttribute(attr);
@@ -514,9 +502,8 @@ var MDCTextField = /** @class */ (function (_super) {
         if (isTextArea || isOutlined) {
             return null;
         }
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { isSurfaceActive: function () { return ponyfill.matches(_this.input, ':active'); }, registerInteractionHandler: function (evtType, handler) {
                 _this.input.addEventListener(evtType, handler, applyPassive());

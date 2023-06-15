@@ -26,7 +26,6 @@ import { MDCRipple } from '../ripple/component';
 import { MDCRippleFoundation } from '../ripple/foundation';
 import { MDCTabIndicator } from '../tab-indicator/component';
 import { MDCTabFoundation } from './foundation';
-/** MDC Tab */
 var MDCTab = /** @class */ (function (_super) {
     __extends(MDCTab, _super);
     function MDCTab() {
@@ -59,20 +58,13 @@ var MDCTab = /** @class */ (function (_super) {
     };
     MDCTab.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            setAttr: function (attr, value) {
-                _this.safeSetAttribute(_this.root, attr, value);
-            },
-            addClass: function (className) {
-                _this.root.classList.add(className);
-            },
-            removeClass: function (className) {
-                _this.root.classList.remove(className);
-            },
+            setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
             hasClass: function (className) { return _this.root.classList.contains(className); },
             activateIndicator: function (previousIndicatorClientRect) {
                 _this.tabIndicator.activate(previousIndicatorClientRect);
@@ -80,17 +72,12 @@ var MDCTab = /** @class */ (function (_super) {
             deactivateIndicator: function () {
                 _this.tabIndicator.deactivate();
             },
-            notifyInteracted: function () {
-                _this.emit(MDCTabFoundation.strings.INTERACTED_EVENT, { tabId: _this.id }, true /* bubble */);
-            },
+            notifyInteracted: function () { return _this.emit(MDCTabFoundation.strings.INTERACTED_EVENT, { tabId: _this.id }, true /* bubble */); },
             getOffsetLeft: function () { return _this.root.offsetLeft; },
             getOffsetWidth: function () { return _this.root.offsetWidth; },
             getContentOffsetLeft: function () { return _this.content.offsetLeft; },
             getContentOffsetWidth: function () { return _this.content.offsetWidth; },
-            focus: function () {
-                _this.root.focus();
-            },
-            isFocused: function () { return _this.root === document.activeElement; },
+            focus: function () { return _this.root.focus(); },
         };
         // tslint:enable:object-literal-sort-keys
         return new MDCTabFoundation(adapter);

@@ -210,7 +210,6 @@ function installObserver(target, property) {
     if (descGet) {
         observedDescriptor.get = function () {
             // `this as T` needed for closure conformance
-            // tslint:disable-next-line:no-unnecessary-type-assertion
             return descGet.call(this);
         };
     }
@@ -218,9 +217,7 @@ function installObserver(target, property) {
         observedDescriptor.set = function (newValue) {
             var e_4, _a;
             // `thus as T` needed for closure conformance
-            // tslint:disable-next-line:no-unnecessary-type-assertion
             var previous = descGet ? descGet.call(this) : newValue;
-            // tslint:disable-next-line:no-unnecessary-type-assertion
             descSet.call(this, newValue);
             if (targetObservers.isEnabled && (!descGet || newValue !== previous)) {
                 try {

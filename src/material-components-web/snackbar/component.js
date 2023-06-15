@@ -27,7 +27,6 @@ import { strings } from './constants';
 import { MDCSnackbarFoundation } from './foundation';
 import * as util from './util';
 var SURFACE_SELECTOR = strings.SURFACE_SELECTOR, LABEL_SELECTOR = strings.LABEL_SELECTOR, ACTION_SELECTOR = strings.ACTION_SELECTOR, DISMISS_SELECTOR = strings.DISMISS_SELECTOR, OPENING_EVENT = strings.OPENING_EVENT, OPENED_EVENT = strings.OPENED_EVENT, CLOSING_EVENT = strings.CLOSING_EVENT, CLOSED_EVENT = strings.CLOSED_EVENT;
-/** MDC Snackbar */
 var MDCSnackbar = /** @class */ (function (_super) {
     __extends(MDCSnackbar, _super);
     function MDCSnackbar() {
@@ -69,9 +68,8 @@ var MDCSnackbar = /** @class */ (function (_super) {
         this.foundation.open();
     };
     /**
-     * @param reason Why the snackbar was closed. Value will be passed to
-     *     CLOSING_EVENT and CLOSED_EVENT via the `event.detail.reason` property.
-     *     Standard values are REASON_ACTION and REASON_DISMISS, but custom
+     * @param reason Why the snackbar was closed. Value will be passed to CLOSING_EVENT and CLOSED_EVENT via the
+     *     `event.detail.reason` property. Standard values are REASON_ACTION and REASON_DISMISS, but custom
      *     client-specific values may also be used if desired.
      */
     MDCSnackbar.prototype.close = function (reason) {
@@ -80,9 +78,8 @@ var MDCSnackbar = /** @class */ (function (_super) {
     };
     MDCSnackbar.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
             addClass: function (className) {
                 _this.root.classList.add(className);
@@ -90,21 +87,11 @@ var MDCSnackbar = /** @class */ (function (_super) {
             announce: function () {
                 _this.announce(_this.labelEl);
             },
-            notifyClosed: function (reason) {
-                _this.emit(CLOSED_EVENT, reason ? { reason: reason } : {});
-            },
-            notifyClosing: function (reason) {
-                _this.emit(CLOSING_EVENT, reason ? { reason: reason } : {});
-            },
-            notifyOpened: function () {
-                _this.emit(OPENED_EVENT, {});
-            },
-            notifyOpening: function () {
-                _this.emit(OPENING_EVENT, {});
-            },
-            removeClass: function (className) {
-                _this.root.classList.remove(className);
-            },
+            notifyClosed: function (reason) { return _this.emit(CLOSED_EVENT, reason ? { reason: reason } : {}); },
+            notifyClosing: function (reason) { return _this.emit(CLOSING_EVENT, reason ? { reason: reason } : {}); },
+            notifyOpened: function () { return _this.emit(OPENED_EVENT, {}); },
+            notifyOpening: function () { return _this.emit(OPENING_EVENT, {}); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
         };
         return new MDCSnackbarFoundation(adapter);
     };

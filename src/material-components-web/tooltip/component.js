@@ -20,14 +20,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __extends, __makeTemplateObject } from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
-import { safeAttrPrefix } from 'safevalues';
-import { safeElement } from 'safevalues/dom';
 import { CssClasses, events } from './constants';
 import { MDCTooltipFoundation } from './foundation';
-var ARIA_ATTR_PREFIX = [safeAttrPrefix(templateObject_1 || (templateObject_1 = __makeTemplateObject(["aria-"], ["aria-"])))];
-/** MDC Tooltip */
 var MDCTooltip = /** @class */ (function (_super) {
     __extends(MDCTooltip, _super);
     function MDCTooltip() {
@@ -142,7 +138,7 @@ var MDCTooltip = /** @class */ (function (_super) {
         var adapter = {
             getAttribute: function (attr) { return _this.root.getAttribute(attr); },
             setAttribute: function (attr, value) {
-                safeElement.setPrefixedAttribute(ARIA_ATTR_PREFIX, _this.root, attr, value);
+                _this.root.setAttribute(attr, value);
             },
             removeAttribute: function (attr) {
                 _this.root.removeAttribute(attr);
@@ -167,7 +163,10 @@ var MDCTooltip = /** @class */ (function (_super) {
             getViewportWidth: function () { return window.innerWidth; },
             getViewportHeight: function () { return window.innerHeight; },
             getTooltipSize: function () {
-                return { width: _this.root.offsetWidth, height: _this.root.offsetHeight };
+                return {
+                    width: _this.root.offsetWidth,
+                    height: _this.root.offsetHeight
+                };
             },
             getAnchorBoundingRect: function () {
                 return _this.anchorElem ? _this.anchorElem.getBoundingClientRect() : null;
@@ -180,9 +179,8 @@ var MDCTooltip = /** @class */ (function (_super) {
                 return _this.anchorElem ? _this.anchorElem.getAttribute(attr) : null;
             },
             setAnchorAttribute: function (attr, value) {
-                if (_this.anchorElem) {
-                    safeElement.setPrefixedAttribute(ARIA_ATTR_PREFIX, _this.anchorElem, attr, value);
-                }
+                var _a;
+                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.setAttribute(attr, value);
             },
             isRTL: function () { return getComputedStyle(_this.root).direction === 'rtl'; },
             anchorContainsElement: function (element) {
@@ -229,9 +227,6 @@ var MDCTooltip = /** @class */ (function (_super) {
             notifyHidden: function () {
                 _this.emit(events.HIDDEN, {});
             },
-            notifyShown: function () {
-                _this.emit(events.SHOWN, {});
-            },
             getTooltipCaretBoundingRect: function () {
                 var caret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_TOP);
                 if (!caret) {
@@ -260,9 +255,6 @@ var MDCTooltip = /** @class */ (function (_super) {
             getActiveElement: function () {
                 return document.activeElement;
             },
-            isInstanceOfElement: function (eventTarget) {
-                return eventTarget instanceof Element;
-            },
         };
         //tslint:enable:object-literal-sort-keys
         return new MDCTooltipFoundation(adapter);
@@ -270,5 +262,4 @@ var MDCTooltip = /** @class */ (function (_super) {
     return MDCTooltip;
 }(MDCComponent));
 export { MDCTooltip };
-var templateObject_1;
 //# sourceMappingURL=component.js.map

@@ -22,7 +22,7 @@
  */
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
-import { Action, CloseReason, cssClasses, numbers } from './constants';
+import { CloseReason, cssClasses, numbers } from './constants';
 var OPENING = cssClasses.OPENING, OPEN = cssClasses.OPEN, CLOSING = cssClasses.CLOSING;
 /**
  * Foundation class for banner. Responsibilities include opening and closing the
@@ -69,9 +69,9 @@ var MDCBannerFoundation = /** @class */ (function (_super) {
     MDCBannerFoundation.prototype.open = function () {
         var _this = this;
         this.isOpened = true;
+        this.adapter.notifyOpening();
         this.adapter.removeClass(CLOSING);
         this.adapter.addClass(OPENING);
-        this.adapter.notifyOpening();
         var contentHeight = this.adapter.getContentHeight();
         this.animationFrame = requestAnimationFrame(function () {
             _this.adapter.addClass(OPEN);
@@ -118,7 +118,7 @@ var MDCBannerFoundation = /** @class */ (function (_super) {
     MDCBannerFoundation.prototype.handlePrimaryActionClick = function (disableAutoClose) {
         if (disableAutoClose === void 0) { disableAutoClose = false; }
         if (disableAutoClose) {
-            this.adapter.notifyActionClicked(Action.PRIMARY);
+            this.adapter.notifyActionClicked(0 /* PRIMARY */);
         }
         else {
             this.close(CloseReason.PRIMARY);
@@ -127,7 +127,7 @@ var MDCBannerFoundation = /** @class */ (function (_super) {
     MDCBannerFoundation.prototype.handleSecondaryActionClick = function (disableAutoClose) {
         if (disableAutoClose === void 0) { disableAutoClose = false; }
         if (disableAutoClose) {
-            this.adapter.notifyActionClicked(Action.SECONDARY);
+            this.adapter.notifyActionClicked(1 /* SECONDARY */);
         }
         else {
             this.close(CloseReason.SECONDARY);

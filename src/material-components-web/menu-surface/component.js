@@ -21,11 +21,10 @@
  * THE SOFTWARE.
  */
 import { __extends } from "tslib";
-import { getCorrectPropertyName } from '../animation/util';
 import { MDCComponent } from '../base/component';
 import { cssClasses, strings } from './constants';
 import { MDCMenuSurfaceFoundation } from './foundation';
-/** MDC Menu Surface */
+import { getCorrectPropertyName } from '../animation/util';
 var MDCMenuSurface = /** @class */ (function (_super) {
     __extends(MDCMenuSurface, _super);
     function MDCMenuSurface() {
@@ -37,9 +36,7 @@ var MDCMenuSurface = /** @class */ (function (_super) {
     MDCMenuSurface.prototype.initialSyncWithDOM = function () {
         var _this = this;
         var parentEl = this.root.parentElement;
-        this.anchorElement =
-            parentEl && parentEl.classList.contains(cssClasses.ANCHOR) ? parentEl :
-                null;
+        this.anchorElement = parentEl && parentEl.classList.contains(cssClasses.ANCHOR) ? parentEl : null;
         if (this.root.classList.contains(cssClasses.FIXED)) {
             this.setFixedPosition(true);
         }
@@ -84,10 +81,7 @@ var MDCMenuSurface = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
-    /**
-     * Sets the foundation to use page offsets for a positioning when the menu is
-     * hoisted to the body.
-     */
+    /** Sets the foundation to use page offsets for an positioning when the menu is hoisted to the body. */
     MDCMenuSurface.prototype.setIsHoisted = function (isHoisted) {
         this.foundation.setIsHoisted(isHoisted);
     };
@@ -105,10 +99,7 @@ var MDCMenuSurface = /** @class */ (function (_super) {
         }
         this.foundation.setFixedPosition(isFixed);
     };
-    /**
-     * Sets the absolute x/y position to position based on. Requires the menu to
-     * be hoisted.
-     */
+    /** Sets the absolute x/y position to position based on. Requires the menu to be hoisted. */
     MDCMenuSurface.prototype.setAbsolutePosition = function (x, y) {
         this.foundation.setAbsolutePosition(x, y);
         this.setIsHoisted(true);
@@ -124,30 +115,25 @@ var MDCMenuSurface = /** @class */ (function (_super) {
     };
     MDCMenuSurface.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            addClass: function (className) {
-                _this.root.classList.add(className);
-            },
-            removeClass: function (className) {
-                _this.root.classList.remove(className);
-            },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
             hasClass: function (className) { return _this.root.classList.contains(className); },
             hasAnchor: function () { return !!_this.anchorElement; },
             notifyClose: function () {
-                _this.emit(MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {});
+                return _this.emit(MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {});
             },
             notifyClosing: function () {
                 _this.emit(MDCMenuSurfaceFoundation.strings.CLOSING_EVENT, {});
             },
             notifyOpen: function () {
-                _this.emit(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {});
+                return _this.emit(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {});
             },
             notifyOpening: function () {
-                _this.emit(MDCMenuSurfaceFoundation.strings.OPENING_EVENT, {});
+                return _this.emit(MDCMenuSurfaceFoundation.strings.OPENING_EVENT, {});
             },
             isElementInContainer: function (el) { return _this.root.contains(el); },
             isRtl: function () {
@@ -170,19 +156,19 @@ var MDCMenuSurface = /** @class */ (function (_super) {
                 }
             },
             getInnerDimensions: function () {
-                return { width: _this.root.offsetWidth, height: _this.root.offsetHeight };
+                return {
+                    width: _this.root.offsetWidth,
+                    height: _this.root.offsetHeight
+                };
             },
             getAnchorDimensions: function () { return _this.anchorElement ?
                 _this.anchorElement.getBoundingClientRect() :
                 null; },
-            getViewportDimensions: function () {
+            getWindowDimensions: function () {
                 return { width: window.innerWidth, height: window.innerHeight };
             },
             getBodyDimensions: function () {
-                return {
-                    width: document.body.clientWidth,
-                    height: document.body.clientHeight
-                };
+                return { width: document.body.clientWidth, height: document.body.clientHeight };
             },
             getWindowScroll: function () {
                 return { x: window.pageXOffset, y: window.pageYOffset };
@@ -197,12 +183,6 @@ var MDCMenuSurface = /** @class */ (function (_super) {
             },
             setMaxHeight: function (height) {
                 _this.root.style.maxHeight = height;
-            },
-            registerWindowEventHandler: function (evtType, handler) {
-                window.addEventListener(evtType, handler);
-            },
-            deregisterWindowEventHandler: function (evtType, handler) {
-                window.removeEventListener(evtType, handler);
             },
         };
         // tslint:enable:object-literal-sort-keys

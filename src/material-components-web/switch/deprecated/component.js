@@ -20,16 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __assign, __extends, __makeTemplateObject, __read, __spreadArray } from "tslib";
+import { __assign, __extends, __read, __spreadArray } from "tslib";
 import { MDCComponent } from '../../base/component';
 import { applyPassive } from '../../dom/events';
 import { matches } from '../../dom/ponyfill';
 import { MDCRipple } from '../../ripple/component';
 import { MDCRippleFoundation } from '../../ripple/foundation';
-import { safeAttrPrefix } from 'safevalues';
-import { safeElement } from 'safevalues/dom';
 import { MDCSwitchFoundation } from './foundation';
-/** MDC Switch */
 var MDCSwitch = /** @class */ (function (_super) {
     __extends(MDCSwitch, _super);
     function MDCSwitch() {
@@ -63,22 +60,17 @@ var MDCSwitch = /** @class */ (function (_super) {
     };
     MDCSwitch.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addClass: function (className) {
-                _this.root.classList.add(className);
-            },
-            removeClass: function (className) {
-                _this.root.classList.remove(className);
-            },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
             setNativeControlChecked: function (checked) { return _this.nativeControl.checked =
                 checked; },
             setNativeControlDisabled: function (disabled) { return _this.nativeControl.disabled =
                 disabled; },
             setNativeControlAttr: function (attr, value) {
-                safeElement.setPrefixedAttribute([safeAttrPrefix(templateObject_1 || (templateObject_1 = __makeTemplateObject(["aria-"], ["aria-"])))], _this.nativeControl, attr, value);
+                _this.nativeControl.setAttribute(attr, value);
             },
         };
         return new MDCSwitchFoundation(adapter);
@@ -114,12 +106,9 @@ var MDCSwitch = /** @class */ (function (_super) {
         var _this = this;
         var RIPPLE_SURFACE_SELECTOR = MDCSwitchFoundation.strings.RIPPLE_SURFACE_SELECTOR;
         var rippleSurface = this.root.querySelector(RIPPLE_SURFACE_SELECTOR);
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
-        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { addClass: function (className) {
-                rippleSurface.classList.add(className);
-            }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (evtType, handler) {
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { addClass: function (className) { return rippleSurface.classList.add(className); }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (evtType, handler) {
                 _this.nativeControl.removeEventListener(evtType, handler, applyPassive());
             }, isSurfaceActive: function () { return matches(_this.nativeControl, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
                 _this.nativeControl.addEventListener(evtType, handler, applyPassive());
@@ -141,5 +130,4 @@ var MDCSwitch = /** @class */ (function (_super) {
     return MDCSwitch;
 }(MDCComponent));
 export { MDCSwitch };
-var templateObject_1;
 //# sourceMappingURL=component.js.map

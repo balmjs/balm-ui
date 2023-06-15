@@ -33,7 +33,6 @@ $_config: (
   emit-custom-properties: true,
   emit-fallback-values: true,
   emit-fallback-vars: true,
-  varname-prefix: 'mdc',
 );
 
 /// Configure options for custom properties. The configuration will be applied
@@ -56,7 +55,6 @@ $_config: (
 ///     fallback values.
 /// @param {Bool} $emit-fallback-vars [true] - Enable or disable emission of
 ///     fallback `var()` values.
-/// @param {String} $varname-prefix ['mdc'] - Global prefix for all custom properties.
 @mixin configure($config...) {
   @if not meta.content-exists() {
     @error 'content is required for configure()';
@@ -126,6 +124,9 @@ $_config: (
   @return (varname: $varname, fallback: $fallback);
 }
 
+/// Global prefix for all custom properties.
+$_varname-prefix: 'mdc';
+
 /// Create a custom property variable name with the global prefix.
 ///
 /// @example - scss
@@ -134,8 +135,7 @@ $_config: (
 /// @param {String} $name - The name of the custom property.
 /// @return {String} The full CSS custom property variable name.
 @function create-varname($name) {
-  $varname-prefix: map.get($_config, 'varname-prefix');
-  @return --#{$varname-prefix}-#{$name};
+  @return --#{$_varname-prefix}-#{$name};
 }
 
 /// Returns the custom property variable name of a custom property Map.
@@ -227,13 +227,23 @@ $_config: (
 /// typically a `var()` function.
 ///
 /// If custom properties are disabled, the custom property's fallback value
-/// will be returned instead.
+/// will be returned instead. If the fallback value is `null`, an error will
+/// be thrown.
 ///
 /// @param {Map} $custom-prop - The custom property Map to retrieve a
 ///     declaration value for.
 /// @return {*} The CSS declaration value.
 @function get-declaration-value($custom-prop) {
-  // This will return just the fallback value if `emit-custom-properties` is false.
+  $emit-custom-properties: map.get($_config, emit-custom-properties);
+  $fallback: get-fallback($custom-prop);
+  @if not $emit-custom-properties and not $fallback {
+    @error 'Custom properties are disabled and #{get-varname($custom-prop)} does not have a fallback value.';
+  }
+
+  @if not $emit-custom-properties {
+    @return $fallback;
+  }
+
   @return create-var($custom-prop);
 }
 

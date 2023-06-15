@@ -36,15 +36,11 @@ var FocusBehavior;
     FocusBehavior[FocusBehavior["SHOULD_FOCUS"] = 0] = "SHOULD_FOCUS";
     FocusBehavior[FocusBehavior["SHOULD_NOT_FOCUS"] = 1] = "SHOULD_NOT_FOCUS";
 })(FocusBehavior || (FocusBehavior = {}));
-/** MDC Chip Foundation */
 var MDCChipFoundation = /** @class */ (function (_super) {
     __extends(MDCChipFoundation, _super);
     function MDCChipFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCChipFoundation.defaultAdapter), adapter)) || this;
-        /**
-         * Whether a trailing icon click should immediately trigger exit/removal of
-         * the chip.
-         */
+        /** Whether a trailing icon click should immediately trigger exit/removal of the chip. */
         _this.shouldRemoveOnTrailingIconClick = true;
         /**
          * Whether the primary action should receive focus on click. Should only be
@@ -135,17 +131,16 @@ var MDCChipFoundation = /** @class */ (function (_super) {
         var getCheckmarkRect = function () {
             return _this.adapter.getCheckmarkBoundingClientRect();
         };
-        // When a chip has a checkmark and not a leading icon, the bounding rect
-        // changes in size depending on the current size of the checkmark.
+        // When a chip has a checkmark and not a leading icon, the bounding rect changes in size depending on the current
+        // size of the checkmark.
         if (!this.adapter.hasLeadingIcon()) {
             var checkmarkRect = getCheckmarkRect();
             if (checkmarkRect) {
                 var rootRect = getRootRect();
-                // Checkmark is a square, meaning the client rect's width and height are
-                // identical once the animation completes. However, the checkbox is
-                // initially hidden by setting the width to 0. To account for an initial
-                // width of 0, we use the checkbox's height instead (which equals the
-                // end-state width) when adding it to the root client rect's width.
+                // Checkmark is a square, meaning the client rect's width and height are identical once the animation completes.
+                // However, the checkbox is initially hidden by setting the width to 0.
+                // To account for an initial width of 0, we use the checkbox's height instead (which equals the end-state width)
+                // when adding it to the root client rect's width.
                 return {
                     bottom: rootRect.bottom,
                     height: rootRect.height,
@@ -183,20 +178,16 @@ var MDCChipFoundation = /** @class */ (function (_super) {
         var widthIsAnimating = evt.propertyName === 'width';
         var opacityIsAnimating = evt.propertyName === 'opacity';
         if (shouldHandle && opacityIsAnimating) {
-            // See:
-            // https://css-tricks.com/using-css-transitions-auto-dimensions/#article-header-id-5
+            // See: https://css-tricks.com/using-css-transitions-auto-dimensions/#article-header-id-5
             var chipWidth_1 = this.adapter.getComputedStyleValue('width');
-            // On the next frame (once we get the computed width), explicitly set the
-            // chip's width to its current pixel width, so we aren't transitioning out
-            // of 'auto'.
+            // On the next frame (once we get the computed width), explicitly set the chip's width
+            // to its current pixel width, so we aren't transitioning out of 'auto'.
             requestAnimationFrame(function () {
                 _this.adapter.setStyleProperty('width', chipWidth_1);
-                // To mitigate jitter, start transitioning padding and margin before
-                // width.
+                // To mitigate jitter, start transitioning padding and margin before width.
                 _this.adapter.setStyleProperty('padding', '0');
                 _this.adapter.setStyleProperty('margin', '0');
-                // On the next frame (once width is explicitly set), transition width to
-                // 0.
+                // On the next frame (once width is explicitly set), transition width to 0.
                 requestAnimationFrame(function () {
                     _this.adapter.setStyleProperty('width', '0');
                 });
@@ -208,8 +199,7 @@ var MDCChipFoundation = /** @class */ (function (_super) {
             var removedAnnouncement = this.adapter.getAttribute(strings.REMOVED_ANNOUNCEMENT_ATTRIBUTE);
             this.adapter.notifyRemoval(removedAnnouncement);
         }
-        // Handle a transition end event on the leading icon or checkmark, since the
-        // transition end event bubbles.
+        // Handle a transition end event on the leading icon or checkmark, since the transition end event bubbles.
         if (!opacityIsAnimating) {
             return;
         }

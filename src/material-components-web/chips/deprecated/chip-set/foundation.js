@@ -24,14 +24,12 @@ import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../../../base/foundation';
 import { Direction, EventSource, jumpChipKeys, navigationKeys, strings as chipStrings } from '../chip/constants';
 import { cssClasses, strings } from './constants';
-/** MDC Chip Set Foundation */
 var MDCChipSetFoundation = /** @class */ (function (_super) {
     __extends(MDCChipSetFoundation, _super);
     function MDCChipSetFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCChipSetFoundation.defaultAdapter), adapter)) || this;
         /**
-         * The ids of the selected chips in the set. Only used for choice chip set or
-         * filter chip set.
+         * The ids of the selected chips in the set. Only used for choice chip set or filter chip set.
          */
         _this.selectedChipIds = [];
         return _this;
@@ -75,9 +73,8 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
         return this.selectedChipIds.slice();
     };
     /**
-     * Selects the chip with the given id. Deselects all other chips if the chip
-     * set is of the choice variant. Does not notify clients of the updated
-     * selection state.
+     * Selects the chip with the given id. Deselects all other chips if the chip set is of the choice variant.
+     * Does not notify clients of the updated selection state.
      */
     MDCChipSetFoundation.prototype.select = function (chipId) {
         this.selectImpl(chipId, false);
@@ -95,8 +92,7 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
         }
     };
     /**
-     * Handles a chip selection event, used to handle discrepancy when selection
-     * state is set directly on the Chip.
+     * Handles a chip selection event, used to handle discrepancy when selection state is set directly on the Chip.
      */
     MDCChipSetFoundation.prototype.handleChipSelection = function (_a) {
         var chipId = _a.chipId, selected = _a.selected, shouldIgnore = _a.shouldIgnore;
@@ -129,8 +125,7 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
         }
         var nextIndex = Math.min(index, maxIndex);
         this.removeFocusFromChipsExcept(nextIndex);
-        // After removing a chip, we should focus the trailing action for the next
-        // chip.
+        // After removing a chip, we should focus the trailing action for the next chip.
         this.adapter.focusChipTrailingActionAtIndex(nextIndex);
     };
     /**
@@ -176,21 +171,17 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
     MDCChipSetFoundation.prototype.focusChipAction = function (index, key, source) {
         var shouldJumpChips = jumpChipKeys.has(key);
         if (shouldJumpChips && source === EventSource.PRIMARY) {
-            this.adapter.focusChipPrimaryActionAtIndex(index);
-            return;
+            return this.adapter.focusChipPrimaryActionAtIndex(index);
         }
         if (shouldJumpChips && source === EventSource.TRAILING) {
-            this.adapter.focusChipTrailingActionAtIndex(index);
-            return;
+            return this.adapter.focusChipTrailingActionAtIndex(index);
         }
         var dir = this.getDirection(key);
         if (dir === Direction.LEFT) {
-            this.adapter.focusChipTrailingActionAtIndex(index);
-            return;
+            return this.adapter.focusChipTrailingActionAtIndex(index);
         }
         if (dir === Direction.RIGHT) {
-            this.adapter.focusChipPrimaryActionAtIndex(index);
-            return;
+            return this.adapter.focusChipPrimaryActionAtIndex(index);
         }
     };
     MDCChipSetFoundation.prototype.getDirection = function (key) {

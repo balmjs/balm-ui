@@ -29,7 +29,7 @@ import { MDCRippleFoundation } from '../ripple/foundation';
 import { cssClasses, events } from './constants';
 import { MDCSliderFoundation } from './foundation';
 import { Thumb, TickMark } from './types';
-/** Vanilla implementation of slider component. */
+/** Vanilla JS implementation of slider component. */
 var MDCSlider = /** @class */ (function (_super) {
     __extends(MDCSlider, _super);
     function MDCSlider() {
@@ -144,13 +144,11 @@ var MDCSlider = /** @class */ (function (_super) {
             emitInputEvent: function (value, thumb) {
                 _this.emit(events.INPUT, { value: value, thumb: thumb });
             },
-            // tslint:disable-next-line:enforce-name-casing
             emitDragStartEvent: function (_, thumb) {
                 // Emitting event is not yet implemented. See issue:
                 // https://github.com/material-components/material-components-web/issues/6448
                 _this.getRipple(thumb).activate();
             },
-            // tslint:disable-next-line:enforce-name-casing
             emitDragEndEvent: function (_, thumb) {
                 // Emitting event is not yet implemented. See issue:
                 // https://github.com/material-components/material-components-web/issues/6448
@@ -198,8 +196,10 @@ var MDCSlider = /** @class */ (function (_super) {
      */
     MDCSlider.prototype.initialize = function (_a) {
         var _b = _a === void 0 ? {} : _a, skipInitialUIUpdate = _b.skipInitialUIUpdate;
-        this.inputs = Array.from(this.root.querySelectorAll("." + cssClasses.INPUT));
-        this.thumbs = Array.from(this.root.querySelectorAll("." + cssClasses.THUMB));
+        this.inputs =
+            [].slice.call(this.root.querySelectorAll("." + cssClasses.INPUT));
+        this.thumbs =
+            [].slice.call(this.root.querySelectorAll("." + cssClasses.THUMB));
         this.trackActive =
             this.root.querySelector("." + cssClasses.TRACK_ACTIVE);
         this.ripples = this.createRipples();
@@ -283,7 +283,7 @@ var MDCSlider = /** @class */ (function (_super) {
     /** Initializes thumb ripples. */
     MDCSlider.prototype.createRipples = function () {
         var ripples = [];
-        var rippleSurfaces = Array.from(this.root.querySelectorAll("." + cssClasses.THUMB));
+        var rippleSurfaces = [].slice.call(this.root.querySelectorAll("." + cssClasses.THUMB));
         var _loop_1 = function (i) {
             var rippleSurface = rippleSurfaces[i];
             // Use the corresponding input as the focus source for the ripple (i.e.

@@ -20,15 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __makeTemplateObject, __read, __spreadArray } from "tslib";
-import { safeAttrPrefix } from 'safevalues';
-import { safeElement } from 'safevalues/dom';
+import { __read, __spreadArray } from "tslib";
 import { MDCFoundation } from './foundation';
-function toCamelCase(str) {
-    // tslint:disable-next-line:enforce-name-casing
-    return String(str).replace(/\-([a-z])/g, function (_, match) { return match.toUpperCase(); });
-}
-/** MDC Component base */
 var MDCComponent = /** @class */ (function () {
     function MDCComponent(root, foundation) {
         var args = [];
@@ -46,44 +39,37 @@ var MDCComponent = /** @class */ (function () {
         this.initialSyncWithDOM();
     }
     MDCComponent.attachTo = function (root) {
-        // Subclasses which extend MDCBase should provide an attachTo() method that
-        // takes a root element and returns an instantiated component with its root
-        // set to that element. Also note that in the cases of subclasses, an
-        // explicit foundation class will not have to be passed in; it will simply
-        // be initialized from getDefaultFoundation().
+        // Subclasses which extend MDCBase should provide an attachTo() method that takes a root element and
+        // returns an instantiated component with its root set to that element. Also note that in the cases of
+        // subclasses, an explicit foundation class will not have to be passed in; it will simply be initialized
+        // from getDefaultFoundation().
         return new MDCComponent(root, new MDCFoundation({}));
     };
-    /* istanbul ignore next: method param only exists for typing purposes; it does
-     * not need to be unit tested */
-    // tslint:disable-next-line:enforce-name-casing
+    /* istanbul ignore next: method param only exists for typing purposes; it does not need to be unit tested */
     MDCComponent.prototype.initialize = function () {
         var _args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             _args[_i] = arguments[_i];
         }
-        // Subclasses can override this to do any additional setup work that would
-        // be considered part of a "constructor". Essentially, it is a hook into the
-        // parent constructor before the foundation is initialized. Any additional
-        // arguments besides root and foundation will be passed in here.
+        // Subclasses can override this to do any additional setup work that would be considered part of a
+        // "constructor". Essentially, it is a hook into the parent constructor before the foundation is
+        // initialized. Any additional arguments besides root and foundation will be passed in here.
     };
     MDCComponent.prototype.getDefaultFoundation = function () {
-        // Subclasses must override this method to return a properly configured
-        // foundation class for the component.
+        // Subclasses must override this method to return a properly configured foundation class for the
+        // component.
         throw new Error('Subclasses must override getDefaultFoundation to return a properly configured ' +
             'foundation class');
     };
     MDCComponent.prototype.initialSyncWithDOM = function () {
-        // Subclasses should override this method if they need to perform work to
-        // synchronize with a host DOM object. An example of this would be a form
-        // control wrapper that needs to synchronize its internal state to some
-        // property or attribute of the host DOM. Please note: this is *not* the
-        // place to perform DOM reads/writes that would cause layout / paint, as
-        // this is called synchronously from within the constructor.
+        // Subclasses should override this method if they need to perform work to synchronize with a host DOM
+        // object. An example of this would be a form control wrapper that needs to synchronize its internal state
+        // to some property or attribute of the host DOM. Please note: this is *not* the place to perform DOM
+        // reads/writes that would cause layout / paint, as this is called synchronously from within the constructor.
     };
     MDCComponent.prototype.destroy = function () {
-        // Subclasses may implement this method to release any resources /
-        // deregister any listeners they have attached. An example of this might be
-        // deregistering a resize event from the window object.
+        // Subclasses may implement this method to release any resources / deregister any listeners they have
+        // attached. An example of this might be deregistering a resize event from the window object.
         this.foundation.destroy();
     };
     MDCComponent.prototype.listen = function (evtType, handler, options) {
@@ -93,8 +79,7 @@ var MDCComponent = /** @class */ (function () {
         this.root.removeEventListener(evtType, handler, options);
     };
     /**
-     * Fires a cross-browser-compatible custom event from the component root of
-     * the given type, with the given data.
+     * Fires a cross-browser-compatible custom event from the component root of the given type, with the given data.
      */
     MDCComponent.prototype.emit = function (evtType, evtData, shouldBubble) {
         if (shouldBubble === void 0) { shouldBubble = false; }
@@ -111,31 +96,9 @@ var MDCComponent = /** @class */ (function () {
         }
         this.root.dispatchEvent(evt);
     };
-    /**
-     * This is a intermediate fix to allow components to use safevalues. This
-     * limits setAttribute to setting tabindex, data attributes, and aria
-     * attributes.
-     *
-     * TODO(b/263990206): remove this method and add these directly in each
-     * component. This will remove this abstraction and make it clear that the
-     * caller can't set any attribute.
-     */
-    MDCComponent.prototype.safeSetAttribute = function (element, attribute, value) {
-        if (attribute.toLowerCase() === 'tabindex') {
-            element.tabIndex = Number(value);
-        }
-        else if (attribute.indexOf('data-') === 0) {
-            var dataKey = toCamelCase(attribute.replace(/^data-/, ''));
-            element.dataset[dataKey] = value;
-        }
-        else {
-            safeElement.setPrefixedAttribute([safeAttrPrefix(templateObject_1 || (templateObject_1 = __makeTemplateObject(["aria-"], ["aria-"]))), safeAttrPrefix(templateObject_2 || (templateObject_2 = __makeTemplateObject(["role"], ["role"])))], element, attribute, value);
-        }
-    };
     return MDCComponent;
 }());
 export { MDCComponent };
 // tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCComponent;
-var templateObject_1, templateObject_2;
 //# sourceMappingURL=component.js.map

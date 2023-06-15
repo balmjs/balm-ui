@@ -23,7 +23,6 @@
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../../base/foundation';
 import { cssClasses, strings } from './constants';
-/** MDC Text Field Character Counter Foundation */
 var MDCTextFieldCharacterCounterFoundation = /** @class */ (function (_super) {
     __extends(MDCTextFieldCharacterCounterFoundation, _super);
     function MDCTextFieldCharacterCounterFoundation(adapter) {
@@ -45,13 +44,11 @@ var MDCTextFieldCharacterCounterFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCTextFieldCharacterCounterFoundation, "defaultAdapter", {
         /**
-         * See {@link MDCTextFieldCharacterCounterAdapter} for typing information on
-         * parameters and return types.
+         * See {@link MDCTextFieldCharacterCounterAdapter} for typing information on parameters and return types.
          */
         get: function () {
             return {
                 setContent: function () { return undefined; },
-                setCounterValue: function () { return undefined; },
             };
         },
         enumerable: false,
@@ -60,7 +57,6 @@ var MDCTextFieldCharacterCounterFoundation = /** @class */ (function (_super) {
     MDCTextFieldCharacterCounterFoundation.prototype.setCounterValue = function (currentLength, maxLength) {
         currentLength = Math.min(currentLength, maxLength);
         this.adapter.setContent(currentLength + " / " + maxLength);
-        this.adapter.setCounterValue(currentLength, maxLength);
     };
     return MDCTextFieldCharacterCounterFoundation;
 }(MDCFoundation));

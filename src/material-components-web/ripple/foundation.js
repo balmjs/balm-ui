@@ -24,25 +24,16 @@ import { __assign, __extends, __values } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
 import { getNormalizedEventCoords } from './util';
-// Activation events registered on the root element of each instance for
-// activation
+// Activation events registered on the root element of each instance for activation
 var ACTIVATION_EVENT_TYPES = [
-    'touchstart',
-    'pointerdown',
-    'mousedown',
-    'keydown',
+    'touchstart', 'pointerdown', 'mousedown', 'keydown',
 ];
-// Deactivation events registered on documentElement when a pointer-related down
-// event occurs
+// Deactivation events registered on documentElement when a pointer-related down event occurs
 var POINTER_DEACTIVATION_EVENT_TYPES = [
-    'touchend',
-    'pointerup',
-    'mouseup',
-    'contextmenu',
+    'touchend', 'pointerup', 'mouseup', 'contextmenu',
 ];
 // simultaneous nested activations
 var activatedTargets = [];
-/** MDC Ripple Foundation */
 var MDCRippleFoundation = /** @class */ (function (_super) {
     __extends(MDCRippleFoundation, _super);
     function MDCRippleFoundation(adapter) {
@@ -135,8 +126,7 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
                 _this.adapter.addClass(ROOT_1);
                 if (_this.adapter.isUnbounded()) {
                     _this.adapter.addClass(UNBOUNDED_1);
-                    // Unbounded ripples need layout logic applied immediately to set
-                    // coordinates for both shade and ripple
+                    // Unbounded ripples need layout logic applied immediately to set coordinates for both shade and ripple
                     _this.layoutInternal();
                 }
             });
@@ -195,22 +185,17 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
     };
     MDCRippleFoundation.prototype.handleFocus = function () {
         var _this = this;
-        requestAnimationFrame(function () {
-            _this.adapter.addClass(MDCRippleFoundation.cssClasses.BG_FOCUSED);
-        });
+        requestAnimationFrame(function () { return _this.adapter.addClass(MDCRippleFoundation.cssClasses.BG_FOCUSED); });
     };
     MDCRippleFoundation.prototype.handleBlur = function () {
         var _this = this;
-        requestAnimationFrame(function () {
-            _this.adapter.removeClass(MDCRippleFoundation.cssClasses.BG_FOCUSED);
-        });
+        requestAnimationFrame(function () { return _this.adapter.removeClass(MDCRippleFoundation.cssClasses.BG_FOCUSED); });
     };
     /**
-     * We compute this property so that we are not querying information about the
-     * client until the point in time where the foundation requests it. This
-     * prevents scenarios where client-side feature-detection may happen too
-     * early, such as when components are rendered on the server and then
-     * initialized at mount time on the client.
+     * We compute this property so that we are not querying information about the client
+     * until the point in time where the foundation requests it. This prevents scenarios where
+     * client-side feature-detection may happen too early, such as when components are rendered on the server
+     * and then initialized at mount time on the client.
      */
     MDCRippleFoundation.prototype.supportsPressRipple = function () {
         return this.adapter.browserSupportsCssVars();
@@ -329,28 +314,21 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         if (activationState.isActivated) {
             return;
         }
-        // Avoid reacting to follow-on events fired by touch device after an
-        // already-processed user interaction
+        // Avoid reacting to follow-on events fired by touch device after an already-processed user interaction
         var previousActivationEvent = this.previousActivationEvent;
-        var isSameInteraction = previousActivationEvent && evt !== undefined &&
-            previousActivationEvent.type !== evt.type;
+        var isSameInteraction = previousActivationEvent && evt !== undefined && previousActivationEvent.type !== evt.type;
         if (isSameInteraction) {
             return;
         }
         activationState.isActivated = true;
         activationState.isProgrammatic = evt === undefined;
         activationState.activationEvent = evt;
-        activationState.wasActivatedByPointer = activationState.isProgrammatic ?
-            false :
-            evt !== undefined &&
-                (evt.type === 'mousedown' || evt.type === 'touchstart' ||
-                    evt.type === 'pointerdown');
+        activationState.wasActivatedByPointer = activationState.isProgrammatic ? false : evt !== undefined && (evt.type === 'mousedown' || evt.type === 'touchstart' || evt.type === 'pointerdown');
         var hasActivatedChild = evt !== undefined &&
             activatedTargets.length > 0 &&
             activatedTargets.some(function (target) { return _this.adapter.containsEventTarget(target); });
         if (hasActivatedChild) {
-            // Immediately reset activation state, while preserving logic that
-            // prevents touch follow-on events
+            // Immediately reset activation state, while preserving logic that prevents touch follow-on events
             this.resetActivationState();
             return;
         }
@@ -363,20 +341,17 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
             this.animateActivation();
         }
         requestAnimationFrame(function () {
-            // Reset array on next frame after the current event has had a chance to
-            // bubble to prevent ancestor ripples
+            // Reset array on next frame after the current event has had a chance to bubble to prevent ancestor ripples
             activatedTargets = [];
-            if (!activationState.wasElementMadeActive && evt !== undefined &&
-                (evt.key === ' ' ||
-                    evt.keyCode === 32)) {
-                // If space was pressed, try again within an rAF call to detect :active,
-                // because different UAs report active states inconsistently when
-                // they're called within event handling code:
+            if (!activationState.wasElementMadeActive
+                && evt !== undefined
+                && (evt.key === ' ' || evt.keyCode === 32)) {
+                // If space was pressed, try again within an rAF call to detect :active, because different UAs report
+                // active states inconsistently when they're called within event handling code:
                 // - https://bugs.chromium.org/p/chromium/issues/detail?id=635971
                 // - https://bugzilla.mozilla.org/show_bug.cgi?id=1293741
-                // We try first outside rAF to support Edge, which does not exhibit this
-                // problem, but will crash if a CSS variable is set within a rAF
-                // callback for a submit button interaction (#2241).
+                // We try first outside rAF to support Edge, which does not exhibit this problem, but will crash if a CSS
+                // variable is set within a rAF callback for a submit button interaction (#2241).
                 activationState.wasElementMadeActive = _this.checkElementMadeActive(evt);
                 if (activationState.wasElementMadeActive) {
                     _this.animateActivation();
@@ -445,9 +420,8 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
     };
     MDCRippleFoundation.prototype.runDeactivationUXLogicIfReady = function () {
         var _this = this;
-        // This method is called both when a pointing device is released, and when
-        // the activation animation ends. The deactivation animation should only run
-        // after both of those occur.
+        // This method is called both when a pointing device is released, and when the activation animation ends.
+        // The deactivation animation should only run after both of those occur.
         var FG_DEACTIVATION = MDCRippleFoundation.cssClasses.FG_DEACTIVATION;
         var _a = this.activationState, hasDeactivationUXRun = _a.hasDeactivationUXRun, isActivated = _a.isActivated;
         var activationHasEnded = hasDeactivationUXRun || !isActivated;
@@ -469,16 +443,14 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         var _this = this;
         this.previousActivationEvent = this.activationState.activationEvent;
         this.activationState = this.defaultActivationState();
-        // Touch devices may fire additional events for the same interaction within
-        // a short time. Store the previous event until it's safe to assume that
-        // subsequent events are for new interactions.
+        // Touch devices may fire additional events for the same interaction within a short time.
+        // Store the previous event until it's safe to assume that subsequent events are for new interactions.
         setTimeout(function () { return _this.previousActivationEvent = undefined; }, MDCRippleFoundation.numbers.TAP_DELAY_MS);
     };
     MDCRippleFoundation.prototype.deactivateImpl = function () {
         var _this = this;
         var activationState = this.activationState;
-        // This can happen in scenarios such as when you have a keyup event that
-        // blurs the element.
+        // This can happen in scenarios such as when you have a keyup event that blurs the element.
         if (!activationState.isActivated) {
             return;
         }
@@ -508,24 +480,20 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         var _this = this;
         this.frame = this.adapter.computeBoundingRect();
         var maxDim = Math.max(this.frame.height, this.frame.width);
-        // Surface diameter is treated differently for unbounded vs. bounded
-        // ripples. Unbounded ripple diameter is calculated smaller since the
-        // surface is expected to already be padded appropriately to extend the
-        // hitbox, and the ripple is expected to meet the edges of the padded hitbox
-        // (which is typically square). Bounded ripples, on the other hand, are
-        // fully expected to expand beyond the surface's longest diameter
-        // (calculated based on the diagonal plus a constant padding), and are
-        // clipped at the surface's border via `overflow: hidden`.
+        // Surface diameter is treated differently for unbounded vs. bounded ripples.
+        // Unbounded ripple diameter is calculated smaller since the surface is expected to already be padded appropriately
+        // to extend the hitbox, and the ripple is expected to meet the edges of the padded hitbox (which is typically
+        // square). Bounded ripples, on the other hand, are fully expected to expand beyond the surface's longest diameter
+        // (calculated based on the diagonal plus a constant padding), and are clipped at the surface's border via
+        // `overflow: hidden`.
         var getBoundedRadius = function () {
             var hypotenuse = Math.sqrt(Math.pow(_this.frame.width, 2) + Math.pow(_this.frame.height, 2));
             return hypotenuse + MDCRippleFoundation.numbers.PADDING;
         };
         this.maxRadius = this.adapter.isUnbounded() ? maxDim : getBoundedRadius();
-        // Ripple is sized as a fraction of the largest dimension of the surface,
-        // then scales up using a CSS scale transform
+        // Ripple is sized as a fraction of the largest dimension of the surface, then scales up using a CSS scale transform
         var initialSize = Math.floor(maxDim * MDCRippleFoundation.numbers.INITIAL_ORIGIN_SCALE);
-        // Unbounded ripple size should always be even number to equally center
-        // align.
+        // Unbounded ripple size should always be even number to equally center align.
         if (this.adapter.isUnbounded() && initialSize % 2 !== 0) {
             this.initialSize = initialSize - 1;
         }

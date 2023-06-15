@@ -28,7 +28,6 @@ import { MDCRipple } from '../ripple/component';
 import { MDCDialogFoundation } from './foundation';
 import * as util from './util';
 var strings = MDCDialogFoundation.strings;
-/** MDC Dialog */
 var MDCDialog = /** @class */ (function (_super) {
     __extends(MDCDialog, _super);
     function MDCDialog() {
@@ -86,7 +85,7 @@ var MDCDialog = /** @class */ (function (_super) {
         this.container = container;
         this.content =
             this.root.querySelector(strings.CONTENT_SELECTOR);
-        this.buttons = Array.from(this.root.querySelectorAll(strings.BUTTON_SELECTOR));
+        this.buttons = [].slice.call(this.root.querySelectorAll(strings.BUTTON_SELECTOR));
         this.defaultButton = this.root.querySelector("[" + strings.BUTTON_DEFAULT_ATTRIBUTE + "]");
         this.focusTrapFactory = focusTrapFactory;
         this.buttonRipples = [];
@@ -146,16 +145,11 @@ var MDCDialog = /** @class */ (function (_super) {
     };
     MDCDialog.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addBodyClass: function (className) {
-                document.body.classList.add(className);
-            },
-            addClass: function (className) {
-                _this.root.classList.add(className);
-            },
+            addBodyClass: function (className) { return document.body.classList.add(className); },
+            addClass: function (className) { return _this.root.classList.add(className); },
             areButtonsStacked: function () { return util.areTopsMisaligned(_this.buttons); },
             clickDefaultButton: function () {
                 if (_this.defaultButton && !_this.defaultButton.disabled) {
@@ -175,27 +169,15 @@ var MDCDialog = /** @class */ (function (_super) {
             getInitialFocusEl: function () { return _this.getInitialFocusEl(); },
             hasClass: function (className) { return _this.root.classList.contains(className); },
             isContentScrollable: function () { return util.isScrollable(_this.content); },
-            notifyClosed: function (action) {
-                _this.emit(strings.CLOSED_EVENT, action ? { action: action } : {});
-            },
-            notifyClosing: function (action) {
-                _this.emit(strings.CLOSING_EVENT, action ? { action: action } : {});
-            },
-            notifyOpened: function () {
-                _this.emit(strings.OPENED_EVENT, {});
-            },
-            notifyOpening: function () {
-                _this.emit(strings.OPENING_EVENT, {});
-            },
+            notifyClosed: function (action) { return _this.emit(strings.CLOSED_EVENT, action ? { action: action } : {}); },
+            notifyClosing: function (action) { return _this.emit(strings.CLOSING_EVENT, action ? { action: action } : {}); },
+            notifyOpened: function () { return _this.emit(strings.OPENED_EVENT, {}); },
+            notifyOpening: function () { return _this.emit(strings.OPENING_EVENT, {}); },
             releaseFocus: function () {
                 _this.focusTrap.releaseFocus();
             },
-            removeBodyClass: function (className) {
-                document.body.classList.remove(className);
-            },
-            removeClass: function (className) {
-                _this.root.classList.remove(className);
-            },
+            removeBodyClass: function (className) { return document.body.classList.remove(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
             reverseButtons: function () {
                 _this.buttons.reverse();
                 _this.buttons.forEach(function (button) {

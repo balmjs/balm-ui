@@ -22,7 +22,6 @@
  */
 import { __extends } from "tslib";
 import { MDCTabScrollerRTL } from './rtl-scroller';
-/** MDC Tab Scroller RTL Negative */
 var MDCTabScrollerRTLNegative = /** @class */ (function (_super) {
     __extends(MDCTabScrollerRTLNegative, _super);
     function MDCTabScrollerRTLNegative() {

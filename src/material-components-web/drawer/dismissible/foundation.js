@@ -23,7 +23,6 @@
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../../base/foundation';
 import { cssClasses, strings } from '../constants';
-/** MDC Dismissible Drawer Foundation */
 var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
     __extends(MDCDismissibleDrawerFoundation, _super);
     function MDCDismissibleDrawerFoundation(adapter) {
@@ -85,8 +84,7 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
         }
         this.adapter.addClass(cssClasses.OPEN);
         this.adapter.addClass(cssClasses.ANIMATE);
-        // Wait a frame once display is no longer "none", to establish basis for
-        // animation
+        // Wait a frame once display is no longer "none", to establish basis for animation
         this.runNextAnimationFrame(function () {
             _this.adapter.addClass(cssClasses.OPENING);
         });
@@ -138,8 +136,7 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
      */
     MDCDismissibleDrawerFoundation.prototype.handleTransitionEnd = function (evt) {
         var OPENING = cssClasses.OPENING, CLOSING = cssClasses.CLOSING, OPEN = cssClasses.OPEN, ANIMATE = cssClasses.ANIMATE, ROOT = cssClasses.ROOT;
-        // In Edge, transitionend on ripple pseudo-elements yields a target without
-        // classList, so check for Element first.
+        // In Edge, transitionend on ripple pseudo-elements yields a target without classList, so check for Element first.
         var isRootElement = this.isElement(evt.target) &&
             this.adapter.elementHasClass(evt.target, ROOT);
         if (!isRootElement) {
@@ -169,8 +166,7 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
      */
     MDCDismissibleDrawerFoundation.prototype.closed = function () { }; // tslint:disable-line:no-empty
     /**
-     * Runs the given logic on the next animation frame, using setTimeout to
-     * factor in Firefox reflow behavior.
+     * Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
      */
     MDCDismissibleDrawerFoundation.prototype.runNextAnimationFrame = function (callback) {
         var _this = this;
@@ -182,8 +178,7 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
         });
     };
     MDCDismissibleDrawerFoundation.prototype.isElement = function (element) {
-        // In Edge, transitionend on ripple pseudo-elements yields a target without
-        // classList.
+        // In Edge, transitionend on ripple pseudo-elements yields a target without classList.
         return Boolean(element.classList);
     };
     return MDCDismissibleDrawerFoundation;

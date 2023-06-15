@@ -23,12 +23,13 @@
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses as listCssClasses } from '../list/constants';
+import { MDCMenuSurfaceFoundation } from '../menu-surface/foundation';
 import { cssClasses, DefaultFocusState, numbers, strings } from './constants';
-/** MDC Menu Foundation */
 var MDCMenuFoundation = /** @class */ (function (_super) {
     __extends(MDCMenuFoundation, _super);
     function MDCMenuFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCMenuFoundation.defaultAdapter), adapter)) || this;
+        _this.closeAnimationEndTimerId = 0;
         _this.defaultFocusState = DefaultFocusState.LIST_ROOT;
         _this.selectedIndex = -1;
         return _this;
@@ -82,6 +83,9 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     MDCMenuFoundation.prototype.destroy = function () {
+        if (this.closeAnimationEndTimerId) {
+            clearTimeout(this.closeAnimationEndTimerId);
+        }
         this.adapter.closeSurface();
     };
     MDCMenuFoundation.prototype.handleKeydown = function (evt) {
@@ -92,6 +96,7 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
         }
     };
     MDCMenuFoundation.prototype.handleItemAction = function (listItem) {
+        var _this = this;
         var index = this.adapter.getElementIndex(listItem);
         if (index < 0) {
             return;
@@ -99,9 +104,15 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
         this.adapter.notifySelected({ index: index });
         var skipRestoreFocus = this.adapter.getAttributeFromElementAtIndex(index, strings.SKIP_RESTORE_FOCUS) === 'true';
         this.adapter.closeSurface(skipRestoreFocus);
-        if (this.adapter.isSelectableItemAtIndex(index)) {
-            this.setSelectedIndex(index);
-        }
+        // Wait for the menu to close before adding/removing classes that affect styles.
+        this.closeAnimationEndTimerId = setTimeout(function () {
+            // Recompute the index in case the menu contents have changed.
+            var recomputedIndex = _this.adapter.getElementIndex(listItem);
+            if (recomputedIndex >= 0 &&
+                _this.adapter.isSelectableItemAtIndex(recomputedIndex)) {
+                _this.setSelectedIndex(recomputedIndex);
+            }
+        }, MDCMenuSurfaceFoundation.numbers.TRANSITION_CLOSE_DURATION);
     };
     MDCMenuFoundation.prototype.handleMenuSurfaceOpened = function () {
         switch (this.defaultFocusState) {

@@ -23,7 +23,6 @@
 import { __assign, __extends, __values } from "tslib";
 import { MDCFoundation } from '../../base/foundation';
 import { cssClasses } from './constants';
-/** MDC Segmented Button Foundation */
 var MDCSegmentedButtonFoundation = /** @class */ (function (_super) {
     __extends(MDCSegmentedButtonFoundation, _super);
     function MDCSegmentedButtonFoundation(adapter) {
@@ -32,8 +31,7 @@ var MDCSegmentedButtonFoundation = /** @class */ (function (_super) {
     Object.defineProperty(MDCSegmentedButtonFoundation, "defaultAdapter", {
         get: function () {
             return {
-                hasClass: function () { return false; },
-                getSegments: function () { return []; },
+                hasClass: function () { return false; }, getSegments: function () { return []; },
                 selectSegment: function () { return undefined; },
                 unselectSegment: function () { return undefined; },
                 notifySelectedChange: function () { return undefined; }

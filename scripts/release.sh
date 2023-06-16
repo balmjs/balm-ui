@@ -8,8 +8,8 @@ echo -e "Latest version: ${LatestTag}"
 echo -e "Input new release version: (e.g. 11.0.0)"
 read tagName
 
-regVersion='^(11\.[0-9]+\.[0-9]+)$'
-regTag='^v(11\.[0-9]+\.[0-9]+)$'
+# regVersion='^(11\.[0-9]+\.[0-9]+)$'
+# regTag='^v(11\.[0-9]+\.[0-9]+)$'
 
 # canRelease=false
 

@@ -24,7 +24,7 @@ import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
 var OPENING = cssClasses.OPENING, OPEN = cssClasses.OPEN, CLOSING = cssClasses.CLOSING;
-var REASON_ACTION = strings.REASON_ACTION, REASON_DISMISS = strings.REASON_DISMISS, REASON_SECONDARY_ACTION = strings.REASON_SECONDARY_ACTION;
+var REASON_ACTION = strings.REASON_ACTION, REASON_DISMISS = strings.REASON_DISMISS;
 /** MDC Snackbar Foundation */
 var MDCSnackbarFoundation = /** @class */ (function (_super) {
     __extends(MDCSnackbarFoundation, _super);
@@ -172,9 +172,6 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
     };
     MDCSnackbarFoundation.prototype.handleActionIconClick = function (_evt) {
         this.close(REASON_DISMISS);
-    };
-    MDCSnackbarFoundation.prototype.handleSecondaryActionButtonClick = function (_evt) {
-        this.close(REASON_SECONDARY_ACTION);
     };
     MDCSnackbarFoundation.prototype.clearAutoDismissTimer = function () {
         clearTimeout(this.autoDismissTimer);

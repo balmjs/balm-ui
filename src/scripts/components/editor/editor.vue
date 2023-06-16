@@ -129,6 +129,9 @@ export default {
           this.setHTML('');
         }
       }
+    },
+    readonly(val) {
+      val ? this.$editor.disable() : this.$editor.enable();
     }
   },
   mounted() {

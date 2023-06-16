@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.61.4 / 2023-06-16
+
+### Bug Fixes
+
+- `<ui-editor>`: fix `readonly` watch bug
+
 ## v8.61.3 / 2023-06-14
 
 ### Chore

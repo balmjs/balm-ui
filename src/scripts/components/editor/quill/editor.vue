@@ -174,6 +174,11 @@ onMounted(() => {
     }
   );
 
+  watch(
+    () => props.readonly,
+    (val) => (val ? state.$editor.disable() : state.$editor.enable())
+  );
+
   document.addEventListener('click', onBlurEmojiHandler);
 });
 

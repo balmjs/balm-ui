@@ -169,7 +169,7 @@ onMounted(() => {
           state.$editor.blur();
         }
       } else {
-        setHTML('');
+        setHTML();
       }
     }
   );
@@ -256,7 +256,7 @@ function getOptions(counterEl) {
 }
 
 const getHTML = () => state.$editor.root.innerHTML;
-const setHTML = (html) => (state.$editor.root.innerHTML = html);
+const setHTML = (html = '') => (state.$editor.root.innerHTML = html);
 
 const insertImage = (url) => state.$editor.insert('image', url);
 function handleChange(event) {

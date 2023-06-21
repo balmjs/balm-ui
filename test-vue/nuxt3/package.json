@@ -11,6 +11,6 @@
     "nuxt": "3.0.0"
   },
   "dependencies": {
-    "balm-ui": "^10.22.0"
+    "balm-ui": "^11.0.0-canary.1"
   }
 }

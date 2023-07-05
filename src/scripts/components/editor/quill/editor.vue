@@ -255,8 +255,21 @@ function getOptions(counterEl) {
   return options;
 }
 
+function updatePlaceholderForReadonly(html) {
+  if (props.placeholder) {
+    if (props.readonly && html) {
+      state.$editor.root.setAttribute('data-placeholder', '');
+    } else if (!state.$editor.root.dataset.placeholder) {
+      state.$editor.root.setAttribute('data-placeholder', props.placeholder);
+    }
+  }
+}
+
 const getHTML = () => state.$editor.root.innerHTML;
-const setHTML = (html = '') => (state.$editor.root.innerHTML = html);
+const setHTML = (html = '') => {
+  state.$editor.root.innerHTML = html;
+  updatePlaceholderForReadonly(html);
+};
 
 const insertImage = (url) => state.$editor.insert('image', url);
 function handleChange(event) {

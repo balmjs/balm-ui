@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.22.2 / 2023-07-05
+
+### Bug Fixes
+
+- `<ui-editor>`: fix `placeholder` bug in readonly mode
+
 ## v10.22.1 / 2023-06-16
 
 ### Bug Fixes

@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.61.5 / 2023-07-20
+
+### Bug Fixes
+
+- `<ui-table>`: fix tbodyRowData bug
+
 ## v8.61.4 / 2023-06-16
 
 ### Bug Fixes

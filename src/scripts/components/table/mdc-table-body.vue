@@ -7,12 +7,13 @@
       :class="[
         'mdc-data-table__row',
         {
-          'mdc-data-table__row--selected': tbodyRowData[0][T_CELL.SELECTED]
+          'mdc-data-table__row--selected':
+            tbodyRowData[0] && tbodyRowData[0][T_CELL.SELECTED]
         }
       ]"
-      :data-row-id="tbodyRowData[0][T_CELL.ROW_ID] || null"
+      :data-row-id="tbodyRowData[0] ? tbodyRowData[0][T_CELL.ROW_ID] : null"
       :aria-selected="
-        tbodyRowData[0][T_CELL.CHECKBOX]
+        tbodyRowData[0] && tbodyRowData[0][T_CELL.CHECKBOX]
           ? tbodyRowData[0][T_CELL.SELECTED]
           : null
       "

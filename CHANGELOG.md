@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.22.3 / 2023-07-21
+
+### Bug Fixes
+
+- `<ui-table>`: fix tbodyRowData bug
+
 ## v10.22.2 / 2023-07-05
 
 ### Bug Fixes

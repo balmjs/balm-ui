@@ -108,7 +108,7 @@ class MdcTree {
       if (hasChildren) {
         item.expanded = !item.expanded;
       } else {
-        let nodes = await treeData.loadData(item[dataFormat.value]);
+        let nodes = await treeData.loadData(item[dataFormat.value], item);
         if (Array.isArray(nodes)) {
           this.addData(treeData, item, nodes);
         } else {

@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "10.22.2",
+  "version": "10.22.3",
   "description": "A modular and customizable UI library based on Material Design and Vue 3",
   "keywords": [
     "balm",
@@ -86,7 +86,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^8.0.0",
-    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-vue": "^9.0.0",
     "font-awesome": "^4.7.0",
     "gulp-replace": "^1.1.4",
@@ -95,7 +95,7 @@
     "jest-serializer-vue": "^3.0.0",
     "markdown-loader": "^8.0.0",
     "nyc": "^15.1.0",
-    "prettier": "^2.8.0",
+    "prettier": "^3.0.0",
     "prismjs": "^1.29.0",
     "rollup-plugin-vue": "^6.0.0",
     "sanitize.css": "^13.0.0",
@@ -106,7 +106,7 @@
     "vue-loader": "^17.0.0",
     "vue-meta": "^3.0.0-alpha.10",
     "vue-router": "^4.0.0",
-    "webpack": "^5.86.0"
+    "webpack": "^5.88.0"
   },
   "peerDependencies": {
     "vue": ">=3"

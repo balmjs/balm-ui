@@ -98,7 +98,8 @@ function buildIndividual(mix) {
           : `${uiOutput}/${buildName}/${item}`;
 
       const useDefault =
-        buildName === 'plugins' || (buildName === 'utils' && item !== 'ie');
+        buildName === 'plugins' ||
+        (buildName === 'utils' && (item !== 'ie' || item !== 'ban'));
       mix.webpack(
         jsInput,
         jsOutput,

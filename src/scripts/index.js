@@ -125,6 +125,7 @@ import vDebounce from './directives/debounce'; // Custom
 import types from './utils/types';
 import helpers from './utils/helpers';
 import detectIE from './utils/ie';
+import ban from './utils/ban';
 
 const Components = {
   UiAlert,
@@ -371,4 +372,4 @@ export {
   vShape,
   vTooltip
 };
-export { types, helpers, detectIE };
+export { types, helpers, detectIE, ban };

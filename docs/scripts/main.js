@@ -36,7 +36,7 @@ function createApp() {
     UiEditor: {
       toolbarOptions,
       emotions
-    },
+    }
     // $lazyload: {
     //   src: dotImage
     // }

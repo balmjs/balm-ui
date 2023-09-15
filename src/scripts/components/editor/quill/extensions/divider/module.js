@@ -1,4 +1,4 @@
-import { useEditor } from '../../quill';
+import { useEditor } from '../../core/quill';
 
 function dividerModule() {
   const { Quill } = useEditor();

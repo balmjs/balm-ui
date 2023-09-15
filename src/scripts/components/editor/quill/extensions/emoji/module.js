@@ -1,6 +1,7 @@
-import { useEditor } from '../../quill';
+import { useEditor } from '../../core/quill';
 import Emotion from './emotion';
 import { emojiClassName, getCode, createEmoji } from './utils';
+import UI_GLOBAL from '../../../../icon/constants';
 
 const EMOJI_TOOLBAR = {
   id: 'ql-emoji-toolbar',
@@ -87,7 +88,7 @@ function emojiModule() {
         // add close
         const closeEl = document.createElement('i');
         closeEl.id = EMOJI_TOOLBAR.closeId;
-        closeEl.className = 'material-icons';
+        closeEl.className = UI_GLOBAL.cssClasses.icon;
         closeEl.innerHTML = 'close';
         emojiToolbarEl.appendChild(closeEl);
         // add tab container

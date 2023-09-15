@@ -24,14 +24,15 @@
 </template>
 
 <script>
-import { createEditor, Emotion } from './quill';
-import { onBlurEmojiHandler } from './extensions/emoji/module';
 import UI_EDITOR from './constants';
-import handleFileChange from '../../utils/file';
-import getType from '../../utils/typeof';
+import { createEditor, Emotion } from './core';
+import { name, useEditor } from './core/quill';
+import { onBlurEmojiHandler } from './extensions/emoji/module';
+import handleFileChange from '../../../utils/file';
+import getType from '../../../utils/typeof';
 
 export default {
-  name: 'UiEditor',
+  name,
   model: {
     prop: 'model',
     event: UI_EDITOR.EVENT.TEXT_CHANGE
@@ -243,10 +244,11 @@ export default {
     setHTML(html) {
       this.$editor.root.innerHTML = html;
     },
-    handleFileChange,
     insertImage(url) {
       this.$editor.insert('image', url);
     },
+    handleFileChange,
+    useEditor,
     encodeEmoji(html) {
       return Emotion.encode(html); // output: content
     },

@@ -32,7 +32,7 @@ types.isFunction(value): boolean;
 
 ## 2. Helpers
 
-独立用法
+默认用法
 
 ```js
 import { helpers } from 'balm-ui';
@@ -74,7 +74,7 @@ helpers.toCapitalize(str: string): string;
 
 ## 3. IE
 
-独立用法
+默认用法
 
 ```js
 import { detectIE } from 'balm-ui';
@@ -93,3 +93,25 @@ detectIE(): string | false;
 ```
 
 > IE 浏览器返回版本号，其他浏览器返回 `false`
+
+## 4. Ban debugger
+
+> New in 8.62.0
+
+默认用法
+
+```js
+import { ban } from 'balm-ui';
+```
+
+独立用法
+
+```js
+import ban from 'balm-ui/utils/ban';
+```
+
+方法
+
+```ts
+ban(): void;
+```

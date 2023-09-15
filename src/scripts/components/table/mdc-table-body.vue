@@ -8,12 +8,14 @@
         'mdc-data-table__row',
         {
           'mdc-data-table__row--selected':
-            tbodyRowData[0][UI_TABLE.CELL.SELECTED]
+            tbodyRowData[0] && tbodyRowData[0][UI_TABLE.CELL.SELECTED]
         }
       ]"
-      :data-row-id="tbodyRowData[0][UI_TABLE.CELL.ROW_ID] || null"
+      :data-row-id="
+        tbodyRowData[0] ? tbodyRowData[0][UI_TABLE.CELL.ROW_ID] : null
+      "
       :aria-selected="
-        tbodyRowData[0][UI_TABLE.CELL.CHECKBOX]
+        tbodyRowData[0] && tbodyRowData[0][UI_TABLE.CELL.CHECKBOX]
           ? tbodyRowData[0][UI_TABLE.CELL.SELECTED]
           : null
       "

@@ -1,4 +1,4 @@
-import { useEditor } from '../../quill';
+import { name, useEditor } from '../../core/quill';
 import Emotion from './emotion';
 import { emojiClassName, createEmoji } from './utils';
 
@@ -19,7 +19,7 @@ function emojiFormat() {
         const emojiMap = Emotion.getEmotions();
         return createEmoji(emojiMap[value], node);
       } else {
-        console.warn('[UiEditor]', 'Invalid emoji');
+        console.warn(`[${name}]`, 'Invalid emoji');
       }
 
       return node;

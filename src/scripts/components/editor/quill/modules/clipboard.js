@@ -1,4 +1,4 @@
-import { useEditor } from '../quill';
+import { useEditor } from '../core/quill';
 
 function pasteHtml() {}
 
@@ -8,19 +8,19 @@ function useClipboard() {
   const { Quill, toolbarHandlers } = useEditor();
 
   toolbarHandlers.cut = () => {
-    const { editor } = useEditor();
+    const { quill } = useEditor();
 
-    let range = editor.getSelection();
+    let range = quill.getSelection();
     if (range) {
-      editor.deleteText(range, Quill.sources.USER);
-      editor.setSelection(range.index, Quill.sources.SILENT);
+      quill.deleteText(range, Quill.sources.USER);
+      quill.setSelection(range.index, Quill.sources.SILENT);
     }
   };
 
   toolbarHandlers.copy = () => {
-    const { editor } = useEditor();
+    const { quill } = useEditor();
 
-    let range = editor.getSelection();
+    let range = quill.getSelection();
     if (range) {
     }
   };

@@ -82,7 +82,7 @@ const directives = [
   'copy',
   'longpress'
 ];
-const utils = ['ie', 'types', 'helpers'];
+const utils = ['ie', 'types', 'helpers', 'ban'];
 
 const output = {
   dist: './dist',

@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.62.0 / 2023-09-15
+
+### Features
+
+- utils: ban debugger
+
 ## v8.61.5 / 2023-07-20
 
 ### Bug Fixes

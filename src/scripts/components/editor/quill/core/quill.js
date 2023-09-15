@@ -2,6 +2,8 @@ let Quill;
 let quill;
 let toolbarHandlers = {};
 
+const name = 'UiEditor';
+
 const setEditor = (options = {}) => {
   if (Object.keys(options).length) {
     if (options.quill) {
@@ -19,4 +21,4 @@ const useEditor = () => ({
   toolbarHandlers
 });
 
-export { setEditor, useEditor };
+export { name, setEditor, useEditor };

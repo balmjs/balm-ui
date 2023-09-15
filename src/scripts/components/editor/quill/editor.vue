@@ -21,9 +21,10 @@
 
 <script>
 import UI_EDITOR from './constants';
+import { name } from './core/quill';
 
 export default {
-  name: 'UiEditor',
+  name,
   customOptions: {
     UI_EDITOR
   }

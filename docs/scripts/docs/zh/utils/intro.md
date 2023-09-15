@@ -92,3 +92,25 @@ detectIE(): number | false;
 ```
 
 > IE 浏览器返回版本号，其他浏览器返回 `false`
+
+## 4. Ban debugger
+
+> New in 10.23.0
+
+默认用法
+
+```js
+import { ban } from 'balm-ui';
+```
+
+独立用法
+
+```js
+import ban from 'balm-ui/utils/ban';
+```
+
+方法
+
+```ts
+ban(): void;
+```

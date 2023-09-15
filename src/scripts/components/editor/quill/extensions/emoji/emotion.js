@@ -1,3 +1,4 @@
+import { name } from '../../core/quill';
 import {
   emojiClassName,
   isValidEmoji,
@@ -36,7 +37,7 @@ class Emotion {
 
         emojiData[emotion.title] = emojiList;
       } else {
-        console.warn('[UiEditor]', 'Invalid emotions format');
+        console.warn(`[${name}]`, 'Invalid emotions format');
         // reset
         emojiTypes = [];
         emojiData = {};
@@ -102,7 +103,7 @@ class Emotion {
       }
     } catch (e) {
       console.warn(
-        '[UiEditor]',
+        `[${name}]`,
         `The param of the 'decodeEmoji' method must be an async data`
       );
     }

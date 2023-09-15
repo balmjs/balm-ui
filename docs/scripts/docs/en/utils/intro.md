@@ -92,3 +92,25 @@ detectIE(): number | false;
 ```
 
 > IE browser returns version, other browsers return `false`.
+
+## 4. Ban debugger
+
+> New in 10.23.0
+
+Default Usage
+
+```js
+import { ban } from 'balm-ui';
+```
+
+Individual Usage
+
+```js
+import ban from 'balm-ui/utils/ban';
+```
+
+Methods
+
+```ts
+ban(): void;
+```

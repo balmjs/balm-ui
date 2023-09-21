@@ -71,7 +71,7 @@
 
         <label
           class="mdc-tree-node__label"
-          @click.self.prevent="
+          @click.prevent="
             treeData.multiple ? handleCheck(nodeData) : handleSelect(nodeData)
           "
         >

@@ -129,7 +129,9 @@ function handleExpand(item) {
   MdcTree.onExpand(props.treeData, item);
 }
 function handleSelect(item) {
-  MdcTree.onSelect(props.treeData, item);
+  if (!item.disabled) {
+    MdcTree.onSelect(props.treeData, item);
+  }
 }
 function handleCheck(item) {
   if (!item.disabled) {

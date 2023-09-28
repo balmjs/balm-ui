@@ -133,7 +133,9 @@ export default {
       MdcTree.onExpand(this.treeData, item);
     },
     handleSelect(item) {
-      MdcTree.onSelect(this.treeData, item);
+      if (!item.disabled) {
+        MdcTree.onSelect(this.treeData, item);
+      }
     },
     handleCheck(item) {
       if (!item.disabled) {

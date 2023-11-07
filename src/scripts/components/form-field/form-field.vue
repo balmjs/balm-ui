@@ -33,8 +33,12 @@ export default {
     };
   },
   computed: {
+    inForm() {
+      return /UiForm$/.test(this.$parent.$vnode.tag);
+    },
     className() {
       return {
+        'mdc-form__item': this.inForm,
         'mdc-form-field': true,
         'mdc-form-field--nowrap': this.nowrap,
         'mdc-form-field--align-end': this.alignEnd,

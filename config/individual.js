@@ -51,7 +51,8 @@ const components = [
   'skeleton',
   'tree',
   'bottom-navigation',
-  'bottom-sheet'
+  'bottom-sheet',
+  'side-sheet'
 ];
 const plugins = [
   // MDC

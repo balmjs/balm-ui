@@ -100,24 +100,19 @@ export default {
   created() {
     if (this.isVertical) {
       if (this.labelWidth || this.labelMarginRight) {
-        throw new Error(
-          `[UiForm]: The 'labelWidth'/'labelMarginRight' prop only takes effect in the horizontal type form`
+        console.warn(
+          '[UiForm]',
+          `The 'labelWidth'/'labelMarginRight' prop only takes effect in the horizontal type form`
         );
       }
     } else {
       if (this.labelMarginBottom) {
-        throw new Error(
-          `[UiForm]: The 'labelMarginBottom' prop only takes effect in the vertical type form`
+        console.warn(
+          '[UiForm]',
+          `The 'labelMarginBottom' prop only takes effect in the vertical type form`
         );
       }
     }
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.$children
-        .filter((child) => child.$el.classList && child.$el.classList.contains('mdc-form-field'))
-        .forEach((child) => child.$el.classList.add(UI_FORM.cssClasses.item));
-    });
   }
 };
 </script>

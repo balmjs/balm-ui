@@ -2,6 +2,8 @@
 <div v-ripple></div>
 ```
 
+> 注意：不支持动态 class
+
 ### 波纹效果
 
 - `v-ripple="color"`

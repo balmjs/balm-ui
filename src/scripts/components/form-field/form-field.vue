@@ -44,6 +44,7 @@ const props = defineProps({
 const slots = useSlots();
 
 const instance = getCurrentInstance();
+const parent = instance.parent;
 const formField = ref(null);
 const state = reactive({
   $formField: null,
@@ -51,8 +52,10 @@ const state = reactive({
 });
 const { $formField } = toRefs(state);
 
+const inForm = computed(() => parent.type.name === 'UiForm');
 const className = computed(() => {
   return {
+    'mdc-form__item': inForm.value,
     'mdc-form-field': true,
     'mdc-form-field--nowrap': props.nowrap,
     'mdc-form-field--align-end': props.alignEnd,

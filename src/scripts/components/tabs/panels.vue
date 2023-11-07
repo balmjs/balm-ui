@@ -24,7 +24,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, watch, onMounted, nextTick } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 
 const props = defineProps({
   // States

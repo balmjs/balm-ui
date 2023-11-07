@@ -1,5 +1,5 @@
 <template>
-  <div ref="root">Composition API</div>
+  <div ref="root" v-bind="$attrs">Composition API</div>
 
   <div :style="'padding: 10px'">
     <ui-form :type="formType" item-margin-bottom="20">

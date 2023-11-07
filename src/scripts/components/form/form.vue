@@ -31,7 +31,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, onBeforeMount, onMounted, nextTick } from 'vue';
+import { ref, computed, onBeforeMount } from 'vue';
 import checkType from '../../mixins/type';
 
 const props = defineProps({
@@ -102,26 +102,18 @@ const form = ref(null);
 onBeforeMount(() => {
   if (isVertical.value) {
     if (props.labelWidth || props.labelMarginRight) {
-      throw new Error(
-        `[UiForm]: The 'labelWidth'/'labelMarginRight' prop only takes effect in the horizontal type form`
+      console.warn(
+        '[UiForm]',
+        `The 'labelWidth'/'labelMarginRight' prop only takes effect in the horizontal type form`
       );
     }
   } else {
     if (props.labelMarginBottom) {
-      throw new Error(
-        `[UiForm]: The 'labelMarginBottom' prop only takes effect in the vertical type form`
+      console.warn(
+        '[UiForm]',
+        `The 'labelMarginBottom' prop only takes effect in the vertical type form`
       );
     }
   }
-});
-
-onMounted(() => {
-  nextTick(() => {
-    [...form.value.children]
-      .filter(
-        (child) => child.classList && child.classList.contains('mdc-form-field')
-      )
-      .forEach((child) => child.classList.add(UI_FORM.cssClasses.item));
-  });
 });
 </script>

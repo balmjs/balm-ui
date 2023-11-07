@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.23.3 / 2023-11-07
+
+### Chore
+
+- `<ui-form>`, `<ui-form-field>`: optimize initialization
+
 ## v10.23.1 / 2023-09-21
 
 ### Bug Fixes

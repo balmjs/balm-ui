@@ -2,6 +2,8 @@
 <div v-ripple></div>
 ```
 
+> NOTE: Dynamic class are not supported
+
 ### Default ripple
 
 - `v-ripple="color"`

@@ -1,5 +1,5 @@
 <template>
-  <div>Options API Test</div>
+  <div v-bind="$attrs">Options API Test</div>
 </template>
 
 <script></script>

@@ -55,14 +55,14 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         _this.addAncestorScrollEventListeners = new Array();
         _this.removeAncestorScrollEventListeners = new Array();
         _this.animFrame = new AnimationFrame();
-        _this.anchorBlurHandler = function (evt) {
-            _this.handleAnchorBlur(evt);
+        _this.anchorBlurHandler = function (event) {
+            _this.handleAnchorBlur(event);
         };
-        _this.documentClickHandler = function (evt) {
-            _this.handleDocumentClick(evt);
+        _this.documentClickHandler = function (event) {
+            _this.handleDocumentClick(event);
         };
-        _this.documentKeydownHandler = function (evt) {
-            _this.handleKeydown(evt);
+        _this.documentKeydownHandler = function (event) {
+            _this.handleKeydown(event);
         };
         _this.tooltipMouseEnterHandler = function () {
             _this.handleTooltipMouseEnter();
@@ -70,8 +70,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         _this.tooltipMouseLeaveHandler = function () {
             _this.handleTooltipMouseLeave();
         };
-        _this.richTooltipFocusOutHandler = function (evt) {
-            _this.handleRichTooltipFocusOut(evt);
+        _this.richTooltipFocusOutHandler = function (event) {
+            _this.handleRichTooltipFocusOut(event);
         };
         _this.windowScrollHandler = function () {
             _this.handleWindowScrollEvent();
@@ -177,8 +177,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         // tooltip anchor.
         this.adapter.registerWindowEventHandler('contextmenu', this.preventContextMenuOnLongTouch);
     };
-    MDCTooltipFoundation.prototype.preventContextMenuOnLongTouch = function (evt) {
-        evt.preventDefault();
+    MDCTooltipFoundation.prototype.preventContextMenuOnLongTouch = function (event) {
+        event.preventDefault();
     };
     /**
      * Helper methods for determining if the event target or related target
@@ -203,7 +203,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             this.adapter.deregisterWindowEventHandler('contextmenu', this.preventContextMenuOnLongTouch);
         }
     };
-    MDCTooltipFoundation.prototype.handleAnchorFocus = function (evt) {
+    MDCTooltipFoundation.prototype.handleAnchorFocus = function (event) {
         // TODO(b/157075286): Need to add some way to distinguish keyboard
         // navigation focus events from other focus events, and only show the
         // tooltip on the former of these events.
@@ -211,7 +211,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         // Do not show tooltip if the previous focus was on a tooltip element. This
         // occurs when a rich tooltip is closed and focus is restored to the anchor
         // or when user tab-navigates back into the anchor from the rich tooltip.
-        if (this.tooltipContainsRelatedTargetElement(evt.relatedTarget)) {
+        if (this.tooltipContainsRelatedTargetElement(event.relatedTarget)) {
             return;
         }
         this.showTimeout = setTimeout(function () {
@@ -233,7 +233,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             this.show();
         }
     };
-    MDCTooltipFoundation.prototype.handleDocumentClick = function (evt) {
+    MDCTooltipFoundation.prototype.handleDocumentClick = function (event) {
         // For persistent rich tooltips, we will not hide if:
         // - The click target is within the anchor element. Otherwise, both
         //   the anchor element's click handler and this handler will handle the
@@ -242,15 +242,15 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         // - The click target is within the tooltip element, since clicks
         //   on the tooltip do not close the tooltip.
         if (this.richTooltip && this.persistentTooltip &&
-            this.anchorOrTooltipContainsTargetElement(evt.target)) {
+            this.anchorOrTooltipContainsTargetElement(event.target)) {
             return;
         }
         // Hide the tooltip immediately on click.
         this.hide();
     };
-    MDCTooltipFoundation.prototype.handleKeydown = function (evt) {
+    MDCTooltipFoundation.prototype.handleKeydown = function (event) {
         // Hide the tooltip immediately on ESC key.
-        var key = normalizeKey(evt);
+        var key = normalizeKey(event);
         if (key === KEY.ESCAPE) {
             var activeElement = this.adapter.getActiveElement();
             var tooltipContainsActiveElement = false;
@@ -263,20 +263,20 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             }
             this.hide();
             // prevent event from bubbling
-            evt.stopPropagation();
+            event.stopPropagation();
             return false;
         }
         return true;
     };
-    MDCTooltipFoundation.prototype.handleAnchorBlur = function (evt) {
+    MDCTooltipFoundation.prototype.handleAnchorBlur = function (event) {
         if (this.richTooltip) {
-            if (evt.relatedTarget === null ||
-                this.tooltipContainsRelatedTargetElement(evt.relatedTarget)) {
+            if (event.relatedTarget === null ||
+                this.tooltipContainsRelatedTargetElement(event.relatedTarget)) {
                 // There are two scenarios where a blur event on a rich tooltip anchor
                 // should leave the tooltip open.
-                // 1. When the `evt.relatedTarget` contains the tooltip element. This
+                // 1. When the `event.relatedTarget` contains the tooltip element. This
                 // indicates that focus has moved off the anchor and onto the tooltip.
-                // 2. When the `evt.relatedTarget` is null. This occurs because focus is
+                // 2. When the `event.relatedTarget` is null. This occurs because focus is
                 // moving to an element that is not focusable. This should only occur in
                 // instances of a screen reader in browse mode/linear navigation mode.
                 // We allow linear navigation over the contents of all rich tooltips to
@@ -298,14 +298,14 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             _this.hide();
         }, this.hideDelayMs);
     };
-    MDCTooltipFoundation.prototype.handleRichTooltipFocusOut = function (evt) {
+    MDCTooltipFoundation.prototype.handleRichTooltipFocusOut = function (event) {
         // If the focus is still within the anchor or the tooltip, do not hide the
         // tooltip.
-        if (this.anchorOrTooltipContainsTargetElement(evt.relatedTarget)) {
+        if (this.anchorOrTooltipContainsTargetElement(event.relatedTarget)) {
             return;
         }
-        if (evt.relatedTarget === null && this.interactiveTooltip) {
-            // If evt.relatedTarget is null, it is because focus is moving to an
+        if (event.relatedTarget === null && this.interactiveTooltip) {
+            // If event.relatedTarget is null, it is because focus is moving to an
             // element that is not focusable. This should only occur in instances
             // of a screen reader in browse mode/linear navigation mode. If the
             // tooltip is interactive (and so the entire content is not read by

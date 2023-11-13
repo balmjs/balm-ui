@@ -75,11 +75,11 @@ var MDCFloatingLabel = /** @class */ (function (_super) {
             },
             hasClass: function (className) { return _this.root.classList.contains(className); },
             getWidth: function () { return estimateScrollWidth(_this.root); },
-            registerInteractionHandler: function (evtType, handler) {
-                _this.listen(evtType, handler);
+            registerInteractionHandler: function (eventType, handler) {
+                _this.listen(eventType, handler);
             },
-            deregisterInteractionHandler: function (evtType, handler) {
-                _this.unlisten(evtType, handler);
+            deregisterInteractionHandler: function (eventType, handler) {
+                _this.unlisten(eventType, handler);
             },
         };
         // tslint:enable:object-literal-sort-keys

@@ -94,11 +94,11 @@ var MDCDrawer = /** @class */ (function (_super) {
             this.focusTrap =
                 util.createFocusTrapInstance(this.root, this.focusTrapFactory);
         }
-        this.handleKeydown = function (evt) {
-            _this.foundation.handleKeydown(evt);
+        this.handleKeydown = function (event) {
+            _this.foundation.handleKeydown(event);
         };
-        this.handleTransitionEnd = function (evt) {
-            _this.foundation.handleTransitionEnd(evt);
+        this.handleTransitionEnd = function (event) {
+            _this.foundation.handleTransitionEnd(event);
         };
         this.listen('keydown', this.handleKeydown);
         this.listen('transitionend', this.handleTransitionEnd);

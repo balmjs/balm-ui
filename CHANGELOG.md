@@ -6,7 +6,7 @@
 
 ### Features
 
-- update `mdc@15.0.0-canary.b26c34a68.0`
+- update `mdc@15.0.0-canary.9cec94097.0`
 
 ---
 

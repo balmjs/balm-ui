@@ -84,8 +84,8 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
     MDCMenuFoundation.prototype.destroy = function () {
         this.adapter.closeSurface();
     };
-    MDCMenuFoundation.prototype.handleKeydown = function (evt) {
-        var key = evt.key, keyCode = evt.keyCode;
+    MDCMenuFoundation.prototype.handleKeydown = function (event) {
+        var key = event.key, keyCode = event.keyCode;
         var isTab = key === 'Tab' || keyCode === 9;
         if (isTab) {
             this.adapter.closeSurface(/** skipRestoreFocus */ true);

@@ -156,35 +156,35 @@ var MDCSlider = /** @class */ (function (_super) {
                 // https://github.com/material-components/material-components-web/issues/6448
                 _this.getRipple(thumb).deactivate();
             },
-            registerEventHandler: function (evtType, handler) {
-                _this.listen(evtType, handler);
+            registerEventHandler: function (eventType, handler) {
+                _this.listen(eventType, handler);
             },
-            deregisterEventHandler: function (evtType, handler) {
-                _this.unlisten(evtType, handler);
+            deregisterEventHandler: function (eventType, handler) {
+                _this.unlisten(eventType, handler);
             },
-            registerThumbEventHandler: function (thumb, evtType, handler) {
-                _this.getThumbEl(thumb).addEventListener(evtType, handler);
+            registerThumbEventHandler: function (thumb, eventType, handler) {
+                _this.getThumbEl(thumb).addEventListener(eventType, handler);
             },
-            deregisterThumbEventHandler: function (thumb, evtType, handler) {
-                _this.getThumbEl(thumb).removeEventListener(evtType, handler);
+            deregisterThumbEventHandler: function (thumb, eventType, handler) {
+                _this.getThumbEl(thumb).removeEventListener(eventType, handler);
             },
-            registerInputEventHandler: function (thumb, evtType, handler) {
-                _this.getInput(thumb).addEventListener(evtType, handler);
+            registerInputEventHandler: function (thumb, eventType, handler) {
+                _this.getInput(thumb).addEventListener(eventType, handler);
             },
-            deregisterInputEventHandler: function (thumb, evtType, handler) {
-                _this.getInput(thumb).removeEventListener(evtType, handler);
+            deregisterInputEventHandler: function (thumb, eventType, handler) {
+                _this.getInput(thumb).removeEventListener(eventType, handler);
             },
-            registerBodyEventHandler: function (evtType, handler) {
-                document.body.addEventListener(evtType, handler);
+            registerBodyEventHandler: function (eventType, handler) {
+                document.body.addEventListener(eventType, handler);
             },
-            deregisterBodyEventHandler: function (evtType, handler) {
-                document.body.removeEventListener(evtType, handler);
+            deregisterBodyEventHandler: function (eventType, handler) {
+                document.body.removeEventListener(eventType, handler);
             },
-            registerWindowEventHandler: function (evtType, handler) {
-                window.addEventListener(evtType, handler);
+            registerWindowEventHandler: function (eventType, handler) {
+                window.addEventListener(eventType, handler);
             },
-            deregisterWindowEventHandler: function (evtType, handler) {
-                window.removeEventListener(evtType, handler);
+            deregisterWindowEventHandler: function (eventType, handler) {
+                window.removeEventListener(eventType, handler);
             },
             // tslint:enable:object-literal-sort-keys
         };
@@ -291,10 +291,10 @@ var MDCSlider = /** @class */ (function (_super) {
             var input = this_1.inputs[i];
             var adapter = __assign(__assign({}, MDCRipple.createAdapter(this_1)), { addClass: function (className) {
                     rippleSurface.classList.add(className);
-                }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (evtType, handler) {
-                    input.removeEventListener(evtType, handler);
-                }, isSurfaceActive: function () { return matches(input, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
-                    input.addEventListener(evtType, handler, applyPassive());
+                }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (eventType, handler) {
+                    input.removeEventListener(eventType, handler);
+                }, isSurfaceActive: function () { return matches(input, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (eventType, handler) {
+                    input.addEventListener(eventType, handler, applyPassive());
                 }, removeClass: function (className) {
                     rippleSurface.classList.remove(className);
                 }, updateCssVariable: function (varName, value) {

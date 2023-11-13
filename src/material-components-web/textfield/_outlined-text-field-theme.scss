@@ -33,10 +33,11 @@
 @use '../tokens/resolvers';
 @use './text-field-theme';
 @use './mixins';
+@use './variables';
 
 $custom-property-prefix: 'outlined-text-field';
 
-$_light-theme: (
+$light-theme: (
   caret-color: null,
   container-height: null,
   container-shape: null,
@@ -125,7 +126,7 @@ $_light-theme: (
 );
 
 @mixin theme($theme) {
-  $theme: validate.theme($_light-theme, $theme);
+  $theme: validate.theme($light-theme, $theme);
 
   @include keys.declare-custom-properties(
     $theme,
@@ -134,7 +135,7 @@ $_light-theme: (
 }
 
 @mixin theme-styles($theme, $resolvers: resolvers.$material) {
-  $theme: validate.theme-styles($_light-theme, $theme, false);
+  $theme: validate.theme-styles($light-theme, $theme, false);
 
   $theme: keys.create-theme-properties(
     $theme,
@@ -145,6 +146,11 @@ $_light-theme: (
 
   &:not(.mdc-text-field--textarea) {
     $container-height: map.get($theme, container-height);
+    $label-font-size: if(
+      map.has-key($theme, label-text-size),
+      map.get($theme, label-text-size),
+      undefined
+    );
 
     @if $container-height {
       $container-height-value: if(
@@ -157,7 +163,17 @@ $_light-theme: (
         'text-field-outlined-#{custom-properties.get-fallback($container-height)}',
         'text-field-outlined-#{$container-height}'
       );
-      @include mixins.outlined-height($container-height-value, $keyframe-suffix);
+      $label-font-size-value: if(
+        custom-properties.is-custom-prop($label-font-size),
+        custom-properties.get-declaration-value($label-font-size),
+        $label-font-size
+      );
+
+      @include mixins.outlined-height(
+        $container-height-value,
+        $keyframe-suffix,
+        $label-font-size-value
+      );
 
       &.mdc-text-field--with-leading-icon {
         $with-leading-icon-keyframe-suffix: if(
@@ -165,10 +181,23 @@ $_light-theme: (
           'text-field-outlined-with-leading-icon-#{custom-properties.get-fallback($container-height)}',
           'text-field-outlined-with-leading-icon-#{$container-height}'
         );
-        @include mixins.outlined-with-leading-icon-height($container-height-value, $with-leading-icon-keyframe-suffix);
+        @include mixins.outlined-with-leading-icon-height(
+          $container-height-value,
+          $with-leading-icon-keyframe-suffix,
+          $label-font-size-value
+        );
       }
     }
   }
+
+  @if map.get($theme, label-text-size) {
+    &.mdc-text-field--textarea.mdc-text-field--outlined {
+      @include notched-outline-mixins.floating-label-float-font-size(
+        $font-size: map.get($theme, label-text-size)
+      );
+    }
+  }
+
   @if map.get($theme, container-shape) {
     @include mixins.outline-shape-radius(map.get($theme, container-shape));
   }

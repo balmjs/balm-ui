@@ -47,8 +47,8 @@ var MDCBanner = /** @class */ (function (_super) {
         this.secondaryActionEl =
             this.root.querySelector(selectors.SECONDARY_ACTION);
         this.focusTrapFactory = focusTrapFactory;
-        this.handleContentClick = function (evt) {
-            var target = evt.target;
+        this.handleContentClick = function (event) {
+            var target = event.target;
             if (closest(target, selectors.PRIMARY_ACTION)) {
                 _this.foundation.handlePrimaryActionClick();
             }

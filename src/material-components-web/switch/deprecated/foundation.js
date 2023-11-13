@@ -76,8 +76,8 @@ var MDCSwitchFoundation = /** @class */ (function (_super) {
         }
     };
     /** Handles the change event for the switch native control. */
-    MDCSwitchFoundation.prototype.handleChange = function (evt) {
-        var nativeControl = evt.target;
+    MDCSwitchFoundation.prototype.handleChange = function (event) {
+        var nativeControl = event.target;
         this.updateAriaChecked(nativeControl.checked);
         this.updateCheckedStyling(nativeControl.checked);
     };

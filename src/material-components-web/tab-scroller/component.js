@@ -45,8 +45,8 @@ var MDCTabScroller = /** @class */ (function (_super) {
         this.handleInteraction = function () {
             _this.foundation.handleInteraction();
         };
-        this.handleTransitionEnd = function (evt) {
-            _this.foundation.handleTransitionEnd(evt);
+        this.handleTransitionEnd = function (event) {
+            _this.foundation.handleTransitionEnd(event);
         };
         this.area.addEventListener('wheel', this.handleInteraction, applyPassive());
         this.area.addEventListener('touchstart', this.handleInteraction, applyPassive());
@@ -71,8 +71,8 @@ var MDCTabScroller = /** @class */ (function (_super) {
         // methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            eventTargetMatchesSelector: function (evtTarget, selector) {
-                return matches(evtTarget, selector);
+            eventTargetMatchesSelector: function (eventTarget, selector) {
+                return matches(eventTarget, selector);
             },
             addClass: function (className) {
                 _this.root.classList.add(className);

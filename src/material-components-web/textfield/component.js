@@ -397,11 +397,11 @@ var MDCTextField = /** @class */ (function (_super) {
                 _this.root.classList.remove(className);
             },
             hasClass: function (className) { return _this.root.classList.contains(className); },
-            registerTextFieldInteractionHandler: function (evtType, handler) {
-                _this.listen(evtType, handler);
+            registerTextFieldInteractionHandler: function (eventType, handler) {
+                _this.listen(eventType, handler);
             },
-            deregisterTextFieldInteractionHandler: function (evtType, handler) {
-                _this.unlisten(evtType, handler);
+            deregisterTextFieldInteractionHandler: function (eventType, handler) {
+                _this.unlisten(eventType, handler);
             },
             registerValidationAttributeChangeHandler: function (handler) {
                 var getAttributesList = function (mutationsList) {
@@ -433,11 +433,11 @@ var MDCTextField = /** @class */ (function (_super) {
                 _this.input.removeAttribute(attr);
             },
             isFocused: function () { return document.activeElement === _this.input; },
-            registerInputInteractionHandler: function (evtType, handler) {
-                _this.input.addEventListener(evtType, handler, applyPassive());
+            registerInputInteractionHandler: function (eventType, handler) {
+                _this.input.addEventListener(eventType, handler, applyPassive());
             },
-            deregisterInputInteractionHandler: function (evtType, handler) {
-                _this.input.removeEventListener(evtType, handler, applyPassive());
+            deregisterInputInteractionHandler: function (eventType, handler) {
+                _this.input.removeEventListener(eventType, handler, applyPassive());
             },
         };
         // tslint:enable:object-literal-sort-keys
@@ -518,10 +518,10 @@ var MDCTextField = /** @class */ (function (_super) {
         // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
         // methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
-        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { isSurfaceActive: function () { return ponyfill.matches(_this.input, ':active'); }, registerInteractionHandler: function (evtType, handler) {
-                _this.input.addEventListener(evtType, handler, applyPassive());
-            }, deregisterInteractionHandler: function (evtType, handler) {
-                _this.input.removeEventListener(evtType, handler, applyPassive());
+        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { isSurfaceActive: function () { return ponyfill.matches(_this.input, ':active'); }, registerInteractionHandler: function (eventType, handler) {
+                _this.input.addEventListener(eventType, handler, applyPassive());
+            }, deregisterInteractionHandler: function (eventType, handler) {
+                _this.input.removeEventListener(eventType, handler, applyPassive());
             } });
         // tslint:enable:object-literal-sort-keys
         return rippleFactory(this.root, new MDCRippleFoundation(adapter));

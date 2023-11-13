@@ -119,10 +119,10 @@ var MDCSwitch = /** @class */ (function (_super) {
         // methods, we need a separate, strongly typed adapter variable.
         var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { addClass: function (className) {
                 rippleSurface.classList.add(className);
-            }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (evtType, handler) {
-                _this.nativeControl.removeEventListener(evtType, handler, applyPassive());
-            }, isSurfaceActive: function () { return matches(_this.nativeControl, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
-                _this.nativeControl.addEventListener(evtType, handler, applyPassive());
+            }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (eventType, handler) {
+                _this.nativeControl.removeEventListener(eventType, handler, applyPassive());
+            }, isSurfaceActive: function () { return matches(_this.nativeControl, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (eventType, handler) {
+                _this.nativeControl.addEventListener(eventType, handler, applyPassive());
             }, removeClass: function (className) {
                 rippleSurface.classList.remove(className);
             }, updateCssVariable: function (varName, value) {

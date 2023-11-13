@@ -45,16 +45,16 @@ var MDCSnackbar = /** @class */ (function (_super) {
         this.surfaceEl = this.root.querySelector(SURFACE_SELECTOR);
         this.labelEl = this.root.querySelector(LABEL_SELECTOR);
         this.actionEl = this.root.querySelector(ACTION_SELECTOR);
-        this.handleKeyDown = function (evt) {
-            _this.foundation.handleKeyDown(evt);
+        this.handleKeyDown = function (event) {
+            _this.foundation.handleKeyDown(event);
         };
-        this.handleSurfaceClick = function (evt) {
-            var target = evt.target;
+        this.handleSurfaceClick = function (event) {
+            var target = event.target;
             if (_this.isActionButton(target)) {
-                _this.foundation.handleActionButtonClick(evt);
+                _this.foundation.handleActionButtonClick(event);
             }
             else if (_this.isActionIcon(target)) {
-                _this.foundation.handleActionIconClick(evt);
+                _this.foundation.handleActionIconClick(event);
             }
         };
         this.registerKeyDownHandler(this.handleKeyDown);

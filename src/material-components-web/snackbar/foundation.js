@@ -24,7 +24,7 @@ import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
 var OPENING = cssClasses.OPENING, OPEN = cssClasses.OPEN, CLOSING = cssClasses.CLOSING;
-var REASON_ACTION = strings.REASON_ACTION, REASON_DISMISS = strings.REASON_DISMISS;
+var REASON_ACTION = strings.REASON_ACTION, REASON_DISMISS = strings.REASON_DISMISS, REASON_SECONDARY_ACTION = strings.REASON_SECONDARY_ACTION;
 /** MDC Snackbar Foundation */
 var MDCSnackbarFoundation = /** @class */ (function (_super) {
     __extends(MDCSnackbarFoundation, _super);
@@ -161,17 +161,20 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
     MDCSnackbarFoundation.prototype.setCloseOnEscape = function (closeOnEscape) {
         this.closeOnEscape = closeOnEscape;
     };
-    MDCSnackbarFoundation.prototype.handleKeyDown = function (evt) {
-        var isEscapeKey = evt.key === 'Escape' || evt.keyCode === 27;
+    MDCSnackbarFoundation.prototype.handleKeyDown = function (event) {
+        var isEscapeKey = event.key === 'Escape' || event.keyCode === 27;
         if (isEscapeKey && this.getCloseOnEscape()) {
             this.close(REASON_DISMISS);
         }
     };
-    MDCSnackbarFoundation.prototype.handleActionButtonClick = function (_evt) {
+    MDCSnackbarFoundation.prototype.handleActionButtonClick = function (_event) {
         this.close(REASON_ACTION);
     };
-    MDCSnackbarFoundation.prototype.handleActionIconClick = function (_evt) {
+    MDCSnackbarFoundation.prototype.handleActionIconClick = function (_event) {
         this.close(REASON_DISMISS);
+    };
+    MDCSnackbarFoundation.prototype.handleSecondaryActionButtonClick = function (_event) {
+        this.close(REASON_SECONDARY_ACTION);
     };
     MDCSnackbarFoundation.prototype.clearAutoDismissTimer = function () {
         clearTimeout(this.autoDismissTimer);

@@ -52,13 +52,13 @@ var MDCFormField = /** @class */ (function (_super) {
                     _this.input.ripple.deactivate();
                 }
             },
-            deregisterInteractionHandler: function (evtType, handler) {
+            deregisterInteractionHandler: function (eventType, handler) {
                 var _a;
-                (_a = _this.labelEl()) === null || _a === void 0 ? void 0 : _a.removeEventListener(evtType, handler);
+                (_a = _this.labelEl()) === null || _a === void 0 ? void 0 : _a.removeEventListener(eventType, handler);
             },
-            registerInteractionHandler: function (evtType, handler) {
+            registerInteractionHandler: function (eventType, handler) {
                 var _a;
-                (_a = _this.labelEl()) === null || _a === void 0 ? void 0 : _a.addEventListener(evtType, handler);
+                (_a = _this.labelEl()) === null || _a === void 0 ? void 0 : _a.addEventListener(eventType, handler);
             },
         };
         return new MDCFormFieldFoundation(adapter);

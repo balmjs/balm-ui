@@ -86,30 +86,30 @@ var MDCComponent = /** @class */ (function () {
         // deregistering a resize event from the window object.
         this.foundation.destroy();
     };
-    MDCComponent.prototype.listen = function (evtType, handler, options) {
-        this.root.addEventListener(evtType, handler, options);
+    MDCComponent.prototype.listen = function (eventType, handler, options) {
+        this.root.addEventListener(eventType, handler, options);
     };
-    MDCComponent.prototype.unlisten = function (evtType, handler, options) {
-        this.root.removeEventListener(evtType, handler, options);
+    MDCComponent.prototype.unlisten = function (eventType, handler, options) {
+        this.root.removeEventListener(eventType, handler, options);
     };
     /**
      * Fires a cross-browser-compatible custom event from the component root of
      * the given type, with the given data.
      */
-    MDCComponent.prototype.emit = function (evtType, evtData, shouldBubble) {
+    MDCComponent.prototype.emit = function (eventType, eventData, shouldBubble) {
         if (shouldBubble === void 0) { shouldBubble = false; }
-        var evt;
+        var event;
         if (typeof CustomEvent === 'function') {
-            evt = new CustomEvent(evtType, {
+            event = new CustomEvent(eventType, {
                 bubbles: shouldBubble,
-                detail: evtData,
+                detail: eventData,
             });
         }
         else {
-            evt = document.createEvent('CustomEvent');
-            evt.initCustomEvent(evtType, shouldBubble, false, evtData);
+            event = document.createEvent('CustomEvent');
+            event.initCustomEvent(eventType, shouldBubble, false, eventData);
         }
-        this.root.dispatchEvent(evt);
+        this.root.dispatchEvent(event);
     };
     /**
      * This is a intermediate fix to allow components to use safevalues. This

@@ -310,12 +310,10 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         return this.isRange;
     };
     /**
-     * - Syncs slider boundingClientRect with the current DOM.
      * - Updates UI based on internal state.
      */
     MDCSliderFoundation.prototype.layout = function (_a) {
         var _b = _a === void 0 ? {} : _a, skipUpdateUI = _b.skipUpdateUI;
-        this.rect = this.adapter.getBoundingClientRect();
         if (this.isRange) {
             this.startThumbKnobWidth = this.adapter.getThumbKnobWidth(Thumb.START);
             this.endThumbKnobWidth = this.adapter.getThumbKnobWidth(Thumb.END);
@@ -638,8 +636,9 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     };
     /** Maps clientX to a value on the slider scale. */
     MDCSliderFoundation.prototype.mapClientXOnSliderScale = function (clientX) {
-        var xPos = clientX - this.rect.left;
-        var pctComplete = xPos / this.rect.width;
+        var rect = this.adapter.getBoundingClientRect();
+        var xPos = clientX - rect.left;
+        var pctComplete = xPos / rect.width;
         if (this.adapter.isRTL()) {
             pctComplete = 1 - pctComplete;
         }
@@ -707,14 +706,15 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     MDCSliderFoundation.prototype.updateThumbAndTrackUI = function (thumb) {
         var _this = this;
         var _a = this, max = _a.max, min = _a.min;
+        var rect = this.adapter.getBoundingClientRect();
         var pctComplete = (this.value - this.valueStart) / (max - min);
-        var rangePx = pctComplete * this.rect.width;
+        var rangePx = pctComplete * rect.width;
         var isRtl = this.adapter.isRTL();
         var transformProp = HAS_WINDOW ? getCorrectPropertyName(window, 'transform') : 'transform';
         if (this.isRange) {
             var thumbLeftPos_1 = this.adapter.isRTL() ?
-                (max - this.value) / (max - min) * this.rect.width :
-                (this.valueStart - min) / (max - min) * this.rect.width;
+                (max - this.value) / (max - min) * rect.width :
+                (this.valueStart - min) / (max - min) * rect.width;
             var thumbRightPos_1 = thumbLeftPos_1 + rangePx;
             this.animFrame.request(AnimationKeys.SLIDER_UPDATE, function () {
                 // Set active track styles, accounting for animation direction by
@@ -724,7 +724,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
                 if (trackAnimatesFromRight) {
                     _this.adapter.setTrackActiveStyleProperty('transform-origin', 'right');
                     _this.adapter.setTrackActiveStyleProperty('left', 'auto');
-                    _this.adapter.setTrackActiveStyleProperty('right', _this.rect.width - thumbRightPos_1 + "px");
+                    _this.adapter.setTrackActiveStyleProperty('right', rect.width - thumbRightPos_1 + "px");
                 }
                 else {
                     _this.adapter.setTrackActiveStyleProperty('transform-origin', 'left');
@@ -749,7 +749,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         }
         else {
             this.animFrame.request(AnimationKeys.SLIDER_UPDATE, function () {
-                var thumbStartPos = isRtl ? _this.rect.width - rangePx : rangePx;
+                var thumbStartPos = isRtl ? rect.width - rangePx : rangePx;
                 _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbStartPos + "px)", Thumb.END);
                 _this.alignValueIndicator(Thumb.END, thumbStartPos);
                 _this.adapter.setTrackActiveStyleProperty(transformProp, "scaleX(" + pctComplete + ")");

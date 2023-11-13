@@ -349,35 +349,35 @@ var MDCList = /** @class */ (function (_super) {
      * Used to figure out which element was clicked before sending the event to
      * the foundation.
      */
-    MDCList.prototype.handleFocusInEvent = function (evt) {
-        var index = this.getListItemIndex(evt.target);
+    MDCList.prototype.handleFocusInEvent = function (event) {
+        var index = this.getListItemIndex(event.target);
         this.foundation.handleFocusIn(index);
     };
     /**
      * Used to figure out which element was clicked before sending the event to
      * the foundation.
      */
-    MDCList.prototype.handleFocusOutEvent = function (evt) {
-        var index = this.getListItemIndex(evt.target);
+    MDCList.prototype.handleFocusOutEvent = function (event) {
+        var index = this.getListItemIndex(event.target);
         this.foundation.handleFocusOut(index);
     };
     /**
      * Used to figure out which element was focused when keydown event occurred
      * before sending the event to the foundation.
      */
-    MDCList.prototype.handleKeydownEvent = function (evt) {
-        var index = this.getListItemIndex(evt.target);
-        var target = evt.target;
-        this.foundation.handleKeydown(evt, target.classList.contains(this.classNameMap[cssClasses.LIST_ITEM_CLASS]), index);
+    MDCList.prototype.handleKeydownEvent = function (event) {
+        var index = this.getListItemIndex(event.target);
+        var target = event.target;
+        this.foundation.handleKeydown(event, target.classList.contains(this.classNameMap[cssClasses.LIST_ITEM_CLASS]), index);
     };
     /**
      * Used to figure out which element was clicked before sending the event to
      * the foundation.
      */
-    MDCList.prototype.handleClickEvent = function (evt) {
-        var index = this.getListItemIndex(evt.target);
-        var target = evt.target;
-        this.foundation.handleClick(index, matches(target, strings.CHECKBOX_RADIO_SELECTOR), evt);
+    MDCList.prototype.handleClickEvent = function (event) {
+        var index = this.getListItemIndex(event.target);
+        var target = event.target;
+        this.foundation.handleClick(index, matches(target, strings.CHECKBOX_RADIO_SELECTOR), event);
     };
     return MDCList;
 }(MDCComponent));

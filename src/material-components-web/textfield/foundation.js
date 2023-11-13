@@ -54,8 +54,8 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         _this.inputInputHandler = function () {
             _this.handleInput();
         };
-        _this.setPointerXOffset = function (evt) {
-            _this.setTransformOrigin(evt);
+        _this.setPointerXOffset = function (event) {
+            _this.setTransformOrigin(event);
         };
         _this.textFieldInteractionHandler = function () {
             _this.handleTextFieldInteraction();
@@ -167,8 +167,8 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         this.adapter.registerInputInteractionHandler('input', this.inputInputHandler);
         try {
             for (var POINTERDOWN_EVENTS_1 = __values(POINTERDOWN_EVENTS), POINTERDOWN_EVENTS_1_1 = POINTERDOWN_EVENTS_1.next(); !POINTERDOWN_EVENTS_1_1.done; POINTERDOWN_EVENTS_1_1 = POINTERDOWN_EVENTS_1.next()) {
-                var evtType = POINTERDOWN_EVENTS_1_1.value;
-                this.adapter.registerInputInteractionHandler(evtType, this.setPointerXOffset);
+                var eventType = POINTERDOWN_EVENTS_1_1.value;
+                this.adapter.registerInputInteractionHandler(eventType, this.setPointerXOffset);
             }
         }
         catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -180,8 +180,8 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         }
         try {
             for (var INTERACTION_EVENTS_1 = __values(INTERACTION_EVENTS), INTERACTION_EVENTS_1_1 = INTERACTION_EVENTS_1.next(); !INTERACTION_EVENTS_1_1.done; INTERACTION_EVENTS_1_1 = INTERACTION_EVENTS_1.next()) {
-                var evtType = INTERACTION_EVENTS_1_1.value;
-                this.adapter.registerTextFieldInteractionHandler(evtType, this.textFieldInteractionHandler);
+                var eventType = INTERACTION_EVENTS_1_1.value;
+                this.adapter.registerTextFieldInteractionHandler(eventType, this.textFieldInteractionHandler);
             }
         }
         catch (e_2_1) { e_2 = { error: e_2_1 }; }
@@ -202,8 +202,8 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         this.adapter.deregisterInputInteractionHandler('input', this.inputInputHandler);
         try {
             for (var POINTERDOWN_EVENTS_2 = __values(POINTERDOWN_EVENTS), POINTERDOWN_EVENTS_2_1 = POINTERDOWN_EVENTS_2.next(); !POINTERDOWN_EVENTS_2_1.done; POINTERDOWN_EVENTS_2_1 = POINTERDOWN_EVENTS_2.next()) {
-                var evtType = POINTERDOWN_EVENTS_2_1.value;
-                this.adapter.deregisterInputInteractionHandler(evtType, this.setPointerXOffset);
+                var eventType = POINTERDOWN_EVENTS_2_1.value;
+                this.adapter.deregisterInputInteractionHandler(eventType, this.setPointerXOffset);
             }
         }
         catch (e_3_1) { e_3 = { error: e_3_1 }; }
@@ -215,8 +215,8 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         }
         try {
             for (var INTERACTION_EVENTS_2 = __values(INTERACTION_EVENTS), INTERACTION_EVENTS_2_1 = INTERACTION_EVENTS_2.next(); !INTERACTION_EVENTS_2_1.done; INTERACTION_EVENTS_2_1 = INTERACTION_EVENTS_2.next()) {
-                var evtType = INTERACTION_EVENTS_2_1.value;
-                this.adapter.deregisterTextFieldInteractionHandler(evtType, this.textFieldInteractionHandler);
+                var eventType = INTERACTION_EVENTS_2_1.value;
+                this.adapter.deregisterTextFieldInteractionHandler(eventType, this.textFieldInteractionHandler);
             }
         }
         catch (e_4_1) { e_4 = { error: e_4_1 }; }
@@ -293,12 +293,12 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
      * Sets the line ripple's transform origin, so that the line ripple activate
      * animation will animate out from the user's click location.
      */
-    MDCTextFieldFoundation.prototype.setTransformOrigin = function (evt) {
+    MDCTextFieldFoundation.prototype.setTransformOrigin = function (event) {
         if (this.isDisabled() || this.adapter.hasOutline()) {
             return;
         }
-        var touches = evt.touches;
-        var targetEvent = touches ? touches[0] : evt;
+        var touches = event.touches;
+        var targetEvent = touches ? touches[0] : event;
         var targetClientRect = targetEvent.target.getBoundingClientRect();
         var normalizedX = targetEvent.clientX - targetClientRect.left;
         this.adapter.setLineRippleTransformOrigin(normalizedX);

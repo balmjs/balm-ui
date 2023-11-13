@@ -68,11 +68,11 @@ var MDCLineRipple = /** @class */ (function (_super) {
             setStyle: function (propertyName, value) {
                 _this.root.style.setProperty(propertyName, value);
             },
-            registerEventHandler: function (evtType, handler) {
-                _this.listen(evtType, handler);
+            registerEventHandler: function (eventType, handler) {
+                _this.listen(eventType, handler);
             },
-            deregisterEventHandler: function (evtType, handler) {
-                _this.unlisten(evtType, handler);
+            deregisterEventHandler: function (eventType, handler) {
+                _this.unlisten(eventType, handler);
             },
         };
         // tslint:enable:object-literal-sort-keys

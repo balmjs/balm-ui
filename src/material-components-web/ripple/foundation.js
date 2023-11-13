@@ -166,10 +166,10 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         this.deregisterDeactivationHandlers();
     };
     /**
-     * @param evt Optional event containing position information.
+     * @param event Optional event containing position information.
      */
-    MDCRippleFoundation.prototype.activate = function (evt) {
-        this.activateImpl(evt);
+    MDCRippleFoundation.prototype.activate = function (event) {
+        this.activateImpl(event);
     };
     MDCRippleFoundation.prototype.deactivate = function () {
         this.deactivateImpl();
@@ -233,8 +233,8 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         if (supportsPressRipple) {
             try {
                 for (var ACTIVATION_EVENT_TYPES_1 = __values(ACTIVATION_EVENT_TYPES), ACTIVATION_EVENT_TYPES_1_1 = ACTIVATION_EVENT_TYPES_1.next(); !ACTIVATION_EVENT_TYPES_1_1.done; ACTIVATION_EVENT_TYPES_1_1 = ACTIVATION_EVENT_TYPES_1.next()) {
-                    var evtType = ACTIVATION_EVENT_TYPES_1_1.value;
-                    this.adapter.registerInteractionHandler(evtType, this.activateHandler);
+                    var eventType = ACTIVATION_EVENT_TYPES_1_1.value;
+                    this.adapter.registerInteractionHandler(eventType, this.activateHandler);
                 }
             }
             catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -251,16 +251,16 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         this.adapter.registerInteractionHandler('focus', this.focusHandler);
         this.adapter.registerInteractionHandler('blur', this.blurHandler);
     };
-    MDCRippleFoundation.prototype.registerDeactivationHandlers = function (evt) {
+    MDCRippleFoundation.prototype.registerDeactivationHandlers = function (event) {
         var e_2, _a;
-        if (evt.type === 'keydown') {
+        if (event.type === 'keydown') {
             this.adapter.registerInteractionHandler('keyup', this.deactivateHandler);
         }
         else {
             try {
                 for (var POINTER_DEACTIVATION_EVENT_TYPES_1 = __values(POINTER_DEACTIVATION_EVENT_TYPES), POINTER_DEACTIVATION_EVENT_TYPES_1_1 = POINTER_DEACTIVATION_EVENT_TYPES_1.next(); !POINTER_DEACTIVATION_EVENT_TYPES_1_1.done; POINTER_DEACTIVATION_EVENT_TYPES_1_1 = POINTER_DEACTIVATION_EVENT_TYPES_1.next()) {
-                    var evtType = POINTER_DEACTIVATION_EVENT_TYPES_1_1.value;
-                    this.adapter.registerDocumentInteractionHandler(evtType, this.deactivateHandler);
+                    var eventType = POINTER_DEACTIVATION_EVENT_TYPES_1_1.value;
+                    this.adapter.registerDocumentInteractionHandler(eventType, this.deactivateHandler);
                 }
             }
             catch (e_2_1) { e_2 = { error: e_2_1 }; }
@@ -276,8 +276,8 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         var e_3, _a;
         try {
             for (var ACTIVATION_EVENT_TYPES_2 = __values(ACTIVATION_EVENT_TYPES), ACTIVATION_EVENT_TYPES_2_1 = ACTIVATION_EVENT_TYPES_2.next(); !ACTIVATION_EVENT_TYPES_2_1.done; ACTIVATION_EVENT_TYPES_2_1 = ACTIVATION_EVENT_TYPES_2.next()) {
-                var evtType = ACTIVATION_EVENT_TYPES_2_1.value;
-                this.adapter.deregisterInteractionHandler(evtType, this.activateHandler);
+                var eventType = ACTIVATION_EVENT_TYPES_2_1.value;
+                this.adapter.deregisterInteractionHandler(eventType, this.activateHandler);
             }
         }
         catch (e_3_1) { e_3 = { error: e_3_1 }; }
@@ -298,8 +298,8 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         this.adapter.deregisterInteractionHandler('keyup', this.deactivateHandler);
         try {
             for (var POINTER_DEACTIVATION_EVENT_TYPES_2 = __values(POINTER_DEACTIVATION_EVENT_TYPES), POINTER_DEACTIVATION_EVENT_TYPES_2_1 = POINTER_DEACTIVATION_EVENT_TYPES_2.next(); !POINTER_DEACTIVATION_EVENT_TYPES_2_1.done; POINTER_DEACTIVATION_EVENT_TYPES_2_1 = POINTER_DEACTIVATION_EVENT_TYPES_2.next()) {
-                var evtType = POINTER_DEACTIVATION_EVENT_TYPES_2_1.value;
-                this.adapter.deregisterDocumentInteractionHandler(evtType, this.deactivateHandler);
+                var eventType = POINTER_DEACTIVATION_EVENT_TYPES_2_1.value;
+                this.adapter.deregisterDocumentInteractionHandler(eventType, this.deactivateHandler);
             }
         }
         catch (e_4_1) { e_4 = { error: e_4_1 }; }
@@ -320,7 +320,7 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
             }
         });
     };
-    MDCRippleFoundation.prototype.activateImpl = function (evt) {
+    MDCRippleFoundation.prototype.activateImpl = function (event) {
         var _this = this;
         if (this.adapter.isSurfaceDisabled()) {
             return;
@@ -332,20 +332,20 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         // Avoid reacting to follow-on events fired by touch device after an
         // already-processed user interaction
         var previousActivationEvent = this.previousActivationEvent;
-        var isSameInteraction = previousActivationEvent && evt !== undefined &&
-            previousActivationEvent.type !== evt.type;
+        var isSameInteraction = previousActivationEvent && event !== undefined &&
+            previousActivationEvent.type !== event.type;
         if (isSameInteraction) {
             return;
         }
         activationState.isActivated = true;
-        activationState.isProgrammatic = evt === undefined;
-        activationState.activationEvent = evt;
+        activationState.isProgrammatic = event === undefined;
+        activationState.activationEvent = event;
         activationState.wasActivatedByPointer = activationState.isProgrammatic ?
             false :
-            evt !== undefined &&
-                (evt.type === 'mousedown' || evt.type === 'touchstart' ||
-                    evt.type === 'pointerdown');
-        var hasActivatedChild = evt !== undefined &&
+            event !== undefined &&
+                (event.type === 'mousedown' || event.type === 'touchstart' ||
+                    event.type === 'pointerdown');
+        var hasActivatedChild = event !== undefined &&
             activatedTargets.length > 0 &&
             activatedTargets.some(function (target) { return _this.adapter.containsEventTarget(target); });
         if (hasActivatedChild) {
@@ -354,11 +354,11 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
             this.resetActivationState();
             return;
         }
-        if (evt !== undefined) {
-            activatedTargets.push(evt.target);
-            this.registerDeactivationHandlers(evt);
+        if (event !== undefined) {
+            activatedTargets.push(event.target);
+            this.registerDeactivationHandlers(event);
         }
-        activationState.wasElementMadeActive = this.checkElementMadeActive(evt);
+        activationState.wasElementMadeActive = this.checkElementMadeActive(event);
         if (activationState.wasElementMadeActive) {
             this.animateActivation();
         }
@@ -366,9 +366,9 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
             // Reset array on next frame after the current event has had a chance to
             // bubble to prevent ancestor ripples
             activatedTargets = [];
-            if (!activationState.wasElementMadeActive && evt !== undefined &&
-                (evt.key === ' ' ||
-                    evt.keyCode === 32)) {
+            if (!activationState.wasElementMadeActive && event !== undefined &&
+                (event.key === ' ' ||
+                    event.keyCode === 32)) {
                 // If space was pressed, try again within an rAF call to detect :active,
                 // because different UAs report active states inconsistently when
                 // they're called within event handling code:
@@ -377,7 +377,7 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
                 // We try first outside rAF to support Edge, which does not exhibit this
                 // problem, but will crash if a CSS variable is set within a rAF
                 // callback for a submit button interaction (#2241).
-                activationState.wasElementMadeActive = _this.checkElementMadeActive(evt);
+                activationState.wasElementMadeActive = _this.checkElementMadeActive(event);
                 if (activationState.wasElementMadeActive) {
                     _this.animateActivation();
                 }
@@ -388,8 +388,8 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
             }
         });
     };
-    MDCRippleFoundation.prototype.checkElementMadeActive = function (evt) {
-        return (evt !== undefined && evt.type === 'keydown') ?
+    MDCRippleFoundation.prototype.checkElementMadeActive = function (event) {
+        return (event !== undefined && event.type === 'keydown') ?
             this.adapter.isSurfaceActive() :
             true;
     };

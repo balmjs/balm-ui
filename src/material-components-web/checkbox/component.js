@@ -148,10 +148,10 @@ var MDCCheckbox = /** @class */ (function (_super) {
         // DO NOT INLINE this variable. For backward compatibility, foundations take
         // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
         // methods, we need a separate, strongly typed adapter variable.
-        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { deregisterInteractionHandler: function (evtType, handler) {
-                _this.getNativeControl().removeEventListener(evtType, handler, applyPassive());
-            }, isSurfaceActive: function () { return matches(_this.getNativeControl(), ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
-                _this.getNativeControl().addEventListener(evtType, handler, applyPassive());
+        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { deregisterInteractionHandler: function (eventType, handler) {
+                _this.getNativeControl().removeEventListener(eventType, handler, applyPassive());
+            }, isSurfaceActive: function () { return matches(_this.getNativeControl(), ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (eventType, handler) {
+                _this.getNativeControl().addEventListener(eventType, handler, applyPassive());
             } });
         return new MDCRipple(this.root, new MDCRippleFoundation(adapter));
     };

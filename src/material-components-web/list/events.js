@@ -25,16 +25,16 @@ var ELEMENTS_KEY_ALLOWED_IN = ['input', 'button', 'textarea', 'select'];
  * Ensures that preventDefault is only called if the containing element
  * doesn't consume the event, and it will cause an unintended scroll.
  *
- * @param evt keyboard event to be prevented.
+ * @param event keyboard event to be prevented.
  */
-export var preventDefaultEvent = function (evt) {
-    var target = evt.target;
+export var preventDefaultEvent = function (event) {
+    var target = event.target;
     if (!target) {
         return;
     }
     var tagName = ("" + target.tagName).toLowerCase();
     if (ELEMENTS_KEY_ALLOWED_IN.indexOf(tagName) === -1) {
-        evt.preventDefault();
+        event.preventDefault();
     }
 };
 //# sourceMappingURL=events.js.map

@@ -116,9 +116,9 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
         this.scrollIntoView(index);
         this.adapter.notifyTabActivated(index);
     };
-    MDCTabBarFoundation.prototype.handleKeyDown = function (evt) {
+    MDCTabBarFoundation.prototype.handleKeyDown = function (event) {
         // Get the key from the event
-        var key = this.getKeyFromEvent(evt);
+        var key = this.getKeyFromEvent(event);
         // Early exit if the event key isn't one of the keyboard navigation keys
         if (key === undefined) {
             return;
@@ -126,7 +126,7 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
         // Prevent default behavior for movement keys, but not for activation keys,
         // since :active is used to apply ripple
         if (!this.isActivationKey(key)) {
-            evt.preventDefault();
+            event.preventDefault();
         }
         if (this.useAutomaticActivation && this.isActivationKey(key)) {
             return;
@@ -146,8 +146,8 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
     /**
      * Handles the MDCTab:interacted event
      */
-    MDCTabBarFoundation.prototype.handleTabInteraction = function (evt) {
-        this.adapter.setActiveTab(this.adapter.getIndexOfTabById(evt.detail.tabId));
+    MDCTabBarFoundation.prototype.handleTabInteraction = function (event) {
+        this.adapter.setActiveTab(this.adapter.getIndexOfTabById(event.detail.tabId));
     };
     /**
      * Scrolls the tab at the given index into view
@@ -321,13 +321,13 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
     };
     /**
      * Returns the key associated with a keydown event
-     * @param evt The keydown event
+     * @param event The keydown event
      */
-    MDCTabBarFoundation.prototype.getKeyFromEvent = function (evt) {
-        if (ACCEPTABLE_KEYS.has(evt.key)) {
-            return evt.key;
+    MDCTabBarFoundation.prototype.getKeyFromEvent = function (event) {
+        if (ACCEPTABLE_KEYS.has(event.key)) {
+            return event.key;
         }
-        return KEYCODE_MAP.get(evt.keyCode);
+        return KEYCODE_MAP.get(event.keyCode);
     };
     MDCTabBarFoundation.prototype.isActivationKey = function (key) {
         return key === strings.SPACE_KEY || key === strings.ENTER_KEY;

@@ -53,11 +53,11 @@ var MDCRipple = /** @class */ (function (_super) {
             browserSupportsCssVars: function () { return util.supportsCssVariables(window); },
             computeBoundingRect: function () { return instance.root.getBoundingClientRect(); },
             containsEventTarget: function (target) { return instance.root.contains(target); },
-            deregisterDocumentInteractionHandler: function (evtType, handler) {
-                document.documentElement.removeEventListener(evtType, handler, applyPassive());
+            deregisterDocumentInteractionHandler: function (eventType, handler) {
+                document.documentElement.removeEventListener(eventType, handler, applyPassive());
             },
-            deregisterInteractionHandler: function (evtType, handler) {
-                instance.root.removeEventListener(evtType, handler, applyPassive());
+            deregisterInteractionHandler: function (eventType, handler) {
+                instance.root.removeEventListener(eventType, handler, applyPassive());
             },
             deregisterResizeHandler: function (handler) {
                 window.removeEventListener('resize', handler);
@@ -68,11 +68,11 @@ var MDCRipple = /** @class */ (function (_super) {
             isSurfaceActive: function () { return matches(instance.root, ':active'); },
             isSurfaceDisabled: function () { return Boolean(instance.disabled); },
             isUnbounded: function () { return Boolean(instance.unbounded); },
-            registerDocumentInteractionHandler: function (evtType, handler) {
-                document.documentElement.addEventListener(evtType, handler, applyPassive());
+            registerDocumentInteractionHandler: function (eventType, handler) {
+                document.documentElement.addEventListener(eventType, handler, applyPassive());
             },
-            registerInteractionHandler: function (evtType, handler) {
-                instance.root.addEventListener(evtType, handler, applyPassive());
+            registerInteractionHandler: function (eventType, handler) {
+                instance.root.addEventListener(eventType, handler, applyPassive());
             },
             registerResizeHandler: function (handler) {
                 window.addEventListener('resize', handler);

@@ -30,8 +30,8 @@ var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
     function MDCTextFieldIconFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCTextFieldIconFoundation.defaultAdapter), adapter)) || this;
         _this.savedTabIndex = null;
-        _this.interactionHandler = function (evt) {
-            _this.handleInteraction(evt);
+        _this.interactionHandler = function (event) {
+            _this.handleInteraction(event);
         };
         return _this;
     }
@@ -75,8 +75,8 @@ var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
         this.savedTabIndex = this.adapter.getAttr('tabindex');
         try {
             for (var INTERACTION_EVENTS_1 = __values(INTERACTION_EVENTS), INTERACTION_EVENTS_1_1 = INTERACTION_EVENTS_1.next(); !INTERACTION_EVENTS_1_1.done; INTERACTION_EVENTS_1_1 = INTERACTION_EVENTS_1.next()) {
-                var evtType = INTERACTION_EVENTS_1_1.value;
-                this.adapter.registerInteractionHandler(evtType, this.interactionHandler);
+                var eventType = INTERACTION_EVENTS_1_1.value;
+                this.adapter.registerInteractionHandler(eventType, this.interactionHandler);
             }
         }
         catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -91,8 +91,8 @@ var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
         var e_2, _a;
         try {
             for (var INTERACTION_EVENTS_2 = __values(INTERACTION_EVENTS), INTERACTION_EVENTS_2_1 = INTERACTION_EVENTS_2.next(); !INTERACTION_EVENTS_2_1.done; INTERACTION_EVENTS_2_1 = INTERACTION_EVENTS_2.next()) {
-                var evtType = INTERACTION_EVENTS_2_1.value;
-                this.adapter.deregisterInteractionHandler(evtType, this.interactionHandler);
+                var eventType = INTERACTION_EVENTS_2_1.value;
+                this.adapter.deregisterInteractionHandler(eventType, this.interactionHandler);
             }
         }
         catch (e_2_1) { e_2 = { error: e_2_1 }; }
@@ -122,12 +122,12 @@ var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
     MDCTextFieldIconFoundation.prototype.setContent = function (content) {
         this.adapter.setContent(content);
     };
-    MDCTextFieldIconFoundation.prototype.handleInteraction = function (evt) {
-        var isEnterKey = evt.key === 'Enter' ||
-            evt.keyCode === 13;
-        var isSpaceKey = evt.key === ' ';
-        if (evt.type === 'click' || isEnterKey || isSpaceKey) {
-            evt.preventDefault(); // stop click from causing host label to focus
+    MDCTextFieldIconFoundation.prototype.handleInteraction = function (event) {
+        var isEnterKey = event.key === 'Enter' ||
+            event.keyCode === 13;
+        var isSpaceKey = event.key === ' ';
+        if (event.type === 'click' || isEnterKey || isSpaceKey) {
+            event.preventDefault(); // stop click from causing host label to focus
             // input
             this.adapter.notifyIconAction();
         }

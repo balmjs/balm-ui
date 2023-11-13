@@ -198,11 +198,11 @@ var MDCMenuSurface = /** @class */ (function (_super) {
             setMaxHeight: function (height) {
                 _this.root.style.maxHeight = height;
             },
-            registerWindowEventHandler: function (evtType, handler) {
-                window.addEventListener(evtType, handler);
+            registerWindowEventHandler: function (eventType, handler) {
+                window.addEventListener(eventType, handler);
             },
-            deregisterWindowEventHandler: function (evtType, handler) {
-                window.removeEventListener(evtType, handler);
+            deregisterWindowEventHandler: function (eventType, handler) {
+                window.removeEventListener(eventType, handler);
             },
         };
         // tslint:enable:object-literal-sort-keys

@@ -72,11 +72,11 @@ var MDCTabBar = /** @class */ (function (_super) {
     };
     MDCTabBar.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.handleTabInteraction = function (evt) {
-            _this.foundation.handleTabInteraction(evt);
+        this.handleTabInteraction = function (event) {
+            _this.foundation.handleTabInteraction(event);
         };
-        this.handleKeyDown = function (evt) {
-            _this.foundation.handleKeyDown(evt);
+        this.handleKeyDown = function (event) {
+            _this.foundation.handleKeyDown(event);
         };
         this.listen(MDCTabFoundation.strings.INTERACTED_EVENT, this.handleTabInteraction);
         this.listen('keydown', this.handleKeyDown);

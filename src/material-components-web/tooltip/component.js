@@ -55,8 +55,8 @@ var MDCTooltip = /** @class */ (function (_super) {
         this.handleMouseEnter = function () {
             _this.foundation.handleAnchorMouseEnter();
         };
-        this.handleFocus = function (evt) {
-            _this.foundation.handleAnchorFocus(evt);
+        this.handleFocus = function (event) {
+            _this.foundation.handleAnchorFocus(event);
         };
         this.handleMouseLeave = function () {
             _this.foundation.handleAnchorMouseLeave();
@@ -196,35 +196,35 @@ var MDCTooltip = /** @class */ (function (_super) {
                 var _a;
                 (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.focus();
             },
-            registerEventHandler: function (evt, handler) {
+            registerEventHandler: function (event, handler) {
                 if (_this.root instanceof HTMLElement) {
-                    _this.root.addEventListener(evt, handler);
+                    _this.root.addEventListener(event, handler);
                 }
             },
-            deregisterEventHandler: function (evt, handler) {
+            deregisterEventHandler: function (event, handler) {
                 if (_this.root instanceof HTMLElement) {
-                    _this.root.removeEventListener(evt, handler);
+                    _this.root.removeEventListener(event, handler);
                 }
             },
-            registerAnchorEventHandler: function (evt, handler) {
+            registerAnchorEventHandler: function (event, handler) {
                 var _a;
-                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.addEventListener(evt, handler);
+                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.addEventListener(event, handler);
             },
-            deregisterAnchorEventHandler: function (evt, handler) {
+            deregisterAnchorEventHandler: function (event, handler) {
                 var _a;
-                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.removeEventListener(evt, handler);
+                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.removeEventListener(event, handler);
             },
-            registerDocumentEventHandler: function (evt, handler) {
-                document.body.addEventListener(evt, handler);
+            registerDocumentEventHandler: function (event, handler) {
+                document.body.addEventListener(event, handler);
             },
-            deregisterDocumentEventHandler: function (evt, handler) {
-                document.body.removeEventListener(evt, handler);
+            deregisterDocumentEventHandler: function (event, handler) {
+                document.body.removeEventListener(event, handler);
             },
-            registerWindowEventHandler: function (evt, handler) {
-                window.addEventListener(evt, handler);
+            registerWindowEventHandler: function (event, handler) {
+                window.addEventListener(event, handler);
             },
-            deregisterWindowEventHandler: function (evt, handler) {
-                window.removeEventListener(evt, handler);
+            deregisterWindowEventHandler: function (event, handler) {
+                window.removeEventListener(event, handler);
             },
             notifyHidden: function () {
                 _this.emit(events.HIDDEN, {});

@@ -55,11 +55,11 @@ var MDCChipTrailingAction = /** @class */ (function (_super) {
     };
     MDCChipTrailingAction.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.handleClick = function (evt) {
-            _this.foundation.handleClick(evt);
+        this.handleClick = function (event) {
+            _this.foundation.handleClick(event);
         };
-        this.handleKeydown = function (evt) {
-            _this.foundation.handleKeydown(evt);
+        this.handleKeydown = function (event) {
+            _this.foundation.handleKeydown(event);
         };
         this.listen('click', this.handleClick);
         this.listen('keydown', this.handleKeydown);

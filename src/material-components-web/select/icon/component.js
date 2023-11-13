@@ -57,14 +57,14 @@ var MDCSelectIcon = /** @class */ (function (_super) {
             setContent: function (content) {
                 _this.root.textContent = content;
             },
-            registerInteractionHandler: function (evtType, handler) {
-                _this.listen(evtType, handler);
+            registerInteractionHandler: function (eventType, handler) {
+                _this.listen(eventType, handler);
             },
-            deregisterInteractionHandler: function (evtType, handler) {
-                _this.unlisten(evtType, handler);
+            deregisterInteractionHandler: function (eventType, handler) {
+                _this.unlisten(eventType, handler);
             },
             notifyIconAction: function () {
-                _this.emit(MDCSelectIconFoundation.strings.ICON_EVENT, {} /* evtData */, true /* shouldBubble */);
+                _this.emit(MDCSelectIconFoundation.strings.ICON_EVENT, {} /* eventData */, true /* shouldBubble */);
             },
         };
         // tslint:enable:object-literal-sort-keys

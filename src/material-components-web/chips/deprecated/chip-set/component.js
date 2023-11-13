@@ -81,17 +81,17 @@ var MDCChipSet = /** @class */ (function (_super) {
             }
             finally { if (e_1) throw e_1.error; }
         }
-        this.handleChipInteraction = function (evt) {
-            _this.foundation.handleChipInteraction(evt.detail);
+        this.handleChipInteraction = function (event) {
+            _this.foundation.handleChipInteraction(event.detail);
         };
-        this.handleChipSelection = function (evt) {
-            _this.foundation.handleChipSelection(evt.detail);
+        this.handleChipSelection = function (event) {
+            _this.foundation.handleChipSelection(event.detail);
         };
-        this.handleChipRemoval = function (evt) {
-            _this.foundation.handleChipRemoval(evt.detail);
+        this.handleChipRemoval = function (event) {
+            _this.foundation.handleChipRemoval(event.detail);
         };
-        this.handleChipNavigation = function (evt) {
-            _this.foundation.handleChipNavigation(evt.detail);
+        this.handleChipNavigation = function (event) {
+            _this.foundation.handleChipNavigation(event.detail);
         };
         this.listen(INTERACTION_EVENT, this.handleChipInteraction);
         this.listen(SELECTION_EVENT, this.handleChipSelection);

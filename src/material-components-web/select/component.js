@@ -93,15 +93,15 @@ var MDCSelect = /** @class */ (function (_super) {
         this.handleBlur = function () {
             _this.foundation.handleBlur();
         };
-        this.handleClick = function (evt) {
+        this.handleClick = function (event) {
             _this.selectAnchor.focus();
-            _this.foundation.handleClick(_this.getNormalizedXCoordinate(evt));
+            _this.foundation.handleClick(_this.getNormalizedXCoordinate(event));
         };
-        this.handleKeydown = function (evt) {
-            _this.foundation.handleKeydown(evt);
+        this.handleKeydown = function (event) {
+            _this.foundation.handleKeydown(event);
         };
-        this.handleMenuItemAction = function (evt) {
-            _this.foundation.handleMenuItemAction(evt.detail.index);
+        this.handleMenuItemAction = function (event) {
+            _this.foundation.handleMenuItemAction(event.detail.index);
         };
         this.handleMenuOpened = function () {
             _this.foundation.handleMenuOpened();
@@ -314,10 +314,10 @@ var MDCSelect = /** @class */ (function (_super) {
         // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
         // methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
-        var adapter = __assign(__assign({}, MDCRipple.createAdapter({ root: this.selectAnchor })), { registerInteractionHandler: function (evtType, handler) {
-                _this.selectAnchor.addEventListener(evtType, handler);
-            }, deregisterInteractionHandler: function (evtType, handler) {
-                _this.selectAnchor.removeEventListener(evtType, handler);
+        var adapter = __assign(__assign({}, MDCRipple.createAdapter({ root: this.selectAnchor })), { registerInteractionHandler: function (eventType, handler) {
+                _this.selectAnchor.addEventListener(eventType, handler);
+            }, deregisterInteractionHandler: function (eventType, handler) {
+                _this.selectAnchor.removeEventListener(eventType, handler);
             } });
         // tslint:enable:object-literal-sort-keys
         return new MDCRipple(this.selectAnchor, new MDCRippleFoundation(adapter));
@@ -461,13 +461,13 @@ var MDCSelect = /** @class */ (function (_super) {
      * Calculates where the line ripple should start based on the x coordinate
      * within the component.
      */
-    MDCSelect.prototype.getNormalizedXCoordinate = function (evt) {
-        var targetClientRect = evt.target.getBoundingClientRect();
-        var xCoordinate = this.isTouchEvent(evt) ? evt.touches[0].clientX : evt.clientX;
+    MDCSelect.prototype.getNormalizedXCoordinate = function (event) {
+        var targetClientRect = event.target.getBoundingClientRect();
+        var xCoordinate = this.isTouchEvent(event) ? event.touches[0].clientX : event.clientX;
         return xCoordinate - targetClientRect.left;
     };
-    MDCSelect.prototype.isTouchEvent = function (evt) {
-        return Boolean(evt.touches);
+    MDCSelect.prototype.isTouchEvent = function (event) {
+        return Boolean(event.touches);
     };
     /**
      * Returns a map of all subcomponents to subfoundations.

@@ -245,26 +245,26 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
         });
     };
     /** Handles click on the dialog root element. */
-    MDCDialogFoundation.prototype.handleClick = function (evt) {
-        var isScrim = this.adapter.eventTargetMatches(evt.target, strings.SCRIM_SELECTOR);
+    MDCDialogFoundation.prototype.handleClick = function (event) {
+        var isScrim = this.adapter.eventTargetMatches(event.target, strings.SCRIM_SELECTOR);
         // Check for scrim click first since it doesn't require querying ancestors.
         if (isScrim && this.scrimClickAction !== '') {
             this.close(this.scrimClickAction);
         }
         else {
-            var action = this.adapter.getActionFromEvent(evt);
+            var action = this.adapter.getActionFromEvent(event);
             if (action) {
                 this.close(action);
             }
         }
     };
     /** Handles keydown on the dialog root element. */
-    MDCDialogFoundation.prototype.handleKeydown = function (evt) {
-        var isEnter = evt.key === 'Enter' || evt.keyCode === 13;
+    MDCDialogFoundation.prototype.handleKeydown = function (event) {
+        var isEnter = event.key === 'Enter' || event.keyCode === 13;
         if (!isEnter) {
             return;
         }
-        var action = this.adapter.getActionFromEvent(evt);
+        var action = this.adapter.getActionFromEvent(event);
         if (action) {
             // Action button callback is handled in `handleClick`,
             // since space/enter keydowns on buttons trigger click events.
@@ -283,7 +283,7 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
         //       </mwc-textarea>
         //   </horizontal-layout>
         // </mwc-dialog>
-        var target = evt.composedPath ? evt.composedPath()[0] : evt.target;
+        var target = event.composedPath ? event.composedPath()[0] : event.target;
         var isDefault = this.suppressDefaultPressSelector ?
             !this.adapter.eventTargetMatches(target, this.suppressDefaultPressSelector) :
             true;
@@ -292,8 +292,8 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
         }
     };
     /** Handles keydown on the document. */
-    MDCDialogFoundation.prototype.handleDocumentKeydown = function (evt) {
-        var isEscape = evt.key === 'Escape' || evt.keyCode === 27;
+    MDCDialogFoundation.prototype.handleDocumentKeydown = function (event) {
+        var isEscape = event.key === 'Escape' || event.keyCode === 27;
         if (isEscape && this.escapeKeyAction !== '') {
             this.close(this.escapeKeyAction);
         }

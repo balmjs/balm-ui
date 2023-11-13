@@ -101,10 +101,10 @@ var MDCRadio = /** @class */ (function (_super) {
         // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
         // methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
-        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { registerInteractionHandler: function (evtType, handler) {
-                _this.nativeControl.addEventListener(evtType, handler, applyPassive());
-            }, deregisterInteractionHandler: function (evtType, handler) {
-                _this.nativeControl.removeEventListener(evtType, handler, applyPassive());
+        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { registerInteractionHandler: function (eventType, handler) {
+                _this.nativeControl.addEventListener(eventType, handler, applyPassive());
+            }, deregisterInteractionHandler: function (eventType, handler) {
+                _this.nativeControl.removeEventListener(eventType, handler, applyPassive());
             }, 
             // Radio buttons technically go "active" whenever there is *any* keyboard
             // interaction. This is not the UI we desire.

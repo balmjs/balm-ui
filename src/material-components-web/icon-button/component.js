@@ -58,8 +58,8 @@ var MDCIconButtonToggle = /** @class */ (function (_super) {
                 _this.root.classList.add(className);
             },
             hasClass: function (className) { return _this.root.classList.contains(className); },
-            notifyChange: function (evtData) {
-                _this.emit(strings.CHANGE_EVENT, evtData);
+            notifyChange: function (eventData) {
+                _this.emit(strings.CHANGE_EVENT, eventData);
             },
             removeClass: function (className) {
                 _this.root.classList.remove(className);

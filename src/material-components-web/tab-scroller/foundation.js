@@ -113,12 +113,12 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
     /**
      * Handles the transitionend event
      */
-    MDCTabScrollerFoundation.prototype.handleTransitionEnd = function (evt) {
+    MDCTabScrollerFoundation.prototype.handleTransitionEnd = function (event) {
         // Early exit if we aren't animating or the event was triggered by a
         // different element.
-        var evtTarget = evt.target;
+        var eventTarget = event.target;
         if (!this.isAnimating ||
-            !this.adapter.eventTargetMatchesSelector(evtTarget, MDCTabScrollerFoundation.strings.CONTENT_SELECTOR)) {
+            !this.adapter.eventTargetMatchesSelector(eventTarget, MDCTabScrollerFoundation.strings.CONTENT_SELECTOR)) {
             return;
         }
         this.isAnimating = false;

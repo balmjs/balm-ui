@@ -122,24 +122,24 @@ var MDCChip = /** @class */ (function (_super) {
             _this.foundation.handleTrailingActionInteraction();
         };
         this.handleTrailingActionNavigation =
-            function (evt) {
-                _this.foundation.handleTrailingActionNavigation(evt);
+            function (event) {
+                _this.foundation.handleTrailingActionNavigation(event);
             };
         // Native events
         this.handleClick = function () {
             _this.foundation.handleClick();
         };
-        this.handleKeydown = function (evt) {
-            _this.foundation.handleKeydown(evt);
+        this.handleKeydown = function (event) {
+            _this.foundation.handleKeydown(event);
         };
-        this.handleTransitionEnd = function (evt) {
-            _this.foundation.handleTransitionEnd(evt);
+        this.handleTransitionEnd = function (event) {
+            _this.foundation.handleTransitionEnd(event);
         };
-        this.handleFocusIn = function (evt) {
-            _this.foundation.handleFocusIn(evt);
+        this.handleFocusIn = function (event) {
+            _this.foundation.handleFocusIn(event);
         };
-        this.handleFocusOut = function (evt) {
-            _this.foundation.handleFocusOut(evt);
+        this.handleFocusOut = function (event) {
+            _this.foundation.handleFocusOut(event);
         };
         this.listen('transitionend', this.handleTransitionEnd);
         this.listen('click', this.handleClick);

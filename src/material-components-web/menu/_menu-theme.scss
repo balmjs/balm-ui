@@ -84,8 +84,16 @@ $light-theme: (
   );
 }
 
-@mixin theme-styles($theme, $resolvers: resolvers.$material) {
-  $theme: validate.theme-styles($light-theme, $theme);
+@mixin theme-styles(
+  $theme,
+  $resolvers: resolvers.$material,
+  $require-all: true
+) {
+  $theme: validate.theme-styles(
+    $light-theme,
+    $theme,
+    $require-all: $require-all
+  );
   $theme: _resolve-theme-elevation($theme, $resolvers: $resolvers);
   $theme: keys.create-theme-properties(
     $theme,
@@ -97,7 +105,11 @@ $light-theme: (
   @include elevation-theme.overlay-container-color(
     map.get($theme, 'container-surface-tint-layer-color')
   );
-  @include elevation-theme.theme-styles(map.get($theme, 'container-elevation'));
+  @if map.get($theme, 'container-elevation') {
+    @include elevation-theme.theme-styles(
+      map.get($theme, 'container-elevation')
+    );
+  }
 
   .mdc-menu-item--selected {
     @include theme.property(

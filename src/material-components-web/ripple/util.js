@@ -1,14 +1,37 @@
 /**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+/**
  * Stores result from supportsCssVariables to avoid redundant processing to
  * detect CSS custom variable support.
  */
-var supportsCssVariables_;
+var supportsCssVariablesCache;
+/** Checks if the window supports CSS Variables */
 export function supportsCssVariables(windowObj, forceRefresh) {
     if (forceRefresh === void 0) { forceRefresh = false; }
     var CSS = windowObj.CSS;
-    var supportsCssVars = supportsCssVariables_;
-    if (typeof supportsCssVariables_ === 'boolean' && !forceRefresh) {
-        return supportsCssVariables_;
+    var supportsCssVars = supportsCssVariablesCache;
+    if (typeof supportsCssVariablesCache === 'boolean' && !forceRefresh) {
+        return supportsCssVariablesCache;
     }
     var supportsFunctionPresent = CSS && typeof CSS.supports === 'function';
     if (!supportsFunctionPresent) {
@@ -21,12 +44,13 @@ export function supportsCssVariables(windowObj, forceRefresh) {
     supportsCssVars =
         explicitlySupportsCssVars || weAreFeatureDetectingSafari10plus;
     if (!forceRefresh) {
-        supportsCssVariables_ = supportsCssVars;
+        supportsCssVariablesCache = supportsCssVars;
     }
     return supportsCssVars;
 }
-export function getNormalizedEventCoords(evt, pageOffset, clientRect) {
-    if (!evt) {
+/** Gets the normalized events coordinates */
+export function getNormalizedEventCoords(event, pageOffset, clientRect) {
+    if (!event) {
         return { x: 0, y: 0 };
     }
     var x = pageOffset.x, y = pageOffset.y;
@@ -35,13 +59,13 @@ export function getNormalizedEventCoords(evt, pageOffset, clientRect) {
     var normalizedX;
     var normalizedY;
     // Determine touch point relative to the ripple container.
-    if (evt.type === 'touchstart') {
-        var touchEvent = evt;
+    if (event.type === 'touchstart') {
+        var touchEvent = event;
         normalizedX = touchEvent.changedTouches[0].pageX - documentX;
         normalizedY = touchEvent.changedTouches[0].pageY - documentY;
     }
     else {
-        var mouseEvent = evt;
+        var mouseEvent = event;
         normalizedX = mouseEvent.pageX - documentX;
         normalizedY = mouseEvent.pageY - documentY;
     }

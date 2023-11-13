@@ -56,11 +56,11 @@ var MDCMenu = /** @class */ (function (_super) {
         else {
             this.list = null;
         }
-        this.handleKeydown = function (evt) {
-            _this.foundation.handleKeydown(evt);
+        this.handleKeydown = function (event) {
+            _this.foundation.handleKeydown(event);
         };
-        this.handleItemAction = function (evt) {
-            _this.foundation.handleItemAction(_this.items[evt.detail.index]);
+        this.handleItemAction = function (event) {
+            _this.foundation.handleItemAction(_this.items[event.detail.index]);
         };
         this.handleMenuSurfaceOpened = function () {
             _this.foundation.handleMenuSurfaceOpened();
@@ -318,10 +318,10 @@ var MDCMenu = /** @class */ (function (_super) {
                 _this.menuSurface.close(skipRestoreFocus);
             },
             getElementIndex: function (element) { return _this.items.indexOf(element); },
-            notifySelected: function (evtData) {
+            notifySelected: function (eventData) {
                 _this.emit(strings.SELECTED_EVENT, {
-                    index: evtData.index,
-                    item: _this.items[evtData.index],
+                    index: eventData.index,
+                    item: _this.items[eventData.index],
                 });
             },
             getMenuItemCount: function () { return _this.items.length; },

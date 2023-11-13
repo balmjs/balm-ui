@@ -165,11 +165,11 @@ var MDCDialog = /** @class */ (function (_super) {
             eventTargetMatches: function (target, selector) {
                 return target ? matches(target, selector) : false;
             },
-            getActionFromEvent: function (evt) {
-                if (!evt.target) {
+            getActionFromEvent: function (event) {
+                if (!event.target) {
                     return '';
                 }
-                var element = closest(evt.target, "[" + strings.ACTION_ATTRIBUTE + "]");
+                var element = closest(event.target, "[" + strings.ACTION_ATTRIBUTE + "]");
                 return element && element.getAttribute(strings.ACTION_ATTRIBUTE);
             },
             getInitialFocusEl: function () { return _this.getInitialFocusEl(); },
@@ -205,14 +205,14 @@ var MDCDialog = /** @class */ (function (_super) {
             trapFocus: function () {
                 _this.focusTrap.trapFocus();
             },
-            registerContentEventHandler: function (evt, handler) {
+            registerContentEventHandler: function (event, handler) {
                 if (_this.content instanceof HTMLElement) {
-                    _this.content.addEventListener(evt, handler);
+                    _this.content.addEventListener(event, handler);
                 }
             },
-            deregisterContentEventHandler: function (evt, handler) {
+            deregisterContentEventHandler: function (event, handler) {
                 if (_this.content instanceof HTMLElement) {
-                    _this.content.removeEventListener(evt, handler);
+                    _this.content.removeEventListener(event, handler);
                 }
             },
             isScrollableContentAtTop: function () {
@@ -221,11 +221,11 @@ var MDCDialog = /** @class */ (function (_super) {
             isScrollableContentAtBottom: function () {
                 return util.isScrollAtBottom(_this.content);
             },
-            registerWindowEventHandler: function (evt, handler) {
-                window.addEventListener(evt, handler);
+            registerWindowEventHandler: function (event, handler) {
+                window.addEventListener(event, handler);
             },
-            deregisterWindowEventHandler: function (evt, handler) {
-                window.removeEventListener(evt, handler);
+            deregisterWindowEventHandler: function (event, handler) {
+                window.removeEventListener(event, handler);
             },
         };
         return new MDCDialogFoundation(adapter);

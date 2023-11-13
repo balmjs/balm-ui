@@ -50,19 +50,19 @@ var MDCChipTrailingActionFoundation = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
-    MDCChipTrailingActionFoundation.prototype.handleClick = function (evt) {
-        evt.stopPropagation();
+    MDCChipTrailingActionFoundation.prototype.handleClick = function (event) {
+        event.stopPropagation();
         this.adapter.notifyInteraction(InteractionTrigger.CLICK);
     };
-    MDCChipTrailingActionFoundation.prototype.handleKeydown = function (evt) {
-        evt.stopPropagation();
-        var key = normalizeKey(evt);
+    MDCChipTrailingActionFoundation.prototype.handleKeydown = function (event) {
+        event.stopPropagation();
+        var key = normalizeKey(event);
         if (this.shouldNotifyInteractionFromKey(key)) {
             var trigger = this.getTriggerFromKey(key);
             this.adapter.notifyInteraction(trigger);
             return;
         }
-        if (isNavigationEvent(evt)) {
+        if (isNavigationEvent(event)) {
             this.adapter.notifyNavigation(key);
             return;
         }

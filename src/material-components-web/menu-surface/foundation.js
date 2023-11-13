@@ -280,16 +280,16 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         }
     };
     /** Handle clicks and close if not within menu-surface element. */
-    MDCMenuSurfaceFoundation.prototype.handleBodyClick = function (evt) {
-        var el = evt.target;
+    MDCMenuSurfaceFoundation.prototype.handleBodyClick = function (event) {
+        var el = event.target;
         if (this.adapter.isElementInContainer(el)) {
             return;
         }
         this.close();
     };
     /** Handle keys that close the surface. */
-    MDCMenuSurfaceFoundation.prototype.handleKeydown = function (evt) {
-        var keyCode = evt.keyCode, key = evt.key;
+    MDCMenuSurfaceFoundation.prototype.handleKeydown = function (event) {
+        var keyCode = event.keyCode, key = event.key;
         var isEscape = key === 'Escape' || keyCode === 27;
         if (isEscape) {
             this.close();

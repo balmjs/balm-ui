@@ -28,8 +28,8 @@ var MDCLineRippleFoundation = /** @class */ (function (_super) {
     __extends(MDCLineRippleFoundation, _super);
     function MDCLineRippleFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCLineRippleFoundation.defaultAdapter), adapter)) || this;
-        _this.transitionEndHandler = function (evt) {
-            _this.handleTransitionEnd(evt);
+        _this.transitionEndHandler = function (event) {
+            _this.handleTransitionEnd(event);
         };
         return _this;
     }
@@ -76,11 +76,11 @@ var MDCLineRippleFoundation = /** @class */ (function (_super) {
     MDCLineRippleFoundation.prototype.deactivate = function () {
         this.adapter.addClass(cssClasses.LINE_RIPPLE_DEACTIVATING);
     };
-    MDCLineRippleFoundation.prototype.handleTransitionEnd = function (evt) {
+    MDCLineRippleFoundation.prototype.handleTransitionEnd = function (event) {
         // Wait for the line ripple to be either transparent or opaque
         // before emitting the animation end event
         var isDeactivating = this.adapter.hasClass(cssClasses.LINE_RIPPLE_DEACTIVATING);
-        if (evt.propertyName === 'opacity') {
+        if (event.propertyName === 'opacity') {
             if (isDeactivating) {
                 this.adapter.removeClass(cssClasses.LINE_RIPPLE_ACTIVE);
                 this.adapter.removeClass(cssClasses.LINE_RIPPLE_DEACTIVATING);

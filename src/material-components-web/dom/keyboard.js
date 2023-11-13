@@ -104,14 +104,14 @@ navigationKeys.add(KEY.ARROW_DOWN);
 /**
  * normalizeKey returns the normalized string for a navigational action.
  */
-export function normalizeKey(evt) {
-    var key = evt.key;
+export function normalizeKey(event) {
+    var key = event.key;
     // If the event already has a normalized key, return it
     if (normalizedKeys.has(key)) {
         return key;
     }
     // tslint:disable-next-line:deprecation
-    var mappedKey = mappedKeyCodes.get(evt.keyCode);
+    var mappedKey = mappedKeyCodes.get(event.keyCode);
     if (mappedKey) {
         return mappedKey;
     }
@@ -120,7 +120,7 @@ export function normalizeKey(evt) {
 /**
  * isNavigationEvent returns whether the event is a navigation event
  */
-export function isNavigationEvent(evt) {
-    return navigationKeys.has(normalizeKey(evt));
+export function isNavigationEvent(event) {
+    return navigationKeys.has(normalizeKey(event));
 }
 //# sourceMappingURL=keyboard.js.map

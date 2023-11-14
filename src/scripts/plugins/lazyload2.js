@@ -23,6 +23,50 @@ const defaultConfig = {
   }
 };
 
+const lazyload = function (el, config = {}) {
+  let {
+    beforeEvent,
+    afterEvent,
+    observerConfig,
+    attributeName,
+    completedName
+  } = Object.assign({}, defaultConfig, config);
+
+  let isImageNode = el.nodeName.toLowerCase() === 'img';
+
+  let observer = new IntersectionObserver(
+    ([{ isIntersecting, intersectionRatio }]) => {
+      if (isIntersecting || intersectionRatio > 0) {
+        el.dispatchEvent(new Event(beforeEvent.name, beforeEvent.options));
+
+        let src = el.getAttribute(attributeName);
+        let image = new Image();
+        image.onload = () => {
+          el.setAttribute(completedName, 1);
+          el.dispatchEvent(new Event(afterEvent.name, afterEvent.options));
+        };
+        image.onerror = () => {
+          el.setAttribute(completedName, 0);
+          el.dispatchEvent(new Event('imageError'));
+        };
+        image.src = src;
+
+        if (isImageNode) {
+          el.src = src;
+        } else {
+          el.style.backgroundImage = `url(${src})`;
+        }
+
+        observer.unobserve(el);
+        observer = null;
+      }
+    },
+    observerConfig
+  );
+
+  observer.observe(el);
+};
+
 export default {
   install(app) {
     let mountTarget = {
@@ -30,44 +74,17 @@ export default {
       3: app.config.globalProperties
     }[vueVersion];
 
-    mountTarget.$lazyload = function (el, config) {
-      let {
-        beforeEvent,
-        afterEvent,
-        observerConfig,
-        attributeName,
-        completedName
-      } = Object.assign({}, defaultConfig, config);
+    let directiveEvent = {
+      2: 'inserted',
+      3: 'mounted'
+    }[vueVersion];
 
-      let isImageNode = el.nodeName.toLowerCase() === 'img';
+    mountTarget.$lazyload = lazyload;
 
-      let observer = new IntersectionObserver(
-        ([{ isIntersecting, intersectionRatio }]) => {
-          if (isIntersecting || intersectionRatio > 0) {
-            el.dispatchEvent(new Event(beforeEvent.name, beforeEvent.options));
-
-            let src = el.getAttribute(attributeName);
-            let image = new Image();
-            image.onload = () => {
-              el.setAttribute(completedName, 1);
-              el.dispatchEvent(new Event(afterEvent.name, afterEvent.options));
-            };
-            image.src = src;
-
-            if (isImageNode) {
-              el.src = src;
-            } else {
-              el.style.backgroundImage = `url(${src})`;
-            }
-
-            observer.unobserve(el);
-            observer = null;
-          }
-        },
-        observerConfig
-      );
-
-      observer.observe(el);
-    };
+    app.directive('lazyload', {
+      [directiveEvent](el, binding){
+        return lazyload(el, binding.value);
+      }
+    })
   }
 };

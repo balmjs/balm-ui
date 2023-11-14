@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="photos">
+     <!--<div class="photos">
       <div
         @beforeLoad="test1(n)"
         @afterLoaded="test2(n)"
@@ -10,6 +10,7 @@
         ref="photos1"
       ></div>
     </div>
+    
     <div class="photos">
       <img
         class="photo"
@@ -17,6 +18,14 @@
         :data-source="`${remote}=${n}`"
         ref="photos2"
       />
+    </div> -->
+    <div class="photos">
+      <div
+        class="photo"
+        v-for="n in 100"
+        v-lazyload="{ attributeName: 'data-source' }"
+        :data-source="`${remote}=${n}`"
+      ></div>
     </div>
   </div>
 </template>
@@ -32,7 +41,7 @@ export default {
   methods: {
     init() {
       this.$refs.photos1.forEach((el) => this.$lazyload(el));
-      this.$refs.photos2.forEach((el) =>
+      this.$refs.photos3.forEach((el) =>
         this.$lazyload(el, { attributeName: 'data-source' })
       );
     },
@@ -44,7 +53,7 @@ export default {
     }
   },
   mounted() {
-    this.init();
+    // this.init();
   }
 };
 </script>

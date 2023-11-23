@@ -5,9 +5,7 @@ export default {
   props: {
     cellStyle: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     }
   },
   data() {

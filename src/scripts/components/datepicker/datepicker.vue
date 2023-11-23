@@ -124,9 +124,7 @@ export default {
     // For flatpickr
     config: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     },
     toggle: {
       type: Boolean,
@@ -138,9 +136,7 @@ export default {
     },
     monthOptions: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     }
   },
   data() {

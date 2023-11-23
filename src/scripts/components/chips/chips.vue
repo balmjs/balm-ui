@@ -54,9 +54,7 @@ export default {
     },
     options: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     optionFormat: {
       type: Object,
@@ -67,9 +65,7 @@ export default {
     // UI attributes
     chips: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     }
   },
   data() {

@@ -139,34 +139,24 @@ export default {
     // States
     data: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     selectedRows: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     // UI attributes
     thead: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     tbody: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     tfoot: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     fullwidth: {
       type: Boolean,
@@ -206,12 +196,10 @@ export default {
     },
     scroll: {
       type: Object,
-      default() {
-        return {
-          x: false,
-          y: false
-        };
-      }
+      default: () => ({
+        x: false,
+        y: false
+      })
     }
   },
   data() {

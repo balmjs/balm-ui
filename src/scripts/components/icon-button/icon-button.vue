@@ -62,9 +62,7 @@ export default {
     // UI attributes
     toggle: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     }
   },
   data() {

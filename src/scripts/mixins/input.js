@@ -8,9 +8,7 @@ export default {
     },
     attrs: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     }
   }
 };

@@ -14,7 +14,7 @@ import UiSideSheet from './components/side-sheet/side-sheet.vue';
 /**
  * Plugins
  */
-import $lazyload from './plugins/lazyload';
+import $lazyload from './plugins/lazyload2';
 /**
  * Directives
  */

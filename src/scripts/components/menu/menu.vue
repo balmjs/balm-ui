@@ -106,9 +106,7 @@ export default {
     },
     items: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     quickOpen: {
       type: Boolean,
@@ -121,9 +119,7 @@ export default {
     },
     distance: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     },
     fixed: {
       type: Boolean,

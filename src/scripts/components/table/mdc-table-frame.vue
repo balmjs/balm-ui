@@ -21,15 +21,11 @@ export default {
   props: {
     columnsData: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     scroll: {
       type: Object,
-      default() {
-        return {};
-      }
+      default: () => ({})
     },
     offsetLeft: {
       type: Number,

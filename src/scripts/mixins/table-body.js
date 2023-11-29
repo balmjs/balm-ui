@@ -5,27 +5,19 @@ export default {
   props: {
     data: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     currentData: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     selectedRows: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     tbody: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     rowCheckbox: {
       type: Boolean,

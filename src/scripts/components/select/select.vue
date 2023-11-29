@@ -149,9 +149,7 @@ export default {
     },
     options: {
       type: Array,
-      default() {
-        return [];
-      }
+      default: () => []
     },
     optionFormat: {
       type: Object,

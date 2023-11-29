@@ -9,6 +9,7 @@
 .mdc-form__item {
   display: flex;
   align-items: center;
+  height: 100%;
   margin-bottom: form-variables.$form-item-margin-bottom;
 
   &:last-child {

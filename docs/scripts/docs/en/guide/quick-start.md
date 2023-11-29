@@ -114,14 +114,14 @@ update `balm.config.js`
 
 #### Default Usage
 
-- edit `my-project/app/styles/global/_vendor.scss`
+- edit `my-project/app/styles/global/_vendors.scss`
 
   ```scss
   /* import BalmUI styles */
   @use 'balm-ui/dist/balm-ui';
   ```
 
-> Recommend to use Sass in `/path/to/project-name/styles/_vendor.scss`, and you can use more advanced style usage of the BalmUI.
+> Recommend to use Sass in `/path/to/project-name/styles/_vendors.scss`, and you can use more advanced style usage of the BalmUI.
 
 - edit `my-project/app/scripts/main.js`
 
@@ -141,7 +141,7 @@ update `balm.config.js`
 
 #### Individual Usage
 
-- edit `my-project/app/styles/global/_vendor.scss`
+- edit `my-project/app/styles/global/_vendors.scss`
 
   ```scss
   @use 'balm-ui/components/core';

@@ -1,5 +1,5 @@
 ```scss
-// Edit `/path/to/project/app/styles/global/_vendor.scss`
+// Edit `/path/to/project/app/styles/global/_vendors.scss`
 @use '@material/shape' with (
   $small-component-radius: 4px,
   $medium-component-radius: 16px,

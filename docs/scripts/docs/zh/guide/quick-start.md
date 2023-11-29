@@ -114,14 +114,14 @@ npm install --save balm-ui
 
 #### 默认用法
 
-- 编辑 `my-project/app/styles/global/_vendor.scss`
+- 编辑 `my-project/app/styles/global/_vendors.scss`
 
   ```scss
   /* import BalmUI styles */
   @use 'balm-ui/dist/balm-ui';
   ```
 
-> 推荐在 `/path/to/project-name/styles/_vendor.scss` 中使用 Sass，这样你将能使用到更多 BalmUI 的高级简便的样式管理方案。
+> 推荐在 `/path/to/project-name/styles/_vendors.scss` 中使用 Sass，这样你将能使用到更多 BalmUI 的高级简便的样式管理方案。
 
 - 编辑 `my-project/app/scripts/main.js`
 
@@ -141,7 +141,7 @@ npm install --save balm-ui
 
 #### 独立用法
 
-- 编辑 `my-project/app/styles/global/_vendor.scss`
+- 编辑 `my-project/app/styles/global/_vendors.scss`
 
   ```scss
   @use 'balm-ui/components/core';

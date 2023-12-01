@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.24.0 / 2023-12-01
+
+### Chore
+
+- `<ui-chips>`: optimize choice chips default value from `-1` to `''`
+
 ## v10.23.3 / 2023-11-07
 
 ### Chore

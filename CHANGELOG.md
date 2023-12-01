@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.64.0 / 2023-12-01
+
+### Chore
+
+- `<ui-chips>`: optimize choice chips default value from `-1` to `''`
+
 ## v8.63.1 / 2023-11-07
 
 ### Chore

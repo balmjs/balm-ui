@@ -17,7 +17,7 @@
 | Name                | Type                  | Default                              | Description                                                                          | Version |
 | ------------------- | --------------------- | ------------------------------------ | ------------------------------------------------------------------------------------ | ------- |
 | `type`              | string, number        | `0`                                  | Mandatory. Chips types.                                                              |         |
-| `model` (`v-model`) | string, number, array | `-1`                                 | Mandatory. Single or multiple selection from a set of options.                       |         |
+| `model` (`v-model`) | string, number, array | `''`                                 | Mandatory. Single or multiple selection from a set of options.                       |         |
 | `options`           | array                 | `[]`                                 | An array of options to show to the user. Applicable only for choice or filter chips. | 7.2.0   |
 | `optionFormat`      | object                | `{ label: 'label', value: 'value' }` | Defines the option data format.                                                      | 8.42.0  |
 | `chips`             | array                 | `[]`                                 | A set of chips. Applicable only for updating the input chips.                        |         |

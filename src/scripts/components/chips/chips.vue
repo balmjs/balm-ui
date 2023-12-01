@@ -171,17 +171,13 @@ export default {
           }
         });
       } else if (this.choiceChips) {
-        let selectedIndex = UI_CHIPS.defaultSelectedValue;
+        const selectedIndex = this.currentOptions.length
+          ? this.currentOptions.findIndex(
+              (option) => option[this.optionFormat.value] === this.selectedValue
+            )
+          : this.selectedValue;
 
-        if (this.currentOptions.length) {
-          selectedIndex = this.currentOptions.findIndex(
-            (option) => option[this.optionFormat.value] === this.selectedValue
-          );
-        } else {
-          selectedIndex = this.selectedValue;
-        }
-
-        if (~selectedIndex && chips[selectedIndex]) {
+        if (chips[selectedIndex]) {
           chips[selectedIndex].selected = true;
           this.choiceChipId = chips[selectedIndex].id;
         }

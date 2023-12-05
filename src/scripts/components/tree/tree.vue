@@ -48,7 +48,7 @@ export default {
   props: {
     // States
     selectedNodes: {
-      type: [String, Array],
+      type: [String, Number, Array],
       default: ''
     },
     filterParentNode: {

@@ -4,18 +4,18 @@
 
 ### Props
 
-| Name                        | Type          | Default | Description                                          | Version |
-| --------------------------- | ------------- | ------- | ---------------------------------------------------- | ------- |
-| `selectedNodes` (`v-model`) | string, array | `''`    | 选中的树节点键值                                     |         |
-| `filterParentNode`          | boolean       | `false` | 选中的树节点键值排除所有父节点                       | 8.60.0  |
-| `data`                      | array         | `[]`    | 源数据                                               |         |
-| `dataFormat`                | object        | `{}`    | 定义源数据的格式                                     |         |
-| `maxLevel`                  | number        | `0`     | 设置加载树节点的最大层级                             |         |
-| `multiple`                  | boolean       | `false` | 是否支持选定的多个树节点                             |         |
-| `singleChecked`             | boolean       | `false` | 启用树节点单节点选择。仅针对 `multiple` 树节点有效。 | 8.42.0  |
-| `loadData`                  | function      | `null`  | 启用异步加载数据                                     |         |
-| `autoExpandParent`          | boolean       | `false` | 是否自动展开根父级树节点                             | 8.25.0  |
-| `defaultExpandedKeys`       | array         | `[]`    | 指定默认展开的树节点的节点值                         | 8.25.0  |
+| Name                        | Type                  | Default | Description                                          | Version |
+| --------------------------- | --------------------- | ------- | ---------------------------------------------------- | ------- |
+| `selectedNodes` (`v-model`) | string, number, array | `''`    | 选中的树节点键值                                     |         |
+| `filterParentNode`          | boolean               | `false` | 选中的树节点键值排除所有父节点                       | 8.60.0  |
+| `data`                      | array                 | `[]`    | 源数据                                               |         |
+| `dataFormat`                | object                | `{}`    | 定义源数据的格式                                     |         |
+| `maxLevel`                  | number                | `0`     | 设置加载树节点的最大层级                             |         |
+| `multiple`                  | boolean               | `false` | 是否支持选定的多个树节点                             |         |
+| `singleChecked`             | boolean               | `false` | 启用树节点单节点选择。仅针对 `multiple` 树节点有效。 | 8.42.0  |
+| `loadData`                  | function              | `null`  | 启用异步加载数据                                     |         |
+| `autoExpandParent`          | boolean               | `false` | 是否自动展开根父级树节点                             | 8.25.0  |
+| `defaultExpandedKeys`       | array                 | `[]`    | 指定默认展开的树节点的节点值                         | 8.25.0  |
 
 - 默认数据格式
 

@@ -49,7 +49,7 @@ import UiTreeNode from './tree-node.vue';
 const props = defineProps({
   // States
   modelValue: {
-    type: [String, Array],
+    type: [String, Number, Array],
     default: ''
   },
   filterParentNode: {

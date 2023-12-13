@@ -4,20 +4,20 @@
 
 ### Props
 
-| Name                     | Type          | Default | Description                                          | Version |
-| ------------------------ | ------------- | ------- | ---------------------------------------------------- | ------- |
-| `modelValue` (`v-model`) | string, array | `''`    | 选中的树节点键值                                     |         |
-| `filterParentNode`       | boolean       | `false` | 选中的树节点键值过滤所有父节点                       | 10.17.0 |
-| `data`                   | array         | `[]`    | 源数据                                               |         |
-| `dataFormat`             | object        | `{}`    | 定义源数据的格式                                     |         |
-| `maxLevel`               | number        | `0`     | 设置加载树节点的最大层级                             |         |
-| `multiple`               | boolean       | `false` | 是否支持选定的多个树节点                             |         |
-| `singleChecked`          | boolean       | `false` | 启用树节点单节点选择。仅针对 `multiple` 树节点有效。 | 9.34.0  |
-| `loadData`               | function      | `null`  | 启用异步加载数据                                     |         |
-| `autoExpandParent`       | boolean       | `false` | 是否自动展开根父级树节点                             | 9.17.0  |
-| `autoExpandSelected`     | boolean       | `false` | 是否自动展开手动赋值选择的树节点和它的父级树节点     | 10.21.0 |
-| `autoExpandAll`          | boolean       | `false` | 是否自动展开所有树节点                               | 10.21.0 |
-| `defaultExpandedKeys`    | array         | `[]`    | 指定默认展开的树节点的节点值                         | 9.17.0  |
+| Name                     | Type                  | Default | Description                                          | Version |
+| ------------------------ | --------------------- | ------- | ---------------------------------------------------- | ------- |
+| `modelValue` (`v-model`) | string, number, array | `''`    | 选中的树节点键值                                     |         |
+| `filterParentNode`       | boolean               | `false` | 选中的树节点键值过滤所有父节点                       | 10.17.0 |
+| `data`                   | array                 | `[]`    | 源数据                                               |         |
+| `dataFormat`             | object                | `{}`    | 定义源数据的格式                                     |         |
+| `maxLevel`               | number                | `0`     | 设置加载树节点的最大层级                             |         |
+| `multiple`               | boolean               | `false` | 是否支持选定的多个树节点                             |         |
+| `singleChecked`          | boolean               | `false` | 启用树节点单节点选择。仅针对 `multiple` 树节点有效。 | 9.34.0  |
+| `loadData`               | function              | `null`  | 启用异步加载数据                                     |         |
+| `autoExpandParent`       | boolean               | `false` | 是否自动展开根父级树节点                             | 9.17.0  |
+| `autoExpandSelected`     | boolean               | `false` | 是否自动展开手动赋值选择的树节点和它的父级树节点     | 10.21.0 |
+| `autoExpandAll`          | boolean               | `false` | 是否自动展开所有树节点                               | 10.21.0 |
+| `defaultExpandedKeys`    | array                 | `[]`    | 指定默认展开的树节点的节点值                         | 9.17.0  |
 
 - 默认数据格式
 

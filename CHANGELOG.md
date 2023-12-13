@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.25.0 / 2023-12-13
+
+### Features
+
+- `<ui-tree>`: add number type for `modelValue`
+
 ## v10.24.0 / 2023-12-01
 
 ### Chore

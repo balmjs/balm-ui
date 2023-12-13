@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.65.0 / 2023-12-05
+
+### Features
+
+- `<ui-tree>`: add number type for `selectedNodes`
+
 ## v8.64.0 / 2023-12-01
 
 ### Chore

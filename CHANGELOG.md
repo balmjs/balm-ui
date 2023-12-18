@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.25.1 / 2023-12-18
+
+### Bug Fixes
+
+- `<ui-chips>`: fix init selected bug
+
 ## v10.25.0 / 2023-12-13
 
 ### Features

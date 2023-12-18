@@ -101,6 +101,7 @@ export default {
     model(val) {
       if (this.choiceChips || this.filterChips) {
         this.selectedValue = val;
+        this.updateSelected();
       }
     },
     options(val) {
@@ -193,7 +194,9 @@ export default {
           const selectedValue = ~selectedIndex
             ? this.currentOptions[selectedIndex][this.optionFormat.value]
             : UI_CHIPS.defaultSelectedValue;
-          this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
+          const canEmit = this.selectedValue !== selectedValue;
+
+          canEmit && this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
         } else {
           this.$emit(UI_CHIPS.EVENT.CHANGE, UI_CHIPS.defaultSelectedValue);
         }
@@ -220,10 +223,7 @@ export default {
           newValue.every((b) => oldValue.some((a) => b === a))
         );
 
-        if (canEmit) {
-          this.selectedValue = selectedValue;
-          this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
-        }
+        canEmit && this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
       } else {
         this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndexes);
       }
@@ -244,6 +244,38 @@ export default {
         this.$chipSet.addChip(newChipEl);
         this.chipsCount++;
       });
+    },
+    updateSelected() {
+      if (this.$chipSet) {
+        if (this.filterChips) {
+          let selectedIndexes = this.currentOptions.length
+            ? []
+            : this.selectedValue;
+
+          if (this.currentOptions.length) {
+            this.currentOptions.forEach((option, index) => {
+              if (
+                this.selectedValue.includes(option[this.optionFormat.value])
+              ) {
+                selectedIndexes.push(index);
+              }
+            });
+          }
+
+          this.$chipSet.chips.forEach((chip, index) => {
+            const selected = selectedIndexes.includes(index);
+            chip.selected !== selected && (chip.selected = selected);
+          });
+        } else if (this.choiceChips) {
+          const selectedIndex = this.currentOptions.findIndex(
+            (option) => option[this.optionFormat.value] === this.selectedValue
+          );
+          if (~selectedIndex) {
+            const chip = this.$chipSet.chips[selectedIndex];
+            !chip.selected && (chip.selected = true);
+          }
+        }
+      }
     }
   }
 };

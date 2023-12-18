@@ -113,6 +113,7 @@ onMounted(() => {
     (val) => {
       if (choiceChips.value || filterChips.value) {
         state.selectedValue = val;
+        updateSelected();
       }
     }
   );
@@ -216,7 +217,9 @@ function setChoiceChips({ chipId, selected }) {
       const currentSelectedValue = ~selectedIndex
         ? state.currentOptions[selectedIndex][props.optionFormat.value]
         : UI_CHIPS.defaultSelectedValue;
-      emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
+      const canEmit = state.selectedValue !== currentSelectedValue;
+
+      canEmit && emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
     } else {
       emit(UI_CHIPS.EVENTS.CHANGE, UI_CHIPS.defaultSelectedValue);
     }
@@ -245,10 +248,7 @@ function setFilterChips() {
       newValue.every((b) => oldValue.some((a) => b === a))
     );
 
-    if (canEmit) {
-      state.selectedValue = currentSelectedValue;
-      emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
-    }
+    canEmit && emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
   } else {
     emit(UI_CHIPS.EVENTS.CHANGE, selectedIndexes);
   }
@@ -287,6 +287,39 @@ function addChip() {
     }
   } else {
     state.chipsCount = 0;
+  }
+}
+
+function updateSelected() {
+  if (state.$chipSet) {
+    if (filterChips.value) {
+      let selectedIndexes = state.currentOptions.length
+        ? []
+        : state.selectedValue;
+
+      if (state.currentOptions.length) {
+        state.currentOptions.forEach((option, index) => {
+          if (state.selectedValue.includes(option[props.optionFormat.value])) {
+            selectedIndexes.push(index);
+          }
+        });
+      }
+
+      state.$chipSet.chips.forEach((chip, index) => {
+        const selected = selectedIndexes.includes(index);
+        if (chip.selected !== selected) {
+          chip.selected = selected;
+        }
+      });
+    } else if (choiceChips.value) {
+      const selectedIndex = state.currentOptions.findIndex(
+        (option) => option[props.optionFormat.value] === state.selectedValue
+      );
+
+      if (~selectedIndex) {
+        state.$chipSet.chips[selectedIndex].selected = true;
+      }
+    }
   }
 }
 

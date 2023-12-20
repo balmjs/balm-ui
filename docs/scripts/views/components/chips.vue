@@ -154,9 +154,9 @@ export default {
       lastId: 2,
       name: '',
       list: [],
-      selectedIndex: 3,
-      selectedValue: ['a', 'c'],
-      selectedValue2: [1, 2],
+      selectedIndex: '',
+      selectedValue: [],
+      selectedValue2: [],
       filterList: [],
       actionList: [
         {
@@ -192,6 +192,11 @@ export default {
           name: 'John Doe'
         }
       ];
+
+      this.selectedIndex = 3;
+      this.selectedValue = ['a', 'c'];
+      this.selectedValue2 = [1, 2];
+
       this.filterList = ['Alice', 'Bob', 'Charlie', 'David'];
 
       this.radioOptions = RadioOptions;

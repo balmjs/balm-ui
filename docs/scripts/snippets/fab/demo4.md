@@ -1,5 +1,5 @@
 ```scss
-// my-project/app/styles/global/_vendor.scss
+// my-project/app/styles/global/_vendors.scss
 @use 'font-awesome/scss/font-awesome';
 ```
 

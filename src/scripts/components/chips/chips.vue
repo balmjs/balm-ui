@@ -21,7 +21,8 @@ const UI_CHIPS = {
   },
   EVENTS: {
     CHANGE: 'update:modelValue'
-  }
+  },
+  defaultSelectedValue: ''
 };
 
 export default {
@@ -63,7 +64,7 @@ const props = defineProps({
   // States
   modelValue: {
     type: [String, Number, Array],
-    default: -1
+    default: UI_CHIPS.defaultSelectedValue
   },
   options: {
     type: Array,
@@ -109,10 +110,10 @@ onMounted(() => {
 
   watch(
     () => props.modelValue,
-    (val, oldVal) => {
-      if (state.$chipSet && JSON.stringify(val) !== JSON.stringify(oldVal)) {
-        updateSelected(val);
+    (val) => {
+      if (choiceChips.value || filterChips.value) {
         state.selectedValue = val;
+        updateSelected();
       }
     }
   );
@@ -193,17 +194,13 @@ function initData(chips = state.$chipSet.chips) {
       }
     });
   } else if (choiceChips.value) {
-    let selectedIndex = -1;
+    const selectedIndex = state.currentOptions.length
+      ? state.currentOptions.findIndex(
+          (option) => option[props.optionFormat.value] === state.selectedValue
+        )
+      : state.selectedValue;
 
-    if (state.currentOptions.length) {
-      selectedIndex = state.currentOptions.findIndex(
-        (option) => option[props.optionFormat.value] === state.selectedValue
-      );
-    } else {
-      selectedIndex = state.selectedValue;
-    }
-
-    if (~selectedIndex && chips[selectedIndex]) {
+    if (chips[selectedIndex]) {
       chips[selectedIndex].selected = true;
       state.choiceChipId = chips[selectedIndex].id;
     }
@@ -219,10 +216,12 @@ function setChoiceChips({ chipId, selected }) {
       const selectedIndex = adapter.getIndexOfChipById(chipId);
       const currentSelectedValue = ~selectedIndex
         ? state.currentOptions[selectedIndex][props.optionFormat.value]
-        : '';
-      emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
+        : UI_CHIPS.defaultSelectedValue;
+      const canEmit = state.selectedValue !== currentSelectedValue;
+
+      canEmit && emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
     } else {
-      emit(UI_CHIPS.EVENTS.CHANGE, -1);
+      emit(UI_CHIPS.EVENTS.CHANGE, UI_CHIPS.defaultSelectedValue);
     }
   }
 }
@@ -249,10 +248,7 @@ function setFilterChips() {
       newValue.every((b) => oldValue.some((a) => b === a))
     );
 
-    if (canEmit) {
-      state.selectedValue = currentSelectedValue;
-      emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
-    }
+    canEmit && emit(UI_CHIPS.EVENTS.CHANGE, currentSelectedValue);
   } else {
     emit(UI_CHIPS.EVENTS.CHANGE, selectedIndexes);
   }
@@ -294,31 +290,35 @@ function addChip() {
   }
 }
 
-function updateSelected(selectedValue) {
-  if (filterChips.value) {
-    let selectedIndexes = state.currentOptions.length ? [] : selectedValue;
+function updateSelected() {
+  if (state.$chipSet) {
+    if (filterChips.value) {
+      let selectedIndexes = state.currentOptions.length
+        ? []
+        : state.selectedValue;
 
-    if (state.currentOptions.length) {
-      state.currentOptions.forEach((option, index) => {
-        if (selectedValue.includes(option[props.optionFormat.value])) {
-          selectedIndexes.push(index);
+      if (state.currentOptions.length) {
+        state.currentOptions.forEach((option, index) => {
+          if (state.selectedValue.includes(option[props.optionFormat.value])) {
+            selectedIndexes.push(index);
+          }
+        });
+      }
+
+      state.$chipSet.chips.forEach((chip, index) => {
+        const selected = selectedIndexes.includes(index);
+        if (chip.selected !== selected) {
+          chip.selected = selected;
         }
       });
-    }
+    } else if (choiceChips.value) {
+      const selectedIndex = state.currentOptions.findIndex(
+        (option) => option[props.optionFormat.value] === state.selectedValue
+      );
 
-    state.$chipSet.chips.forEach((chip, index) => {
-      const selected = selectedIndexes.includes(index);
-      if (chip.selected !== selected) {
-        chip.selected = selected;
+      if (~selectedIndex) {
+        state.$chipSet.chips[selectedIndex].selected = true;
       }
-    });
-  } else if (choiceChips.value) {
-    const selectedIndex = state.currentOptions.findIndex(
-      (option) => option[props.optionFormat.value] === selectedValue
-    );
-
-    if (~selectedIndex) {
-      state.$chipSet.chips[selectedIndex].selected = true;
     }
   }
 }

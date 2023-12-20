@@ -36,7 +36,7 @@
   };
   ```
 
-- Edit `/path/to/my-project/app/styles/global/_vendor.scss`
+- Edit `/path/to/my-project/app/styles/global/_vendors.scss`
 
   > **`SASS`/`CSS` Management** by [BalmJS](https://balm.js.org/): the entry files of the vendors
 
@@ -67,7 +67,7 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
 </html>
 ```
 
-> If the third-party provides sass/css file, recommended to manage in `/path/to/my-project/app/styles/global/_vendor.scss`
+> If the third-party provides sass/css file, recommended to manage in `/path/to/my-project/app/styles/global/_vendors.scss`
 
 <div id="use-css"></div>
 
@@ -205,7 +205,7 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
 
 > With regard to _CSSinJS_, styles can be extracted through BalmJS configuration, but the idea of BalmJS is more recommended to separate and manage styles and scripts to achieve more flexible module configuration and management.
 
-- SASS management (`/path/to/my-project/app/styles/global/_vendor.scss`)
+- SASS management (`/path/to/my-project/app/styles/global/_vendors.scss`)
 
   ```scss
   @use 'balm-ui/components/core';

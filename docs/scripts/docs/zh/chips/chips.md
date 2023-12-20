@@ -17,7 +17,7 @@
 | Name                     | Type                  | Default                              | Description                                           | Version |
 | ------------------------ | --------------------- | ------------------------------------ | ----------------------------------------------------- | ------- |
 | `type`                   | string, number        | `0`                                  | 选项卡类型                                            |         |
-| `modelValue` (`v-model`) | string, number, array | `-1`                                 | 选项卡选项值。从一组选项中选择一个或多个。            |         |
+| `modelValue` (`v-model`) | string, number, array | `''`                                 | 选项卡选项值。从一组选项中选择一个或多个。            |         |
 | `options`                | array                 | `[]`                                 | 设置选项卡选项列表                                    |         |
 | `optionFormat`           | object                | `{ label: 'label', value: 'value' }` | 定义选项卡选项数据格式                                | 9.34.0  |
 | `items`                  | array                 | `[]`                                 | 一组选项卡选项。仅适用于更新输入类型(`input`)的选项卡 |         |

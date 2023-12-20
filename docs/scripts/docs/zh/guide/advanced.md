@@ -36,7 +36,7 @@
   };
   ```
 
-- 编辑 `/path/to/my-project/app/styles/global/_vendor.scss`
+- 编辑 `/path/to/my-project/app/styles/global/_vendors.scss`
 
   > **`SASS`/`CSS` Management** by [BalmJS](https://balm.js.org/): the entry files of the vendors
 
@@ -67,7 +67,7 @@
 </html>
 ```
 
-> 如果第三方提供了 sass/css 文件，建议在 `/path/to/my-project/app/styles/global/_vendor.scss` 中进行管理
+> 如果第三方提供了 sass/css 文件，建议在 `/path/to/my-project/app/styles/global/_vendors.scss` 中进行管理
 
 <div id="use-css"></div>
 
@@ -205,7 +205,7 @@
 
 > 关于 CSSinJS ，可以通过BalmJS配置来提取样式；但是 BalmJS的思想 更建议分离管理项目中的样式和脚本，以实现更灵活的模块配置和管理。
 
-- SASS 管理 (`/path/to/my-project/app/styles/global/_vendor.scss`)
+- SASS 管理 (`/path/to/my-project/app/styles/global/_vendors.scss`)
 
   ```scss
   @use 'balm-ui/components/core';

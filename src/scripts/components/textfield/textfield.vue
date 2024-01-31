@@ -265,6 +265,7 @@ const isTextarea = computed(() => props.inputType === 'textarea');
 const isTextfieldPlus = computed(() =>
   UI_TEXTFIELD.PLUS_COMPONENTS.includes(parent.type.name)
 );
+const isDatepicker = computed(() => parent.type.name === 'UiDatepicker');
 const hasLeadingIcon = computed(
   () => !!(materialIcon.value || props.withLeadingIcon || hasBeforeSlot())
 );
@@ -329,9 +330,11 @@ onMounted(() => {
             );
         } catch (e) {}
 
-        setTimeout(() => {
-          state.$textField.foundation.deactivateFocus();
-        }, 1);
+        if(isDatepicker.value) {
+          setTimeout(() => {
+            state.$textField.foundation.deactivateFocus();
+          }, 1);
+        }
       }
     }
   );

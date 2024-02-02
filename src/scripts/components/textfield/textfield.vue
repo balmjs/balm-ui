@@ -244,6 +244,9 @@ export default {
     isTextfieldPlus() {
       return /(UiAutocomplete|UiDatepicker)$/.test(this.$parent.$vnode?.tag);
     },
+    isDatepicker() {
+      return /(UiDatepicker)$/.test(this.$parent.$vnode?.tag);
+    },
     hasBeforeSlot() {
       return this.isTextfieldPlus
         ? this.$parent?.hasLeadingIcon
@@ -304,9 +307,11 @@ export default {
               );
           } catch (e) {}
 
-          setTimeout(() => {
-            this.$textField.foundation.deactivateFocus();
-          }, 1);
+          if (this.isDatepicker) {
+            setTimeout(() => {
+              this.$textField.foundation.deactivateFocus();
+            }, 1);
+          }
         }
       }
     },

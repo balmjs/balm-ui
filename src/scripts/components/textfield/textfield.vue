@@ -330,7 +330,7 @@ onMounted(() => {
             );
         } catch (e) {}
 
-        if(isDatepicker.value) {
+        if (isDatepicker.value) {
           setTimeout(() => {
             state.$textField.foundation.deactivateFocus();
           }, 1);

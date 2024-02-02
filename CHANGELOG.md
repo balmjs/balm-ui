@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.25.2 / 2024-02-02
+
+### Bug Fixes
+
+- `<ui-textfield>`: fix focus state (thanks @renan-f)
+
 ## v10.25.1 / 2023-12-18
 
 ### Bug Fixes

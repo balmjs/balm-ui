@@ -83,10 +83,10 @@
     json5 "^2.2.2"
     semver "^6.3.1"
 
-"@babel/eslint-parser@^7.23":
-  version "7.23.3"
-  resolved "https://registry.npmjs.org/@babel/eslint-parser/-/eslint-parser-7.23.3.tgz#7bf0db1c53b54da0c8a12627373554a0828479ca"
-  integrity sha512-9bTuNlyx7oSstodm1cR1bECj4fkiknsDa1YniISkJemMY3DGhJNYBECbe6QD/q54mp2J8VO66jW3/7uP//iFCw==
+"@babel/eslint-parser@7.23":
+  version "7.23.10"
+  resolved "https://registry.npmjs.org/@babel/eslint-parser/-/eslint-parser-7.23.10.tgz#2d4164842d6db798873b40e0c4238827084667a2"
+  integrity sha512-3wSYDPZVnhseRnxRJH6ZVTNknBz76AEnyC+AYYhasjP3Yy23qz0ERR7Fcd2SHmYuSFJ2kY9gaaDd3vyqU09eSw==
   dependencies:
     "@nicolo-ribaudo/eslint-scope-5-internals" "5.1.1-v1"
     eslint-visitor-keys "^2.1.0"
@@ -428,7 +428,7 @@
     "@babel/helper-environment-visitor" "^7.22.20"
     "@babel/helper-plugin-utils" "^7.22.5"
 
-"@babel/plugin-proposal-optional-chaining@^7.21.0":
+"@babel/plugin-proposal-optional-chaining@7.21":
   version "7.21.0"
   resolved "https://registry.npmjs.org/@babel/plugin-proposal-optional-chaining/-/plugin-proposal-optional-chaining-7.21.0.tgz#886f5c8978deb7d30f678b2e24346b287234d3ea"
   integrity sha512-p4zeefM72gpmEe2fkUr/OnOXpWEf8nAgk7ZYVqqfFiyIG7oFfVZcCrU64hWn5xp4tQ9LkV4bTIa5rD0KANpKNA==
@@ -1095,15 +1095,15 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/register@^7.22":
-  version "7.22.15"
-  resolved "https://registry.npmjs.org/@babel/register/-/register-7.22.15.tgz#c2c294a361d59f5fa7bcc8b97ef7319c32ecaec7"
-  integrity sha512-V3Q3EqoQdn65RCgTLwauZaTfd1ShhwPmbBv+1dkZV/HpCGMKVyn6oFcRlI7RaKqiDQjX2Qd3AuoEguBgdjIKlg==
+"@babel/register@7.23":
+  version "7.23.7"
+  resolved "https://registry.npmjs.org/@babel/register/-/register-7.23.7.tgz#485a5e7951939d21304cae4af1719fdb887bc038"
+  integrity sha512-EjJeB6+kvpk+Y5DAkEAmbOBEFkh9OASx0huoEkqYTFxAZHzOAX2Oh5uwAUuL2rUddqfM0SA+KPXV2TbzoZ2kvQ==
   dependencies:
     clone-deep "^4.0.1"
     find-cache-dir "^2.0.0"
     make-dir "^2.1.0"
-    pirates "^4.0.5"
+    pirates "^4.0.6"
     source-map-support "^0.5.16"
 
 "@babel/regjsgen@^0.8.0":
@@ -1111,10 +1111,10 @@
   resolved "https://registry.npmjs.org/@babel/regjsgen/-/regjsgen-0.8.0.tgz#f0ba69b075e1f05fb2825b7fad991e7adbb18310"
   integrity sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==
 
-"@babel/runtime-corejs3@^7.23":
-  version "7.23.6"
-  resolved "https://registry.npmjs.org/@babel/runtime-corejs3/-/runtime-corejs3-7.23.6.tgz#c25dd662fc205a03fdaefd122066eb9d4533ccf9"
-  integrity sha512-Djs/ZTAnpyj0nyg7p1J6oiE/tZ9G2stqAFlLGZynrW+F3k2w2jGK2mLOBxzYIOcZYA89+c3d3wXKpYLcpwcU6w==
+"@babel/runtime-corejs3@7.23":
+  version "7.23.9"
+  resolved "https://registry.npmjs.org/@babel/runtime-corejs3/-/runtime-corejs3-7.23.9.tgz#1b43062a13ecb60158aecdd81bc3fab4108b7cbc"
+  integrity sha512-oeOFTrYWdWXCvXGB5orvMTJ6gCZ9I6FBjR+M38iKNXCsPxr4xT0RTdg5uz1H7QP8pp74IzPtwritEr+JscqHXQ==
   dependencies:
     core-js-pure "^3.30.2"
     regenerator-runtime "^0.14.0"
@@ -2925,10 +2925,10 @@ balanced-match@^1.0.0:
   resolved "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-balm@^3.34.0:
-  version "3.34.0"
-  resolved "https://registry.npmjs.org/balm/-/balm-3.34.0.tgz#c5464f2908782b880cc6037e0f85a8a54d8f67c9"
-  integrity sha512-oJjyYEB9oiycVxGGPfDlpM+tcrBbz4IEykrzUQ8CF9zIr7DTbqxjs7qaegsHMJb4Q5hgnbQZz/uT9iAa10xV9Q==
+balm@^3.35.0:
+  version "3.35.1"
+  resolved "https://registry.npmjs.org/balm/-/balm-3.35.1.tgz#495404a6fa0d6531d7218aa3a7fd5a4301e34c8b"
+  integrity sha512-qhnFleChxPPtCPkbi/64d8JPFa8v2I6e2Qzx0RJ9GkSww+qCBzoFm/rq6LuPNgmYBRbjYLiDXpKFbxEaoX0g4w==
   dependencies:
     "@babel/core" "7.23"
     "@babel/plugin-transform-runtime" "7.23"
@@ -2938,7 +2938,7 @@ balm@^3.34.0:
     global-dirs "3"
     gulp "4"
     semver "^7.5.4"
-    webpack-hot-middleware "^2.25.4"
+    webpack-hot-middleware "^2.26.0"
     workbox-sw "^7.0.0"
     yargs "16"
 
@@ -7047,7 +7047,7 @@ pinkie@^2.0.0:
   resolved "https://registry.npmjs.org/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
   integrity sha512-MnUuEycAemtSaeFSjXKW/aroV7akBbY+Sv+RkyqFjgAe73F+MR0TBWKBRDkmfWq/HiFmdavfZ1G7h4SPZXaCSg==
 
-pirates@^4.0.4, pirates@^4.0.5:
+pirates@^4.0.4, pirates@^4.0.6:
   version "4.0.6"
   resolved "https://registry.npmjs.org/pirates/-/pirates-4.0.6.tgz#3018ae32ecfcff6c29ba2267cbf21166ac1f36b9"
   integrity sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==
@@ -8633,10 +8633,10 @@ watchpack@^1.7.4:
     chokidar "^3.4.1"
     watchpack-chokidar2 "^2.0.1"
 
-webpack-hot-middleware@^2.25.4:
-  version "2.25.4"
-  resolved "https://registry.npmjs.org/webpack-hot-middleware/-/webpack-hot-middleware-2.25.4.tgz#d8bc9e9cb664fc3105c8e83d2b9ed436bee4e193"
-  integrity sha512-IRmTspuHM06aZh98OhBJtqLpeWFM8FXJS5UYpKYxCJzyFoyWj1w6VGFfomZU7OPA55dMLrQK0pRT1eQ3PACr4w==
+webpack-hot-middleware@^2.26.0:
+  version "2.26.1"
+  resolved "https://registry.npmjs.org/webpack-hot-middleware/-/webpack-hot-middleware-2.26.1.tgz#87214f1e3f9f3acab9271fef9e6ed7b637d719c0"
+  integrity sha512-khZGfAeJx6I8K9zKohEWWYN6KDlVw2DHownoe+6Vtwj1LP9WFgegXnVMSkZ/dBEBtXFwrkkydsaPFlB7f8wU2A==
   dependencies:
     ansi-html-community "0.0.8"
     html-entities "^2.1.0"

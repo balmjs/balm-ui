@@ -71,6 +71,7 @@
 
         <label
           class="mdc-tree-node__label"
+          :class="nodeData.disabled ? 'mdc-tree-node__label__disabled' : ''"
           @click.prevent="
             treeData.multiple ? handleCheck(nodeData) : handleSelect(nodeData)
           "

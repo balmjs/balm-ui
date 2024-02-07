@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[2436],{12436:function(e,n,r){r.r(n),r.d(n,{default:function(){return a}});var t=r(96064);const u={};var a=(0,r(18152).c)(u,[["render",function(e,n){return(0,t.openBlock)(),(0,t.createElementBlock)("div",(0,t.normalizeProps)((0,t.guardReactiveProps)(e.$attrs)),"Options API Test",16)}]])}}]);

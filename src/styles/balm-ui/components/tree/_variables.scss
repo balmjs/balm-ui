@@ -11,4 +11,4 @@ $selected-background-color: rgba(
   0.12
 ) !default;
 $selected-color: theme-color.prop-value(on-surface) !default;
-$disabled-color: rgba(theme-color.prop-value(on-surface), 0.38),
+$disabled-color: rgba(theme-color.prop-value(on-surface), 0.38) !default;

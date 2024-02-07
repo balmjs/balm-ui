@@ -29,7 +29,7 @@ var MDCIconButtonToggleFoundation = /** @class */ (function (_super) {
     function MDCIconButtonToggleFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCIconButtonToggleFoundation.defaultAdapter), adapter)) || this;
         /**
-         * Whether the icon button has an aria label that changes depending on
+         * Whether the icon button has an aria-label that changes depending on
          * toggled state.
          */
         _this.hasToggledAriaLabel = false;
@@ -69,7 +69,7 @@ var MDCIconButtonToggleFoundation = /** @class */ (function (_super) {
         if (ariaLabelOn && ariaLabelOff) {
             if (this.adapter.getAttr(strings.ARIA_PRESSED) !== null) {
                 throw new Error('MDCIconButtonToggleFoundation: Button should not set ' +
-                    '`aria-pressed` if it has a toggled aria label.');
+                    '`aria-pressed` if it has a toggled ARIA label.');
             }
             this.hasToggledAriaLabel = true;
         }

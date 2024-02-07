@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.26.0 / 2024-02-07
+
+### Features
+
+- `<ui-tree>`: add sass variable `$disabled-color`
+
 ## v10.25.2 / 2024-02-02
 
 ### Bug Fixes

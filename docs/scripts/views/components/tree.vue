@@ -1,5 +1,5 @@
 <template>
-  <docs-page name="tree" demo-count="7">
+  <docs-page name="tree" demo-count="6">
     <template #hero>
       <h1 :class="$tt('headline1')">Tree</h1>
     </template>
@@ -120,25 +120,6 @@
       </div>
       <ui-snippet :code="$store.demos[6]"></ui-snippet>
     </section>
-    <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">
-        1.7 Disabled tree node
-      </h6>
-      <div class="demo">
-        <ui-tree
-          v-model="selectedValue6"
-          :data="treeData5"
-          :data-format="dataFormat"
-          :max-level="3"
-          auto-expand-all
-        >
-          <template #title="{ data }">
-            {{ data.title }}
-          </template>
-        </ui-tree>
-      </div>
-      <ui-snippet :code="$store.demos[7]"></ui-snippet>
-    </section>
   </docs-page>
 </template>
 
@@ -173,7 +154,10 @@ function dig(path = '0', level = 0) {
 export default {
   data() {
     return {
-      dataFormat: { label: 'title', value: 'key', 'disabled': 'disabled' },
+      dataFormat: {
+        label: 'title',
+        value: 'key'
+      },
       treeData1: [], // dig('0', 2),
       selectedValue1: '',
       treeData2: [], // dig('1', 2),
@@ -184,7 +168,6 @@ export default {
       defaultKeys: ['1', '1-2', '1-2-1'],
       selectedValue4: '1',
       selectedValue5: '1-1-1',
-      selectedValue6: '1-1',
       treeData4: [
         {
           title: 'node1',
@@ -204,7 +187,8 @@ export default {
                     }
                   ]
                 }
-              ]
+              ],
+              disabled: true
             },
             {
               title: 'node1-2',
@@ -216,20 +200,6 @@ export default {
                 }
               ]
             }
-          ]
-        }
-      ],
-      treeData5: [
-        {
-          title: 'node1',
-          key: '1',
-          disabled: true,
-          children: [
-            {
-              title: 'node1-1',
-              key: '1-1',
-              disabled: false,
-            },
           ]
         }
       ]

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[1874],{61874:function(e,s,u){e.exports=u.p+"asset/img/6.e0f7a437.jpg"}}]);

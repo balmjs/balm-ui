@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[1939],{21939:function(t,e,o){o.r(e);e.default='<pre><code class="language-html">&lt;ui-icon\n  v-tooltip=&quot;&#39;Share your content via social media&#39;&quot;\n  aria-describedby=&quot;tooltip-demo-1&quot;\n&gt;\n  share\n&lt;/ui-icon&gt;\n</code></pre> '}}]);

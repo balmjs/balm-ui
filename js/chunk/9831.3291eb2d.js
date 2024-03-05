@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[9831],{39831:function(e,t,l){l.r(t);t.default='<pre><code class="language-html">&lt;ui-textfield outlined&gt;\n  Your Name\n&lt;/ui-textfield&gt;\n</code></pre> '}}]);

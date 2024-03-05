@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[12],{50012:function(e,t,u){u.r(t);t.default='<pre><code class="language-html">&lt;ui-editor v-model=&quot;content&quot;&gt;&lt;/ui-editor&gt;\n</code></pre> '}}]);

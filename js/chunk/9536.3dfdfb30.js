@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[9536],{69536:function(e,i,t){t.r(i);i.default='<pre><code class="language-html">&lt;ui-divider&gt;&lt;/ui-divider&gt;\n\n&lt;ui-divider&gt;Text&lt;/ui-divider&gt;\n</code></pre> '}}]);

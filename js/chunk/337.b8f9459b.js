@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[337],{50337:function(t,l,e){e.r(l);l.default='<pre><code class="language-html">&lt;ui-button raised @click=&quot;$alert(&#39;Hello BalmJS&#39;)&quot;&gt;Show Alert&lt;/ui-button&gt;\n</code></pre> '}}]);

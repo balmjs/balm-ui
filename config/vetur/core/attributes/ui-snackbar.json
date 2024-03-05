@@ -9,7 +9,7 @@
   },
   "timeout-ms": {
     "type": "number",
-    "description": "The automatic dismiss timeout in milliseconds. Value must be between 4000 and 10000 or an error will be thrown."
+    "description": "The automatic dismiss timeout in milliseconds. Value must be between 4000 and 10000 (or -1 to disable the timeout completely)."
   },
   "message": {
     "type": "string",

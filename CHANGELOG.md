@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.66.0 / 2024-03-05
+
+### Features
+
+- `<ui-snackbar>`: update `timeoutMs` to support disabled
+
 ## v8.65.1 / 2023-12-15
 
 ### Bug Fixes

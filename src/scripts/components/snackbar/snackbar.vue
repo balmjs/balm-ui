@@ -38,7 +38,8 @@ const UI_SNACKBAR = {
   timeoutMs: {
     MIN: 4000,
     MAX: 10000,
-    DEFAULTS: 5000
+    DEFAULTS: 5000,
+    disabled: -1
   },
   position: {
     TOP: 'top',
@@ -145,9 +146,8 @@ export default {
   mounted() {
     this.$snackbar = new MDCSnackbar(this.$el);
 
-    if (this.timeoutMs !== UI_SNACKBAR.timeoutMs.DEFAULTS) {
-      this.setTimeoutMs(+this.timeoutMs);
-    }
+    this.setTimeoutMs(+this.timeoutMs);
+
     if (this.message) {
       this.$snackbar.labelText = this.message;
     }
@@ -160,8 +160,9 @@ export default {
   methods: {
     setTimeoutMs(val) {
       if (
-        val >= UI_SNACKBAR.timeoutMs.MIN &&
-        val <= UI_SNACKBAR.timeoutMs.MAX
+        (val >= UI_SNACKBAR.timeoutMs.MIN &&
+          val <= UI_SNACKBAR.timeoutMs.MAX) ||
+        val === UI_SNACKBAR.timeoutMs.disabled
       ) {
         this.$snackbar.timeoutMs = val;
       } else {

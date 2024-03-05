@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.27.0 / 2024-03-05
+
+### Features
+
+- `<ui-snackbar>`: update `timeoutMs` to support disabled
+
 ## v10.26.0 / 2024-02-07
 
 ### Features

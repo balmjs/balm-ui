@@ -4,16 +4,16 @@
 
 ### Props
 
-| Name                     | Type    | Default    | Description                                                                                                                                   | Version |
-| ------------------------ | ------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `actionType`             | number  | `0`        | Mandatory. Sets action button or dismiss icon for the snackbar. (`0`: action button, `1`: dismiss icon)                                       |         |
-| `modelValue` (`v-model`) | boolean | `false`    | Mandatory.                                                                                                                                    |         |
-| `timeoutMs`              | number  | `5000`     | Optional. The automatic dismiss timeout in milliseconds. Value must be between `4000` and `10000` or an error will be thrown.                 |         |
-| `message`                | string  | `''`       | Mandatory. Message text.                                                                                                                      |         |
-| `actionButtonText`       | string  | `''`       | Optional. The action button/icon elements, if present.                                                                                        |         |
-| `stacked`                | boolean | `false`    | Optional. Positions the action button/icon below the message instead of alongside it.                                                         |         |
-| `leading`                | boolean | `false`    | Optional. Positions the snackbar on the leading edge of the screen (left in LTR, right in RTL) instead of centered. (tablet and desktop only) |         |
-| `position`               | string  | `'bottom'` | Snackbar position.                                                                                                                            | 9.21.0  |
+| Name                     | Type    | Default    | Description                                                                                                                                    | Version |
+| ------------------------ | ------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `actionType`             | number  | `0`        | Mandatory. Sets action button or dismiss icon for the snackbar. (`0`: action button, `1`: dismiss icon)                                        |         |
+| `modelValue` (`v-model`) | boolean | `false`    | Mandatory.                                                                                                                                     |         |
+| `timeoutMs`              | number  | `5000`     | Optional. The automatic dismiss timeout in milliseconds. Value must be between `4000` and `10000` (or `-1` to disable the timeout completely). |         |
+| `message`                | string  | `''`       | Mandatory. Message text.                                                                                                                       |         |
+| `actionButtonText`       | string  | `''`       | Optional. The action button/icon elements, if present.                                                                                         |         |
+| `stacked`                | boolean | `false`    | Optional. Positions the action button/icon below the message instead of alongside it.                                                          |         |
+| `leading`                | boolean | `false`    | Optional. Positions the snackbar on the leading edge of the screen (left in LTR, right in RTL) instead of centered. (tablet and desktop only)  |         |
+| `position`               | string  | `'bottom'` | Snackbar position.                                                                                                                             | 9.21.0  |
 
 ```ts
 interface Snackbar {

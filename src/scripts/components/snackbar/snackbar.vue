@@ -35,7 +35,8 @@ const UI_SNACKBAR = {
   timeoutMs: {
     MIN: 4000,
     MAX: 10000,
-    DEFAULTS: 5000
+    DEFAULTS: 5000,
+    disabled: -1
   },
   position: {
     TOP: 'top',
@@ -162,9 +163,8 @@ watch(
 onMounted(() => {
   state.$snackbar = new MDCSnackbar(snackbar.value);
 
-  if (props.timeoutMs !== UI_SNACKBAR.timeoutMs.DEFAULTS) {
-    setTimeoutMs(+props.timeoutMs);
-  }
+  setTimeoutMs(+props.timeoutMs);
+
   if (props.message) {
     state.$snackbar.labelText = props.message;
   }
@@ -176,7 +176,10 @@ onMounted(() => {
 });
 
 function setTimeoutMs(val) {
-  if (val >= UI_SNACKBAR.timeoutMs.MIN && val <= UI_SNACKBAR.timeoutMs.MAX) {
+  if (
+    (val >= UI_SNACKBAR.timeoutMs.MIN && val <= UI_SNACKBAR.timeoutMs.MAX) ||
+    val === UI_SNACKBAR.timeoutMs.disabled
+  ) {
     state.$snackbar.timeoutMs = val;
   } else {
     console.warn(

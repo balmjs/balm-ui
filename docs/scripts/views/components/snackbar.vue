@@ -12,16 +12,22 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <ui-form class="demo-controls">
-        <label>Timeout: {{ timeout }}second</label>
         <ui-form-field>
-          <ui-slider
-            ref="slider"
-            v-model="timeout"
-            type="discrete"
-            min="4"
-            max="10"
-          ></ui-slider>
+          <ui-checkbox v-model="disabled"></ui-checkbox>
+          <label>Disabled Timeout</label>
         </ui-form-field>
+        <template v-if="!disabled">
+          <label>Timeout: {{ timeout }} seconds</label>
+          <ui-form-field>
+            <ui-slider
+              ref="slider"
+              v-model="timeout"
+              type="discrete"
+              min="4"
+              max="10"
+            ></ui-slider>
+          </ui-form-field>
+        </template>
         <ui-form-field>
           <ui-textfield v-model="message">Message Text</ui-textfield>
         </ui-form-field>
@@ -55,7 +61,7 @@
 
         <ui-snackbar
           v-model="open"
-          :timeout-ms="timeout * 1e3"
+          :timeout-ms="disabled ? -1 : timeout * 1e3"
           :message="message"
           :action-button-text="actionText"
           :action-type="actionType ? 1 : 0"
@@ -77,7 +83,8 @@ const state = reactive({
   message: 'Hello Snackbar',
   actionText: 'close',
   actionType: false,
-  position: 'bottom'
+  position: 'bottom',
+  disabled: false
 });
 
 export default {

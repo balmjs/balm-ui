@@ -244,6 +244,7 @@ class MdcTree {
       } else {
         subitem.checked = false;
         subitem.indeterminate = false;
+        this.setMultipleSelectedValue(treeData, nodeKey, subitem.checked);
       }
 
       if (!item.isRoot) {

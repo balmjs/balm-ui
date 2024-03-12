@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.66.1 / 2024-03-12
+
+### Bug Fixes
+
+- `<ui-tree>`: fix some bug for only unchecked child node
+
 ## v8.66.0 / 2024-03-05
 
 ### Features

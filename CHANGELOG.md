@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.27.1 / 2024-03-12
+
+### Bug Fixes
+
+- `<ui-tree>`: fix some bug for only unchecked child node
+
 ## v10.27.0 / 2024-03-05
 
 ### Features

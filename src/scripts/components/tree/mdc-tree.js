@@ -107,9 +107,27 @@ class MdcTree {
       if (hasChildren) {
         item.expanded = !item.expanded;
       } else {
-        let nodes = await treeData.loadData(item[dataFormat.value], item);
+        const nodes = await treeData.loadData(item[dataFormat.value], item);
         if (Array.isArray(nodes)) {
           this.addData(treeData, item, nodes);
+          // review parent node(s)
+          const allChecked = nodes.every((node) =>
+            treeData.selectedValue.includes(node[dataFormat.value])
+          );
+          const hasChecked = allChecked
+            ? true
+            : nodes.some((node) =>
+                treeData.selectedValue.includes(node[dataFormat.value])
+              );
+          if (hasChecked) {
+            if (allChecked || nodes.length === 1) {
+              const parentNodeKey = nodes[0][dataFormat.parentKey];
+              treeData.selectedValue.push(parentNodeKey);
+              item.checked = true;
+            } else {
+              item.indeterminate = true;
+            }
+          }
         } else {
           console.warn('[UiTree]', 'Invalid data');
         }

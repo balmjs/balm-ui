@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.28.0 / 2024-03-15
+
+### Features
+
+- `<ui-tree>`: add `dataFormat.parentKey` for parent node expansion
+
 ## v10.27.1 / 2024-03-12
 
 ### Bug Fixes

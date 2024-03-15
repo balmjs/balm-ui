@@ -21,7 +21,8 @@ const UI_TREE = {
     children: 'children',
     hasChildren: 'hasChildren',
     isLeaf: 'isLeaf',
-    disabled: 'disabled'
+    disabled: 'disabled',
+    parentKey: 'parentKey'
   },
   EVENT: {
     CHANGE: 'change',

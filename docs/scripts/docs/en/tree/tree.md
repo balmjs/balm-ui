@@ -26,7 +26,8 @@
     children: 'children',
     hasChildren: 'hasChildren',
     isLeaf: 'isLeaf',
-    disabled: 'disabled' // New in 8.43.0
+    disabled: 'disabled', // New in 8.43.0
+    parentKey: 'parentKey' // New in 8.67.0
   }
   ```
 

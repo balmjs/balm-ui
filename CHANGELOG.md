@@ -2,11 +2,11 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
-## v8.66.2 / 2024-03-15
+## v8.67.0 / 2024-03-15
 
-### Chore
+### Features
 
-- `<ui-tree>`: update onExpand for parent node(s)
+- `<ui-tree>`: add `dataFormat.parentKey` for parent node expansion
 
 ## v8.66.1 / 2024-03-12
 

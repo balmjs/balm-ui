@@ -2,14 +2,10 @@
 
 @use '@material/theme/theme-color' with (
   $primary: vars.$primary,
-  $on-primary: if(contrast-tone(vars.$primary) == 'dark', #000, #fff),
   $secondary: vars.$secondary,
-  $on-secondary: if(contrast-tone(vars.$secondary) == 'dark', #000, #fff),
   $background: #fff,
   $surface: vars.$surface,
-  $on-surface: if(contrast-tone(vars.$surface) == 'dark', #000, #fff),
   $error: vars.$error,
-  $on-error: if(contrast-tone(vars.$error) == 'dark', #000, #fff),
   $text-colors: (
     dark: (
       primary: rgba(black, 0.87),

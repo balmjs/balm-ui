@@ -154,7 +154,10 @@ function dig(path = '0', level = 0) {
 export default {
   data() {
     return {
-      dataFormat: { label: 'title', value: 'key' },
+      dataFormat: {
+        label: 'title',
+        value: 'key'
+      },
       treeData1: [], // dig('0', 2),
       selectedValue1: '',
       treeData2: [], // dig('1', 2),
@@ -184,7 +187,8 @@ export default {
                     }
                   ]
                 }
-              ]
+              ],
+              disabled: true
             },
             {
               title: 'node1-2',

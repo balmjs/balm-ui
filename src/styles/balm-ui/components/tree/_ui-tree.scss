@@ -50,4 +50,16 @@
 .mdc-tree-node__label {
   flex: 1;
   padding: tree-variables.$label-padding;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--disabled {
+    color: tree-variables.$disabled-color;
+
+    &:hover {
+      cursor: default;
+    }
+  }
 }

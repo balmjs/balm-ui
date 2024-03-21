@@ -108,9 +108,31 @@ class MdcTree {
       if (hasChildren) {
         item.expanded = !item.expanded;
       } else {
-        let nodes = await treeData.loadData(item[dataFormat.value], item);
+        const nodes = await treeData.loadData(item[dataFormat.value], item);
         if (Array.isArray(nodes)) {
           this.addData(treeData, item, nodes);
+          // review parent node
+          const allChecked = nodes.every((node) =>
+            treeData.selectedValue.includes(node[dataFormat.value])
+          );
+          const hasChecked = allChecked
+            ? true
+            : nodes.some((node) =>
+                treeData.selectedValue.includes(node[dataFormat.value])
+              );
+          if (hasChecked) {
+            if (allChecked || nodes.length === 1) {
+              const parentNodeKey = nodes[0][dataFormat.parentKey];
+              if (parentNodeKey) {
+                treeData.selectedValue.push(parentNodeKey);
+                item.checked = true;
+              } else {
+                console.warn('[UiTree]', 'Missing `parentKey`');
+              }
+            } else {
+              item.indeterminate = true;
+            }
+          }
         } else {
           console.warn('[UiTree]', 'Invalid data');
         }
@@ -244,6 +266,7 @@ class MdcTree {
       } else {
         subitem.checked = false;
         subitem.indeterminate = false;
+        this.setMultipleSelectedValue(treeData, nodeKey, subitem.checked);
       }
 
       if (!item.isRoot) {

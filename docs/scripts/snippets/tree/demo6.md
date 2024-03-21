@@ -34,7 +34,8 @@ export default {
                     }
                   ]
                 }
-              ]
+              ],
+              disabled: true
             },
             {
               title: 'node1-2',
@@ -49,7 +50,7 @@ export default {
           ]
         }
       ],
-      selectedValue: '1-1-1',
+      selectedValue: '1-1-1'
     };
   }
 };

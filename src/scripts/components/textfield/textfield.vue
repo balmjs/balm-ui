@@ -1,12 +1,23 @@
 <template>
   <!-- Container -->
   <div ref="textfield" :class="className.outer" @click="handleClick">
-    <div v-if="!isOutlined" class="mdc-text-field__ripple"></div>
+    <mdc-notched-outline v-if="isOutlined" :has-label="!noLabel">
+      <!-- Label text (empty/populated) -->
+      <mdc-floating-label :for="inputId">
+        <slot>{{ label }}</slot>
+      </mdc-floating-label>
+    </mdc-notched-outline>
+    <div v-else class="mdc-text-field__ripple"></div>
+
+    <!-- Label text (empty/populated) -->
+    <mdc-floating-label v-if="!noLabel && !isOutlined" :for="inputId">
+      <slot>{{ label }}</slot>
+    </mdc-floating-label>
 
     <!-- Leading icon (optional) -->
     <slot
       name="before"
-      :iconClass="[
+      :icon-class="[
         UI_TEXTFIELD_ICON.cssClasses.icon,
         UI_TEXTFIELD_ICON.cssClasses.leadingIcon
       ]"
@@ -94,24 +105,14 @@
     <!-- Trailing icon (optional) -->
     <slot
       name="after"
-      :iconClass="[
+      :icon-class="[
         UI_TEXTFIELD_ICON.cssClasses.icon,
         UI_TEXTFIELD_ICON.cssClasses.trailingIcon
       ]"
     ></slot>
 
-    <!-- Label text -->
-    <mdc-floating-label v-if="!noLabel && !isOutlined" :for="inputId">
-      <slot>{{ label }}</slot>
-    </mdc-floating-label>
-
-    <!-- Activation indicator -->
-    <mdc-notched-outline v-if="isOutlined" :has-label="!noLabel">
-      <mdc-floating-label :for="inputId">
-        <slot>{{ label }}</slot>
-      </mdc-floating-label>
-    </mdc-notched-outline>
-    <mdc-line-ripple v-else></mdc-line-ripple>
+    <!-- Active Indicator (focused/enabled) -->
+    <mdc-line-ripple v-if="!isOutlined"></mdc-line-ripple>
   </div>
 </template>
 
@@ -265,6 +266,7 @@ const isTextarea = computed(() => props.inputType === 'textarea');
 const isTextfieldPlus = computed(() =>
   UI_TEXTFIELD.PLUS_COMPONENTS.includes(parent.type.name)
 );
+const isDatepicker = computed(() => parent.type.name === 'UiDatepicker');
 const hasLeadingIcon = computed(
   () => !!(materialIcon.value || props.withLeadingIcon || hasBeforeSlot())
 );
@@ -329,9 +331,11 @@ onMounted(() => {
             );
         } catch (e) {}
 
-        setTimeout(() => {
-          state.$textField.foundation.deactivateFocus();
-        }, 1);
+        if (isDatepicker.value) {
+          setTimeout(() => {
+            state.$textField.foundation.deactivateFocus();
+          }, 1);
+        }
       }
     }
   );

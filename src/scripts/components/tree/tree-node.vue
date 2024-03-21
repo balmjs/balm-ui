@@ -71,6 +71,9 @@
 
         <label
           class="mdc-tree-node__label"
+          :class="{
+            'mdc-tree-node__label--disabled': nodeData.disabled
+          }"
           @click.prevent="
             treeData.multiple ? handleCheck(nodeData) : handleSelect(nodeData)
           "
@@ -129,14 +132,10 @@ function handleExpand(item) {
   MdcTree.onExpand(props.treeData, item);
 }
 function handleSelect(item) {
-  if (!item.disabled) {
-    MdcTree.onSelect(props.treeData, item);
-  }
+  !item.disabled && MdcTree.onSelect(props.treeData, item);
 }
 function handleCheck(item) {
-  if (!item.disabled) {
-    MdcTree.onCheck(props.treeData, item);
-  }
+  !item.disabled && MdcTree.onCheck(props.treeData, item);
 }
 function getData(item) {
   const { children, ...newItem } = item;

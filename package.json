@@ -58,7 +58,7 @@
   "dependencies": {
     "deepmerge": "^4.3.1",
     "flatpickr": "^4.6.13",
-    "material-components-web": "15.0.0-canary.819498d8c.0",
+    "material-components-web": "15.0.0-canary.453a6248a.0",
     "quill": "^1.3.7"
   },
   "devDependencies": {

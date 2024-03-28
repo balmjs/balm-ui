@@ -555,7 +555,7 @@ function handleScroll(e) {
     window.requestAnimationFrame(() => {
       const offsetLeft = e.target.scrollLeft;
 
-      if (state.offsetLeft != offsetLeft) {
+      if (state.offsetLeft !== offsetLeft) {
         state.offsetLeft = offsetLeft;
       }
 

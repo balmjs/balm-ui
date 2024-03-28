@@ -543,7 +543,7 @@ export default {
         window.requestAnimationFrame(() => {
           const offsetLeft = e.target.scrollLeft;
 
-          if (this.offsetLeft != offsetLeft) {
+          if (this.offsetLeft !== offsetLeft) {
             this.offsetLeft = offsetLeft;
           }
 

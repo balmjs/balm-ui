@@ -68,6 +68,11 @@ export default {
       return this.singleSelect ? 'radiogroup' : 'group';
     }
   },
+  watch: {
+    model(val) {
+      this.selectedValue = val;
+    }
+  },
   mounted() {
     try {
       this.init();
@@ -90,7 +95,7 @@ export default {
             this.selectedValue = [...new Set(this.selectedValue)];
           } else {
             this.selectedValue = this.selectedValue.filter(
-              (value) => value != currentIndex
+              (value) => value !== currentIndex
             );
           }
           this.selectedValue.sort((a, b) => a - b);

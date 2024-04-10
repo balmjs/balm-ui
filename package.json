@@ -97,7 +97,8 @@
     "webpack": "4"
   },
   "peerDependencies": {
-    "vue": ">=2.1.0"
+    "vue": ">=2.1.0",
+    "sass": "1.39.2"
   },
   "private": false
 }

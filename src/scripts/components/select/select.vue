@@ -201,7 +201,8 @@ export default {
       UI_SELECT,
       $select: null,
       currentOptions: [],
-      selectedValue: this.model
+      selectedValue: this.model,
+      canEmit: true
     };
   },
   computed: {
@@ -266,10 +267,12 @@ export default {
           ? this.currentOptions.length > 1
           : this.currentOptions.length;
 
-        if (hasOptions) {
+        if (this.canEmit && hasOptions) {
           const selected = this.getSelected(detail.index);
           this.$emit(UI_SELECT.EVENT.CHANGE, selected.value);
           this.$emit(UI_SELECT.EVENT.SELECTED, selected);
+        } else {
+          this.canEmit = true; // fix: set selectedIndex bug for init
         }
       });
     });
@@ -278,10 +281,10 @@ export default {
       this.$select.menu.quickOpen = true;
     }
 
-    this.init();
+    this.init(this.options, true);
   },
   methods: {
-    init(options = this.options) {
+    init(options, isInit = false) {
       // Set default option
       let currentOptions = [...options];
       if (this.defaultLabel) {
@@ -295,10 +298,10 @@ export default {
       // Set current option
       this.$nextTick(() => {
         this.$select.layoutOptions();
-        this.setCurrentOption();
+        this.setCurrentOption(isInit);
       });
     },
-    setCurrentOption() {
+    setCurrentOption(isInit) {
       let currentIndex = UI_SELECT.DEFAULT_SELECTED_INDEX + 1;
 
       for (
@@ -314,6 +317,7 @@ export default {
       }
 
       if (currentIndex > UI_SELECT.DEFAULT_SELECTED_INDEX) {
+        isInit && (this.canEmit = false);
         this.$select.selectedIndex = currentIndex;
       }
     },

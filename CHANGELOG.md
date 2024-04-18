@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.68.0 / 2024-04-18
+
+### Features
+
+- `<ui-table>`: add rowIndex for custom function/slot cell
+
+### Bug Fixes
+
+- `<ui-select>`: fix selectedIndex bug for init
+
 ## v8.67.1 / 2024-03-28
 
 ### Bug Fixes

@@ -2,11 +2,17 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.29.0 / 2024-05-24
+
+### Features
+
+- update `quill` to 2.x
+
 ## v10.28.3 / 2024-05-24
 
 ### Bug Fixes
 
-- fix: `<ui-form-field>` height css bug
+- `<ui-form-field>`: fix height css bug
 
 ## v10.28.1 / 2024-03-28
 

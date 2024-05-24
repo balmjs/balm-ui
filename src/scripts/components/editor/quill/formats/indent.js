@@ -14,7 +14,7 @@ function useIndent() {
     whitelist: defaultIndent
   };
 
-  class IdentAttributor extends Parchment.Attributor.Style {
+  class IdentAttributor extends Parchment.Attributor {
     add(node, value) {
       if (value === '+1' || value === '-1') {
         let indent = this.value(node) || 0;

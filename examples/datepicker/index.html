@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BalmUI - datepicker example</title>
+  <link rel="stylesheet" href="/components/core.css">
+  <link rel="stylesheet" href="/components/textfield/textfield.css">
+  <link rel="stylesheet" href="/components/picker/picker.css">
+  <link rel="stylesheet" href="/components/datepicker/datepicker.css">
+</head>
+<body>
+  <div id="app">
+    <ui-datepicker
+      v-model="date"
+      :config="config"
+      placeholder="Select Date.."
+      toggle
+      clear
+    ></ui-datepicker>
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/flatpickr"></script>
+  <script src="/components/datepicker/index.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          config: {
+            defaultDate: 'today'
+          },
+          date: ''
+        };
+      }
+    });
+
+    app.use(UiDatepicker);
+
+    app.mount('#app');
+  </script>
+</body>
+</html>

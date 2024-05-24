@@ -46,6 +46,7 @@
               v-if="tbodyCellData[T_CELL.SLOT]"
               :name="tbodyCellData[T_CELL.SLOT]"
               :data="currentData[tbodyRowIndex]"
+              :index="tbodyRowIndex"
             ></slot>
             <template v-else>{{ tbodyCellData[T_CELL.VALUE] }}</template>
           </template>

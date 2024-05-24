@@ -102,9 +102,9 @@ export default {
           if (tbodyCellData[this.T_CELL.SLOT]) {
             cell[this.T_CELL.SLOT] = tbodyCellData[this.T_CELL.SLOT];
           } else {
-            let customFn = tbodyCellData[this.T_CELL.FUNCTION];
+            const customFn = tbodyCellData[this.T_CELL.FUNCTION];
             cell[this.T_CELL.VALUE] = this.isFunction(customFn)
-              ? customFn(tbodyRowData)
+              ? customFn(tbodyRowData, tbodyRowIndex)
               : tbodyRowData[field];
           }
 

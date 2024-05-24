@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.28.3 / 2024-05-24
+
+### Bug Fixes
+
+- fix: `<ui-form-field>` height css bug
+
 ## v10.28.1 / 2024-03-28
 
 ### Bug Fixes

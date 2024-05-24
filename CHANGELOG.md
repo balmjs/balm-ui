@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.68.1 / 2024-05-24
+
+### Bug Fixes
+
+- fix: `<ui-form-field>` height css bug
+
 ## v8.68.0 / 2024-04-18
 
 ### Features

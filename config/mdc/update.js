@@ -6,7 +6,7 @@ const $replace = require('gulp-replace');
 // https://fonts.google.com/icons?icon.set=Material+Icons
 // updated: 2023.04.06
 const LATEST_VERSIONS = {
-  filled: 140,
+  filled: 142,
   outlined: 109,
   round: 108,
   twoTone: 112,

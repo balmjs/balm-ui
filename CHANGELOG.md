@@ -2,11 +2,11 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
-## v8.68.2 / 2024-05-30
+## v8.69.0 / 2024-05-30
 
-### Chore
+### Features
 
-- `<ui-tree>`: add disabled class for node label
+- `<ui-tree>`: add sass variable `$disabled-color`
 
 ## v8.68.1 / 2024-05-24
 

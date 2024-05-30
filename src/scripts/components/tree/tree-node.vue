@@ -70,7 +70,10 @@
         </div>
 
         <label
-          class="mdc-tree-node__label"
+          :class="{
+            'mdc-tree-node__label': true,
+            'mdc-tree-node__label--disabled': nodeData.disabled
+          }"
           @click.prevent="
             treeData.multiple ? handleCheck(nodeData) : handleSelect(nodeData)
           "

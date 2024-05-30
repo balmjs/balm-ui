@@ -2,11 +2,17 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.68.2 / 2024-05-30
+
+### Chore
+
+- `<ui-tree>`: add disabled class for node label
+
 ## v8.68.1 / 2024-05-24
 
 ### Bug Fixes
 
-- fix: `<ui-form-field>` height css bug
+- `<ui-form-field>`: fix height css bug
 
 ## v8.68.0 / 2024-04-18
 

@@ -2,6 +2,7 @@ const menu = [
   'button',
   'card',
   'checkbox',
+  'datepicker',
   'dialog',
   'drawer',
   'editor',

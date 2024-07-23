@@ -31,7 +31,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, reactive, toRefs, computed, onMounted } from 'vue';
+import { ref, reactive, toRefs, computed, watch, onMounted } from 'vue';
 import { MDCSegmentedButton } from '../../../material-components-web/segmented-button';
 import { events } from '../../../material-components-web/segmented-button/segmented-button/constants';
 import UiSegmentedButton from './segmented-button.vue';
@@ -70,6 +70,13 @@ const className = computed(() => ({
 }));
 const role = computed(() => (props.singleSelect ? 'radiogroup' : 'group'));
 
+watch(
+  () => props.modelValue,
+  (val) => {
+    state.selectedValue = val;
+  }
+);
+
 function init(el) {
   const $segmentedButton = new MDCSegmentedButton(el);
 
@@ -84,7 +91,7 @@ function init(el) {
         currentValue.push(currentIndex);
         currentValue = [...new Set(currentValue)];
       } else {
-        currentValue = currentValue.filter((value) => value != currentIndex);
+        currentValue = currentValue.filter((value) => value !== currentIndex);
       }
       currentValue.sort((a, b) => a - b);
     }

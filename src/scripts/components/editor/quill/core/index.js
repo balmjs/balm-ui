@@ -1,3 +1,4 @@
+import Quill from 'quill';
 import { setEditor } from './quill';
 import Emotion from '../extensions/emoji/emotion';
 import useEmoji from '../extensions/emoji';
@@ -12,7 +13,6 @@ function createEditor(
   editorEl,
   { toolbarIcons, toolbarTips, toolbarOptions, options, emotions, extension }
 ) {
-  const Quill = require('quill');
   const toolbarHandlers = options.modules.toolbar.handlers;
   setEditor({
     Quill,

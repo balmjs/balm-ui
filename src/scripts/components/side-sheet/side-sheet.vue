@@ -30,6 +30,7 @@
 
 <script>
 import MdcIconButton from '../icon-button/mdc-icon-button.vue';
+import { lockScroll, unlockScroll } from '../../mixins/scroll-lock';
 
 // Define side sheet constants
 const UI_SIDE_SHEET = {
@@ -77,6 +78,11 @@ export default {
     },
     hasActions() {
       return this.$slots.actions;
+    }
+  },
+  watch: {
+    open(val) {
+      val ? lockScroll() : unlockScroll();
     }
   },
   methods: {

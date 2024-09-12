@@ -28,11 +28,11 @@
 </template>
 
 <script>
-import stateTypeMixins from '../../mixins/state-type';
+import stateTypeMixin from '../../mixins/state-type';
 
 export default {
   name: 'UiAlert',
-  mixins: [stateTypeMixins],
+  mixins: [stateTypeMixin],
   props: {
     // UI attributes
     state: {

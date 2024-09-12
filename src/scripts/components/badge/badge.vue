@@ -19,11 +19,11 @@
 </template>
 
 <script>
-import stateTypeMixins from '../../mixins/state-type';
+import stateTypeMixin from '../../mixins/state-type';
 
 export default {
   name: 'UiBadge',
-  mixins: [stateTypeMixins],
+  mixins: [stateTypeMixin],
   props: {
     // States
     count: {

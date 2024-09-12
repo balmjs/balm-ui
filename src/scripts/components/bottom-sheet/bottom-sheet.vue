@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { lockScroll, unlockScroll } from '../../mixins/scroll-lock';
+
 // Define bottom sheet constants
 const UI_BOTTOM_SHEET = {
   EVENT: {
@@ -42,6 +44,11 @@ export default {
         'mdc-bottom-sheet--open': this.open,
         'mdc-bottom-sheet--closing': this.closing
       };
+    }
+  },
+  watch: {
+    open(val) {
+      val ? lockScroll() : unlockScroll();
     }
   },
   methods: {

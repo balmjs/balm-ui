@@ -45,8 +45,9 @@ export default {
 </script>
 
 <script setup>
-import { reactive, computed, useSlots } from 'vue';
+import { reactive, computed, watch, useSlots } from 'vue';
 import MdcIconButton from '../icon-button/mdc-icon-button.vue';
+import { lockScroll, unlockScroll } from '../../mixins/scroll-lock';
 
 const props = defineProps({
   // States
@@ -75,6 +76,13 @@ const className = computed(() => ({
 }));
 const hasHeader = computed(() => slots.title || props.closable);
 const hasActions = computed(() => slots.actions);
+
+watch(
+  () => props.modelValue,
+  (val) => {
+    val ? lockScroll() : unlockScroll();
+  }
+);
 
 function handleClose() {
   state.closing = true;

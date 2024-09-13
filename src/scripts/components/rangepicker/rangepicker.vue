@@ -139,6 +139,7 @@ onBeforeUnmount(destroyPicker);
 
 function setPickerConfig(startInput, startInputEl, endInputEl) {
   let config = Object.assign({}, props.config, {
+    altInput: false,
     disableMobile: true, // Mobile Support
     plugins: props.disableRangePlugin
       ? []

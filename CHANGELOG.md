@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.30.0 / 2024-09-13
+
+### Chore
+
+- optimize scroll lock
+
 ## v10.29.0 / 2024-05-24
 
 ### Features

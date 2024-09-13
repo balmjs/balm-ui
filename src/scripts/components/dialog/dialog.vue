@@ -55,11 +55,9 @@ import {
   nextTick
 } from 'vue';
 import { MDCDialog } from '../../../material-components-web/dialog';
-import {
-  strings,
-  cssClasses
-} from '../../../material-components-web/dialog/constants';
+import { strings } from '../../../material-components-web/dialog/constants';
 import MdcIconButton from '../icon-button/mdc-icon-button.vue';
+import { unlockScroll } from '../../mixins/scroll-lock';
 
 const props = defineProps({
   // States
@@ -134,6 +132,7 @@ onMounted(() => {
     // Accessibility: Using `aria-hidden` as a fallback for `aria-modal`
     state.$dialog.listen(strings.OPENED_EVENT, () => {
       state.dialogBody.setAttribute('aria-hidden', 'true');
+      props.noScrim && unlockScroll();
     });
     state.$dialog.listen(strings.CLOSING_EVENT, ({ detail }) => {
       state.dialogBody.removeAttribute('aria-hidden');
@@ -171,10 +170,6 @@ onMounted(() => {
     }
   );
 });
-
-onBeforeUnmount(() =>
-  document.querySelector('body').classList.remove(cssClasses.SCROLL_LOCK)
-); // NOTE: for conditional rendering
 
 function handleClose(forceQuit = false) {
   if (forceQuit || props.closable) {

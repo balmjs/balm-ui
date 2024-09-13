@@ -26,7 +26,8 @@ export default {
 </script>
 
 <script setup>
-import { reactive, computed } from 'vue';
+import { reactive, computed, watch } from 'vue';
+import { lockScroll, unlockScroll } from '../../mixins/scroll-lock';
 
 const props = defineProps({
   // States
@@ -47,6 +48,13 @@ const className = computed(() => ({
   'mdc-bottom-sheet--open': props.modelValue,
   'mdc-bottom-sheet--closing': state.closing
 }));
+
+watch(
+  () => props.modelValue,
+  (val) => {
+    val ? lockScroll() : unlockScroll();
+  }
+);
 
 function handleClose() {
   state.closing = true;

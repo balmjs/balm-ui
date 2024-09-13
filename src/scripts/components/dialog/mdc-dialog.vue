@@ -50,6 +50,7 @@ export default {
 <script setup>
 import { reactive, computed, watch, onBeforeMount } from 'vue';
 import { useStateType } from '../../mixins/state-type';
+import { lockScroll, unlockScroll } from '../../mixins/scroll-lock';
 
 const props = defineProps({
   // States
@@ -86,6 +87,7 @@ watch(
   () => props.open,
   (val) => {
     if (val) {
+      lockScroll();
       // animation
       setTimeout(() => {
         state.opened = true;
@@ -97,6 +99,7 @@ watch(
       // reset
       state.opening = true;
       state.opened = false;
+      unlockScroll();
     }
   }
 );

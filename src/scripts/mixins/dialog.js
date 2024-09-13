@@ -1,5 +1,6 @@
 import { reactive, toRefs, onMounted, onBeforeUnmount, nextTick } from 'vue';
 import { removeModel } from '../utils/modal';
+import { unlockScroll } from './scroll-lock';
 
 const alertDialogId = 'balmui-alert-dialog';
 
@@ -15,6 +16,7 @@ function useDialog({ app, el, constants, options, done, callback }) {
 
   function handleClose() {
     state.open = false;
+    unlockScroll();
 
     app.unmount(`#${constants.id}`);
   }

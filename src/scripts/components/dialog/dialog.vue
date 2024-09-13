@@ -25,10 +25,8 @@
 
 <script>
 import { MDCDialog } from '../../../material-components-web/dialog';
-import {
-  strings,
-  cssClasses
-} from '../../../material-components-web/dialog/constants';
+import { strings } from '../../../material-components-web/dialog/constants';
+import { unlockScroll } from '../../mixins/scroll-lock';
 
 // Define dialog constants
 const UI_DIALOG = {
@@ -124,6 +122,7 @@ export default {
       // Accessibility: Using `aria-hidden` as a fallback for `aria-modal`
       this.$dialog.listen(strings.OPENED_EVENT, () => {
         this.dialogBody.setAttribute('aria-hidden', 'true');
+        this.noScrim && unlockScroll();
       });
       this.$dialog.listen(strings.CLOSING_EVENT, ({ detail }) => {
         this.dialogBody.removeAttribute('aria-hidden');
@@ -150,10 +149,6 @@ export default {
         this.$dialog.escapeKeyAction = '';
       }
     });
-  },
-  beforeDestroy() {
-    // NOTE: for conditional rendering
-    document.querySelector('body').classList.remove(cssClasses.SCROLL_LOCK);
   },
   methods: {
     handleClose(forceQuit = false) {

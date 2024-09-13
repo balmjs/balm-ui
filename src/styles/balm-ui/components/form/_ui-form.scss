@@ -91,6 +91,7 @@
     align-items: flex-start;
 
     > label {
+      flex-basis: unset;
       margin-bottom: form-variables.$vertical-form-item-label-margin-bottom;
     }
   }

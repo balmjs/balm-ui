@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.70.0 / 2024-09-12
+
+### Chore
+
+- optimize scroll lock
+
 ## v8.69.0 / 2024-05-30
 
 ### Features

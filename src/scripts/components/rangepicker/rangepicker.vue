@@ -133,6 +133,7 @@ export default {
   methods: {
     setPickerConfig(startInput, startInputEl, endInputEl) {
       let config = Object.assign({}, this.config, {
+        altInput: false,
         disableMobile: true, // Mobile Support
         plugins: this.disableRangePlugin
           ? []

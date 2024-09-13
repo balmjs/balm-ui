@@ -29,12 +29,13 @@
 </template>
 
 <script>
-import stateTypeMixins from '../../mixins/state-type';
+import stateTypeMixin from '../../mixins/state-type';
+import { lockScroll, unlockScroll } from '../../mixins/scroll-lock';
 
 // For $alert/$confirm
 export default {
   name: 'MdcDialog',
-  mixins: [stateTypeMixins],
+  mixins: [stateTypeMixin],
   props: {
     // States
     open: {
@@ -70,12 +71,15 @@ export default {
   watch: {
     open(val) {
       if (val) {
+        lockScroll();
         setTimeout(() => {
           this.opened = true;
           setTimeout(() => {
             this.opening = false;
           }, 150);
         }, 150);
+      } else {
+        unlockScroll();
       }
     }
   },

@@ -2,7 +2,8 @@
   $icon-size: 24px,
   $height: 48px,
   $stacked-height: 72px,
-  $min-width: 90px, // New in 8.14.0
+  $min-width: 90px,
+  // New in 8.14.0
   $horizontal-padding: 24px,
   $text-label-opacity: 0.6,
   $icon-opacity: 0.54,
@@ -46,3 +47,5 @@
   //   ),
   // )
 );
+
+$tab-height: tab-variables.$height;

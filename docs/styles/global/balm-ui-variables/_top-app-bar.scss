@@ -1,4 +1,4 @@
-@use '@material/top-app-bar' with (
+@use '@material/top-app-bar' as top-app-bar-variables with (
   // Default styles
   $row-height: 64px,
   $title-left-padding: 20px,
@@ -31,3 +31,7 @@
   // Dense & Prominent styles
   $dense-prominent-title-bottom-padding: 9px
 );
+
+$mobile-breakpoint: top-app-bar-variables.$mobile-breakpoint;
+$topAppBar-row-height: top-app-bar-variables.$row-height;
+$topAppBar-mobile-row-height: top-app-bar-variables.$mobile-row-height;

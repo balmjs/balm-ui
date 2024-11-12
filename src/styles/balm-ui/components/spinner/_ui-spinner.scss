@@ -1,3 +1,4 @@
+@use 'sass:list';
 @use './variables' as spinner-variables;
 
 .mdc-circular-progress__spinner-layer {
@@ -9,7 +10,7 @@
 }
 
 @each $color in spinner-variables.$fourColors {
-  .mdc-circular-progress__color-#{index(spinner-variables.$fourColors, $color)} {
+  .mdc-circular-progress__color-#{list.index(spinner-variables.$fourColors, $color)} {
     .mdc-circular-progress__indeterminate-circle-graphic {
       stroke: $color;
     }

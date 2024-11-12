@@ -34,7 +34,7 @@
 @each $destination in navigation-bar-variables.$destinations {
   .mdc-navigation-bar--dest-#{$destination} {
     .mdc-tab {
-      width: percentage(math.div($destination, 100));
+      width: math.percentage(math.div($destination, 100));
       overflow: hidden;
     }
   }

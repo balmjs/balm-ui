@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use './variables' as skeleton-variables;
 @use './mixins' as skeleton-mixins;
 
@@ -18,18 +19,18 @@
   }
 
   @include skeleton-mixins.avatar-size(
-    map-get(skeleton-variables.$avatar, 'base')
+    map.get(skeleton-variables.$avatar, 'base')
   );
 
   &.mdc-skeleton-avatar--large {
     @include skeleton-mixins.avatar-size(
-      map-get(skeleton-variables.$avatar, 'large')
+      map.get(skeleton-variables.$avatar, 'large')
     );
   }
 
   &.mdc-skeleton-avatar--small {
     @include skeleton-mixins.avatar-size(
-      map-get(skeleton-variables.$avatar, 'small')
+      map.get(skeleton-variables.$avatar, 'small')
     );
   }
 }

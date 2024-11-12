@@ -13,7 +13,7 @@ module.exports = function (api) {
   return {
     presets: [['@babel/preset-env', envOptions]],
     plugins: [
-      '@babel/plugin-proposal-optional-chaining',
+      '@babel/plugin-transform-optional-chaining',
       ['@babel/plugin-transform-runtime', runtimeOptions],
       [
         'prismjs',

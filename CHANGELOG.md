@@ -2,6 +2,12 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.31.0 / 2024-11-12
+
+### Chore
+
+- optimize sass code
+
 ## v10.30.0 / 2024-09-13
 
 ### Chore

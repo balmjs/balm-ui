@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use '@material/tab/mixins' as tab-mixins;
 @use '@material/tab-indicator/mixins' as tab-indicator-mixins;
 @use '@material/ripple/mixins' as ripple-mixins;
@@ -58,7 +59,11 @@
 }
 @for $i from 1 through 34 {
   .demo-cube:nth-child(#{$i}) {
-    background-color: rgb(10 + random(230), 10 + random(230), 10 + random(230));
+    background-color: rgb(
+      10 + math.random(230),
+      10 + math.random(230),
+      10 + math.random(230)
+    );
   }
 }
 .demo-controller {

@@ -16,13 +16,13 @@
 @use './fab';
 @use './icon-button';
 
-@use './top-app-bar';
-@use './grid';
+@forward './top-app-bar';
+@forward './grid';
 @use './form';
 @use './divider';
 
 @use './drawer';
-@use './tabs';
+@forward './tabs';
 @use './menu';
 @use './pagination';
 

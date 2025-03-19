@@ -111,6 +111,10 @@ export default {
         this.updateInitialValue();
       } else if (hasOneOldValue && !hasTwoNewValue) {
         this.clear();
+      } else {
+        if (val[0] !== oldVal[0] || val[1] !== oldVal[1]) {
+          this.updateInputs(val);
+        }
       }
     }
   },

@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.70.1 / 2025-03-19
+
+### Bug Fixes
+
+- `<ui-rangepicker>`: fix watcher bug
+
 ## v8.70.0 / 2024-09-12
 
 ### Chore

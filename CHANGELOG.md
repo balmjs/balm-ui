@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.70.2 / 2025-03-20
+
+### Chore
+
+- `<ui-editor>`: optimize upload image (`accept="image/*"`)
+
 ## v8.70.1 / 2025-03-19
 
 ### Bug Fixes

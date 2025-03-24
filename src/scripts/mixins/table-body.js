@@ -55,7 +55,8 @@ export default {
         {
           'mdc-data-table__cell': true,
           'mdc-data-table__cell--numeric': data[this.T_CELL.NUMBER],
-          'mdc-data-table__cell--checkbox': data[this.T_CELL.CHECKBOX]
+          'mdc-data-table__cell--checkbox': data[this.T_CELL.CHECKBOX],
+          'mdc-data-table__cell--fixed': data[this.T_CELL.FIXED]
         }
       ];
 

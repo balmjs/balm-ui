@@ -88,7 +88,8 @@ export default {
             data.sort === UI_TABLE.SORTING.DESC,
           'mdc-data-table__header-cell--sorted-descending':
             data.sort === UI_TABLE.SORTING.DESC,
-          'mdc-data-table__header-cell--scrollbar': data.scrollbar
+          'mdc-data-table__header-cell--scrollbar': data.scrollbar,
+          'mdc-data-table__header-cell--fixed': data[this.T_CELL.FIXED]
         }
       ];
 
@@ -112,6 +113,7 @@ export default {
         // Set fixed
         const cellIndex = this.rowCheckbox ? index + 1 : index;
         if (this.cellStyle[cellIndex]) {
+          cell[this.T_CELL.FIXED] = true;
           cell[this.T_CELL.STYLE] = this.cellStyle[cellIndex];
         }
       } else {

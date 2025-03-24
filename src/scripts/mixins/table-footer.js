@@ -52,7 +52,10 @@ export default {
   },
   methods: {
     tfootCellClassName(data) {
-      let className = ['mdc-data-table__cell'];
+      let className = [
+        'mdc-data-table__cell',
+        { 'mdc-data-table__cell--fixed': data[this.T_CELL.FIXED] }
+      ];
 
       className = this.setTextAlignClassName(className, data);
       className = this.setCustomClassName(className, data);
@@ -121,6 +124,7 @@ export default {
         // Set fixed
         const cellIndex = this.rowCheckbox ? index + 1 : index;
         if (this.cellStyle[cellIndex]) {
+          cell[this.T_CELL.FIXED] = true;
           cell[this.T_CELL.STYLE] = this.cellStyle[cellIndex];
         }
       }

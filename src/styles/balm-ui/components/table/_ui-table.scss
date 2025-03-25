@@ -56,7 +56,9 @@
   .mdc-data-table__cell {
     background-color: white;
     z-index: 1; // FIX: for inner data input components
-    padding: 16px; // FIX: sticky bug for chrome
+    // FIX: sticky bug for chrome
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 }
 

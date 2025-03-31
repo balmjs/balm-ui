@@ -21,12 +21,10 @@
           <mdc-checkbox
             v-if="theadCellData[T_CELL.CHECKBOX]"
             ref="checkbox"
-            :class="[
-              'mdc-data-table__header-row-checkbox',
-              {
-                'mdc-checkbox--selected': selectedRows.length
-              }
-            ]"
+            :class="{
+              'mdc-data-table__header-row-checkbox': true,
+              'mdc-checkbox--selected': selectedRows.length
+            }"
           ></mdc-checkbox>
           <template v-else>
             <!-- With sort button -->

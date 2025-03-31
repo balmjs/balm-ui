@@ -7,16 +7,18 @@
   width: 100%;
 }
 
-.mdc-data-table__cell--left {
-  text-align: left;
-}
+.mdc-data-table__cell {
+  &--left {
+    text-align: left;
+  }
 
-.mdc-data-table__cell--center {
-  text-align: center;
-}
+  &--center {
+    text-align: center;
+  }
 
-.mdc-data-table__cell--right {
-  text-align: right;
+  &--right {
+    text-align: right;
+  }
 }
 
 .mdc-data-table__footer-row {
@@ -54,6 +56,9 @@
   .mdc-data-table__cell {
     background-color: white;
     z-index: 1; // FIX: for inner data input components
+    // FIX: sticky bug for chrome
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 }
 

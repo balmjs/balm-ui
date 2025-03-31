@@ -4,13 +4,11 @@
     <tr
       v-for="(tbodyRowData, tbodyRowIndex) in tbodyData"
       :key="`tbody-row-${tbodyRowIndex}`"
-      :class="[
-        'mdc-data-table__row',
-        {
-          'mdc-data-table__row--selected':
-            tbodyRowData[0] && tbodyRowData[0][T_CELL.SELECTED]
-        }
-      ]"
+      :class="{
+        'mdc-data-table__row': true,
+        'mdc-data-table__row--selected':
+          tbodyRowData[0] && tbodyRowData[0][T_CELL.SELECTED]
+      }"
       :data-row-id="tbodyRowData[0] ? tbodyRowData[0][T_CELL.ROW_ID] : null"
       :aria-selected="
         tbodyRowData[0] && tbodyRowData[0][T_CELL.CHECKBOX]
@@ -27,12 +25,10 @@
           <!-- Row checkboxes -->
           <mdc-checkbox
             v-if="tbodyCellData[T_CELL.CHECKBOX]"
-            :class="[
-              'mdc-data-table__row-checkbox',
-              {
-                'mdc-checkbox--selected': tbodyCellData[T_CELL.SELECTED]
-              }
-            ]"
+            :class="{
+              'mdc-data-table__row-checkbox': true,
+              'mdc-checkbox--selected': tbodyCellData[T_CELL.SELECTED]
+            }"
             :checked="tbodyCellData[T_CELL.SELECTED]"
             :disabled="
               isFunction(rowCheckboxDisabled)

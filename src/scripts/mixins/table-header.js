@@ -45,7 +45,8 @@ function theadCellClassName(data) {
         data.sort === UI_TABLE.SORTING.DESC,
       'mdc-data-table__header-cell--sorted-descending':
         data.sort === UI_TABLE.SORTING.DESC,
-      'mdc-data-table__header-cell--scrollbar': data.scrollbar
+      'mdc-data-table__header-cell--scrollbar': data.scrollbar,
+      'mdc-data-table__header-cell--fixed': data[UI_TABLE.CELL.FIXED]
     }
   ];
 
@@ -85,6 +86,7 @@ function useTableHeader(elementRef, props) {
       // Set fixed
       const cellIndex = props.rowCheckbox ? index + 1 : index;
       if (props.cellStyle[cellIndex]) {
+        cell[UI_TABLE.CELL.FIXED] = true;
         cell[UI_TABLE.CELL.STYLE] = props.cellStyle[cellIndex];
       }
     } else {

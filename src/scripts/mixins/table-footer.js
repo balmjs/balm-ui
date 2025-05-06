@@ -22,7 +22,10 @@ const tableFooterProps = {
 };
 
 function tfootCellClassName(data) {
-  let className = ['mdc-data-table__cell'];
+  let className = [
+    'mdc-data-table__cell',
+    { 'mdc-data-table__cell--fixed': data[UI_TABLE.CELL.FIXED] }
+  ];
 
   className = setTextAlignClassName(className, data);
   className = setCustomClassName(className, data);
@@ -93,6 +96,7 @@ function useTableFooter(props) {
       // Set fixed
       const cellIndex = props.rowCheckbox ? index + 1 : index;
       if (props.cellStyle[cellIndex]) {
+        cell[UI_TABLE.CELL.FIXED] = true;
         cell[UI_TABLE.CELL.STYLE] = props.cellStyle[cellIndex];
       }
     }

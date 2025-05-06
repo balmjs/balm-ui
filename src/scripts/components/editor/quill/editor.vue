@@ -12,6 +12,7 @@
       v-if="customImageHandler"
       ref="file"
       type="file"
+      accept="image/*"
       hidden
       @change="handleChange"
     />

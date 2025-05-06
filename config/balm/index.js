@@ -129,7 +129,12 @@ function getConfig(balm) {
               amd: 'vue'
             },
             flatpickr: 'flatpickr',
-            quill: 'Quill'
+            quill: {
+              root: 'Quill',
+              commonjs: 'quill',
+              commonjs2: 'quill',
+              amd: 'quill'
+            }
           }
         : {},
       webpackOptions: useBuild

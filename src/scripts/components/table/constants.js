@@ -24,6 +24,7 @@ export default {
     FIELD: 'field',
     FUNCTION: 'fn',
     SLOT: 'slot',
+    FIXED: 'fixed',
     // tfoot config
     FUNCTION_NAME: 'fnName' // For AGG
   },

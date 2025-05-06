@@ -4,13 +4,11 @@
     <tr
       v-for="(tbodyRowData, tbodyRowIndex) in tbodyData"
       :key="`tbody-row-${tbodyRowIndex}`"
-      :class="[
-        'mdc-data-table__row',
-        {
-          'mdc-data-table__row--selected':
-            tbodyRowData[0] && tbodyRowData[0][UI_TABLE.CELL.SELECTED]
-        }
-      ]"
+      :class="{
+        'mdc-data-table__row': true,
+        'mdc-data-table__row--selected':
+          tbodyRowData[0] && tbodyRowData[0][UI_TABLE.CELL.SELECTED]
+      }"
       :data-row-id="
         tbodyRowData[0] ? tbodyRowData[0][UI_TABLE.CELL.ROW_ID] : null
       "
@@ -29,12 +27,10 @@
         <!-- Row checkboxes -->
         <mdc-checkbox
           v-if="tbodyCellData[UI_TABLE.CELL.CHECKBOX]"
-          :class="[
-            'mdc-data-table__row-checkbox',
-            {
-              'mdc-checkbox--selected': tbodyCellData[UI_TABLE.CELL.SELECTED]
-            }
-          ]"
+          :class="{
+            'mdc-data-table__row-checkbox': true,
+            'mdc-checkbox--selected': tbodyCellData[UI_TABLE.CELL.SELECTED]
+          }"
           :checked="tbodyCellData[UI_TABLE.CELL.SELECTED]"
           :disabled="
             getType(rowCheckboxDisabled) === 'function'

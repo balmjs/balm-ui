@@ -130,6 +130,10 @@ onMounted(() => {
         updateInitialValue();
       } else if (hasOneOldValue && !hasTwoNewValue) {
         clear();
+      } else {
+        if (val[0] !== oldVal[0] || val[1] !== oldVal[1]) {
+          updateInputs(val);
+        }
       }
     }
   );

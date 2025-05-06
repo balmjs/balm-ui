@@ -2,6 +2,16 @@
 
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v10.31.1 / 2025-05-06
+
+### Chore
+
+- `<ui-editor>`: optimize upload image (`accept="image/*"`)
+
+### Bug Fixes
+
+- `<ui-rangepicker>`: fix watcher bug
+
 ## v10.31.0 / 2024-11-12
 
 ### Chore

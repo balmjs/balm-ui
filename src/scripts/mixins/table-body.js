@@ -48,7 +48,8 @@ function cellClassName(data) {
     {
       'mdc-data-table__cell': true,
       'mdc-data-table__cell--numeric': data[UI_TABLE.CELL.NUMBER],
-      'mdc-data-table__cell--checkbox': data[UI_TABLE.CELL.CHECKBOX]
+      'mdc-data-table__cell--checkbox': data[UI_TABLE.CELL.CHECKBOX],
+      'mdc-data-table__cell--fixed': data[UI_TABLE.CELL.FIXED]
     }
   ];
 

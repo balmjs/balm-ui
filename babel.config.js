@@ -2,8 +2,8 @@ module.exports = function (api) {
   let envOptions = api.env('production')
     ? {
         modules: false,
-        useBuiltIns: 'entry',
-        corejs: { version: '3.38', proposals: true }
+        useBuiltIns: 'usage',
+        corejs: { version: '3.39', proposals: true }
       }
     : {
         modules: false

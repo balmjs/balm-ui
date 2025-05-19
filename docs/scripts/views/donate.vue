@@ -49,6 +49,13 @@
           </a>
         </li>
       </ul>
+
+      <h6 :class="$tt('headline6')">Special Sponsors</h6>
+      <p>
+        <a class="zmto" href="https://zmto.com/" target="_blank" rel="noopener">
+          ZMTO
+        </a>
+      </p>
     </section>
   </div>
 </template>

@@ -307,7 +307,7 @@ We officially support the last two versions of every major browser. Specifically
 ## Special Sponsors
 
 <a href="https://zmto.com/">
-  <img width="400" height="100" src="https://material.balmjs.com/zmto-logo.svg" alt="ZMTO">
+  <img width="400" height="100" src="https://material.balmjs.com/img/zmto-logo.svg" alt="ZMTO">
 </a>
 
 ## Special Thanks to

@@ -514,7 +514,7 @@ class MdcTree {
 
     const nodeKey = originNodeData[value];
     const item = nodeMap.get(nodeKey);
-    Object.keys(item).forEach((key) => {
+    Object.keys(originNodeData).forEach((key) => {
       if (typeof originNodeData[key] !== 'undefined') {
         item[key] = originNodeData[key];
       }

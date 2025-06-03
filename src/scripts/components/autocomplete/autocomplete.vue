@@ -283,6 +283,14 @@ export default {
     );
   },
   methods: {
+    isFunction(any) {
+      let type = getType(any);
+      return (
+        type === 'function' ||
+        type === 'generatorfunction' ||
+        type === 'asyncfunction'
+      );
+    },
     initClientHeight() {
       const view = this.autocompleteListEl;
       const list = view.querySelector('ul');
@@ -377,7 +385,7 @@ export default {
 
         this.timer = setTimeout(async () => {
           // AJAX
-          if (this.searchFn && getType(this.searchFn) === 'function') {
+          if (this.searchFn && this.isFunction(this.searchFn)) {
             const result = await this.searchFn(keywords);
             this.setDataSource(result);
             this.show();

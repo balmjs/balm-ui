@@ -1,9 +1,9 @@
 import { createApp } from 'vue';
 import router from '@/routes';
 // import { createMetaManager, plugin as metaPlugin } from 'vue-meta';
+import $analytics from '@/plugins/analytics';
 import i18n from '@/lang';
 import $http from '@/plugins/http';
-import $analytics from '@/plugins/analytics';
 import App from '@/views/layouts/app';
 import registerGlobalComponents from '@/config/components';
 import setGlobalProperties from '@/config/properties';
@@ -22,9 +22,9 @@ function createBalmUIApp() {
   const app = createApp(App);
 
   app.use(router);
+  app.use($analytics, 3);
   app.use(i18n);
   app.use($http);
-  app.use($analytics, 3);
   app.use(BalmUI, {
     $store: myStore,
     $typography: ['custom-style-1', 'custom-style-2'],

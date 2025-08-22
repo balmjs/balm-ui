@@ -181,6 +181,10 @@ export default {
     inside: {
       type: Boolean,
       default: false
+    },
+    searchFn: {
+      type: [Function, Boolean],
+      default: false
     }
   },
   data() {
@@ -279,6 +283,14 @@ export default {
     );
   },
   methods: {
+    isFunction(any) {
+      let type = getType(any);
+      return (
+        type === 'function' ||
+        type === 'generatorfunction' ||
+        type === 'asyncfunction'
+      );
+    },
     initClientHeight() {
       const view = this.autocompleteListEl;
       const list = view.querySelector('ul');
@@ -371,8 +383,15 @@ export default {
           clearTimeout(this.timer);
         }
 
-        this.timer = setTimeout(() => {
-          this.$emit(UI_AUTOCOMPLETE.EVENT.SEARCH, keywords); // AJAX
+        this.timer = setTimeout(async () => {
+          // AJAX
+          if (this.searchFn && this.isFunction(this.searchFn)) {
+            const result = await this.searchFn(keywords);
+            this.setDataSource(result);
+            this.show();
+          } else {
+            this.$emit(UI_AUTOCOMPLETE.EVENT.SEARCH, keywords);
+          }
         }, this.delay);
       } else {
         this.show();

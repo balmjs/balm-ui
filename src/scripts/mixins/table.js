@@ -21,7 +21,12 @@ export default {
       return getType(any) === 'object';
     },
     isFunction(any) {
-      return getType(any) === 'function';
+      let type = getType(any);
+      return (
+        type === 'function' ||
+        type === 'generatorfunction' ||
+        type === 'asyncfunction'
+      );
     },
     setTextAlignClassName(className, data) {
       if (data[this.T_CELL.ALIGN]) {

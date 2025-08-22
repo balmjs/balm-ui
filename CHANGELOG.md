@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.71.0 / 2025-06-03
+
+### Features
+
+- `<ui-autocomplete>`: add `searchFn` prop
+
 ## v8.70.3 / 2025-03-24
 
 ### Bug Fixes

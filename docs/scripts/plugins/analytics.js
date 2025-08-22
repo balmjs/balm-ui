@@ -3,10 +3,9 @@ import { isProd } from '@/config';
 
 /**
  * 统计代码注入插件
- * 只在生产环境中注入统计代码
  */
 
-function injectAnalytics(siteId = '3') {
+function injectAnalytics(siteId) {
   // 只有在生产环境中才注入统计代码
   if (isProd) {
     const script = document.createElement('script');

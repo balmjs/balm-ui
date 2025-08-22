@@ -2,6 +2,7 @@ import Vue from 'vue';
 import router from '@/routes';
 import i18n from '@/lang';
 import myStore from '@/store';
+import $analytics from '@/plugins/analytics';
 import $http from '@/plugins/http';
 import App from '@/views/layouts/app';
 import { setGlobalProps } from '@/config';
@@ -25,6 +26,7 @@ import SvgLogo from '@/components/svg-logo';
 import './my-sw';
 
 function createApp() {
+  Vue.use($analytics, 4);
   Vue.use($http);
 
   Vue.use(BalmUI, {

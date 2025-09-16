@@ -61,7 +61,7 @@ class UiValidator {
       const needValidator =
         !customFieldset.length || customFieldset.includes(fieldName);
 
-      if (needValidator) {
+      if (needValidator && validator) {
         const fieldLabel = label || fieldName; // Field alias name
         const fieldRules = validator
           .split(',')

@@ -77,7 +77,7 @@ const $validator = {
         const needValidator =
           !customFieldset.length || customFieldset.includes(fieldName);
 
-        if (needValidator) {
+        if (needValidator && validator) {
           const fieldLabel = label || fieldName; // 字段别名
           const fieldRules = validator
             .split(',')

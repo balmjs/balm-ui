@@ -12,7 +12,6 @@
 | `labels`             | array   | `[]`    | A text caption or description for the timerangepicker, which use the start and end input's `placeholder` attribute instead.   |         |
 | `placeholders`       | array   | `[]`    | The _placeholder_ attribute of the start and end `<input>`.                                                                   |         |
 | `config`             | object  | `{}`    | See [Flatpickr configuration](https://flatpickr.js.org/options/). Default includes `enableTime: true, noCalendar: true, dateFormat: 'H:i', time_24hr: true`. |         |
-| `disableRangePlugin` | boolean | `false` | Disables the flatpickr rangePlugin and use two `<ui-datepicker>` instead.                                                     |         |
 
 ### Slots
 

@@ -12,7 +12,6 @@
 | `labels`             | array   | `[]`    | 文本框的文本标题或说明，可使用文本框的 `placeholder` 属性代替                                                       |         |
 | `placeholders`       | array   | `[]`    | 原生 `<input>` 的 _placeholder_ 属性                                                                                |         |
 | `config`             | object  | `{}`    | 详见 [Flatpickr configuration](https://flatpickr.js.org/options/)，默认包含 `enableTime: true, noCalendar: true, dateFormat: 'H:i', time_24hr: true` |         |
-| `disableRangePlugin` | boolean | `false` | 禁用 flatpickr rangePlugin，使用两个 `<ui-datepicker>` 代替                                                         |         |
 
 ### Slots
 

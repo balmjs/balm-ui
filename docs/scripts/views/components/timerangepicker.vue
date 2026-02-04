@@ -1,7 +1,7 @@
 <template>
   <docs-page name="timerangepicker" demo-count="1">
     <template #hero>
-      <ui-timerangepicker v-model="time" :placeholders="['Start Time', 'End Time']">
+      <ui-timerangepicker v-model="time" :placeholders="['StartTime', 'EndTime']">
         <template #separator>to</template>
       </ui-timerangepicker>
     </template>
@@ -12,7 +12,7 @@
         <ui-timerangepicker
           v-model="time"
           outlined
-          :labels="['Start Time', 'End Time']"
+          :labels="['StartTime', 'EndTime']"
         >
           <template #separator>-</template>
         </ui-timerangepicker>

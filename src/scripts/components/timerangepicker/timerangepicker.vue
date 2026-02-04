@@ -26,7 +26,6 @@
 
 <script>
 import flatpickr from 'flatpickr';
-import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import UiTextfield from '../textfield/textfield.vue';
 
 // Define timerangepicker constants
@@ -81,10 +80,6 @@ export default {
       type: Object,
       default: () => ({})
     },
-    disableRangePlugin: {
-      type: Boolean,
-      default: false
-    }
   },
   data() {
     return {
@@ -132,9 +127,10 @@ export default {
     if (!this.flatpickr) {
       const config = this.setPickerConfig(startInput, startInputEl, endInputEl);
 
-      this.flatpickr = this.disableRangePlugin
-        ? [flatpickr(startInputEl, config), flatpickr(endInputEl, config)]
-        : flatpickr(startInputEl, config);
+      this.flatpickr = [
+        flatpickr(startInputEl, config),
+        flatpickr(endInputEl, config)
+      ];
     }
   },
   beforeDestroy() {
@@ -149,14 +145,7 @@ export default {
         this.config,
         {
           altInput: false,
-          disableMobile: true, // Mobile Support
-          plugins: this.disableRangePlugin
-            ? []
-            : [
-                new rangePlugin({
-                  input: endInputEl
-                })
-              ]
+          disableMobile: true // Mobile Support
         }
       );
 
@@ -182,28 +171,19 @@ export default {
       config.onReady = (selectedDates, dateStr, instance) => {
         const canEmit = this.updateInputs(this.model);
         if (canEmit) {
-          this.updateInitialValue(instance);
+          this.updateInitialValue();
           this.$emit(UI_TIMERANGEPICKER.EVENT.CHANGE, [
             this.startInputValue,
             this.endInputValue
           ]);
         }
       };
-      if (!this.disableRangePlugin) {
-        // fix(@flatpickr): second input onChange bug for rangePlugin (temporary solution)
-        config.onValueUpdate = () => {
-          this.onEndInputChange();
-        };
-      }
+
 
       return config;
     },
     destroyPicker() {
-      if (this.disableRangePlugin) {
-        this.flatpickr.forEach((item) => item.destroy());
-      } else {
-        this.flatpickr.destroy();
-      }
+      this.flatpickr.forEach((item) => item.destroy());
       this.flatpickr = null;
     },
     getTimeFormat() {
@@ -255,23 +235,11 @@ export default {
 
       return canEmit;
     },
-    updateInitialValue(instance = this.flatpickr) {
-      const dateValue =
-        this.startInputValue && this.endInputValue
-          ? [this.startInputValue, this.endInputValue]
-          : [];
-
-      if (this.disableRangePlugin) {
-        if (this.flatpickr && this.flatpickr.length === 2) {
-          this.flatpickr.forEach((item, index) =>
-            item.setDate(this.model[index])
-          );
-        }
-      } else {
-        instance.setDate(dateValue, true); // Redrawing
-
-        // fix(ui): focus bug for init (temporary solution)
-        this.$refs.startInput.$textField.foundation.deactivateFocus();
+    updateInitialValue() {
+      if (this.flatpickr && this.flatpickr.length === 2) {
+        this.flatpickr.forEach((item, index) =>
+          item.setDate(this.model[index])
+        );
       }
     },
     clear() {

@@ -14,6 +14,11 @@
     padding: timerangepicker-variables.$separator-padding;
 }
 
+.mdc-timerangepicker__start,
+.mdc-timerangepicker__end {
+    width: 80px;
+}
+
 .mdc-timerangepicker__end .mdc-text-field__input {
     cursor: pointer;
 }

@@ -158,6 +158,10 @@ const MATERIAL_COMPONENTS = [
         name: 'rangepicker'
       },
       {
+        icon: 'schedule',
+        name: 'timerangepicker'
+      },
+      {
         icon: 'toggle_off',
         name: 'switch'
       },

@@ -46,6 +46,7 @@ import UiTextfieldIcon from './components/textfield/textfield-icon.vue';
 import UiAutocomplete from './components/autocomplete/autocomplete.vue'; // Custom
 import UiDatepicker from './components/datepicker/datepicker.vue'; // Custom
 import UiRangepicker from './components/rangepicker/rangepicker.vue'; // Custom
+import UiTimerangepicker from './components/timerangepicker/timerangepicker.vue'; // Custom
 import UiSelect from './components/select/select.vue';
 import UiSelectHelper from './components/select/select-helper.vue';
 import UiSelectIcon from './components/select/select-icon.vue';
@@ -192,6 +193,7 @@ const Components = {
   UiProgress,
   UiRadio,
   UiRangepicker,
+  UiTimerangepicker,
   UiSegmentedButtons,
   UiSegmentedButton,
   UiSelect,

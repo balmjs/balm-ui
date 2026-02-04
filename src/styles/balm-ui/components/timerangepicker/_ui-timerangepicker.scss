@@ -1,0 +1,19 @@
+@use '@material/textfield/variables' as textfield-variables;
+@use './variables' as timerangepicker-variables;
+
+.mdc-timerangepicker {
+    display: inline-flex;
+    align-items: center;
+}
+
+.mdc-timerangepicker__separator {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: textfield-variables.$height;
+    padding: timerangepicker-variables.$separator-padding;
+}
+
+.mdc-timerangepicker__end .mdc-text-field__input {
+    cursor: pointer;
+}

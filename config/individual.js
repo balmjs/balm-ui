@@ -35,6 +35,7 @@ const components = [
   'progress',
   'radio',
   'rangepicker',
+  'timerangepicker',
   'segmented-button',
   'select',
   'slider',

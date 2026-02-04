@@ -43,6 +43,7 @@
     "file": "File",
     "datepicker": "Datepicker",
     "rangepicker": "Rangepicker",
+    "timerangepicker": "Timerangepicker",
     "switch": "Switch",
     "slider": "Slider",
     "validator": "Validator",

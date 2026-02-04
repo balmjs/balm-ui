@@ -43,6 +43,7 @@
     "file": "文件上传",
     "datepicker": "日期选择器",
     "rangepicker": "日期范围选择器",
+    "timerangepicker": "时间范围选择器",
     "switch": "开关",
     "slider": "滑动条",
     "validator": "验证器",

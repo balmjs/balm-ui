@@ -9,6 +9,7 @@ const File = () => import('@/views/components/file');
 const Autocomplete = () => import('@/views/components/autocomplete');
 const Datepicker = () => import('@/views/components/datepicker');
 const Rangepicker = () => import('@/views/components/rangepicker');
+const Timerangepicker = () => import('@/views/components/timerangepicker');
 const Editor = () => import('@/views/components/editor');
 const Validator = () => import('@/views/plugins/validator');
 
@@ -67,6 +68,11 @@ export default [
     path: 'rangepicker',
     name: 'data-input.rangepicker',
     component: Rangepicker
+  },
+  {
+    path: 'timerangepicker',
+    name: 'data-input.timerangepicker',
+    component: Timerangepicker
   },
   {
     path: 'editor',

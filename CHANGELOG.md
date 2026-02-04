@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui`](https://github.com/balmjs/balm-ui)(v9+) supports for Vue 3
 
+## v8.72.0 / 2026-02-04
+
+### Features
+
+- new components: `<ui-timerangepicker>`
+
 ## v8.71.0 / 2025-06-03
 
 ### Features

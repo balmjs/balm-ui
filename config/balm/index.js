@@ -13,9 +13,13 @@ function resolve(dir) {
 }
 
 function getConfig(balm) {
-  const useDocsProd = balm.config.env.isProd && env.buildDocs;
-  const useDocsDev = !balm.config.env.isProd || env.buildDocs;
-  const useBuild = balm.config.env.isProd && !env.buildDocs;
+  const isProd =
+    process.env.NODE_ENV === 'production' ||
+    balm?.config?.env?.isProd ||
+    balm?.default?.config?.env?.isProd;
+  const useDocsProd = isProd && env.buildDocs;
+  const useDocsDev = !isProd || env.buildDocs;
+  const useBuild = isProd && !env.buildDocs;
 
   return {
     server: {
@@ -124,6 +128,7 @@ function getConfig(balm) {
         ? {
             vue: {
               root: 'Vue',
+              var: 'Vue',
               commonjs: 'vue',
               commonjs2: 'vue',
               amd: 'vue'
@@ -131,6 +136,7 @@ function getConfig(balm) {
             flatpickr: 'flatpickr',
             quill: {
               root: 'Quill',
+              var: 'Quill',
               commonjs: 'quill',
               commonjs2: 'quill',
               amd: 'quill'

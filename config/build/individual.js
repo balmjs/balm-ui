@@ -12,6 +12,7 @@ function getWebpackOptions(library) {
     externals: {
       vue: {
         root: 'Vue',
+        var: 'Vue',
         commonjs: 'vue',
         commonjs2: 'vue',
         amd: 'vue'
@@ -81,7 +82,9 @@ function buildIndividual(mix) {
       let jsInput;
       switch (buildName) {
         case 'utils':
-          jsInput = [`${config.input[buildName]}/${item}.js`];
+          jsInput = {
+            [item]: `${config.input[buildName]}/${item}.js`
+          };
           break;
         case 'components':
           jsInput = {

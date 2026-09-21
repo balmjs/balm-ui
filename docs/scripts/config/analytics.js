@@ -6,23 +6,28 @@ let myGtag = null;
 
 export function createAnalytics() {
   if (isProd && !myGtag) {
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
+    if (typeof window.gtag === 'function') {
+      myGtag = window.gtag;
+    } else {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', GA_MEASUREMENT_ID);
+
+      myGtag = gtag;
     }
-    gtag('js', new Date());
-
-    gtag('config', GA_MEASUREMENT_ID);
-
-    myGtag = gtag;
   }
 }
 
 export function statistics(pagePath = 'Unknown') {
-  if (myGtag) {
+  if (myGtag || (isProd && typeof window.gtag === 'function')) {
+    const gtagFn = myGtag || window.gtag;
     setTimeout(function () {
-      myGtag('set', 'page_path', pagePath);
-      myGtag('event', 'page_view');
+      gtagFn('set', 'page_path', pagePath);
+      gtagFn('event', 'page_view');
     }, 200);
   } else {
     createAnalytics();

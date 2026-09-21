@@ -151,6 +151,13 @@ function getConfig(balm) {
           }
         : {}
     },
+    html: useDocsProd
+      ? {
+          analytics: {
+            google: 'G-KL224V1QB5'
+          }
+        }
+      : {},
     extras: {
       excludes: ['index.js', 'service-worker.js'],
       includes: ['CNAME', 'material-icons.zip']

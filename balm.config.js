@@ -1,8 +1,9 @@
-const balm = require('balm').default || require('balm');
 const getConfig = require('./config/balm');
 const recipes = require('./config/balm/api');
+const afterTask = require('./config/balm/after-task');
 
-module.exports = {
+module.exports = (balm) => ({
   config: getConfig(balm),
-  recipes
-};
+  recipes,
+  afterTask
+});

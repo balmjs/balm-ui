@@ -37,7 +37,6 @@ function getConfig(balm) {
       extname: 'scss'
     },
     scripts: {
-      eslint: true,
       entry: useDocsDev
         ? {
             // hello: [

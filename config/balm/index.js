@@ -152,7 +152,11 @@ function getConfig(balm) {
     html: useDocsProd
       ? {
           analytics: {
-            google: 'G-KL224V1QB5'
+            google: 'G-KL224V1QB5',
+            custom: {
+              src: 'https://insights.balmjs.com/script.js',
+              siteId: '45999a58-2ac4-45fd-a352-2a1fed51a369'
+            }
           }
         }
       : {},

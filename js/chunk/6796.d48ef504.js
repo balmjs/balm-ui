@@ -1,1 +1,1 @@
-"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[6796],{46796(e,p,s){e.exports=s.p+"img/8.c6de9b29.f1f0a835.jpg"}}]);
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[6796],{46796(e,p,s){e.exports=s.p+"img/8.c6de9b29.jpg"}}]);

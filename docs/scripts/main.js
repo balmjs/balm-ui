@@ -1,7 +1,6 @@
 import { createApp } from 'vue';
 import router from '@/routes';
 // import { createMetaManager, plugin as metaPlugin } from 'vue-meta';
-import $analytics from '@/plugins/analytics';
 import i18n from '@/lang';
 import $http from '@/plugins/http';
 import App from '@/views/layouts/app';
@@ -22,7 +21,6 @@ function createBalmUIApp() {
   const app = createApp(App);
 
   app.use(router);
-  app.use($analytics, 3);
   app.use(i18n);
   app.use($http);
   app.use(BalmUI, {

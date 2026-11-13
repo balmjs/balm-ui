@@ -304,12 +304,6 @@ We officially support the last two versions of every major browser. Specifically
 - **Safari** on iOS and macOS
 - **Edge** on Windows
 
-## Special Sponsors
-
-<a href="https://zmto.com/">
-  <img width="400" height="100" src="https://material.balmjs.com/img/zmto-logo.svg" alt="ZMTO">
-</a>
-
 ## Special Thanks to
 
 - [BalmJS](https://balm.js.org/)

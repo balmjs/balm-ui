@@ -166,7 +166,7 @@ function getConfig(balm) {
     },
     assets: {
       cache: env.buildDocs,
-      excludes: ['dist/img/icons/icon-*.png', 'dist/img/zmto-logo.svg']
+      excludes: ['dist/img/icons/icon-*.png']
     },
     pwa: {
       enabled: env.buildDocs,

@@ -23,6 +23,7 @@ module.exports = function (api) {
             'ini',
             'css',
             'javascript',
+            'json',
             'bash',
             'scss',
             'typescript'

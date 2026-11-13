@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "10.31.2",
+  "version": "10.31.3",
   "description": "A modular and customizable UI library based on Material Design and Vue 3",
   "keywords": [
     "balm",
@@ -81,7 +81,7 @@
     "axios": "^1.9.0",
     "babel-jest": "^29.0.0",
     "babel-plugin-prismjs": "^2.1.0",
-    "balm": "6.0.0-alpha.2",
+    "balm": "6.0.0-alpha.3",
     "clipboard": "^2.0.11",
     "core-js": "^3.42.0",
     "cross-env": "^7.0.3",

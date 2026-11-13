@@ -14,9 +14,7 @@ function resolve(dir) {
 
 function getConfig(balm) {
   const isProd =
-    process.env.NODE_ENV === 'production' ||
-    balm?.config?.env?.isProd ||
-    balm?.default?.config?.env?.isProd;
+    process.env.NODE_ENV === 'production' || balm?.config?.env?.isProd;
   const useDocsProd = isProd && env.buildDocs;
   const useDocsDev = !isProd || env.buildDocs;
   const useBuild = isProd && !env.buildDocs;

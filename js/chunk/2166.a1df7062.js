@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[2166],{12166(e,a,t){t.d(a,["default",0,'<pre><code class="language-html">&lt;ui-skeleton avatar :paragraph=&quot;{ rows: 4 }&quot;&gt;&lt;/ui-skeleton&gt;\n</code></pre> '])}}]);

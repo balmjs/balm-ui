@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[6890],{56890(e,a,t){var n=t(35720),u=t(95962);const s=(0,n.reactive)({demoMenu:[]});async function c(){const e=(0,u.q)();s.demoMenu=await e.get("/data/table.json")}t.d(a,["default",0,()=>({...(0,n.toRefs)(s),getDemoMenu:c})])}}]);

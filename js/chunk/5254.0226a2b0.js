@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[5254],{55254(t,e,a){a.d(e,["default",0,'<pre><code class="language-html">&lt;div v-shadow.transition=&quot;[2, 8]&quot;&gt;\n  &lt;p&gt;Hover over or tap me for a transition&lt;/p&gt;\n&lt;/div&gt;\n</code></pre> '])}}]);

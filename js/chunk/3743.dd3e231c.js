@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[3743],{83743(e,l,t){t.d(l,["default",0,'<pre><code class="language-html">&lt;ui-skeleton&gt;&lt;/ui-skeleton&gt;\n</code></pre> '])}}]);

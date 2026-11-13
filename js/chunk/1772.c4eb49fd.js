@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[1772],{31772(e,s,n){n.d(s,["default",0,'<pre><code class="language-html">&lt;ui-spinner :progress=&quot;progress&quot;&gt;&lt;/ui-spinner&gt;\n</code></pre> <pre><code class="language-js">&lt;script&gt;\nexport default {\n  data() {\n    return {\n      progress: 0\n    };\n  }\n}\n</code></pre> '])}}]);

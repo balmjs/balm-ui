@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[2841],{42841(e,l,u){u.d(l,["default",0,'<pre><code class="language-html">&lt;ui-spinner active&gt;&lt;/ui-spinner&gt;\n</code></pre> '])}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[3420],{63420(e,a,p){e.exports=p.p+"img/card-media-h.e728c270.png"}}]);

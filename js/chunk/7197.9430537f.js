@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbalm_ui=self.webpackChunkbalm_ui||[]).push([[7197],{49578(e,l,u){u.d(l,["default",0,'<pre><code class="language-html">&lt;ui-select outlined&gt;\n  Food Group\n&lt;/ui-select&gt;\n</code></pre> '])}}]);

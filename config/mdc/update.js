@@ -1,7 +1,5 @@
 const fs = require('fs');
 const https = require('https');
-const { src, dest, task, series } = require('gulp');
-const $replace = require('gulp-replace');
 
 // https://fonts.google.com/icons?icon.set=Material+Icons
 // updated: 2023.04.06
@@ -14,7 +12,7 @@ const LATEST_VERSIONS = {
 };
 
 // Update Material Components Web for BalmUI
-const mdcDir = './src/material-components-web/';
+const mdcDir = './src/material-components-web';
 const level0 = ['material-components-web.scss'];
 const level1 = [
   'banner',
@@ -87,55 +85,6 @@ const level3 = [
   'chips/deprecated/trailingaction'
 ];
 
-let index = 0;
-let updateMDCTasks = [];
-
-level0.forEach((file) => {
-  let name = `update:mdc:${index}`;
-  task(name, () => {
-    return src(mdcDir + file)
-      .pipe($replace('@material/', './'))
-      .pipe(dest(mdcDir));
-  });
-  updateMDCTasks.push(name);
-  index++;
-});
-
-level1.forEach((file) => {
-  const name = `update:mdc:${index}`;
-  task(name, () => {
-    return src(mdcDir + file + '/*')
-      .pipe($replace('@material/', '../'))
-      .pipe(dest(mdcDir + file));
-  });
-  updateMDCTasks.push(name);
-  index++;
-});
-
-level2.forEach((file) => {
-  const name = `update:mdc:${index}`;
-  task(name, () => {
-    return src(mdcDir + file + '/*')
-      .pipe($replace('@material/', '../../'))
-      .pipe(dest(mdcDir + file));
-  });
-  updateMDCTasks.push(name);
-  index++;
-});
-
-level3.forEach((file) => {
-  const name = `update:mdc:${index}`;
-  task(name, () => {
-    return src(mdcDir + file + '/*')
-      .pipe($replace('@material/', '../../../'))
-      .pipe(dest(mdcDir + file));
-  });
-  updateMDCTasks.push(name);
-  index++;
-});
-
-task('update:mdc', series(updateMDCTasks));
-
 // Get Material Icons
 const MDI_baseUrl = 'https://fonts.gstatic.com/s/materialicons';
 const MDI_regularStyle = 'filled';
@@ -166,112 +115,129 @@ const MaterialIconsFonts = [
   }
 ];
 
-function updateMDITask(cb) {
-  https
-    .get('https://fonts.googleapis.com/icon?family=Material+Icons', (res) => {
-      if (res.statusCode === 200) {
-        let data = '';
+function updateMDITask() {
+  return new Promise((resolve) => {
+    https
+      .get('https://fonts.googleapis.com/icon?family=Material+Icons', (res) => {
+        if (res.statusCode === 200) {
+          let data = '';
 
-        res.on('data', (chunk) => {
-          data += chunk;
-        });
+          res.on('data', (chunk) => {
+            data += chunk;
+          });
 
-        res.on('end', () => {
-          const result = data.match(/materialicons\/v(\d+)\//);
-          const version = result[1];
+          res.on('end', () => {
+            const result = data.match(/materialicons\/v(\d+)\//);
+            const version = result ? result[1] : 'unknown';
 
-          console.log(`Material Icons latest version: ${version}`);
+            console.log(`Material Icons latest version: ${version}`);
 
-          MaterialIconsFonts.forEach((iconFont) => {
-            const suffix = iconFont.url.split('.')[1];
-            const filename =
-              iconFont.style === MDI_regularStyle
-                ? `material-icons.${suffix}`
-                : `material-icons-${iconFont.style}.${suffix}`;
-            const file = fs.createWriteStream(
-              `./src/material-icons/${filename}`
-            );
-            const request = https.get(
-              `${MDI_baseUrl}${iconFont.url}`,
-              (response) => {
-                response.pipe(file);
-              }
-            );
-            request.on('close', () => {
-              console.log(`${filename} downloaded`);
-            });
-            request.on('error', (e) => {
-              console.error(e);
+            let pending = MaterialIconsFonts.length;
+            MaterialIconsFonts.forEach((iconFont) => {
+              const suffix = iconFont.url.split('.')[1];
+              const filename =
+                iconFont.style === MDI_regularStyle
+                  ? `material-icons.${suffix}`
+                  : `material-icons-${iconFont.style}.${suffix}`;
+              const file = fs.createWriteStream(
+                `./src/material-icons/${filename}`
+              );
+              const request = https.get(
+                `${MDI_baseUrl}${iconFont.url}`,
+                (response) => {
+                  response.pipe(file);
+                }
+              );
+              request.on('close', () => {
+                console.log(`${filename} downloaded`);
+                pending--;
+                if (pending === 0) resolve();
+              });
+              request.on('error', (e) => {
+                console.error(e);
+                pending--;
+                if (pending === 0) resolve();
+              });
             });
           });
-        });
-      } else {
-        console.warn('F**k G-F-W');
-      }
-    })
-    .on('error', (e) => {
-      console.error(e);
-    });
-
-  cb();
+        } else {
+          console.warn('Cannot fetch Material Icons metadata');
+          resolve();
+        }
+      })
+      .on('error', (e) => {
+        console.error(e);
+        resolve();
+      });
+  });
 }
 
-task('update:mdi', updateMDITask);
-
 // Set Material Icons Category
-// const MDI_JSON = 'https://fonts.google.com/metadata/icons'; // NOTE: manual download `json.txt`
 const sourceData = './docs/data/txt.json';
 const targetData = './docs/data/icons.json';
 
-function updateMDIJson(cb) {
-  let uiIconsData = {
-    icons: {},
-    tags: {}
-  };
-
-  fs.readFile(sourceData, (err, data) => {
-    const jsonData = JSON.parse(data);
-    let uiTags = [];
-    jsonData.icons.forEach((icon, index) => {
-      const id = index + 1;
-
-      item = {
-        id,
-        name: icon.name,
-        tags: icon.tags
+function updateMDIJson() {
+  return new Promise((resolve) => {
+    fs.readFile(sourceData, (err, data) => {
+      if (err) {
+        console.error(err);
+        return resolve();
+      }
+      const jsonData = JSON.parse(data);
+      let uiIconsData = {
+        icons: {},
+        tags: {}
       };
+      let uiTags = [];
+      jsonData.icons.forEach((icon, index) => {
+        const id = index + 1;
+        const item = {
+          id,
+          name: icon.name,
+          tags: icon.tags
+        };
 
-      icon.categories.forEach((category) => {
-        if (uiIconsData.icons[category]) {
-          uiIconsData.icons[category].push(item);
-        } else {
-          uiIconsData.icons[category] = [item];
-        }
-
-        item.tags.forEach((tag) => {
-          if (uiIconsData.tags[tag]) {
-            if (!uiIconsData.tags[tag].includes(item.id)) {
-              uiIconsData.tags[tag].push(item.id);
-            }
+        icon.categories.forEach((category) => {
+          if (uiIconsData.icons[category]) {
+            uiIconsData.icons[category].push(item);
           } else {
-            uiIconsData.tags[tag] = [item.id];
+            uiIconsData.icons[category] = [item];
           }
-        });
 
-        uiTags.push(...item.tags);
+          item.tags.forEach((tag) => {
+            if (uiIconsData.tags[tag]) {
+              if (!uiIconsData.tags[tag].includes(item.id)) {
+                uiIconsData.tags[tag].push(item.id);
+              }
+            } else {
+              uiIconsData.tags[tag] = [item.id];
+            }
+          });
+
+          uiTags.push(...item.tags);
+        });
+      });
+
+      uiIconsData.tags = [...new Set(uiTags)].sort();
+
+      fs.writeFile(targetData, JSON.stringify(uiIconsData), 'utf8', (writeErr) => {
+        if (writeErr) {
+          console.error(writeErr);
+          return resolve();
+        }
+        console.log('The icons has been saved!');
+        resolve();
       });
     });
-
-    uiIconsData.tags = [...new Set(uiTags)].sort();
-    // console.log(uiIconsData.tags);
-
-    fs.writeFile(targetData, JSON.stringify(uiIconsData), 'utf8', (err) => {
-      if (err) throw err;
-      console.log('The icons has been saved!');
-    });
   });
-
-  cb();
 }
 
-task('update:mdi:json', updateMDIJson);
+module.exports = {
+  mdcDir,
+  level0,
+  level1,
+  level2,
+  level3,
+  updateMDITask,
+  updateMDIJson
+};

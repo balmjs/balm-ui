@@ -13,9 +13,11 @@ function resolve(dir) {
 }
 
 function getConfig(balm) {
-  const useDocsProd = balm.config.env.isProd && env.buildDocs;
-  const useDocsDev = !balm.config.env.isProd || env.buildDocs;
-  const useBuild = balm.config.env.isProd && !env.buildDocs;
+  const isProd =
+    process.env.NODE_ENV === 'production' || balm?.config?.env?.isProd;
+  const useDocsProd = isProd && env.buildDocs;
+  const useDocsDev = !isProd || env.buildDocs;
+  const useBuild = isProd && !env.buildDocs;
 
   return {
     server: {
@@ -33,7 +35,6 @@ function getConfig(balm) {
       extname: 'scss'
     },
     scripts: {
-      eslint: true,
       entry: useDocsDev
         ? {
             // hello: [
@@ -116,14 +117,13 @@ function getConfig(balm) {
       ],
       injectHtml: !useBuild,
       htmlPluginOptions: {
-        template: env.buildDocs
-          ? './docs/templates/prod.html'
-          : './docs/templates/dev.html'
+        template: './docs/templates/index.html'
       },
       externals: useBuild
         ? {
             vue: {
               root: 'Vue',
+              var: 'Vue',
               commonjs: 'vue',
               commonjs2: 'vue',
               amd: 'vue'
@@ -131,6 +131,7 @@ function getConfig(balm) {
             flatpickr: 'flatpickr',
             quill: {
               root: 'Quill',
+              var: 'Quill',
               commonjs: 'quill',
               commonjs2: 'quill',
               amd: 'quill'
@@ -146,13 +147,24 @@ function getConfig(balm) {
           }
         : {}
     },
+    html: useDocsProd
+      ? {
+          analytics: {
+            google: 'G-KL224V1QB5',
+            custom: {
+              src: 'https://insights.balmjs.com/script.js',
+              siteId: '45999a58-2ac4-45fd-a352-2a1fed51a369'
+            }
+          }
+        }
+      : {},
     extras: {
       excludes: ['index.js', 'service-worker.js'],
       includes: ['CNAME', 'material-icons.zip']
     },
     assets: {
       cache: env.buildDocs,
-      excludes: ['dist/img/icons/icon-*.png', 'dist/img/zmto-logo.svg']
+      excludes: ['dist/img/icons/icon-*.png']
     },
     pwa: {
       enabled: env.buildDocs,

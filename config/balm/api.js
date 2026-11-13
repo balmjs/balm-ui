@@ -44,6 +44,42 @@ module.exports = (mix) => {
         `${constants.DEV_SOURCE.mdc}/chips/deprecated/trailingaction/test`,
         `${constants.DEV_SOURCE.mdc}/switch/deprecated/test`
       ]);
+
+      const {
+        level0,
+        level1,
+        level2,
+        level3
+      } = require('../mdc/update');
+
+      level0.forEach((file) => {
+        mix.replace(
+          `${constants.DEV_SOURCE.mdc}/${file}`,
+          constants.DEV_SOURCE.mdc,
+          { substr: '@material/', replacement: './' }
+        );
+      });
+      level1.forEach((file) => {
+        mix.replace(
+          `${constants.DEV_SOURCE.mdc}/${file}/*`,
+          `${constants.DEV_SOURCE.mdc}/${file}`,
+          { substr: '@material/', replacement: '../' }
+        );
+      });
+      level2.forEach((file) => {
+        mix.replace(
+          `${constants.DEV_SOURCE.mdc}/${file}/*`,
+          `${constants.DEV_SOURCE.mdc}/${file}`,
+          { substr: '@material/', replacement: '../../' }
+        );
+      });
+      level3.forEach((file) => {
+        mix.replace(
+          `${constants.DEV_SOURCE.mdc}/${file}/*`,
+          `${constants.DEV_SOURCE.mdc}/${file}`,
+          { substr: '@material/', replacement: '../../../' }
+        );
+      });
     } else {
       if (mix.env.isProd) {
         buildIndividual(mix);

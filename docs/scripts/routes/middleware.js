@@ -1,6 +1,5 @@
 import { useBus, useStore } from 'balm-ui';
 import { getPageClassName } from '@/utils';
-import { statistics } from '@/config/analytics';
 
 const ROOT_CLASS_NAMESPACE = 'balmui';
 
@@ -48,8 +47,11 @@ export function initRouter(router) {
       pageClassList.add(...className);
     }
 
-    if (toRouteName !== fromRouteName) {
-      statistics(to.fullPath);
+    if (toRouteName !== fromRouteName && typeof window.gtag === 'function') {
+      setTimeout(() => {
+        window.gtag('set', 'page_path', to.fullPath);
+        window.gtag('event', 'page_view');
+      }, 200);
     }
 
     if (store && !store.isFirstLoad) {

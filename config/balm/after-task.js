@@ -1,16 +1,12 @@
 const env = require('../env');
-require('../mdc/update');
+const { updateMDITask, updateMDIJson } = require('../mdc/update');
 
-let afterTask;
+let afterTask = null;
 
-if (env.updateMDC) {
-  afterTask = 'update:mdc';
-}
 if (env.updateMDI) {
-  afterTask = 'update:mdi';
-}
-if (env.updateMDIJson) {
-  afterTask = 'update:mdi:json';
+  afterTask = updateMDITask;
+} else if (env.updateMDIJson) {
+  afterTask = updateMDIJson;
 }
 
 module.exports = afterTask;

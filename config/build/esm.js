@@ -37,7 +37,9 @@ const baseConfig = {
     babel: {
       exclude: 'node_modules/**',
       extensions: ['.js', '.vue'],
-      babelHelpers: 'runtime',
+      babelHelpers: 'bundled',
+      configFile: false,
+      babelrc: false,
       presets: [['@babel/preset-env', { modules: false }]]
     },
     replace: {
